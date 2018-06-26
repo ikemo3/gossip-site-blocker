@@ -1,0 +1,113 @@
+{
+  "blockButtonLabel": {
+    "message": "Block"
+  },
+  "blockThisDomainWithUrl": {
+    "message": "Block this domain($domain$)",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "blockThisPageWithUrl": {
+    "message": "Block this page($url$)",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "blockedUrls": {
+    "message": "Blocked URLs"
+  },
+  "blockThisPage": {
+    "message": "Block this page"
+  },
+  "cancelButtonLabel": {
+    "message": "Cancel"
+  },
+  "changeToHardBlock": {
+    "message": "Change to hard block"
+  },
+  "changeToSoftBlock": {
+    "message": "Change to soft block"
+  },
+  "clearAll": {
+    "message": "Clear all"
+  },
+  "clearConfirm": {
+    "message": "Are you sure you want to clear all?"
+  },
+  "clearDone": {
+    "message": "Clear completed."
+  },
+  "customRadioText": {
+    "message": "Custom"
+  },
+  "dangerZone": {
+    "message": "Danger Zone"
+  },
+  "deleteUrl": {
+    "message": "Delete"
+  },
+  "developerMode": {
+    "message": "Developer Mode"
+  },
+  "exportButton": {
+    "message": "Export"
+  },
+  "exportRestriction": {
+    "message": "Restriction: Currently you can not export the type of block (soft / hard)."
+  },
+  "exportSection": {
+    "message": "Export"
+  },
+  "extensionDescription": {
+    "message": "Hide harmful sites from Google search results."
+  },
+  "extensionName": {
+    "message": "Gossip Site Blocker"
+  },
+  "forDeveloper": {
+    "message": "For Developer"
+  },
+  "hardBlock": {
+    "message": "Hard block(erase)"
+  },
+  "importButton": {
+    "message": "Import"
+  },
+  "importSection": {
+    "message": "Import"
+  },
+  "importCompleted": {
+    "message": "Import completed."
+  },
+  "importRestriction": {
+    "message": "Restriction: Currently you can not import the type of block (soft / hard)."
+  },
+  "importTextAreaLabel": {
+    "message": "Please enter a list of domain names / host names to add, one per line, and press the 'Import' button."
+  },
+  "optionTitle": {
+    "message": "Gossip Site Blocker: Option"
+  },
+  "softBlock": {
+    "message": "Soft block(hide)"
+  },
+  "temporarilyUnblock": {
+    "message": "Temporarily unblock($url$)",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "unhideThisPage": {
+    "message": "Hide"
+  },
+  "updateUrl": {
+    "message": "Update URL"
+  }
+}

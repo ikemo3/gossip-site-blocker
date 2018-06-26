@@ -1,0 +1,4 @@
+/* 一瞬でも表示させないために、一旦display: noneをセット */
+body {
+    display: none;
+}

@@ -1,0 +1,85 @@
+/**
+ * ブロックしたときのカラー
+ */
+[data-blocker-display=none] {
+    display: none;
+    background-color: inherit;
+}
+
+/**
+ * 一時ブロック解除時のカラー
+ */
+[data-blocker-display=unhide] {
+    background-color: #FFD2D2;
+}
+
+/**
+ * ブロックしていない要素の直後のアンカー
+ */
+:not(g-inner-card):not([data-blocker-display=none]) + .block-anchor {
+    margin-top: -26px;
+    margin-bottom: 26px;
+}
+
+/**
+ * ブロックした要素の直後のアンカー
+ */
+:not(g-inner-card)[data-blocker-display=none] + .block-anchor {
+    margin-top: 26px;
+    margin-bottom: 26px;
+}
+
+.block-anchor a {
+    font-size: 1rem;
+}
+
+/**
+ * ダイアログ表示時のバックグラウンド
+ */
+.block-dialog-background {
+    z-index: 104;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.block-dialog {
+    margin: 15% auto; /* 上下=15% 左右=auto */
+    width: 60%;
+    min-width: 50em;
+    background-color: #FFFFFF;
+    font-size: 1.4rem;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.block-dialog input {
+    font-size: 1.4rem;
+}
+
+.block-dialog-url-radios {
+    margin-bottom: 1em;
+}
+
+.block-dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.block-dialog-buttons input {
+    flex-basis: 8em;
+}
+
+.block-dialog-buttons input.blocker-primary-button {
+    color: white;
+    background-color: darkblue;
+}
+
+.block-dialog-buttons input.blocker-secondary-button {
+    color: black;
+    background-color: #fefefe;
+}

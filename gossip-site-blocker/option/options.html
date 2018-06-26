@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"/>
+    <title data-i18n-text="optionTitle">Gossip Site Blocker: Option</title>
+</head>
+<body>
+
+<h1 data-i18n-text="optionTitle">Gossip Site Blocker: Option</h1>
+
+<h2 data-i18n-text="blockedUrls">Blocked URLs</h2>
+
+<h3 data-i18n-text="softBlock">Soft Block</h3>
+
+<div id="softBlockList">
+</div>
+
+<h3 data-i18n-text="hardBlock">Hard Block</h3>
+
+<div id="hardBlockList">
+</div>
+
+<hr/>
+
+<h2 data-i18n-text="exportSection">Export</h2>
+
+<span data-i18n-text="exportRestriction"></span>
+
+<br/>
+
+<input type="button" id="exportButton" data-i18n-value="exportButton" value="Export"/>
+
+<br/>
+
+<label for="exportTextArea"></label>
+
+<textarea id="exportTextArea" cols="80" rows="10">
+</textarea>
+
+<hr/>
+
+<h2 data-i18n-text="importSection">Import</h2>
+
+<label for="importTextArea" data-i18n-text="importTextAreaLabel"></label>
+
+<br/>
+
+<span data-i18n-text="importRestriction"></span>
+
+<br/>
+
+<textarea id="importTextArea" cols="80" rows="10">
+</textarea>
+
+<br/>
+
+<input type="button" id="importButton" data-i18n-value="importButton" value="Import"/>
+
+<hr/>
+
+<h2 data-i18n-text="forDeveloper">For Developer</h2>
+
+<input type="checkbox" id="developerCheckbox"/>
+<label for="developerCheckbox" data-i18n-text="developerMode">Developer Mode</label>
+<br/>
+<br/>
+
+<hr/>
+
+<h2 data-i18n-text="dangerZone">Danger Zone</h2>
+
+<input type="button" id="clearButton" data-i18n-value="clearAll" value="Clear All"/>
+
+<script src="../common.js"></script>
+<script src="block.js"></script>
+<script src="config.js"></script>
+<script src="export.js"></script>
+<script src="import.js"></script>
+<script src="l10n.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

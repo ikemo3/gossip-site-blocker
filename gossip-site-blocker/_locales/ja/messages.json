@@ -1,0 +1,113 @@
+{
+  "blockButtonLabel": {
+    "message": "ブロック"
+  },
+  "blockThisDomainWithUrl": {
+    "message": "このドメインをブロック($domain$)",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "blockThisPageWithUrl": {
+    "message": "このページをブロック($url$)",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "blockedUrls": {
+    "message": "ブロックしたURL"
+  },
+  "blockThisPage": {
+    "message": "このページをブロックする"
+  },
+  "cancelButtonLabel": {
+    "message": "キャンセル"
+  },
+  "changeToHardBlock": {
+    "message": "ハードブロックに変更"
+  },
+  "changeToSoftBlock": {
+    "message": "ソフトブロックに変更"
+  },
+  "clearAll": {
+    "message": "全てクリアする"
+  },
+  "clearConfirm": {
+    "message": "全てクリアしていいでしょうか?"
+  },
+  "clearDone": {
+    "message": "クリアしました。"
+  },
+  "customRadioText": {
+    "message": "カスタム"
+  },
+  "dangerZone": {
+    "message": "危険地帯"
+  },
+  "deleteUrl": {
+    "message": "削除"
+  },
+  "developerMode": {
+    "message": "開発者モード"
+  },
+  "exportButton": {
+    "message": "エクスポート"
+  },
+  "exportRestriction": {
+    "message": "制限事項: 現在はブロックのタイプ(ソフト/ハード)はエクスポートできません。"
+  },
+  "exportSection": {
+    "message": "エクスポート"
+  },
+  "extensionDescription": {
+    "message": "Google検索の結果から有害なサイトを隠します。"
+  },
+  "extensionName": {
+    "message": "ゴシップサイトブロッカー"
+  },
+  "forDeveloper": {
+    "message": "開発者向けオプション"
+  },
+  "hardBlock": {
+    "message": "ハードブロック(削除)"
+  },
+  "importButton": {
+    "message": "インポート"
+  },
+  "importSection": {
+    "message": "インポート"
+  },
+  "importCompleted": {
+    "message": "インポートが完了しました。"
+  },
+  "importRestriction": {
+    "message": "制限事項: 現在はブロックのタイプ(ソフト/ハード)はインポートできません。"
+  },
+  "importTextAreaLabel": {
+    "message": "追加するドメイン名/ホスト名のリストを1行に1つずつ入力して「インポート」ボタンを押してください。"
+  },
+  "optionTitle": {
+    "message": "ゴシップサイトブロッカー: オプション"
+  },
+  "softBlock": {
+    "message": "ソフトブロック(非表示)"
+  },
+  "temporarilyUnblock": {
+    "message": "ブロックを一時解除($url$)",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "unhideThisPage": {
+    "message": "非表示にする"
+  },
+  "updateUrl": {
+    "message": "URLを更新"
+  }
+}
