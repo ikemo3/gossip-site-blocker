@@ -65,12 +65,14 @@ class BlockDialog {
         radio.name = "block-url-type";
         radio.checked = true;
         radio.value = value;
+        radio.id = "blocker-dialog-domain-radio";
 
-        const textSpan = document.createElement("span");
-        textSpan.textContent = chrome.i18n.getMessage("blockThisDomainWithUrl", value);
+        const textLabel = document.createElement("label");
+        textLabel.htmlFor = "blocker-dialog-domain-radio";
+        textLabel.textContent = chrome.i18n.getMessage("blockThisDomainWithUrl", value);
 
         div.appendChild(radio);
-        div.appendChild(textSpan);
+        div.appendChild(textLabel);
 
         return div;
     }
@@ -82,12 +84,14 @@ class BlockDialog {
         radio.type = "radio";
         radio.name = "block-url-type";
         radio.value = value;
+        radio.id = "blocker-dialog-url-radio";
 
-        const textSpan = document.createElement("span");
-        textSpan.textContent = chrome.i18n.getMessage("blockThisPageWithUrl", decodeURI(value));
+        const textLabel = document.createElement("label");
+        textLabel.htmlFor = "blocker-dialog-url-radio";
+        textLabel.textContent = chrome.i18n.getMessage("blockThisPageWithUrl", decodeURI(value));
 
         div.appendChild(radio);
-        div.appendChild(textSpan);
+        div.appendChild(textLabel);
 
         return div;
     }
@@ -99,10 +103,12 @@ class BlockDialog {
         radio.type = "radio";
         radio.name = "block-url-type";
         radio.value = "custom";
+        radio.id = "blocker-dialog-custom-radio";
         this.customRadio = radio;
 
-        const textSpan = document.createElement("span");
-        textSpan.textContent = chrome.i18n.getMessage("customRadioText");
+        const textLabel = document.createElement("label");
+        textLabel.htmlFor = "blocker-dialog-custom-radio";
+        textLabel.textContent = chrome.i18n.getMessage("customRadioText");
 
         const br = document.createElement("br");
 
@@ -115,7 +121,7 @@ class BlockDialog {
         this.urlText = urlText;
 
         div.appendChild(radio);
-        div.appendChild(textSpan);
+        div.appendChild(textLabel);
         div.appendChild(br);
         div.appendChild(urlText);
 
