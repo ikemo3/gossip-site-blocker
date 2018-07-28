@@ -57,9 +57,6 @@
   "exportButton": {
     "message": "Export"
   },
-  "exportRestriction": {
-    "message": "Restriction: Currently you can not export the type of block (soft / hard)."
-  },
   "exportSection": {
     "message": "Export"
   },
@@ -83,9 +80,6 @@
   },
   "importCompleted": {
     "message": "Import completed."
-  },
-  "importRestriction": {
-    "message": "Restriction: Currently you can not import the type of block (soft / hard)."
   },
   "importTextAreaLabel": {
     "message": "Please enter a list of domain names / host names to add, one per line, and press the 'Import' button."
