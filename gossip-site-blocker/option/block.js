@@ -30,21 +30,19 @@ const BlockedSitesRepository = {
     },
 
     /**
-     * URLをまとめて追加する。
-     *
+     * @params {Array<Object>>} blockList
      * @returns {Promise<BlockedSites>}
      */
-    addAll: async function (urlList) {
+    addAll: async function (blockList) {
         const siteArray = await BlockedSitesRepository.loadData();
 
-        for (url of urlList) {
+        for (const block of blockList) {
             const found = siteArray.some(site => {
-                return site.url === url;
+                return site.url === block.url;
             });
 
-            // 見つからなかったときは追加
             if (!found) {
-                const site = new BlockedSite({url: url, block_type: "soft"});
+                const site = new BlockedSite({url: block.url, block_type: block.block_type});
                 siteArray.push(site);
             }
         }
