@@ -5,6 +5,10 @@
 * Import with soft/hard.
 * Export with soft/hard.
 
+## Improvements.
+
+* Export with sorted.
+
 # v1.0.1
 
 * In the dialog, text after radio make clickable.

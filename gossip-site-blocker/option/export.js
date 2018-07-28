@@ -7,6 +7,8 @@ async function exportClicked() {
         lines.push(line);
     }
 
+    lines.sort();
+
     // noinspection JSValidateTypes
     /**
      * @type HTMLTextAreaElement
