@@ -81,8 +81,17 @@
   "importCompleted": {
     "message": "Import completed."
   },
+  "importFormat": {
+    "message": "Format(per line)"
+  },
+  "importFormatDomainOnly": {
+    "message": "domain name (or domain name with path). Example: 'example.com', 'example.com/path'"
+  },
+  "importFormatDomainPlusType": {
+    "message": "domain name (or domain name with path) + 'soft'/'hard'. Example: 'example.com soft', 'example.com hard', 'example.com/path soft'"
+  },
   "importTextAreaLabel": {
-    "message": "Please enter a list of domain names / host names to add, one per line, and press the 'Import' button."
+    "message": "Please enter sites to add, one per line, and press the 'Import' button."
   },
   "optionTitle": {
     "message": "Gossip Site Blocker: Option"

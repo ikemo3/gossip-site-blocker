@@ -81,8 +81,17 @@
   "importCompleted": {
     "message": "インポートが完了しました。"
   },
+  "importFormat": {
+    "message": "フォーマット(1行ごと)"
+  },
+  "importFormatDomainOnly": {
+    "message": "ドメイン名(またはドメイン名とパス)。例: 'example.com', 'example.com/path'"
+  },
+  "importFormatDomainPlusType": {
+    "message": "ドメイン名(またはドメイン名とパス) + 'soft'/'hard'. 例: 'example.com soft', 'example.com hard', 'example.com/path soft'"
+  },
   "importTextAreaLabel": {
-    "message": "追加するドメイン名/ホスト名のリストを1行に1つずつ入力して「インポート」ボタンを押してください。"
+    "message": "追加するサイトを1行に1つずつ入力して「インポート」ボタンを押してください。"
   },
   "optionTitle": {
     "message": "ゴシップサイトブロッカー: オプション"
