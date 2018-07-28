@@ -3,6 +3,7 @@
 ## Enhancements.
 
 * Import with soft/hard.
+* Export with soft/hard.
 
 # v1.0.1
 

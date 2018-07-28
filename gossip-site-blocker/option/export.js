@@ -3,7 +3,8 @@ async function exportClicked() {
 
     let lines = [];
     for (const site of sites) {
-        lines.push(site.url);
+        const line = `${site.url} ${site.block_type}`;
+        lines.push(line);
     }
 
     // noinspection JSValidateTypes
