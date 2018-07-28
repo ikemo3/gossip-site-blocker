@@ -1,4 +1,4 @@
-/* 一瞬でも表示させないために、一旦display: noneをセット */
+/* set `display: none` once if prevent from display a moment. */
 body {
     display: none;
 }

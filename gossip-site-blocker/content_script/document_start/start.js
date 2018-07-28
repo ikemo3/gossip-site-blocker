@@ -1,1 +1,1 @@
-// この時点ではDOM構築できていないため、何もできない。
+// I can do nothing because it is not created DOM at the moment.

@@ -10,7 +10,7 @@ class BlockDialog {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
 
-        // 子要素の作成
+        // create child element.
         const dialog = this.createDialog(url);
         background.appendChild(dialog);
 
@@ -21,7 +21,7 @@ class BlockDialog {
         const dialog = document.createElement("div");
         dialog.classList.add("block-dialog");
 
-        // 子要素の作成
+        // create child element.
         const urlRadioDiv = this.createRadioDiv(url);
         dialog.appendChild(urlRadioDiv);
 
@@ -35,12 +35,12 @@ class BlockDialog {
         const urlRadioDiv = document.createElement("div");
         urlRadioDiv.classList.add("block-dialog-url-radios");
         urlRadioDiv.addEventListener("click", (ignore) => {
-                // カスタムラジオボタンが選択されていたら、URLテキストをオンに、選択されてなければオフにする。
+                // If the custom radio button is selected, turn on the URL text, if not, reverse it.
                 this.urlText.disabled = !this.customRadio.checked;
             }
         );
 
-        // 子要素(ボタン類)を作成
+        // create child element(buttons).
         const buttonList = this.createRadioButtons(url);
         buttonList.forEach(button => {
             urlRadioDiv.appendChild(button);
@@ -132,7 +132,7 @@ class BlockDialog {
         const buttonDiv = document.createElement("div");
         buttonDiv.classList.add("block-dialog-buttons");
 
-        // 子要素(ボタン類)を作成
+        // create child elements(buttons)
         const buttonList = this.createButtons();
         buttonList.forEach(button => {
             buttonDiv.appendChild(button);
@@ -142,29 +142,29 @@ class BlockDialog {
     }
 
     cancel(ignore) {
-        // 背景を削除
+        // remove background
         this.background.parentElement.removeChild(this.background);
     }
 
     block(ignore) {
         const selected = document.querySelector('input[name="block-url-type"]:checked');
 
-        // 未選択の場合は何もしない
+        // ignore when not selected.
         if (!selected) {
             return;
         }
 
         let url = selected.value;
 
-        // カスタムの場合はテキストフィールドから取得
+        // when 'custom', get url from text field.
         if (url === "custom") {
             url = this.urlText.value;
         }
 
-        // ブロック
+        // block page.
         this.mediator.blockPage(url);
 
-        // 背景を削除
+        // remove background.
         this.background.parentElement.removeChild(this.background);
     }
 

@@ -2,36 +2,31 @@ const BlockTargetFactory = {
     init: async function () {
         let count = 0;
 
-        // ブロックされたサイト
         const blockedSites = await BlockedSitesRepository.load();
 
         document.querySelectorAll(".g").forEach(async function (g1) {
             const g = new GoogleElement(g1);
 
-            // ブロックできない要素の場合は無視
             if (!g.canBlock()) {
                 return;
             }
 
-            // ブロックされているかどうかを取得
             /**
              * @type {BlockedSite|undefined}
              */
             const blockedSite = blockedSites.matches(g.getUrl());
 
             /**
-             * ブロック状態
              * @type {"none"|"soft"|"hard"}
              */
             const state = (blockedSite ? blockedSite.getState() : "none");
 
             /**
-             * ブロックする、あるいはブロック解除するURL
+             * URL of block or unhide
              * @type {string}
              */
             const targetUrl = (blockedSite ? blockedSite.url : g.getUrl());
 
-            // ハードブロックの場合は抹消
             if (state === "hard") {
                 g.deleteElement();
                 return;
@@ -41,37 +36,33 @@ const BlockTargetFactory = {
             const blockTarget = new BlockTarget(g.getElement(), g.getUrl(), id, state);
             const blockAnchor = new BlockAnchor(id, state, blockTarget, targetUrl);
 
-            // ターゲットの直後に追加する
+            // insert anchor after target.
             DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
         });
 
         document.querySelectorAll("g-inner-card").forEach(async function (g1) {
             const g = new GoogleInnerCard(g1);
 
-            // ブロックできない要素の場合は無視
             if (!g.canBlock()) {
                 return;
             }
 
-            // ブロックされているかどうかを取得
             /**
              * @type {BlockedSite|undefined}
              */
             const blockedSite = blockedSites.matches(g.getUrl());
 
             /**
-             * ブロック状態
              * @type {"none"|"soft"|"hard"}
              */
             const state = (blockedSite ? blockedSite.getState() : "none");
 
             /**
-             * ブロックする、あるいはブロック解除するURL
+             * URL of block or unhide
              * @type {string}
              */
             const targetUrl = (blockedSite ? blockedSite.url : g.getUrl());
 
-            // ハードブロックの場合は抹消
             if (state === "hard") {
                 g.deleteElement();
                 return;
@@ -82,7 +73,7 @@ const BlockTargetFactory = {
             const blockAnchor = new BlockAnchor(id, state, blockTarget, targetUrl);
             blockAnchor.setWrappable("205px");
 
-            // ターゲットの直後に追加する
+            // insert anchor after target.
             DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
         });
 
@@ -98,7 +89,6 @@ class GoogleInnerCard {
         for (const anchor of anchorList) {
             const href = anchor.getAttribute("href");
 
-            // hrefがない場合は無視
             if (href === null) {
                 continue;
             }
@@ -106,7 +96,7 @@ class GoogleInnerCard {
             urlList.push(href);
         }
 
-        // アンカーがない場合は何もしない
+        // ignore if no anchor.
         if (urlList.length === 0) {
             this.valid = false;
             return;
@@ -129,9 +119,6 @@ class GoogleInnerCard {
         return this.element;
     }
 
-    /**
-     * 要素を抹消する
-     */
     deleteElement() {
         this.element.parentElement.removeChild(this.element);
     }
@@ -141,15 +128,14 @@ class GoogleElement {
     constructor(element) {
         const classList = element.classList;
 
-        // 親要素に'.g'がある場合はブロック対象外
+        // ignore if any element has class=g
         let parent = element.parentElement;
         while (true) {
-            // ルートまでたどり着いたときは抜ける
+            // when root element
             if (parent === null) {
                 break;
             }
 
-            // class=gがあったら対象外
             if (parent.classList.contains("g")) {
                 this.value = false;
                 return;
@@ -158,7 +144,7 @@ class GoogleElement {
             parent = parent.parentElement;
         }
 
-        // 右側のペインに表示される情報はブロック対象外
+        // ignore right pane
         if (classList.contains("rhsvw")) {
             this.valid = false;
             return;
@@ -170,17 +156,16 @@ class GoogleElement {
         for (const anchor of anchorList) {
             const href = anchor.getAttribute("href");
 
-            // hrefがない場合は無視
             if (href === null) {
                 continue;
             }
 
-            // メニューなどは無視
+            // menu, etc...
             if (href === "#") {
                 continue;
             }
 
-            // キャッシュは無視
+            // ignore cache link.
             if (href.startsWith("https://webcache.googleusercontent.com")) {
                 continue;
             }
@@ -189,7 +174,7 @@ class GoogleElement {
                 continue;
             }
 
-            // 類似ページへのリンクは無視
+            // ignore related link.
             if (href.startsWith("/search?")) {
                 continue;
             }
@@ -197,7 +182,7 @@ class GoogleElement {
             urlList.push(href);
         }
 
-        // アンカーがない場合は何もしない
+        // ignore if no anchor.
         if (urlList.length === 0) {
             this.valid = false;
             return;
@@ -220,16 +205,13 @@ class GoogleElement {
         return this.element;
     }
 
-    /**
-     * 要素を抹消する
-     */
     deleteElement() {
         this.element.parentElement.removeChild(this.element);
     }
 }
 
 /**
- * ブロック対象となる要素
+ * Block target element.
  *
  * @property element {Element}
  * @property id {string}
@@ -237,7 +219,7 @@ class GoogleElement {
 class BlockTarget {
     /**
      *
-     * @param element {Element} ブロック対象の要素
+     * @param element {Element} block target element
      * @param url {string}
      * @param id {string}
      * @param state {"none"|"soft"|"hard"}
@@ -246,7 +228,7 @@ class BlockTarget {
         this.element = element;
         this.setUrl(url);
 
-        // IDのセット
+        // set id.
         this.id = id;
         this.element.setAttribute("id", id);
 
@@ -281,7 +263,7 @@ class BlockTarget {
 
         switch (state) {
             case "hard":
-                // hardのときはここまで到達しないはず
+                // When it is hard it should not reach here.
                 console.error("Program Error, state=hard");
                 break;
 
@@ -309,27 +291,25 @@ class BlockTarget {
 }
 
 /**
- * ブロックをコントロールするためのアンカー
- *
- * @property element アンカーを包むdiv要素
- * @property anchor アンカー
- * @property state ブロック状態
- * @property url ブロックするURL
+ * @property element Div element wrapping the anchor
+ * @property anchor Anchor element
+ * @property state blocked state
+ * @property url URL to block
  */
 class BlockAnchor {
     /**
      *
-     * @param {string} targetId ブロック対象の要素のid
-     * @param {"none"|"soft"|"hard"} state ブロック対象かどうかの状態
-     * @param {BlockTarget} targetObject ブロック対象
-     * @param {string} url ブロックするURL
+     * @param {string} targetId target element's id
+     * @param {"none"|"soft"|"hard"} state
+     * @param {BlockTarget} targetObject
+     * @param {string} url URL to block
      */
     constructor(targetId, state, targetObject, url) {
         const div = document.createElement("div");
         div.classList.add("block-anchor");
 
         const anchor = document.createElement("a");
-        anchor.setAttribute("href", "javascript:void(0)"); // リンクの色を変えるための処置
+        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
         anchor.setAttribute("data-blocker-target-id", targetId);
         div.appendChild(anchor);
 
@@ -369,22 +349,21 @@ class BlockAnchor {
 
         switch (this.state) {
             case "none":
-                // ブロックハンドラの設定
-//                this.handler = this.blockPage.bind(this);
+                // set handler to block.
                 this.handler = this.showBlockDialog.bind(this);
                 break;
 
             case "soft":
-                // ブロック解除ハンドラの設定
+                // set handler to unhide.
                 this.handler = this.unhide.bind(this);
                 break;
 
             case "hard":
-                // 何もしない
+                // do nothing.
                 break;
 
             case "unhide":
-                // 非表示ハンドラの設定
+                // set handler to hide.
                 this.handler = this.hide.bind(this);
                 break;
         }
@@ -412,39 +391,35 @@ class BlockAnchor {
     }
 
     showBlockDialog(ignore) {
-        // ダイアログの表示
+        // show dialog.
         new BlockDialog(this, this.url);
     }
 
     /**
-     * ブロック
      * @param {string} url
      */
     blockPage(url) {
-        // 非表示
+        // hide element.
         this.targetObject.hide();
         this.setState("soft");
 
-        // URLを登録
+        // add URL to block.
         BlockedSitesRepository.add(url);
     }
 
     /**
-     * 一時ブロック解除
      * @param ignore
      */
     unhide(ignore) {
-        // 一時ブロック解除
+        // show block temporarily.
         this.targetObject.unhide();
         this.setState("unhide");
     }
 
     /**
-     * 非表示
      * @param ignore
      */
     hide(ignore) {
-        // 非表示
         this.targetObject.hide();
         this.setState("soft");
     }

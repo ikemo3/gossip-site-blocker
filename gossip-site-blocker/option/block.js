@@ -1,11 +1,10 @@
 const BlockedSitesRepository = {
     /**
-     * Arrayで値をロードする
+     * load values as Array.
      *
      * @returns {Promise<Array<BlockedSite>>}
      */
     loadData: async function () {
-        // アイテムの取得
         const items = await Storage.get({blocked: []});
 
         const sites = [];
@@ -19,7 +18,7 @@ const BlockedSitesRepository = {
     },
 
     /**
-     * 値をロードする。
+     * load values.
      *
      * @returns {Promise<BlockedSites>}
      */
@@ -47,14 +46,13 @@ const BlockedSitesRepository = {
             }
         }
 
-        // 保存
         await this.save(siteArray);
 
         return new BlockedSites(siteArray);
     },
 
     /**
-     * URLを追加する。
+     * add URL to block.
      *
      * @returns {Promise<BlockedSites>}
      */
@@ -65,32 +63,30 @@ const BlockedSitesRepository = {
             return site.url === url;
         });
 
-        // 見つからなかったときは追加
+        // add if not found.
         if (!found) {
             const site = new BlockedSite({url: url, block_type: "soft"});
             siteArray.push(site);
         }
 
-        // 保存
         await this.save(siteArray);
 
         return new BlockedSites(siteArray);
     },
 
     /**
-     * URLを削除する。
+     * delete URL from blocked.
      *
      * @returns {Promise<BlockedSites>}
      */
     del: async function (url) {
         const siteArray = await BlockedSitesRepository.loadData();
 
-        // URLが一致するものを削除
+        // delete items whose URL matches.
         const newSiteArray = siteArray.filter(site => {
             return !site.equals(url);
         });
 
-        // 保存
         await this.save(newSiteArray);
 
         return new BlockedSites(newSiteArray);
@@ -140,8 +136,6 @@ const BlockedSitesRepository = {
 };
 
 /**
- * ブロックしたサイトの集合
- *
  * @property {array<BlockedSite>} sites
  */
 class BlockedSites {
@@ -150,7 +144,7 @@ class BlockedSites {
     }
 
     /**
-     * サイトをURLの完全一致で検索します。
+     * Search the site by URL exact match.
      *
      * @param url
      * @returns {BlockedSite|undefined}
@@ -166,15 +160,15 @@ class BlockedSites {
     }
 
     /**
-     * サイトをURLの先頭一致で検索します。
-     * 複数見つかったときは、最も長くマッチしたものを返します。
+     * Search the site at the beginning of the URL.
+     * When it finds more than one, it returns the longest matched one.
      *
      * @param url
      * @returns {BlockedSite|undefined}
      */
     matches(url) {
         /**
-         * 見つかった要素
+         * found element
          * @type {BlockedSite|undefined}
          */
         let found = undefined;
@@ -182,7 +176,7 @@ class BlockedSites {
         const urlWithoutProtocol = DOMUtils.removeProtocol(url);
 
         for (let site of this.sites) {
-            // プロトコルなしで前方一致比較
+            // Forward match comparison without protocol
             if (site.contains(urlWithoutProtocol)) {
                 if (found === undefined || site.strongerThan(found)) {
                     found = site;
@@ -194,7 +188,7 @@ class BlockedSites {
     }
 
     /**
-     * URLがブロックするサイトに含まれているかどうかを返します。
+     * Returns whether the URL is included in the blocked site.
      *
      * @param url URL
      */
@@ -214,10 +208,10 @@ class BlockedSites {
 }
 
 /**
- * プロックしたサイト
+ * Blocked sites
  *
- * @property {string} url サイトのURL
- * @property {"soft"|"hard"} block_type ブロックタイプ
+ * @property {string} url
+ * @property {"soft"|"hard"} block_type
  */
 class BlockedSite {
     constructor(item) {
@@ -247,7 +241,7 @@ class BlockedSite {
 
     /**
      *
-     * @return {string} ブロックタイプ
+     * @return {string} block type(soft / hard)
      */
     getState() {
         return this.block_type;

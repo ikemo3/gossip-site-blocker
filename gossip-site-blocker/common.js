@@ -22,21 +22,21 @@ const Logger = {
 
 const DOMUtils = {
     /**
-     * 要素を後に追加
+     * add element later.
      *
-     * @param element 挿入元の要素
-     * @param insertElement 挿入する要素
+     * @param element
+     * @param insertElement element to add.
      */
     insertAfter: function (element, insertElement) {
         element.parentElement.insertBefore(insertElement, element.nextSibling);
     },
 
     /**
-     * ホスト名を取得する。
+     * get hostname from URL string.
      *
-     * 例: https://example.com/path -> example.com
-     * @param {string} url URL文字列
-     * @return {string} ホスト名
+     * example: https://example.com/path -> example.com
+     * @param {string} url URL string
+     * @return {string} hostname
      */
     getHostName: function (url) {
         const tmp = document.createElement('a');
@@ -45,9 +45,10 @@ const DOMUtils = {
     },
 
     /**
-     * URLからプロトコル(スキーム)を削除する
-     * @param {string} url URL文字列
-     * @return {string} プロトコルを削除した文字列
+     * delete protocol(scheme) from URL string.
+     *
+     * @param {string} url URL string
+     * @return {string} string without protocol(scheme)
      */
     removeProtocol: function (url) {
         return url.replace(/^\w+:\/\//, "");

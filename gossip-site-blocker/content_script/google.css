@@ -1,5 +1,5 @@
 /**
- * ブロックしたときのカラー
+ * color when blocked
  */
 [data-blocker-display=none] {
     display: none;
@@ -7,14 +7,14 @@
 }
 
 /**
- * 一時ブロック解除時のカラー
+ * color when unhide
  */
 [data-blocker-display=unhide] {
     background-color: #FFD2D2;
 }
 
 /**
- * ブロックしていない要素の直後のアンカー
+ * Anchor immediately after not blocked element
  */
 :not(g-inner-card):not([data-blocker-display=none]) + .block-anchor {
     margin-top: -26px;
@@ -22,7 +22,7 @@
 }
 
 /**
- * ブロックした要素の直後のアンカー
+ * Anchor immediately after blocked element
  */
 :not(g-inner-card)[data-blocker-display=none] + .block-anchor {
     margin-top: 26px;
@@ -34,7 +34,7 @@
 }
 
 /**
- * ダイアログ表示時のバックグラウンド
+ * Background when displaying dialog
  */
 .block-dialog-background {
     z-index: 104;
@@ -48,7 +48,7 @@
 }
 
 .block-dialog {
-    margin: 15% auto; /* 上下=15% 左右=auto */
+    margin: 15% auto; /* top,bottom=15% left,right=auto */
     width: 60%;
     min-width: 50em;
     background-color: #FFFFFF;

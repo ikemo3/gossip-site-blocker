@@ -15,7 +15,6 @@ const OptionRepository = {
      * @return {Promise<void>}
      */
     setDeveloperMode: async function (mode) {
-        // 値をセット
         await Storage.set({developerMode: mode});
         this.developerMode = mode;
 
@@ -23,5 +22,5 @@ const OptionRepository = {
     }
 };
 
-// 初期化
+// initialize
 OptionRepository.init();

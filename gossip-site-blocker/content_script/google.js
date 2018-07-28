@@ -1,10 +1,10 @@
 /**
- * 初期化
+ * initialize
  */
 (async function () {
-    // ブロック処理
+    // block
     await BlockTargetFactory.init();
 
-    // document_startで非表示にした、body要素の表示
+    // Display body elements hidden by 'document_start'
     document.body.style.display = "block";
 })();

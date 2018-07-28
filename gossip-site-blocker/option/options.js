@@ -9,7 +9,7 @@ const clearButton = document.getElementById("clearButton");
 const developerCheckbox = document.getElementById("developerCheckbox");
 
 /**
- * URLフィールド
+ * URL field
  */
 class BlockedSiteUrlField {
     /**
@@ -18,14 +18,11 @@ class BlockedSiteUrlField {
      * @param {string} url
      */
     constructor(mediator, url) {
-        // this.mediator = mediator;
-
         const input = document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("size", "100");
         this.element = input;
 
-        // URLの設定
         this.setUrl(url);
     }
 
@@ -42,11 +39,11 @@ class BlockedSiteUrlField {
     }
 
     toHard() {
-        // 何もしない
+        // do nothing
     }
 
     toSoft() {
-        // 何もしない
+        // do nothing
     }
 
     setUrl(url) {
@@ -56,7 +53,7 @@ class BlockedSiteUrlField {
 }
 
 /**
- * URL変更ボタン
+ * Change URL button
  */
 class BlockedSiteEditButton {
     /**
@@ -82,16 +79,16 @@ class BlockedSiteEditButton {
     }
 
     toHard() {
-        // 何もしない
+        // do nothing
     }
 
     toSoft() {
-        // 何もしない
+        // do nothing
     }
 }
 
 /**
- * 削除ボタン
+ * Delete button
  */
 class BlockedSiteDeleteButton {
     /**
@@ -108,7 +105,6 @@ class BlockedSiteDeleteButton {
         input.addEventListener("click", this.onclick.bind(this));
         this.element = input;
 
-        // 状態の設定
         this.setState(state);
     }
 
@@ -129,12 +125,12 @@ class BlockedSiteDeleteButton {
     }
 
     toHard() {
-        // ボタンを無効化
+        // disable button.
         this.element.setAttribute("disabled", "true");
     }
 
     toSoft() {
-        // ボタンを有効化
+        // enable button.
         this.element.removeAttribute("disabled");
     }
 }
@@ -152,7 +148,6 @@ class BlockedSiteStateButton {
         input.setAttribute("type", "button");
         this.element = input;
 
-        // 状態の設定
         this.setState(state);
     }
 
@@ -163,15 +158,13 @@ class BlockedSiteStateButton {
     setState(state) {
         this.state = state;
 
-        // ラベルの更新
         this.updateLabel(state);
 
-        // ハンドラの更新
         this.updateBlockTypeHandler();
     }
 
     updateBlockTypeHandler() {
-        // ハンドラを削除
+        // remove handler
         if (this.handler) {
             this.element.removeEventListener("click", this.handler);
             this.handler = null;
@@ -183,7 +176,7 @@ class BlockedSiteStateButton {
             this.handler = this.mediator.toSoft.bind(this.mediator);
         }
 
-        // ハンドラを設定
+        // set handler
         if (this.handler) {
             this.element.addEventListener("click", this.handler);
         }
@@ -217,13 +210,13 @@ class BlockedSiteStateButton {
  */
 class BlockedSiteOption {
     constructor(blockedSite) {
-        // Colleagueの作成
+        // create Colleague
         this.urlField = new BlockedSiteUrlField(this, blockedSite.getUrl());
         this.editButton = new BlockedSiteEditButton(this);
         this.stateButton = new BlockedSiteStateButton(this, blockedSite.getState());
         this.deleteButton = new BlockedSiteDeleteButton(this, blockedSite.getState());
 
-        // 全ての入力フィールドを囲むtr要素を作成
+        // Create tr element surrounding all input fields.
         const tr = document.createElement("tr");
         tr.appendChild(document.createElement("td")).appendChild(this.urlField.getElement());
         tr.appendChild(document.createElement("td")).appendChild(this.editButton.getElement());
@@ -247,7 +240,7 @@ class BlockedSiteOption {
     setState(state) {
         switch (state) {
             case "soft":
-                // Colleagueに送信
+                // send to Colleagues.
                 this.urlField.toSoft();
                 this.editButton.toSoft();
                 this.stateButton.toSoft();
@@ -255,7 +248,7 @@ class BlockedSiteOption {
 
                 break;
             case "hard":
-                // Colleagueに送信
+                // send to Colleagues.
                 this.urlField.toHard();
                 this.editButton.toHard();
                 this.stateButton.toHard();
@@ -272,7 +265,6 @@ class BlockedSiteOption {
     async toHard(ignore) {
         await BlockedSitesRepository.toHard(this.getUrl());
 
-        // 状態更新
         this.setState("hard");
 
         Logger.debug("Changed to hard-block.", this.getUrl());
@@ -281,7 +273,6 @@ class BlockedSiteOption {
     async toSoft(ignore) {
         await BlockedSitesRepository.toSoft(this.getUrl());
 
-        // 状態更新
         this.setState("soft");
 
         Logger.debug("Changed to soft-block.", this.getUrl());
@@ -292,7 +283,6 @@ class BlockedSiteOption {
         const afterUrl = this.urlField.getInputValue();
         await BlockedSitesRepository.edit(beforeUrl, afterUrl);
 
-        // URL更新
         this.setUrl(afterUrl);
 
         Logger.debug(`Change URL: ${beforeUrl} => ${afterUrl}`);
@@ -301,7 +291,6 @@ class BlockedSiteOption {
     async deleteUrl() {
         await BlockedSitesRepository.del(this.getUrl());
 
-        // 画面から削除
         this.element.parentElement.removeChild(this.element);
 
         Logger.debug("Delete URL: " + this.getUrl());
@@ -311,7 +300,7 @@ class BlockedSiteOption {
 async function show_lists() {
     const sites = await BlockedSitesRepository.load();
 
-    // 一旦クリアしてから追加
+    // Add after clear.
     softBlockList.innerHTML = "";
     hardBlockList.innerHTML = "";
 
@@ -337,25 +326,22 @@ async function clear() {
 
         alert(chrome.i18n.getMessage("clearDone"));
 
-        // 全てクリア
+        // clear all.
         softBlockList.innerHTML = "";
     }
 }
 
-// イベントをバインド
+// bind event.
 clearButton.addEventListener("click", clear);
 
 document.addEventListener('DOMContentLoaded', async (ignore) => {
-    // リストの表示
     await show_lists();
 
-    // 開発者モードの設定
     developerCheckbox.checked = await OptionRepository.isDeveloperMode();
 });
 
 developerCheckbox.addEventListener("click", async function (event) {
     const checkbox = event.target;
 
-    // 設定の書き込み
     await OptionRepository.setDeveloperMode(checkbox.checked);
 });
