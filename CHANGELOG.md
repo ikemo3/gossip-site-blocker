@@ -3,6 +3,7 @@
 ## Bug Fixes.
 
 * Do not clear hard-block when clear all.
+* Fixed that full URL is always displayed when blocking.
 
 # v1.1.0
 

@@ -277,6 +277,11 @@ class BlockTarget {
         }
     }
 
+    block(url) {
+        this.setUrl(url);
+        this.hide();
+    }
+
     show() {
         this.element.removeAttribute("data-blocker-display");
     }
@@ -315,11 +320,11 @@ class BlockAnchor {
 
         this.element = div;
         this.anchor = anchor;
-        this.url = url;
         this.state = state;
         this.targetObject = targetObject;
         this.handler = null;
 
+        this.setUrl(url);
         this.setText();
         this.setHandler();
     }
@@ -390,6 +395,11 @@ class BlockAnchor {
         }
     }
 
+    setUrl(url) {
+        this.url = url;
+        this.setText();
+    }
+
     showBlockDialog(ignore) {
         // show dialog.
         new BlockDialog(this, this.url);
@@ -400,11 +410,13 @@ class BlockAnchor {
      */
     blockPage(url) {
         // hide element.
-        this.targetObject.hide();
+        this.targetObject.block(url);
         this.setState("soft");
 
         // add URL to block.
         BlockedSitesRepository.add(url);
+
+        this.setUrl(url);
     }
 
     /**
