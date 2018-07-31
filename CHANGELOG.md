@@ -1,3 +1,9 @@
+# v1.1.1
+
+## Bug Fixes.
+
+* Do not clear hard-block when clear all.
+
 # v1.1.0
 
 ## Enhancements.

@@ -328,6 +328,7 @@ async function clear() {
 
         // clear all.
         softBlockList.innerHTML = "";
+        hardBlockList.innerHTML = "";
     }
 }
 
