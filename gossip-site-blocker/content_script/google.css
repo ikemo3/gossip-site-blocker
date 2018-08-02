@@ -65,6 +65,10 @@
     margin-bottom: 1em;
 }
 
+.block-dialog-type-select {
+    font-size: 1.3rem;
+}
+
 .block-dialog-buttons {
     display: flex;
     justify-content: flex-end;

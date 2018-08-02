@@ -407,14 +407,15 @@ class BlockAnchor {
 
     /**
      * @param {string} url
+     * @param {string} blockType
      */
-    blockPage(url) {
+    blockPage(url, blockType) {
         // hide element.
         this.targetObject.block(url);
-        this.setState("soft");
+        this.setState(blockType);
 
         // add URL to block.
-        BlockedSitesRepository.add(url);
+        BlockedSitesRepository.add(url, blockType);
 
         this.setUrl(url);
     }

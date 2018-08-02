@@ -1,4 +1,8 @@
-# v1.1.1
+# v1.2.0
+
+## Improvements.
+
+* Add soft/hard select box when show dialog.
 
 ## Bug Fixes.
 

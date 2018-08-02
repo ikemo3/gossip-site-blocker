@@ -25,6 +25,9 @@ class BlockDialog {
         const urlRadioDiv = this.createRadioDiv(url);
         dialog.appendChild(urlRadioDiv);
 
+        const blockTypeDiv = this.createBlockTypeDiv();
+        dialog.appendChild(blockTypeDiv);
+
         const buttonDiv = this.createButtonDiv();
         dialog.appendChild(buttonDiv);
 
@@ -128,6 +131,28 @@ class BlockDialog {
         return div;
     }
 
+    createBlockTypeDiv() {
+        const blockTypeDiv = document.createElement("div");
+        const select = document.createElement("select");
+        select.classList.add("block-dialog-type-select");
+
+        const soft = document.createElement("option");
+        soft.setAttribute("value", "soft");
+        soft.textContent = chrome.i18n.getMessage("softBlock");
+
+        const hard = document.createElement("option");
+        hard.setAttribute("value", "hard");
+        hard.textContent = chrome.i18n.getMessage("hardBlock");
+
+        select.appendChild(soft);
+        select.appendChild(hard);
+        this.blockTypeSelect = select;
+
+        blockTypeDiv.appendChild(select);
+
+        return blockTypeDiv;
+    }
+
     createButtonDiv() {
         const buttonDiv = document.createElement("div");
         buttonDiv.classList.add("block-dialog-buttons");
@@ -161,8 +186,11 @@ class BlockDialog {
             url = this.urlText.value;
         }
 
+        // get block type.
+        const blockType = this.blockTypeSelect.value;
+
         // block page.
-        this.mediator.blockPage(url);
+        this.mediator.blockPage(url, blockType);
 
         // remove background.
         this.background.parentElement.removeChild(this.background);

@@ -54,9 +54,11 @@ const BlockedSitesRepository = {
     /**
      * add URL to block.
      *
+     * @param url {string} url to block.
+     * @param blockType {string} type to block(soft/hard)
      * @returns {Promise<BlockedSites>}
      */
-    add: async function (url) {
+    add: async function (url, blockType) {
         const siteArray = await BlockedSitesRepository.loadData();
 
         const found = siteArray.some(site => {
@@ -65,7 +67,7 @@ const BlockedSitesRepository = {
 
         // add if not found.
         if (!found) {
-            const site = new BlockedSite({url: url, block_type: "soft"});
+            const site = new BlockedSite({url: url, block_type: blockType});
             siteArray.push(site);
         }
 
