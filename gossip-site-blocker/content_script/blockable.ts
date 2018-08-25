@@ -130,7 +130,6 @@ class GoogleInnerCard {
 
 class GoogleElement {
     valid: boolean;
-    value: boolean;
     url: string;
     element: Element;
 
@@ -146,7 +145,7 @@ class GoogleElement {
             }
 
             if (parent.classList.contains("g")) {
-                this.value = false; // TODO: bug?
+                this.valid = false;
                 return;
             }
 

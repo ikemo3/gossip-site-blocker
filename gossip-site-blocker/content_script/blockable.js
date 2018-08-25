@@ -106,7 +106,7 @@ class GoogleElement {
                 break;
             }
             if (parent.classList.contains("g")) {
-                this.value = false; // TODO: bug?
+                this.valid = false;
                 return;
             }
             parent = parent.parentElement;
