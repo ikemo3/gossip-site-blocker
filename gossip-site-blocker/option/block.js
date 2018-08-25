@@ -5,7 +5,7 @@ const BlockedSitesRepository = {
      * @returns {Promise<Array<BlockedSite>>}
      */
     loadData: async function () {
-        const items = await Storage.get({blocked: []});
+        const items = await ChromeStorage.get({blocked: []});
 
         const sites = [];
 
@@ -129,11 +129,11 @@ const BlockedSitesRepository = {
      * @returns {Promise<void>}
      */
     save: async function (sites) {
-        await Storage.set({blocked: sites});
+        await ChromeStorage.set({blocked: sites});
     },
 
     clear: async function () {
-        await Storage.set({blocked: []});
+        await ChromeStorage.set({blocked: []});
     }
 };
 

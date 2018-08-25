@@ -1,4 +1,4 @@
-const Storage = {
+const ChromeStorage = {
     get: async function (keys) {
         return new Promise(resolve => {
             chrome.storage.local.get(keys, resolve);
