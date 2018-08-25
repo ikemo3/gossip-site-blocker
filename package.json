@@ -1,0 +1,9 @@
+{
+  "name": "gossip-site-blocker",
+  "version": "1.2.0",
+  "author": "Hideki Ikemoto",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "0.0.72"
+  }
+}
