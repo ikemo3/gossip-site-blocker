@@ -4,6 +4,8 @@
   "author": "Hideki Ikemoto",
   "license": "MIT",
   "devDependencies": {
-    "@types/chrome": "0.0.72"
+    "@types/chrome": "0.0.72",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
   }
 }
