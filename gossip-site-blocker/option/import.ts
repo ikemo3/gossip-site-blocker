@@ -3,9 +3,9 @@ async function importClicked(ignore) {
     /**
      * @type {HTMLTextAreaElement}
      */
-    const textArea = <HTMLTextAreaElement> document.getElementById('importTextArea');
+    const textArea = document.getElementById("importTextArea") as HTMLTextAreaElement;
     const text = textArea.value;
-    const blockList = text.split("\n").filter(line => line !== "").map(line => {
+    const blockList = text.split("\n").filter((line) => line !== "").map((line) => {
         const cols = line.split(" ");
         switch (cols.length) {
             case 1:
@@ -21,7 +21,7 @@ async function importClicked(ignore) {
 
     await BlockedSitesRepository.addAll(blockList);
 
-    alert(chrome.i18n.getMessage('importCompleted'));
+    alert(chrome.i18n.getMessage("importCompleted"));
 }
 
-document.getElementById('importButton').addEventListener('click', importClicked);
+document.getElementById("importButton").addEventListener("click", importClicked);

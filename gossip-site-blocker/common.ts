@@ -1,23 +1,23 @@
 const ChromeStorage = {
-    get: async function (keys) {
-        return new Promise(resolve => {
+    async get(keys) {
+        return new Promise((resolve) => {
             chrome.storage.local.get(keys, resolve);
         });
     },
 
-    set: async function (items) {
-        return new Promise(resolve => {
+    async set(items) {
+        return new Promise((resolve) => {
             chrome.storage.local.set(items, resolve);
         });
-    }
+    },
 };
 
 const Logger = {
-    debug: function (message, ...params) {
+    debug(message, ...params) {
         if (OptionRepository.isDeveloperMode()) {
             console.log(message, ...params);
         }
-    }
+    },
 };
 
 const DOMUtils = {
@@ -27,7 +27,7 @@ const DOMUtils = {
      * @param element
      * @param insertElement element to add.
      */
-    insertAfter: function (element, insertElement) {
+    insertAfter(element, insertElement) {
         element.parentElement.insertBefore(insertElement, element.nextSibling);
     },
 
@@ -38,8 +38,8 @@ const DOMUtils = {
      * @param {string} url URL string
      * @return {string} hostname
      */
-    getHostName: function (url) {
-        const tmp = document.createElement('a');
+    getHostName(url) {
+        const tmp = document.createElement("a");
         tmp.href = url;
         return tmp.hostname;
     },
@@ -50,7 +50,7 @@ const DOMUtils = {
      * @param {string} url URL string
      * @return {string} string without protocol(scheme)
      */
-    removeProtocol: function (url) {
+    removeProtocol(url) {
         return url.replace(/^\w+:\/\//, "");
-    }
+    },
 };

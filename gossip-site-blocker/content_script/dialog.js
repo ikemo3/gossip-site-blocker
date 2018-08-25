@@ -33,7 +33,7 @@ class BlockDialog {
         });
         // create child element(buttons).
         const buttonList = this.createRadioButtons(url);
-        buttonList.forEach(button => {
+        buttonList.forEach((button) => {
             urlRadioDiv.appendChild(button);
         });
         return urlRadioDiv;
@@ -118,7 +118,7 @@ class BlockDialog {
         buttonDiv.classList.add("block-dialog-buttons");
         // create child elements(buttons)
         const buttonList = this.createButtons();
-        buttonList.forEach(button => {
+        buttonList.forEach((button) => {
             buttonDiv.appendChild(button);
         });
         return buttonDiv;

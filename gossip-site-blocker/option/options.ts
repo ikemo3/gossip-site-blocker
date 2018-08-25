@@ -6,13 +6,13 @@ const clearButton = document.getElementById("clearButton");
 /**
  * @type {HTMLInputElement}
  */
-const developerCheckbox = <HTMLInputElement> document.getElementById("developerCheckbox");
+const developerCheckbox = document.getElementById("developerCheckbox") as HTMLInputElement;
 
 /**
  * URL field
  */
 class BlockedSiteUrlField {
-    element: HTMLInputElement;
+    public element: HTMLInputElement;
 
     /**
      *
@@ -28,27 +28,27 @@ class BlockedSiteUrlField {
         this.setUrl(url);
     }
 
-    getElement() {
+    public getElement() {
         return this.element;
     }
 
-    value() {
+    public value() {
         return this.element.getAttribute("data-value");
     }
 
-    getInputValue() {
+    public getInputValue() {
         return this.element.value;
     }
 
-    toHard() {
+    public toHard() {
         // do nothing
     }
 
-    toSoft() {
+    public toSoft() {
         // do nothing
     }
 
-    setUrl(url) {
+    public setUrl(url) {
         this.element.setAttribute("data-value", url);
         this.element.value = url;
     }
@@ -58,8 +58,8 @@ class BlockedSiteUrlField {
  * Change URL button
  */
 class BlockedSiteEditButton {
-    element: HTMLInputElement;
-    mediator: BlockedSiteOption;
+    public element: HTMLInputElement;
+    public mediator: BlockedSiteOption;
 
     /**
      *
@@ -75,19 +75,19 @@ class BlockedSiteEditButton {
         this.element = input;
     }
 
-    async onclick(ignore) {
-        await this.mediator.editUrl()
+    public async onclick(ignore) {
+        await this.mediator.editUrl();
     }
 
-    getElement() {
+    public getElement() {
         return this.element;
     }
 
-    toHard() {
+    public toHard() {
         // do nothing
     }
 
-    toSoft() {
+    public toSoft() {
         // do nothing
     }
 }
@@ -96,8 +96,8 @@ class BlockedSiteEditButton {
  * Delete button
  */
 class BlockedSiteDeleteButton {
-    element: HTMLInputElement;
-    mediator: BlockedSiteOption;
+    public element: HTMLInputElement;
+    public mediator: BlockedSiteOption;
 
     /**
      *
@@ -116,15 +116,15 @@ class BlockedSiteDeleteButton {
         this.setState(state);
     }
 
-    async onclick(ignore) {
+    public async onclick(ignore) {
         await this.mediator.deleteUrl();
     }
 
-    getElement() {
+    public getElement() {
         return this.element;
     }
 
-    setState(state) {
+    public setState(state) {
         if (state === "hard") {
             this.toHard();
         } else {
@@ -132,22 +132,22 @@ class BlockedSiteDeleteButton {
         }
     }
 
-    toHard() {
+    public toHard() {
         // disable button.
         this.element.setAttribute("disabled", "true");
     }
 
-    toSoft() {
+    public toSoft() {
         // enable button.
         this.element.removeAttribute("disabled");
     }
 }
 
 class BlockedSiteStateButton {
-    element: HTMLInputElement;
-    mediator: BlockedSiteOption;
-    state: string;
-    handler: any;
+    public element: HTMLInputElement;
+    public mediator: BlockedSiteOption;
+    public state: string;
+    public handler: any;
 
     /**
      *
@@ -164,11 +164,11 @@ class BlockedSiteStateButton {
         this.setState(state);
     }
 
-    getState() {
+    public getState() {
         return this.state;
     }
 
-    setState(state) {
+    public setState(state) {
         this.state = state;
 
         this.updateLabel(state);
@@ -176,7 +176,7 @@ class BlockedSiteStateButton {
         this.updateBlockTypeHandler();
     }
 
-    updateBlockTypeHandler() {
+    public updateBlockTypeHandler() {
         // remove handler
         if (this.handler) {
             this.element.removeEventListener("click", this.handler);
@@ -195,7 +195,7 @@ class BlockedSiteStateButton {
         }
     }
 
-    updateLabel(state) {
+    public updateLabel(state) {
         if (state === "soft") {
             this.element.setAttribute("value", chrome.i18n.getMessage("changeToHardBlock"));
         } else {
@@ -203,15 +203,15 @@ class BlockedSiteStateButton {
         }
     }
 
-    toHard() {
+    public toHard() {
         this.setState("hard");
     }
 
-    toSoft() {
+    public toSoft() {
         this.setState("soft");
     }
 
-    getElement() {
+    public getElement() {
         return this.element;
     }
 }
@@ -222,11 +222,11 @@ class BlockedSiteStateButton {
  * @property {BlockedSiteEditButton} editButton
  */
 class BlockedSiteOption {
-    urlField: BlockedSiteUrlField;
-    editButton: BlockedSiteEditButton;
-    stateButton: BlockedSiteStateButton;
-    deleteButton: BlockedSiteDeleteButton;
-    element: HTMLTableRowElement;
+    public urlField: BlockedSiteUrlField;
+    public editButton: BlockedSiteEditButton;
+    public stateButton: BlockedSiteStateButton;
+    public deleteButton: BlockedSiteDeleteButton;
+    public element: HTMLTableRowElement;
 
     constructor(blockedSite) {
         // create Colleague
@@ -244,19 +244,19 @@ class BlockedSiteOption {
         this.element = tr;
     }
 
-    getElement() {
+    public getElement() {
         return this.element;
     }
 
-    getUrl() {
+    public getUrl() {
         return this.urlField.value();
     }
 
-    getState() {
+    public getState() {
         return this.stateButton.getState();
     }
 
-    setState(state) {
+    public setState(state) {
         switch (state) {
             case "soft":
                 // send to Colleagues.
@@ -277,11 +277,11 @@ class BlockedSiteOption {
         }
     }
 
-    setUrl(url) {
+    public setUrl(url) {
         this.urlField.setUrl(url);
     }
 
-    async toHard(ignore) {
+    public async toHard(ignore) {
         await BlockedSitesRepository.toHard(this.getUrl());
 
         this.setState("hard");
@@ -289,7 +289,7 @@ class BlockedSiteOption {
         Logger.debug("Changed to hard-block.", this.getUrl());
     }
 
-    async toSoft(ignore) {
+    public async toSoft(ignore) {
         await BlockedSitesRepository.toSoft(this.getUrl());
 
         this.setState("soft");
@@ -297,7 +297,7 @@ class BlockedSiteOption {
         Logger.debug("Changed to soft-block.", this.getUrl());
     }
 
-    async editUrl() {
+    public async editUrl() {
         const beforeUrl = this.urlField.value();
         const afterUrl = this.urlField.getInputValue();
         await BlockedSitesRepository.edit(beforeUrl, afterUrl);
@@ -307,7 +307,7 @@ class BlockedSiteOption {
         Logger.debug(`Change URL: ${beforeUrl} => ${afterUrl}`);
     }
 
-    async deleteUrl() {
+    public async deleteUrl() {
         await BlockedSitesRepository.del(this.getUrl());
 
         this.element.parentElement.removeChild(this.element);
@@ -325,7 +325,7 @@ async function show_lists() {
 
     const softTable = document.createElement("table");
     const hardTable = document.createElement("table");
-    for (let site of sites) {
+    for (const site of sites) {
         const option = new BlockedSiteOption(site);
 
         if (option.getState() === "soft") {
@@ -354,14 +354,14 @@ async function clear() {
 // bind event.
 clearButton.addEventListener("click", clear);
 
-document.addEventListener('DOMContentLoaded', async (ignore) => {
+document.addEventListener("DOMContentLoaded", async (ignore) => {
     await show_lists();
 
     developerCheckbox.checked = await OptionRepository.isDeveloperMode();
 });
 
-developerCheckbox.addEventListener("click", async function (event) {
-    const checkbox = <HTMLInputElement> event.target;
+developerCheckbox.addEventListener("click", async function(event) {
+    const checkbox = event.target as HTMLInputElement;
 
     await OptionRepository.setDeveloperMode(checkbox.checked);
 });

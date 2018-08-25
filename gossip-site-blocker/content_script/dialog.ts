@@ -1,9 +1,9 @@
 class BlockDialog {
-    mediator: BlockAnchor;
-    background: HTMLDivElement;
-    urlText: HTMLInputElement;
-    customRadio: HTMLInputElement;
-    blockTypeSelect: HTMLSelectElement;
+    public mediator: BlockAnchor;
+    public background: HTMLDivElement;
+    public urlText: HTMLInputElement;
+    public customRadio: HTMLInputElement;
+    public blockTypeSelect: HTMLSelectElement;
 
     constructor(mediator, url) {
         this.mediator = mediator;
@@ -12,7 +12,7 @@ class BlockDialog {
         document.body.appendChild(this.background);
     }
 
-    createBackground(url) {
+    public createBackground(url) {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
 
@@ -23,7 +23,7 @@ class BlockDialog {
         return background;
     }
 
-    createDialog(url) {
+    public createDialog(url) {
         const dialog = document.createElement("div");
         dialog.classList.add("block-dialog");
 
@@ -40,7 +40,7 @@ class BlockDialog {
         return dialog;
     }
 
-    createRadioDiv(url) {
+    public createRadioDiv(url) {
         const urlRadioDiv = document.createElement("div");
         urlRadioDiv.classList.add("block-dialog-url-radios");
         urlRadioDiv.addEventListener("click", (ignore) => {
@@ -50,14 +50,14 @@ class BlockDialog {
 
         // create child element(buttons).
         const buttonList = this.createRadioButtons(url);
-        buttonList.forEach(button => {
+        buttonList.forEach((button) => {
             urlRadioDiv.appendChild(button);
         });
 
         return urlRadioDiv;
     }
 
-    createRadioButtons(url) {
+    public createRadioButtons(url) {
         const blockDomainDiv = BlockDialog.createBlockDomainRadio(DOMUtils.getHostName(url));
         const blockUrlDiv = BlockDialog.createBlockUrlRadio(DOMUtils.removeProtocol(url));
         const blockCustomDiv = this.createBlockCustomRadio(DOMUtils.removeProtocol(url));
@@ -65,7 +65,7 @@ class BlockDialog {
         return [blockDomainDiv, blockUrlDiv, blockCustomDiv];
     }
 
-    static createBlockDomainRadio(value) {
+    public static createBlockDomainRadio(value) {
         const div = document.createElement("div");
 
         const radio = document.createElement("input");
@@ -85,7 +85,7 @@ class BlockDialog {
         return div;
     }
 
-    static createBlockUrlRadio(value) {
+    public static createBlockUrlRadio(value) {
         const div = document.createElement("div");
 
         const radio = document.createElement("input");
@@ -104,7 +104,7 @@ class BlockDialog {
         return div;
     }
 
-    createBlockCustomRadio(value) {
+    public createBlockCustomRadio(value) {
         const div = document.createElement("div");
 
         const radio = document.createElement("input");
@@ -136,7 +136,7 @@ class BlockDialog {
         return div;
     }
 
-    createBlockTypeDiv() {
+    public createBlockTypeDiv() {
         const blockTypeDiv = document.createElement("div");
         const select = document.createElement("select");
         select.classList.add("block-dialog-type-select");
@@ -158,26 +158,26 @@ class BlockDialog {
         return blockTypeDiv;
     }
 
-    createButtonDiv() {
+    public createButtonDiv() {
         const buttonDiv = document.createElement("div");
         buttonDiv.classList.add("block-dialog-buttons");
 
         // create child elements(buttons)
         const buttonList = this.createButtons();
-        buttonList.forEach(button => {
+        buttonList.forEach((button) => {
             buttonDiv.appendChild(button);
         });
 
         return buttonDiv;
     }
 
-    cancel(ignore) {
+    public cancel(ignore) {
         // remove background
         this.background.parentElement.removeChild(this.background);
     }
 
-    block(ignore) {
-        const selected = <HTMLInputElement> document.querySelector('input[name="block-url-type"]:checked');
+    public block(ignore) {
+        const selected = document.querySelector('input[name="block-url-type"]:checked') as HTMLInputElement;
 
         // ignore when not selected.
         if (!selected) {
@@ -201,7 +201,7 @@ class BlockDialog {
         this.background.parentElement.removeChild(this.background);
     }
 
-    createButtons() {
+    public createButtons() {
         const cancelButton = document.createElement("input");
         cancelButton.type = "button";
         cancelButton.value = chrome.i18n.getMessage("cancelButtonLabel");

@@ -1,12 +1,12 @@
 const OptionRepository = {
-    init: async function() {
+    async init() {
         this.developerMode = await ChromeStorage.get({developerMode: false});
     },
 
     /**
      * @return {boolean}
      */
-    isDeveloperMode: function() {
+    isDeveloperMode() {
         return this.developerMode;
     },
 
@@ -14,12 +14,12 @@ const OptionRepository = {
      * @param {boolean} mode
      * @return {Promise<void>}
      */
-    setDeveloperMode: async function(mode) {
+    async setDeveloperMode(mode) {
         await ChromeStorage.set({developerMode: mode});
         this.developerMode = mode;
 
         Logger.debug("set 'developerMode' to =>", mode);
-    }
+    },
 };
 
 // initialize

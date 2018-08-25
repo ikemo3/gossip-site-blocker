@@ -1,5 +1,5 @@
 const BlockTargetFactory = {
-    init: async function () {
+    async init() {
         let count = 0;
         const blockedSites = await BlockedSitesRepository.load();
         document.querySelectorAll(".g").forEach(async function (g1) {
@@ -60,7 +60,7 @@ const BlockTargetFactory = {
             DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
         });
         return this;
-    }
+    },
 };
 class GoogleInnerCard {
     constructor(element) {

@@ -248,7 +248,7 @@ async function show_lists() {
     hardBlockList.innerHTML = "";
     const softTable = document.createElement("table");
     const hardTable = document.createElement("table");
-    for (let site of sites) {
+    for (const site of sites) {
         const option = new BlockedSiteOption(site);
         if (option.getState() === "soft") {
             softTable.appendChild(option.getElement());
@@ -271,7 +271,7 @@ async function clear() {
 }
 // bind event.
 clearButton.addEventListener("click", clear);
-document.addEventListener('DOMContentLoaded', async (ignore) => {
+document.addEventListener("DOMContentLoaded", async (ignore) => {
     await show_lists();
     developerCheckbox.checked = await OptionRepository.isDeveloperMode();
 });

@@ -8,7 +8,7 @@ const BlockedSitesRepository = {
      *
      * @returns {Promise<Array<BlockedSite>>}
      */
-    loadData: async function() {
+    async loadData() {
         const items = <BlockedSitesList> await ChromeStorage.get({blocked: []});
 
         const sites = [];
@@ -26,7 +26,7 @@ const BlockedSitesRepository = {
      *
      * @returns {Promise<BlockedSites>}
      */
-    load: async function() {
+    async load() {
         const sites = await BlockedSitesRepository.loadData();
 
         return new BlockedSites(sites);
@@ -36,11 +36,11 @@ const BlockedSitesRepository = {
      * @params {Array<Object>>} blockList
      * @returns {Promise<BlockedSites>}
      */
-    addAll: async function(blockList) {
+    async addAll(blockList) {
         const siteArray = await BlockedSitesRepository.loadData();
 
         for (const block of blockList) {
-            const found = siteArray.some(site => {
+            const found = siteArray.some((site) => {
                 return site.url === block.url;
             });
 
@@ -62,16 +62,16 @@ const BlockedSitesRepository = {
      * @param blockType {string} type to block(soft/hard)
      * @returns {Promise<BlockedSites>}
      */
-    add: async function(url, blockType) {
+    async add(url, blockType) {
         const siteArray = await BlockedSitesRepository.loadData();
 
-        const found = siteArray.some(site => {
+        const found = siteArray.some((site) => {
             return site.url === url;
         });
 
         // add if not found.
         if (!found) {
-            const site = new BlockedSite({url: url, block_type: blockType});
+            const site = new BlockedSite({url, block_type: blockType});
             siteArray.push(site);
         }
 
@@ -85,11 +85,11 @@ const BlockedSitesRepository = {
      *
      * @returns {Promise<BlockedSites>}
      */
-    del: async function(url) {
+    async del(url) {
         const siteArray = await BlockedSitesRepository.loadData();
 
         // delete items whose URL matches.
-        const newSiteArray = siteArray.filter(site => {
+        const newSiteArray = siteArray.filter((site) => {
             return !site.equals(url);
         });
 
@@ -98,7 +98,7 @@ const BlockedSitesRepository = {
         return new BlockedSites(newSiteArray);
     },
 
-    edit: async function(beforeUrl, afterUrl) {
+    async edit(beforeUrl, afterUrl) {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(beforeUrl);
 
@@ -109,7 +109,7 @@ const BlockedSitesRepository = {
         }
     },
 
-    toHard: async function(url) {
+    async toHard(url) {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
@@ -118,7 +118,7 @@ const BlockedSitesRepository = {
         await BlockedSitesRepository.save(sites.sites);
     },
 
-    toSoft: async function(url) {
+    async toSoft(url) {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
@@ -132,20 +132,20 @@ const BlockedSitesRepository = {
      * @param sites {Array<BlockedSite>}
      * @returns {Promise<void>}
      */
-    save: async function(sites) {
+    async save(sites) {
         await ChromeStorage.set({blocked: sites});
     },
 
-    clear: async function() {
+    async clear() {
         await ChromeStorage.set({blocked: []});
-    }
+    },
 };
 
 /**
  * @property {Array<BlockedSite>} sites
  */
 class BlockedSites {
-    sites: Array<BlockedSite>;
+    public sites: BlockedSite[];
 
     constructor(sites) {
         this.sites = sites;
@@ -157,8 +157,8 @@ class BlockedSites {
      * @param url
      * @returns {BlockedSite|undefined}
      */
-    find(url) {
-        for (let site of this.sites) {
+    public find(url) {
+        for (const site of this.sites) {
             if (site.equals(url)) {
                 return site;
             }
@@ -174,16 +174,16 @@ class BlockedSites {
      * @param url
      * @returns {BlockedSite|undefined}
      */
-    matches(url) {
+    public matches(url) {
         /**
          * found element
          * @type {BlockedSite|undefined}
          */
-        let found = undefined;
+        let found;
 
         const urlWithoutProtocol = DOMUtils.removeProtocol(url);
 
-        for (let site of this.sites) {
+        for (const site of this.sites) {
             // Forward match comparison without protocol
             if (site.contains(urlWithoutProtocol)) {
                 if (found === undefined || site.strongerThan(found)) {
@@ -200,8 +200,8 @@ class BlockedSites {
      *
      * @param url URL
      */
-    contains(url) {
-        for (let site of this.sites) {
+    public contains(url) {
+        for (const site of this.sites) {
             if (site.contains(url)) {
                 return true;
             }
@@ -222,19 +222,19 @@ class BlockedSites {
  * @property {"soft"|"hard"} block_type
  */
 class BlockedSite {
-    url: string;
-    block_type: string;
+    public url: string;
+    public block_type: string;
 
     constructor(item) {
         this.url = item.url;
         this.block_type = item.block_type;
     }
 
-    contains(url) {
+    public contains(url) {
         return url.startsWith(this.url);
     }
 
-    equals(url) {
+    public equals(url) {
         return url === this.url;
     }
 
@@ -242,7 +242,7 @@ class BlockedSite {
      *
      * @param {BlockedSite} site
      */
-    strongerThan(site) {
+    public strongerThan(site) {
         return this.url.length > site.url.length;
     }
 
@@ -254,7 +254,7 @@ class BlockedSite {
      *
      * @return {string} block type(soft / hard)
      */
-    getState() {
+    public getState() {
         return this.block_type;
     }
 }

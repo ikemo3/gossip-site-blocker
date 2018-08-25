@@ -1,6 +1,6 @@
 async function exportClicked() {
     const sites = await BlockedSitesRepository.load();
-    let lines = [];
+    const lines = [];
     for (const site of sites) {
         const line = `${site.url} ${site.block_type}`;
         lines.push(line);
@@ -10,8 +10,8 @@ async function exportClicked() {
     /**
      * @type HTMLTextAreaElement
      */
-    const exportTextArea = document.getElementById('exportTextArea');
+    const exportTextArea = document.getElementById("exportTextArea");
     exportTextArea.value = lines.join("\n") + "\n";
 }
-document.getElementById('exportButton').addEventListener('click', exportClicked);
+document.getElementById("exportButton").addEventListener("click", exportClicked);
 //# sourceMappingURL=export.js.map

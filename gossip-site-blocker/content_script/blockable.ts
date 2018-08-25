@@ -1,10 +1,10 @@
 const BlockTargetFactory = {
-    init: async function () {
+    async init() {
         let count = 0;
 
         const blockedSites = await BlockedSitesRepository.load();
 
-        document.querySelectorAll(".g").forEach(async function (g1) {
+        document.querySelectorAll(".g").forEach(async function(g1) {
             const g = new GoogleElement(g1);
 
             if (!g.canBlock()) {
@@ -40,7 +40,7 @@ const BlockTargetFactory = {
             DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
         });
 
-        document.querySelectorAll("g-inner-card").forEach(async function (g1) {
+        document.querySelectorAll("g-inner-card").forEach(async function(g1) {
             const g = new GoogleInnerCard(g1);
 
             if (!g.canBlock()) {
@@ -78,13 +78,13 @@ const BlockTargetFactory = {
         });
 
         return this;
-    }
+    },
 };
 
 class GoogleInnerCard {
-    valid: boolean;
-    url: string;
-    element: Element;
+    public valid: boolean;
+    public url: string;
+    public element: Element;
 
     constructor(element) {
         const anchorList = element.getElementsByTagName("a");
@@ -111,27 +111,27 @@ class GoogleInnerCard {
         this.element = element;
     }
 
-    canBlock() {
+    public canBlock() {
         return this.valid;
     }
 
-    getUrl() {
+    public getUrl() {
         return this.url;
     }
 
-    getElement() {
+    public getElement() {
         return this.element;
     }
 
-    deleteElement() {
+    public deleteElement() {
         this.element.parentElement.removeChild(this.element);
     }
 }
 
 class GoogleElement {
-    valid: boolean;
-    url: string;
-    element: Element;
+    public valid: boolean;
+    public url: string;
+    public element: Element;
 
     constructor(element) {
         const classList = element.classList;
@@ -201,19 +201,19 @@ class GoogleElement {
         this.element = element;
     }
 
-    canBlock() {
+    public canBlock() {
         return this.valid;
     }
 
-    getUrl() {
+    public getUrl() {
         return this.url;
     }
 
-    getElement() {
+    public getElement() {
         return this.element;
     }
 
-    deleteElement() {
+    public deleteElement() {
         this.element.parentElement.removeChild(this.element);
     }
 }
@@ -225,8 +225,8 @@ class GoogleElement {
  * @property id {string}
  */
 class BlockTarget {
-    element: Element;
-    id: string;
+    public element: Element;
+    public id: string;
 
     /**
      *
@@ -246,7 +246,7 @@ class BlockTarget {
         this.setState(state);
     }
 
-    getDOMElement() {
+    public getDOMElement() {
         return this.element;
     }
 
@@ -254,14 +254,14 @@ class BlockTarget {
      * @private
      * @param url {string}
      */
-    setUrl(url) {
+    public setUrl(url) {
         this.element.setAttribute("data-blocker-url", url);
     }
 
     /**
      * @returns {string}
      */
-    getUrl() {
+    public getUrl() {
         return this.element.getAttribute("data-blocker-url");
     }
 
@@ -269,7 +269,7 @@ class BlockTarget {
      *
      * @param state {"none"|"soft"|"hard"}
      */
-    setState(state) {
+    public setState(state) {
         this.element.setAttribute("data-blocker-state", state);
 
         switch (state) {
@@ -288,20 +288,20 @@ class BlockTarget {
         }
     }
 
-    block(url) {
+    public block(url) {
         this.setUrl(url);
         this.hide();
     }
 
-    show() {
+    public show() {
         this.element.removeAttribute("data-blocker-display");
     }
 
-    hide() {
+    public hide() {
         this.element.setAttribute("data-blocker-display", "none");
     }
 
-    unhide() {
+    public unhide() {
         this.element.setAttribute("data-blocker-display", "unhide");
     }
 }
@@ -313,12 +313,12 @@ class BlockTarget {
  * @property url URL to block
  */
 class BlockAnchor {
-    element: HTMLDivElement;
-    anchor: HTMLAnchorElement;
-    state: string;
-    targetObject: BlockTarget;
-    handler: any;
-    url: string;
+    public element: HTMLDivElement;
+    public anchor: HTMLAnchorElement;
+    public state: string;
+    public targetObject: BlockTarget;
+    public handler: any;
+    public url: string;
 
     /**
      *
@@ -347,16 +347,16 @@ class BlockAnchor {
         this.setHandler();
     }
 
-    getDOMElement() {
+    public getDOMElement() {
         return this.element;
     }
 
-    setWrappable(width) {
+    public setWrappable(width) {
         this.element.style.width = width;
         this.element.style.whiteSpace = "normal";
     }
 
-    setState(newState) {
+    public setState(newState) {
         this.state = newState;
         this.anchor.setAttribute("data-blocker-state", newState);
 
@@ -364,7 +364,7 @@ class BlockAnchor {
         this.setText();
     }
 
-    setHandler() {
+    public setHandler() {
         if (this.handler) {
             this.anchor.removeEventListener("click", this.handler);
             this.handler = null;
@@ -396,7 +396,7 @@ class BlockAnchor {
         }
     }
 
-    setText() {
+    public setText() {
         switch (this.state) {
             case "none":
                 this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
@@ -413,12 +413,12 @@ class BlockAnchor {
         }
     }
 
-    setUrl(url) {
+    public setUrl(url) {
         this.url = url;
         this.setText();
     }
 
-    showBlockDialog(ignore) {
+    public showBlockDialog(ignore) {
         // show dialog.
         new BlockDialog(this, this.url);
     }
@@ -427,7 +427,7 @@ class BlockAnchor {
      * @param {string} url
      * @param {string} blockType
      */
-    blockPage(url, blockType) {
+    public blockPage(url, blockType) {
         // hide element.
         this.targetObject.block(url);
         this.setState(blockType);
@@ -441,7 +441,7 @@ class BlockAnchor {
     /**
      * @param ignore
      */
-    unhide(ignore) {
+    public unhide(ignore) {
         // show block temporarily.
         this.targetObject.unhide();
         this.setState("unhide");
@@ -450,7 +450,7 @@ class BlockAnchor {
     /**
      * @param ignore
      */
-    hide(ignore) {
+    public hide(ignore) {
         this.targetObject.hide();
         this.setState("soft");
     }
