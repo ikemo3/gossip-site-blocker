@@ -4,12 +4,14 @@ const ChromeStorage = {
             chrome.storage.local.get(keys, resolve);
         });
     },
+
     set: async function (items) {
         return new Promise(resolve => {
             chrome.storage.local.set(items, resolve);
         });
     }
 };
+
 const Logger = {
     debug: function (message, ...params) {
         if (OptionRepository.isDeveloperMode()) {
@@ -17,6 +19,7 @@ const Logger = {
         }
     }
 };
+
 const DOMUtils = {
     /**
      * add element later.
@@ -27,6 +30,7 @@ const DOMUtils = {
     insertAfter: function (element, insertElement) {
         element.parentElement.insertBefore(insertElement, element.nextSibling);
     },
+
     /**
      * get hostname from URL string.
      *
@@ -39,6 +43,7 @@ const DOMUtils = {
         tmp.href = url;
         return tmp.hostname;
     },
+
     /**
      * delete protocol(scheme) from URL string.
      *
@@ -49,4 +54,3 @@ const DOMUtils = {
         return url.replace(/^\w+:\/\//, "");
     }
 };
-//# sourceMappingURL=common.js.map

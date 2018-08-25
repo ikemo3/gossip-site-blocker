@@ -4,10 +4,11 @@ function localizeHtmlPage() {
         const key = element.getAttribute("data-i18n-text");
         element.textContent = chrome.i18n.getMessage(key);
     });
-    document.querySelectorAll("[data-i18n-value]").forEach((element) => {
+
+    document.querySelectorAll("[data-i18n-value]").forEach((element: HTMLInputElement) => {
         const key = element.getAttribute("data-i18n-value");
         element.value = chrome.i18n.getMessage(key);
     });
 }
+
 localizeHtmlPage();
-//# sourceMappingURL=l10n.js.map
