@@ -427,13 +427,13 @@ class BlockAnchor {
      * @param {string} url
      * @param {string} blockType
      */
-    public blockPage(url, blockType) {
+    public async blockPage(url, blockType) {
         // hide element.
         this.targetObject.block(url);
         this.setState(blockType);
 
         // add URL to block.
-        BlockedSitesRepository.add(url, blockType);
+        await BlockedSitesRepository.add(url, blockType);
 
         this.setUrl(url);
     }
