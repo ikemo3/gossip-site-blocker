@@ -36,6 +36,7 @@
         "common.js",
         "option/block.js",
         "option/config.js",
+        "content_script/block_anchor.js",
         "content_script/blockable.js",
         "content_script/dialog.js",
         "content_script/google.js"
