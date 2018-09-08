@@ -11,8 +11,9 @@ class BlockAnchor {
      * @param state
      * @param targetObject
      * @param url URL to block
+     * @param reason reason to block.
      */
-    constructor(targetId, state, targetObject, url) {
+    constructor(targetId, state, targetObject, url, reason) {
         const div = document.createElement("div");
         div.classList.add("block-anchor");
         const anchor = document.createElement("a");
@@ -24,8 +25,9 @@ class BlockAnchor {
         this.state = state;
         this.targetObject = targetObject;
         this.handler = null;
-        this.setUrl(url);
-        this.setText();
+        this.reason = reason;
+        this.url = url;
+        this.updateText();
         this.setHandler();
     }
     getDOMElement() {
@@ -39,7 +41,7 @@ class BlockAnchor {
         this.state = newState;
         this.anchor.setAttribute("data-blocker-state", newState);
         this.setHandler();
-        this.setText();
+        this.updateText();
     }
     setHandler() {
         if (this.handler) {
@@ -67,13 +69,13 @@ class BlockAnchor {
             this.anchor.addEventListener("click", this.handler);
         }
     }
-    setText() {
+    updateText() {
         switch (this.state) {
             case "none":
                 this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
                 break;
             case "soft":
-                this.anchor.textContent = chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(this.url)]);
+                this.anchor.textContent = chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(this.reason)]);
                 break;
             case "hard":
                 this.anchor.textContent = "";
@@ -83,9 +85,9 @@ class BlockAnchor {
                 break;
         }
     }
-    setUrl(url) {
-        this.url = url;
-        this.setText();
+    setReason(reason) {
+        this.reason = reason;
+        this.updateText();
     }
     showBlockDialog(ignore) {
         // show dialog.
@@ -97,7 +99,7 @@ class BlockAnchor {
         this.setState(blockType);
         // add URL to block.
         await BlockedSitesRepository.add(url, blockType);
-        this.setUrl(url);
+        this.setReason(url);
     }
     /**
      * @param ignore

@@ -11,6 +11,7 @@ class BlockAnchor {
     public targetObject: BlockTarget;
     public handler: any;
     public url: string;
+    private reason: string;
 
     /**
      *
@@ -18,8 +19,9 @@ class BlockAnchor {
      * @param state
      * @param targetObject
      * @param url URL to block
+     * @param reason reason to block.
      */
-    constructor(targetId: string, state: string, targetObject: BlockTarget, url: string) {
+    constructor(targetId: string, state: string, targetObject: BlockTarget, url: string, reason: string | undefined) {
         const div = document.createElement("div");
         div.classList.add("block-anchor");
 
@@ -33,9 +35,10 @@ class BlockAnchor {
         this.state = state;
         this.targetObject = targetObject;
         this.handler = null;
+        this.reason = reason;
+        this.url = url;
 
-        this.setUrl(url);
-        this.setText();
+        this.updateText();
         this.setHandler();
     }
 
@@ -53,7 +56,7 @@ class BlockAnchor {
         this.anchor.setAttribute("data-blocker-state", newState);
 
         this.setHandler();
-        this.setText();
+        this.updateText();
     }
 
     public setHandler() {
@@ -88,13 +91,13 @@ class BlockAnchor {
         }
     }
 
-    public setText() {
+    public updateText() {
         switch (this.state) {
             case "none":
                 this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
                 break;
             case "soft":
-                this.anchor.textContent = chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(this.url)]);
+                this.anchor.textContent = chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(this.reason)]);
                 break;
             case "hard":
                 this.anchor.textContent = "";
@@ -105,9 +108,9 @@ class BlockAnchor {
         }
     }
 
-    public setUrl(url) {
-        this.url = url;
-        this.setText();
+    public setReason(reason: string) {
+        this.reason = reason;
+        this.updateText();
     }
 
     public showBlockDialog(ignore) {
@@ -123,7 +126,7 @@ class BlockAnchor {
         // add URL to block.
         await BlockedSitesRepository.add(url, blockType);
 
-        this.setUrl(url);
+        this.setReason(url);
     }
 
     /**
