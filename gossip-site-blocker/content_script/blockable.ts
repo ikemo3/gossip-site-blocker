@@ -3,8 +3,9 @@ const BlockTargetFactory = {
         let count = 0;
 
         const blockedSites = await BlockedSitesRepository.load();
+        const bannedWords: IBannedWord[] = await BannedWordRepository.load();
 
-        document.querySelectorAll(".g").forEach(async function(g1) {
+        document.querySelectorAll(".g").forEach(async function(g1: HTMLDivElement) {
             const g = new GoogleElement(g1);
 
             if (!g.canBlock()) {
@@ -16,10 +17,22 @@ const BlockTargetFactory = {
              */
             const blockedSite = blockedSites.matches(g.getUrl());
 
+            const banned = bannedWords.some((bannedWord) => {
+                const keyword = bannedWord.keyword;
+                return g.contains(keyword);
+            });
+
             /**
              * @type {"none"|"soft"|"hard"}
              */
-            const state = (blockedSite ? blockedSite.getState() : "none");
+            let state: string;
+            if (blockedSite) {
+                state = blockedSite.getState();
+            } else if (banned) {
+                state = "soft";
+            } else {
+                state = "none";
+            }
 
             /**
              * URL of block or unhide
@@ -52,10 +65,22 @@ const BlockTargetFactory = {
              */
             const blockedSite = blockedSites.matches(g.getUrl());
 
+            const banned = bannedWords.some((bannedWord) => {
+                const keyword = bannedWord.keyword;
+                return g.contains(keyword);
+            });
+
             /**
              * @type {"none"|"soft"|"hard"}
              */
-            const state = (blockedSite ? blockedSite.getState() : "none");
+            let state: string;
+            if (blockedSite) {
+                state = blockedSite.getState();
+            } else if (banned) {
+                state = "soft";
+            } else {
+                state = "none";
+            }
 
             /**
              * URL of block or unhide
@@ -85,6 +110,7 @@ class GoogleInnerCard {
     public valid: boolean;
     public url: string;
     public element: Element;
+    private title: string;
 
     constructor(element) {
         const anchorList = element.getElementsByTagName("a");
@@ -104,6 +130,11 @@ class GoogleInnerCard {
         if (urlList.length === 0) {
             this.valid = false;
             return;
+        }
+
+        const heading = element.querySelector("[role=heading]");
+        if (heading) {
+            this.title = heading.textContent;
         }
 
         this.valid = true;
@@ -126,12 +157,18 @@ class GoogleInnerCard {
     public deleteElement() {
         this.element.parentElement.removeChild(this.element);
     }
+
+    public contains(keyword: string): boolean {
+        return this.title && this.title.includes(keyword);
+    }
 }
 
 class GoogleElement {
     public valid: boolean;
     public url: string;
     public element: Element;
+    private title: string;
+    private contents: string;
 
     constructor(element) {
         const classList = element.classList;
@@ -196,13 +233,26 @@ class GoogleElement {
             return;
         }
 
+        const title = element.querySelector("h3 a").textContent;
+        const contents = element.querySelector(".st").textContent;
+
         this.valid = true;
         this.url = urlList[0];
         this.element = element;
+        this.title = title;
+        this.contents = contents;
     }
 
     public canBlock() {
         return this.valid;
+    }
+
+    public contains(keyword: string): boolean {
+        if (this.title && this.title.includes(keyword)) {
+            return true;
+        }
+
+        return this.contents && this.contents.includes(keyword);
     }
 
     public getUrl() {

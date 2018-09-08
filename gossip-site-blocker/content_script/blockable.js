@@ -2,6 +2,7 @@ const BlockTargetFactory = {
     async init() {
         let count = 0;
         const blockedSites = await BlockedSitesRepository.load();
+        const bannedWords = await BannedWordRepository.load();
         document.querySelectorAll(".g").forEach(async function (g1) {
             const g = new GoogleElement(g1);
             if (!g.canBlock()) {
@@ -11,10 +12,23 @@ const BlockTargetFactory = {
              * @type {BlockedSite|undefined}
              */
             const blockedSite = blockedSites.matches(g.getUrl());
+            const banned = bannedWords.some((bannedWord) => {
+                const keyword = bannedWord.keyword;
+                return g.contains(keyword);
+            });
             /**
              * @type {"none"|"soft"|"hard"}
              */
-            const state = (blockedSite ? blockedSite.getState() : "none");
+            let state;
+            if (blockedSite) {
+                state = blockedSite.getState();
+            }
+            else if (banned) {
+                state = "soft";
+            }
+            else {
+                state = "none";
+            }
             /**
              * URL of block or unhide
              * @type {string}
@@ -39,10 +53,23 @@ const BlockTargetFactory = {
              * @type {BlockedSite|undefined}
              */
             const blockedSite = blockedSites.matches(g.getUrl());
+            const banned = bannedWords.some((bannedWord) => {
+                const keyword = bannedWord.keyword;
+                return g.contains(keyword);
+            });
             /**
              * @type {"none"|"soft"|"hard"}
              */
-            const state = (blockedSite ? blockedSite.getState() : "none");
+            let state;
+            if (blockedSite) {
+                state = blockedSite.getState();
+            }
+            else if (banned) {
+                state = "soft";
+            }
+            else {
+                state = "none";
+            }
             /**
              * URL of block or unhide
              * @type {string}
@@ -78,6 +105,10 @@ class GoogleInnerCard {
             this.valid = false;
             return;
         }
+        const heading = element.querySelector("[role=heading]");
+        if (heading) {
+            this.title = heading.textContent;
+        }
         this.valid = true;
         this.url = urlList[0];
         this.element = element;
@@ -93,6 +124,9 @@ class GoogleInnerCard {
     }
     deleteElement() {
         this.element.parentElement.removeChild(this.element);
+    }
+    contains(keyword) {
+        return this.title && this.title.includes(keyword);
     }
 }
 class GoogleElement {
@@ -145,12 +179,22 @@ class GoogleElement {
             this.valid = false;
             return;
         }
+        const title = element.querySelector("h3 a").textContent;
+        const contents = element.querySelector(".st").textContent;
         this.valid = true;
         this.url = urlList[0];
         this.element = element;
+        this.title = title;
+        this.contents = contents;
     }
     canBlock() {
         return this.valid;
+    }
+    contains(keyword) {
+        if (this.title && this.title.includes(keyword)) {
+            return true;
+        }
+        return this.contents && this.contents.includes(keyword);
     }
     getUrl() {
         return this.url;

@@ -32,6 +32,7 @@
         "https://www.google.co.jp/search*"
       ],
       "js": [
+        "banned_word_repository.js",
         "common.js",
         "option/block.js",
         "option/config.js",
