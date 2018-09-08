@@ -1,4 +1,13 @@
 {
+  "bannedWord": {
+    "message": "Banned Words"
+  },
+  "bannedWordAddButton": {
+    "message": "Add"
+  },
+  "bannedWordDeleteButton": {
+    "message": "Delete"
+  },
   "blockButtonLabel": {
     "message": "Block"
   },

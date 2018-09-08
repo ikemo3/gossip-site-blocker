@@ -1,4 +1,13 @@
 {
+  "bannedWord": {
+    "message": "禁止用語"
+  },
+  "bannedWordAddButton": {
+    "message": "追加"
+  },
+  "bannedWordDeleteButton": {
+    "message": "削除"
+  },
   "blockButtonLabel": {
     "message": "ブロック"
   },

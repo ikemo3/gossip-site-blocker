@@ -22,6 +22,16 @@
 
 <hr/>
 
+<h2 data-i18n-text="bannedWord">Banned Words</h2>
+
+<div id="bannedWordList">
+</div>
+
+<label for="bannedWordAddText"></label><input type="text" id="bannedWordAddText"/>
+<input type="button" id="bannedWordAddButton" data-i18n-value="bannedWordAddButton" value="Add"/>
+
+<hr/>
+
 <h2 data-i18n-text="exportSection">Export</h2>
 
 <input type="button" id="exportButton" data-i18n-value="exportButton" value="Export"/>
@@ -72,7 +82,9 @@
 
 <input type="button" id="clearButton" data-i18n-value="clearAll" value="Clear All"/>
 
+<script src="../banned_word_repository.js"></script>
 <script src="../common.js"></script>
+<script src="banned_word.js"></script>
 <script src="block.js"></script>
 <script src="config.js"></script>
 <script src="export.js"></script>
