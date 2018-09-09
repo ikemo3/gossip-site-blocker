@@ -35,6 +35,8 @@
         "banned_word_repository.js",
         "common.js",
         "option/block.js",
+        "option/blocked_site.js",
+        "option/blocked_sites.js",
         "option/config.js",
         "content_script/block_anchor.js",
         "content_script/block_target.js",
