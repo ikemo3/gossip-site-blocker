@@ -93,6 +93,9 @@
   "importFormat": {
     "message": "フォーマット(1行ごと)"
   },
+  "importFormatBannedWord": {
+    "message": "禁止ワード(空白は'+'に置換) + 'banned'。例: 'sad+news banned'"
+  },
   "importFormatDomainOnly": {
     "message": "ドメイン名(またはドメイン名とパス)。例: 'example.com', 'example.com/path'"
   },

@@ -16,6 +16,9 @@ class BannedWords {
             this.addText.value = "";
         }));
     }
+    clear() {
+        this.wordList.innerHTML = "";
+    }
     async load() {
         const words = await BannedWordRepository.load();
         this.wordList.innerHTML = "";
@@ -44,8 +47,9 @@ class BannedWords {
         this.wordList.removeChild(wordDiv);
     }
 }
+let bannedWords;
 (async () => {
-    const bannedWords = new BannedWords();
+    bannedWords = new BannedWords();
     await bannedWords.load();
 })();
 //# sourceMappingURL=banned_word.js.map

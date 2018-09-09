@@ -263,10 +263,12 @@ async function show_lists() {
 async function clear() {
     if (confirm(chrome.i18n.getMessage("clearConfirm"))) {
         await BlockedSitesRepository.clear();
+        await BannedWordRepository.clear();
         alert(chrome.i18n.getMessage("clearDone"));
         // clear all.
         softBlockList.innerHTML = "";
         hardBlockList.innerHTML = "";
+        bannedWords.clear();
     }
 }
 // bind event.

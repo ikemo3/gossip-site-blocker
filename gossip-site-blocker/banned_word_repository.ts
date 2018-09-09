@@ -16,6 +16,30 @@ const BannedWordRepository = {
         await ChromeStorage.set({bannedWords: words});
     },
 
+    async clear() {
+        await ChromeStorage.set({bannedWords: []});
+    },
+
+    async addAll(bannedWordList: IBannedWord[]): Promise<void> {
+        const words: IBannedWord[] = await this.load();
+
+        for (const bannedWord of bannedWordList) {
+            let found: boolean = false;
+            for (const word of words) {
+                if (bannedWord.keyword === word.keyword) {
+                    // do nothing.
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                words.push(bannedWord);
+            }
+        }
+
+        await this.save(words);
+    },
+
     async add(addWord: string): Promise<boolean> {
         const words: IBannedWord[] = await this.load();
 

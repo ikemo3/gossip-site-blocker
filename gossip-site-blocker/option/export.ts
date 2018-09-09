@@ -1,6 +1,7 @@
 async function exportClicked() {
     const sites = await BlockedSitesRepository.load();
 
+    // block
     const lines = [];
     for (const site of sites) {
         const line = `${site.url} ${site.block_type}`;
@@ -9,13 +10,21 @@ async function exportClicked() {
 
     lines.sort();
 
-    // noinspection JSValidateTypes
-    /**
-     * @type HTMLTextAreaElement
-     */
-    const exportTextArea = document.getElementById("exportTextArea") as HTMLTextAreaElement;
+    // banned words
+    const bannedLines = [];
+    const words: IBannedWord[] = await BannedWordRepository.load();
+    for (const word of words) {
+        const escaped = word.keyword.replace(" ", "+");
+        const line = `${escaped} banned`;
+        bannedLines.push(line);
+    }
 
-    exportTextArea.value = lines.join("\n") + "\n";
+    bannedLines.sort();
+
+    const allLines = lines.concat(bannedLines);
+    const exportTextArea: HTMLTextAreaElement = document.getElementById("exportTextArea") as HTMLTextAreaElement;
+
+    exportTextArea.value = allLines.join("\n") + "\n";
 }
 
 document.getElementById("exportButton").addEventListener("click", exportClicked);

@@ -24,6 +24,10 @@ class BannedWords {
         }));
     }
 
+    public clear() {
+        this.wordList.innerHTML = "";
+    }
+
     public async load() {
         const words: IBannedWord[] = await BannedWordRepository.load();
         this.wordList.innerHTML = "";
@@ -60,7 +64,8 @@ class BannedWords {
     }
 }
 
+let bannedWords: BannedWords;
 (async () => {
-    const bannedWords = new BannedWords();
+    bannedWords = new BannedWords();
     await bannedWords.load();
 })();
