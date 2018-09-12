@@ -1,5 +1,5 @@
-gibo 1.0.6 by Simon Whitaker <sw@netcetera.org>
-https://github.com/simonwhitaker/gibo
+*.js.map
+
 ### https://raw.github.com/github/gitignore/ea28c14da0faf75047165c10223635ba95566ad7/Node.gitignore
 
 # Logs
