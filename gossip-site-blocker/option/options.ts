@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     developerCheckbox.checked = await OptionRepository.isDeveloperMode();
 });
 
-developerCheckbox.addEventListener("click", async function(event) {
+developerCheckbox.addEventListener("click", async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
     await OptionRepository.setDeveloperMode(checkbox.checked);

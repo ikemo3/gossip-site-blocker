@@ -1,7 +1,7 @@
 /**
  * initialize
  */
-(async function () {
+(async () => {
     // block
     await BlockTargetFactory.init();
 

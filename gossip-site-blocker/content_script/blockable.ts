@@ -5,7 +5,7 @@ const BlockTargetFactory = {
         const blockedSites = await BlockedSitesRepository.load();
         const bannedWords: IBannedWord[] = await BannedWordRepository.load();
 
-        document.querySelectorAll(".g").forEach(async function(g1: HTMLDivElement) {
+        document.querySelectorAll(".g").forEach(async (g1: HTMLDivElement) => {
             const g = new GoogleElement(g1);
 
             if (!g.canBlock()) {
@@ -49,7 +49,7 @@ const BlockTargetFactory = {
             DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
         });
 
-        document.querySelectorAll("g-inner-card").forEach(async function(g1) {
+        document.querySelectorAll("g-inner-card").forEach(async (g1) => {
             const g = new GoogleInnerCard(g1);
 
             if (!g.canBlock()) {

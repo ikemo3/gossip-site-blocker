@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     await show_lists();
     developerCheckbox.checked = await OptionRepository.isDeveloperMode();
 });
-developerCheckbox.addEventListener("click", async function (event) {
+developerCheckbox.addEventListener("click", async (event) => {
     const checkbox = event.target;
     await OptionRepository.setDeveloperMode(checkbox.checked);
 });
