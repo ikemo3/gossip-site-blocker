@@ -1,5 +1,10 @@
-interface BlockedSitesList {
-    blocked: any[];
+interface IBlockedSitesList {
+    blocked: IBlockedSite[];
+}
+
+interface IBlockedSite {
+    url: string;
+    block_type: string;
 }
 
 const BlockedSitesRepository = {
@@ -9,7 +14,7 @@ const BlockedSitesRepository = {
      * @returns {Promise<Array<BlockedSite>>}
      */
     async loadData() {
-        const items = <BlockedSitesList> await ChromeStorage.get({blocked: []});
+        const items = await ChromeStorage.get({blocked: []}) as IBlockedSitesList;
 
         const sites = [];
 

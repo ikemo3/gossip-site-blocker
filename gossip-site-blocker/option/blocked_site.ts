@@ -8,7 +8,7 @@ class BlockedSite {
     public url: string;
     public block_type: string;
 
-    constructor(item) {
+    constructor(item: IBlockedSite) {
         this.url = item.url;
         this.block_type = item.block_type;
     }
