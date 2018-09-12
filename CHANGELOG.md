@@ -1,3 +1,13 @@
+# v1.3.0
+
+## Enhancements.
+
+* Block by keyword.
+
+## Bug Fixes.
+
+* Cannot block(by Google's update).
+
 # v1.2.0
 
 ## Improvements.
