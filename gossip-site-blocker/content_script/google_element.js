@@ -48,7 +48,7 @@ class GoogleElement {
             this.valid = false;
             return;
         }
-        const title = element.querySelector("h3 a").textContent;
+        const title = element.querySelector("a h3").textContent;
         const contents = element.querySelector(".st").textContent;
         this.valid = true;
         this.url = urlList[0];
