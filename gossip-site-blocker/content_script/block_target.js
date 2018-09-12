@@ -45,6 +45,7 @@ class BlockTarget {
         switch (state) {
             case "hard":
                 // When it is hard it should not reach here.
+                // noinspection TsLint
                 console.error("Program Error, state=hard");
                 break;
             case "soft":

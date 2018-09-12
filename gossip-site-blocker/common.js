@@ -13,6 +13,7 @@ const ChromeStorage = {
 const Logger = {
     debug(message, ...params) {
         if (OptionRepository.isDeveloperMode()) {
+            // noinspection TsLint
             console.log(message, ...params);
         }
     },
