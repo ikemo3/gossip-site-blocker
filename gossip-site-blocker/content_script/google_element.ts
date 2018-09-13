@@ -68,7 +68,7 @@ class GoogleElement {
             return;
         }
 
-        const title = element.querySelector("a h3").textContent;
+        const title = element.querySelector("h3").textContent;
         const contents = element.querySelector(".st").textContent;
 
         this.valid = true;
