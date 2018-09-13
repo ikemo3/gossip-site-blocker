@@ -1,3 +1,10 @@
+# v1.3.1
+
+## Bug Fixes.
+
+* Add supported URLs.
+* Cannot block in some domains.
+
 # v1.3.0
 
 ## Enhancements.
