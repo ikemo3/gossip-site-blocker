@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd gossip-site-blocker
+cd apps
 zip ../gossip-site-blocker.zip -r *
