@@ -1,3 +1,9 @@
+# v1.3.2
+
+## Bug Fixes.
+
+* Fixed error if no content.
+
 # v1.3.1
 
 ## Bug Fixes.

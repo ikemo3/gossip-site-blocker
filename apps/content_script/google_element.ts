@@ -30,9 +30,9 @@ class GoogleElement {
             return;
         }
 
-        const anchorList = element.getElementsByTagName("a");
+        const anchorList: HTMLAnchorElement[] = element.getElementsByTagName("a");
 
-        const urlList = [];
+        const urlList: string[] = [];
         for (const anchor of anchorList) {
             const href = anchor.getAttribute("href");
 
@@ -69,7 +69,8 @@ class GoogleElement {
         }
 
         const title = element.querySelector("h3").textContent;
-        const contents = element.querySelector(".st").textContent;
+        const st: HTMLSpanElement | null = element.querySelector(".st");
+        const contents = st ? st.textContent! : "";
 
         this.valid = true;
         this.url = urlList[0];
