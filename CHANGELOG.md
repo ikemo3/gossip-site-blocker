@@ -1,5 +1,9 @@
 # v1.3.2
 
+## Improvements.
+
+* Add tab to option page.
+
 ## Bug Fixes.
 
 * Fixed error if no content.

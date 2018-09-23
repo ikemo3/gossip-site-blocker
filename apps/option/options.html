@@ -3,85 +3,138 @@
 <head>
     <meta charset="UTF-8"/>
     <title data-i18n-text="optionTitle">Gossip Site Blocker: Option</title>
+    <style>
+        /** disable radio button. */
+        input[name=tab] {
+            display: none;
+        }
+
+        input[name=tab] + label {
+            display: inline-flex;
+            border: 1px solid darkseagreen;
+            padding: 4px;
+        }
+
+        input[name=tab]:checked + label {
+            font-weight: bold;
+            background-color: darkseagreen;
+        }
+
+        #blockedUrlsTab:checked ~ #blockedUrlsTabTarget,
+        #bannedWordTab:checked ~ #bannedWordTabTarget,
+        #exportSectionTab:checked ~ #exportSectionTabTarget,
+        #importSectionTab:checked ~ #importSectionTabTarget,
+        #forDeveloperTab:checked ~ #forDeveloperTabTarget,
+        #dangerZoneTab:checked ~ #dangerZoneTabTarget {
+            display: block;
+        }
+
+        #blockedUrlsTab:not(:checked) ~ #blockedUrlsTabTarget,
+        #bannedWordTab:not(:checked) ~ #bannedWordTabTarget,
+        #exportSectionTab:not(:checked) ~ #exportSectionTabTarget,
+        #importSectionTab:not(:checked) ~ #importSectionTabTarget,
+        #forDeveloperTab:not(:checked) ~ #forDeveloperTabTarget,
+        #dangerZoneTab:not(:checked) ~ #dangerZoneTabTarget {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
 <h1 data-i18n-text="optionTitle">Gossip Site Blocker: Option</h1>
 
-<h2 data-i18n-text="blockedUrls">Blocked URLs</h2>
+<input type="radio" name="tab" id="blockedUrlsTab" checked="checked"/>
+<label for="blockedUrlsTab" data-i18n-text="blockedUrls"></label>
 
-<h3 data-i18n-text="softBlock">Soft Block</h3>
+<input type="radio" name="tab" id="bannedWordTab"/>
+<label for="bannedWordTab" data-i18n-text="bannedWord"></label>
 
-<div id="softBlockList">
-</div>
+<input type="radio" name="tab" id="exportSectionTab"/>
+<label for="exportSectionTab" data-i18n-text="exportSection"></label>
 
-<h3 data-i18n-text="hardBlock">Hard Block</h3>
+<input type="radio" name="tab" id="importSectionTab"/>
+<label for="importSectionTab" data-i18n-text="importSection"></label>
 
-<div id="hardBlockList">
-</div>
+<input type="radio" name="tab" id="forDeveloperTab"/>
+<label for="forDeveloperTab" data-i18n-text="forDeveloper"></label>
 
-<hr/>
+<input type="radio" name="tab" id="dangerZoneTab"/>
+<label for="dangerZoneTab" data-i18n-text="dangerZone"></label>
 
-<h2 data-i18n-text="bannedWord">Banned Words</h2>
+<section id="blockedUrlsTabTarget">
+    <h2 data-i18n-text="blockedUrls">Blocked URLs</h2>
 
-<div id="bannedWordList">
-</div>
+    <h3 data-i18n-text="softBlock">Soft Block</h3>
 
-<label for="bannedWordAddText"></label><input type="text" id="bannedWordAddText"/>
-<input type="button" id="bannedWordAddButton" data-i18n-value="bannedWordAddButton" value="Add"/>
+    <div id="softBlockList">
+    </div>
 
-<hr/>
+    <h3 data-i18n-text="hardBlock">Hard Block</h3>
 
-<h2 data-i18n-text="exportSection">Export</h2>
+    <div id="hardBlockList">
+    </div>
+</section>
 
-<input type="button" id="exportButton" data-i18n-value="exportButton" value="Export"/>
+<section id="bannedWordTabTarget">
+    <h2 data-i18n-text="bannedWord">Banned Words</h2>
 
-<br/>
+    <div id="bannedWordList">
+    </div>
 
-<label for="exportTextArea"></label>
+    <label for="bannedWordAddText"></label><input type="text" id="bannedWordAddText"/>
+    <input type="button" id="bannedWordAddButton" data-i18n-value="bannedWordAddButton" value="Add"/>
+</section>
 
-<textarea id="exportTextArea" cols="80" rows="10">
-</textarea>
+<section id="exportSectionTabTarget">
+    <h2 data-i18n-text="exportSection">Export</h2>
 
-<hr/>
+    <input type="button" id="exportButton" data-i18n-value="exportButton" value="Export"/>
 
-<h2 data-i18n-text="importSection">Import</h2>
+    <br/>
 
-<label for="importTextArea" data-i18n-text="importTextAreaLabel"></label>
+    <label for="exportTextArea"></label>
 
-<br/>
+    <textarea id="exportTextArea" cols="80" rows="10"></textarea>
+</section>
 
-<h3 data-i18n-text="importFormat"></h3>
+<section id="importSectionTabTarget">
+    <h2 data-i18n-text="importSection">Import</h2>
 
-<ul>
-    <li data-i18n-text="importFormatDomainOnly"></li>
-    <li data-i18n-text="importFormatDomainPlusType"></li>
-    <li data-i18n-text="importFormatBannedWord"></li>
-</ul>
+    <label for="importTextArea" data-i18n-text="importTextAreaLabel"></label>
 
-<br/>
+    <br/>
 
-<textarea id="importTextArea" cols="80" rows="10">
-</textarea>
+    <h3 data-i18n-text="importFormat"></h3>
 
-<br/>
+    <ul>
+        <li data-i18n-text="importFormatDomainOnly"></li>
+        <li data-i18n-text="importFormatDomainPlusType"></li>
+        <li data-i18n-text="importFormatBannedWord"></li>
+    </ul>
 
-<input type="button" id="importButton" data-i18n-value="importButton" value="Import"/>
+    <br/>
 
-<hr/>
+    <textarea id="importTextArea" cols="80" rows="10"></textarea>
 
-<h2 data-i18n-text="forDeveloper">For Developer</h2>
+    <br/>
 
-<input type="checkbox" id="developerCheckbox"/>
-<label for="developerCheckbox" data-i18n-text="developerMode">Developer Mode</label>
-<br/>
-<br/>
+    <input type="button" id="importButton" data-i18n-value="importButton" value="Import"/>
+</section>
 
-<hr/>
+<section id="forDeveloperTabTarget">
+    <h2 data-i18n-text="forDeveloper">For Developer</h2>
 
-<h2 data-i18n-text="dangerZone">Danger Zone</h2>
+    <input type="checkbox" id="developerCheckbox"/>
+    <label for="developerCheckbox" data-i18n-text="developerMode">Developer Mode</label>
+    <br/>
+    <br/>
+</section>
 
-<input type="button" id="clearButton" data-i18n-value="clearAll" value="Clear All"/>
+<section id="dangerZoneTabTarget">
+    <h2 data-i18n-text="dangerZone">Danger Zone</h2>
+
+    <input type="button" id="clearButton" data-i18n-value="clearAll" value="Clear All"/>
+</section>
 
 <script src="../banned_word_repository.js"></script>
 <script src="../common.js"></script>
