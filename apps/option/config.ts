@@ -1,4 +1,8 @@
-const OptionRepository = {
+interface IOption {
+    developerMode: boolean;
+}
+
+const OptionRepository: IOption = {
     async init() {
         this.developerMode = await ChromeStorage.get({developerMode: false});
     },

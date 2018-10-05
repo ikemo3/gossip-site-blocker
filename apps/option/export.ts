@@ -27,4 +27,4 @@ async function exportClicked() {
     exportTextArea.value = allLines.join("\n") + "\n";
 }
 
-document.getElementById("exportButton").addEventListener("click", exportClicked);
+document.getElementById("exportButton")!.addEventListener("click", exportClicked);

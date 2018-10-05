@@ -45,4 +45,4 @@ async function importClicked(ignore) {
     alert(chrome.i18n.getMessage("importCompleted"));
 }
 
-document.getElementById("importButton").addEventListener("click", importClicked);
+document.getElementById("importButton")!.addEventListener("click", importClicked);

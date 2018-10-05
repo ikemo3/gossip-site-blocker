@@ -46,12 +46,12 @@ class BlockAnchor {
         return this.element;
     }
 
-    public setWrappable(width) {
+    public setWrappable(width: string) {
         this.element.style.width = width;
         this.element.style.whiteSpace = "normal";
     }
 
-    public setState(newState) {
+    public setState(newState: string) {
         this.state = newState;
         this.anchor.setAttribute("data-blocker-state", newState);
 
