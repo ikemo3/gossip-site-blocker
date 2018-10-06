@@ -1,4 +1,4 @@
-class GoogleInnerCard {
+class GoogleInnerCard implements IBlockable {
     public valid: boolean;
     public url: string;
     public element: Element;

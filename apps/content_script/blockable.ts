@@ -1,9 +1,14 @@
+interface IBlockable {
+    getUrl(): string;
+}
+
 const BlockTargetFactory = {
     async init() {
         let count = 0;
 
         const blockedSites = await BlockedSitesRepository.load();
         const bannedWords: IBannedWord[] = await BannedWordRepository.load();
+        const idnOption = await OptionRepository.getAutoBlockIDNOption();
 
         document.querySelectorAll(".g").forEach(async (g1: HTMLDivElement) => {
             const g = new GoogleElement(g1);
@@ -22,7 +27,7 @@ const BlockTargetFactory = {
                 return g.contains(keyword);
             });
 
-            const blockState: BlockState = new BlockState(blockedSite, banned);
+            const blockState: BlockState = await new BlockState(g, blockedSite, banned, idnOption);
 
             if (blockState.state === "hard") {
                 g.deleteElement();
@@ -54,7 +59,7 @@ const BlockTargetFactory = {
                 return g.contains(keyword);
             });
 
-            const blockState: BlockState = new BlockState(blockedSite, banned);
+            const blockState: BlockState = new BlockState(g, blockedSite, banned, idnOption);
 
             if (blockState.state === "hard") {
                 g.deleteElement();

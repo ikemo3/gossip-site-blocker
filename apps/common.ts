@@ -46,7 +46,7 @@ const DOMUtils = {
      * @param {string} url URL string
      * @return {string} hostname
      */
-    getHostName(url) {
+    getHostName(url: string): string {
         const tmp = document.createElement("a");
         tmp.href = url;
         return tmp.hostname;

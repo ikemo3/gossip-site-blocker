@@ -3,6 +3,7 @@ const BlockTargetFactory = {
         let count = 0;
         const blockedSites = await BlockedSitesRepository.load();
         const bannedWords = await BannedWordRepository.load();
+        const idnOption = await OptionRepository.getAutoBlockIDNOption();
         document.querySelectorAll(".g").forEach(async (g1) => {
             const g = new GoogleElement(g1);
             if (!g.canBlock()) {
@@ -16,7 +17,7 @@ const BlockTargetFactory = {
                 const keyword = bannedWord.keyword;
                 return g.contains(keyword);
             });
-            const blockState = new BlockState(blockedSite, banned);
+            const blockState = await new BlockState(g, blockedSite, banned, idnOption);
             if (blockState.state === "hard") {
                 g.deleteElement();
                 return;
@@ -40,7 +41,7 @@ const BlockTargetFactory = {
                 const keyword = bannedWord.keyword;
                 return g.contains(keyword);
             });
-            const blockState = new BlockState(blockedSite, banned);
+            const blockState = new BlockState(g, blockedSite, banned, idnOption);
             if (blockState.state === "hard") {
                 g.deleteElement();
                 return;

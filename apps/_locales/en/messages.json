@@ -87,6 +87,9 @@
   "hardBlock": {
     "message": "Hard block(erase)"
   },
+  "IDN": {
+    "message": "Internationalized Domain Name"
+  },
   "importButton": {
     "message": "Import"
   },

@@ -1,4 +1,4 @@
-class GoogleElement {
+class GoogleElement implements IBlockable {
     public valid: boolean;
     public url: string;
     public element: Element;
@@ -91,7 +91,7 @@ class GoogleElement {
         return this.contents && this.contents.includes(keyword);
     }
 
-    public getUrl() {
+    public getUrl(): string {
         return this.url;
     }
 
