@@ -23,11 +23,7 @@ interface IAutoBlockIDNOption {
 const OptionRepository: IOptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
         const items = await ChromeStorage.get({developerMode: false}) as IDeveloperOption;
-        const developerMode = items.developerMode;
-
-        Logger.log("developerMode is ", developerMode);
-
-        return developerMode;
+        return items.developerMode;
     },
 
     async setDeveloperMode(mode: boolean): Promise<void> {
@@ -39,16 +35,12 @@ const OptionRepository: IOptionRepository = {
     async getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption> {
         const autoBlockIDNDefault = {enabled: false};
         const items = await ChromeStorage.get({autoBlockIDN: autoBlockIDNDefault}) as IAutoBlockIDNOptionStorage;
-        const autoBlockIDN = items.autoBlockIDN;
-
-        Logger.debug("autoBlockIDN is ", autoBlockIDN);
-
-        return autoBlockIDN;
+        return items.autoBlockIDN;
     },
 
     async setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void> {
         await ChromeStorage.set({autoBlockIDN});
 
-        Logger.log("set 'autoBlockIDN' to =>", autoBlockIDN);
+        Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
     },
 };

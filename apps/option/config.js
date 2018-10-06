@@ -1,9 +1,7 @@
 const OptionRepository = {
     async isDeveloperMode() {
         const items = await ChromeStorage.get({ developerMode: false });
-        const developerMode = items.developerMode;
-        Logger.log("developerMode is ", developerMode);
-        return developerMode;
+        return items.developerMode;
     },
     async setDeveloperMode(mode) {
         await ChromeStorage.set({ developerMode: mode });
@@ -12,13 +10,11 @@ const OptionRepository = {
     async getAutoBlockIDNOption() {
         const autoBlockIDNDefault = { enabled: false };
         const items = await ChromeStorage.get({ autoBlockIDN: autoBlockIDNDefault });
-        const autoBlockIDN = items.autoBlockIDN;
-        Logger.debug("autoBlockIDN is ", autoBlockIDN);
-        return autoBlockIDN;
+        return items.autoBlockIDN;
     },
     async setAutoBlockIDNOption(autoBlockIDN) {
         await ChromeStorage.set({ autoBlockIDN });
-        Logger.log("set 'autoBlockIDN' to =>", autoBlockIDN);
+        Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
     },
 };
 //# sourceMappingURL=config.js.map

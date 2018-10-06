@@ -9,6 +9,7 @@ const BlockTargetFactory = {
         const blockedSites = await BlockedSitesRepository.load();
         const bannedWords: IBannedWord[] = await BannedWordRepository.load();
         const idnOption = await OptionRepository.getAutoBlockIDNOption();
+        Logger.debug("autoBlockIDNOption:", idnOption);
 
         document.querySelectorAll(".g").forEach(async (g1: HTMLDivElement) => {
             const g = new GoogleElement(g1);

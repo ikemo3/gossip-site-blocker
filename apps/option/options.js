@@ -41,7 +41,9 @@ async function clear() {
 clearButton.addEventListener("click", clear);
 document.addEventListener("DOMContentLoaded", async (ignore) => {
     await show_lists();
-    developerCheckbox.checked = await OptionRepository.isDeveloperMode();
+    const developerMode = await OptionRepository.isDeveloperMode();
+    Logger.log("developerMode is ", developerMode);
+    developerCheckbox.checked = developerMode;
     const autoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
     autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;
 });
