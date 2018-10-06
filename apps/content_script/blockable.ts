@@ -11,7 +11,7 @@ const BlockTargetFactory = {
         const idnOption = await OptionRepository.getAutoBlockIDNOption();
         Logger.debug("autoBlockIDNOption:", idnOption);
 
-        document.querySelectorAll(".g").forEach(async (g1: HTMLDivElement) => {
+        document.querySelectorAll(".g").forEach(async (g1: Element) => {
             const g = new GoogleElement(g1);
 
             if (!g.canBlock()) {

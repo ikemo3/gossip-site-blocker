@@ -5,7 +5,7 @@ class GoogleElement implements IBlockable {
     private readonly title: string;
     private readonly contents: string;
 
-    constructor(element) {
+    constructor(element: Element) {
         const classList = element.classList;
 
         // ignore if any element has class=g
@@ -30,7 +30,7 @@ class GoogleElement implements IBlockable {
             return;
         }
 
-        const anchorList: HTMLAnchorElement[] = element.getElementsByTagName("a");
+        const anchorList: NodeListOf<HTMLAnchorElement> = element.getElementsByTagName("a");
 
         const urlList: string[] = [];
         for (const anchor of anchorList) {
