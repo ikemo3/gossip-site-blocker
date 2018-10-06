@@ -9,5 +9,16 @@ const OptionRepository = {
         await ChromeStorage.set({ developerMode: mode });
         Logger.log("set 'developerMode' to =>", mode);
     },
+    async getAutoBlockIDNOption() {
+        const autoBlockIDNDefault = { enabled: false };
+        const items = await ChromeStorage.get({ autoBlockIDN: autoBlockIDNDefault });
+        const autoBlockIDN = items.autoBlockIDN;
+        Logger.debug("autoBlockIDN is ", autoBlockIDN);
+        return autoBlockIDN;
+    },
+    async setAutoBlockIDNOption(autoBlockIDN) {
+        await ChromeStorage.set({ autoBlockIDN });
+        Logger.log("set 'autoBlockIDN' to =>", autoBlockIDN);
+    },
 };
 //# sourceMappingURL=config.js.map

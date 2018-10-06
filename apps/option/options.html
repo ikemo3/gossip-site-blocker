@@ -21,6 +21,7 @@
         }
 
         #blockedUrlsTab:checked ~ #blockedUrlsTabTarget,
+        #autoBlockTab:checked ~ #autoBlockTabTarget,
         #bannedWordTab:checked ~ #bannedWordTabTarget,
         #exportSectionTab:checked ~ #exportSectionTabTarget,
         #importSectionTab:checked ~ #importSectionTabTarget,
@@ -30,6 +31,7 @@
         }
 
         #blockedUrlsTab:not(:checked) ~ #blockedUrlsTabTarget,
+        #autoBlockTab:not(:checked) ~ #autoBlockTabTarget,
         #bannedWordTab:not(:checked) ~ #bannedWordTabTarget,
         #exportSectionTab:not(:checked) ~ #exportSectionTabTarget,
         #importSectionTab:not(:checked) ~ #importSectionTabTarget,
@@ -45,6 +47,9 @@
 
 <input type="radio" name="tab" id="blockedUrlsTab" checked="checked"/>
 <label for="blockedUrlsTab" data-i18n-text="blockedUrls"></label>
+
+<input type="radio" name="tab" id="autoBlockTab"/>
+<label for="autoBlockTab" data-i18n-text="autoBlock"></label>
 
 <input type="radio" name="tab" id="bannedWordTab"/>
 <label for="bannedWordTab" data-i18n-text="bannedWord"></label>
@@ -73,6 +78,13 @@
 
     <div id="hardBlockList">
     </div>
+</section>
+
+<section id="autoBlockTabTarget">
+    <h2 data-i18n-text="autoBlock">Auto Block</h2>
+
+    <input type="checkbox" id="autoBlockIDNCheckBox"/>
+    <label for="autoBlockIDNCheckBox" data-i18n-text="autoBlockIDN"></label>
 </section>
 
 <section id="bannedWordTabTarget">

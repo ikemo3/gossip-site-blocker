@@ -1,4 +1,10 @@
 {
+  "autoBlock": {
+    "message": "自動ブロック"
+  },
+  "autoBlockIDN": {
+    "message": "国際化ドメイン名を自動ブロック"
+  },
   "bannedWord": {
     "message": "禁止用語"
   },

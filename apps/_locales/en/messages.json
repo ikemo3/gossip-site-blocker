@@ -1,4 +1,10 @@
 {
+  "autoBlock": {
+    "message": "Auto Block"
+  },
+  "autoBlockIDN": {
+    "message": "Auto Block Internationalized Domain Name"
+  },
   "bannedWord": {
     "message": "Banned Words"
   },

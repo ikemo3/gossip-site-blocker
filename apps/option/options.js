@@ -6,6 +6,7 @@ const clearButton = document.getElementById("clearButton");
  * @type {HTMLInputElement}
  */
 const developerCheckbox = document.getElementById("developerCheckbox");
+const autoBlockIDNCheckbox = document.getElementById("autoBlockIDNCheckBox");
 async function show_lists() {
     const sites = await BlockedSitesRepository.load();
     // Add after clear.
@@ -41,9 +42,16 @@ clearButton.addEventListener("click", clear);
 document.addEventListener("DOMContentLoaded", async (ignore) => {
     await show_lists();
     developerCheckbox.checked = await OptionRepository.isDeveloperMode();
+    const autoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
+    autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;
 });
 developerCheckbox.addEventListener("click", async (event) => {
     const checkbox = event.target;
     await OptionRepository.setDeveloperMode(checkbox.checked);
+});
+autoBlockIDNCheckbox.addEventListener("click", async (event) => {
+    const checkbox = event.target;
+    const autoBlockIDN = { enabled: checkbox.checked };
+    await OptionRepository.setAutoBlockIDNOption(autoBlockIDN);
 });
 //# sourceMappingURL=options.js.map
