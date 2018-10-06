@@ -22,28 +22,16 @@ const BlockTargetFactory = {
                 return g.contains(keyword);
             });
 
-            /**
-             * @type {"none"|"soft"|"hard"}
-             */
-            let state: string;
-            if (blockedSite) {
-                state = blockedSite.getState();
-            } else if (banned) {
-                state = "soft";
-            } else {
-                state = "none";
-            }
+            const blockState: BlockState = new BlockState(blockedSite, banned);
 
-            const reason = blockedSite ? blockedSite.url : (banned ? banned.keyword : null);
-
-            if (state === "hard") {
+            if (blockState.state === "hard") {
                 g.deleteElement();
                 return;
             }
 
             const id = `block${++count}`;
-            const blockTarget = new BlockTarget(g.getElement(), g.getUrl(), id, state);
-            const blockAnchor = new BlockAnchor(id, state, blockTarget, g.getUrl(), reason);
+            const blockTarget = new BlockTarget(g.getElement(), g.getUrl(), id, blockState.state);
+            const blockAnchor = new BlockAnchor(id, blockState.state, blockTarget, g.getUrl(), blockState.reason);
 
             // insert anchor after target.
             DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
@@ -66,28 +54,16 @@ const BlockTargetFactory = {
                 return g.contains(keyword);
             });
 
-            /**
-             * @type {"none"|"soft"|"hard"}
-             */
-            let state: string;
-            if (blockedSite) {
-                state = blockedSite.getState();
-            } else if (banned) {
-                state = "soft";
-            } else {
-                state = "none";
-            }
+            const blockState: BlockState = new BlockState(blockedSite, banned);
 
-            const reason = blockedSite ? blockedSite.url : (banned ? banned.keyword : undefined);
-
-            if (state === "hard") {
+            if (blockState.state === "hard") {
                 g.deleteElement();
                 return;
             }
 
             const id = `block${++count}`;
-            const blockTarget = new BlockTarget(g.getElement(), g.getUrl(), id, state);
-            const blockAnchor = new BlockAnchor(id, state, blockTarget, g.getUrl(), reason);
+            const blockTarget = new BlockTarget(g.getElement(), g.getUrl(), id, blockState.state);
+            const blockAnchor = new BlockAnchor(id, blockState.state, blockTarget, g.getUrl(), blockState.reason);
             blockAnchor.setWrappable("205px");
 
             // insert anchor after target.
