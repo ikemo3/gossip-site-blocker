@@ -29,6 +29,8 @@ class BlockAnchor {
         this.url = url;
         this.updateText();
         this.setHandler();
+        this.changeAnchor = new BlockChangeAnchor(div, url, reason);
+        this.changeAnchor.changeState(state);
     }
     getDOMElement() {
         return this.element;
@@ -40,6 +42,7 @@ class BlockAnchor {
     setState(newState) {
         this.state = newState;
         this.anchor.setAttribute("data-blocker-state", newState);
+        this.changeAnchor.changeState(newState);
         this.setHandler();
         this.updateText();
     }

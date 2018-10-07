@@ -114,7 +114,7 @@ const BlockedSitesRepository = {
         }
     },
 
-    async toHard(url) {
+    async toHard(url): Promise<void> {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
