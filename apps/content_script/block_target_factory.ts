@@ -2,6 +2,8 @@ interface IBlockable {
     getUrl(): string;
 
     contains(keyword: string): boolean;
+
+    getElement(): Element;
 }
 
 const BlockTargetFactory = {
@@ -28,11 +30,7 @@ const BlockTargetFactory = {
             }
 
             const id = `block${++count}`;
-            const blockTarget = new BlockTarget(g.getElement(), g.getUrl(), id, blockState.state);
-            const blockAnchor = new BlockAnchor(id, blockState.state, blockTarget, g.getUrl(), blockState.reason);
-
-            // insert anchor after target.
-            DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
+            const mediator = new BlockMediator(g, blockState, id);
         });
 
         document.querySelectorAll("g-inner-card").forEach((g1) => {
@@ -50,12 +48,8 @@ const BlockTargetFactory = {
             }
 
             const id = `block${++count}`;
-            const blockTarget = new BlockTarget(g.getElement(), g.getUrl(), id, blockState.state);
-            const blockAnchor = new BlockAnchor(id, blockState.state, blockTarget, g.getUrl(), blockState.reason);
-            blockAnchor.setWrappable("205px");
-
-            // insert anchor after target.
-            DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
+            const mediator = new BlockMediator(g, blockState, id);
+            mediator.setWrappable("205px");
         });
 
         return this;

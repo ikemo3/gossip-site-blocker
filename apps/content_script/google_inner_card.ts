@@ -42,7 +42,7 @@ class GoogleInnerCard implements IBlockable {
         return this.url;
     }
 
-    public getElement() {
+    public getElement(): Element {
         return this.element;
     }
 
