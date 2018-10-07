@@ -48,7 +48,13 @@ class GoogleElement {
             this.valid = false;
             return;
         }
-        const title = element.querySelector("h3").textContent;
+        const h3 = element.querySelector("h3");
+        // ignore if no h3(ex. Google Translate)
+        if (h3 === null) {
+            this.valid = false;
+            return;
+        }
+        const title = h3.textContent;
         const st = element.querySelector(".st");
         const contents = st ? st.textContent : "";
         this.valid = true;
