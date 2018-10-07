@@ -41,4 +41,4 @@ const BlockTargetFactory = {
         return this;
     },
 };
-//# sourceMappingURL=blockable.js.map
+//# sourceMappingURL=block_target_factory.js.map
