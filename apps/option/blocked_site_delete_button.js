@@ -16,7 +16,7 @@ class BlockedSiteDeleteButton {
         this.element = input;
         this.setState(state);
     }
-    async onclick(ignore) {
+    async onclick() {
         await this.mediator.deleteUrl();
     }
     getElement() {

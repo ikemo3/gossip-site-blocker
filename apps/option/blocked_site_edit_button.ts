@@ -9,7 +9,7 @@ class BlockedSiteEditButton {
      *
      * @param {BlockedSiteOption} mediator
      */
-    constructor(mediator) {
+    constructor(mediator: BlockedSiteOption) {
         this.mediator = mediator;
 
         const input = document.createElement("input");
@@ -19,7 +19,7 @@ class BlockedSiteEditButton {
         this.element = input;
     }
 
-    public async onclick(ignore) {
+    public async onclick() {
         await this.mediator.editUrl();
     }
 

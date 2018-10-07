@@ -48,12 +48,12 @@ class BlockedSiteOption {
     setUrl(url) {
         this.urlField.setUrl(url);
     }
-    async toHard(ignore) {
+    async toHard() {
         await BlockedSitesRepository.toHard(this.getUrl());
         this.setState("hard");
         Logger.debug("Changed to hard-block.", this.getUrl());
     }
-    async toSoft(ignore) {
+    async toSoft() {
         await BlockedSitesRepository.toSoft(this.getUrl());
         this.setState("soft");
         Logger.debug("Changed to soft-block.", this.getUrl());

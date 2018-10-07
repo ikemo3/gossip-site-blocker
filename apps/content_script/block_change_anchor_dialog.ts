@@ -2,7 +2,7 @@ class BlockChangeAnchorDialog {
     private readonly background: HTMLDivElement;
     private readonly reason: string | null;
 
-    constructor(url: string, reason: string) {
+    constructor(url: string, reason: string | null) {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
         document.body.appendChild(background);
@@ -47,13 +47,13 @@ class BlockChangeAnchorDialog {
 
     private async toHard() {
         Logger.debug("toHard: ", this.reason);
-        await BlockedSitesRepository.toHard(this.reason);
+        await BlockedSitesRepository.toHard(this.reason!);
         this.closeDialog();
     }
 
     private async unblock() {
         Logger.debug("unblock:", this.reason);
-        await BlockedSitesRepository.del(this.reason);
+        await BlockedSitesRepository.del(this.reason!);
         this.closeDialog();
     }
 

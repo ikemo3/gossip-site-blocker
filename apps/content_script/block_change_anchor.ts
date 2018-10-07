@@ -1,11 +1,11 @@
 class BlockChangeAnchor {
     private readonly anchor: HTMLAnchorElement;
     private readonly url: string;
-    private readonly reason: string;
+    private readonly reason: string | null;
 
     constructor(parent: Element,
                 url: string,
-                reason: string | undefined) {
+                reason: string | null) {
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
         anchor.textContent = "change state";

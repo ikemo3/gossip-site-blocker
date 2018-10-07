@@ -58,7 +58,7 @@ class BannedWords {
         this.wordList.appendChild(wordDiv);
     }
 
-    private async deleteKeyword(keyword, wordDiv) {
+    private async deleteKeyword(keyword: string, wordDiv: HTMLDivElement) {
         await BannedWordRepository.delete(keyword);
         this.wordList.removeChild(wordDiv);
     }

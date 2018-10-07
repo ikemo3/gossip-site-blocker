@@ -11,7 +11,7 @@ class BlockAnchor {
     public targetObject: BlockTarget;
     public handler: any;
     public url: string;
-    private reason: string;
+    private reason: string | null;
     private changeAnchor: BlockChangeAnchor;
 
     /**
@@ -22,7 +22,7 @@ class BlockAnchor {
      * @param url URL to block
      * @param reason reason to block.
      */
-    constructor(targetId: string, state: string, targetObject: BlockTarget, url: string, reason: string | undefined) {
+    constructor(targetId: string, state: string, targetObject: BlockTarget, url: string, reason: string | null) {
         const div = document.createElement("div");
         div.classList.add("block-anchor");
 
@@ -102,7 +102,7 @@ class BlockAnchor {
                 this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
                 break;
             case "soft":
-                this.anchor.textContent = chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(this.reason)]);
+                this.anchor.textContent = chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(this.reason!)]);
                 break;
             case "hard":
                 this.anchor.textContent = "";

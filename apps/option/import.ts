@@ -23,11 +23,11 @@ async function importClicked() {
                 // url + soft/hard
                 return {url: cols[0], block_type: type};
         }
-    }).filter((block) => block !== undefined);
+    }).filter((block) => block !== undefined) as IBlockedSite[];
 
     await BlockedSitesRepository.addAll(blockList);
 
-    const bannedWordList: IBannedWord[] = lines.map((line) => {
+    const bannedWordList = lines.map((line) => {
         const cols = line.split(" ");
         if (cols.length === 1) {
             return undefined;
@@ -38,7 +38,7 @@ async function importClicked() {
             const word = cols[0].replace("+", " ");
             return {keyword: word};
         }
-    }).filter((banned) => banned !== undefined);
+    }).filter((banned) => banned !== undefined) as IBannedWord[];
 
     await BannedWordRepository.addAll(bannedWordList);
 

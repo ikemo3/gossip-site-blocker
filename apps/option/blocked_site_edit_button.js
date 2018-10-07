@@ -14,7 +14,7 @@ class BlockedSiteEditButton {
         input.addEventListener("click", this.onclick.bind(this));
         this.element = input;
     }
-    async onclick(ignore) {
+    async onclick() {
         await this.mediator.editUrl();
     }
     getElement() {

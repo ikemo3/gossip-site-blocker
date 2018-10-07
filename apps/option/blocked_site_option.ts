@@ -10,7 +10,7 @@ class BlockedSiteOption {
     public deleteButton: BlockedSiteDeleteButton;
     public element: HTMLTableRowElement;
 
-    constructor(blockedSite) {
+    constructor(blockedSite: BlockedSite) {
         // create Colleague
         this.urlField = new BlockedSiteUrlField(this, blockedSite.getUrl());
         this.editButton = new BlockedSiteEditButton(this);
@@ -30,15 +30,15 @@ class BlockedSiteOption {
         return this.element;
     }
 
-    public getUrl() {
-        return this.urlField.value();
+    public getUrl(): string {
+        return this.urlField.value()!;
     }
 
     public getState() {
         return this.stateButton.getState();
     }
 
-    public setState(state) {
+    public setState(state: string) {
         switch (state) {
             case "soft":
                 // send to Colleagues.
@@ -59,11 +59,11 @@ class BlockedSiteOption {
         }
     }
 
-    public setUrl(url) {
+    public setUrl(url: string): void {
         this.urlField.setUrl(url);
     }
 
-    public async toHard(ignore) {
+    public async toHard() {
         await BlockedSitesRepository.toHard(this.getUrl());
 
         this.setState("hard");
@@ -71,7 +71,7 @@ class BlockedSiteOption {
         Logger.debug("Changed to hard-block.", this.getUrl());
     }
 
-    public async toSoft(ignore) {
+    public async toSoft() {
         await BlockedSitesRepository.toSoft(this.getUrl());
 
         this.setState("soft");
@@ -80,7 +80,7 @@ class BlockedSiteOption {
     }
 
     public async editUrl() {
-        const beforeUrl = this.urlField.value();
+        const beforeUrl = this.urlField.value()!;
         const afterUrl = this.urlField.getInputValue();
         await BlockedSitesRepository.edit(beforeUrl, afterUrl);
 
@@ -92,7 +92,7 @@ class BlockedSiteOption {
     public async deleteUrl() {
         await BlockedSitesRepository.del(this.getUrl());
 
-        this.element.parentElement.removeChild(this.element);
+        this.element.parentElement!.removeChild(this.element);
 
         Logger.debug("Delete URL: " + this.getUrl());
     }

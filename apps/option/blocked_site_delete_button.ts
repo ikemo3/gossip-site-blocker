@@ -10,7 +10,7 @@ class BlockedSiteDeleteButton {
      * @param {BlockedSiteOption} mediator
      * @param {string} state
      */
-    constructor(mediator, state) {
+    constructor(mediator: BlockedSiteOption, state: string) {
         this.mediator = mediator;
 
         const input = document.createElement("input");
@@ -22,7 +22,7 @@ class BlockedSiteDeleteButton {
         this.setState(state);
     }
 
-    public async onclick(ignore) {
+    public async onclick() {
         await this.mediator.deleteUrl();
     }
 
@@ -30,7 +30,7 @@ class BlockedSiteDeleteButton {
         return this.element;
     }
 
-    public setState(state) {
+    public setState(state: string) {
         if (state === "hard") {
             this.toHard();
         } else {

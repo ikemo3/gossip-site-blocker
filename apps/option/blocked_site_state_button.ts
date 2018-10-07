@@ -9,7 +9,7 @@ class BlockedSiteStateButton {
      * @param {BlockedSiteOption} mediator
      * @param {string} state
      */
-    constructor(mediator, state) {
+    constructor(mediator: BlockedSiteOption, state: string) {
         this.mediator = mediator;
 
         const input = document.createElement("input");
@@ -23,7 +23,7 @@ class BlockedSiteStateButton {
         return this.state;
     }
 
-    public setState(state) {
+    public setState(state: string) {
         this.state = state;
 
         this.updateLabel(state);
@@ -50,7 +50,7 @@ class BlockedSiteStateButton {
         }
     }
 
-    public updateLabel(state) {
+    public updateLabel(state: string) {
         if (state === "soft") {
             this.element.setAttribute("value", chrome.i18n.getMessage("changeToHardBlock"));
         } else {

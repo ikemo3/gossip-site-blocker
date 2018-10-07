@@ -13,11 +13,11 @@ class BlockedSite {
         this.block_type = item.block_type;
     }
 
-    public contains(url) {
+    public contains(url: string) {
         return url.startsWith(this.url);
     }
 
-    public equals(url) {
+    public equals(url: string) {
         return url === this.url;
     }
 
@@ -25,7 +25,7 @@ class BlockedSite {
      *
      * @param {BlockedSite} site
      */
-    public strongerThan(site) {
+    public strongerThan(site: BlockedSite) {
         return this.url.length > site.url.length;
     }
 

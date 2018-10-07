@@ -4,7 +4,7 @@ class GoogleInnerCard implements IBlockable {
     public element: Element;
     private readonly title: string;
 
-    constructor(element) {
+    constructor(element: Element) {
         const anchorList = element.getElementsByTagName("a");
 
         const urlList = [];
@@ -26,7 +26,7 @@ class GoogleInnerCard implements IBlockable {
 
         const heading = element.querySelector("[role=heading]");
         if (heading) {
-            this.title = heading.textContent;
+            this.title = heading.textContent!;
         }
 
         this.valid = true;
@@ -47,10 +47,10 @@ class GoogleInnerCard implements IBlockable {
     }
 
     public deleteElement() {
-        this.element.parentElement.removeChild(this.element);
+        this.element.parentElement!.removeChild(this.element);
     }
 
     public contains(keyword: string): boolean {
-        return this.title && this.title.includes(keyword);
+        return this.title !== "" && this.title.includes(keyword);
     }
 }

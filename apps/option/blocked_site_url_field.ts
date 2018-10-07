@@ -9,7 +9,7 @@ class BlockedSiteUrlField {
      * @param {BlockedSiteOption} mediator
      * @param {string} url
      */
-    constructor(mediator, url) {
+    constructor(mediator: BlockedSiteOption, url: string) {
         const input = document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("size", "100");
@@ -38,7 +38,7 @@ class BlockedSiteUrlField {
         // do nothing
     }
 
-    public setUrl(url) {
+    public setUrl(url: string) {
         this.element.setAttribute("data-value", url);
         this.element.value = url;
     }

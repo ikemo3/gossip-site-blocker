@@ -15,7 +15,7 @@ class BlockTarget {
      * @param id {string}
      * @param state {"none"|"soft"|"hard"}
      */
-    constructor(element, url, id, state) {
+    constructor(element: Element, url: string, id: string, state: string) {
         this.element = element;
         this.setUrl(url);
 
@@ -34,22 +34,22 @@ class BlockTarget {
      * @private
      * @param url {string}
      */
-    public setUrl(url) {
+    public setUrl(url: string) {
         this.element.setAttribute("data-blocker-url", url);
     }
 
     /**
      * @returns {string}
      */
-    public getUrl() {
-        return this.element.getAttribute("data-blocker-url");
+    public getUrl(): string {
+        return this.element.getAttribute("data-blocker-url")!;
     }
 
     /**
      *
      * @param state {"none"|"soft"|"hard"}
      */
-    public setState(state) {
+    public setState(state: string) {
         this.element.setAttribute("data-blocker-state", state);
 
         switch (state) {
@@ -69,7 +69,7 @@ class BlockTarget {
         }
     }
 
-    public block(url) {
+    public block(url: string) {
         this.setUrl(url);
         this.hide();
     }

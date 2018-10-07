@@ -4,7 +4,7 @@
 class BlockedSites {
     public sites: BlockedSite[];
 
-    constructor(sites) {
+    constructor(sites: BlockedSite[]) {
         this.sites = sites;
     }
 
@@ -14,7 +14,7 @@ class BlockedSites {
      * @param url
      * @returns {BlockedSite|undefined}
      */
-    public find(url) {
+    public find(url: string) {
         for (const site of this.sites) {
             if (site.equals(url)) {
                 return site;
@@ -31,7 +31,7 @@ class BlockedSites {
      * @param url
      * @returns {BlockedSite|undefined}
      */
-    public matches(url) {
+    public matches(url: string) {
         /**
          * found element
          * @type {BlockedSite|undefined}
@@ -57,7 +57,7 @@ class BlockedSites {
      *
      * @param url URL
      */
-    public contains(url) {
+    public contains(url: string) {
         for (const site of this.sites) {
             if (site.contains(url)) {
                 return true;

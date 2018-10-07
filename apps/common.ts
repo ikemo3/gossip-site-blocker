@@ -1,11 +1,11 @@
 const ChromeStorage = {
-    async get(keys) {
+    async get(keys: any) {
         return new Promise((resolve) => {
             chrome.storage.local.get(keys, resolve);
         });
     },
 
-    async set(items) {
+    async set(items: any) {
         return new Promise((resolve) => {
             chrome.storage.local.set(items, resolve);
         });

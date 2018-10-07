@@ -1,6 +1,6 @@
-const softBlockList = document.getElementById("softBlockList");
-const hardBlockList = document.getElementById("hardBlockList");
-const clearButton = document.getElementById("clearButton");
+const softBlockList = document.getElementById("softBlockList") as HTMLDivElement;
+const hardBlockList = document.getElementById("hardBlockList") as HTMLDivElement;
+const clearButton = document.getElementById("clearButton") as HTMLInputElement;
 
 // noinspection JSValidateTypes
 /**

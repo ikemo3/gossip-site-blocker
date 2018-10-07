@@ -35,7 +35,7 @@ class GoogleInnerCard {
         this.element.parentElement.removeChild(this.element);
     }
     contains(keyword) {
-        return this.title && this.title.includes(keyword);
+        return this.title !== "" && this.title.includes(keyword);
     }
 }
 //# sourceMappingURL=google_inner_card.js.map
