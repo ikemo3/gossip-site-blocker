@@ -1,12 +1,14 @@
 interface IBlockable {
     getUrl(): string;
+
+    contains(keyword: string): boolean;
 }
 
 const BlockTargetFactory = {
     async init() {
         let count = 0;
 
-        const blockedSites = await BlockedSitesRepository.load();
+        const blockedSites: BlockedSites = await BlockedSitesRepository.load();
         const bannedWords: IBannedWord[] = await BannedWordRepository.load();
         const idnOption = await OptionRepository.getAutoBlockIDNOption();
         Logger.debug("autoBlockIDNOption:", idnOption);
@@ -18,17 +20,7 @@ const BlockTargetFactory = {
                 return;
             }
 
-            /**
-             * @type {BlockedSite|undefined}
-             */
-            const blockedSite = blockedSites.matches(g.getUrl());
-
-            const banned = bannedWords.find((bannedWord) => {
-                const keyword = bannedWord.keyword;
-                return g.contains(keyword);
-            });
-
-            const blockState: BlockState = await new BlockState(g, blockedSite, banned, idnOption);
+            const blockState: BlockState = await new BlockState(g, blockedSites, bannedWords, idnOption);
 
             if (blockState.state === "hard") {
                 g.deleteElement();
@@ -50,17 +42,7 @@ const BlockTargetFactory = {
                 return;
             }
 
-            /**
-             * @type {BlockedSite|undefined}
-             */
-            const blockedSite = blockedSites.matches(g.getUrl());
-
-            const banned = bannedWords.find((bannedWord) => {
-                const keyword = bannedWord.keyword;
-                return g.contains(keyword);
-            });
-
-            const blockState: BlockState = new BlockState(g, blockedSite, banned, idnOption);
+            const blockState: BlockState = new BlockState(g, blockedSites, bannedWords, idnOption);
 
             if (blockState.state === "hard") {
                 g.deleteElement();

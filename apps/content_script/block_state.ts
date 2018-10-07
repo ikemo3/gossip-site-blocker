@@ -3,9 +3,17 @@ class BlockState {
     public reason: string;
 
     constructor(blockable: IBlockable,
-                blockedSite: BlockedSite | undefined,
-                banned: IBannedWord | undefined,
+                blockedSites: BlockedSites,
+                bannedWords: IBannedWord[],
                 idnOption: IAutoBlockIDNOption) {
+
+        const blockedSite = blockedSites.matches(blockable.getUrl());
+
+        const banned = bannedWords.find((bannedWord) => {
+            const keyword = bannedWord.keyword;
+            return blockable.contains(keyword);
+        });
+
         if (blockedSite) {
             this.state = blockedSite.getState();
         } else if (banned) {

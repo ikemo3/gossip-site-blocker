@@ -10,15 +10,7 @@ const BlockTargetFactory = {
             if (!g.canBlock()) {
                 return;
             }
-            /**
-             * @type {BlockedSite|undefined}
-             */
-            const blockedSite = blockedSites.matches(g.getUrl());
-            const banned = bannedWords.find((bannedWord) => {
-                const keyword = bannedWord.keyword;
-                return g.contains(keyword);
-            });
-            const blockState = await new BlockState(g, blockedSite, banned, idnOption);
+            const blockState = await new BlockState(g, blockedSites, bannedWords, idnOption);
             if (blockState.state === "hard") {
                 g.deleteElement();
                 return;
@@ -34,15 +26,7 @@ const BlockTargetFactory = {
             if (!g.canBlock()) {
                 return;
             }
-            /**
-             * @type {BlockedSite|undefined}
-             */
-            const blockedSite = blockedSites.matches(g.getUrl());
-            const banned = bannedWords.find((bannedWord) => {
-                const keyword = bannedWord.keyword;
-                return g.contains(keyword);
-            });
-            const blockState = new BlockState(g, blockedSite, banned, idnOption);
+            const blockState = new BlockState(g, blockedSites, bannedWords, idnOption);
             if (blockState.state === "hard") {
                 g.deleteElement();
                 return;

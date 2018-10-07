@@ -1,5 +1,10 @@
 class BlockState {
-    constructor(blockable, blockedSite, banned, idnOption) {
+    constructor(blockable, blockedSites, bannedWords, idnOption) {
+        const blockedSite = blockedSites.matches(blockable.getUrl());
+        const banned = bannedWords.find((bannedWord) => {
+            const keyword = bannedWord.keyword;
+            return blockable.contains(keyword);
+        });
         if (blockedSite) {
             this.state = blockedSite.getState();
         }
