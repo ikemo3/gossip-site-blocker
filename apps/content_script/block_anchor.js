@@ -92,7 +92,7 @@ class BlockAnchor {
         this.reason = reason;
         this.updateText();
     }
-    showBlockDialog(ignore) {
+    showBlockDialog() {
         // show dialog.
         new BlockDialog(this, this.url);
     }
@@ -104,18 +104,12 @@ class BlockAnchor {
         await BlockedSitesRepository.add(url, blockType);
         this.setReason(url);
     }
-    /**
-     * @param ignore
-     */
-    unhide(ignore) {
+    unhide() {
         // show block temporarily.
         this.targetObject.unhide();
         this.setState("unhide");
     }
-    /**
-     * @param ignore
-     */
-    hide(ignore) {
+    hide() {
         this.targetObject.hide();
         this.setState("soft");
     }

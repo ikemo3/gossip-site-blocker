@@ -37,11 +37,7 @@ const BlockedSitesRepository = {
         return new BlockedSites(sites);
     },
 
-    /**
-     * @params {Array<Object>>} blockList
-     * @returns {Promise<BlockedSites>}
-     */
-    async addAll(blockList) {
+    async addAll(blockList: IBlockedSite[]): Promise<BlockedSites> {
         const siteArray = await BlockedSitesRepository.loadData();
 
         for (const block of blockList) {
@@ -67,7 +63,7 @@ const BlockedSitesRepository = {
      * @param blockType {string} type to block(soft/hard)
      * @returns {Promise<BlockedSites>}
      */
-    async add(url, blockType) {
+    async add(url: string, blockType: string) {
         const siteArray = await BlockedSitesRepository.loadData();
 
         const found = siteArray.some((site) => {
@@ -90,7 +86,7 @@ const BlockedSitesRepository = {
      *
      * @returns {Promise<BlockedSites>}
      */
-    async del(url) {
+    async del(url: string) {
         const siteArray = await BlockedSitesRepository.loadData();
 
         // delete items whose URL matches.
@@ -103,7 +99,7 @@ const BlockedSitesRepository = {
         return new BlockedSites(newSiteArray);
     },
 
-    async edit(beforeUrl, afterUrl) {
+    async edit(beforeUrl: string, afterUrl: string) {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(beforeUrl);
 
@@ -114,7 +110,7 @@ const BlockedSitesRepository = {
         }
     },
 
-    async toHard(url): Promise<void> {
+    async toHard(url: string): Promise<void> {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
@@ -123,7 +119,7 @@ const BlockedSitesRepository = {
         await BlockedSitesRepository.save(sites.sites);
     },
 
-    async toSoft(url) {
+    async toSoft(url: string) {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
@@ -137,7 +133,7 @@ const BlockedSitesRepository = {
      * @param sites {Array<BlockedSite>}
      * @returns {Promise<void>}
      */
-    async save(sites) {
+    async save(sites: BlockedSite[]) {
         await ChromeStorage.set({blocked: sites});
     },
 

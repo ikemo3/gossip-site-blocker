@@ -1,6 +1,6 @@
 class BlockChangeAnchorDialog {
     private readonly background: HTMLDivElement;
-    private readonly reason: string;
+    private readonly reason: string | null;
 
     constructor(url: string, reason: string) {
         const background = document.createElement("div");
@@ -59,6 +59,6 @@ class BlockChangeAnchorDialog {
 
     private closeDialog() {
         // remove background
-        this.background.parentElement.removeChild(this.background);
+        this.background.parentElement!.removeChild(this.background);
     }
 }

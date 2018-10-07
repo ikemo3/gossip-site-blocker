@@ -5,14 +5,14 @@ class BlockDialog {
     public customRadio: HTMLInputElement;
     public blockTypeSelect: HTMLSelectElement;
 
-    constructor(mediator, url) {
+    constructor(mediator: BlockAnchor, url: string) {
         this.mediator = mediator;
 
         this.background = this.createBackground(url);
         document.body.appendChild(this.background);
     }
 
-    public createBackground(url) {
+    public createBackground(url: string) {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
 
@@ -23,7 +23,7 @@ class BlockDialog {
         return background;
     }
 
-    public createDialog(url) {
+    public createDialog(url: string) {
         const dialog = document.createElement("div");
         dialog.classList.add("block-dialog");
 
@@ -40,7 +40,7 @@ class BlockDialog {
         return dialog;
     }
 
-    public createRadioDiv(url) {
+    public createRadioDiv(url: string) {
         const urlRadioDiv = document.createElement("div");
         urlRadioDiv.classList.add("block-dialog-url-radios");
         urlRadioDiv.addEventListener("click", (ignore) => {
@@ -57,7 +57,7 @@ class BlockDialog {
         return urlRadioDiv;
     }
 
-    public createRadioButtons(url) {
+    public createRadioButtons(url: string) {
         const blockDomainDiv = BlockDialog.createBlockDomainRadio(DOMUtils.getHostName(url));
         const blockUrlDiv = BlockDialog.createBlockUrlRadio(DOMUtils.removeProtocol(url));
         const blockCustomDiv = this.createBlockCustomRadio(DOMUtils.removeProtocol(url));
@@ -65,7 +65,7 @@ class BlockDialog {
         return [blockDomainDiv, blockUrlDiv, blockCustomDiv];
     }
 
-    public static createBlockDomainRadio(value) {
+    public static createBlockDomainRadio(value: string) {
         const div = document.createElement("div");
 
         const radio = document.createElement("input");
@@ -85,7 +85,7 @@ class BlockDialog {
         return div;
     }
 
-    public static createBlockUrlRadio(value) {
+    public static createBlockUrlRadio(value: string) {
         const div = document.createElement("div");
 
         const radio = document.createElement("input");
@@ -104,7 +104,7 @@ class BlockDialog {
         return div;
     }
 
-    public createBlockCustomRadio(value) {
+    public createBlockCustomRadio(value: string) {
         const div = document.createElement("div");
 
         const radio = document.createElement("input");
@@ -171,12 +171,12 @@ class BlockDialog {
         return buttonDiv;
     }
 
-    public cancel(ignore) {
+    public cancel() {
         // remove background
-        this.background.parentElement.removeChild(this.background);
+        this.background.parentElement!.removeChild(this.background);
     }
 
-    public block(ignore) {
+    public block() {
         const selected = document.querySelector('input[name="block-url-type"]:checked') as HTMLInputElement;
 
         // ignore when not selected.
@@ -198,7 +198,7 @@ class BlockDialog {
         this.mediator.blockPage(url, blockType);
 
         // remove background.
-        this.background.parentElement.removeChild(this.background);
+        this.background.parentElement!.removeChild(this.background);
     }
 
     public createButtons() {

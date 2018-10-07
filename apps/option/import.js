@@ -1,4 +1,4 @@
-async function importClicked(ignore) {
+async function importClicked() {
     // noinspection JSValidateTypes
     /**
      * @type {HTMLTextAreaElement}

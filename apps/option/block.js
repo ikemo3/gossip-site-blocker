@@ -22,10 +22,6 @@ const BlockedSitesRepository = {
         const sites = await BlockedSitesRepository.loadData();
         return new BlockedSites(sites);
     },
-    /**
-     * @params {Array<Object>>} blockList
-     * @returns {Promise<BlockedSites>}
-     */
     async addAll(blockList) {
         const siteArray = await BlockedSitesRepository.loadData();
         for (const block of blockList) {

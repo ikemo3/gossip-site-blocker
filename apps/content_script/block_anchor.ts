@@ -118,7 +118,7 @@ class BlockAnchor {
         this.updateText();
     }
 
-    public showBlockDialog(ignore) {
+    public showBlockDialog() {
         // show dialog.
         new BlockDialog(this, this.url);
     }
@@ -134,19 +134,13 @@ class BlockAnchor {
         this.setReason(url);
     }
 
-    /**
-     * @param ignore
-     */
-    public unhide(ignore) {
+    public unhide() {
         // show block temporarily.
         this.targetObject.unhide();
         this.setState("unhide");
     }
 
-    /**
-     * @param ignore
-     */
-    public hide(ignore) {
+    public hide() {
         this.targetObject.hide();
         this.setState("soft");
     }

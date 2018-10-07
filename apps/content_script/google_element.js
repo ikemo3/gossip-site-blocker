@@ -64,7 +64,7 @@ class GoogleElement {
         if (this.title && this.title.includes(keyword)) {
             return true;
         }
-        return this.contents && this.contents.includes(keyword);
+        return this.contents !== "" && this.contents.includes(keyword);
     }
     getUrl() {
         return this.url;

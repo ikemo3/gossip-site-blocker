@@ -1,6 +1,6 @@
 class BlockState {
     public state: string;
-    public reason: string;
+    public reason: string | null;
 
     constructor(blockable: IBlockable,
                 blockedSites: BlockedSites,

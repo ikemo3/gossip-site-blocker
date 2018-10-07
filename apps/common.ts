@@ -12,8 +12,9 @@ const ChromeStorage = {
     },
 };
 
+// noinspection TsLint
 const Logger = {
-    debug(message, ...params) {
+    debug(message: any, ...params: any[]) {
         OptionRepository.isDeveloperMode().then((developerMode: boolean) => {
             if (developerMode) {
                 // noinspection TsLint
@@ -22,12 +23,12 @@ const Logger = {
         });
     },
 
-    log(message, ...params) {
+    log(message: any, ...params: any[]) {
         // noinspection TsLint
         console.log(message, ...params);
     },
 
-    error(message, ...params) {
+    error(message: any, ...params: any[]) {
         console.error(message, ...params);
     },
 };
@@ -39,8 +40,8 @@ const DOMUtils = {
      * @param element
      * @param insertElement element to add.
      */
-    insertAfter(element, insertElement) {
-        element.parentElement.insertBefore(insertElement, element.nextSibling);
+    insertAfter(element: Element, insertElement: Element) {
+        element.parentElement!.insertBefore(insertElement, element.nextSibling);
     },
 
     /**
@@ -62,7 +63,7 @@ const DOMUtils = {
      * @param {string} url URL string
      * @return {string} string without protocol(scheme)
      */
-    removeProtocol(url) {
+    removeProtocol(url: string) {
         return url.replace(/^\w+:\/\//, "");
     },
 };

@@ -123,11 +123,11 @@ class BlockDialog {
         });
         return buttonDiv;
     }
-    cancel(ignore) {
+    cancel() {
         // remove background
         this.background.parentElement.removeChild(this.background);
     }
-    block(ignore) {
+    block() {
         const selected = document.querySelector('input[name="block-url-type"]:checked');
         // ignore when not selected.
         if (!selected) {

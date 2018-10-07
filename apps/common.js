@@ -10,6 +10,7 @@ const ChromeStorage = {
         });
     },
 };
+// noinspection TsLint
 const Logger = {
     debug(message, ...params) {
         OptionRepository.isDeveloperMode().then((developerMode) => {
