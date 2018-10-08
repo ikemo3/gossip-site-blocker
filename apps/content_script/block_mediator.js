@@ -10,5 +10,13 @@ class BlockMediator {
     setWrappable(width) {
         this.blockAnchor.setWrappable(width);
     }
+    hide() {
+        this.blockAnchor.hide();
+        this.blockTarget.hide();
+    }
+    unhide() {
+        this.blockAnchor.unhide();
+        this.blockTarget.unhide();
+    }
 }
 //# sourceMappingURL=block_mediator.js.map

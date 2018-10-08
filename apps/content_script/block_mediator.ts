@@ -18,4 +18,14 @@ class BlockMediator {
     public setWrappable(width: string) {
         this.blockAnchor.setWrappable(width);
     }
+
+    public hide() {
+        this.blockAnchor.hide();
+        this.blockTarget.hide();
+    }
+
+    public unhide() {
+        this.blockAnchor.unhide();
+        this.blockTarget.unhide();
+    }
 }

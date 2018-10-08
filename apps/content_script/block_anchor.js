@@ -59,14 +59,14 @@ class BlockAnchor {
                 break;
             case "soft":
                 // set handler to unhide.
-                this.handler = this.unhide.bind(this);
+                this.handler = this.mediator.unhide.bind(this.mediator);
                 break;
             case "hard":
                 // do nothing.
                 break;
             case "unhide":
                 // set handler to hide.
-                this.handler = this.hide.bind(this);
+                this.handler = this.mediator.hide.bind(this.mediator);
                 break;
         }
         if (this.handler) {
@@ -107,11 +107,9 @@ class BlockAnchor {
     }
     unhide() {
         // show block temporarily.
-        this.targetObject.unhide();
         this.setState("unhide");
     }
     hide() {
-        this.targetObject.hide();
         this.setState("soft");
     }
 }

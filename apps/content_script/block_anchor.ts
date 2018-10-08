@@ -80,7 +80,7 @@ class BlockAnchor {
 
             case "soft":
                 // set handler to unhide.
-                this.handler = this.unhide.bind(this);
+                this.handler = this.mediator.unhide.bind(this.mediator);
                 break;
 
             case "hard":
@@ -89,7 +89,7 @@ class BlockAnchor {
 
             case "unhide":
                 // set handler to hide.
-                this.handler = this.hide.bind(this);
+                this.handler = this.mediator.hide.bind(this.mediator);
                 break;
         }
 
@@ -138,12 +138,10 @@ class BlockAnchor {
 
     public unhide() {
         // show block temporarily.
-        this.targetObject.unhide();
         this.setState("unhide");
     }
 
     public hide() {
-        this.targetObject.hide();
         this.setState("soft");
     }
 }
