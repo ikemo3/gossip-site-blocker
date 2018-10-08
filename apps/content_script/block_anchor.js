@@ -1,9 +1,3 @@
-/**
- * @property element Div element wrapping the anchor
- * @property anchor Anchor element
- * @property state blocked state
- * @property url URL to block
- */
 class BlockAnchor {
     constructor(mediator, div, targetId, state, url, reason) {
         this.mediator = mediator;
@@ -11,7 +5,6 @@ class BlockAnchor {
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
         anchor.setAttribute("data-blocker-target-id", targetId);
         div.appendChild(anchor);
-        this.element = div;
         this.anchor = anchor;
         this.state = state;
         this.handler = null;
@@ -19,13 +12,6 @@ class BlockAnchor {
         this.url = url;
         this.updateText();
         this.setHandler();
-    }
-    getDOMElement() {
-        return this.element;
-    }
-    setWrappable(width) {
-        this.element.style.width = width;
-        this.element.style.whiteSpace = "normal";
     }
     setState(newState) {
         this.state = newState;

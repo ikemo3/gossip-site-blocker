@@ -24,11 +24,12 @@ class BlockMediator {
         this.changeAnchor = changeAnchor;
 
         // insert anchor after target.
-        DOMUtils.insertAfter(blockTarget.getDOMElement(), blockAnchor.getDOMElement());
+        DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
     }
 
     public setWrappable(width: string) {
-        this.blockAnchor.setWrappable(width);
+        this.operationDiv.style.width = width;
+        this.operationDiv.style.whiteSpace = "normal";
     }
 
     public hide() {

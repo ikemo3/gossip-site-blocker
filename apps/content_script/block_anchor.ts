@@ -1,11 +1,4 @@
-/**
- * @property element Div element wrapping the anchor
- * @property anchor Anchor element
- * @property state blocked state
- * @property url URL to block
- */
 class BlockAnchor {
-    public element: HTMLDivElement;
     public anchor: HTMLAnchorElement;
     public state: string;
     public handler: any;
@@ -26,7 +19,6 @@ class BlockAnchor {
         anchor.setAttribute("data-blocker-target-id", targetId);
         div.appendChild(anchor);
 
-        this.element = div;
         this.anchor = anchor;
         this.state = state;
         this.handler = null;
@@ -35,15 +27,6 @@ class BlockAnchor {
 
         this.updateText();
         this.setHandler();
-    }
-
-    public getDOMElement() {
-        return this.element;
-    }
-
-    public setWrappable(width: string) {
-        this.element.style.width = width;
-        this.element.style.whiteSpace = "normal";
     }
 
     public setState(newState: string) {
