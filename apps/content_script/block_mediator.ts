@@ -4,7 +4,6 @@ class BlockMediator {
     private readonly blockTarget: BlockTarget;
     private readonly blockAnchor: BlockAnchor;
     private readonly operationDiv: HTMLDivElement;
-    private readonly changeAnchor: BlockChangeAnchor;
     private readonly unhideAnchor: UnhideAnchor;
     private readonly hideAnchor: HideAnchor;
 
@@ -17,9 +16,6 @@ class BlockMediator {
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.state);
         const blockAnchor = new BlockAnchor(this, operationDiv, id);
 
-        const changeAnchor = new BlockChangeAnchor(operationDiv, g.getUrl(), blockState.reason);
-        changeAnchor.changeState(blockState.state);
-
         const unhideAnchor = new UnhideAnchor(this, operationDiv, id);
         const hideAnchor = new HideAnchor(this, operationDiv, id);
 
@@ -28,7 +24,6 @@ class BlockMediator {
         this.blockTarget = blockTarget;
         this.blockAnchor = blockAnchor;
         this.operationDiv = operationDiv;
-        this.changeAnchor = changeAnchor;
         this.unhideAnchor = unhideAnchor;
         this.hideAnchor = hideAnchor;
 
@@ -54,7 +49,6 @@ class BlockMediator {
     public none() {
         this.blockAnchor.none();
         this.blockTarget.none();
-        this.changeAnchor.none();
         this.unhideAnchor.none();
         this.hideAnchor.none();
     }
@@ -62,7 +56,6 @@ class BlockMediator {
     public hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
-        this.changeAnchor.hide();
         this.unhideAnchor.hide(this.reason!);
         this.hideAnchor.hide();
     }
@@ -70,7 +63,6 @@ class BlockMediator {
     public unhide() {
         this.blockAnchor.unhide();
         this.blockTarget.unhide();
-        this.changeAnchor.unhide();
         this.unhideAnchor.unhide();
         this.hideAnchor.unhide();
     }
@@ -79,7 +71,6 @@ class BlockMediator {
         await BlockedSitesRepository.add(url, blockType);
         this.blockAnchor.block();
         this.blockTarget.block(url);
-        this.changeAnchor.block();
         this.unhideAnchor.block(url);
         this.hideAnchor.block();
     }

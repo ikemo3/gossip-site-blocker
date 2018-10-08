@@ -4,8 +4,6 @@ class BlockMediator {
         operationDiv.classList.add("block-anchor");
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.state);
         const blockAnchor = new BlockAnchor(this, operationDiv, id);
-        const changeAnchor = new BlockChangeAnchor(operationDiv, g.getUrl(), blockState.reason);
-        changeAnchor.changeState(blockState.state);
         const unhideAnchor = new UnhideAnchor(this, operationDiv, id);
         const hideAnchor = new HideAnchor(this, operationDiv, id);
         this.url = g.getUrl();
@@ -13,7 +11,6 @@ class BlockMediator {
         this.blockTarget = blockTarget;
         this.blockAnchor = blockAnchor;
         this.operationDiv = operationDiv;
-        this.changeAnchor = changeAnchor;
         this.unhideAnchor = unhideAnchor;
         this.hideAnchor = hideAnchor;
         // insert anchor after target.
@@ -34,21 +31,18 @@ class BlockMediator {
     none() {
         this.blockAnchor.none();
         this.blockTarget.none();
-        this.changeAnchor.none();
         this.unhideAnchor.none();
         this.hideAnchor.none();
     }
     hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
-        this.changeAnchor.hide();
         this.unhideAnchor.hide(this.reason);
         this.hideAnchor.hide();
     }
     unhide() {
         this.blockAnchor.unhide();
         this.blockTarget.unhide();
-        this.changeAnchor.unhide();
         this.unhideAnchor.unhide();
         this.hideAnchor.unhide();
     }
@@ -56,7 +50,6 @@ class BlockMediator {
         await BlockedSitesRepository.add(url, blockType);
         this.blockAnchor.block();
         this.blockTarget.block(url);
-        this.changeAnchor.block();
         this.unhideAnchor.block(url);
         this.hideAnchor.block();
     }
