@@ -19,6 +19,15 @@ class BlockChangeAnchor {
                 break;
         }
     }
+    hide() {
+        this.anchor.style.display = "none";
+    }
+    unhide() {
+        this.anchor.style.display = "inline";
+    }
+    block() {
+        this.anchor.style.display = "none";
+    }
     onclick() {
         const dialog = new BlockChangeAnchorDialog(this.url, this.reason);
     }

@@ -11,17 +11,15 @@ class BlockAnchor {
     public handler: any;
     public url: string;
     private reason: string | null;
-    private changeAnchor: BlockChangeAnchor;
     private readonly mediator: BlockMediator;
 
     constructor(mediator: BlockMediator,
+                div: HTMLDivElement,
                 targetId: string,
                 state: string,
                 url: string,
                 reason: string | null) {
         this.mediator = mediator;
-        const div = document.createElement("div");
-        div.classList.add("block-anchor");
 
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
@@ -37,9 +35,6 @@ class BlockAnchor {
 
         this.updateText();
         this.setHandler();
-
-        this.changeAnchor = new BlockChangeAnchor(div, url, reason);
-        this.changeAnchor.changeState(state);
     }
 
     public getDOMElement() {
@@ -54,7 +49,6 @@ class BlockAnchor {
     public setState(newState: string) {
         this.state = newState;
         this.anchor.setAttribute("data-blocker-state", newState);
-        this.changeAnchor.changeState(newState);
 
         this.setHandler();
         this.updateText();

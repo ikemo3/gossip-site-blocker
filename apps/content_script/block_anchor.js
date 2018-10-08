@@ -5,10 +5,8 @@
  * @property url URL to block
  */
 class BlockAnchor {
-    constructor(mediator, targetId, state, url, reason) {
+    constructor(mediator, div, targetId, state, url, reason) {
         this.mediator = mediator;
-        const div = document.createElement("div");
-        div.classList.add("block-anchor");
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
         anchor.setAttribute("data-blocker-target-id", targetId);
@@ -21,8 +19,6 @@ class BlockAnchor {
         this.url = url;
         this.updateText();
         this.setHandler();
-        this.changeAnchor = new BlockChangeAnchor(div, url, reason);
-        this.changeAnchor.changeState(state);
     }
     getDOMElement() {
         return this.element;
@@ -34,7 +30,6 @@ class BlockAnchor {
     setState(newState) {
         this.state = newState;
         this.anchor.setAttribute("data-blocker-state", newState);
-        this.changeAnchor.changeState(newState);
         this.setHandler();
         this.updateText();
     }
