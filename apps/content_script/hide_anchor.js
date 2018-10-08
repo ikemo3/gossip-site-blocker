@@ -6,7 +6,6 @@ class HideAnchor {
         anchor.setAttribute("data-blocker-target-id", targetId);
         anchor.textContent = chrome.i18n.getMessage("hideThisPage");
         anchor.addEventListener("click", this.mediator.hide.bind(this.mediator));
-        anchor.style.display = "none"; // initially hidden.
         div.appendChild(anchor);
         this.anchor = anchor;
     }

@@ -1,10 +1,8 @@
 class BlockAnchor {
-    public anchor: HTMLAnchorElement;
+    private readonly anchor: HTMLAnchorElement;
     private readonly mediator: BlockMediator;
 
-    constructor(mediator: BlockMediator,
-                div: HTMLDivElement,
-                targetId: string) {
+    constructor(mediator: BlockMediator, div: HTMLDivElement, targetId: string) {
         this.mediator = mediator;
 
         const anchor = document.createElement("a");
@@ -12,6 +10,7 @@ class BlockAnchor {
         anchor.setAttribute("data-blocker-target-id", targetId);
         anchor.textContent = chrome.i18n.getMessage("blockThisPage");
         anchor.addEventListener("click", this.mediator.showBlockDialog.bind(this.mediator));
+
         div.appendChild(anchor);
 
         this.anchor = anchor;

@@ -1,10 +1,8 @@
 class HideAnchor {
-    private anchor: HTMLAnchorElement;
+    private readonly anchor: HTMLAnchorElement;
     private readonly mediator: BlockMediator;
 
-    constructor(mediator: BlockMediator,
-                div: HTMLDivElement,
-                targetId: string) {
+    constructor(mediator: BlockMediator, div: HTMLDivElement, targetId: string) {
         this.mediator = mediator;
 
         const anchor = document.createElement("a");
@@ -12,7 +10,6 @@ class HideAnchor {
         anchor.setAttribute("data-blocker-target-id", targetId);
         anchor.textContent = chrome.i18n.getMessage("hideThisPage");
         anchor.addEventListener("click", this.mediator.hide.bind(this.mediator));
-        anchor.style.display = "none"; // initially hidden.
 
         div.appendChild(anchor);
 

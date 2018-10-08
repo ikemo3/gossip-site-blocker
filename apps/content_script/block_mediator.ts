@@ -7,9 +7,7 @@ class BlockMediator {
     private readonly unhideAnchor: UnhideAnchor;
     private readonly hideAnchor: HideAnchor;
 
-    constructor(g: IBlockable,
-                blockState: BlockState,
-                id: string) {
+    constructor(g: IBlockable, blockState: BlockState, id: string) {
         const operationDiv = document.createElement("div");
         operationDiv.classList.add("block-anchor");
 
