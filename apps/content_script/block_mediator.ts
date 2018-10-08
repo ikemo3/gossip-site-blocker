@@ -1,4 +1,5 @@
 class BlockMediator {
+    private readonly url: string;
     private readonly blockTarget: BlockTarget;
     private readonly blockAnchor: BlockAnchor;
     private readonly operationDiv: HTMLDivElement;
@@ -16,6 +17,7 @@ class BlockMediator {
         const changeAnchor = new BlockChangeAnchor(operationDiv, g.getUrl(), blockState.reason);
         changeAnchor.changeState(blockState.state);
 
+        this.url = g.getUrl();
         this.blockTarget = blockTarget;
         this.blockAnchor = blockAnchor;
         this.operationDiv = operationDiv;
@@ -46,5 +48,14 @@ class BlockMediator {
         this.blockAnchor.block(url, blockType);
         this.blockTarget.block(url);
         this.changeAnchor.block();
+    }
+
+    public showBlockDialog() {
+        // show dialog.
+        new BlockDialog(this, this.url);
+    }
+
+    public async blockPage(url: string, blockType: string) {
+        await this.block(url, blockType);
     }
 }

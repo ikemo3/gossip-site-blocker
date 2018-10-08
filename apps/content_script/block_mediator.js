@@ -6,6 +6,7 @@ class BlockMediator {
         const blockAnchor = new BlockAnchor(this, operationDiv, id, blockState.state, g.getUrl(), blockState.reason);
         const changeAnchor = new BlockChangeAnchor(operationDiv, g.getUrl(), blockState.reason);
         changeAnchor.changeState(blockState.state);
+        this.url = g.getUrl();
         this.blockTarget = blockTarget;
         this.blockAnchor = blockAnchor;
         this.operationDiv = operationDiv;
@@ -31,6 +32,13 @@ class BlockMediator {
         this.blockAnchor.block(url, blockType);
         this.blockTarget.block(url);
         this.changeAnchor.block();
+    }
+    showBlockDialog() {
+        // show dialog.
+        new BlockDialog(this, this.url);
+    }
+    async blockPage(url, blockType) {
+        await this.block(url, blockType);
     }
 }
 //# sourceMappingURL=block_mediator.js.map

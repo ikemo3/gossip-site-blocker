@@ -63,7 +63,7 @@ class BlockAnchor {
         switch (this.state) {
             case "none":
                 // set handler to block.
-                this.handler = this.showBlockDialog.bind(this);
+                this.handler = this.mediator.showBlockDialog.bind(this.mediator);
                 break;
 
             case "soft":
@@ -106,15 +106,6 @@ class BlockAnchor {
     public setReason(reason: string) {
         this.reason = reason;
         this.updateText();
-    }
-
-    public showBlockDialog() {
-        // show dialog.
-        new BlockDialog(this, this.url);
-    }
-
-    public async blockPage(url: string, blockType: string) {
-        await this.mediator.block(url, blockType);
     }
 
     public unhide() {

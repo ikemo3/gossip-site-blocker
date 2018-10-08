@@ -1,11 +1,11 @@
 class BlockDialog {
-    public mediator: BlockAnchor;
+    public mediator: BlockMediator;
     public background: HTMLDivElement;
     public urlText: HTMLInputElement;
     public customRadio: HTMLInputElement;
     public blockTypeSelect: HTMLSelectElement;
 
-    constructor(mediator: BlockAnchor, url: string) {
+    constructor(mediator: BlockMediator, url: string) {
         this.mediator = mediator;
 
         this.background = this.createBackground(url);
