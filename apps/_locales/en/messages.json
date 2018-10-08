@@ -87,6 +87,9 @@
   "hardBlock": {
     "message": "Hard block(erase)"
   },
+  "hideThisPage": {
+    "message": "Hide"
+  },
   "IDN": {
     "message": "Internationalized Domain Name"
   },
@@ -127,9 +130,6 @@
         "content": "$1"
       }
     }
-  },
-  "unhideThisPage": {
-    "message": "Hide"
   },
   "updateUrl": {
     "message": "Update URL"

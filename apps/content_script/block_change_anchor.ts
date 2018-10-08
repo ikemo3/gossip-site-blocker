@@ -29,6 +29,10 @@ class BlockChangeAnchor {
         }
     }
 
+    public none() {
+        this.anchor.style.display = "none";
+    }
+
     public hide() {
         this.anchor.style.display = "none";
     }

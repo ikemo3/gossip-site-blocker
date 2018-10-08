@@ -31,7 +31,7 @@ class BlockTarget {
                 this.hide();
                 break;
             default:
-                this.show();
+                this.none();
                 break;
         }
     }
@@ -39,7 +39,7 @@ class BlockTarget {
         this.setUrl(url);
         this.hide();
     }
-    show() {
+    none() {
         this.element.removeAttribute("data-blocker-display");
     }
     hide() {

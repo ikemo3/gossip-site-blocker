@@ -87,6 +87,9 @@
   "hardBlock": {
     "message": "ハードブロック(削除)"
   },
+  "hideThisPage": {
+    "message": "非表示にする"
+  },
   "IDN": {
     "message": "国際化ドメイン名"
   },
@@ -127,9 +130,6 @@
         "content": "$1"
       }
     }
-  },
-  "unhideThisPage": {
-    "message": "非表示にする"
   },
   "updateUrl": {
     "message": "URLを更新"

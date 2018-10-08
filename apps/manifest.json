@@ -431,7 +431,9 @@
         "content_script/dialog.js",
         "content_script/google.js",
         "content_script/google_element.js",
-        "content_script/google_inner_card.js"
+        "content_script/google_inner_card.js",
+        "content_script/hide_anchor.js",
+        "content_script/unhide_anchor.js"
       ],
       "css": [
         "content_script/google.css"

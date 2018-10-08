@@ -1,19 +1,20 @@
-class BlockAnchor {
+class HideAnchor {
     constructor(mediator, div, targetId) {
         this.mediator = mediator;
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
         anchor.setAttribute("data-blocker-target-id", targetId);
-        anchor.textContent = chrome.i18n.getMessage("blockThisPage");
-        anchor.addEventListener("click", this.mediator.showBlockDialog.bind(this.mediator));
+        anchor.textContent = chrome.i18n.getMessage("hideThisPage");
+        anchor.addEventListener("click", this.mediator.hide.bind(this.mediator));
+        anchor.style.display = "none"; // initially hidden.
         div.appendChild(anchor);
         this.anchor = anchor;
     }
     none() {
-        this.anchor.style.display = "inline";
+        this.anchor.style.display = "none";
     }
     unhide() {
-        this.anchor.style.display = "none";
+        this.anchor.style.display = "inline";
     }
     hide() {
         this.anchor.style.display = "none";
@@ -22,4 +23,4 @@ class BlockAnchor {
         this.anchor.style.display = "none";
     }
 }
-//# sourceMappingURL=block_anchor.js.map
+//# sourceMappingURL=hide_anchor.js.map

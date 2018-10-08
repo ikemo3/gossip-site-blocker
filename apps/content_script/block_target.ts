@@ -43,7 +43,7 @@ class BlockTarget {
                 break;
 
             default:
-                this.show();
+                this.none();
                 break;
         }
     }
@@ -53,7 +53,7 @@ class BlockTarget {
         this.hide();
     }
 
-    public show() {
+    public none() {
         this.element.removeAttribute("data-blocker-display");
     }
 
