@@ -6,7 +6,7 @@ class BlockMediator {
                 blockState: BlockState,
                 id: string) {
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.state);
-        const blockAnchor = new BlockAnchor(this, id, blockState.state, blockTarget, g.getUrl(), blockState.reason);
+        const blockAnchor = new BlockAnchor(this, id, blockState.state, g.getUrl(), blockState.reason);
 
         this.blockTarget = blockTarget;
         this.blockAnchor = blockAnchor;
@@ -27,5 +27,11 @@ class BlockMediator {
     public unhide() {
         this.blockAnchor.unhide();
         this.blockTarget.unhide();
+    }
+
+    public async block(url: string, blockType: string) {
+        await BlockedSitesRepository.add(url, blockType);
+        this.blockAnchor.block(url, blockType);
+        this.blockTarget.block(url);
     }
 }

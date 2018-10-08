@@ -3,8 +3,7 @@
  */
 class BlockTarget {
     private readonly mediator: BlockMediator;
-    public element: Element;
-    public id: string;
+    private readonly element: Element;
 
     constructor(mediator: BlockMediator, element: Element, url: string, id: string, state: string) {
         this.mediator = mediator;
@@ -12,7 +11,6 @@ class BlockTarget {
         this.setUrl(url);
 
         // set id.
-        this.id = id;
         this.element.setAttribute("id", id);
 
         this.setState(state);

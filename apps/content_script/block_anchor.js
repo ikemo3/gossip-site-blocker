@@ -5,15 +5,7 @@
  * @property url URL to block
  */
 class BlockAnchor {
-    /**
-     *
-     * @param targetId target element's id
-     * @param state
-     * @param targetObject
-     * @param url URL to block
-     * @param reason reason to block.
-     */
-    constructor(mediator, targetId, state, targetObject, url, reason) {
+    constructor(mediator, targetId, state, url, reason) {
         this.mediator = mediator;
         const div = document.createElement("div");
         div.classList.add("block-anchor");
@@ -24,7 +16,6 @@ class BlockAnchor {
         this.element = div;
         this.anchor = anchor;
         this.state = state;
-        this.targetObject = targetObject;
         this.handler = null;
         this.reason = reason;
         this.url = url;
@@ -98,12 +89,7 @@ class BlockAnchor {
         new BlockDialog(this, this.url);
     }
     async blockPage(url, blockType) {
-        // hide element.
-        this.targetObject.block(url);
-        this.setState(blockType);
-        // add URL to block.
-        await BlockedSitesRepository.add(url, blockType);
-        this.setReason(url);
+        await this.mediator.block(url, blockType);
     }
     unhide() {
         // show block temporarily.
@@ -111,6 +97,10 @@ class BlockAnchor {
     }
     hide() {
         this.setState("soft");
+    }
+    block(url, blockType) {
+        this.setState(blockType);
+        this.setReason(url);
     }
 }
 //# sourceMappingURL=block_anchor.js.map

@@ -7,7 +7,6 @@ class BlockTarget {
         this.element = element;
         this.setUrl(url);
         // set id.
-        this.id = id;
         this.element.setAttribute("id", id);
         this.setState(state);
     }

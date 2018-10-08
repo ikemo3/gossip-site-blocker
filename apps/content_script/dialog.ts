@@ -176,7 +176,7 @@ class BlockDialog {
         this.background.parentElement!.removeChild(this.background);
     }
 
-    public block() {
+    public async block() {
         const selected = document.querySelector('input[name="block-url-type"]:checked') as HTMLInputElement;
 
         // ignore when not selected.
@@ -195,7 +195,7 @@ class BlockDialog {
         const blockType = this.blockTypeSelect.value;
 
         // block page.
-        this.mediator.blockPage(url, blockType);
+        await this.mediator.blockPage(url, blockType);
 
         // remove background.
         this.background.parentElement!.removeChild(this.background);

@@ -8,22 +8,17 @@ class BlockAnchor {
     public element: HTMLDivElement;
     public anchor: HTMLAnchorElement;
     public state: string;
-    public targetObject: BlockTarget;
     public handler: any;
     public url: string;
     private reason: string | null;
     private changeAnchor: BlockChangeAnchor;
     private readonly mediator: BlockMediator;
 
-    /**
-     *
-     * @param targetId target element's id
-     * @param state
-     * @param targetObject
-     * @param url URL to block
-     * @param reason reason to block.
-     */
-    constructor(mediator: BlockMediator, targetId: string, state: string, targetObject: BlockTarget, url: string, reason: string | null) {
+    constructor(mediator: BlockMediator,
+                targetId: string,
+                state: string,
+                url: string,
+                reason: string | null) {
         this.mediator = mediator;
         const div = document.createElement("div");
         div.classList.add("block-anchor");
@@ -36,7 +31,6 @@ class BlockAnchor {
         this.element = div;
         this.anchor = anchor;
         this.state = state;
-        this.targetObject = targetObject;
         this.handler = null;
         this.reason = reason;
         this.url = url;
@@ -126,14 +120,7 @@ class BlockAnchor {
     }
 
     public async blockPage(url: string, blockType: string) {
-        // hide element.
-        this.targetObject.block(url);
-        this.setState(blockType);
-
-        // add URL to block.
-        await BlockedSitesRepository.add(url, blockType);
-
-        this.setReason(url);
+        await this.mediator.block(url, blockType);
     }
 
     public unhide() {
@@ -143,5 +130,10 @@ class BlockAnchor {
 
     public hide() {
         this.setState("soft");
+    }
+
+    public block(url: string, blockType: string) {
+        this.setState(blockType);
+        this.setReason(url);
     }
 }
