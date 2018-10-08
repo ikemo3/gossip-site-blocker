@@ -13,6 +13,7 @@ class BlockAnchor {
     public url: string;
     private reason: string | null;
     private changeAnchor: BlockChangeAnchor;
+    private readonly mediator: BlockMediator;
 
     /**
      *
@@ -22,7 +23,8 @@ class BlockAnchor {
      * @param url URL to block
      * @param reason reason to block.
      */
-    constructor(targetId: string, state: string, targetObject: BlockTarget, url: string, reason: string | null) {
+    constructor(mediator: BlockMediator, targetId: string, state: string, targetObject: BlockTarget, url: string, reason: string | null) {
+        this.mediator = mediator;
         const div = document.createElement("div");
         div.classList.add("block-anchor");
 

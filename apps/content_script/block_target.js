@@ -1,18 +1,9 @@
 /**
  * Block target element.
- *
- * @property element {Element}
- * @property id {string}
  */
 class BlockTarget {
-    /**
-     *
-     * @param element {Element} block target element
-     * @param url {string}
-     * @param id {string}
-     * @param state {"none"|"soft"|"hard"}
-     */
-    constructor(element, url, id, state) {
+    constructor(mediator, element, url, id, state) {
+        this.mediator = mediator;
         this.element = element;
         this.setUrl(url);
         // set id.
@@ -23,23 +14,12 @@ class BlockTarget {
     getDOMElement() {
         return this.element;
     }
-    /**
-     * @private
-     * @param url {string}
-     */
     setUrl(url) {
         this.element.setAttribute("data-blocker-url", url);
     }
-    /**
-     * @returns {string}
-     */
     getUrl() {
         return this.element.getAttribute("data-blocker-url");
     }
-    /**
-     *
-     * @param state {"none"|"soft"|"hard"}
-     */
     setState(state) {
         this.element.setAttribute("data-blocker-state", state);
         switch (state) {

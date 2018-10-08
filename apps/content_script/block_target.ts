@@ -1,21 +1,13 @@
 /**
  * Block target element.
- *
- * @property element {Element}
- * @property id {string}
  */
 class BlockTarget {
+    private readonly mediator: BlockMediator;
     public element: Element;
     public id: string;
 
-    /**
-     *
-     * @param element {Element} block target element
-     * @param url {string}
-     * @param id {string}
-     * @param state {"none"|"soft"|"hard"}
-     */
-    constructor(element: Element, url: string, id: string, state: string) {
+    constructor(mediator: BlockMediator, element: Element, url: string, id: string, state: string) {
+        this.mediator = mediator;
         this.element = element;
         this.setUrl(url);
 
@@ -30,25 +22,14 @@ class BlockTarget {
         return this.element;
     }
 
-    /**
-     * @private
-     * @param url {string}
-     */
     public setUrl(url: string) {
         this.element.setAttribute("data-blocker-url", url);
     }
 
-    /**
-     * @returns {string}
-     */
     public getUrl(): string {
         return this.element.getAttribute("data-blocker-url")!;
     }
 
-    /**
-     *
-     * @param state {"none"|"soft"|"hard"}
-     */
     public setState(state: string) {
         this.element.setAttribute("data-blocker-state", state);
 

@@ -13,7 +13,8 @@ class BlockAnchor {
      * @param url URL to block
      * @param reason reason to block.
      */
-    constructor(targetId, state, targetObject, url, reason) {
+    constructor(mediator, targetId, state, targetObject, url, reason) {
+        this.mediator = mediator;
         const div = document.createElement("div");
         div.classList.add("block-anchor");
         const anchor = document.createElement("a");
