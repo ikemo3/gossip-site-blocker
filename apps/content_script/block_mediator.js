@@ -48,6 +48,11 @@ class BlockMediator {
     }
     async block(url, blockType) {
         await BlockedSitesRepository.add(url, blockType);
+        if (blockType === "hard") {
+            this.blockTarget.remove();
+            this.operationDiv.parentElement.removeChild(this.operationDiv);
+            return;
+        }
         this.blockAnchor.block();
         this.blockTarget.block(url);
         this.unhideAnchor.block(url);

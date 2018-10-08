@@ -16,6 +16,10 @@ class BlockTarget {
         this.setState(state);
     }
 
+    public remove() {
+        this.element.parentElement!.removeChild(this.element);
+    }
+
     public getDOMElement() {
         return this.element;
     }

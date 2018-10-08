@@ -10,6 +10,9 @@ class BlockTarget {
         this.element.setAttribute("id", id);
         this.setState(state);
     }
+    remove() {
+        this.element.parentElement.removeChild(this.element);
+    }
     getDOMElement() {
         return this.element;
     }
