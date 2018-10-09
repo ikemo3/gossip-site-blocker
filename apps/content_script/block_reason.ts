@@ -10,4 +10,8 @@ class BlockReason {
     public getWord(): string {
         return this.word;
     }
+
+    public getType(): BlockType {
+        return this.blockType;
+    }
 }

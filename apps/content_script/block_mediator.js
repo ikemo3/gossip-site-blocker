@@ -41,7 +41,7 @@ class BlockMediator {
         this.hideAnchor.hide();
     }
     unhide() {
-        this.blockAnchor.unhide();
+        this.blockAnchor.unhide(this.blockReason);
         this.blockTarget.unhide();
         this.unhideAnchor.unhide();
         this.hideAnchor.unhide();

@@ -20,8 +20,12 @@ class BlockAnchor {
         this.anchor.style.display = "inline";
     }
 
-    public unhide() {
-        this.anchor.style.display = "none";
+    public unhide(blockReason: BlockReason) {
+        if (blockReason.getType() !== BlockType.URL) {
+            this.anchor.style.display = "inline";
+        } else {
+            this.anchor.style.display = "none";
+        }
     }
 
     public hide() {

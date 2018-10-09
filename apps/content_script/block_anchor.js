@@ -12,8 +12,13 @@ class BlockAnchor {
     none() {
         this.anchor.style.display = "inline";
     }
-    unhide() {
-        this.anchor.style.display = "none";
+    unhide(blockReason) {
+        if (blockReason.getType() !== BlockType.URL) {
+            this.anchor.style.display = "inline";
+        }
+        else {
+            this.anchor.style.display = "none";
+        }
     }
     hide() {
         this.anchor.style.display = "none";
