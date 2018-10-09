@@ -1,3 +1,13 @@
+# v1.4.0
+
+## Enhancements.
+
+* Block if domain is IDN(Internationalized Domain Name).
+
+## Improvements.
+
+* Can block when blocked by Word/IDN.
+
 # v1.3.2
 
 ## Improvements.
