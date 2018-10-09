@@ -20,10 +20,12 @@ class BlockAnchor {
         if (blockReason.getType() !== BlockType.URL) {
             this.anchor.style.display = "inline";
             this.br.style.display = "inline";
+            this.anchor.textContent = chrome.i18n.getMessage("blockThisPageExplicitly");
         }
         else {
             this.anchor.style.display = "none";
             this.br.style.display = "none";
+            this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
         }
     }
     hide() {

@@ -39,6 +39,9 @@
   "blockThisPage": {
     "message": "このページをブロックする"
   },
+  "blockThisPageExplicitly": {
+    "message": "このページを明示的にブロック"
+  },
   "cancelButtonLabel": {
     "message": "キャンセル"
   },

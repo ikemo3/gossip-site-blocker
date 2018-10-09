@@ -39,6 +39,9 @@
   "blockThisPage": {
     "message": "Block this page"
   },
+  "blockThisPageExplicitly": {
+    "message": "Block this page explicitly"
+  },
   "cancelButtonLabel": {
     "message": "Cancel"
   },
