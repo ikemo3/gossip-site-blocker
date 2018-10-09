@@ -2,20 +2,21 @@ class BlockMediator {
     private readonly url: string;
     private blockReason: BlockReason | null;
     private readonly blockTarget: BlockTarget;
-    private readonly blockAnchor: BlockAnchor;
+
     private readonly operationDiv: HTMLDivElement;
-    private readonly unhideAnchor: UnhideAnchor;
     private readonly hideAnchor: HideAnchor;
+    private readonly unhideAnchor: UnhideAnchor;
+    private readonly blockAnchor: BlockAnchor;
 
     constructor(g: IBlockable, blockState: BlockState, id: string) {
         const operationDiv = document.createElement("div");
         operationDiv.classList.add("block-anchor");
 
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.getState());
-        const blockAnchor = new BlockAnchor(this, operationDiv, id);
 
-        const unhideAnchor = new UnhideAnchor(this, operationDiv, id);
         const hideAnchor = new HideAnchor(this, operationDiv, id);
+        const blockAnchor = new BlockAnchor(this, operationDiv, id);
+        const unhideAnchor = new UnhideAnchor(this, operationDiv, id);
 
         this.url = g.getUrl();
         this.blockReason = blockState.getReason();
