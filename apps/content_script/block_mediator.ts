@@ -1,6 +1,6 @@
 class BlockMediator {
     private readonly url: string;
-    private readonly reason: string | null;
+    private blockReason: BlockReason | null;
     private readonly blockTarget: BlockTarget;
     private readonly blockAnchor: BlockAnchor;
     private readonly operationDiv: HTMLDivElement;
@@ -11,14 +11,14 @@ class BlockMediator {
         const operationDiv = document.createElement("div");
         operationDiv.classList.add("block-anchor");
 
-        const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.state);
+        const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.getState());
         const blockAnchor = new BlockAnchor(this, operationDiv, id);
 
         const unhideAnchor = new UnhideAnchor(this, operationDiv, id);
         const hideAnchor = new HideAnchor(this, operationDiv, id);
 
         this.url = g.getUrl();
-        this.reason = blockState.reason;
+        this.blockReason = blockState.getReason();
         this.blockTarget = blockTarget;
         this.blockAnchor = blockAnchor;
         this.operationDiv = operationDiv;
@@ -28,7 +28,7 @@ class BlockMediator {
         // insert anchor after target.
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
-        switch (blockState.state) {
+        switch (blockState.getState()) {
             case "none":
                 this.none();
                 break;
@@ -54,7 +54,7 @@ class BlockMediator {
     public hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
-        this.unhideAnchor.hide(this.reason!);
+        this.unhideAnchor.hide(this.blockReason!.getWord());
         this.hideAnchor.hide();
     }
 
@@ -72,6 +72,8 @@ class BlockMediator {
             this.operationDiv.parentElement!.removeChild(this.operationDiv);
             return;
         }
+
+        this.blockReason = new BlockReason(BlockType.URL, url);
 
         this.blockAnchor.block();
         this.blockTarget.block(url);

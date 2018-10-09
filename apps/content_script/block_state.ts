@@ -1,6 +1,12 @@
+enum BlockType {
+    URL,
+    WORD, /* Banned Word */
+    IDN, /* Internationalized Domain Name */
+}
+
 class BlockState {
-    public state: string;
-    public reason: string | null;
+    private readonly state: string;
+    private readonly blockReason: BlockReason | null;
 
     constructor(blockable: IBlockable,
                 blockedSites: BlockedSites,
@@ -16,13 +22,13 @@ class BlockState {
 
         if (blockedSite) {
             this.state = blockedSite.getState();
+            this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+            return;
         } else if (banned) {
             this.state = "soft";
-        } else {
-            this.state = "none";
+            this.blockReason = new BlockReason(BlockType.WORD, banned.keyword);
+            return;
         }
-
-        this.reason = blockedSite ? blockedSite.url : (banned ? banned.keyword : null);
 
         // check IDN
         const enabled: boolean = idnOption.enabled;
@@ -32,11 +38,21 @@ class BlockState {
             const hostname = DOMUtils.getHostName(url);
 
             if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
-                if (this.state === "none") {
-                    this.state = "soft";
-                    this.reason = chrome.i18n.getMessage("IDN");
-                }
+                this.state = "soft";
+                this.blockReason = new BlockReason(BlockType.IDN, chrome.i18n.getMessage("IDN"));
+                return;
             }
         }
+
+        this.state = "none";
+        this.blockReason = null;
+    }
+
+    public getReason(): BlockReason | null {
+        return this.blockReason;
+    }
+
+    public getState(): string {
+        return this.state;
     }
 }

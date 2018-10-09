@@ -425,6 +425,7 @@
         "content_script/block_change_anchor.js",
         "content_script/block_change_anchor_dialog.js",
         "content_script/block_mediator.js",
+        "content_script/block_reason.js",
         "content_script/block_state.js",
         "content_script/block_target.js",
         "content_script/block_target_factory.js",

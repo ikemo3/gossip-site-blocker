@@ -1,3 +1,9 @@
+var BlockType;
+(function (BlockType) {
+    BlockType[BlockType["URL"] = 0] = "URL";
+    BlockType[BlockType["WORD"] = 1] = "WORD";
+    BlockType[BlockType["IDN"] = 2] = "IDN";
+})(BlockType || (BlockType = {}));
 class BlockState {
     constructor(blockable, blockedSites, bannedWords, idnOption) {
         const blockedSite = blockedSites.matches(blockable.getUrl());
@@ -7,26 +13,33 @@ class BlockState {
         });
         if (blockedSite) {
             this.state = blockedSite.getState();
+            this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+            return;
         }
         else if (banned) {
             this.state = "soft";
+            this.blockReason = new BlockReason(BlockType.WORD, banned.keyword);
+            return;
         }
-        else {
-            this.state = "none";
-        }
-        this.reason = blockedSite ? blockedSite.url : (banned ? banned.keyword : null);
         // check IDN
         const enabled = idnOption.enabled;
         if (enabled) {
             const url = blockable.getUrl();
             const hostname = DOMUtils.getHostName(url);
             if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
-                if (this.state === "none") {
-                    this.state = "soft";
-                    this.reason = chrome.i18n.getMessage("IDN");
-                }
+                this.state = "soft";
+                this.blockReason = new BlockReason(BlockType.IDN, chrome.i18n.getMessage("IDN"));
+                return;
             }
         }
+        this.state = "none";
+        this.blockReason = null;
+    }
+    getReason() {
+        return this.blockReason;
+    }
+    getState() {
+        return this.state;
     }
 }
 //# sourceMappingURL=block_state.js.map
