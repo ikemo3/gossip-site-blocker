@@ -6,6 +6,14 @@ interface IOptionRepository {
     getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption>;
 
     setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void>;
+
+    defaultBlockType(): Promise<string>;
+
+    setDefaultBlockType(type: string): Promise<void>;
+}
+
+interface IDefaultBlockTypeOption {
+    defaultBlockType: string;
 }
 
 interface IDeveloperOption {
@@ -42,5 +50,16 @@ const OptionRepository: IOptionRepository = {
         await ChromeStorage.set({autoBlockIDN});
 
         Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
+    },
+
+    async defaultBlockType(): Promise<string> {
+        const items = await ChromeStorage.load({defaultBlockType: "soft"}) as IDefaultBlockTypeOption;
+        return items.defaultBlockType;
+    },
+
+    async setDefaultBlockType(type: string): Promise<void> {
+        await ChromeStorage.save({defaultBlockType: type});
+
+        Logger.log("set 'defaultBlockType' to =>", type);
     },
 };

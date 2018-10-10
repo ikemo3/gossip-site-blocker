@@ -16,5 +16,13 @@ const OptionRepository = {
         await ChromeStorage.set({ autoBlockIDN });
         Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
     },
+    async defaultBlockType() {
+        const items = await ChromeStorage.load({ defaultBlockType: "soft" });
+        return items.defaultBlockType;
+    },
+    async setDefaultBlockType(type) {
+        await ChromeStorage.save({ defaultBlockType: type });
+        Logger.log("set 'defaultBlockType' to =>", type);
+    },
 };
 //# sourceMappingURL=config.js.map

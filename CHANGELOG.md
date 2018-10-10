@@ -3,6 +3,7 @@
 ## Improvements.
 
 * Change 'Delete' button to 'Unblock'
+* Add 'Default Block Type' option.
 
 # v1.4.0
 

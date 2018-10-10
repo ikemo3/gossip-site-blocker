@@ -9,6 +9,7 @@ const clearButton = document.getElementById("clearButton") as HTMLInputElement;
 const developerCheckbox = document.getElementById("developerCheckbox") as HTMLInputElement;
 
 const autoBlockIDNCheckbox = document.getElementById("autoBlockIDNCheckBox") as HTMLInputElement;
+const defaultBlockSelect = document.getElementById("defaultBlockType") as HTMLSelectElement;
 
 async function show_lists() {
     const sites = await BlockedSitesRepository.load();
@@ -58,7 +59,12 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     developerCheckbox.checked = developerMode;
 
     const autoBlockIDNOption: IAutoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
+    Logger.debug("autoBlockIDNOption is ", autoBlockIDNOption);
     autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;
+
+    const defaultBlockType: string = await OptionRepository.defaultBlockType();
+    Logger.debug("defaultBlockType is ", defaultBlockType);
+    defaultBlockSelect.value = defaultBlockType;
 });
 
 developerCheckbox.addEventListener("click", async (event) => {
@@ -72,4 +78,11 @@ autoBlockIDNCheckbox.addEventListener("click", async (event) => {
 
     const autoBlockIDN: IAutoBlockIDNOption = {enabled: checkbox.checked};
     await OptionRepository.setAutoBlockIDNOption(autoBlockIDN);
+});
+
+defaultBlockSelect.addEventListener("change", async (event) => {
+    const select = event.target as HTMLSelectElement;
+
+    const value = select.value;
+    await OptionRepository.setDefaultBlockType(value);
 });

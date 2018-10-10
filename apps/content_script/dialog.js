@@ -1,24 +1,24 @@
 class BlockDialog {
-    constructor(mediator, url) {
+    constructor(mediator, url, defaultBlockType) {
         this.mediator = mediator;
-        this.background = this.createBackground(url);
+        this.background = this.createBackground(url, defaultBlockType);
         document.body.appendChild(this.background);
     }
-    createBackground(url) {
+    createBackground(url, defaultBlockType) {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
         // create child element.
-        const dialog = this.createDialog(url);
+        const dialog = this.createDialog(url, defaultBlockType);
         background.appendChild(dialog);
         return background;
     }
-    createDialog(url) {
+    createDialog(url, defaultBlockType) {
         const dialog = document.createElement("div");
         dialog.classList.add("block-dialog");
         // create child element.
         const urlRadioDiv = this.createRadioDiv(url);
         dialog.appendChild(urlRadioDiv);
-        const blockTypeDiv = this.createBlockTypeDiv();
+        const blockTypeDiv = this.createBlockTypeDiv(defaultBlockType);
         dialog.appendChild(blockTypeDiv);
         const buttonDiv = this.createButtonDiv();
         dialog.appendChild(buttonDiv);
@@ -97,7 +97,7 @@ class BlockDialog {
         div.appendChild(urlText);
         return div;
     }
-    createBlockTypeDiv() {
+    createBlockTypeDiv(defaultBlockType) {
         const blockTypeDiv = document.createElement("div");
         const select = document.createElement("select");
         select.classList.add("block-dialog-type-select");
@@ -109,6 +109,7 @@ class BlockDialog {
         hard.textContent = chrome.i18n.getMessage("hardBlock");
         select.appendChild(soft);
         select.appendChild(hard);
+        select.value = defaultBlockType;
         this.blockTypeSelect = select;
         blockTypeDiv.appendChild(select);
         return blockTypeDiv;

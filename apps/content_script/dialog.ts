@@ -5,25 +5,25 @@ class BlockDialog {
     public customRadio: HTMLInputElement;
     public blockTypeSelect: HTMLSelectElement;
 
-    constructor(mediator: BlockMediator, url: string) {
+    constructor(mediator: BlockMediator, url: string, defaultBlockType: string) {
         this.mediator = mediator;
 
-        this.background = this.createBackground(url);
+        this.background = this.createBackground(url, defaultBlockType);
         document.body.appendChild(this.background);
     }
 
-    public createBackground(url: string) {
+    public createBackground(url: string, defaultBlockType: string) {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
 
         // create child element.
-        const dialog = this.createDialog(url);
+        const dialog = this.createDialog(url, defaultBlockType);
         background.appendChild(dialog);
 
         return background;
     }
 
-    public createDialog(url: string) {
+    public createDialog(url: string, defaultBlockType: string) {
         const dialog = document.createElement("div");
         dialog.classList.add("block-dialog");
 
@@ -31,7 +31,7 @@ class BlockDialog {
         const urlRadioDiv = this.createRadioDiv(url);
         dialog.appendChild(urlRadioDiv);
 
-        const blockTypeDiv = this.createBlockTypeDiv();
+        const blockTypeDiv = this.createBlockTypeDiv(defaultBlockType);
         dialog.appendChild(blockTypeDiv);
 
         const buttonDiv = this.createButtonDiv();
@@ -136,7 +136,7 @@ class BlockDialog {
         return div;
     }
 
-    public createBlockTypeDiv() {
+    public createBlockTypeDiv(defaultBlockType: string) {
         const blockTypeDiv = document.createElement("div");
         const select = document.createElement("select");
         select.classList.add("block-dialog-type-select");
@@ -151,6 +151,7 @@ class BlockDialog {
 
         select.appendChild(soft);
         select.appendChild(hard);
+        select.value = defaultBlockType;
         this.blockTypeSelect = select;
 
         blockTypeDiv.appendChild(select);

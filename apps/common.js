@@ -1,4 +1,15 @@
 const ChromeStorage = {
+    async load(keys) {
+        // @ts-ignore
+        return new Promise((resolve) => {
+            chrome.storage.local.get(keys, resolve);
+        });
+    },
+    async save(items) {
+        return new Promise((resolve) => {
+            chrome.storage.local.set(items, resolve);
+        });
+    },
     async get(keys) {
         return new Promise((resolve) => {
             chrome.storage.local.get(keys, resolve);

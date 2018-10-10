@@ -24,6 +24,7 @@
             color: gray;
         }
 
+        #generalTab:checked ~ #generalTabTarget,
         #blockedUrlsTab:checked ~ #blockedUrlsTabTarget,
         #autoBlockTab:checked ~ #autoBlockTabTarget,
         #bannedWordTab:checked ~ #bannedWordTabTarget,
@@ -34,6 +35,7 @@
             display: block;
         }
 
+        #generalTab:not(:checked) ~ #generalTabTarget,
         #blockedUrlsTab:not(:checked) ~ #blockedUrlsTabTarget,
         #autoBlockTab:not(:checked) ~ #autoBlockTabTarget,
         #bannedWordTab:not(:checked) ~ #bannedWordTabTarget,
@@ -49,7 +51,10 @@
 
 <h1 data-i18n-text="optionTitle">Gossip Site Blocker: Option</h1>
 
-<input type="radio" name="tab" id="blockedUrlsTab" checked="checked"/>
+<input type="radio" name="tab" id="generalTab" checked="checked"/>
+<label for="generalTab" data-i18n-text="general"></label>
+
+<input type="radio" name="tab" id="blockedUrlsTab"/>
 <label for="blockedUrlsTab" data-i18n-text="blockedUrls"></label>
 
 <input type="radio" name="tab" id="autoBlockTab"/>
@@ -69,6 +74,17 @@
 
 <input type="radio" name="tab" id="dangerZoneTab"/>
 <label for="dangerZoneTab" data-i18n-text="dangerZone"></label>
+
+<section id="generalTabTarget">
+    <h2 data-i18n-text="general">General</h2>
+
+    <label for="defaultBlockType" data-i18n-text="defaultBlockType"></label>
+    :
+    <select id="defaultBlockType">
+        <option value="soft" data-i18n-text="softBlock">Soft Block</option>
+        <option value="hard" data-i18n-text="hardBlock">Hard Block</option>
+    </select>
+</section>
 
 <section id="blockedUrlsTabTarget">
     <h2 data-i18n-text="blockedUrls">Blocked URLs</h2>

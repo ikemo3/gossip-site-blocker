@@ -8,7 +8,10 @@ class BlockMediator {
     private readonly unhideAnchor: UnhideAnchor;
     private readonly blockAnchor: BlockAnchor;
 
-    constructor(g: IBlockable, blockState: BlockState, id: string) {
+    private readonly defaultBlockType: string;
+    private blockDialog: BlockDialog;
+
+    constructor(g: IBlockable, blockState: BlockState, id: string, defaultBlockType: string) {
         const operationDiv = document.createElement("div");
         operationDiv.classList.add("block-anchor");
 
@@ -25,6 +28,7 @@ class BlockMediator {
         this.operationDiv = operationDiv;
         this.unhideAnchor = unhideAnchor;
         this.hideAnchor = hideAnchor;
+        this.defaultBlockType = defaultBlockType;
 
         // insert anchor after target.
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
@@ -84,7 +88,7 @@ class BlockMediator {
 
     public showBlockDialog() {
         // show dialog.
-        new BlockDialog(this, this.url);
+        this.blockDialog = new BlockDialog(this, this.url, this.defaultBlockType);
     }
 
     public async blockPage(url: string, blockType: string) {

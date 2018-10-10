@@ -1,5 +1,5 @@
 class BlockMediator {
-    constructor(g, blockState, id) {
+    constructor(g, blockState, id, defaultBlockType) {
         const operationDiv = document.createElement("div");
         operationDiv.classList.add("block-anchor");
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.getState());
@@ -13,6 +13,7 @@ class BlockMediator {
         this.operationDiv = operationDiv;
         this.unhideAnchor = unhideAnchor;
         this.hideAnchor = hideAnchor;
+        this.defaultBlockType = defaultBlockType;
         // insert anchor after target.
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
         switch (blockState.getState()) {
@@ -61,7 +62,7 @@ class BlockMediator {
     }
     showBlockDialog() {
         // show dialog.
-        new BlockDialog(this, this.url);
+        this.blockDialog = new BlockDialog(this, this.url, this.defaultBlockType);
     }
     async blockPage(url, blockType) {
         await this.block(url, blockType);

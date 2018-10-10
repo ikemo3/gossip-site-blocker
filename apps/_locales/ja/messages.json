@@ -66,6 +66,9 @@
   "dangerZone": {
     "message": "危険地帯"
   },
+  "defaultBlockType": {
+    "message": "デフォルトのブロック形式"
+  },
   "developerMode": {
     "message": "開発者モード"
   },
@@ -83,6 +86,9 @@
   },
   "forDeveloper": {
     "message": "開発者向けオプション"
+  },
+  "general": {
+    "message": "一般"
   },
   "hardBlock": {
     "message": "ハードブロック(削除)"

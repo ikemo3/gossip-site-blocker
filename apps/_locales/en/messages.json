@@ -66,6 +66,9 @@
   "dangerZone": {
     "message": "Danger Zone"
   },
+  "defaultBlockType": {
+    "message": "Default Block Type"
+  },
   "developerMode": {
     "message": "Developer Mode"
   },
@@ -83,6 +86,9 @@
   },
   "forDeveloper": {
     "message": "For Developer"
+  },
+  "general": {
+    "message": "General"
   },
   "hardBlock": {
     "message": "Hard block(erase)"
