@@ -1,3 +1,9 @@
+# v1.4.1
+
+## Improvements.
+
+* Change 'Delete' button to 'Unblock'
+
 # v1.4.0
 
 ## Enhancements.

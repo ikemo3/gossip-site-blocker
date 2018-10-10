@@ -66,9 +66,6 @@
   "dangerZone": {
     "message": "危険地帯"
   },
-  "deleteUrl": {
-    "message": "削除"
-  },
   "developerMode": {
     "message": "開発者モード"
   },
@@ -133,6 +130,9 @@
         "content": "$1"
       }
     }
+  },
+  "unblock": {
+    "message": "ブロックを解除"
   },
   "updateUrl": {
     "message": "URLを更新"

@@ -11,7 +11,7 @@ class BlockedSiteDeleteButton {
         this.mediator = mediator;
         const input = document.createElement("input");
         input.setAttribute("type", "button");
-        input.setAttribute("value", chrome.i18n.getMessage("deleteUrl"));
+        input.setAttribute("value", chrome.i18n.getMessage("unblock"));
         input.addEventListener("click", this.onclick.bind(this));
         this.element = input;
         this.setState(state);

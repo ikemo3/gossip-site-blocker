@@ -66,9 +66,6 @@
   "dangerZone": {
     "message": "Danger Zone"
   },
-  "deleteUrl": {
-    "message": "Delete"
-  },
   "developerMode": {
     "message": "Developer Mode"
   },
@@ -133,6 +130,9 @@
         "content": "$1"
       }
     }
+  },
+  "unblock": {
+    "message": "Unblock"
   },
   "updateUrl": {
     "message": "Update URL"
