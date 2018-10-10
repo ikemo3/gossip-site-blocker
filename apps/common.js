@@ -25,6 +25,7 @@ const Logger = {
         console.log(message, ...params);
     },
     error(message, ...params) {
+        // noinspection TsLint
         console.error(message, ...params);
     },
 };
