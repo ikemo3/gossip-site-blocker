@@ -14,13 +14,13 @@ const observer = new MutationObserver((mutations) => {
             if (node instanceof Element) {
                 if (node.classList.contains("g")) {
                     if (options !== null) {
-                        blockGoogleElement(node, options);
+                        tryBlockGoogleElement(node, options);
                     } else {
                         pendingsGoogle.push(node);
                     }
                 } else if (node.nodeName.toLowerCase() === "g-inner-card") {
                     if (options !== null) {
-                        blockGoogleInnerCard(node, options);
+                        tryBlockGoogleInnerCard(node, options);
                     } else {
                         pendingsInnerCard.push(node);
                     }
@@ -45,10 +45,74 @@ observer.observe(document.documentElement, config);
     options = {blockedSites, bannedWords, idnOption, defaultBlockType};
 
     for (const node of pendingsGoogle) {
-        blockGoogleElement(node, options);
+        tryBlockGoogleElement(node, options);
     }
 
     for (const node of pendingsInnerCard) {
-        blockGoogleInnerCard(node, options);
+        tryBlockGoogleInnerCard(node, options);
     }
 })();
+
+const subObserverList: MutationObserver[] = [];
+
+function tryBlockGoogleElement(node: Element, options: IOptions) {
+    // first, try block.
+    const completed = blockGoogleElement(node, options);
+    if (completed) {
+        return;
+    }
+
+    // if failed, add observer for retry.
+    const block = blockGoogleElementClosure(node, options);
+    const subObserver = new MutationObserver(() => {
+        block();
+    });
+
+    subObserver.observe(node, {childList: true, subtree: true});
+    subObserverList.push(subObserver);
+}
+
+function blockGoogleElementClosure(node: Element, options: IOptions) {
+    let completed = false;
+    return () => {
+        if (completed === true) {
+            return;
+        }
+
+        completed = blockGoogleElement(node, options);
+    };
+}
+
+function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
+    const completed = blockGoogleInnerCard(node, options);
+    if (completed) {
+        return;
+    }
+
+    // if failed, add observer for retry.
+    const block = blockGoogleInnerCardClosure(node, options);
+    const subObserver = new MutationObserver(() => {
+        block();
+    });
+
+    subObserver.observe(node, {childList: true, subtree: true});
+    subObserverList.push(subObserver);
+}
+
+function blockGoogleInnerCardClosure(node: Element, options: IOptions) {
+    let completed = false;
+    return () => {
+        if (completed === true) {
+            return;
+        }
+
+        completed = blockGoogleInnerCard(node, options);
+    };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // clear sub-observer
+    for (const subObserver of subObserverList) {
+        subObserver.disconnect();
+    }
+});
