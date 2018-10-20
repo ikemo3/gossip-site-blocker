@@ -7,7 +7,7 @@
           <value>
             <SchemaInfo>
               <option name="name" value="chrome-manifest" />
-              <option name="relativePathToSchema" value="schemastore/src/schemas/json/chrome-manifest.json" />
+              <option name="relativePathToSchema" value="http://json.schemastore.org/chrome-manifest" />
               <option name="patterns">
                 <list>
                   <Item>
