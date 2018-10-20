@@ -3,12 +3,11 @@ class HideAnchor {
     private readonly br: HTMLBRElement;
     private readonly mediator: BlockMediator;
 
-    constructor(mediator: BlockMediator, div: HTMLDivElement, targetId: string) {
+    constructor(mediator: BlockMediator, div: HTMLDivElement) {
         this.mediator = mediator;
 
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
-        anchor.setAttribute("data-blocker-target-id", targetId);
         anchor.textContent = chrome.i18n.getMessage("hideThisPage");
         anchor.addEventListener("click", this.mediator.hide.bind(this.mediator));
 

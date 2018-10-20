@@ -1,4 +1,4 @@
-function blockGoogleElement(g1, blockedSites, bannedWords, idnOption, defaultBlockType, id) {
+function blockGoogleElement(g1, blockedSites, bannedWords, idnOption, defaultBlockType) {
     const g = new GoogleElement(g1);
     if (!g.canBlock()) {
         return;
@@ -8,9 +8,9 @@ function blockGoogleElement(g1, blockedSites, bannedWords, idnOption, defaultBlo
         g.deleteElement();
         return;
     }
-    const mediator = new BlockMediator(g, blockState, id, defaultBlockType);
+    const mediator = new BlockMediator(g, blockState, defaultBlockType);
 }
-function blockGoogleInnerCard(g1, blockedSites, bannedWords, idnOption, defaultBlockType, id) {
+function blockGoogleInnerCard(g1, blockedSites, bannedWords, idnOption, defaultBlockType) {
     const g = new GoogleInnerCard(g1);
     if (!g.canBlock()) {
         return;
@@ -20,19 +20,16 @@ function blockGoogleInnerCard(g1, blockedSites, bannedWords, idnOption, defaultB
         g.deleteElement();
         return;
     }
-    const mediator = new BlockMediator(g, blockState, id, defaultBlockType);
+    const mediator = new BlockMediator(g, blockState, defaultBlockType);
     mediator.setWrappable("205px");
 }
 const BlockTargetFactory = {
     async init(blockedSites, bannedWords, idnOption, defaultBlockType) {
-        let count = 0;
         document.querySelectorAll(".g").forEach((g1) => {
-            const id = `block${++count}`;
-            blockGoogleElement(g1, blockedSites, bannedWords, idnOption, defaultBlockType, id);
+            blockGoogleElement(g1, blockedSites, bannedWords, idnOption, defaultBlockType);
         });
         document.querySelectorAll("g-inner-card").forEach((g1) => {
-            const id = `block${++count}`;
-            blockGoogleInnerCard(g1, blockedSites, bannedWords, idnOption, defaultBlockType, id);
+            blockGoogleInnerCard(g1, blockedSites, bannedWords, idnOption, defaultBlockType);
         });
         return this;
     },

@@ -1,9 +1,8 @@
 class BlockAnchor {
-    constructor(mediator, div, targetId) {
+    constructor(mediator, div) {
         this.mediator = mediator;
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
-        anchor.setAttribute("data-blocker-target-id", targetId);
         anchor.textContent = chrome.i18n.getMessage("blockThisPage");
         anchor.addEventListener("click", this.mediator.showBlockDialog.bind(this.mediator));
         const br = document.createElement("br");

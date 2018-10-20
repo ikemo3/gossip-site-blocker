@@ -2,12 +2,10 @@
  * Block target element.
  */
 class BlockTarget {
-    constructor(mediator, element, url, id, state) {
+    constructor(mediator, element, url, state) {
         this.mediator = mediator;
         this.element = element;
         this.setUrl(url);
-        // set id.
-        this.element.setAttribute("id", id);
         this.setState(state);
     }
     remove() {

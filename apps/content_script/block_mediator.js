@@ -1,11 +1,11 @@
 class BlockMediator {
-    constructor(g, blockState, id, defaultBlockType) {
+    constructor(g, blockState, defaultBlockType) {
         const operationDiv = document.createElement("div");
         operationDiv.classList.add("block-anchor");
-        const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), id, blockState.getState());
-        const hideAnchor = new HideAnchor(this, operationDiv, id);
-        const blockAnchor = new BlockAnchor(this, operationDiv, id);
-        const unhideAnchor = new UnhideAnchor(this, operationDiv, id);
+        const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), blockState.getState());
+        const hideAnchor = new HideAnchor(this, operationDiv);
+        const blockAnchor = new BlockAnchor(this, operationDiv);
+        const unhideAnchor = new UnhideAnchor(this, operationDiv);
         this.url = g.getUrl();
         this.blockReason = blockState.getReason();
         this.blockTarget = blockTarget;
