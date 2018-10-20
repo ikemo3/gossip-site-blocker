@@ -3,8 +3,12 @@ class GoogleInnerCard {
         const anchorList = element.getElementsByTagName("a");
         const urlList = [];
         for (const anchor of anchorList) {
+            const ping = anchor.getAttribute("ping");
             const href = anchor.getAttribute("href");
             if (href === null) {
+                continue;
+            }
+            if (ping === null) {
                 continue;
             }
             urlList.push(href);

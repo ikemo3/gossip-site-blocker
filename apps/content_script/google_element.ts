@@ -34,28 +34,14 @@ class GoogleElement implements IBlockable {
 
         const urlList: string[] = [];
         for (const anchor of anchorList) {
+            const ping = anchor.getAttribute("ping");
             const href = anchor.getAttribute("href");
 
             if (href === null) {
                 continue;
             }
 
-            // menu, etc...
-            if (href === "#") {
-                continue;
-            }
-
-            // ignore cache link.
-            if (href.startsWith("https://webcache.googleusercontent.com")) {
-                continue;
-            }
-
-            if (href.startsWith("http://webcache.googleusercontent.com")) {
-                continue;
-            }
-
-            // ignore related link.
-            if (href.startsWith("/search?")) {
+            if (ping === null) {
                 continue;
             }
 
