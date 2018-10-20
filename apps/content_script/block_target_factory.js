@@ -1,11 +1,6 @@
 const BlockTargetFactory = {
-    async init() {
+    async init(blockedSites, bannedWords, idnOption, defaultBlockType) {
         let count = 0;
-        const blockedSites = await BlockedSitesRepository.load();
-        const bannedWords = await BannedWordRepository.load();
-        const idnOption = await OptionRepository.getAutoBlockIDNOption();
-        const defaultBlockType = await OptionRepository.defaultBlockType();
-        Logger.debug("autoBlockIDNOption:", idnOption);
         document.querySelectorAll(".g").forEach((g1) => {
             const g = new GoogleElement(g1);
             if (!g.canBlock()) {

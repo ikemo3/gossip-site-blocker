@@ -7,14 +7,11 @@ interface IBlockable {
 }
 
 const BlockTargetFactory = {
-    async init() {
+    async init(blockedSites: BlockedSites,
+               bannedWords: IBannedWord[],
+               idnOption: IAutoBlockIDNOption,
+               defaultBlockType: string) {
         let count = 0;
-
-        const blockedSites: BlockedSites = await BlockedSitesRepository.load();
-        const bannedWords: IBannedWord[] = await BannedWordRepository.load();
-        const idnOption = await OptionRepository.getAutoBlockIDNOption();
-        const defaultBlockType: string = await OptionRepository.defaultBlockType();
-        Logger.debug("autoBlockIDNOption:", idnOption);
 
         document.querySelectorAll(".g").forEach((g1: Element) => {
             const g = new GoogleElement(g1);
