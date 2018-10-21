@@ -1,3 +1,9 @@
+# v1.4.2
+
+## Bug Fixes.
+
+* Not worked when list map(not Google Maps).
+
 # v1.4.1
 
 ## Improvements.
