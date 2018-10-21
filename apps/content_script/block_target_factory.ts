@@ -9,6 +9,10 @@ interface IBlockable {
 function blockGoogleElement(g1: Element, options: IOptions): boolean {
     const g = new GoogleElement(g1);
 
+    if (g.isIgnoreable()) {
+        return true;
+    }
+
     if (!g.canBlock()) {
         return false;
     }

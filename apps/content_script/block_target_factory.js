@@ -1,5 +1,8 @@
 function blockGoogleElement(g1, options) {
     const g = new GoogleElement(g1);
+    if (g.isIgnoreable()) {
+        return true;
+    }
     if (!g.canBlock()) {
         return false;
     }

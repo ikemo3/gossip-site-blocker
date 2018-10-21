@@ -1,5 +1,6 @@
 class GoogleElement implements IBlockable {
     private readonly valid: boolean;
+    private readonly ignoreExplicitly: boolean;
     private readonly url: string;
     private readonly element: Element;
     private readonly title: string | null;
@@ -7,6 +8,20 @@ class GoogleElement implements IBlockable {
 
     constructor(element: Element) {
         const classList = element.classList;
+
+        // ignore if image.
+        if (element.matches("#imagebox_bigimages")) {
+            this.valid = false;
+            this.ignoreExplicitly = true;
+            return;
+        }
+
+        // ignore if dictionary.
+        if (element.querySelector("#dictionary-modules") !== null) {
+            this.valid = false;
+            this.ignoreExplicitly = true;
+            return;
+        }
 
         // ignore if any element has class=g
         let parent = element.parentElement;
@@ -18,6 +33,7 @@ class GoogleElement implements IBlockable {
 
             if (parent.classList.contains("g")) {
                 this.valid = false;
+                this.ignoreExplicitly = true;
                 return;
             }
 
@@ -27,6 +43,7 @@ class GoogleElement implements IBlockable {
         // ignore right pane
         if (classList.contains("rhsvw")) {
             this.valid = false;
+            this.ignoreExplicitly = true;
             return;
         }
 
@@ -51,6 +68,7 @@ class GoogleElement implements IBlockable {
         // ignore if no anchor.
         if (urlList.length === 0) {
             this.valid = false;
+            this.ignoreExplicitly = false;
             return;
         }
 
@@ -59,6 +77,7 @@ class GoogleElement implements IBlockable {
         // ignore if no h3(ex. Google Translate)
         if (h3 === null) {
             this.valid = false;
+            this.ignoreExplicitly = true;
             return;
         }
 
@@ -67,10 +86,15 @@ class GoogleElement implements IBlockable {
         const contents = st ? st.textContent! : "";
 
         this.valid = true;
+        this.ignoreExplicitly = false;
         this.url = urlList[0];
         this.element = element;
         this.title = title;
         this.contents = contents;
+    }
+
+    public isIgnoreable() {
+        return this.ignoreExplicitly;
     }
 
     public canBlock() {
