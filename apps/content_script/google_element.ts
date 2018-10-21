@@ -1,7 +1,7 @@
 class GoogleElement implements IBlockable {
-    public valid: boolean;
-    public url: string;
-    public element: Element;
+    private readonly valid: boolean;
+    private readonly url: string;
+    private readonly element: Element;
     private readonly title: string | null;
     private readonly contents: string;
 
