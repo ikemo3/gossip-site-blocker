@@ -41,7 +41,7 @@ class GoogleElement implements IBlockable {
                 continue;
             }
 
-            if (ping === null) {
+            if (!href.startsWith("https://books.google") && ping === null) {
                 continue;
             }
 
