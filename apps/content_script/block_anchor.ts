@@ -23,17 +23,17 @@ class BlockAnchor {
     public none() {
         this.anchor.style.display = "inline";
         this.br.style.display = "inline";
+        this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
     }
 
     public unhide(blockReason: BlockReason) {
-        if (blockReason.getType() !== BlockType.URL) {
+        if (blockReason.getType() !== BlockType.URL_EXACTLY) {
             this.anchor.style.display = "inline";
             this.br.style.display = "inline";
             this.anchor.textContent = chrome.i18n.getMessage("blockThisPageExplicitly");
         } else {
             this.anchor.style.display = "none";
             this.br.style.display = "none";
-            this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
         }
     }
 

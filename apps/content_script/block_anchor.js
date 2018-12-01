@@ -14,9 +14,10 @@ class BlockAnchor {
     none() {
         this.anchor.style.display = "inline";
         this.br.style.display = "inline";
+        this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
     }
     unhide(blockReason) {
-        if (blockReason.getType() !== BlockType.URL) {
+        if (blockReason.getType() !== BlockType.URL_EXACTLY) {
             this.anchor.style.display = "inline";
             this.br.style.display = "inline";
             this.anchor.textContent = chrome.i18n.getMessage("blockThisPageExplicitly");
@@ -24,7 +25,6 @@ class BlockAnchor {
         else {
             this.anchor.style.display = "none";
             this.br.style.display = "none";
-            this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
         }
     }
     hide() {

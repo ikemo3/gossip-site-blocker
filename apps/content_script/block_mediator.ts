@@ -7,9 +7,11 @@ class BlockMediator {
     private readonly hideAnchor: HideAnchor;
     private readonly unhideAnchor: UnhideAnchor;
     private readonly blockAnchor: BlockAnchor;
+    private readonly changeAnchor: BlockChangeAnchor;
 
     private readonly defaultBlockType: string;
     private blockDialog: BlockDialog;
+    private changeStateDialog: BlockChangeAnchorDialog;
 
     constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string) {
         const operationDiv = document.createElement("div");
@@ -28,6 +30,7 @@ class BlockMediator {
         this.operationDiv = operationDiv;
         this.unhideAnchor = unhideAnchor;
         this.hideAnchor = hideAnchor;
+        this.changeAnchor = new BlockChangeAnchor(this, operationDiv);
         this.defaultBlockType = defaultBlockType;
 
         // insert anchor after target.
@@ -54,6 +57,7 @@ class BlockMediator {
         this.blockTarget.none();
         this.unhideAnchor.none();
         this.hideAnchor.none();
+        this.changeAnchor.none();
     }
 
     public hide() {
@@ -61,6 +65,7 @@ class BlockMediator {
         this.blockTarget.hide();
         this.unhideAnchor.hide(this.blockReason!.getWord());
         this.hideAnchor.hide();
+        this.changeAnchor.hide();
     }
 
     public unhide() {
@@ -68,6 +73,7 @@ class BlockMediator {
         this.blockTarget.unhide();
         this.unhideAnchor.unhide();
         this.hideAnchor.unhide();
+        this.changeAnchor.unhide(this.blockReason!);
     }
 
     public async block(url: string, blockType: string) {
@@ -78,12 +84,23 @@ class BlockMediator {
             return;
         }
 
-        this.blockReason = new BlockReason(BlockType.URL, url);
+        if (DOMUtils.removeProtocol(this.blockTarget.getUrl()) === url) {
+            this.blockReason = new BlockReason(BlockType.URL_EXACTLY, url);
+        } else {
+            this.blockReason = new BlockReason(BlockType.URL, url);
+        }
 
         this.blockAnchor.block();
         this.blockTarget.block(url);
         this.unhideAnchor.block(url);
         this.hideAnchor.block();
+        this.changeAnchor.block();
+    }
+
+    public showChangeStateDialog() {
+        // show dialog.
+        // FIXME
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, "");
     }
 
     public showBlockDialog() {

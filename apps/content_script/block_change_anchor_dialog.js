@@ -1,5 +1,5 @@
 class BlockChangeAnchorDialog {
-    constructor(url, reason) {
+    constructor(mediator, url, reason) {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
         document.body.appendChild(background);

@@ -1,4 +1,5 @@
 enum BlockType {
+    URL_EXACTLY,
     URL,
     WORD, /* Banned Word */
     IDN, /* Internationalized Domain Name */
@@ -22,7 +23,13 @@ class BlockState {
 
         if (blockedSite) {
             this.state = blockedSite.getState();
-            this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+
+            if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
+                this.blockReason = new BlockReason(BlockType.URL_EXACTLY, blockedSite.url);
+            } else {
+                this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+            }
+
             return;
         } else if (banned) {
             this.state = "soft";

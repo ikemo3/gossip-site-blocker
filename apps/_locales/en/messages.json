@@ -45,6 +45,9 @@
   "cancelButtonLabel": {
     "message": "Cancel"
   },
+  "changeBlockState": {
+    "message": "Change block state"
+  },
   "changeToHardBlock": {
     "message": "Change to hard block"
   },

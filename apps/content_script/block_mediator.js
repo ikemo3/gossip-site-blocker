@@ -13,6 +13,7 @@ class BlockMediator {
         this.operationDiv = operationDiv;
         this.unhideAnchor = unhideAnchor;
         this.hideAnchor = hideAnchor;
+        this.changeAnchor = new BlockChangeAnchor(this, operationDiv);
         this.defaultBlockType = defaultBlockType;
         // insert anchor after target.
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
@@ -34,18 +35,21 @@ class BlockMediator {
         this.blockTarget.none();
         this.unhideAnchor.none();
         this.hideAnchor.none();
+        this.changeAnchor.none();
     }
     hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
         this.unhideAnchor.hide(this.blockReason.getWord());
         this.hideAnchor.hide();
+        this.changeAnchor.hide();
     }
     unhide() {
         this.blockAnchor.unhide(this.blockReason);
         this.blockTarget.unhide();
         this.unhideAnchor.unhide();
         this.hideAnchor.unhide();
+        this.changeAnchor.unhide(this.blockReason);
     }
     async block(url, blockType) {
         await BlockedSitesRepository.add(url, blockType);
@@ -54,11 +58,22 @@ class BlockMediator {
             this.operationDiv.parentElement.removeChild(this.operationDiv);
             return;
         }
-        this.blockReason = new BlockReason(BlockType.URL, url);
+        if (DOMUtils.removeProtocol(this.blockTarget.getUrl()) === url) {
+            this.blockReason = new BlockReason(BlockType.URL_EXACTLY, url);
+        }
+        else {
+            this.blockReason = new BlockReason(BlockType.URL, url);
+        }
         this.blockAnchor.block();
         this.blockTarget.block(url);
         this.unhideAnchor.block(url);
         this.hideAnchor.block();
+        this.changeAnchor.block();
+    }
+    showChangeStateDialog() {
+        // show dialog.
+        // FIXME
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, "");
     }
     showBlockDialog() {
         // show dialog.

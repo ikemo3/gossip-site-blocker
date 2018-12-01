@@ -45,6 +45,9 @@
   "cancelButtonLabel": {
     "message": "キャンセル"
   },
+  "changeBlockState": {
+    "message": "ブロック状態を変更"
+  },
   "changeToHardBlock": {
     "message": "ハードブロックに変更"
   },

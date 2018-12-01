@@ -2,7 +2,7 @@ class BlockChangeAnchorDialog {
     private readonly background: HTMLDivElement;
     private readonly reason: string | null;
 
-    constructor(url: string, reason: string | null) {
+    constructor(mediator: BlockMediator, url: string, reason: string | null) {
         const background = document.createElement("div");
         background.classList.add("block-dialog-background");
         document.body.appendChild(background);

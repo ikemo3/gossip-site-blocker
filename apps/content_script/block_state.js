@@ -1,8 +1,9 @@
 var BlockType;
 (function (BlockType) {
-    BlockType[BlockType["URL"] = 0] = "URL";
-    BlockType[BlockType["WORD"] = 1] = "WORD";
-    BlockType[BlockType["IDN"] = 2] = "IDN";
+    BlockType[BlockType["URL_EXACTLY"] = 0] = "URL_EXACTLY";
+    BlockType[BlockType["URL"] = 1] = "URL";
+    BlockType[BlockType["WORD"] = 2] = "WORD";
+    BlockType[BlockType["IDN"] = 3] = "IDN";
 })(BlockType || (BlockType = {}));
 class BlockState {
     constructor(blockable, blockedSites, bannedWords, idnOption) {
@@ -13,7 +14,12 @@ class BlockState {
         });
         if (blockedSite) {
             this.state = blockedSite.getState();
-            this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+            if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
+                this.blockReason = new BlockReason(BlockType.URL_EXACTLY, blockedSite.url);
+            }
+            else {
+                this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+            }
             return;
         }
         else if (banned) {

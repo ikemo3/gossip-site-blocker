@@ -1,13 +1,12 @@
 class BlockChangeAnchor {
-    constructor(parent, url, reason) {
+    constructor(mediator, parent) {
+        this.mediator = mediator;
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "javascript:void(0)"); // change link color.
-        anchor.textContent = "change state";
-        anchor.addEventListener("click", this.onclick.bind(this));
+        anchor.textContent = chrome.i18n.getMessage("changeBlockState");
+        anchor.addEventListener("click", this.mediator.showChangeStateDialog.bind(this));
         parent.appendChild(anchor);
         this.anchor = anchor;
-        this.url = url;
-        this.reason = reason;
     }
     changeState(state) {
         switch (state) {
@@ -25,14 +24,16 @@ class BlockChangeAnchor {
     hide() {
         this.anchor.style.display = "none";
     }
-    unhide() {
-        this.anchor.style.display = "inline";
+    unhide(blockReason) {
+        if (blockReason.getType() === BlockType.URL_EXACTLY) {
+            this.anchor.style.display = "inline";
+        }
+        else {
+            this.anchor.style.display = "none";
+        }
     }
     block() {
         this.anchor.style.display = "none";
-    }
-    onclick() {
-        const dialog = new BlockChangeAnchorDialog(this.url, this.reason);
     }
 }
 //# sourceMappingURL=block_change_anchor.js.map
