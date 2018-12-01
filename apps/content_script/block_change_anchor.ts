@@ -6,22 +6,11 @@ class BlockChangeAnchor {
         this.mediator = mediator;
 
         const anchor = $.anchor($.message("changeBlockState"));
-        $.onclick(anchor, this.mediator.showChangeStateDialog.bind(this));
+        $.onclick(anchor, this.mediator.showChangeStateDialog.bind(this.mediator));
 
         parent.appendChild(anchor);
 
         this.anchor = anchor;
-    }
-
-    public changeState(state: string) {
-        switch (state) {
-            case "unhide":
-                $.show(this.anchor);
-                break;
-            default:
-                $.hide(this.anchor);
-                break;
-        }
     }
 
     public none() {

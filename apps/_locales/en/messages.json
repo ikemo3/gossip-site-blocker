@@ -17,6 +17,9 @@
   "blockButtonLabel": {
     "message": "Block"
   },
+  "blockChangeExplanation": {
+    "message": "Currently blocked for the following reason. Do you want to change it?"
+  },
   "blockThisDomainWithUrl": {
     "message": "Block this domain($domain$)",
     "placeholders": {
@@ -41,6 +44,9 @@
   },
   "blockThisPageExplicitly": {
     "message": "Block this page explicitly"
+  },
+  "byUrl": {
+    "message": "Reason: By URL"
   },
   "cancelButtonLabel": {
     "message": "Cancel"

@@ -17,6 +17,9 @@
   "blockButtonLabel": {
     "message": "ブロック"
   },
+  "blockChangeExplanation": {
+    "message": "現在以下の理由でブロックされています。変更しますか?"
+  },
   "blockThisDomainWithUrl": {
     "message": "このドメインをブロック($domain$)",
     "placeholders": {
@@ -41,6 +44,9 @@
   },
   "blockThisPageExplicitly": {
     "message": "このページを明示的にブロック"
+  },
+  "byUrl": {
+    "message": "理由: URLによって"
   },
   "cancelButtonLabel": {
     "message": "キャンセル"

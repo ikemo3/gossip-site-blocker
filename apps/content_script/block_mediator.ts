@@ -75,6 +75,17 @@ class BlockMediator {
         this.changeAnchor.unhide(this.blockReason!);
     }
 
+    public async toHard(url: string) {
+        await BlockedSitesRepository.toHard(url);
+        this.blockTarget.remove();
+        $.removeSelf(this.operationDiv);
+    }
+
+    public async unblock(url: string) {
+        await BlockedSitesRepository.del(url);
+        this.none();
+    }
+
     public async block(url: string, blockType: string) {
         await BlockedSitesRepository.add(url, blockType);
         if (blockType === "hard") {
@@ -98,8 +109,7 @@ class BlockMediator {
 
     public showChangeStateDialog() {
         // show dialog.
-        // FIXME
-        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, "");
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getWord());
     }
 
     public showBlockDialog() {
