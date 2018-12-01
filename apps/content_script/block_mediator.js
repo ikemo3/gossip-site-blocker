@@ -1,7 +1,6 @@
 class BlockMediator {
     constructor(g, blockState, defaultBlockType) {
-        const operationDiv = document.createElement("div");
-        operationDiv.classList.add("block-anchor");
+        const operationDiv = $.div("block-anchor");
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), blockState.getState());
         const hideAnchor = new HideAnchor(this, operationDiv);
         const blockAnchor = new BlockAnchor(this, operationDiv);
@@ -55,7 +54,7 @@ class BlockMediator {
         await BlockedSitesRepository.add(url, blockType);
         if (blockType === "hard") {
             this.blockTarget.remove();
-            this.operationDiv.parentElement.removeChild(this.operationDiv);
+            $.removeSelf(this.operationDiv);
             return;
         }
         if (DOMUtils.removeProtocol(this.blockTarget.getUrl()) === url) {

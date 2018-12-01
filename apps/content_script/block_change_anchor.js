@@ -1,39 +1,37 @@
 class BlockChangeAnchor {
     constructor(mediator, parent) {
         this.mediator = mediator;
-        const anchor = document.createElement("a");
-        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
-        anchor.textContent = chrome.i18n.getMessage("changeBlockState");
-        anchor.addEventListener("click", this.mediator.showChangeStateDialog.bind(this));
+        const anchor = $.anchor($.message("changeBlockState"));
+        $.onclick(anchor, this.mediator.showChangeStateDialog.bind(this));
         parent.appendChild(anchor);
         this.anchor = anchor;
     }
     changeState(state) {
         switch (state) {
             case "unhide":
-                this.anchor.style.display = "inline";
+                $.show(this.anchor);
                 break;
             default:
-                this.anchor.style.display = "none";
+                $.hide(this.anchor);
                 break;
         }
     }
     none() {
-        this.anchor.style.display = "none";
+        $.hide(this.anchor);
     }
     hide() {
-        this.anchor.style.display = "none";
+        $.hide(this.anchor);
     }
     unhide(blockReason) {
         if (blockReason.getType() === BlockType.URL_EXACTLY) {
-            this.anchor.style.display = "inline";
+            $.show(this.anchor);
         }
         else {
-            this.anchor.style.display = "none";
+            $.hide(this.anchor);
         }
     }
     block() {
-        this.anchor.style.display = "none";
+        $.hide(this.anchor);
     }
 }
 //# sourceMappingURL=block_change_anchor.js.map

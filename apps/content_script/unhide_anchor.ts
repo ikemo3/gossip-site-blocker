@@ -9,9 +9,8 @@ class UnhideAnchor {
     constructor(mediator: BlockMediator, div: HTMLDivElement) {
         this.mediator = mediator;
 
-        const anchor = document.createElement("a");
-        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
-        anchor.addEventListener("click", this.mediator.unhide.bind(this.mediator));
+        const anchor = $.anchor();
+        $.onclick(anchor, this.mediator.unhide.bind(this.mediator));
 
         div.appendChild(anchor);
 
@@ -19,20 +18,20 @@ class UnhideAnchor {
     }
 
     public none() {
-        this.anchor.style.display = "none";
+        $.hide(this.anchor);
     }
 
     public hide(reason: string) {
-        this.anchor.style.display = "inline";
-        this.anchor.textContent = UnhideAnchor.message(reason);
+        $.show(this.anchor);
+        $.text(this.anchor, UnhideAnchor.message(reason));
     }
 
     public unhide() {
-        this.anchor.style.display = "none";
+        $.hide(this.anchor);
     }
 
     public block(reason: string) {
-        this.anchor.style.display = "inline";
-        this.anchor.textContent = UnhideAnchor.message(reason);
+        $.show(this.anchor);
+        $.text(this.anchor, UnhideAnchor.message(reason));
     }
 }

@@ -14,8 +14,7 @@ class BlockMediator {
     private changeStateDialog: BlockChangeAnchorDialog;
 
     constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string) {
-        const operationDiv = document.createElement("div");
-        operationDiv.classList.add("block-anchor");
+        const operationDiv = $.div("block-anchor");
 
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), blockState.getState());
 
@@ -80,7 +79,7 @@ class BlockMediator {
         await BlockedSitesRepository.add(url, blockType);
         if (blockType === "hard") {
             this.blockTarget.remove();
-            this.operationDiv.parentElement!.removeChild(this.operationDiv);
+            $.removeSelf(this.operationDiv);
             return;
         }
 

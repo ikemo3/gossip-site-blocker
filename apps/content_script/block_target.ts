@@ -13,7 +13,7 @@ class BlockTarget {
     }
 
     public remove() {
-        this.element.parentElement!.removeChild(this.element);
+        $.removeSelf(this.element);
     }
 
     public getDOMElement() {

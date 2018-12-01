@@ -9,7 +9,7 @@ class BlockTarget {
         this.setState(state);
     }
     remove() {
-        this.element.parentElement.removeChild(this.element);
+        $.removeSelf(this.element);
     }
     getDOMElement() {
         return this.element;

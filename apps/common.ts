@@ -81,3 +81,93 @@ const DOMUtils = {
         return url.replace(/^\w+:\/\//, "");
     },
 };
+
+const $ = {
+    anchor(text?: string): HTMLAnchorElement {
+        const anchor = document.createElement("a");
+        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
+
+        if (text !== undefined) {
+            anchor.textContent = text;
+        }
+
+        return anchor;
+    },
+
+    br(): HTMLBRElement {
+        return document.createElement("br");
+    },
+
+    button(value: string, clazz: string): HTMLInputElement {
+        const button = document.createElement("input");
+        button.type = "button";
+        button.value = value;
+        button.classList.add(clazz);
+        return button;
+    },
+
+    div(clazz?: string): HTMLDivElement {
+        const div = document.createElement("div");
+
+        if (clazz !== undefined) {
+            div.classList.add(clazz);
+        }
+
+        return div;
+    },
+
+    hide(element: HTMLElement): void {
+        element.style.display = "none";
+    },
+
+    label(text: string, htmlFor: string): HTMLLabelElement {
+        const label = document.createElement("label");
+        label.htmlFor = htmlFor;
+        label.textContent = text;
+        return label;
+    },
+
+    message(messageName: string, substitutions?: string): string {
+        return chrome.i18n.getMessage(messageName, substitutions);
+    },
+
+    onclick(element: HTMLElement, listener: EventListenerOrEventListenerObject): void {
+        element.addEventListener("click", listener);
+    },
+
+    option(value: string, text: string): HTMLOptionElement {
+        const option = document.createElement("option");
+        option.setAttribute("value", value);
+        option.textContent = text;
+        return option;
+    },
+
+    radio(name: string, value: string, id: string): HTMLInputElement {
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = name;
+        radio.value = value;
+        radio.id = id;
+        return radio;
+    },
+
+    removeSelf(element: Element): void {
+        element.parentElement!.removeChild(element);
+    },
+
+    show(element: HTMLElement): void {
+        element.style.display = "inline";
+    },
+
+    text(element: HTMLElement, text: string): void {
+        element.textContent = text;
+    },
+
+    textField(size: number, value: string): HTMLInputElement {
+        const textField = document.createElement("input");
+        textField.type = "text";
+        textField.size = size;
+        textField.value = value;
+        return textField;
+    },
+};

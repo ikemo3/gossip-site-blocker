@@ -72,4 +72,76 @@ const DOMUtils = {
         return url.replace(/^\w+:\/\//, "");
     },
 };
+const $ = {
+    anchor(text) {
+        const anchor = document.createElement("a");
+        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
+        if (text !== undefined) {
+            anchor.textContent = text;
+        }
+        return anchor;
+    },
+    br() {
+        return document.createElement("br");
+    },
+    button(value, clazz) {
+        const button = document.createElement("input");
+        button.type = "button";
+        button.value = value;
+        button.classList.add(clazz);
+        return button;
+    },
+    div(clazz) {
+        const div = document.createElement("div");
+        if (clazz !== undefined) {
+            div.classList.add(clazz);
+        }
+        return div;
+    },
+    hide(element) {
+        element.style.display = "none";
+    },
+    label(text, htmlFor) {
+        const label = document.createElement("label");
+        label.htmlFor = htmlFor;
+        label.textContent = text;
+        return label;
+    },
+    message(messageName, substitutions) {
+        return chrome.i18n.getMessage(messageName, substitutions);
+    },
+    onclick(element, listener) {
+        element.addEventListener("click", listener);
+    },
+    option(value, text) {
+        const option = document.createElement("option");
+        option.setAttribute("value", value);
+        option.textContent = text;
+        return option;
+    },
+    radio(name, value, id) {
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = name;
+        radio.value = value;
+        radio.id = id;
+        return radio;
+    },
+    removeSelf(element) {
+        element.parentElement.removeChild(element);
+    },
+    show(element) {
+        element.style.display = "inline";
+    },
+    text(element, text) {
+        element.textContent = text;
+    },
+    textField(size, value) {
+        const textField = document.createElement("input");
+        textField.type = "text";
+        textField.size = size;
+        textField.value = value;
+        return textField;
+    },
+};
 //# sourceMappingURL=common.js.map

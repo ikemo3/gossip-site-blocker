@@ -6,12 +6,10 @@ class HideAnchor {
     constructor(mediator: BlockMediator, div: HTMLDivElement) {
         this.mediator = mediator;
 
-        const anchor = document.createElement("a");
-        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
-        anchor.textContent = chrome.i18n.getMessage("hideThisPage");
-        anchor.addEventListener("click", this.mediator.hide.bind(this.mediator));
+        const anchor = $.anchor($.message("hideThisPage"));
+        $.onclick(anchor, this.mediator.hide.bind(this.mediator));
 
-        const br = document.createElement("br");
+        const br = $.br();
 
         div.appendChild(anchor);
         div.appendChild(br);
@@ -21,22 +19,22 @@ class HideAnchor {
     }
 
     public none() {
-        this.anchor.style.display = "none";
-        this.br.style.display = "none";
+        $.hide(this.anchor);
+        $.hide(this.br);
     }
 
     public unhide() {
-        this.anchor.style.display = "inline";
-        this.br.style.display = "inline";
+        $.show(this.anchor);
+        $.show(this.br);
     }
 
     public hide() {
-        this.anchor.style.display = "none";
-        this.br.style.display = "none";
+        $.hide(this.anchor);
+        $.hide(this.br);
     }
 
     public block() {
-        this.anchor.style.display = "none";
-        this.br.style.display = "none";
+        $.hide(this.anchor);
+        $.hide(this.br);
     }
 }

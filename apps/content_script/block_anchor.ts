@@ -6,12 +6,10 @@ class BlockAnchor {
     constructor(mediator: BlockMediator, div: HTMLDivElement) {
         this.mediator = mediator;
 
-        const anchor = document.createElement("a");
-        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
-        anchor.textContent = chrome.i18n.getMessage("blockThisPage");
-        anchor.addEventListener("click", this.mediator.showBlockDialog.bind(this.mediator));
+        const anchor = $.anchor($.message("blockThisPage"));
+        $.onclick(anchor, this.mediator.showBlockDialog.bind(this.mediator));
 
-        const br = document.createElement("br");
+        const br = $.br();
 
         div.appendChild(anchor);
         div.appendChild(br);
@@ -21,29 +19,29 @@ class BlockAnchor {
     }
 
     public none() {
-        this.anchor.style.display = "inline";
-        this.br.style.display = "inline";
-        this.anchor.textContent = chrome.i18n.getMessage("blockThisPage");
+        $.show(this.anchor);
+        $.show(this.br);
+        $.text(this.anchor, $.message("blockThisPage"));
     }
 
     public unhide(blockReason: BlockReason) {
         if (blockReason.getType() !== BlockType.URL_EXACTLY) {
-            this.anchor.style.display = "inline";
-            this.br.style.display = "inline";
-            this.anchor.textContent = chrome.i18n.getMessage("blockThisPageExplicitly");
+            $.show(this.anchor);
+            $.show(this.br);
+            $.text(this.anchor, $.message("blockThisPageExplicitly"));
         } else {
-            this.anchor.style.display = "none";
-            this.br.style.display = "none";
+            $.hide(this.anchor);
+            $.hide(this.br);
         }
     }
 
     public hide() {
-        this.anchor.style.display = "none";
-        this.br.style.display = "none";
+        $.hide(this.anchor);
+        $.hide(this.br);
     }
 
     public block() {
-        this.anchor.style.display = "none";
-        this.br.style.display = "none";
+        $.hide(this.anchor);
+        $.hide(this.br);
     }
 }
