@@ -2,15 +2,17 @@ class BlockChangeAnchor {
     private readonly mediator: BlockMediator;
     private readonly anchor: HTMLAnchorElement;
 
-    constructor(mediator: BlockMediator, parent: HTMLDivElement) {
+    constructor(mediator: BlockMediator) {
         this.mediator = mediator;
 
         const anchor = $.anchor($.message("changeBlockState"));
         $.onclick(anchor, this.mediator.showChangeStateDialog.bind(this.mediator));
 
-        parent.appendChild(anchor);
-
         this.anchor = anchor;
+    }
+
+    public getElement(): Element {
+        return this.anchor;
     }
 
     public hide() {

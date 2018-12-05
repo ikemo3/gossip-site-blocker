@@ -1,10 +1,12 @@
 class HideAnchor {
-    constructor(mediator, div) {
+    constructor(mediator) {
         this.mediator = mediator;
         const anchor = $.anchor($.message("hideThisPage"));
         $.onclick(anchor, this.mediator.hide.bind(this.mediator));
-        div.appendChild(anchor);
         this.anchor = anchor;
+    }
+    getElement() {
+        return this.anchor;
     }
     show() {
         $.show(this.anchor);

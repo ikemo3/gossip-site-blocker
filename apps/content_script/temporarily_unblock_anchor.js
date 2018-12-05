@@ -1,13 +1,12 @@
 class TemporarilyUnblockAnchor {
-    static message(reason) {
-        return chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(reason)]);
-    }
-    constructor(mediator, div) {
+    constructor(mediator) {
         this.mediator = mediator;
         const anchor = $.anchor();
         $.onclick(anchor, this.mediator.temporarilyUnblock.bind(this.mediator));
-        div.appendChild(anchor);
         this.anchor = anchor;
+    }
+    getElement() {
+        return this.anchor;
     }
     show(reason) {
         $.show(this.anchor);
@@ -15,6 +14,9 @@ class TemporarilyUnblockAnchor {
     }
     hide() {
         $.hide(this.anchor);
+    }
+    static message(reason) {
+        return chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(reason)]);
     }
 }
 //# sourceMappingURL=temporarily_unblock_anchor.js.map

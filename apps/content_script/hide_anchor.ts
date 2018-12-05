@@ -2,15 +2,17 @@ class HideAnchor {
     private readonly anchor: HTMLAnchorElement;
     private readonly mediator: BlockMediator;
 
-    constructor(mediator: BlockMediator, div: HTMLDivElement) {
+    constructor(mediator: BlockMediator) {
         this.mediator = mediator;
 
         const anchor = $.anchor($.message("hideThisPage"));
         $.onclick(anchor, this.mediator.hide.bind(this.mediator));
 
-        div.appendChild(anchor);
-
         this.anchor = anchor;
+    }
+
+    public getElement(): Element {
+        return this.anchor;
     }
 
     public show() {

@@ -1,10 +1,12 @@
 class BlockAnchor {
-    constructor(mediator, div) {
+    constructor(mediator) {
         this.mediator = mediator;
         const anchor = $.anchor($.message("blockThisPage"));
         $.onclick(anchor, this.mediator.showBlockDialog.bind(this.mediator));
-        div.appendChild(anchor);
         this.anchor = anchor;
+    }
+    getElement() {
+        return this.anchor;
     }
     showBlockThisPage() {
         $.show(this.anchor);

@@ -1,21 +1,22 @@
 class BlockMediator {
     constructor(g, blockState, defaultBlockType) {
-        const operationDiv = $.div("block-anchor");
         const blockTarget = new BlockTarget(this, g.getElement());
-        const hideAnchor = new HideAnchor(this, operationDiv);
-        this.separator1 = $.span(" ");
-        operationDiv.appendChild(this.separator1);
-        const blockAnchor = new BlockAnchor(this, operationDiv);
-        const temporarilyUnblockAnchor = new TemporarilyUnblockAnchor(this, operationDiv);
         this.url = g.getUrl();
+        this.separator1 = $.span(" ");
         this.blockReason = blockState.getReason();
         this.blockTarget = blockTarget;
-        this.blockAnchor = blockAnchor;
-        this.operationDiv = operationDiv;
-        this.temporarilyUnblockAnchor = temporarilyUnblockAnchor;
-        this.hideAnchor = hideAnchor;
-        this.changeAnchor = new BlockChangeAnchor(this, operationDiv);
+        this.blockAnchor = new BlockAnchor(this);
+        this.operationDiv = $.div("block-anchor");
+        this.temporarilyUnblockAnchor = new TemporarilyUnblockAnchor(this);
+        this.hideAnchor = new HideAnchor(this);
+        this.changeAnchor = new BlockChangeAnchor(this);
         this.defaultBlockType = defaultBlockType;
+        // insert anchors to operationDiv
+        this.operationDiv.appendChild(this.hideAnchor.getElement());
+        this.operationDiv.appendChild(this.separator1);
+        this.operationDiv.appendChild(this.blockAnchor.getElement());
+        this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
+        this.operationDiv.appendChild(this.changeAnchor.getElement());
         // insert anchor after target.
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
         switch (blockState.getState()) {
