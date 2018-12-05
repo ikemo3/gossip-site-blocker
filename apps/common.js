@@ -133,6 +133,11 @@ const $ = {
     show(element) {
         element.style.display = "inline";
     },
+    span(text) {
+        const span = document.createElement("span");
+        span.textContent = text;
+        return span;
+    },
     text(element, text) {
         element.textContent = text;
     },

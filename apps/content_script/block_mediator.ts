@@ -5,6 +5,7 @@ class BlockMediator {
 
     private readonly operationDiv: HTMLDivElement;
     private readonly hideAnchor: HideAnchor;
+    private readonly separator1: HTMLSpanElement;
     private readonly unhideAnchor: UnhideAnchor;
     private readonly blockAnchor: BlockAnchor;
     private readonly changeAnchor: BlockChangeAnchor;
@@ -19,6 +20,8 @@ class BlockMediator {
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), blockState.getState());
 
         const hideAnchor = new HideAnchor(this, operationDiv);
+        this.separator1 = $.span(" ");
+        operationDiv.appendChild(this.separator1);
         const blockAnchor = new BlockAnchor(this, operationDiv);
         const unhideAnchor = new UnhideAnchor(this, operationDiv);
 

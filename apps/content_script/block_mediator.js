@@ -3,6 +3,8 @@ class BlockMediator {
         const operationDiv = $.div("block-anchor");
         const blockTarget = new BlockTarget(this, g.getElement(), g.getUrl(), blockState.getState());
         const hideAnchor = new HideAnchor(this, operationDiv);
+        this.separator1 = $.span(" ");
+        operationDiv.appendChild(this.separator1);
         const blockAnchor = new BlockAnchor(this, operationDiv);
         const unhideAnchor = new UnhideAnchor(this, operationDiv);
         this.url = g.getUrl();

@@ -159,6 +159,12 @@ const $ = {
         element.style.display = "inline";
     },
 
+    span(text: string): HTMLSpanElement {
+        const span = document.createElement("span");
+        span.textContent = text;
+        return span;
+    },
+
     text(element: HTMLElement, text: string): void {
         element.textContent = text;
     },
