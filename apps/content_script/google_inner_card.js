@@ -35,11 +35,23 @@ class GoogleInnerCard {
     getElement() {
         return this.element;
     }
+    getOperationInsertPoint() {
+        const div = this.element.querySelector("div");
+        if (div !== null) {
+            return div;
+        }
+        else {
+            return this.element;
+        }
+    }
     deleteElement() {
         this.element.parentElement.removeChild(this.element);
     }
     contains(keyword) {
         return this.title !== "" && this.title.includes(keyword);
+    }
+    getPosition() {
+        return "relative";
     }
 }
 //# sourceMappingURL=google_inner_card.js.map

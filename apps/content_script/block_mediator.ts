@@ -5,7 +5,6 @@ class BlockMediator {
 
     private readonly operationDiv: HTMLDivElement;
     private readonly hideAnchor: HideAnchor;
-    private readonly separator1: HTMLSpanElement;
     private readonly temporarilyUnblockAnchor: TemporarilyUnblockAnchor;
     private readonly blockAnchor: BlockAnchor;
     private readonly changeAnchor: BlockChangeAnchor;
@@ -16,27 +15,44 @@ class BlockMediator {
 
     constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string) {
         const blockTarget = new BlockTarget(this, g.getElement());
+        const blockAnchorPosition: BlockAnchorPosition = 0;
 
+        this.operationDiv = $.div("block-anchor");
         this.url = g.getUrl();
-        this.separator1 = $.span(" ");
         this.blockReason = blockState.getReason();
         this.blockTarget = blockTarget;
         this.blockAnchor = new BlockAnchor(this);
-        this.operationDiv = $.div("block-anchor");
         this.temporarilyUnblockAnchor = new TemporarilyUnblockAnchor(this);
         this.hideAnchor = new HideAnchor(this);
         this.changeAnchor = new BlockChangeAnchor(this);
         this.defaultBlockType = defaultBlockType;
 
-        // insert anchors to operationDiv
-        this.operationDiv.appendChild(this.hideAnchor.getElement());
-        this.operationDiv.appendChild(this.separator1);
-        this.operationDiv.appendChild(this.blockAnchor.getElement());
-        this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
-        this.operationDiv.appendChild(this.changeAnchor.getElement());
+        let operationsAnchor;
+        switch (blockAnchorPosition) {
+            case BlockAnchorPosition.RIGHT:
+                // insert menu after action menu.
+                operationsAnchor = new OperationsAnchor(this.hideAnchor,
+                    this.blockAnchor, this.changeAnchor, g.getPosition());
+                DOMUtils.insertAfter(g.getOperationInsertPoint(), operationsAnchor.getElement());
 
-        // insert anchor after target.
-        DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+                // insert links after block target.
+                this.operationDiv.classList.add("block-anchor-tmp-unblock-only");
+                this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
+                DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+
+                break;
+            case BlockAnchorPosition.BOTTOM:
+                // insert links after block target.
+                this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
+                this.operationDiv.appendChild(this.hideAnchor.getElement());
+                this.operationDiv.appendChild(this.blockAnchor.getElement());
+                this.operationDiv.appendChild(this.changeAnchor.getElement());
+                DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+
+                break;
+            default:
+                throw new ApplicationError("illegal blockAnchorPosition:" + blockAnchorPosition);
+        }
 
         switch (blockState.getState()) {
             case "none":

@@ -51,11 +51,24 @@ class GoogleInnerCard implements IBlockable {
         return this.element;
     }
 
+    public getOperationInsertPoint(): Element {
+        const div = this.element.querySelector("div");
+        if (div !== null) {
+            return div;
+        } else {
+            return this.element;
+        }
+    }
+
     public deleteElement() {
         this.element.parentElement!.removeChild(this.element);
     }
 
     public contains(keyword: string): boolean {
         return this.title !== "" && this.title.includes(keyword);
+    }
+
+    public getPosition(): string {
+        return "relative";
     }
 }

@@ -12,7 +12,7 @@ class BlockChangeAnchor {
         $.hide(this.anchor);
     }
     show() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
     }
 }
 //# sourceMappingURL=block_change_anchor.js.map

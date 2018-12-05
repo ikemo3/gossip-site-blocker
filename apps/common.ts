@@ -159,9 +159,18 @@ const $ = {
         element.style.display = "inline";
     },
 
-    span(text: string): HTMLSpanElement {
+    showBlock(element: HTMLElement): void {
+        element.style.display = "block";
+    },
+
+    span(text: string, clazz?: string): HTMLSpanElement {
         const span = document.createElement("span");
         span.textContent = text;
+
+        if (clazz !== undefined) {
+            span.classList.add(clazz);
+        }
+
         return span;
     },
 
@@ -177,3 +186,21 @@ const $ = {
         return textField;
     },
 };
+
+enum BlockAnchorPosition {
+    RIGHT,
+    BOTTOM,
+}
+
+class ApplicationError implements Error {
+    public message: string;
+    public name: string = "Application Error";
+
+    constructor(message: string) {
+        this.message = message;
+    }
+
+    public toString() {
+        return this.name + ": " + this.message;
+    }
+}

@@ -16,7 +16,7 @@ class HideAnchor {
     }
 
     public show() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
     }
 
     public hide() {

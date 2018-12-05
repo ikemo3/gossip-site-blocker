@@ -4,6 +4,10 @@ interface IBlockable {
     contains(keyword: string): boolean;
 
     getElement(): Element;
+
+    getOperationInsertPoint(): Element;
+
+    getPosition(): string;
 }
 
 function blockGoogleElement(g1: Element, options: IOptions): boolean {

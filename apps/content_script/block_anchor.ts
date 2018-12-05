@@ -16,12 +16,12 @@ class BlockAnchor {
     }
 
     public showBlockThisPage() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
         $.text(this.anchor, $.message("blockThisPage"));
     }
 
     public showBlockExplicitly() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
         $.text(this.anchor, $.message("blockThisPageExplicitly"));
     }
 

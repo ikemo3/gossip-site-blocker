@@ -9,7 +9,7 @@ class HideAnchor {
         return this.anchor;
     }
     show() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
     }
     hide() {
         $.hide(this.anchor);

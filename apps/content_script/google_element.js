@@ -68,6 +68,14 @@ class GoogleElement {
         this.element = element;
         this.title = title;
         this.contents = contents;
+        // operation insert point
+        const actionMenu = this.element.querySelector(".action-menu");
+        if (actionMenu !== null) {
+            this.operationInsertPoint = actionMenu;
+        }
+        else {
+            this.operationInsertPoint = element.querySelector("a");
+        }
     }
     isIgnoreable() {
         return this.ignoreExplicitly;
@@ -87,8 +95,14 @@ class GoogleElement {
     getElement() {
         return this.element;
     }
+    getOperationInsertPoint() {
+        return this.operationInsertPoint;
+    }
     deleteElement() {
         this.element.parentElement.removeChild(this.element);
+    }
+    getPosition() {
+        return "absolute";
     }
 }
 //# sourceMappingURL=google_element.js.map

@@ -133,9 +133,15 @@ const $ = {
     show(element) {
         element.style.display = "inline";
     },
-    span(text) {
+    showBlock(element) {
+        element.style.display = "block";
+    },
+    span(text, clazz) {
         const span = document.createElement("span");
         span.textContent = text;
+        if (clazz !== undefined) {
+            span.classList.add(clazz);
+        }
         return span;
     },
     text(element, text) {
@@ -149,4 +155,18 @@ const $ = {
         return textField;
     },
 };
+var BlockAnchorPosition;
+(function (BlockAnchorPosition) {
+    BlockAnchorPosition[BlockAnchorPosition["RIGHT"] = 0] = "RIGHT";
+    BlockAnchorPosition[BlockAnchorPosition["BOTTOM"] = 1] = "BOTTOM";
+})(BlockAnchorPosition || (BlockAnchorPosition = {}));
+class ApplicationError {
+    constructor(message) {
+        this.name = "Application Error";
+        this.message = message;
+    }
+    toString() {
+        return this.name + ": " + this.message;
+    }
+}
 //# sourceMappingURL=common.js.map

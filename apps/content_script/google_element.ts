@@ -5,6 +5,7 @@ class GoogleElement implements IBlockable {
     private readonly element: Element;
     private readonly title: string | null;
     private readonly contents: string;
+    private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
         const classList = element.classList;
@@ -91,6 +92,15 @@ class GoogleElement implements IBlockable {
         this.element = element;
         this.title = title;
         this.contents = contents;
+
+        // operation insert point
+        const actionMenu = this.element.querySelector(".action-menu");
+
+        if (actionMenu !== null) {
+            this.operationInsertPoint = actionMenu;
+        } else {
+            this.operationInsertPoint = element.querySelector("a")!;
+        }
     }
 
     public isIgnoreable() {
@@ -117,7 +127,15 @@ class GoogleElement implements IBlockable {
         return this.element;
     }
 
+    public getOperationInsertPoint(): Element {
+        return this.operationInsertPoint;
+    }
+
     public deleteElement() {
         this.element.parentElement!.removeChild(this.element);
+    }
+
+    public getPosition(): string {
+        return "absolute";
     }
 }

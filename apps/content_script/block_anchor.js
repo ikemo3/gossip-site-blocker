@@ -9,11 +9,11 @@ class BlockAnchor {
         return this.anchor;
     }
     showBlockThisPage() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
         $.text(this.anchor, $.message("blockThisPage"));
     }
     showBlockExplicitly() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
         $.text(this.anchor, $.message("blockThisPageExplicitly"));
     }
     hide() {

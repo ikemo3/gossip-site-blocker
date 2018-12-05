@@ -20,6 +20,6 @@ class BlockChangeAnchor {
     }
 
     public show() {
-        $.show(this.anchor);
+        $.showBlock(this.anchor);
     }
 }
