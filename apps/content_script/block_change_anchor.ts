@@ -13,23 +13,11 @@ class BlockChangeAnchor {
         this.anchor = anchor;
     }
 
-    public none() {
-        $.hide(this.anchor);
-    }
-
     public hide() {
         $.hide(this.anchor);
     }
 
-    public unhide(blockReason: BlockReason) {
-        if (blockReason.getType() === BlockType.URL_EXACTLY) {
-            $.show(this.anchor);
-        } else {
-            $.hide(this.anchor);
-        }
-    }
-
-    public block() {
-        $.hide(this.anchor);
+    public show() {
+        $.show(this.anchor);
     }
 }

@@ -6,23 +6,15 @@ class BlockAnchor {
         div.appendChild(anchor);
         this.anchor = anchor;
     }
-    none() {
+    showBlockThisPage() {
         $.show(this.anchor);
         $.text(this.anchor, $.message("blockThisPage"));
     }
-    unhide(blockReason) {
-        if (blockReason.getType() !== BlockType.URL_EXACTLY) {
-            $.show(this.anchor);
-            $.text(this.anchor, $.message("blockThisPageExplicitly"));
-        }
-        else {
-            $.hide(this.anchor);
-        }
+    showBlockExplicitly() {
+        $.show(this.anchor);
+        $.text(this.anchor, $.message("blockThisPageExplicitly"));
     }
     hide() {
-        $.hide(this.anchor);
-    }
-    block() {
         $.hide(this.anchor);
     }
 }

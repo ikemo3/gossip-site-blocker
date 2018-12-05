@@ -6,22 +6,11 @@ class BlockChangeAnchor {
         parent.appendChild(anchor);
         this.anchor = anchor;
     }
-    none() {
-        $.hide(this.anchor);
-    }
     hide() {
         $.hide(this.anchor);
     }
-    unhide(blockReason) {
-        if (blockReason.getType() === BlockType.URL_EXACTLY) {
-            $.show(this.anchor);
-        }
-        else {
-            $.hide(this.anchor);
-        }
-    }
-    block() {
-        $.hide(this.anchor);
+    show() {
+        $.show(this.anchor);
     }
 }
 //# sourceMappingURL=block_change_anchor.js.map

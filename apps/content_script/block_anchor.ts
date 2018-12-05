@@ -13,25 +13,17 @@ class BlockAnchor {
         this.anchor = anchor;
     }
 
-    public none() {
+    public showBlockThisPage() {
         $.show(this.anchor);
         $.text(this.anchor, $.message("blockThisPage"));
     }
 
-    public unhide(blockReason: BlockReason) {
-        if (blockReason.getType() !== BlockType.URL_EXACTLY) {
-            $.show(this.anchor);
-            $.text(this.anchor, $.message("blockThisPageExplicitly"));
-        } else {
-            $.hide(this.anchor);
-        }
+    public showBlockExplicitly() {
+        $.show(this.anchor);
+        $.text(this.anchor, $.message("blockThisPageExplicitly"));
     }
 
     public hide() {
-        $.hide(this.anchor);
-    }
-
-    public block() {
         $.hide(this.anchor);
     }
 }

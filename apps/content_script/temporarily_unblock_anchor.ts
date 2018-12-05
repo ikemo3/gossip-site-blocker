@@ -1,4 +1,4 @@
-class UnhideAnchor {
+class TemporarilyUnblockAnchor {
     private static message(reason: string) {
         return chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(reason)]);
     }
@@ -10,28 +10,19 @@ class UnhideAnchor {
         this.mediator = mediator;
 
         const anchor = $.anchor();
-        $.onclick(anchor, this.mediator.unhide.bind(this.mediator));
+        $.onclick(anchor, this.mediator.temporarilyUnblock.bind(this.mediator));
 
         div.appendChild(anchor);
 
         this.anchor = anchor;
     }
 
-    public none() {
-        $.hide(this.anchor);
-    }
-
-    public hide(reason: string) {
+    public show(reason: string) {
         $.show(this.anchor);
-        $.text(this.anchor, UnhideAnchor.message(reason));
+        $.text(this.anchor, TemporarilyUnblockAnchor.message(reason));
     }
 
-    public unhide() {
+    public hide() {
         $.hide(this.anchor);
-    }
-
-    public block(reason: string) {
-        $.show(this.anchor);
-        $.text(this.anchor, UnhideAnchor.message(reason));
     }
 }

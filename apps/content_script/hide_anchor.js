@@ -6,16 +6,10 @@ class HideAnchor {
         div.appendChild(anchor);
         this.anchor = anchor;
     }
-    none() {
-        $.hide(this.anchor);
-    }
-    unhide() {
+    show() {
         $.show(this.anchor);
     }
     hide() {
-        $.hide(this.anchor);
-    }
-    block() {
         $.hide(this.anchor);
     }
 }

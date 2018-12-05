@@ -13,19 +13,11 @@ class HideAnchor {
         this.anchor = anchor;
     }
 
-    public none() {
-        $.hide(this.anchor);
-    }
-
-    public unhide() {
+    public show() {
         $.show(this.anchor);
     }
 
     public hide() {
-        $.hide(this.anchor);
-    }
-
-    public block() {
         $.hide(this.anchor);
     }
 }

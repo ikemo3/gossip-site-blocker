@@ -231,7 +231,7 @@
         "content_script/google_element.js",
         "content_script/google_inner_card.js",
         "content_script/hide_anchor.js",
-        "content_script/unhide_anchor.js",
+        "content_script/temporarily_unblock_anchor.js",
         "content_script/document_start/start.js"
       ],
       "css": [
