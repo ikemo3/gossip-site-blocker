@@ -187,9 +187,9 @@ const $ = {
     },
 };
 
-enum BlockAnchorPosition {
-    RIGHT,
-    BOTTOM,
+enum MenuPosition {
+    RIGHT = "right",
+    BOTTOM = "bottom",
 }
 
 class ApplicationError implements Error {

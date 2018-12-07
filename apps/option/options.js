@@ -8,6 +8,7 @@ const clearButton = document.getElementById("clearButton");
 const developerCheckbox = document.getElementById("developerCheckbox");
 const autoBlockIDNCheckbox = document.getElementById("autoBlockIDNCheckBox");
 const defaultBlockSelect = document.getElementById("defaultBlockType");
+const menuPositionSelect = document.getElementById("menuPosition");
 async function show_lists() {
     const sites = await BlockedSitesRepository.load();
     // Add after clear.
@@ -51,6 +52,9 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     const defaultBlockType = await OptionRepository.defaultBlockType();
     Logger.debug("defaultBlockType is ", defaultBlockType);
     defaultBlockSelect.value = defaultBlockType;
+    const menuPosition = await OptionRepository.menuPosition();
+    Logger.debug("menuPosition is ", menuPosition);
+    menuPositionSelect.value = menuPosition;
 });
 developerCheckbox.addEventListener("click", async (event) => {
     const checkbox = event.target;
@@ -65,5 +69,10 @@ defaultBlockSelect.addEventListener("change", async (event) => {
     const select = event.target;
     const value = select.value;
     await OptionRepository.setDefaultBlockType(value);
+});
+menuPositionSelect.addEventListener("change", async (event) => {
+    const select = event.target;
+    const value = select.value;
+    await OptionRepository.setMenuPosition(value);
 });
 //# sourceMappingURL=options.js.map

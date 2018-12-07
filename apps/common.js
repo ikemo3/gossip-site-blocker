@@ -155,11 +155,11 @@ const $ = {
         return textField;
     },
 };
-var BlockAnchorPosition;
-(function (BlockAnchorPosition) {
-    BlockAnchorPosition[BlockAnchorPosition["RIGHT"] = 0] = "RIGHT";
-    BlockAnchorPosition[BlockAnchorPosition["BOTTOM"] = 1] = "BOTTOM";
-})(BlockAnchorPosition || (BlockAnchorPosition = {}));
+var MenuPosition;
+(function (MenuPosition) {
+    MenuPosition["RIGHT"] = "right";
+    MenuPosition["BOTTOM"] = "bottom";
+})(MenuPosition || (MenuPosition = {}));
 class ApplicationError {
     constructor(message) {
         this.name = "Application Error";

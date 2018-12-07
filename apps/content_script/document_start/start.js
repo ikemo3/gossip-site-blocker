@@ -33,8 +33,9 @@ observer.observe(document.documentElement, config);
     const bannedWords = await BannedWordRepository.load();
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType = await OptionRepository.defaultBlockType();
+    const menuPosition = await OptionRepository.menuPosition();
     Logger.debug("autoBlockIDNOption:", idnOption);
-    options = { blockedSites, bannedWords, idnOption, defaultBlockType };
+    options = { blockedSites, bannedWords, idnOption, defaultBlockType, menuPosition };
     for (const node of pendingsGoogle) {
         tryBlockGoogleElement(node, options);
     }

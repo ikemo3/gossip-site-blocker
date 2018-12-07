@@ -132,6 +132,15 @@
   "importTextAreaLabel": {
     "message": "追加するサイトを1行に1つずつ入力して「インポート」ボタンを押してください。"
   },
+  "menuBottom": {
+    "message": "下"
+  },
+  "menuPosition": {
+    "message": "メニューの位置"
+  },
+  "menuRight": {
+    "message": "右"
+  },
   "optionTitle": {
     "message": "ゴシップサイトブロッカー: オプション"
   },

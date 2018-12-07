@@ -11,7 +11,7 @@ function blockGoogleElement(g1, options) {
         g.deleteElement();
         return true;
     }
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType);
+    const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;
 }
 function blockGoogleInnerCard(g1, options) {
@@ -24,7 +24,7 @@ function blockGoogleInnerCard(g1, options) {
         g.deleteElement();
         return true;
     }
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType);
+    const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     mediator.setWrappable("205px");
     return true;
 }

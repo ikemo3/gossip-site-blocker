@@ -1,7 +1,6 @@
 class BlockMediator {
-    constructor(g, blockState, defaultBlockType) {
+    constructor(g, blockState, defaultBlockType, menuPosition) {
         const blockTarget = new BlockTarget(this, g.getElement());
-        const blockAnchorPosition = 0;
         this.operationDiv = $.div("block-anchor");
         this.url = g.getUrl();
         this.blockReason = blockState.getReason();
@@ -12,8 +11,8 @@ class BlockMediator {
         this.changeAnchor = new BlockChangeAnchor(this);
         this.defaultBlockType = defaultBlockType;
         let operationsAnchor;
-        switch (blockAnchorPosition) {
-            case BlockAnchorPosition.RIGHT:
+        switch (menuPosition) {
+            case MenuPosition.RIGHT:
                 // insert menu after action menu.
                 operationsAnchor = new OperationsAnchor(this.hideAnchor, this.blockAnchor, this.changeAnchor, g.getPosition());
                 DOMUtils.insertAfter(g.getOperationInsertPoint(), operationsAnchor.getElement());
@@ -22,7 +21,7 @@ class BlockMediator {
                 this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
                 DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
                 break;
-            case BlockAnchorPosition.BOTTOM:
+            case MenuPosition.BOTTOM:
                 // insert links after block target.
                 this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
                 this.operationDiv.appendChild(this.hideAnchor.getElement());
@@ -31,7 +30,7 @@ class BlockMediator {
                 DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
                 break;
             default:
-                throw new ApplicationError("illegal blockAnchorPosition:" + blockAnchorPosition);
+                throw new ApplicationError("illegal menuPosition:" + menuPosition);
         }
         switch (blockState.getState()) {
             case "none":

@@ -3,6 +3,7 @@ interface IOptions {
     bannedWords: IBannedWord[];
     idnOption: IAutoBlockIDNOption;
     defaultBlockType: string;
+    menuPosition: MenuPosition;
 }
 
 let options: IOptions | null = null;
@@ -40,9 +41,10 @@ observer.observe(document.documentElement, config);
     const bannedWords: IBannedWord[] = await BannedWordRepository.load();
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
+    const menuPosition: MenuPosition = await OptionRepository.menuPosition();
     Logger.debug("autoBlockIDNOption:", idnOption);
 
-    options = {blockedSites, bannedWords, idnOption, defaultBlockType};
+    options = {blockedSites, bannedWords, idnOption, defaultBlockType, menuPosition};
 
     for (const node of pendingsGoogle) {
         tryBlockGoogleElement(node, options);

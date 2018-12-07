@@ -132,6 +132,15 @@
   "importTextAreaLabel": {
     "message": "Please enter sites to add, one per line, and press the 'Import' button."
   },
+  "menuBottom": {
+    "message": "Bottom"
+  },
+  "menuPosition": {
+    "message": "Menu Position"
+  },
+  "menuRight": {
+    "message": "Right"
+  },
   "optionTitle": {
     "message": "Gossip Site Blocker: Option"
   },

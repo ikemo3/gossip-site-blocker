@@ -10,6 +10,10 @@ interface IOptionRepository {
     defaultBlockType(): Promise<string>;
 
     setDefaultBlockType(type: string): Promise<void>;
+
+    menuPosition(): Promise<MenuPosition>;
+
+    setMenuPosition(position: string): Promise<void>;
 }
 
 interface IDefaultBlockTypeOption {
@@ -26,6 +30,10 @@ interface IAutoBlockIDNOptionStorage {
 
 interface IAutoBlockIDNOption {
     enabled: boolean;
+}
+
+interface IMenuPositionOption {
+    menuPosition: string;
 }
 
 const OptionRepository: IOptionRepository = {
@@ -61,5 +69,24 @@ const OptionRepository: IOptionRepository = {
         await ChromeStorage.save({defaultBlockType: type});
 
         Logger.log("set 'defaultBlockType' to =>", type);
+    },
+
+    async menuPosition(): Promise<MenuPosition> {
+        const items = await ChromeStorage.load({menuPosition: "right"}) as IMenuPositionOption;
+        const menuPosition = items.menuPosition;
+
+        switch (menuPosition) {
+            case MenuPosition.BOTTOM:
+                return MenuPosition.BOTTOM;
+            case MenuPosition.RIGHT:
+            default:
+                return MenuPosition.RIGHT;
+        }
+    },
+
+    async setMenuPosition(position: string): Promise<void> {
+        await ChromeStorage.save({menuPosition: position});
+
+        Logger.debug("set 'menuPosition' to =>", position);
     },
 };

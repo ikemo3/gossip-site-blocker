@@ -10,6 +10,7 @@ const developerCheckbox = document.getElementById("developerCheckbox") as HTMLIn
 
 const autoBlockIDNCheckbox = document.getElementById("autoBlockIDNCheckBox") as HTMLInputElement;
 const defaultBlockSelect = document.getElementById("defaultBlockType") as HTMLSelectElement;
+const menuPositionSelect = document.getElementById("menuPosition") as HTMLSelectElement;
 
 async function show_lists() {
     const sites = await BlockedSitesRepository.load();
@@ -65,6 +66,10 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     Logger.debug("defaultBlockType is ", defaultBlockType);
     defaultBlockSelect.value = defaultBlockType;
+
+    const menuPosition: string = await OptionRepository.menuPosition();
+    Logger.debug("menuPosition is ", menuPosition);
+    menuPositionSelect.value = menuPosition;
 });
 
 developerCheckbox.addEventListener("click", async (event) => {
@@ -85,4 +90,11 @@ defaultBlockSelect.addEventListener("change", async (event) => {
 
     const value = select.value;
     await OptionRepository.setDefaultBlockType(value);
+});
+
+menuPositionSelect.addEventListener("change", async (event) => {
+    const select = event.target as HTMLSelectElement;
+
+    const value = select.value;
+    await OptionRepository.setMenuPosition(value);
 });

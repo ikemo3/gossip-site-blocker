@@ -24,5 +24,20 @@ const OptionRepository = {
         await ChromeStorage.save({ defaultBlockType: type });
         Logger.log("set 'defaultBlockType' to =>", type);
     },
+    async menuPosition() {
+        const items = await ChromeStorage.load({ menuPosition: "right" });
+        const menuPosition = items.menuPosition;
+        switch (menuPosition) {
+            case MenuPosition.BOTTOM:
+                return MenuPosition.BOTTOM;
+            case MenuPosition.RIGHT:
+            default:
+                return MenuPosition.RIGHT;
+        }
+    },
+    async setMenuPosition(position) {
+        await ChromeStorage.save({ menuPosition: position });
+        Logger.debug("set 'menuPosition' to =>", position);
+    },
 };
 //# sourceMappingURL=config.js.map

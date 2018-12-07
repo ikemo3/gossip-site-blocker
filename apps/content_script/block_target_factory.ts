@@ -28,7 +28,7 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
         return true;
     }
 
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType);
+    const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;
 }
 
@@ -46,7 +46,7 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
         return true;
     }
 
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType);
+    const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     mediator.setWrappable("205px");
     return true;
 }

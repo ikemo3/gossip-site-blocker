@@ -13,9 +13,8 @@ class BlockMediator {
     private blockDialog: BlockDialog;
     private changeStateDialog: BlockChangeAnchorDialog;
 
-    constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string) {
+    constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string, menuPosition: MenuPosition) {
         const blockTarget = new BlockTarget(this, g.getElement());
-        const blockAnchorPosition: BlockAnchorPosition = 0;
 
         this.operationDiv = $.div("block-anchor");
         this.url = g.getUrl();
@@ -28,8 +27,8 @@ class BlockMediator {
         this.defaultBlockType = defaultBlockType;
 
         let operationsAnchor;
-        switch (blockAnchorPosition) {
-            case BlockAnchorPosition.RIGHT:
+        switch (menuPosition) {
+            case MenuPosition.RIGHT:
                 // insert menu after action menu.
                 operationsAnchor = new OperationsAnchor(this.hideAnchor,
                     this.blockAnchor, this.changeAnchor, g.getPosition());
@@ -41,7 +40,7 @@ class BlockMediator {
                 DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
                 break;
-            case BlockAnchorPosition.BOTTOM:
+            case MenuPosition.BOTTOM:
                 // insert links after block target.
                 this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
                 this.operationDiv.appendChild(this.hideAnchor.getElement());
@@ -51,7 +50,7 @@ class BlockMediator {
 
                 break;
             default:
-                throw new ApplicationError("illegal blockAnchorPosition:" + blockAnchorPosition);
+                throw new ApplicationError("illegal menuPosition:" + menuPosition);
         }
 
         switch (blockState.getState()) {
