@@ -72,15 +72,15 @@ const OptionRepository: IOptionRepository = {
     },
 
     async menuPosition(): Promise<MenuPosition> {
-        const items = await ChromeStorage.load({menuPosition: "right"}) as IMenuPositionOption;
+        const items = await ChromeStorage.load({menuPosition: "bottom"}) as IMenuPositionOption;
         const menuPosition = items.menuPosition;
 
         switch (menuPosition) {
-            case MenuPosition.BOTTOM:
-                return MenuPosition.BOTTOM;
             case MenuPosition.RIGHT:
-            default:
                 return MenuPosition.RIGHT;
+            case MenuPosition.BOTTOM:
+            default:
+                return MenuPosition.BOTTOM;
         }
     },
 

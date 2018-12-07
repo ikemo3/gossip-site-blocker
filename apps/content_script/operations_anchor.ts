@@ -6,6 +6,7 @@ class OperationsAnchor {
     private readonly changeAnchor: BlockChangeAnchor;
     private isShow: boolean;
     private readonly div: HTMLDivElement;
+    private readonly parent: HTMLElement;
 
     constructor(hideAnchor: HideAnchor, blockAnchor: BlockAnchor, changeAnchor: BlockChangeAnchor, position: string) {
         this.operationSpan = $.span("", "block-anchor");
@@ -31,6 +32,13 @@ class OperationsAnchor {
         this.div = div;
 
         this.isShow = false;
+
+        // FIXME: ad hoc
+        if (position === "absolute") {
+            this.parent = this.iconAnchor;
+        } else {
+            this.parent = this.operationSpan;
+        }
     }
 
     public getElement(): Element {
@@ -41,9 +49,9 @@ class OperationsAnchor {
         this.isShow = !this.isShow;
 
         if (this.isShow) {
-            this.iconAnchor.appendChild(this.div);
+            this.parent.appendChild(this.div);
         } else {
-            this.iconAnchor.removeChild(this.div);
+            this.parent.removeChild(this.div);
         }
     }
 }

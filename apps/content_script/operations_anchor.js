@@ -20,6 +20,13 @@ class OperationsAnchor {
         div.appendChild(this.changeAnchor.getElement());
         this.div = div;
         this.isShow = false;
+        // FIXME: ad hoc
+        if (position === "absolute") {
+            this.parent = this.iconAnchor;
+        }
+        else {
+            this.parent = this.operationSpan;
+        }
     }
     getElement() {
         return this.operationSpan;
@@ -27,10 +34,10 @@ class OperationsAnchor {
     showOperations() {
         this.isShow = !this.isShow;
         if (this.isShow) {
-            this.iconAnchor.appendChild(this.div);
+            this.parent.appendChild(this.div);
         }
         else {
-            this.iconAnchor.removeChild(this.div);
+            this.parent.removeChild(this.div);
         }
     }
 }
