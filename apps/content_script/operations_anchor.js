@@ -7,7 +7,7 @@ class OperationsAnchor {
         // add icon
         this.iconAnchor = $.anchor("");
         this.iconAnchor.style.position = "relative";
-        const iconUrl = chrome.runtime.getURL("icons/icon-16.png");
+        const iconUrl = chrome.runtime.getURL("icons/icon-12.png");
         const iconImg = document.createElement("img");
         iconImg.src = iconUrl;
         this.operationSpan.appendChild(this.iconAnchor);
