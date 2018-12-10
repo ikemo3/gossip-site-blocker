@@ -86,12 +86,21 @@ class BlockMediator {
     }
 
     public temporarilyUnblock() {
-        if (this.blockReason!.getType() !== BlockType.URL_EXACTLY) {
-            this.blockAnchor.showBlockExplicitly();
-            this.changeAnchor.hide();
-        } else {
-            this.blockAnchor.hide();
-            this.changeAnchor.show();
+        switch (this.blockReason!.getType()) {
+            case BlockType.URL_EXACTLY:
+                this.blockAnchor.hide();
+                this.changeAnchor.show();
+                break;
+            case BlockType.URL:
+                this.blockAnchor.showBlockExplicitly();
+                this.changeAnchor.show();
+                break;
+
+            case BlockType.IDN:
+            case BlockType.WORD:
+                this.blockAnchor.showBlockExplicitly();
+                this.changeAnchor.hide();
+                break;
         }
 
         this.blockTarget.temporarilyUnblock();
