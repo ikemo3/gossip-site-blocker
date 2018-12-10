@@ -126,6 +126,9 @@
   "importFormatDomainPlusType": {
     "message": "ドメイン名(またはドメイン名とパス) + 'soft'/'hard'. 例: 'example.com soft', 'example.com hard', 'example.com/path soft'"
   },
+  "importFormatPersonalBlocklist": {
+    "message": "Personal Blocklistからインポート可能です。"
+  },
   "importTextAreaLabel": {
     "message": "追加するサイトを1行に1つずつ入力して「インポート」ボタンを押してください。"
   },

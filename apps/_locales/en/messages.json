@@ -126,6 +126,9 @@
   "importFormatDomainPlusType": {
     "message": "domain name (or domain name with path) + 'soft'/'hard'. Example: 'example.com soft', 'example.com hard', 'example.com/path soft'"
   },
+  "importFormatPersonalBlocklist": {
+    "message": "can import from Personal Blocklist."
+  },
   "importTextAreaLabel": {
     "message": "Please enter sites to add, one per line, and press the 'Import' button."
   },
