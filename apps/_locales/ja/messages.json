@@ -45,9 +45,6 @@
   "blockThisPageExplicitly": {
     "message": "このページを明示的にブロック"
   },
-  "byUrl": {
-    "message": "理由: URLによって"
-  },
   "cancelButtonLabel": {
     "message": "キャンセル"
   },

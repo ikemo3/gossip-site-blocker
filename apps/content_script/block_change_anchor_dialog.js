@@ -6,7 +6,6 @@ class BlockChangeAnchorDialog {
         this.background = background;
         const dialog = $.div("block-dialog");
         const explanation = $.message("blockChangeExplanation");
-        const byUrl = $.message("byUrl");
         dialog.innerHTML = `${explanation}<br/>URL: ${reason}`;
         const buttonsDiv = $.div("block-dialog-buttons");
         const cancelButton = $.button($.message("cancelButtonLabel"), "blocker-secondary-button");

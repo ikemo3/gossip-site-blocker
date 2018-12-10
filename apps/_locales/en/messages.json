@@ -45,9 +45,6 @@
   "blockThisPageExplicitly": {
     "message": "Block this page explicitly"
   },
-  "byUrl": {
-    "message": "Reason: By URL"
-  },
   "cancelButtonLabel": {
     "message": "Cancel"
   },
