@@ -33,9 +33,20 @@ const BannedWordRepository = {
                 return false;
             }
         }
-        words.push({ keyword: addWord });
+        words.push({ keyword: addWord, blockType: BlockType.SOFT });
         await this.save(words);
         return true;
+    },
+    async changeType(changeWord, type) {
+        const words = await this.load();
+        const filteredWords = words.map((word) => {
+            if (word.keyword !== changeWord) {
+                return word;
+            }
+            word.blockType = type;
+            return word;
+        });
+        await this.save(filteredWords);
     },
     async delete(deleteWord) {
         const words = await this.load();

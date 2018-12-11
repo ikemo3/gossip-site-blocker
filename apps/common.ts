@@ -192,6 +192,11 @@ enum MenuPosition {
     DEFAULT = "default",
 }
 
+enum BlockType {
+    SOFT = "soft",
+    HARD = "hard",
+}
+
 class ApplicationError implements Error {
     public message: string;
     public name: string = "Application Error";

@@ -160,6 +160,11 @@ var MenuPosition;
     MenuPosition["COMPACT"] = "compact";
     MenuPosition["DEFAULT"] = "default";
 })(MenuPosition || (MenuPosition = {}));
+var BlockType;
+(function (BlockType) {
+    BlockType["SOFT"] = "soft";
+    BlockType["HARD"] = "hard";
+})(BlockType || (BlockType = {}));
 class ApplicationError {
     constructor(message) {
         this.name = "Application Error";

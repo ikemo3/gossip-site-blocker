@@ -23,7 +23,7 @@ class BlockState {
             return;
         }
         else if (banned) {
-            this.state = "soft";
+            this.state = banned.blockType.toString();
             this.blockReason = new BlockReason(BlockType.WORD, banned.keyword);
             return;
         }

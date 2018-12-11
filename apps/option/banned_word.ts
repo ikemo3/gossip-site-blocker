@@ -17,7 +17,7 @@ class BannedWords {
             const added: boolean = await BannedWordRepository.add(word);
             if (added) {
                 Logger.debug("add to Banned Words", word);
-                this.createWidget({keyword: word});
+                this.createWidget({keyword: word, blockType: BlockType.SOFT});
             }
 
             this.addText.value = "";
@@ -52,10 +52,34 @@ class BannedWords {
         deleteButton.addEventListener("click", (this.deleteKeyword.bind(this, word.keyword, wordDiv)));
         wordDiv.appendChild(deleteButton);
 
+        const typeSelect: HTMLSelectElement = document.createElement("select");
+        const softOption: HTMLOptionElement = $.option("soft", $.message("softBlock"));
+        const hardOption: HTMLOptionElement = $.option("hard", $.message("hardBlock"));
+        typeSelect.appendChild(softOption);
+        typeSelect.appendChild(hardOption);
+        typeSelect.addEventListener("change", this.changeType.bind(this, word.keyword));
+        typeSelect.value = word.blockType.toString();
+        wordDiv.appendChild(typeSelect);
+
         const br = document.createElement("br");
         wordDiv.appendChild(br);
 
         this.wordList.appendChild(wordDiv);
+    }
+
+    private async changeType(keyword: string, ev: Event) {
+        const typeSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
+        const index = typeSelect.selectedIndex;
+        const value = typeSelect.options[index].value;
+
+        switch (value) {
+            case "soft":
+                await BannedWordRepository.changeType(keyword, BlockType.SOFT);
+                break;
+            case "hard":
+                await BannedWordRepository.changeType(keyword, BlockType.HARD);
+                break;
+        }
     }
 
     private async deleteKeyword(keyword: string, wordDiv: HTMLDivElement) {

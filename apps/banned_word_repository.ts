@@ -4,6 +4,7 @@ interface IBannedWordItems {
 
 interface IBannedWord {
     keyword: string;
+    blockType: BlockType;
 }
 
 const BannedWordRepository = {
@@ -50,9 +51,24 @@ const BannedWordRepository = {
             }
         }
 
-        words.push({keyword: addWord});
+        words.push({keyword: addWord, blockType: BlockType.SOFT});
         await this.save(words);
         return true;
+    },
+
+    async changeType(changeWord: string, type: BlockType): Promise<void> {
+        const words: IBannedWord[] = await this.load();
+
+        const filteredWords = words.map((word) => {
+            if (word.keyword !== changeWord) {
+                return word;
+            }
+
+            word.blockType = type;
+            return word;
+        });
+
+        await this.save(filteredWords);
     },
 
     async delete(deleteWord: string): Promise<boolean> {

@@ -1,3 +1,9 @@
+# v1.5.1
+
+## Improvements.
+
+* Add soft/hard option for Banned Words.
+
 # v1.5.0
 
 ## Enhancements.
