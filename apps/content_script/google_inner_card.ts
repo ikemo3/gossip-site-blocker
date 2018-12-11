@@ -71,4 +71,8 @@ class GoogleInnerCard implements IBlockable {
     public getPosition(): string {
         return "relative";
     }
+
+    public getCssClass(): string {
+        return "block-google-inner-card";
+    }
 }

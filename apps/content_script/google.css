@@ -26,6 +26,11 @@
     margin-bottom: 0;
 }
 
+:not(g-inner-card):not([data-blocker-display=none]) + .block-anchor.block-google-top-news {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /**
  * Anchor immediately after blocked element
  */

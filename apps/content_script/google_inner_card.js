@@ -53,5 +53,8 @@ class GoogleInnerCard {
     getPosition() {
         return "relative";
     }
+    getCssClass() {
+        return "block-google-inner-card";
+    }
 }
 //# sourceMappingURL=google_inner_card.js.map

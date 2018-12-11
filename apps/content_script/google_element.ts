@@ -138,4 +138,8 @@ class GoogleElement implements IBlockable {
     public getPosition(): string {
         return "absolute";
     }
+
+    public getCssClass(): string {
+        return "block-google-element";
+    }
 }

@@ -25,6 +25,12 @@ const observer = new MutationObserver((mutations) => {
                     } else {
                         pendingsInnerCard.push(node);
                     }
+                } else if (node.classList.contains("dbsr")) {
+                    if (options !== null) {
+                        tryBlockGoogleTopNews(node, options);
+                    } else {
+                        pendingsTopNews.push(node);
+                    }
                 }
             }
         }
@@ -33,6 +39,7 @@ const observer = new MutationObserver((mutations) => {
 
 const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
+const pendingsTopNews: Element[] = [];
 const config = {childList: true, subtree: true};
 observer.observe(document.documentElement, config);
 
@@ -109,6 +116,33 @@ function blockGoogleInnerCardClosure(node: Element, options: IOptions) {
         }
 
         completed = blockGoogleInnerCard(node, options);
+    };
+}
+
+function tryBlockGoogleTopNews(node: Element, options: IOptions) {
+    const completed = blockGoogleTopNews(node, options);
+    if (completed) {
+        return;
+    }
+
+    // if failed, add observer for retry.
+    const block = blockGoogleTopNewsClosure(node, options);
+    const subObserver = new MutationObserver(() => {
+        block();
+    });
+
+    subObserver.observe(node, {childList: true, subtree: true});
+    subObserverList.push(subObserver);
+}
+
+function blockGoogleTopNewsClosure(node: Element, options: IOptions) {
+    let completed = false;
+    return () => {
+        if (completed === true) {
+            return;
+        }
+
+        completed = blockGoogleTopNews(node, options);
     };
 }
 

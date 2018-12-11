@@ -36,6 +36,7 @@ class BlockMediator {
 
                 // insert links after block target.
                 this.operationDiv.classList.add("block-anchor-tmp-unblock-only");
+                this.operationDiv.classList.add(g.getCssClass());
                 this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
                 DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
@@ -46,6 +47,7 @@ class BlockMediator {
                 this.operationDiv.appendChild(this.hideAnchor.getElement());
                 this.operationDiv.appendChild(this.blockAnchor.getElement());
                 this.operationDiv.appendChild(this.changeAnchor.getElement());
+                this.operationDiv.classList.add(g.getCssClass());
                 DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
                 break;

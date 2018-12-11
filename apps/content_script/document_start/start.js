@@ -20,12 +20,21 @@ const observer = new MutationObserver((mutations) => {
                         pendingsInnerCard.push(node);
                     }
                 }
+                else if (node.classList.contains("dbsr")) {
+                    if (options !== null) {
+                        tryBlockGoogleTopNews(node, options);
+                    }
+                    else {
+                        pendingsTopNews.push(node);
+                    }
+                }
             }
         }
     });
 });
 const pendingsGoogle = [];
 const pendingsInnerCard = [];
+const pendingsTopNews = [];
 const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 (async () => {
@@ -87,6 +96,28 @@ function blockGoogleInnerCardClosure(node, options) {
             return;
         }
         completed = blockGoogleInnerCard(node, options);
+    };
+}
+function tryBlockGoogleTopNews(node, options) {
+    const completed = blockGoogleTopNews(node, options);
+    if (completed) {
+        return;
+    }
+    // if failed, add observer for retry.
+    const block = blockGoogleTopNewsClosure(node, options);
+    const subObserver = new MutationObserver(() => {
+        block();
+    });
+    subObserver.observe(node, { childList: true, subtree: true });
+    subObserverList.push(subObserver);
+}
+function blockGoogleTopNewsClosure(node, options) {
+    let completed = false;
+    return () => {
+        if (completed === true) {
+            return;
+        }
+        completed = blockGoogleTopNews(node, options);
     };
 }
 document.addEventListener("DOMContentLoaded", () => {

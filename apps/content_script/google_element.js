@@ -104,5 +104,8 @@ class GoogleElement {
     getPosition() {
         return "absolute";
     }
+    getCssClass() {
+        return "block-google-element";
+    }
 }
 //# sourceMappingURL=google_element.js.map

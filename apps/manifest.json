@@ -230,6 +230,7 @@
         "content_script/google.js",
         "content_script/google_element.js",
         "content_script/google_inner_card.js",
+        "content_script/google_top_news.js",
         "content_script/hide_anchor.js",
         "content_script/operations_anchor.js",
         "content_script/operations_block.js",
