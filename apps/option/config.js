@@ -25,14 +25,14 @@ const OptionRepository = {
         Logger.log("set 'defaultBlockType' to =>", type);
     },
     async menuPosition() {
-        const items = await ChromeStorage.load({ menuPosition: "bottom" });
+        const items = await ChromeStorage.load({ menuPosition: "default" });
         const menuPosition = items.menuPosition;
         switch (menuPosition) {
-            case MenuPosition.RIGHT:
-                return MenuPosition.RIGHT;
-            case MenuPosition.BOTTOM:
+            case MenuPosition.COMPACT:
+                return MenuPosition.COMPACT;
+            case MenuPosition.DEFAULT:
             default:
-                return MenuPosition.BOTTOM;
+                return MenuPosition.DEFAULT;
         }
     },
     async setMenuPosition(position) {

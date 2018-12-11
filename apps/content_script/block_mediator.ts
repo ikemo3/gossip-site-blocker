@@ -28,7 +28,7 @@ class BlockMediator {
 
         let operationsAnchor;
         switch (menuPosition) {
-            case MenuPosition.RIGHT:
+            case MenuPosition.COMPACT:
                 // insert menu after action menu.
                 operationsAnchor = new OperationsAnchor(this.hideAnchor,
                     this.blockAnchor, this.changeAnchor, g.getPosition());
@@ -41,7 +41,7 @@ class BlockMediator {
                 DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
                 break;
-            case MenuPosition.BOTTOM:
+            case MenuPosition.DEFAULT:
                 // insert links after block target.
                 this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
                 this.operationDiv.appendChild(this.hideAnchor.getElement());

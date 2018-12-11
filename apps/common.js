@@ -157,8 +157,8 @@ const $ = {
 };
 var MenuPosition;
 (function (MenuPosition) {
-    MenuPosition["RIGHT"] = "right";
-    MenuPosition["BOTTOM"] = "bottom";
+    MenuPosition["COMPACT"] = "compact";
+    MenuPosition["DEFAULT"] = "default";
 })(MenuPosition || (MenuPosition = {}));
 class ApplicationError {
     constructor(message) {

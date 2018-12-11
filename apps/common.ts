@@ -188,8 +188,8 @@ const $ = {
 };
 
 enum MenuPosition {
-    RIGHT = "right",
-    BOTTOM = "bottom",
+    COMPACT = "compact",
+    DEFAULT = "default",
 }
 
 class ApplicationError implements Error {
