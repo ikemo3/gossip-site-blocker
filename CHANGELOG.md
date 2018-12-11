@@ -1,3 +1,14 @@
+# v1.5.0
+
+## Enhancements.
+
+* Can block 'Google Top News'.
+
+## Improvements.
+
+* Add 'Change Block State' link.
+* Add 'Menu Position' option.
+
 # v1.4.2
 
 ## Bug Fixes.
