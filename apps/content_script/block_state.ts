@@ -9,8 +9,8 @@ class BlockState {
     private readonly state: string;
     private readonly blockReason: BlockReason | null;
 
-    constructor(blockable: IBlockable,
-                blockedSites: BlockedSites,
+    constructor(blockable: IBlockTarget,
+                blockedSites: IBlockedSites,
                 bannedWords: IBannedWord[],
                 idnOption: IAutoBlockIDNOption) {
 

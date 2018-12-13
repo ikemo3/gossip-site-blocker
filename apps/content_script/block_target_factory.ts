@@ -1,3 +1,9 @@
+interface IBlockTarget {
+    getUrl(): string;
+
+    contains(keyword: string): boolean;
+}
+
 interface IBlockable {
     getUrl(): string;
 

@@ -1,3 +1,7 @@
+interface IBlockedSites {
+    matches(url: string): BlockedSite | undefined;
+}
+
 /**
  * @property {Array<BlockedSite>} sites
  */
@@ -31,7 +35,7 @@ class BlockedSites {
      * @param url
      * @returns {BlockedSite|undefined}
      */
-    public matches(url: string) {
+    public matches(url: string): BlockedSite | undefined {
         /**
          * found element
          * @type {BlockedSite|undefined}
