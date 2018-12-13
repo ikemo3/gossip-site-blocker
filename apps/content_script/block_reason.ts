@@ -1,8 +1,8 @@
 class BlockReason {
-    private readonly blockType: BlockType;
+    private readonly blockType: BlockReasonType;
     private readonly word: string;
 
-    constructor(blockType: BlockType, reason: string) {
+    constructor(blockType: BlockReasonType, reason: string) {
         this.blockType = blockType;
         this.word = reason;
     }
@@ -11,7 +11,7 @@ class BlockReason {
         return this.word;
     }
 
-    public getType(): BlockType {
+    public getType(): BlockReasonType {
         return this.blockType;
     }
 }

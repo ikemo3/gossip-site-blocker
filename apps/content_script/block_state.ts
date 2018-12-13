@@ -1,4 +1,4 @@
-enum BlockType {
+enum BlockReasonType {
     URL_EXACTLY,
     URL,
     WORD, /* Banned Word */
@@ -25,15 +25,15 @@ class BlockState {
             this.state = blockedSite.getState();
 
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
-                this.blockReason = new BlockReason(BlockType.URL_EXACTLY, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockedSite.url);
             } else {
-                this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL, blockedSite.url);
             }
 
             return;
         } else if (banned) {
             this.state = banned.blockType.toString();
-            this.blockReason = new BlockReason(BlockType.WORD, banned.keyword);
+            this.blockReason = new BlockReason(BlockReasonType.WORD, banned.keyword);
             return;
         }
 
@@ -46,7 +46,7 @@ class BlockState {
 
             if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
                 this.state = "soft";
-                this.blockReason = new BlockReason(BlockType.IDN, chrome.i18n.getMessage("IDN"));
+                this.blockReason = new BlockReason(BlockReasonType.IDN, chrome.i18n.getMessage("IDN"));
                 return;
             }
         }

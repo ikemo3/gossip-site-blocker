@@ -1,10 +1,10 @@
-var BlockType;
-(function (BlockType) {
-    BlockType[BlockType["URL_EXACTLY"] = 0] = "URL_EXACTLY";
-    BlockType[BlockType["URL"] = 1] = "URL";
-    BlockType[BlockType["WORD"] = 2] = "WORD";
-    BlockType[BlockType["IDN"] = 3] = "IDN";
-})(BlockType || (BlockType = {}));
+var BlockReasonType;
+(function (BlockReasonType) {
+    BlockReasonType[BlockReasonType["URL_EXACTLY"] = 0] = "URL_EXACTLY";
+    BlockReasonType[BlockReasonType["URL"] = 1] = "URL";
+    BlockReasonType[BlockReasonType["WORD"] = 2] = "WORD";
+    BlockReasonType[BlockReasonType["IDN"] = 3] = "IDN";
+})(BlockReasonType || (BlockReasonType = {}));
 class BlockState {
     constructor(blockable, blockedSites, bannedWords, idnOption) {
         const blockedSite = blockedSites.matches(blockable.getUrl());
@@ -15,16 +15,16 @@ class BlockState {
         if (blockedSite) {
             this.state = blockedSite.getState();
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
-                this.blockReason = new BlockReason(BlockType.URL_EXACTLY, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockedSite.url);
             }
             else {
-                this.blockReason = new BlockReason(BlockType.URL, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL, blockedSite.url);
             }
             return;
         }
         else if (banned) {
             this.state = banned.blockType.toString();
-            this.blockReason = new BlockReason(BlockType.WORD, banned.keyword);
+            this.blockReason = new BlockReason(BlockReasonType.WORD, banned.keyword);
             return;
         }
         // check IDN
@@ -34,7 +34,7 @@ class BlockState {
             const hostname = DOMUtils.getHostName(url);
             if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
                 this.state = "soft";
-                this.blockReason = new BlockReason(BlockType.IDN, chrome.i18n.getMessage("IDN"));
+                this.blockReason = new BlockReason(BlockReasonType.IDN, chrome.i18n.getMessage("IDN"));
                 return;
             }
         }

@@ -63,16 +63,16 @@ class BlockMediator {
     }
     temporarilyUnblock() {
         switch (this.blockReason.getType()) {
-            case BlockType.URL_EXACTLY:
+            case BlockReasonType.URL_EXACTLY:
                 this.blockAnchor.hide();
                 this.changeAnchor.show();
                 break;
-            case BlockType.URL:
+            case BlockReasonType.URL:
                 this.blockAnchor.showBlockExplicitly();
                 this.changeAnchor.show();
                 break;
-            case BlockType.IDN:
-            case BlockType.WORD:
+            case BlockReasonType.IDN:
+            case BlockReasonType.WORD:
                 this.blockAnchor.showBlockExplicitly();
                 this.changeAnchor.hide();
                 break;
@@ -98,10 +98,10 @@ class BlockMediator {
             return;
         }
         if (DOMUtils.removeProtocol(this.url) === url) {
-            this.blockReason = new BlockReason(BlockType.URL_EXACTLY, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, url);
         }
         else {
-            this.blockReason = new BlockReason(BlockType.URL, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL, url);
         }
         this.hide();
     }
