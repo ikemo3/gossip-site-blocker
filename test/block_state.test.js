@@ -31,6 +31,13 @@ describe("BlockState", () => {
     const idnOption = {
         enabled: true,
     };
+    it("not blocked", () => {
+        const target = createTarget("http://example.com/foo/bar", false);
+        const sites = createEmptySites();
+        const blockState = new BlockState(target, sites, [], idnOption);
+        expect(blockState.getReason()).toBeNull();
+        expect(blockState.getState()).toBe("none");
+    });
     it("block by URL", () => {
         const target = createTarget("http://example.com/foo/bar", false);
         const sites = createSites("soft", "example.com");
@@ -53,6 +60,14 @@ describe("BlockState", () => {
         const blockState = new BlockState(target, createEmptySites(), bannedList, idnOption);
         expect(blockState.getReason().getType()).toBe(BlockReasonType.WORD);
         expect(blockState.getReason().getWord()).toBe("evil");
+        expect(blockState.getState()).toBe("soft");
+    });
+    it("block by IDN", () => {
+        spyOn($, "message").withArgs("IDN").and.returnValue("Internationalized Domain Name");
+        const target = createTarget("http://xn--eckwd4c7cu47r2wf.jp", false);
+        const blockState = new BlockState(target, createEmptySites(), [], idnOption);
+        expect(blockState.getReason().getType()).toBe(BlockReasonType.IDN);
+        expect(blockState.getReason().getWord()).toBe("Internationalized Domain Name");
         expect(blockState.getState()).toBe("soft");
     });
 });

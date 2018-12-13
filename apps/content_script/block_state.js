@@ -34,7 +34,7 @@ class BlockState {
             const hostname = DOMUtils.getHostName(url);
             if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
                 this.state = "soft";
-                this.blockReason = new BlockReason(BlockReasonType.IDN, chrome.i18n.getMessage("IDN"));
+                this.blockReason = new BlockReason(BlockReasonType.IDN, $.message("IDN"));
                 return;
             }
         }
