@@ -12,7 +12,7 @@ module.exports = function(config) {
     preprocessors: {
       'apps/content_script/block_state.js': ['coverage']
     },
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     reporters: ['mocha', 'coverage'],
     logLevel: config.LOG_DEBUG
   })
