@@ -11,7 +11,8 @@
     "128": "icons/icon-128.png"
   },
   "browser_action": {
-    "default_icon": "icons/icon-16.png"
+    "default_icon": "icons/icon-16.png",
+    "default_popup": "popup/popup.html"
   },
   "content_scripts": [
     {
@@ -248,7 +249,8 @@
     "open_in_tab": true
   },
   "permissions": [
-    "storage"
+    "storage",
+    "tabs"
   ],
   "web_accessible_resources": [
     "icons/*"

@@ -1,5 +1,10 @@
 # v1.5.1
 
+## Enhancements.
+
+* Add 'Search in English' popup.
+* Add 'Search excluding "ikagadesitaka"' (Japanese only.)
+
 ## Improvements.
 
 * Add soft/hard option for Banned Words.

@@ -78,6 +78,9 @@
   "developerMode": {
     "message": "Developer Mode"
   },
+  "exceptIkagadesitaka": {
+    "message": "Search excluding 'ikagadesitaka(Japanese)'"
+  },
   "exportButton": {
     "message": "Export"
   },
@@ -143,6 +146,9 @@
   },
   "optionTitle": {
     "message": "Gossip Site Blocker: Option"
+  },
+  "searchInEnglish": {
+    "message": "Search in English"
   },
   "softBlock": {
     "message": "Soft block(hide)"

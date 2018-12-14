@@ -78,6 +78,9 @@
   "developerMode": {
     "message": "開発者モード"
   },
+  "exceptIkagadesitaka": {
+    "message": "「いかがでしたか」を除外して検索"
+  },
   "exportButton": {
     "message": "エクスポート"
   },
@@ -143,6 +146,9 @@
   },
   "optionTitle": {
     "message": "ゴシップサイトブロッカー: オプション"
+  },
+  "searchInEnglish": {
+    "message": "英語で検索"
   },
   "softBlock": {
     "message": "ソフトブロック(非表示)"
