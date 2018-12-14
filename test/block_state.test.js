@@ -62,6 +62,15 @@ describe("BlockState", () => {
         expect(blockState.getReason().getWord()).toBe("evil");
         expect(blockState.getState()).toBe("soft");
     });
+    it("block by URL(exactly) vs word(hard block) => word(hard block)", () => {
+        const target = createTarget("http://example.com", true);
+        const sites = createSites("soft", "example.com");
+        const bannedList = [createBannedWord("evil", BlockType.HARD)];
+        const blockState = new BlockState(target, sites, bannedList, idnOption);
+        expect(blockState.getReason().getType()).toBe(BlockReasonType.WORD);
+        expect(blockState.getReason().getWord()).toBe("evil");
+        expect(blockState.getState()).toBe("hard");
+    });
     it("block by IDN", () => {
         spyOn($, "message").withArgs("IDN").and.returnValue("Internationalized Domain Name");
         const target = createTarget("http://xn--eckwd4c7cu47r2wf.jp", false);

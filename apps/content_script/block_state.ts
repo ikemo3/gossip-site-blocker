@@ -14,14 +14,14 @@ class BlockState {
                 bannedWords: IBannedWord[],
                 idnOption: IAutoBlockIDNOption) {
 
-        const blockedSite = blockedSites.matches(blockable.getUrl());
+        const blockedSite: BlockedSite | undefined = blockedSites.matches(blockable.getUrl());
 
-        const banned = bannedWords.find((bannedWord) => {
+        const banned: IBannedWord | undefined = bannedWords.find((bannedWord) => {
             const keyword = bannedWord.keyword;
             return blockable.contains(keyword);
         });
 
-        if (blockedSite) {
+        if (blockedSite && (!banned || banned.blockType !== BlockType.HARD)) {
             this.state = blockedSite.getState();
 
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {

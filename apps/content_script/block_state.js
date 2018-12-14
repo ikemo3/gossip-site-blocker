@@ -12,7 +12,7 @@ class BlockState {
             const keyword = bannedWord.keyword;
             return blockable.contains(keyword);
         });
-        if (blockedSite) {
+        if (blockedSite && (!banned || banned.blockType !== BlockType.HARD)) {
             this.state = blockedSite.getState();
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
                 this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockedSite.url);
