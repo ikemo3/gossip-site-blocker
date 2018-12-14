@@ -20,7 +20,7 @@ class GoogleInnerCard {
         }
         const heading = element.querySelector("[role=heading]");
         if (heading) {
-            this.title = heading.textContent;
+            this.title = heading.textContent ? heading.textContent : "";
         }
         this.valid = true;
         this.url = urlList[0];
