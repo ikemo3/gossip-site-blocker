@@ -167,6 +167,11 @@ var BlockType;
     BlockType["SOFT"] = "soft";
     BlockType["HARD"] = "hard";
 })(BlockType || (BlockType = {}));
+var BannedTarget;
+(function (BannedTarget) {
+    BannedTarget["TITLE_AND_CONTENTS"] = "titleAndContents";
+    BannedTarget["TITLE_ONLY"] = "titleOnly";
+})(BannedTarget || (BannedTarget = {}));
 class ApplicationError {
     constructor(message) {
         this.name = "Application Error";

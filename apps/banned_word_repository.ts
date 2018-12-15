@@ -5,6 +5,7 @@ interface IBannedWordItems {
 interface IBannedWord {
     keyword: string;
     blockType: BlockType;
+    target: BannedTarget;
 }
 
 const BannedWordRepository = {
@@ -15,6 +16,10 @@ const BannedWordRepository = {
         for (const item of itemsCopy) {
             if (!item.blockType) {
                 item.blockType = BlockType.SOFT;
+            }
+
+            if (!item.target) {
+                item.target = BannedTarget.TITLE_AND_CONTENTS;
             }
         }
 
@@ -61,7 +66,7 @@ const BannedWordRepository = {
             }
         }
 
-        words.push({keyword: addWord, blockType: BlockType.SOFT});
+        words.push({keyword: addWord, blockType: BlockType.SOFT, target: BannedTarget.TITLE_AND_CONTENTS});
         await this.save(words);
         return true;
     },
@@ -75,6 +80,21 @@ const BannedWordRepository = {
             }
 
             word.blockType = type;
+            return word;
+        });
+
+        await this.save(filteredWords);
+    },
+
+    async changeTarget(changeWord: string, target: BannedTarget): Promise<void> {
+        const words: IBannedWord[] = await this.load();
+
+        const filteredWords = words.map((word) => {
+            if (word.keyword !== changeWord) {
+                return word;
+            }
+
+            word.target = target;
             return word;
         });
 

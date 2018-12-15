@@ -11,7 +11,7 @@ class BannedWords {
             const added = await BannedWordRepository.add(word);
             if (added) {
                 Logger.debug("add to Banned Words", word);
-                this.createWidget({ keyword: word, blockType: BlockType.SOFT });
+                this.createWidget({ keyword: word, blockType: BlockType.SOFT, target: BannedTarget.TITLE_AND_CONTENTS });
             }
             this.addText.value = "";
         }));
@@ -44,6 +44,14 @@ class BannedWords {
         typeSelect.addEventListener("change", this.changeType.bind(this, word.keyword));
         typeSelect.value = word.blockType.toString();
         wordDiv.appendChild(typeSelect);
+        const targetSelect = document.createElement("select");
+        const titleAndContentsOption = $.option("titleAndContents", $.message("titleAndContents"));
+        const titleOnly = $.option("titleOnly", $.message("titleOnly"));
+        targetSelect.appendChild(titleAndContentsOption);
+        targetSelect.appendChild(titleOnly);
+        targetSelect.addEventListener("change", this.changeTarget.bind(this, word.keyword));
+        targetSelect.value = word.target.toString();
+        wordDiv.appendChild(targetSelect);
         const br = $.br();
         wordDiv.appendChild(br);
         this.wordList.appendChild(wordDiv);
@@ -58,6 +66,19 @@ class BannedWords {
                 break;
             case "hard":
                 await BannedWordRepository.changeType(keyword, BlockType.HARD);
+                break;
+        }
+    }
+    async changeTarget(keyword, ev) {
+        const targetSelect = ev.target;
+        const index = targetSelect.selectedIndex;
+        const value = targetSelect.options[index].value;
+        switch (value) {
+            case "titleAndContents":
+                await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_AND_CONTENTS);
+                break;
+            case "titleOnly":
+                await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_ONLY);
                 break;
         }
     }

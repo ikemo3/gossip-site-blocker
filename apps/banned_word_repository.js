@@ -6,6 +6,9 @@ const BannedWordRepository = {
             if (!item.blockType) {
                 item.blockType = BlockType.SOFT;
             }
+            if (!item.target) {
+                item.target = BannedTarget.TITLE_AND_CONTENTS;
+            }
         }
         Logger.debug("bannedWords: ", itemsCopy);
         return itemsCopy;
@@ -40,7 +43,7 @@ const BannedWordRepository = {
                 return false;
             }
         }
-        words.push({ keyword: addWord, blockType: BlockType.SOFT });
+        words.push({ keyword: addWord, blockType: BlockType.SOFT, target: BannedTarget.TITLE_AND_CONTENTS });
         await this.save(words);
         return true;
     },
@@ -51,6 +54,17 @@ const BannedWordRepository = {
                 return word;
             }
             word.blockType = type;
+            return word;
+        });
+        await this.save(filteredWords);
+    },
+    async changeTarget(changeWord, target) {
+        const words = await this.load();
+        const filteredWords = words.map((word) => {
+            if (word.keyword !== changeWord) {
+                return word;
+            }
+            word.target = target;
             return word;
         });
         await this.save(filteredWords);

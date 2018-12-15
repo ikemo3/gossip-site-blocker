@@ -201,6 +201,11 @@ enum BlockType {
     HARD = "hard",
 }
 
+enum BannedTarget {
+    TITLE_AND_CONTENTS = "titleAndContents",
+    TITLE_ONLY = "titleOnly",
+}
+
 class ApplicationError implements Error {
     public message: string;
     public name: string = "Application Error";

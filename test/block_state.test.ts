@@ -27,9 +27,9 @@ describe("BlockState", () => {
         };
     }
 
-    function createBannedWord(keyword: string, blockType: BlockType) {
+    function createBannedWord(keyword: string, blockType: BlockType, target: BannedTarget) {
         return {
-            blockType, keyword,
+            blockType, keyword, target,
         };
     }
 
@@ -68,7 +68,7 @@ describe("BlockState", () => {
 
     it("block by word", () => {
         const target = createTarget("http://example.com", true);
-        const bannedList = [createBannedWord("evil", BlockType.SOFT)];
+        const bannedList = [createBannedWord("evil", BlockType.SOFT, BannedTarget.TITLE_AND_CONTENTS)];
 
         const blockState = new BlockState(target, createEmptySites(), bannedList, idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
@@ -79,7 +79,7 @@ describe("BlockState", () => {
     it("block by URL(exactly) vs word(hard block) => word(hard block)", () => {
         const target = createTarget("http://example.com", true);
         const sites = createSites("soft", "example.com");
-        const bannedList = [createBannedWord("evil", BlockType.HARD)];
+        const bannedList = [createBannedWord("evil", BlockType.HARD, BannedTarget.TITLE_AND_CONTENTS)];
 
         const blockState = new BlockState(target, sites, bannedList, idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);

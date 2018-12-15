@@ -161,6 +161,12 @@
       }
     }
   },
+  "titleAndContents": {
+    "message": "タイトルと内容"
+  },
+  "titleOnly": {
+    "message": "タイトルのみ"
+  },
   "unblock": {
     "message": "ブロックを解除"
   },
