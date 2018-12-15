@@ -27,6 +27,9 @@ class GoogleTopNews {
     contains(keyword) {
         return this.title.includes(keyword);
     }
+    containsInTitle(keyword) {
+        return this.title.includes(keyword);
+    }
     getElement() {
         return this.element;
     }

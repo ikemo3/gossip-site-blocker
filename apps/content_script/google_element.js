@@ -59,7 +59,7 @@ class GoogleElement {
             this.ignoreExplicitly = true;
             return;
         }
-        const title = h3.textContent;
+        const title = h3.textContent ? h3.textContent : "";
         const st = element.querySelector(".st");
         const contents = st ? st.textContent : "";
         this.valid = true;
@@ -84,10 +84,13 @@ class GoogleElement {
         return this.valid;
     }
     contains(keyword) {
-        if (this.title && this.title.includes(keyword)) {
+        if (this.title.includes(keyword)) {
             return true;
         }
         return this.contents !== "" && this.contents.includes(keyword);
+    }
+    containsInTitle(keyword) {
+        return this.title.includes(keyword);
     }
     getUrl() {
         return this.url;

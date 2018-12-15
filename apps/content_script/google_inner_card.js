@@ -50,6 +50,9 @@ class GoogleInnerCard {
     contains(keyword) {
         return this.title !== "" && this.title.includes(keyword);
     }
+    containsInTitle(keyword) {
+        return this.title !== "" && this.title.includes(keyword);
+    }
     getPosition() {
         return "relative";
     }

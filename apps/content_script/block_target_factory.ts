@@ -2,6 +2,8 @@ interface IBlockTarget {
     getUrl(): string;
 
     contains(keyword: string): boolean;
+
+    containsInTitle(keyword: string): boolean;
 }
 
 interface IBlockable {
@@ -10,6 +12,8 @@ interface IBlockable {
     canBlock(): boolean;
 
     contains(keyword: string): boolean;
+
+    containsInTitle(keyword: string): boolean;
 
     deleteElement(): void;
 

@@ -68,6 +68,10 @@ class GoogleInnerCard implements IBlockable {
         return this.title !== "" && this.title.includes(keyword);
     }
 
+    public containsInTitle(keyword: string): boolean {
+        return this.title !== "" && this.title.includes(keyword);
+    }
+
     public getPosition(): string {
         return "relative";
     }

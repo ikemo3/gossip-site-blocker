@@ -39,6 +39,10 @@ class GoogleTopNews implements IBlockable {
         return this.title.includes(keyword);
     }
 
+    public containsInTitle(keyword: string): boolean {
+        return this.title.includes(keyword);
+    }
+
     public getElement(): Element {
         return this.element;
     }

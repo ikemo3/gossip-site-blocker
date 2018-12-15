@@ -3,7 +3,7 @@ class GoogleElement implements IBlockable {
     private readonly ignoreExplicitly: boolean;
     private readonly url: string;
     private readonly element: Element;
-    private readonly title: string | null;
+    private readonly title: string;
     private readonly contents: string;
     private readonly operationInsertPoint: Element;
 
@@ -82,7 +82,7 @@ class GoogleElement implements IBlockable {
             return;
         }
 
-        const title = h3.textContent;
+        const title = h3.textContent ? h3.textContent : "";
         const st: HTMLSpanElement | null = element.querySelector(".st");
         const contents = st ? st.textContent! : "";
 
@@ -112,11 +112,15 @@ class GoogleElement implements IBlockable {
     }
 
     public contains(keyword: string): boolean {
-        if (this.title && this.title.includes(keyword)) {
+        if (this.title.includes(keyword)) {
             return true;
         }
 
         return this.contents !== "" && this.contents.includes(keyword);
+    }
+
+    public containsInTitle(keyword: string): boolean {
+        return this.title.includes(keyword);
     }
 
     public getUrl(): string {

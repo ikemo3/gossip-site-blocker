@@ -10,7 +10,13 @@ class BlockState {
         const blockedSite = blockedSites.matches(blockable.getUrl());
         const banned = bannedWords.find((bannedWord) => {
             const keyword = bannedWord.keyword;
-            return blockable.contains(keyword);
+            switch (bannedWord.target) {
+                case BannedTarget.TITLE_ONLY:
+                    return blockable.containsInTitle(keyword);
+                case BannedTarget.TITLE_AND_CONTENTS:
+                default:
+                    return blockable.contains(keyword);
+            }
         });
         if (blockedSite && (!banned || banned.blockType !== BlockType.HARD)) {
             this.state = blockedSite.getState();
