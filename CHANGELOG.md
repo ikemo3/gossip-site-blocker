@@ -1,3 +1,9 @@
+# v.1.5.1.1
+
+## Bug Fixes.
+
+* Fix: cannot load Banned Words.
+
 # v1.5.1
 
 ## Enhancements.

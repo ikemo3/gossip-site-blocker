@@ -1,7 +1,14 @@
 const BannedWordRepository = {
     async load() {
         const items = await ChromeStorage.get({ bannedWords: [] });
-        return items.bannedWords;
+        const itemsCopy = items.bannedWords;
+        for (const item of itemsCopy) {
+            if (!item.blockType) {
+                item.blockType = BlockType.SOFT;
+            }
+        }
+        Logger.debug("bannedWords: ", itemsCopy);
+        return itemsCopy;
     },
     async save(words) {
         await ChromeStorage.set({ bannedWords: words });

@@ -10,7 +10,17 @@ interface IBannedWord {
 const BannedWordRepository = {
     async load(): Promise<IBannedWord[]> {
         const items = await ChromeStorage.get({bannedWords: []}) as IBannedWordItems;
-        return items.bannedWords;
+
+        const itemsCopy = items.bannedWords;
+        for (const item of itemsCopy) {
+            if (!item.blockType) {
+                item.blockType = BlockType.SOFT;
+            }
+        }
+
+        Logger.debug("bannedWords: ", itemsCopy);
+
+        return itemsCopy;
     },
 
     async save(words: IBannedWord[]) {
