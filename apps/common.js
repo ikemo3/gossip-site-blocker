@@ -88,7 +88,9 @@ const $ = {
         const button = document.createElement("input");
         button.type = "button";
         button.value = value;
-        button.classList.add(clazz);
+        if (clazz) {
+            button.classList.add(clazz);
+        }
         return button;
     },
     div(clazz) {

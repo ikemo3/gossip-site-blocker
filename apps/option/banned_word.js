@@ -33,10 +33,8 @@ class BannedWords {
         input.value = word.keyword;
         input.readOnly = true;
         wordDiv.appendChild(input);
-        const deleteButton = document.createElement("input");
-        deleteButton.type = "button";
-        deleteButton.value = chrome.i18n.getMessage("bannedWordDeleteButton");
-        deleteButton.addEventListener("click", (this.deleteKeyword.bind(this, word.keyword, wordDiv)));
+        const deleteButton = $.button($.message("bannedWordDeleteButton"));
+        $.onclick(deleteButton, this.deleteKeyword.bind(this, word.keyword, wordDiv));
         wordDiv.appendChild(deleteButton);
         const typeSelect = document.createElement("select");
         const softOption = $.option("soft", $.message("softBlock"));
@@ -46,7 +44,7 @@ class BannedWords {
         typeSelect.addEventListener("change", this.changeType.bind(this, word.keyword));
         typeSelect.value = word.blockType.toString();
         wordDiv.appendChild(typeSelect);
-        const br = document.createElement("br");
+        const br = $.br();
         wordDiv.appendChild(br);
         this.wordList.appendChild(wordDiv);
     }

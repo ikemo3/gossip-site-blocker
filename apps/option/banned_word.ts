@@ -46,10 +46,8 @@ class BannedWords {
         input.readOnly = true;
         wordDiv.appendChild(input);
 
-        const deleteButton: HTMLInputElement = document.createElement("input");
-        deleteButton.type = "button";
-        deleteButton.value = chrome.i18n.getMessage("bannedWordDeleteButton");
-        deleteButton.addEventListener("click", (this.deleteKeyword.bind(this, word.keyword, wordDiv)));
+        const deleteButton: HTMLInputElement = $.button($.message("bannedWordDeleteButton"));
+        $.onclick(deleteButton, this.deleteKeyword.bind(this, word.keyword, wordDiv));
         wordDiv.appendChild(deleteButton);
 
         const typeSelect: HTMLSelectElement = document.createElement("select");
@@ -61,7 +59,7 @@ class BannedWords {
         typeSelect.value = word.blockType.toString();
         wordDiv.appendChild(typeSelect);
 
-        const br = document.createElement("br");
+        const br = $.br();
         wordDiv.appendChild(br);
 
         this.wordList.appendChild(wordDiv);

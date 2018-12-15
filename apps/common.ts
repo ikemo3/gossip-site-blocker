@@ -98,11 +98,15 @@ const $ = {
         return document.createElement("br");
     },
 
-    button(value: string, clazz: string): HTMLInputElement {
+    button(value: string, clazz?: string): HTMLInputElement {
         const button = document.createElement("input");
         button.type = "button";
         button.value = value;
-        button.classList.add(clazz);
+
+        if (clazz) {
+            button.classList.add(clazz);
+        }
+
         return button;
     },
 
