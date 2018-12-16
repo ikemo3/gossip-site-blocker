@@ -1,4 +1,14 @@
-# v.1.5.1.1
+# v1.5.2
+
+## Enhancements.
+
+* Add Banned Word option (title and contents / title only)
+
+## Bug Fixes.
+
+* Remove unnecessary permission(tabs -> activeTab)
+
+# v1.5.1.1
 
 ## Bug Fixes.
 
