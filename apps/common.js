@@ -156,6 +156,24 @@ const $ = {
         textField.value = value;
         return textField;
     },
+    toBlockType(value) {
+        switch (value) {
+            case "hard":
+                return BlockType.HARD;
+            case "soft":
+            default:
+                return BlockType.SOFT;
+        }
+    },
+    toBannedTarget(value) {
+        switch (value) {
+            case "titleOnly":
+                return BannedTarget.TITLE_ONLY;
+            case "titleAndContents":
+            default:
+                return BannedTarget.TITLE_AND_CONTENTS;
+        }
+    },
 };
 var MenuPosition;
 (function (MenuPosition) {

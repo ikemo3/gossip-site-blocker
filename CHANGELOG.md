@@ -1,3 +1,12 @@
+# v1.5.3
+
+## Enhancements.
+
+* export blockType(soft/hard) of banned word.
+* import blockType(soft/hard) of banned word.
+* export target(title / title and contents) of banned word.
+* import target(title / title and contents) of banned word.
+
 # v1.5.2
 
 ## Enhancements.

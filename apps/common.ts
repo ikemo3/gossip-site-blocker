@@ -189,6 +189,26 @@ const $ = {
         textField.value = value;
         return textField;
     },
+
+    toBlockType(value: string): BlockType {
+        switch (value) {
+            case "hard":
+                return BlockType.HARD;
+            case "soft":
+            default:
+                return BlockType.SOFT;
+        }
+    },
+
+    toBannedTarget(value: string): BannedTarget {
+        switch (value) {
+            case "titleOnly":
+                return BannedTarget.TITLE_ONLY;
+            case "titleAndContents":
+            default:
+                return BannedTarget.TITLE_AND_CONTENTS;
+        }
+    },
 };
 
 enum MenuPosition {
