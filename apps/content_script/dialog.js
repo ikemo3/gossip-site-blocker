@@ -36,16 +36,36 @@ class BlockDialog {
         return urlRadioDiv;
     }
     createRadioButtons(url) {
-        const blockDomainDiv = BlockDialog.createBlockDomainRadio(DOMUtils.getHostName(url));
+        const blockRecommendDiv = BlockDialog.createBlockRecommendRadio(DOMUtils.removeProtocol(url));
+        const domainRadioChecked = blockRecommendDiv === null;
+        const blockDomainDiv = BlockDialog.createBlockDomainRadio(DOMUtils.getHostName(url), domainRadioChecked);
         const blockUrlDiv = BlockDialog.createBlockUrlRadio(DOMUtils.removeProtocol(url));
         const blockCustomDiv = this.createBlockCustomRadio(DOMUtils.removeProtocol(url));
-        return [blockDomainDiv, blockUrlDiv, blockCustomDiv];
+        if (blockRecommendDiv !== null) {
+            return [blockRecommendDiv, blockDomainDiv, blockUrlDiv, blockCustomDiv];
+        }
+        else {
+            return [blockDomainDiv, blockUrlDiv, blockCustomDiv];
+        }
     }
-    static createBlockDomainRadio(value) {
+    static createBlockDomainRadio(value, checked) {
         const div = $.div();
         const radio = $.radio("block-url-type", value, "blocker-dialog-domain-radio");
-        radio.checked = true;
+        radio.checked = checked;
         const textLabel = $.label($.message("blockThisDomainWithUrl", value), "blocker-dialog-domain-radio");
+        div.appendChild(radio);
+        div.appendChild(textLabel);
+        return div;
+    }
+    static createBlockRecommendRadio(value) {
+        const recommend = makeRecommendUrl(value);
+        if (recommend === null) {
+            return null;
+        }
+        const div = $.div();
+        const radio = $.radio("block-url-type", recommend, "blocker-dialog-recommend-radio");
+        radio.checked = true;
+        const textLabel = $.label($.message("blockThisPageWithRecommendedPath", decodeURI(recommend)), "blocker-dialog-url-radio");
         div.appendChild(radio);
         div.appendChild(textLabel);
         return div;

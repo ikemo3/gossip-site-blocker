@@ -28,6 +28,14 @@
       }
     }
   },
+  "blockThisPageWithRecommendedPath": {
+    "message": "Block recommended path($path$)",
+    "placeholders": {
+      "path": {
+        "content": "$1"
+      }
+    }
+  },
   "blockThisPageWithUrl": {
     "message": "Block this page($url$)",
     "placeholders": {

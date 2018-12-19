@@ -28,6 +28,14 @@
       }
     }
   },
+  "blockThisPageWithRecommendedPath": {
+    "message": "推奨するパスでブロック($path$)",
+    "placeholders": {
+      "path": {
+        "content": "$1"
+      }
+    }
+  },
   "blockThisPageWithUrl": {
     "message": "このページをブロック($url$)",
     "placeholders": {
