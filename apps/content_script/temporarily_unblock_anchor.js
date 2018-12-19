@@ -17,7 +17,7 @@ class TemporarilyUnblockAnchor {
         $.hide(this.anchor);
     }
     static message(reason) {
-        return chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(reason)]);
+        return chrome.i18n.getMessage("temporarilyUnblock", [$.decodeURI(reason)]);
     }
 }
 //# sourceMappingURL=temporarily_unblock_anchor.js.map

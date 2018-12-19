@@ -110,6 +110,14 @@ const $ = {
         return button;
     },
 
+    decodeURI(encodedURI: string) {
+        try {
+            return decodeURI(encodedURI);
+        } catch (e) {
+            return encodedURI;
+        }
+    },
+
     div(clazz?: string): HTMLDivElement {
         const div = document.createElement("div");
 

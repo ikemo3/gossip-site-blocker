@@ -65,7 +65,7 @@ class BlockDialog {
         const div = $.div();
         const radio = $.radio("block-url-type", recommend, "blocker-dialog-recommend-radio");
         radio.checked = true;
-        const textLabel = $.label($.message("blockThisPageWithRecommendedPath", decodeURI(recommend)), "blocker-dialog-url-radio");
+        const textLabel = $.label($.message("blockThisPageWithRecommendedPath", $.decodeURI(recommend)), "blocker-dialog-url-radio");
         div.appendChild(radio);
         div.appendChild(textLabel);
         return div;
@@ -73,7 +73,7 @@ class BlockDialog {
     static createBlockUrlRadio(value) {
         const div = $.div();
         const radio = $.radio("block-url-type", value, "blocker-dialog-url-radio");
-        const textLabel = $.label($.message("blockThisPageWithUrl", decodeURI(value)), "blocker-dialog-url-radio");
+        const textLabel = $.label($.message("blockThisPageWithUrl", $.decodeURI(value)), "blocker-dialog-url-radio");
         div.appendChild(radio);
         div.appendChild(textLabel);
         return div;

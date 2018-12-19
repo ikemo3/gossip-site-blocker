@@ -93,6 +93,14 @@ const $ = {
         }
         return button;
     },
+    decodeURI(encodedURI) {
+        try {
+            return decodeURI(encodedURI);
+        }
+        catch (e) {
+            return encodedURI;
+        }
+    },
     div(clazz) {
         const div = document.createElement("div");
         if (clazz !== undefined) {

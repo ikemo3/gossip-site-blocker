@@ -26,6 +26,6 @@ class TemporarilyUnblockAnchor {
     }
 
     private static message(reason: string) {
-        return chrome.i18n.getMessage("temporarilyUnblock", [decodeURI(reason)]);
+        return chrome.i18n.getMessage("temporarilyUnblock", [$.decodeURI(reason)]);
     }
 }
