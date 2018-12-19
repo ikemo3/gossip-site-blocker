@@ -161,6 +161,9 @@
       }
     }
   },
+  "temporarilyUnblockAll": {
+    "message": "Temporarily unblock all"
+  },
   "titleAndContents": {
     "message": "Title and contents"
   },

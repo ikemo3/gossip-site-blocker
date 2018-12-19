@@ -2,6 +2,7 @@ class TemporarilyUnblockAnchor {
     constructor(mediator) {
         this.mediator = mediator;
         const anchor = $.anchor();
+        anchor.classList.add("blocker-temporarily-unblock");
         $.onclick(anchor, this.mediator.temporarilyUnblock.bind(this.mediator));
         this.anchor = anchor;
     }

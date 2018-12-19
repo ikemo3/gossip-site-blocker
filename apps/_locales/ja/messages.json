@@ -161,6 +161,9 @@
       }
     }
   },
+  "temporarilyUnblockAll": {
+    "message": "全てのブロックを一時解除"
+  },
   "titleAndContents": {
     "message": "タイトルと内容"
   },

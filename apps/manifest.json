@@ -235,6 +235,7 @@
         "content_script/hide_anchor.js",
         "content_script/operations_anchor.js",
         "content_script/operations_block.js",
+        "content_script/temporarily_unblock_all.js",
         "content_script/temporarily_unblock_anchor.js",
         "content_script/document_start/start.js"
       ],
