@@ -1,4 +1,8 @@
-class BlockMediator {
+interface IBlockMediator {
+    blockPage(url: string, blockType: string): Promise<void>;
+}
+
+class BlockMediator implements IBlockMediator {
     private readonly url: string;
     private blockReason: BlockReason | null;
     private readonly blockTarget: BlockTarget;
@@ -148,7 +152,7 @@ class BlockMediator {
         this.blockDialog = new BlockDialog(this, this.url, this.defaultBlockType);
     }
 
-    public async blockPage(url: string, blockType: string) {
+    public async blockPage(url: string, blockType: string): Promise<void> {
         await this.block(url, blockType);
     }
 }
