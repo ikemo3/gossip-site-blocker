@@ -1,3 +1,14 @@
+# v1.6.0
+
+## Enhancements.
+
+* Add: 'recommended' for block dialog.
+* Add: 'temporarily unblock all' link.
+
+## Bug Fixes.
+
+* Fix: non-UTF8 encoding cause Exception.
+
 # v1.5.3
 
 ## Enhancements.
