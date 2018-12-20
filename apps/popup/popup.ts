@@ -34,7 +34,21 @@ exceptIkagadesitakaButton.addEventListener("click", async () => {
     chrome.tabs.update(currentTab.id!, {url: url.toString()});
 });
 
+class PopupMediator implements IBlockMediator {
+    async blockPage(url: string, blockType: string): Promise<void> {
+        await BlockedSitesRepository.add(url, blockType);
+    }
+}
+
 (async () => {
+    const defaultBlockType: string = await OptionRepository.defaultBlockType();
+
+    const currentTab = await getCurrentTab();
+    const url = currentTab.url;
+    if (url === undefined) {
+        return;
+    }
+
     const lang = chrome.i18n.getUILanguage();
 
     if (lang === "ja") {
@@ -44,4 +58,7 @@ exceptIkagadesitakaButton.addEventListener("click", async () => {
         exceptIkagadesitakaDiv.style.display = "none";
         searchInEnglishDiv.style.display = "block";
     }
+
+    const mediator = new PopupMediator();
+    const dialog = new BlockDialog(mediator, url, defaultBlockType);
 })();

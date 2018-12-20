@@ -27,7 +27,18 @@ exceptIkagadesitakaButton.addEventListener("click", async () => {
     url.searchParams.set("q", q + " -" + ikagadesuka);
     chrome.tabs.update(currentTab.id, { url: url.toString() });
 });
+class PopupMediator {
+    async blockPage(url, blockType) {
+        await BlockedSitesRepository.add(url, blockType);
+    }
+}
 (async () => {
+    const defaultBlockType = await OptionRepository.defaultBlockType();
+    const currentTab = await getCurrentTab();
+    const url = currentTab.url;
+    if (url === undefined) {
+        return;
+    }
     const lang = chrome.i18n.getUILanguage();
     if (lang === "ja") {
         exceptIkagadesitakaDiv.style.display = "block";
@@ -37,5 +48,7 @@ exceptIkagadesitakaButton.addEventListener("click", async () => {
         exceptIkagadesitakaDiv.style.display = "none";
         searchInEnglishDiv.style.display = "block";
     }
+    const mediator = new PopupMediator();
+    const dialog = new BlockDialog(mediator, url, defaultBlockType);
 })();
 //# sourceMappingURL=popup.js.map
