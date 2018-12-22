@@ -11,7 +11,7 @@
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value="manifest.json" />
+                    <option name="path" value="apps/manifest.json" />
                   </Item>
                 </list>
               </option>
