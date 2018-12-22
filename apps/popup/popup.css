@@ -1,3 +1,7 @@
 body {
     width: 100%;
 }
+
+input[type=button] {
+    font-size: 1rem;
+}
