@@ -1,3 +1,14 @@
+# v1.7.0
+
+## Enhancements.
+
+* Add: 'block current page' popup.
+
+## Bug Fixes.
+
+* Fix: 'temporarily unblock all' does not appear when using toolbox.
+* Fix: 'Search in English' is displayed other than Google Search.
+
 # v1.6.0
 
 ## Enhancements.
