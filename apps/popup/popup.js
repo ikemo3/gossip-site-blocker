@@ -39,16 +39,23 @@ class PopupMediator {
     if (url === undefined) {
         return;
     }
+    const isGoogleSearch = await $.isGoogleSearch(url);
     const lang = chrome.i18n.getUILanguage();
-    if (lang === "ja") {
-        exceptIkagadesitakaDiv.style.display = "block";
-        searchInEnglishDiv.style.display = "block";
+    if (isGoogleSearch) {
+        if (lang === "ja") {
+            exceptIkagadesitakaDiv.style.display = "block";
+            searchInEnglishDiv.style.display = "block";
+        }
+        else {
+            exceptIkagadesitakaDiv.style.display = "none";
+            searchInEnglishDiv.style.display = "block";
+        }
     }
     else {
         exceptIkagadesitakaDiv.style.display = "none";
-        searchInEnglishDiv.style.display = "block";
+        searchInEnglishDiv.style.display = "none";
+        const mediator = new PopupMediator();
+        const dialog = new BlockDialog(mediator, url, defaultBlockType);
     }
-    const mediator = new PopupMediator();
-    const dialog = new BlockDialog(mediator, url, defaultBlockType);
 })();
 //# sourceMappingURL=popup.js.map

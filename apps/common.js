@@ -111,6 +111,20 @@ const $ = {
     hide(element) {
         element.style.display = "none";
     },
+    async isGoogleSearch(url) {
+        const manifestUrl = chrome.runtime.getURL("manifest.json");
+        const response = await fetch(manifestUrl);
+        const manifest = await response.json();
+        const matches = manifest.content_scripts[0].matches;
+        for (const match of matches) {
+            // remove last '*' of pattern.
+            const pattern = match.replace("*", "");
+            if (url.startsWith(pattern)) {
+                return true;
+            }
+        }
+        return false;
+    },
     label(text, htmlFor) {
         const label = document.createElement("label");
         label.htmlFor = htmlFor;

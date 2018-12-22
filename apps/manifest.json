@@ -455,6 +455,7 @@
     "activeTab"
   ],
   "web_accessible_resources": [
-    "icons/*"
+    "icons/*",
+    "manifest.json"
   ]
 }
