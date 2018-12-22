@@ -1,11 +1,20 @@
 function create_temporarily_unblock_all() {
-    const resultStats = document.getElementById("resultStats");
-    if (resultStats === null) {
-        return;
+    const menu = document.getElementById("hdtbMenus");
+    if (menu !== null && menu.style.display !== "none") {
+        const toolDiv = document.querySelector(".hdtb-mn-cont");
+        if (toolDiv !== null) {
+            const anchor = $.anchor($.message("temporarilyUnblockAll"));
+            $.onclick(anchor, temporarily_unblock_all);
+            toolDiv.appendChild(anchor);
+            return;
+        }
     }
-    const anchor = $.anchor($.message("temporarilyUnblockAll"));
-    $.onclick(anchor, temporarily_unblock_all);
-    resultStats.appendChild(anchor);
+    const resultStats = document.getElementById("resultStats");
+    if (resultStats !== null) {
+        const anchor = $.anchor($.message("temporarilyUnblockAll"));
+        $.onclick(anchor, temporarily_unblock_all);
+        resultStats.appendChild(anchor);
+    }
 }
 function temporarily_unblock_all() {
     const anchorList = document.querySelectorAll(".blocker-temporarily-unblock");

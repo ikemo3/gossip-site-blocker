@@ -151,6 +151,4 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const subObserver of subObserverList) {
         subObserver.disconnect();
     }
-
-    create_temporarily_unblock_all();
 });
