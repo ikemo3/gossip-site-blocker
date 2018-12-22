@@ -1,4 +1,14 @@
 function create_temporarily_unblock_all() {
+    const resultStats = document.getElementById("resultStats");
+    if (resultStats !== null) {
+        const resultStatsIsHidden = getComputedStyle(resultStats).opacity === "0";
+        if (!resultStatsIsHidden) {
+            const anchor = $.anchor($.message("temporarilyUnblockAll"));
+            $.onclick(anchor, temporarily_unblock_all);
+            resultStats.appendChild(anchor);
+            return;
+        }
+    }
     const menu = document.getElementById("hdtbMenus");
     if (menu !== null && menu.style.display !== "none") {
         const toolDiv = document.querySelector(".hdtb-mn-cont");
@@ -8,12 +18,6 @@ function create_temporarily_unblock_all() {
             toolDiv.appendChild(anchor);
             return;
         }
-    }
-    const resultStats = document.getElementById("resultStats");
-    if (resultStats !== null) {
-        const anchor = $.anchor($.message("temporarilyUnblockAll"));
-        $.onclick(anchor, temporarily_unblock_all);
-        resultStats.appendChild(anchor);
     }
 }
 function temporarily_unblock_all() {
