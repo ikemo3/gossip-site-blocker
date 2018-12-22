@@ -139,6 +139,7 @@ class BlockDialog {
     }
     createButtons() {
         const cancelButton = $.button($.message("cancelButtonLabel"), "blocker-secondary-button");
+        cancelButton.id = "blocker-cancel-button";
         $.onclick(cancelButton, this.cancel.bind(this));
         const blockButton = $.button($.message("blockButtonLabel"), "blocker-primary-button");
         $.onclick(blockButton, this.block.bind(this));
