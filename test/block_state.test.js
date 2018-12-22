@@ -4,6 +4,9 @@ describe("BlockState", () => {
             contains(keyword) {
                 return contains;
             },
+            containsInTitle(keyword) {
+                return false;
+            },
             getUrl() {
                 return url;
             },

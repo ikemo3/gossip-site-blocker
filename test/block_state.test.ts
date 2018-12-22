@@ -1,8 +1,12 @@
 describe("BlockState", () => {
-    function createTarget(url: string, contains: boolean) {
+    function createTarget(url: string, contains: boolean): IBlockTarget {
         return {
             contains(keyword: string): boolean {
                 return contains;
+            },
+
+            containsInTitle(keyword: string): boolean {
+                return false;
             },
 
             getUrl(): string {
