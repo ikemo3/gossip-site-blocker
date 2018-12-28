@@ -17,6 +17,9 @@
   "blockButtonLabel": {
     "message": "Block"
   },
+  "blockByRegexp": {
+    "message": "Block by Regular Expression"
+  },
   "blockChangeExplanation": {
     "message": "Currently blocked for the following reason. Do you want to change it?"
   },
@@ -146,6 +149,9 @@
   "importTextAreaLabel": {
     "message": "Please enter sites to add, one per line, and press the 'Import' button."
   },
+  "invalidPattern": {
+    "message": "Invalid Pattern."
+  },
   "menuCompact": {
     "message": "Compact"
   },
@@ -157,6 +163,12 @@
   },
   "optionTitle": {
     "message": "Gossip Site Blocker: Option"
+  },
+  "regexpAddButton": {
+    "message": "Add"
+  },
+  "regexpDeleteButton": {
+    "message": "Delete"
   },
   "searchInEnglish": {
     "message": "Search in English"

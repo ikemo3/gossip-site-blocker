@@ -132,6 +132,10 @@ const $ = {
         element.style.display = "none";
     },
 
+    insertBefore(element: HTMLElement, afterElement: HTMLElement) {
+        afterElement.parentElement!.insertBefore(element, afterElement);
+    },
+
     async isGoogleSearch(url: string): Promise<boolean> {
         const manifestUrl = chrome.runtime.getURL("manifest.json");
 
@@ -180,6 +184,14 @@ const $ = {
         radio.value = value;
         radio.id = id;
         return radio;
+    },
+
+    regexp(pattern: string): RegExp | null {
+        try {
+            return new RegExp(pattern);
+        } catch (e) {
+            return null;
+        }
     },
 
     removeSelf(element: Element): void {

@@ -17,6 +17,9 @@
   "blockButtonLabel": {
     "message": "ブロック"
   },
+  "blockByRegexp": {
+    "message": "正規表現でブロック"
+  },
   "blockChangeExplanation": {
     "message": "現在以下の理由でブロックされています。変更しますか?"
   },
@@ -146,6 +149,9 @@
   "importTextAreaLabel": {
     "message": "追加するサイトを1行に1つずつ入力して「インポート」ボタンを押してください。"
   },
+  "invalidPattern": {
+    "message": "不正なパターンです。"
+  },
   "menuCompact": {
     "message": "コンパクト"
   },
@@ -157,6 +163,12 @@
   },
   "optionTitle": {
     "message": "ゴシップサイトブロッカー: オプション"
+  },
+  "regexpAddButton": {
+    "message": "追加"
+  },
+  "regexpDeleteButton": {
+    "message": "削除"
   },
   "searchInEnglish": {
     "message": "英語で検索"

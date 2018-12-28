@@ -55,6 +55,9 @@ clearButton.addEventListener("click", clear);
 document.addEventListener("DOMContentLoaded", async (ignore) => {
     await show_lists();
 
+    const regexpList = await RegExpRepository.load();
+    new RegExpList(regexpList);
+
     const developerMode: boolean = await OptionRepository.isDeveloperMode();
     Logger.log("developerMode is ", developerMode);
     developerCheckbox.checked = developerMode;

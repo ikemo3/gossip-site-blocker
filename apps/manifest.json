@@ -214,6 +214,7 @@
       "run_at": "document_start",
       "js": [
         "banned_word_repository.js",
+        "regexp_repository.js",
         "common.js",
         "option/block.js",
         "option/blocked_site.js",

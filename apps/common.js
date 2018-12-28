@@ -111,6 +111,9 @@ const $ = {
     hide(element) {
         element.style.display = "none";
     },
+    insertBefore(element, afterElement) {
+        afterElement.parentElement.insertBefore(element, afterElement);
+    },
     async isGoogleSearch(url) {
         const manifestUrl = chrome.runtime.getURL("manifest.json");
         const response = await fetch(manifestUrl);
@@ -150,6 +153,14 @@ const $ = {
         radio.value = value;
         radio.id = id;
         return radio;
+    },
+    regexp(pattern) {
+        try {
+            return new RegExp(pattern);
+        }
+        catch (e) {
+            return null;
+        }
     },
     removeSelf(element) {
         element.parentElement.removeChild(element);

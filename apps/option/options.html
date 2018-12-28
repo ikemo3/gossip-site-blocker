@@ -114,6 +114,11 @@
 
     <input type="checkbox" id="autoBlockIDNCheckBox"/>
     <label for="autoBlockIDNCheckBox" data-i18n-text="autoBlockIDN"></label>
+
+    <h2 data-i18n-text="blockByRegexp">Block by Regular Expression</h2>
+
+    <div id="regexpList">
+    </div>
 </section>
 
 <section id="bannedWordTabTarget">
@@ -182,6 +187,7 @@
 </section>
 
 <script src="../banned_word_repository.js"></script>
+<script src="../regexp_repository.js"></script>
 <script src="../common.js"></script>
 <script src="banned_word.js"></script>
 <script src="block.js"></script>
@@ -195,6 +201,7 @@
 <script src="config.js"></script>
 <script src="export.js"></script>
 <script src="import.js"></script>
+<script src="regexp.js"></script>
 <script src="l10n.js"></script>
 <script src="options.js"></script>
 </body>
