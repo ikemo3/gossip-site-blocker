@@ -123,7 +123,7 @@ class BlockDialog {
 
         const br = $.br();
 
-        const urlText = $.textField(100, value);
+        const urlText = $.textField(value, 100);
         urlText.disabled = true;
 
         this.urlText = urlText;

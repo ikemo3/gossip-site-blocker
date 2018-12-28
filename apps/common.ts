@@ -209,11 +209,15 @@ const $ = {
         element.textContent = text;
     },
 
-    textField(size: number, value: string): HTMLInputElement {
+    textField(value: string, size?: number): HTMLInputElement {
         const textField = document.createElement("input");
         textField.type = "text";
-        textField.size = size;
         textField.value = value;
+
+        if (size !== undefined) {
+            textField.size = size;
+        }
+
         return textField;
     },
 

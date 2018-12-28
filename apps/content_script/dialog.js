@@ -84,7 +84,7 @@ class BlockDialog {
         this.customRadio = radio;
         const textLabel = $.label($.message("customRadioText"), "blocker-dialog-custom-radio");
         const br = $.br();
-        const urlText = $.textField(100, value);
+        const urlText = $.textField(value, 100);
         urlText.disabled = true;
         this.urlText = urlText;
         div.appendChild(radio);

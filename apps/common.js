@@ -171,11 +171,13 @@ const $ = {
     text(element, text) {
         element.textContent = text;
     },
-    textField(size, value) {
+    textField(value, size) {
         const textField = document.createElement("input");
         textField.type = "text";
-        textField.size = size;
         textField.value = value;
+        if (size !== undefined) {
+            textField.size = size;
+        }
         return textField;
     },
     toBlockType(value) {
