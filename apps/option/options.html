@@ -26,7 +26,7 @@
 
         #generalTab:checked ~ #generalTabTarget,
         #blockedUrlsTab:checked ~ #blockedUrlsTabTarget,
-        #autoBlockTab:checked ~ #autoBlockTabTarget,
+        #collectivelyBlockTab:checked ~ #collectivelyBlockTabTarget,
         #bannedWordTab:checked ~ #bannedWordTabTarget,
         #exportSectionTab:checked ~ #exportSectionTabTarget,
         #importSectionTab:checked ~ #importSectionTabTarget,
@@ -37,7 +37,7 @@
 
         #generalTab:not(:checked) ~ #generalTabTarget,
         #blockedUrlsTab:not(:checked) ~ #blockedUrlsTabTarget,
-        #autoBlockTab:not(:checked) ~ #autoBlockTabTarget,
+        #collectivelyBlockTab:not(:checked) ~ #collectivelyBlockTabTarget,
         #bannedWordTab:not(:checked) ~ #bannedWordTabTarget,
         #exportSectionTab:not(:checked) ~ #exportSectionTabTarget,
         #importSectionTab:not(:checked) ~ #importSectionTabTarget,
@@ -57,8 +57,8 @@
 <input type="radio" name="tab" id="blockedUrlsTab"/>
 <label for="blockedUrlsTab" data-i18n-text="blockedUrls"></label>
 
-<input type="radio" name="tab" id="autoBlockTab"/>
-<label for="autoBlockTab" data-i18n-text="autoBlock"></label>
+<input type="radio" name="tab" id="collectivelyBlockTab"/>
+<label for="collectivelyBlockTab" data-i18n-text="collectivelyBlock"></label>
 
 <input type="radio" name="tab" id="bannedWordTab"/>
 <label for="bannedWordTab" data-i18n-text="bannedWord"></label>
@@ -109,7 +109,7 @@
     </div>
 </section>
 
-<section id="autoBlockTabTarget">
+<section id="collectivelyBlockTabTarget">
     <h2 data-i18n-text="autoBlock">Auto Block</h2>
 
     <input type="checkbox" id="autoBlockIDNCheckBox"/>

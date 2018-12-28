@@ -74,6 +74,9 @@
   "clearDone": {
     "message": "Clear completed."
   },
+  "collectivelyBlock": {
+    "message": "Collectively Block"
+  },
   "customRadioText": {
     "message": "Custom"
   },

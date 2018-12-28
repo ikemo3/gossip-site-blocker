@@ -74,6 +74,9 @@
   "clearDone": {
     "message": "クリアしました。"
   },
+  "collectivelyBlock": {
+    "message": "まとめてブロック"
+  },
   "customRadioText": {
     "message": "カスタム"
   },
