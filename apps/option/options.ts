@@ -39,6 +39,7 @@ async function clear() {
     if (confirm(chrome.i18n.getMessage("clearConfirm"))) {
         await BlockedSitesRepository.clear();
         await BannedWordRepository.clear();
+        await RegExpRepository.clear();
 
         alert(chrome.i18n.getMessage("clearDone"));
 
@@ -46,6 +47,7 @@ async function clear() {
         softBlockList.innerHTML = "";
         hardBlockList.innerHTML = "";
         bannedWords.clear();
+        regexpList.clear();
     }
 }
 
@@ -54,9 +56,6 @@ clearButton.addEventListener("click", clear);
 
 document.addEventListener("DOMContentLoaded", async (ignore) => {
     await show_lists();
-
-    const regexpList = await RegExpRepository.load();
-    new RegExpList(regexpList);
 
     const developerMode: boolean = await OptionRepository.isDeveloperMode();
     Logger.log("developerMode is ", developerMode);

@@ -3,17 +3,23 @@ class RegExpList {
     private readonly addText: HTMLInputElement;
     private readonly addButton: HTMLInputElement;
 
-    constructor(patternList: IRegExpItem[]) {
+    constructor() {
         this.regexpList = document.getElementById("regexpList") as HTMLDivElement;
+        this.addText = document.getElementById("regexpAddText") as HTMLInputElement;
+        this.addButton = document.getElementById("regexpAddButton") as HTMLInputElement;
+        $.onclick(this.addButton, this.addItem.bind(this));
+    }
 
+    public async load() {
+        const patternList = await RegExpRepository.load();
         for (const pattern of patternList) {
             const itemDiv = this.createItem(pattern);
             this.regexpList.appendChild(itemDiv);
         }
+    }
 
-        this.addText = document.getElementById("regexpAddText") as HTMLInputElement;
-        this.addButton = document.getElementById("regexpAddButton") as HTMLInputElement;
-        $.onclick(this.addButton, this.addItem.bind(this));
+    public clear() {
+        this.regexpList.innerHTML = "";
     }
 
     private createItem(item: IRegExpItem): HTMLDivElement {
@@ -58,3 +64,9 @@ class RegExpList {
         $.removeSelf(div);
     }
 }
+
+let regexpList: RegExpList;
+(async () => {
+    regexpList = new RegExpList();
+    await regexpList.load();
+})();

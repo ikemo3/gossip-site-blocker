@@ -1,13 +1,19 @@
 class RegExpList {
-    constructor(patternList) {
+    constructor() {
         this.regexpList = document.getElementById("regexpList");
+        this.addText = document.getElementById("regexpAddText");
+        this.addButton = document.getElementById("regexpAddButton");
+        $.onclick(this.addButton, this.addItem.bind(this));
+    }
+    async load() {
+        const patternList = await RegExpRepository.load();
         for (const pattern of patternList) {
             const itemDiv = this.createItem(pattern);
             this.regexpList.appendChild(itemDiv);
         }
-        this.addText = document.getElementById("regexpAddText");
-        this.addButton = document.getElementById("regexpAddButton");
-        $.onclick(this.addButton, this.addItem.bind(this));
+    }
+    clear() {
+        this.regexpList.innerHTML = "";
     }
     createItem(item) {
         const div = $.div();
@@ -43,4 +49,9 @@ class RegExpList {
         $.removeSelf(div);
     }
 }
+let regexpList;
+(async () => {
+    regexpList = new RegExpList();
+    await regexpList.load();
+})();
 //# sourceMappingURL=regexp.js.map
