@@ -3,10 +3,11 @@ var BlockReasonType;
     BlockReasonType[BlockReasonType["URL_EXACTLY"] = 0] = "URL_EXACTLY";
     BlockReasonType[BlockReasonType["URL"] = 1] = "URL";
     BlockReasonType[BlockReasonType["WORD"] = 2] = "WORD";
-    BlockReasonType[BlockReasonType["IDN"] = 3] = "IDN";
+    BlockReasonType[BlockReasonType["REGEXP"] = 3] = "REGEXP";
+    BlockReasonType[BlockReasonType["IDN"] = 4] = "IDN";
 })(BlockReasonType || (BlockReasonType = {}));
 class BlockState {
-    constructor(blockable, blockedSites, bannedWords, idnOption) {
+    constructor(blockable, blockedSites, bannedWords, regexpList, idnOption) {
         const blockedSite = blockedSites.matches(blockable.getUrl());
         const banned = bannedWords.find((bannedWord) => {
             const keyword = bannedWord.keyword;
@@ -18,7 +19,11 @@ class BlockState {
                     return blockable.contains(keyword);
             }
         });
-        if (blockedSite && (!banned || banned.blockType !== BlockType.HARD)) {
+        const regexp = regexpList.find((regexpItem) => {
+            const pattern = new RegExp(regexpItem.pattern);
+            return pattern.test(DOMUtils.removeProtocol(blockable.getUrl()));
+        });
+        if (blockedSite && (!banned || banned.blockType !== BlockType.HARD) && (!regexp)) {
             this.state = blockedSite.getState();
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
                 this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockedSite.url);
@@ -31,6 +36,11 @@ class BlockState {
         else if (banned) {
             this.state = banned.blockType.toString();
             this.blockReason = new BlockReason(BlockReasonType.WORD, banned.keyword);
+            return;
+        }
+        else if (regexp) {
+            this.state = "soft";
+            this.blockReason = new BlockReason(BlockReasonType.REGEXP, regexp.pattern);
             return;
         }
         // check IDN

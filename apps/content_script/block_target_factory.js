@@ -6,7 +6,7 @@ function blockGoogleElement(g1, options) {
     if (!g.canBlock()) {
         return false;
     }
-    const blockState = new BlockState(g, options.blockedSites, options.bannedWords, options.idnOption);
+    const blockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList, options.idnOption);
     if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;
@@ -19,7 +19,7 @@ function blockGoogleInnerCard(g1, options) {
     if (!g.canBlock()) {
         return false;
     }
-    const blockState = new BlockState(g, options.blockedSites, options.bannedWords, options.idnOption);
+    const blockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList, options.idnOption);
     if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;
@@ -33,7 +33,7 @@ function blockGoogleTopNews(g1, options) {
     if (!g.canBlock()) {
         return false;
     }
-    const blockState = new BlockState(g, options.blockedSites, options.bannedWords, options.idnOption);
+    const blockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList, options.idnOption);
     if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;

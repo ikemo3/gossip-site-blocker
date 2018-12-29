@@ -37,6 +37,12 @@ describe("BlockState", () => {
         };
     }
 
+    function createRegexp(pattern: string): IRegExpItem {
+        return {
+            pattern,
+        };
+    }
+
     const idnOption: IAutoBlockIDNOption = {
         enabled: true,
     };
@@ -45,7 +51,7 @@ describe("BlockState", () => {
         const target = createTarget("http://example.com/foo/bar", false);
         const sites = createEmptySites();
 
-        const blockState = new BlockState(target, sites, [], idnOption);
+        const blockState = new BlockState(target, sites, [], [], idnOption);
         expect(blockState.getReason()).toBeNull();
         expect(blockState.getState()).toBe("none");
     });
@@ -54,7 +60,7 @@ describe("BlockState", () => {
         const target = createTarget("http://example.com/foo/bar", false);
         const sites = createSites("soft", "example.com");
 
-        const blockState = new BlockState(target, sites, [], idnOption);
+        const blockState = new BlockState(target, sites, [], [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.URL);
         expect(blockState.getReason()!.getWord()).toBe("example.com");
         expect(blockState.getState()).toBe("soft");
@@ -64,7 +70,7 @@ describe("BlockState", () => {
         const target = createTarget("http://example.com", false);
         const sites = createSites("soft", "example.com");
 
-        const blockState = new BlockState(target, sites, [], idnOption);
+        const blockState = new BlockState(target, sites, [], [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.URL_EXACTLY);
         expect(blockState.getReason()!.getWord()).toBe("example.com");
         expect(blockState.getState()).toBe("soft");
@@ -74,9 +80,19 @@ describe("BlockState", () => {
         const target = createTarget("http://example.com", true);
         const bannedList = [createBannedWord("evil", BlockType.SOFT, BannedTarget.TITLE_AND_CONTENTS)];
 
-        const blockState = new BlockState(target, createEmptySites(), bannedList, idnOption);
+        const blockState = new BlockState(target, createEmptySites(), bannedList, [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
         expect(blockState.getReason()!.getWord()).toBe("evil");
+        expect(blockState.getState()).toBe("soft");
+    });
+
+    it("block by regexp", () => {
+        const target = createTarget("http://example.com", true);
+        const regexpList = [createRegexp("example\\..*")];
+
+        const blockState = new BlockState(target, createEmptySites(), [], regexpList, idnOption);
+        expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
+        expect(blockState.getReason()!.getWord()).toBe("example\\..*");
         expect(blockState.getState()).toBe("soft");
     });
 
@@ -85,7 +101,7 @@ describe("BlockState", () => {
         const sites = createSites("soft", "example.com");
         const bannedList = [createBannedWord("evil", BlockType.HARD, BannedTarget.TITLE_AND_CONTENTS)];
 
-        const blockState = new BlockState(target, sites, bannedList, idnOption);
+        const blockState = new BlockState(target, sites, bannedList, [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
         expect(blockState.getReason()!.getWord()).toBe("evil");
         expect(blockState.getState()).toBe("hard");
@@ -96,7 +112,7 @@ describe("BlockState", () => {
 
         const target = createTarget("http://xn--eckwd4c7cu47r2wf.jp", false);
 
-        const blockState = new BlockState(target, createEmptySites(), [], idnOption);
+        const blockState = new BlockState(target, createEmptySites(), [], [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.IDN);
         expect(blockState.getReason()!.getWord()).toBe("Internationalized Domain Name");
         expect(blockState.getState()).toBe("soft");

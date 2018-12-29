@@ -1,6 +1,7 @@
 interface IOptions {
     blockedSites: BlockedSites;
     bannedWords: IBannedWord[];
+    regexpList: IRegExpItem[];
     idnOption: IAutoBlockIDNOption;
     defaultBlockType: string;
     menuPosition: MenuPosition;
@@ -46,12 +47,13 @@ observer.observe(document.documentElement, config);
 (async () => {
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
     const bannedWords: IBannedWord[] = await BannedWordRepository.load();
+    const regexpList: IRegExpItem[] = await RegExpRepository.load();
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();
     Logger.debug("autoBlockIDNOption:", idnOption);
 
-    options = {blockedSites, bannedWords, idnOption, defaultBlockType, menuPosition};
+    options = {blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition};
 
     for (const node of pendingsGoogle) {
         tryBlockGoogleElement(node, options);

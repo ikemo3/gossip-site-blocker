@@ -40,11 +40,12 @@ observer.observe(document.documentElement, config);
 (async () => {
     const blockedSites = await BlockedSitesRepository.load();
     const bannedWords = await BannedWordRepository.load();
+    const regexpList = await RegExpRepository.load();
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType = await OptionRepository.defaultBlockType();
     const menuPosition = await OptionRepository.menuPosition();
     Logger.debug("autoBlockIDNOption:", idnOption);
-    options = { blockedSites, bannedWords, idnOption, defaultBlockType, menuPosition };
+    options = { blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition };
     for (const node of pendingsGoogle) {
         tryBlockGoogleElement(node, options);
     }
