@@ -43,7 +43,7 @@ function lineToBannedWord(line: string): IBannedWord | undefined {
 
     const type = cols[1];
     if (type === "banned") {
-        const word = cols[0].replace("+", " ");
+        const word = cols[0].replace(/\+/g, " ");
         const blockType = $.toBlockType(cols[2]);
         const target = $.toBannedTarget(cols[3]);
         return {keyword: word, blockType, target};
