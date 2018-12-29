@@ -23,7 +23,10 @@ class BlockState {
             const pattern = new RegExp(regexpItem.pattern);
             return pattern.test(DOMUtils.removeProtocol(blockable.getUrl()));
         });
-        if (blockedSite && (!banned || banned.blockType !== BlockType.HARD) && (!regexp)) {
+        // FIXME: priority
+        if (blockedSite &&
+            (!banned || banned.blockType !== BlockType.HARD) &&
+            (!regexp || regexp.blockType !== BlockType.HARD)) {
             this.state = blockedSite.getState();
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
                 this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockedSite.url);
@@ -39,7 +42,7 @@ class BlockState {
             return;
         }
         else if (regexp) {
-            this.state = "soft";
+            this.state = regexp.blockType.toString();
             this.blockReason = new BlockReason(BlockReasonType.REGEXP, regexp.pattern);
             return;
         }

@@ -28,7 +28,8 @@ async function exportClicked() {
     const regexpList = await RegExpRepository.load();
     for (const regexp of regexpList) {
         const escaped = $.escape(regexp.pattern);
-        const line = `${escaped} regexp`;
+        const blockType = regexp.blockType;
+        const line = `${escaped} regexp ${blockType}`;
         regexpLines.push(line);
     }
 

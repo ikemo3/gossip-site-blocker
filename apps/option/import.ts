@@ -65,7 +65,8 @@ function lineToRegexp(line: string): IRegExpItem | null {
     const type = cols[1];
     if (type === "regexp") {
         const pattern = $.unescape(cols[0]);
-        return {pattern};
+        const blockType = $.toBlockType(cols[2]);
+        return {pattern, blockType};
     } else {
         return null;
     }

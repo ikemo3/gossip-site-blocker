@@ -37,9 +37,9 @@ describe("BlockState", () => {
         };
     }
 
-    function createRegexp(pattern: string): IRegExpItem {
+    function createRegexp(pattern: string, blockType: BlockType): IRegExpItem {
         return {
-            pattern,
+            pattern, blockType
         };
     }
 
@@ -88,7 +88,7 @@ describe("BlockState", () => {
 
     it("block by regexp", () => {
         const target = createTarget("http://example.com", true);
-        const regexpList = [createRegexp("example\\..*")];
+        const regexpList = [createRegexp("example\\..*", BlockType.SOFT)];
 
         const blockState = new BlockState(target, createEmptySites(), [], regexpList, idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);

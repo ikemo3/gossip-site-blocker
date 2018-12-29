@@ -4,17 +4,24 @@ interface IRegExpItemList {
 
 interface IRegExpItem {
     pattern: string;
+    blockType: BlockType;
 }
 
 const RegExpRepository = {
     async load(): Promise<IRegExpItem[]> {
         const items = await ChromeStorage.get({regexpList: []}) as IRegExpItemList;
 
-        const regexpList = items.regexpList;
+        const itemsCopy = items.regexpList;
 
-        Logger.debug("regexpList: ", regexpList);
+        for (const item of itemsCopy) {
+            if (!item.blockType) {
+                item.blockType = BlockType.SOFT;
+            }
+        }
 
-        return regexpList;
+        Logger.debug("regexpList: ", itemsCopy);
+
+        return itemsCopy;
     },
 
     async save(items: IRegExpItem[]) {
@@ -55,9 +62,24 @@ const RegExpRepository = {
             }
         }
 
-        items.push({pattern});
+        items.push({pattern, blockType: BlockType.SOFT});
         await this.save(items);
         return true;
+    },
+
+    async changeType(pattern: string, type: BlockType): Promise<void> {
+        const items: IRegExpItem[] = await this.load();
+
+        const filteredItems = items.map((item) => {
+            if (item.pattern !== pattern) {
+                return item;
+            }
+
+            item.blockType = type;
+            return item;
+        });
+
+        await this.save(filteredItems);
     },
 
     async delete(deletePattern: string): Promise<boolean> {

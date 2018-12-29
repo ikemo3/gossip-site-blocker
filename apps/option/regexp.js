@@ -21,8 +21,16 @@ class RegExpList {
         input.readOnly = true;
         const delButton = $.button($.message("regexpDeleteButton"));
         $.onclick(delButton, this.deleteItem.bind(this, item.pattern, div));
+        const typeSelect = document.createElement("select");
+        const softOption = $.option("soft", $.message("softBlock"));
+        const hardOption = $.option("hard", $.message("hardBlock"));
+        typeSelect.appendChild(softOption);
+        typeSelect.appendChild(hardOption);
+        typeSelect.addEventListener("change", this.changeType.bind(this, item.pattern));
+        typeSelect.value = item.blockType.toString();
         div.appendChild(input);
         div.appendChild(delButton);
+        div.appendChild(typeSelect);
         return div;
     }
     async addItem() {
@@ -38,11 +46,24 @@ class RegExpList {
         const added = await RegExpRepository.add(pattern);
         if (added) {
             // add item
-            const item = await this.createItem({ pattern });
+            const item = await this.createItem({ pattern, blockType: BlockType.SOFT });
             this.regexpList.appendChild(item);
         }
         // clear text
         this.addText.value = "";
+    }
+    async changeType(pattern, ev) {
+        const typeSelect = ev.target;
+        const index = typeSelect.selectedIndex;
+        const value = typeSelect.options[index].value;
+        switch (value) {
+            case "soft":
+                await RegExpRepository.changeType(pattern, BlockType.SOFT);
+                break;
+            case "hard":
+                await RegExpRepository.changeType(pattern, BlockType.HARD);
+                break;
+        }
     }
     async deleteItem(pattern, div) {
         await RegExpRepository.delete(pattern);

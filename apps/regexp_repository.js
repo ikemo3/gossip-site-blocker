@@ -1,9 +1,14 @@
 const RegExpRepository = {
     async load() {
         const items = await ChromeStorage.get({ regexpList: [] });
-        const regexpList = items.regexpList;
-        Logger.debug("regexpList: ", regexpList);
-        return regexpList;
+        const itemsCopy = items.regexpList;
+        for (const item of itemsCopy) {
+            if (!item.blockType) {
+                item.blockType = BlockType.SOFT;
+            }
+        }
+        Logger.debug("regexpList: ", itemsCopy);
+        return itemsCopy;
     },
     async save(items) {
         await ChromeStorage.set({ regexpList: items });
@@ -35,9 +40,20 @@ const RegExpRepository = {
                 return false;
             }
         }
-        items.push({ pattern });
+        items.push({ pattern, blockType: BlockType.SOFT });
         await this.save(items);
         return true;
+    },
+    async changeType(pattern, type) {
+        const items = await this.load();
+        const filteredItems = items.map((item) => {
+            if (item.pattern !== pattern) {
+                return item;
+            }
+            item.blockType = type;
+            return item;
+        });
+        await this.save(filteredItems);
     },
     async delete(deletePattern) {
         const items = await this.load();
