@@ -135,7 +135,7 @@
     "message": "Format(per line)"
   },
   "importFormatBannedWord": {
-    "message": "banned word(replace blank to '+') + 'banned'。例: 'sad+news banned'"
+    "message": "banned word(replace blank to '+') + 'banned'. Example: 'sad+news banned'"
   },
   "importFormatDomainOnly": {
     "message": "domain name (or domain name with path). Example: 'example.com', 'example.com/path'"
