@@ -128,6 +128,10 @@ const $ = {
         return div;
     },
 
+    escape(str: string): string {
+        return str.replace(/\\/g, "\\\\").replace(/\+/g, "\\+").replace(/ /g, "+");
+    },
+
     hide(element: HTMLElement): void {
         element.style.display = "none";
     },
@@ -251,6 +255,20 @@ const $ = {
             default:
                 return BannedTarget.TITLE_AND_CONTENTS;
         }
+    },
+
+    unescape(str: string): string {
+        return str.replace(/(\\\\|\\\+|\+)/g, (matched) => {
+            if (matched === "\\\\") {
+                return "\\";
+            } else if (matched === "\\+") {
+                return "+";
+            } else if (matched === "+") {
+                return " ";
+            } else {
+                return matched;
+            }
+        });
     },
 };
 

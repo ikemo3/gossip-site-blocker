@@ -32,6 +32,12 @@ async function importClicked() {
 
     await BannedWordRepository.addAll(bannedWordList);
 
+    // regexp
+    const regexpList = lines.map((line) => lineToRegexp(line))
+        .filter((regexp) => regexp !== null) as IRegExpItem[];
+
+    await RegExpRepository.addAll(regexpList);
+
     alert(chrome.i18n.getMessage("importCompleted"));
 }
 
@@ -47,6 +53,21 @@ function lineToBannedWord(line: string): IBannedWord | undefined {
         const blockType = $.toBlockType(cols[2]);
         const target = $.toBannedTarget(cols[3]);
         return {keyword: word, blockType, target};
+    }
+}
+
+function lineToRegexp(line: string): IRegExpItem | null {
+    const cols = line.split(" ");
+    if (cols.length === 1) {
+        return null;
+    }
+
+    const type = cols[1];
+    if (type === "regexp") {
+        const pattern = $.unescape(cols[0]);
+        return {pattern};
+    } else {
+        return null;
     }
 }
 

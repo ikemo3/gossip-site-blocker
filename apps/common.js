@@ -108,6 +108,9 @@ const $ = {
         }
         return div;
     },
+    escape(str) {
+        return str.replace(/\\/g, "\\\\").replace(/\+/g, "\\+").replace(/ /g, "+");
+    },
     hide(element) {
         element.style.display = "none";
     },
@@ -208,6 +211,22 @@ const $ = {
             default:
                 return BannedTarget.TITLE_AND_CONTENTS;
         }
+    },
+    unescape(str) {
+        return str.replace(/(\\\\|\\\+|\+)/g, (matched) => {
+            if (matched === "\\\\") {
+                return "\\";
+            }
+            else if (matched === "\\+") {
+                return "+";
+            }
+            else if (matched === "+") {
+                return " ";
+            }
+            else {
+                return matched;
+            }
+        });
     },
 };
 var MenuPosition;

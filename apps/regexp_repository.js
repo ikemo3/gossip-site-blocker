@@ -11,6 +11,22 @@ const RegExpRepository = {
     async clear() {
         await ChromeStorage.set({ regexpList: [] });
     },
+    async addAll(regexpList) {
+        const items = await this.load();
+        for (const regexp of regexpList) {
+            let found = false;
+            for (const item of items) {
+                if (regexp.pattern === item.pattern) {
+                    // do nothing.
+                    found = true;
+                }
+            }
+            if (!found) {
+                items.push(regexp);
+            }
+        }
+        await this.save(items);
+    },
     async add(pattern) {
         const items = await this.load();
         for (const item of items) {

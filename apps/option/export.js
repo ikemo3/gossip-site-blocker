@@ -18,7 +18,15 @@ async function exportClicked() {
         bannedLines.push(line);
     }
     bannedLines.sort();
-    const allLines = lines.concat(bannedLines);
+    // regexp
+    const regexpLines = [];
+    const regexpList = await RegExpRepository.load();
+    for (const regexp of regexpList) {
+        const escaped = $.escape(regexp.pattern);
+        const line = `${escaped} regexp`;
+        regexpLines.push(line);
+    }
+    const allLines = lines.concat(bannedLines).concat(regexpLines);
     const exportTextArea = document.getElementById("exportTextArea");
     exportTextArea.value = allLines.join("\n") + "\n";
 }
