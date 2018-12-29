@@ -170,6 +170,9 @@
   "regexpDeleteButton": {
     "message": "Delete"
   },
+  "regexpDescription": {
+    "message": "Do not include 'http' or 'https' in regular expressions. e.g. '.*\\.example\\.com'"
+  },
   "searchInEnglish": {
     "message": "Search in English"
   },

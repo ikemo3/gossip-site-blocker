@@ -170,6 +170,9 @@
   "regexpDeleteButton": {
     "message": "削除"
   },
+  "regexpDescription": {
+    "message": "正規表現には'http'や'https'は含まないでください。例: '.*\\.example\\.com'"
+  },
   "searchInEnglish": {
     "message": "英語で検索"
   },
