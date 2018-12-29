@@ -1,17 +1,19 @@
 class RegExpList {
-    private addDiv: HTMLDivElement;
-    private addInput: HTMLInputElement;
+    private readonly regexpList: HTMLDivElement;
+    private readonly addText: HTMLInputElement;
+    private readonly addButton: HTMLInputElement;
 
     constructor(patternList: IRegExpItem[]) {
-        const regexpList = document.getElementById("regexpList") as HTMLDivElement;
+        this.regexpList = document.getElementById("regexpList") as HTMLDivElement;
 
         for (const pattern of patternList) {
             const itemDiv = this.createItem(pattern);
-            regexpList.appendChild(itemDiv);
+            this.regexpList.appendChild(itemDiv);
         }
 
-        this.addDiv = this.createAddItem();
-        regexpList.appendChild(this.addDiv);
+        this.addText = document.getElementById("regexpAddText") as HTMLInputElement;
+        this.addButton = document.getElementById("regexpAddButton") as HTMLInputElement;
+        $.onclick(this.addButton, this.addItem.bind(this));
     }
 
     private createItem(item: IRegExpItem): HTMLDivElement {
@@ -27,22 +29,8 @@ class RegExpList {
         return div;
     }
 
-    private createAddItem(): HTMLDivElement {
-        const div = $.div();
-        const input = $.textField("");
-        this.addInput = input;
-
-        const addButton = $.button($.message("regexpAddButton"));
-        $.onclick(addButton, this.addItem.bind(this));
-
-        div.appendChild(input);
-        div.appendChild(addButton);
-
-        return div;
-    }
-
     private async addItem(): Promise<void> {
-        const pattern = this.addInput.value;
+        const pattern = this.addText.value;
         if (pattern === "") {
             return;
         }
@@ -57,11 +45,11 @@ class RegExpList {
         if (added) {
             // add item
             const item = await this.createItem({pattern});
-            $.insertBefore(item, this.addDiv);
+            this.regexpList.appendChild(item);
         }
 
         // clear text
-        this.addInput.value = "";
+        this.addText.value = "";
     }
 
     private async deleteItem(pattern: string, div: HTMLDivElement): Promise<void> {

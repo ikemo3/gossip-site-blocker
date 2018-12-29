@@ -1,12 +1,13 @@
 class RegExpList {
     constructor(patternList) {
-        const regexpList = document.getElementById("regexpList");
+        this.regexpList = document.getElementById("regexpList");
         for (const pattern of patternList) {
             const itemDiv = this.createItem(pattern);
-            regexpList.appendChild(itemDiv);
+            this.regexpList.appendChild(itemDiv);
         }
-        this.addDiv = this.createAddItem();
-        regexpList.appendChild(this.addDiv);
+        this.addText = document.getElementById("regexpAddText");
+        this.addButton = document.getElementById("regexpAddButton");
+        $.onclick(this.addButton, this.addItem.bind(this));
     }
     createItem(item) {
         const div = $.div();
@@ -18,18 +19,8 @@ class RegExpList {
         div.appendChild(delButton);
         return div;
     }
-    createAddItem() {
-        const div = $.div();
-        const input = $.textField("");
-        this.addInput = input;
-        const addButton = $.button($.message("regexpAddButton"));
-        $.onclick(addButton, this.addItem.bind(this));
-        div.appendChild(input);
-        div.appendChild(addButton);
-        return div;
-    }
     async addItem() {
-        const pattern = this.addInput.value;
+        const pattern = this.addText.value;
         if (pattern === "") {
             return;
         }
@@ -42,10 +33,10 @@ class RegExpList {
         if (added) {
             // add item
             const item = await this.createItem({ pattern });
-            $.insertBefore(item, this.addDiv);
+            this.regexpList.appendChild(item);
         }
         // clear text
-        this.addInput.value = "";
+        this.addText.value = "";
     }
     async deleteItem(pattern, div) {
         await RegExpRepository.delete(pattern);
