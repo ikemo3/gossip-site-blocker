@@ -146,6 +146,9 @@
   "importFormatPersonalBlocklist": {
     "message": "can import from Personal Blocklist."
   },
+  "importFormatRegexp": {
+    "message": "regexp(' ' => '+', '+' => '\\+', '\\' => '\\\\'). Example: '.*\\.example\\.com'"
+  },
   "importTextAreaLabel": {
     "message": "Please enter sites to add, one per line, and press the 'Import' button."
   },

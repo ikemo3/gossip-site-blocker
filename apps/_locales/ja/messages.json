@@ -146,6 +146,9 @@
   "importFormatPersonalBlocklist": {
     "message": "Personal Blocklistからインポート可能です。"
   },
+  "importFormatRegexp": {
+    "message": "正規表現(' ' => '+', '+' => '\\+', '\\' => '\\\\'). 例: '.*\\.example\\.com'"
+  },
   "importTextAreaLabel": {
     "message": "追加するサイトを1行に1つずつ入力して「インポート」ボタンを押してください。"
   },
