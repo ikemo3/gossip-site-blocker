@@ -35,3 +35,50 @@ jobs:
         
       # run tests!
       - run: yarn test
+
+      # archive
+      - run:
+          name: "Archive gossip-site-blocker.crx"
+          command: |
+            echo ${PEM_UUENCODE} | base64 -d > /tmp/gossip-site-blocker.pem
+            mkdir -p /tmp/workspace
+            ./node_modules/.bin/crx pack -o /tmp/workspace/gossip-site-blocker.crx apps -p /tmp/gossip-site-blocker.pem 
+            jq .version_name apps/manifest.json | tr -d '"' > /tmp/workspace/version
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - gossip-site-blocker.crx
+            - version
+
+  deploy:
+    docker:
+      - image: circleci/golang:1.8
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            go get -u github.com/tcnksm/ghr
+            ghr -t ${GITHUB_TOKEN} \
+                -u ${CIRCLE_PROJECT_USERNAME} \
+                -r ${CIRCLE_PROJECT_REPONAME} \
+                -c ${CIRCLE_SHA1} \
+                --replace \
+                v$(cat /tmp/workspace/version) \
+                /tmp/workspace/gossip-site-blocker.crx
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only: devel
