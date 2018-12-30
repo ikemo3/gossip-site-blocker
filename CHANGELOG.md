@@ -1,3 +1,14 @@
+# v1.8.0
+
+## Enhancements.
+
+* Add: 'block by regular exception' option.
+
+## Bug Fixes
+
+* Fix: missed space when import/export Banned Words.
+* Fix: English message contained Japanese.
+
 # v1.7.0
 
 ## Enhancements.
