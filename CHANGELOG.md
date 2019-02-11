@@ -1,3 +1,10 @@
+# v1.8.1
+
+## Bug Fixes
+
+* Fix: Fix: does not appear block link when using certain browser.
+* Fix: Google Top News.
+
 # v1.8.0
 
 ## Enhancements.
