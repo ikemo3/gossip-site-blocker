@@ -18,7 +18,7 @@ class GoogleTopNews implements IBlockable {
             return;
         }
 
-        const titleDiv = anchor.querySelector(".rrBdId");
+        const titleDiv = anchor.querySelector(".nDgy9d");
         if (titleDiv === null) {
             this.valid = false;
             return;

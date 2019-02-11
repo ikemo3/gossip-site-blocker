@@ -10,7 +10,7 @@ class GoogleTopNews {
             this.valid = false;
             return;
         }
-        const titleDiv = anchor.querySelector(".rrBdId");
+        const titleDiv = anchor.querySelector(".nDgy9d");
         if (titleDiv === null) {
             this.valid = false;
             return;
