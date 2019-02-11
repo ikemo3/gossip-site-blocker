@@ -38,13 +38,23 @@ class GoogleElement {
         for (const anchor of anchorList) {
             const ping = anchor.getAttribute("ping");
             const href = anchor.getAttribute("href");
+            const onmouseDown = anchor.getAttribute("onmousedown");
             if (href === null) {
                 continue;
             }
-            if (!href.startsWith("https://books.google") && ping === null) {
+            if (!href.startsWith("https://books.google") && ping === null && onmouseDown == null) {
                 continue;
             }
-            urlList.push(href);
+            // firefox, coccoc, ...
+            if (href.startsWith("/url?")) {
+                const matchData = href.match("&url=(.*)&");
+                if (matchData !== null) {
+                    urlList.push(matchData[0]);
+                }
+            }
+            else {
+                urlList.push(href);
+            }
         }
         // ignore if no anchor.
         if (urlList.length === 0) {
