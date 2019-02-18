@@ -14,6 +14,7 @@ const exceptIkagadesitakaDiv = document.getElementById("exceptIkagadesitakaDiv")
 const exceptIkagadesitakaButton = document.getElementById("exceptIkagadesitakaButton");
 const searchInEnglishDiv = document.getElementById("searchInEnglishDiv");
 const searchInEnglishButton = document.getElementById("searchInEnglishButton");
+const optionLink = document.getElementById("optionLink");
 searchInEnglishButton.addEventListener("click", async () => {
     const currentTab = await getCurrentTab();
     const url = currentTab.url;
@@ -26,6 +27,9 @@ exceptIkagadesitakaButton.addEventListener("click", async () => {
     const ikagadesuka = "\u3044\u304B\u304C\u3067\u3057\u305F\u304B";
     url.searchParams.set("q", q + " -" + ikagadesuka);
     chrome.tabs.update(currentTab.id, { url: url.toString() });
+});
+optionLink.addEventListener("click", () => {
+    chrome.runtime.openOptionsPage();
 });
 class PopupMediator {
     async blockPage(url, blockType) {

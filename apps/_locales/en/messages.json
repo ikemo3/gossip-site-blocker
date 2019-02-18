@@ -164,6 +164,9 @@
   "menuPosition": {
     "message": "Menu Position"
   },
+  "optionLabel": {
+    "message": "Option"
+  },
   "optionTitle": {
     "message": "Gossip Site Blocker: Option"
   },

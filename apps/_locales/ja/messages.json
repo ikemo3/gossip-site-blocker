@@ -164,6 +164,9 @@
   "menuPosition": {
     "message": "メニューの位置"
   },
+  "optionLabel": {
+    "message": "オプション"
+  },
   "optionTitle": {
     "message": "ゴシップサイトブロッカー: オプション"
   },
