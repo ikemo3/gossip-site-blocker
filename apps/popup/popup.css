@@ -1,6 +1,7 @@
 body {
     width: 100%;
     min-width: 15rem;
+    background-color: white;
 }
 
 input[type=button] {
