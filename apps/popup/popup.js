@@ -42,7 +42,7 @@ class PopupMediator {
     const isGoogleSearch = await $.isGoogleSearch(url);
     const lang = chrome.i18n.getUILanguage();
     if (isGoogleSearch) {
-        if (lang === "ja") {
+        if (lang.startsWith("ja")) {
             exceptIkagadesitakaDiv.style.display = "block";
             searchInEnglishDiv.style.display = "block";
         }

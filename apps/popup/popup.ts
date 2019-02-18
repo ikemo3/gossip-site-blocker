@@ -54,7 +54,7 @@ class PopupMediator implements IBlockMediator {
     const lang = chrome.i18n.getUILanguage();
 
     if (isGoogleSearch) {
-        if (lang === "ja") {
+        if (lang.startsWith("ja")) {
             exceptIkagadesitakaDiv.style.display = "block";
             searchInEnglishDiv.style.display = "block";
         } else {
