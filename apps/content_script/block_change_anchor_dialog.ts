@@ -13,7 +13,14 @@ class BlockChangeAnchorDialog {
 
         const dialog = $.div("block-dialog");
         const explanation = $.message("blockChangeExplanation");
-        dialog.innerHTML = `${explanation}<br/>URL: ${reason}`;
+        const explanationDiv = $.div();
+        explanationDiv.textContent = explanation;
+
+        const reasonDiv = $.div();
+        reasonDiv.textContent = "URL: " + reason;
+
+        dialog.appendChild(explanationDiv);
+        dialog.appendChild(reasonDiv);
 
         const buttonsDiv = $.div("block-dialog-buttons");
 
