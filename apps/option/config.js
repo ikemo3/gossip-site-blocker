@@ -8,12 +8,14 @@ const OptionRepository = {
         Logger.log("set 'developerMode' to =>", mode);
     },
     async showBlockedByWordInfo() {
-        const items = await ChromeStorage.get({ showBlockedByWordInfo: false });
-        return items.showBlockedByWordInfo;
+        const bannedWordDefault = { showInfo: false };
+        const items = await ChromeStorage.get({ bannedWord: bannedWordDefault });
+        return items.bannedWord;
     },
-    async setShowBlockedByWordInfo(mode) {
-        await ChromeStorage.set({ showBlockedByWordInfo: mode });
-        Logger.debug("set 'showBlockedByWordInfo' to =>", mode);
+    async setShowBlockedByWordInfo(showBlockInfo) {
+        const values = { showInfo: showBlockInfo };
+        await ChromeStorage.set({ bannedWord: values });
+        Logger.debug("set 'bannedWord' to =>", values);
     },
     async getAutoBlockIDNOption() {
         const autoBlockIDNDefault = { enabled: false };

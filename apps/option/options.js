@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     const developerMode = await OptionRepository.isDeveloperMode();
     Logger.log("developerMode is ", developerMode);
     developerCheckbox.checked = developerMode;
-    const showBlockedByWordInfo = await OptionRepository.showBlockedByWordInfo();
-    Logger.debug("showBlockedByWordInfo is ", showBlockedByWordInfo);
-    showBlockedByWordInfoCheckbox.checked = showBlockedByWordInfo;
+    const bannedWordOption = await OptionRepository.showBlockedByWordInfo();
+    Logger.debug("bannedWordOption is ", bannedWordOption);
+    showBlockedByWordInfoCheckbox.checked = bannedWordOption.showInfo;
     const autoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
     Logger.debug("autoBlockIDNOption is ", autoBlockIDNOption);
     autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;

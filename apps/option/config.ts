@@ -3,7 +3,7 @@ interface IOptionRepository {
 
     setDeveloperMode(mode: boolean): Promise<void>;
 
-    showBlockedByWordInfo(): Promise<boolean>;
+    showBlockedByWordInfo(): Promise<IBannedWordOption>;
 
     setShowBlockedByWordInfo(mode: boolean): Promise<void>;
 
@@ -28,8 +28,12 @@ interface IDeveloperOption {
     developerMode: boolean;
 }
 
-interface IShowBlockedByWordInfoOption {
-    showBlockedByWordInfo: boolean;
+interface IBannedWordOptionStorage {
+    bannedWord: IBannedWordOption;
+}
+
+interface IBannedWordOption {
+    showInfo: boolean;
 }
 
 interface IAutoBlockIDNOptionStorage {
@@ -56,15 +60,17 @@ const OptionRepository: IOptionRepository = {
         Logger.log("set 'developerMode' to =>", mode);
     },
 
-    async showBlockedByWordInfo(): Promise<boolean> {
-        const items = await ChromeStorage.get({showBlockedByWordInfo: false}) as IShowBlockedByWordInfoOption;
-        return items.showBlockedByWordInfo;
+    async showBlockedByWordInfo(): Promise<IBannedWordOption> {
+        const bannedWordDefault = {showInfo: false};
+        const items = await ChromeStorage.get({bannedWord: bannedWordDefault}) as IBannedWordOptionStorage;
+        return items.bannedWord;
     },
 
-    async setShowBlockedByWordInfo(mode: boolean): Promise<void> {
-        await ChromeStorage.set({showBlockedByWordInfo: mode});
+    async setShowBlockedByWordInfo(showBlockInfo: boolean): Promise<void> {
+        const values = {showInfo: showBlockInfo};
+        await ChromeStorage.set({bannedWord: values});
 
-        Logger.debug("set 'showBlockedByWordInfo' to =>", mode);
+        Logger.debug("set 'bannedWord' to =>", values);
     },
 
     async getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption> {
