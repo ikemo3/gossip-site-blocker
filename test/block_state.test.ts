@@ -52,7 +52,7 @@ describe("BlockState", () => {
         const sites = createEmptySites();
 
         const blockState = new BlockState(target, sites, [], [], idnOption);
-        expect(blockState.getReason()).toBeNull();
+        expect(blockState.getReason()).toBeUndefined();
         expect(blockState.getState()).toBe("none");
     });
 

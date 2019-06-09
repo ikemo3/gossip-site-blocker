@@ -43,7 +43,7 @@ describe("BlockState", () => {
         const target = createTarget("http://example.com/foo/bar", false);
         const sites = createEmptySites();
         const blockState = new BlockState(target, sites, [], [], idnOption);
-        expect(blockState.getReason()).toBeNull();
+        expect(blockState.getReason()).toBeUndefined();
         expect(blockState.getState()).toBe("none");
     });
     it("block by URL", () => {
