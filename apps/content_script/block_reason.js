@@ -1,13 +1,11 @@
 class BlockReason {
-    constructor(blockType, reason) {
+    constructor(blockType, url, reason) {
         this.blockType = blockType;
-        this.word = reason;
-    }
-    getWord() {
-        return this.word;
+        this.url = url;
+        this.reason = reason;
     }
     getReason() {
-        return this.word;
+        return this.reason || this.url;
     }
     getType() {
         return this.blockType;

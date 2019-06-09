@@ -52,11 +52,11 @@ class BlockState {
             return;
         } else if (banned) {
             this.state = banned.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.WORD, banned.keyword);
+            this.blockReason = new BlockReason(BlockReasonType.WORD, blockable.getUrl(), banned.keyword);
             return;
         } else if (regexp) {
             this.state = regexp.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.REGEXP, regexp.pattern);
+            this.blockReason = new BlockReason(BlockReasonType.REGEXP, blockable.getUrl(), regexp.pattern);
             return;
         }
 
@@ -69,7 +69,7 @@ class BlockState {
 
             if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
                 this.state = "soft";
-                this.blockReason = new BlockReason(BlockReasonType.IDN, $.message("IDN"));
+                this.blockReason = new BlockReason(BlockReasonType.IDN, url, $.message("IDN"));
                 return;
             }
         }
