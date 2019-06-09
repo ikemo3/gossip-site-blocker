@@ -4,7 +4,7 @@ interface IBlockMediator {
 
 class BlockMediator implements IBlockMediator {
     private readonly url: string;
-    private blockReason: BlockReason | null;
+    private blockReason?: BlockReason;
     private readonly blockTarget: BlockTarget;
 
     private readonly operationDiv: HTMLDivElement;
