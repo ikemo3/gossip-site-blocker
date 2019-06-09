@@ -11,6 +11,10 @@ class BlockReason {
         return this.word;
     }
 
+    public getReason(): string {
+        return this.word;
+    }
+
     public getType(): BlockReasonType {
         return this.blockType;
     }

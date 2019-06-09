@@ -6,6 +6,9 @@ class BlockReason {
     getWord() {
         return this.word;
     }
+    getReason() {
+        return this.word;
+    }
     getType() {
         return this.blockType;
     }

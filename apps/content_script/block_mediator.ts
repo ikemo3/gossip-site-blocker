@@ -86,7 +86,7 @@ class BlockMediator implements IBlockMediator {
     public hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
-        this.temporarilyUnblockAnchor.show(this.blockReason!.getWord());
+        this.temporarilyUnblockAnchor.show(this.blockReason!.getReason());
         this.hideAnchor.hide();
         this.changeAnchor.hide();
     }
@@ -144,7 +144,7 @@ class BlockMediator implements IBlockMediator {
 
     public showChangeStateDialog() {
         // show dialog.
-        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getWord());
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getReason());
     }
 
     public showBlockDialog() {

@@ -57,7 +57,7 @@ class BlockMediator {
     hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
-        this.temporarilyUnblockAnchor.show(this.blockReason.getWord());
+        this.temporarilyUnblockAnchor.show(this.blockReason.getReason());
         this.hideAnchor.hide();
         this.changeAnchor.hide();
     }
@@ -107,7 +107,7 @@ class BlockMediator {
     }
     showChangeStateDialog() {
         // show dialog.
-        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason.getWord());
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason.getReason());
     }
     showBlockDialog() {
         // show dialog.
