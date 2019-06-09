@@ -8,7 +8,7 @@ function create_appbar_links() {
 
             resultStats.appendChild(anchor);
 
-            if (options!.bannedWordOption.showInfo) {
+            if (gsbOptions!.bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message("showBlockedByWordInfo"));
                 showInfo.style.marginLeft = "1rem";
                 $.onclick(showInfo, show_blocked_by_banned_words);
@@ -28,7 +28,7 @@ function create_appbar_links() {
 
             toolDiv.appendChild(anchor);
 
-            if (options!.bannedWordOption.showInfo) {
+            if (gsbOptions!.bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message("showBlockedByWordInfo"));
                 showInfo.style.marginLeft = "1rem";
                 $.onclick(showInfo, show_blocked_by_banned_words);
