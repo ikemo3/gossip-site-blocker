@@ -7,7 +7,7 @@ const OptionRepository = {
         await ChromeStorage.set({ developerMode: mode });
         Logger.log("set 'developerMode' to =>", mode);
     },
-    async showBlockedByWordInfo() {
+    async getBannedWordOption() {
         const bannedWordDefault = { showInfo: false };
         const items = await ChromeStorage.get({ bannedWord: bannedWordDefault });
         return items.bannedWord;

@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     Logger.log("developerMode is ", developerMode);
     developerCheckbox.checked = developerMode;
 
-    const bannedWordOption: IBannedWordOption = await OptionRepository.showBlockedByWordInfo();
+    const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug("bannedWordOption is ", bannedWordOption);
     showBlockedByWordInfoCheckbox.checked = bannedWordOption.showInfo;
 
