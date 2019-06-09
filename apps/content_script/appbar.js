@@ -57,7 +57,7 @@ function show_blocked_by_banned_words() {
     }).filter((v) => v); // remove undefined.
     // create textarea after 'topstuff'
     const textarea = $.textarea(lines.join("\n"), {
-        cols: 100,
+        cols: 70,
         id,
         rows: 10,
     });
