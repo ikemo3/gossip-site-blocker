@@ -13,6 +13,10 @@ class BlockReason {
         return this.reason;
     }
 
+    public getUrl(): string {
+        return this.url;
+    }
+
     public getType(): BlockReasonType {
         return this.blockType;
     }

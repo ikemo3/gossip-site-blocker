@@ -11,6 +11,7 @@ function create_appbar_links() {
             if (options!.bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message("showBlockedByWordInfo"));
                 showInfo.style.marginLeft = "1rem";
+                $.onclick(showInfo, show_blocked_by_banned_words);
                 resultStats.appendChild(showInfo);
             }
 
@@ -30,6 +31,7 @@ function create_appbar_links() {
             if (options!.bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message("showBlockedByWordInfo"));
                 showInfo.style.marginLeft = "1rem";
+                $.onclick(showInfo, show_blocked_by_banned_words);
                 toolDiv.appendChild(showInfo);
             }
 
@@ -48,4 +50,16 @@ function temporarily_unblock_all() {
             }
         }
     }
+}
+
+function show_blocked_by_banned_words() {
+    const lines = blockReasons.map((reason) => {
+        if (reason.getType() === BlockReasonType.WORD) {
+            return reason.getUrl();
+        } else {
+            return undefined;
+        }
+    }).filter((v) => v); // remove undefined.
+
+    console.log(lines.join("\n"));
 }
