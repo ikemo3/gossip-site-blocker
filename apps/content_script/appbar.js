@@ -6,6 +6,11 @@ function create_appbar_links() {
             const anchor = $.anchor($.message("temporarilyUnblockAll"));
             $.onclick(anchor, temporarily_unblock_all);
             resultStats.appendChild(anchor);
+            if (options.bannedWordOption.showInfo) {
+                const showInfo = $.anchor($.message("showBlockedByWordInfo"));
+                showInfo.style.marginLeft = "1rem";
+                resultStats.appendChild(showInfo);
+            }
             return;
         }
     }
@@ -16,6 +21,11 @@ function create_appbar_links() {
             const anchor = $.anchor($.message("temporarilyUnblockAll"));
             $.onclick(anchor, temporarily_unblock_all);
             toolDiv.appendChild(anchor);
+            if (options.bannedWordOption.showInfo) {
+                const showInfo = $.anchor($.message("showBlockedByWordInfo"));
+                showInfo.style.marginLeft = "1rem";
+                toolDiv.appendChild(showInfo);
+            }
             return;
         }
     }
