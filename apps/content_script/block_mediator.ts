@@ -4,7 +4,7 @@ interface IBlockMediator {
 
 class BlockMediator implements IBlockMediator {
     private readonly url: string;
-    private blockReason: BlockReason | null;
+    private blockReason?: BlockReason;
     private readonly blockTarget: BlockTarget;
 
     private readonly operationDiv: HTMLDivElement;
@@ -86,7 +86,7 @@ class BlockMediator implements IBlockMediator {
     public hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
-        this.temporarilyUnblockAnchor.show(this.blockReason!.getWord());
+        this.temporarilyUnblockAnchor.show(this.blockReason!.getReason());
         this.hideAnchor.hide();
         this.changeAnchor.hide();
     }
@@ -134,9 +134,9 @@ class BlockMediator implements IBlockMediator {
         }
 
         if (DOMUtils.removeProtocol(this.url) === url) {
-            this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, this.url, url);
         } else {
-            this.blockReason = new BlockReason(BlockReasonType.URL, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL, this.url, url);
         }
 
         this.hide();
@@ -144,7 +144,7 @@ class BlockMediator implements IBlockMediator {
 
     public showChangeStateDialog() {
         // show dialog.
-        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getWord());
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getReason());
     }
 
     public showBlockDialog() {

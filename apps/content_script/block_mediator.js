@@ -57,7 +57,7 @@ class BlockMediator {
     hide() {
         this.blockAnchor.hide();
         this.blockTarget.hide();
-        this.temporarilyUnblockAnchor.show(this.blockReason.getWord());
+        this.temporarilyUnblockAnchor.show(this.blockReason.getReason());
         this.hideAnchor.hide();
         this.changeAnchor.hide();
     }
@@ -98,16 +98,16 @@ class BlockMediator {
             return;
         }
         if (DOMUtils.removeProtocol(this.url) === url) {
-            this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, this.url, url);
         }
         else {
-            this.blockReason = new BlockReason(BlockReasonType.URL, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL, this.url, url);
         }
         this.hide();
     }
     showChangeStateDialog() {
         // show dialog.
-        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason.getWord());
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason.getReason());
     }
     showBlockDialog() {
         // show dialog.

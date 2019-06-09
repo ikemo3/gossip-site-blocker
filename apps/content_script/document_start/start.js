@@ -35,6 +35,7 @@ const observer = new MutationObserver((mutations) => {
 const pendingsGoogle = [];
 const pendingsInnerCard = [];
 const pendingsTopNews = [];
+const blockReasons = [];
 const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 (async () => {
@@ -44,8 +45,9 @@ observer.observe(document.documentElement, config);
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType = await OptionRepository.defaultBlockType();
     const menuPosition = await OptionRepository.menuPosition();
+    const bannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug("autoBlockIDNOption:", idnOption);
-    options = { blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition };
+    options = { blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition, bannedWordOption };
     for (const node of pendingsGoogle) {
         tryBlockGoogleElement(node, options);
     }

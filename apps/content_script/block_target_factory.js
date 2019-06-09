@@ -11,6 +11,9 @@ function blockGoogleElement(g1, options) {
         g.deleteElement();
         return true;
     }
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason());
+    }
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;
 }
@@ -23,6 +26,9 @@ function blockGoogleInnerCard(g1, options) {
     if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;
+    }
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason());
     }
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     mediator.setWrappable("205px");
@@ -37,6 +43,9 @@ function blockGoogleTopNews(g1, options) {
     if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;
+    }
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason());
     }
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;

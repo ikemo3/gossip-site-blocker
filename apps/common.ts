@@ -82,6 +82,12 @@ const DOMUtils = {
     },
 };
 
+interface ITextAreaParams {
+    id?: string;
+    cols?: number;
+    rows?: number;
+}
+
 const $ = {
     anchor(text?: string): HTMLAnchorElement {
         const anchor = document.createElement("a");
@@ -223,6 +229,25 @@ const $ = {
 
     text(element: HTMLElement, text: string): void {
         element.textContent = text;
+    },
+
+    textarea(value: string, params: ITextAreaParams): HTMLTextAreaElement {
+        const textarea = document.createElement("textarea");
+        textarea.textContent = value;
+
+        if (params.cols) {
+            textarea.cols = params.cols;
+        }
+
+        if (params.id) {
+            textarea.id = params.id;
+        }
+
+        if (params.rows) {
+            textarea.rows = params.rows;
+        }
+
+        return textarea;
     },
 
     textField(value: string, size?: number): HTMLInputElement {

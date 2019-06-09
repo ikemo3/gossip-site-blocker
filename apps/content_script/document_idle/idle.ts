@@ -1,1 +1,1 @@
-create_temporarily_unblock_all();
+create_appbar_links();

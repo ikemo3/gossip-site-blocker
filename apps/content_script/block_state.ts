@@ -8,7 +8,7 @@ enum BlockReasonType {
 
 class BlockState {
     private readonly state: string;
-    private readonly blockReason: BlockReason | null;
+    private readonly blockReason?: BlockReason;
 
     constructor(blockable: IBlockTarget,
                 blockedSites: IBlockedSites,
@@ -44,19 +44,19 @@ class BlockState {
             this.state = blockedSite.getState();
 
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
-                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockable.getUrl(), blockedSite.url);
             } else {
-                this.blockReason = new BlockReason(BlockReasonType.URL, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL, blockable.getUrl(), blockedSite.url);
             }
 
             return;
         } else if (banned) {
             this.state = banned.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.WORD, banned.keyword);
+            this.blockReason = new BlockReason(BlockReasonType.WORD, blockable.getUrl(), banned.keyword);
             return;
         } else if (regexp) {
             this.state = regexp.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.REGEXP, regexp.pattern);
+            this.blockReason = new BlockReason(BlockReasonType.REGEXP, blockable.getUrl(), regexp.pattern);
             return;
         }
 
@@ -69,16 +69,15 @@ class BlockState {
 
             if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
                 this.state = "soft";
-                this.blockReason = new BlockReason(BlockReasonType.IDN, $.message("IDN"));
+                this.blockReason = new BlockReason(BlockReasonType.IDN, url, $.message("IDN"));
                 return;
             }
         }
 
         this.state = "none";
-        this.blockReason = null;
     }
 
-    public getReason(): BlockReason | null {
+    public getReason(): BlockReason | undefined {
         return this.blockReason;
     }
 

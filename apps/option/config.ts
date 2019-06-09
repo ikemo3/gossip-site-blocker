@@ -3,6 +3,10 @@ interface IOptionRepository {
 
     setDeveloperMode(mode: boolean): Promise<void>;
 
+    getBannedWordOption(): Promise<IBannedWordOption>;
+
+    setShowBlockedByWordInfo(mode: boolean): Promise<void>;
+
     getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption>;
 
     setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void>;
@@ -22,6 +26,14 @@ interface IDefaultBlockTypeOption {
 
 interface IDeveloperOption {
     developerMode: boolean;
+}
+
+interface IBannedWordOptionStorage {
+    bannedWord: IBannedWordOption;
+}
+
+interface IBannedWordOption {
+    showInfo: boolean;
 }
 
 interface IAutoBlockIDNOptionStorage {
@@ -46,6 +58,19 @@ const OptionRepository: IOptionRepository = {
         await ChromeStorage.set({developerMode: mode});
 
         Logger.log("set 'developerMode' to =>", mode);
+    },
+
+    async getBannedWordOption(): Promise<IBannedWordOption> {
+        const bannedWordDefault = {showInfo: false};
+        const items = await ChromeStorage.get({bannedWord: bannedWordDefault}) as IBannedWordOptionStorage;
+        return items.bannedWord;
+    },
+
+    async setShowBlockedByWordInfo(showBlockInfo: boolean): Promise<void> {
+        const values: IBannedWordOption = {showInfo: showBlockInfo};
+        await ChromeStorage.set({bannedWord: values});
+
+        Logger.debug("set 'bannedWord' to =>", values);
     },
 
     async getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption> {

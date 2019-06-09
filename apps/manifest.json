@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "1.8.1.2",
+  "version": "1.8.1.3",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
   "icons": {
@@ -236,7 +236,7 @@
         "content_script/operations_anchor.js",
         "content_script/operations_block.js",
         "content_script/recommend.js",
-        "content_script/temporarily_unblock_all.js",
+        "content_script/appbar.js",
         "content_script/temporarily_unblock_anchor.js",
         "content_script/document_start/start.js"
       ],

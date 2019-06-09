@@ -39,7 +39,7 @@ describe("BlockState", () => {
 
     function createRegexp(pattern: string, blockType: BlockType): IRegExpItem {
         return {
-            pattern, blockType
+            blockType, pattern,
         };
     }
 
@@ -52,7 +52,7 @@ describe("BlockState", () => {
         const sites = createEmptySites();
 
         const blockState = new BlockState(target, sites, [], [], idnOption);
-        expect(blockState.getReason()).toBeNull();
+        expect(blockState.getReason()).toBeUndefined();
         expect(blockState.getState()).toBe("none");
     });
 
@@ -62,7 +62,7 @@ describe("BlockState", () => {
 
         const blockState = new BlockState(target, sites, [], [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.URL);
-        expect(blockState.getReason()!.getWord()).toBe("example.com");
+        expect(blockState.getReason()!.getReason()).toBe("example.com");
         expect(blockState.getState()).toBe("soft");
     });
 
@@ -72,7 +72,7 @@ describe("BlockState", () => {
 
         const blockState = new BlockState(target, sites, [], [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.URL_EXACTLY);
-        expect(blockState.getReason()!.getWord()).toBe("example.com");
+        expect(blockState.getReason()!.getReason()).toBe("example.com");
         expect(blockState.getState()).toBe("soft");
     });
 
@@ -82,7 +82,7 @@ describe("BlockState", () => {
 
         const blockState = new BlockState(target, createEmptySites(), bannedList, [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
-        expect(blockState.getReason()!.getWord()).toBe("evil");
+        expect(blockState.getReason()!.getReason()).toBe("evil");
         expect(blockState.getState()).toBe("soft");
     });
 
@@ -92,7 +92,7 @@ describe("BlockState", () => {
 
         const blockState = new BlockState(target, createEmptySites(), [], regexpList, idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
-        expect(blockState.getReason()!.getWord()).toBe("example\\..*");
+        expect(blockState.getReason()!.getReason()).toBe("example\\..*");
         expect(blockState.getState()).toBe("soft");
     });
 
@@ -103,7 +103,7 @@ describe("BlockState", () => {
 
         const blockState = new BlockState(target, sites, bannedList, [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
-        expect(blockState.getReason()!.getWord()).toBe("evil");
+        expect(blockState.getReason()!.getReason()).toBe("evil");
         expect(blockState.getState()).toBe("hard");
     });
 
@@ -114,7 +114,7 @@ describe("BlockState", () => {
 
         const blockState = new BlockState(target, createEmptySites(), [], [], idnOption);
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.IDN);
-        expect(blockState.getReason()!.getWord()).toBe("Internationalized Domain Name");
+        expect(blockState.getReason()!.getReason()).toBe("Internationalized Domain Name");
         expect(blockState.getState()).toBe("soft");
     });
 });
