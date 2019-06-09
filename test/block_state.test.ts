@@ -39,7 +39,7 @@ describe("BlockState", () => {
 
     function createRegexp(pattern: string, blockType: BlockType): IRegExpItem {
         return {
-            pattern, blockType
+            blockType, pattern,
         };
     }
 

@@ -33,7 +33,7 @@ describe("BlockState", () => {
     }
     function createRegexp(pattern, blockType) {
         return {
-            pattern, blockType
+            blockType, pattern,
         };
     }
     const idnOption = {
