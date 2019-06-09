@@ -1,7 +1,7 @@
 /**
  * Blocked sites
  *
- * @property {string} url
+ * @property {string} url Beginning of blocked URL(without scheme).
  * @property {"soft"|"hard"} block_type
  */
 class BlockedSite {

@@ -98,10 +98,10 @@ class BlockMediator {
             return;
         }
         if (DOMUtils.removeProtocol(this.url) === url) {
-            this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, this.url, url);
         }
         else {
-            this.blockReason = new BlockReason(BlockReasonType.URL, url);
+            this.blockReason = new BlockReason(BlockReasonType.URL, this.url, url);
         }
         this.hide();
     }

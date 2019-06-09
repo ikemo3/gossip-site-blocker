@@ -5,7 +5,7 @@ class BlockReason {
         this.reason = reason;
     }
     getReason() {
-        return this.reason || this.url;
+        return this.reason;
     }
     getType() {
         return this.blockType;

@@ -29,10 +29,10 @@ class BlockState {
             (!regexp || regexp.blockType !== BlockType.HARD)) {
             this.state = blockedSite.getState();
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
-                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockable.getUrl(), blockedSite.url);
             }
             else {
-                this.blockReason = new BlockReason(BlockReasonType.URL, blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL, blockable.getUrl(), blockedSite.url);
             }
             return;
         }
