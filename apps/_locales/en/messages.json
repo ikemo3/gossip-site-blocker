@@ -183,7 +183,7 @@
     "message": "Search in English"
   },
   "showBlockedByWordInfo": {
-    "message": "Show information of blocked by banned words."
+    "message": "Show information of blocked by banned words(beta)."
   },
   "softBlock": {
     "message": "Soft block(hide)"
