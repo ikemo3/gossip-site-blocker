@@ -44,6 +44,10 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
         return true;
     }
 
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason()!);
+    }
+
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;
 }
@@ -60,6 +64,10 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;
+    }
+
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason()!);
     }
 
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
@@ -79,6 +87,10 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
     if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;
+    }
+
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason()!);
     }
 
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);

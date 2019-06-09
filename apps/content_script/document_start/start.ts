@@ -41,6 +41,7 @@ const observer = new MutationObserver((mutations) => {
 const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
 const pendingsTopNews: Element[] = [];
+const blockReasons: BlockReason[] = [];
 const config = {childList: true, subtree: true};
 observer.observe(document.documentElement, config);
 

@@ -58,7 +58,6 @@ class BlockState {
             }
         }
         this.state = "none";
-        this.blockReason = null;
     }
     getReason() {
         return this.blockReason;

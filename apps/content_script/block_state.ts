@@ -8,7 +8,7 @@ enum BlockReasonType {
 
 class BlockState {
     private readonly state: string;
-    private readonly blockReason: BlockReason | null;
+    private readonly blockReason?: BlockReason;
 
     constructor(blockable: IBlockTarget,
                 blockedSites: IBlockedSites,
@@ -75,10 +75,9 @@ class BlockState {
         }
 
         this.state = "none";
-        this.blockReason = null;
     }
 
-    public getReason(): BlockReason | null {
+    public getReason(): BlockReason | undefined {
         return this.blockReason;
     }
 
