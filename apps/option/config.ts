@@ -3,6 +3,10 @@ interface IOptionRepository {
 
     setDeveloperMode(mode: boolean): Promise<void>;
 
+    showBlockedByWordInfo(): Promise<boolean>;
+
+    setShowBlockedByWordInfo(mode: boolean): Promise<void>;
+
     getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption>;
 
     setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void>;
@@ -22,6 +26,10 @@ interface IDefaultBlockTypeOption {
 
 interface IDeveloperOption {
     developerMode: boolean;
+}
+
+interface IShowBlockedByWordInfoOption {
+    showBlockedByWordInfo: boolean;
 }
 
 interface IAutoBlockIDNOptionStorage {
@@ -46,6 +54,17 @@ const OptionRepository: IOptionRepository = {
         await ChromeStorage.set({developerMode: mode});
 
         Logger.log("set 'developerMode' to =>", mode);
+    },
+
+    async showBlockedByWordInfo(): Promise<boolean> {
+        const items = await ChromeStorage.get({showBlockedByWordInfo: false}) as IShowBlockedByWordInfoOption;
+        return items.showBlockedByWordInfo;
+    },
+
+    async setShowBlockedByWordInfo(mode: boolean): Promise<void> {
+        await ChromeStorage.set({showBlockedByWordInfo: mode});
+
+        Logger.debug("set 'showBlockedByWordInfo' to =>", mode);
     },
 
     async getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption> {

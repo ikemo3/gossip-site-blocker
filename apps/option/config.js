@@ -7,6 +7,14 @@ const OptionRepository = {
         await ChromeStorage.set({ developerMode: mode });
         Logger.log("set 'developerMode' to =>", mode);
     },
+    async showBlockedByWordInfo() {
+        const items = await ChromeStorage.get({ showBlockedByWordInfo: false });
+        return items.showBlockedByWordInfo;
+    },
+    async setShowBlockedByWordInfo(mode) {
+        await ChromeStorage.set({ showBlockedByWordInfo: mode });
+        Logger.debug("set 'showBlockedByWordInfo' to =>", mode);
+    },
     async getAutoBlockIDNOption() {
         const autoBlockIDNDefault = { enabled: false };
         const items = await ChromeStorage.get({ autoBlockIDN: autoBlockIDNDefault });

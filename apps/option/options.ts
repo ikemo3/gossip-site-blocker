@@ -8,6 +8,7 @@ const clearButton = document.getElementById("clearButton") as HTMLInputElement;
  */
 const developerCheckbox = document.getElementById("developerCheckbox") as HTMLInputElement;
 
+const showBlockedByWordInfoCheckbox = document.getElementById("showBlockedByWordInfoCheckbox") as HTMLInputElement;
 const autoBlockIDNCheckbox = document.getElementById("autoBlockIDNCheckBox") as HTMLInputElement;
 const defaultBlockSelect = document.getElementById("defaultBlockType") as HTMLSelectElement;
 const menuPositionSelect = document.getElementById("menuPosition") as HTMLSelectElement;
@@ -61,6 +62,10 @@ document.addEventListener("DOMContentLoaded", async (ignore) => {
     Logger.log("developerMode is ", developerMode);
     developerCheckbox.checked = developerMode;
 
+    const showBlockedByWordInfo: boolean = await OptionRepository.showBlockedByWordInfo();
+    Logger.debug("showBlockedByWordInfo is ", showBlockedByWordInfo);
+    showBlockedByWordInfoCheckbox.checked = showBlockedByWordInfo;
+
     const autoBlockIDNOption: IAutoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
     Logger.debug("autoBlockIDNOption is ", autoBlockIDNOption);
     autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;
@@ -78,6 +83,12 @@ developerCheckbox.addEventListener("click", async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
     await OptionRepository.setDeveloperMode(checkbox.checked);
+});
+
+showBlockedByWordInfoCheckbox.addEventListener("click", async (event) => {
+    const checkbox = event.target as HTMLInputElement;
+
+    await OptionRepository.setShowBlockedByWordInfo(checkbox.checked);
 });
 
 autoBlockIDNCheckbox.addEventListener("click", async (event) => {
