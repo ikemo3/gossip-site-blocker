@@ -1,4 +1,4 @@
-function create_temporarily_unblock_all() {
+function create_appbar_links() {
     const resultStats = document.getElementById("resultStats");
     if (resultStats !== null) {
         const resultStatsIsHidden = getComputedStyle(resultStats).opacity === "0";
