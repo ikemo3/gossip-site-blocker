@@ -44,7 +44,9 @@ function temporarily_unblock_all() {
 }
 function show_blocked_by_banned_words() {
     const id = "urls_by_banned_words";
-    if (document.getElementById(id)) {
+    const currentTextArea = document.getElementById(id);
+    if (currentTextArea) {
+        $.removeSelf(currentTextArea);
         return;
     }
     const lines = blockReasons.map((reason) => {
