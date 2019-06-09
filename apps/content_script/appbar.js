@@ -43,6 +43,10 @@ function temporarily_unblock_all() {
     }
 }
 function show_blocked_by_banned_words() {
+    const id = "urls_by_banned_words";
+    if (document.getElementById(id)) {
+        return;
+    }
     const lines = blockReasons.map((reason) => {
         if (reason.getType() === BlockReasonType.WORD) {
             return reason.getUrl();
@@ -51,6 +55,14 @@ function show_blocked_by_banned_words() {
             return undefined;
         }
     }).filter((v) => v); // remove undefined.
-    console.log(lines.join("\n"));
+    // create textarea after 'topstuff'
+    const textarea = $.textarea(lines.join("\n"), {
+        cols: 100,
+        id,
+        rows: 10,
+    });
+    const topStuff = document.getElementById("topstuff");
+    topStuff.appendChild(textarea);
+    $.insertBefore(textarea, topStuff);
 }
 //# sourceMappingURL=appbar.js.map

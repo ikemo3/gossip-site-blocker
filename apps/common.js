@@ -185,6 +185,20 @@ const $ = {
     text(element, text) {
         element.textContent = text;
     },
+    textarea(value, params) {
+        const textarea = document.createElement("textarea");
+        textarea.textContent = value;
+        if (params.cols) {
+            textarea.cols = params.cols;
+        }
+        if (params.id) {
+            textarea.id = params.id;
+        }
+        if (params.rows) {
+            textarea.rows = params.rows;
+        }
+        return textarea;
+    },
     textField(value, size) {
         const textField = document.createElement("input");
         textField.type = "text";
