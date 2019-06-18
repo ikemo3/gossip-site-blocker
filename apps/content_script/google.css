@@ -2,7 +2,7 @@
  * color when blocked
  */
 [data-blocker-display=none] {
-    display: none;
+    display: none !important;
     background-color: inherit;
 }
 
