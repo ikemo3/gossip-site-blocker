@@ -1,3 +1,8 @@
+# v1.8.2
+
+* Add: Lists URLs that are excluded by banned word(#1).
+* Fix: Tweet is not blocked.
+
 # v1.8.1
 
 ## Bug Fixes
