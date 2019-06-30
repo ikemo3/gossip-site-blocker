@@ -76,7 +76,7 @@ function tryBlockGoogleElement(node, options) {
 function blockGoogleElementClosure(node, options) {
     let completed = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
         completed = blockGoogleElement(node, options);
@@ -98,7 +98,7 @@ function tryBlockGoogleInnerCard(node, options) {
 function blockGoogleInnerCardClosure(node, options) {
     let completed = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
         completed = blockGoogleInnerCard(node, options);
@@ -120,7 +120,7 @@ function tryBlockGoogleTopNews(node, options) {
 function blockGoogleTopNewsClosure(node, options) {
     let completed = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
         completed = blockGoogleTopNews(node, options);

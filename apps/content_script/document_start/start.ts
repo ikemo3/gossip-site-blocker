@@ -91,9 +91,9 @@ function tryBlockGoogleElement(node: Element, options: IOptions) {
 }
 
 function blockGoogleElementClosure(node: Element, options: IOptions) {
-    let completed = false;
+    let completed: boolean = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
 
@@ -118,9 +118,9 @@ function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
 }
 
 function blockGoogleInnerCardClosure(node: Element, options: IOptions) {
-    let completed = false;
+    let completed: boolean = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
 
@@ -145,9 +145,9 @@ function tryBlockGoogleTopNews(node: Element, options: IOptions) {
 }
 
 function blockGoogleTopNewsClosure(node: Element, options: IOptions) {
-    let completed = false;
+    let completed: boolean = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
 
