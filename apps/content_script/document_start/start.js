@@ -54,6 +54,9 @@ observer.observe(document.documentElement, config);
     for (const node of pendingsInnerCard) {
         tryBlockGoogleInnerCard(node, options);
     }
+    for (const node of pendingsTopNews) {
+        tryBlockGoogleTopNews(node, options);
+    }
 })();
 const subObserverList = [];
 function tryBlockGoogleElement(node, options) {
