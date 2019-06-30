@@ -6,7 +6,7 @@ function create_appbar_links() {
             const anchor = $.anchor($.message("temporarilyUnblockAll"));
             $.onclick(anchor, temporarily_unblock_all);
             resultStats.appendChild(anchor);
-            if (options.bannedWordOption.showInfo) {
+            if (gsbOptions.bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message("showBlockedByWordInfo"));
                 showInfo.style.marginLeft = "1rem";
                 $.onclick(showInfo, show_blocked_by_banned_words);
@@ -22,7 +22,7 @@ function create_appbar_links() {
             const anchor = $.anchor($.message("temporarilyUnblockAll"));
             $.onclick(anchor, temporarily_unblock_all);
             toolDiv.appendChild(anchor);
-            if (options.bannedWordOption.showInfo) {
+            if (gsbOptions.bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message("showBlockedByWordInfo"));
                 showInfo.style.marginLeft = "1rem";
                 $.onclick(showInfo, show_blocked_by_banned_words);

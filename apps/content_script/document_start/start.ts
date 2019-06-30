@@ -8,7 +8,7 @@ interface IOptions {
     bannedWordOption: IBannedWordOption;
 }
 
-let options: IOptions | null = null;
+let gsbOptions: IOptions | null = null;
 
 // add observer
 const observer = new MutationObserver((mutations) => {
@@ -16,20 +16,20 @@ const observer = new MutationObserver((mutations) => {
         for (const node of mutation.addedNodes) {
             if (node instanceof Element) {
                 if (node.classList.contains("g")) {
-                    if (options !== null) {
-                        tryBlockGoogleElement(node, options);
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleElement(node, gsbOptions);
                     } else {
                         pendingsGoogle.push(node);
                     }
                 } else if (node.nodeName.toLowerCase() === "g-inner-card") {
-                    if (options !== null) {
-                        tryBlockGoogleInnerCard(node, options);
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleInnerCard(node, gsbOptions);
                     } else {
                         pendingsInnerCard.push(node);
                     }
                 } else if (node.classList.contains("dbsr")) {
-                    if (options !== null) {
-                        tryBlockGoogleTopNews(node, options);
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleTopNews(node, gsbOptions);
                     } else {
                         pendingsTopNews.push(node);
                     }
@@ -56,18 +56,18 @@ observer.observe(document.documentElement, config);
     const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug("autoBlockIDNOption:", idnOption);
 
-    options = {blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition, bannedWordOption};
+    gsbOptions = {blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition, bannedWordOption};
 
     for (const node of pendingsGoogle) {
-        tryBlockGoogleElement(node, options);
+        tryBlockGoogleElement(node, gsbOptions);
     }
 
     for (const node of pendingsInnerCard) {
-        tryBlockGoogleInnerCard(node, options);
+        tryBlockGoogleInnerCard(node, gsbOptions);
     }
 
     for (const node of pendingsTopNews) {
-        tryBlockGoogleTopNews(node, options);
+        tryBlockGoogleTopNews(node, gsbOptions);
     }
 })();
 
@@ -91,9 +91,9 @@ function tryBlockGoogleElement(node: Element, options: IOptions) {
 }
 
 function blockGoogleElementClosure(node: Element, options: IOptions) {
-    let completed = false;
+    let completed: boolean = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
 
@@ -118,9 +118,9 @@ function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
 }
 
 function blockGoogleInnerCardClosure(node: Element, options: IOptions) {
-    let completed = false;
+    let completed: boolean = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
 
@@ -145,9 +145,9 @@ function tryBlockGoogleTopNews(node: Element, options: IOptions) {
 }
 
 function blockGoogleTopNewsClosure(node: Element, options: IOptions) {
-    let completed = false;
+    let completed: boolean = false;
     return () => {
-        if (completed === true) {
+        if (completed) {
             return;
         }
 
