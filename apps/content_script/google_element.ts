@@ -64,6 +64,10 @@ class GoogleElement implements IBlockable {
                 continue;
             }
 
+            if (href.startsWith("https://webcache.googleusercontent.com/")) {
+                continue;
+            }
+
             // firefox, coccoc, ...
             if (href.startsWith("/url?")) {
                 const matchData = href.match("&url=(.*)&");
