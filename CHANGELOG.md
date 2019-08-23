@@ -1,3 +1,7 @@
+# v1.8.3
+
+* Fix: Not work due to changed Google search results(#37).
+
 # v1.8.2
 
 * Add: Lists URLs that are excluded by banned word(#1).
