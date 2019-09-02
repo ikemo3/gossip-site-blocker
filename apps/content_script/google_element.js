@@ -48,6 +48,9 @@ class GoogleElement {
             if (href.startsWith("https://webcache.googleusercontent.com/")) {
                 continue;
             }
+            if (href.startsWith("http://webcache.googleusercontent.com/")) {
+                continue;
+            }
             // firefox, coccoc, ...
             if (href.startsWith("/url?")) {
                 const matchData = href.match("&url=(.*)&");
