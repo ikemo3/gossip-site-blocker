@@ -38,7 +38,7 @@ class BannedWords {
     }
 
     private createWidget(word: IBannedWord) {
-        const wordDiv: HTMLElement = document.createElement("div");
+        const wordDiv: HTMLDivElement = document.createElement("div");
 
         const input: HTMLInputElement = document.createElement("input");
         input.type = "text";
