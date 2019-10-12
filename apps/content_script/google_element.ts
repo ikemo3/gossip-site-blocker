@@ -48,7 +48,7 @@ class GoogleElement implements IBlockable {
             return;
         }
 
-        const anchorList: NodeListOf<HTMLAnchorElement> = element.getElementsByTagName("a");
+        const anchorList = element.getElementsByTagName("a");
 
         const urlList: string[] = [];
         for (const anchor of anchorList) {

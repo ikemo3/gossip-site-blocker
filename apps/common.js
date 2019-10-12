@@ -1,7 +1,7 @@
 const ChromeStorage = {
     async load(keys) {
-        // @ts-ignore
         return new Promise((resolve) => {
+            // @ts-ignore
             chrome.storage.local.get(keys, resolve);
         });
     },
