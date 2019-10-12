@@ -1,0 +1,2 @@
+ci:
+	./scripts/ci.sh
