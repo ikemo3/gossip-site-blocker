@@ -26,6 +26,7 @@ if [ "${CIRCLE_BRANCH}" != "" ]; then
 
   # rename assets
   mv ${PACKAGE_NAME}.crx ${PACKAGE_NAME}-snapshot.crx
+  mv ${PACKAGE_NAME}.zip ${PACKAGE_NAME}-snapshot.zip
 elif [ "${CIRCLE_TAG}" != "" ]; then
   if [ "${CIRCLE_TAG}" = "snapshot" ]; then
     echo 'ignore `snapshot` tag (already released)'
@@ -38,6 +39,7 @@ elif [ "${CIRCLE_TAG}" != "" ]; then
 
   # rename assets
   mv ${PACKAGE_NAME}.crx ${PACKAGE_NAME}-${MANIFEST_VERSION}.crx
+  mv ${PACKAGE_NAME}.zip ${PACKAGE_NAME}-${MANIFEST_VERSION}.zip
 else
   cd ${REPOSITORY_TOP}
   OPTIONS="-recreate"
