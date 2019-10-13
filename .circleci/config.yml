@@ -20,16 +20,6 @@ jobs:
       - checkout
       - run:
           command: make ci
-
-      # archive
-      - run:
-          name: "Archive gossip-site-blocker.crx"
-          command: |
-            echo ${PEM_UUENCODE} | base64 -d > /tmp/gossip-site-blocker.pem
-            mkdir -p /tmp/workspace
-            ./node_modules/.bin/crx pack -o /tmp/workspace/gossip-site-blocker.crx apps -p /tmp/gossip-site-blocker.pem 
-            jq .version_name apps/manifest.json | tr -d '"' > /tmp/workspace/version
-
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
