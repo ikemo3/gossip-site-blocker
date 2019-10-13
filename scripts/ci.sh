@@ -2,6 +2,7 @@
 
 yarn install
 yarn run tsc
+yarn lint
 yarn test
 
 PACKAGE_NAME=$(jq -r .name package.json)
