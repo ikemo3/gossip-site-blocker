@@ -18,12 +18,15 @@ jobs:
           root: /tmp/workspace
           paths:
             - gossip-site-blocker.crx
-            - version
 
   deploy:
     docker:
       - image: circleci/golang:1.8
+
+    working_directory: ~/repo
+
     steps:
+      - checkout
       - attach_workspace:
           at: /tmp/workspace
       - run:
