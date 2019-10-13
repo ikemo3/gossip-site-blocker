@@ -45,4 +45,5 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only: devel
+              only:
+                - master
