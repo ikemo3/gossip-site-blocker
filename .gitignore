@@ -1,3 +1,5 @@
+karma.conf.js
+karma.conf.js.map
 gossip-site-blocker.zip
 apps/**/*.js
 apps/**/*.js.map
