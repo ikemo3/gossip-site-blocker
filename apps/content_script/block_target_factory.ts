@@ -40,7 +40,7 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
     const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
         options.idnOption);
 
-    if (blockState.getState() === "hard") {
+    if (blockState.getState() === 'hard') {
         g.deleteElement();
         return true;
     }
@@ -63,7 +63,7 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
         options.idnOption);
 
-    if (blockState.getState() === "hard") {
+    if (blockState.getState() === 'hard') {
         g.deleteElement();
         return true;
     }
@@ -73,7 +73,7 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     }
 
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
-    mediator.setWrappable("205px");
+    mediator.setWrappable('205px');
     return true;
 }
 
@@ -87,7 +87,7 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
     const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
         options.idnOption);
 
-    if (blockState.getState() === "hard") {
+    if (blockState.getState() === 'hard') {
         g.deleteElement();
         return true;
     }

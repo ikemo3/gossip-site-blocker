@@ -1,24 +1,28 @@
 class GoogleTopNews implements IBlockable {
     private readonly element: Element;
+
     private readonly valid: boolean;
+
     private readonly url: string;
+
     private readonly title: string;
+
     private readonly insertPoint: Element;
 
     constructor(element: Element) {
-        const anchor = element.querySelector("a") as HTMLAnchorElement;
+        const anchor = element.querySelector('a') as HTMLAnchorElement;
         if (anchor === null) {
             this.valid = false;
             return;
         }
 
-        const href = anchor.href;
-        if (href === "") {
+        const { href } = anchor;
+        if (href === '') {
             this.valid = false;
             return;
         }
 
-        const titleDiv = anchor.querySelector(".nDgy9d");
+        const titleDiv = anchor.querySelector('.nDgy9d');
         if (titleDiv === null) {
             this.valid = false;
             return;
@@ -28,7 +32,7 @@ class GoogleTopNews implements IBlockable {
         this.valid = true;
         this.url = href;
         this.element = element;
-        this.title = titleDiv.textContent !== null ? titleDiv.textContent : "";
+        this.title = titleDiv.textContent !== null ? titleDiv.textContent : '';
     }
 
     public canBlock(): boolean {
@@ -56,7 +60,7 @@ class GoogleTopNews implements IBlockable {
     }
 
     public getPosition(): string {
-        return "relative";
+        return 'relative';
     }
 
     public getUrl(): string {
@@ -64,6 +68,6 @@ class GoogleTopNews implements IBlockable {
     }
 
     public getCssClass(): string {
-        return "block-google-top-news";
+        return 'block-google-top-news';
     }
 }

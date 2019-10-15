@@ -14,7 +14,7 @@ const BlockedSitesRepository = {
      * @returns {Promise<Array<BlockedSite>>}
      */
     async loadData() {
-        const items = await ChromeStorage.get({blocked: []}) as IBlockedSitesList;
+        const items = await ChromeStorage.get({ blocked: [] }) as IBlockedSitesList;
 
         const sites = [];
 
@@ -41,12 +41,10 @@ const BlockedSitesRepository = {
         const siteArray = await BlockedSitesRepository.loadData();
 
         for (const block of blockList) {
-            const found = siteArray.some((site) => {
-                return site.url === block.url;
-            });
+            const found = siteArray.some((site) => site.url === block.url);
 
             if (!found) {
-                const site = new BlockedSite({url: block.url, block_type: block.block_type});
+                const site = new BlockedSite({ url: block.url, block_type: block.block_type });
                 siteArray.push(site);
             }
         }
@@ -66,13 +64,11 @@ const BlockedSitesRepository = {
     async add(url: string, blockType: string) {
         const siteArray = await BlockedSitesRepository.loadData();
 
-        const found = siteArray.some((site) => {
-            return site.url === url;
-        });
+        const found = siteArray.some((site) => site.url === url);
 
         // add if not found.
         if (!found) {
-            const site = new BlockedSite({url, block_type: blockType});
+            const site = new BlockedSite({ url, block_type: blockType });
             siteArray.push(site);
         }
 
@@ -90,9 +86,7 @@ const BlockedSitesRepository = {
         const siteArray = await BlockedSitesRepository.loadData();
 
         // delete items whose URL matches.
-        const newSiteArray = siteArray.filter((site) => {
-            return !site.equals(url);
-        });
+        const newSiteArray = siteArray.filter((site) => !site.equals(url));
 
         await this.save(newSiteArray);
 
@@ -114,7 +108,7 @@ const BlockedSitesRepository = {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
-        site!.block_type = "hard";
+        site!.block_type = 'hard';
 
         await BlockedSitesRepository.save(sites.sites);
     },
@@ -123,7 +117,7 @@ const BlockedSitesRepository = {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
-        site!.block_type = "soft";
+        site!.block_type = 'soft';
 
         await BlockedSitesRepository.save(sites.sites);
     },
@@ -134,10 +128,10 @@ const BlockedSitesRepository = {
      * @returns {Promise<void>}
      */
     async save(sites: BlockedSite[]) {
-        await ChromeStorage.set({blocked: sites});
+        await ChromeStorage.set({ blocked: sites });
     },
 
     async clear() {
-        await ChromeStorage.set({blocked: []});
+        await ChromeStorage.set({ blocked: [] });
     },
 };

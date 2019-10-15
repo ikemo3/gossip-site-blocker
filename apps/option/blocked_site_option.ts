@@ -5,9 +5,13 @@
  */
 class BlockedSiteOption {
     public urlField: BlockedSiteUrlField;
+
     public editButton: BlockedSiteEditButton;
+
     public stateButton: BlockedSiteStateButton;
+
     public deleteButton: BlockedSiteDeleteButton;
+
     public element: HTMLTableRowElement;
 
     constructor(blockedSite: BlockedSite) {
@@ -18,11 +22,11 @@ class BlockedSiteOption {
         this.deleteButton = new BlockedSiteDeleteButton(this, blockedSite.getState());
 
         // Create tr element surrounding all input fields.
-        const tr = document.createElement("tr");
-        tr.appendChild(document.createElement("td")).appendChild(this.urlField.getElement());
-        tr.appendChild(document.createElement("td")).appendChild(this.editButton.getElement());
-        tr.appendChild(document.createElement("td")).appendChild(this.stateButton.getElement());
-        tr.appendChild(document.createElement("td")).appendChild(this.deleteButton.getElement());
+        const tr = document.createElement('tr');
+        tr.appendChild(document.createElement('td')).appendChild(this.urlField.getElement());
+        tr.appendChild(document.createElement('td')).appendChild(this.editButton.getElement());
+        tr.appendChild(document.createElement('td')).appendChild(this.stateButton.getElement());
+        tr.appendChild(document.createElement('td')).appendChild(this.deleteButton.getElement());
         this.element = tr;
     }
 
@@ -40,22 +44,22 @@ class BlockedSiteOption {
 
     public setState(state: string) {
         switch (state) {
-            case "soft":
-                // send to Colleagues.
-                this.urlField.toSoft();
-                this.editButton.toSoft();
-                this.stateButton.toSoft();
-                this.deleteButton.toSoft();
+        case 'soft':
+            // send to Colleagues.
+            this.urlField.toSoft();
+            this.editButton.toSoft();
+            this.stateButton.toSoft();
+            this.deleteButton.toSoft();
 
-                break;
-            case "hard":
-                // send to Colleagues.
-                this.urlField.toHard();
-                this.editButton.toHard();
-                this.stateButton.toHard();
-                this.deleteButton.toHard();
+            break;
+        case 'hard':
+            // send to Colleagues.
+            this.urlField.toHard();
+            this.editButton.toHard();
+            this.stateButton.toHard();
+            this.deleteButton.toHard();
 
-                break;
+            break;
         }
     }
 
@@ -66,17 +70,17 @@ class BlockedSiteOption {
     public async toHard() {
         await BlockedSitesRepository.toHard(this.getUrl());
 
-        this.setState("hard");
+        this.setState('hard');
 
-        Logger.debug("Changed to hard-block.", this.getUrl());
+        Logger.debug('Changed to hard-block.', this.getUrl());
     }
 
     public async toSoft() {
         await BlockedSitesRepository.toSoft(this.getUrl());
 
-        this.setState("soft");
+        this.setState('soft');
 
-        Logger.debug("Changed to soft-block.", this.getUrl());
+        Logger.debug('Changed to soft-block.', this.getUrl());
     }
 
     public async editUrl() {
@@ -94,6 +98,6 @@ class BlockedSiteOption {
 
         this.element.parentElement!.removeChild(this.element);
 
-        Logger.debug("Delete URL: " + this.getUrl());
+        Logger.debug(`Delete URL: ${this.getUrl()}`);
     }
 }

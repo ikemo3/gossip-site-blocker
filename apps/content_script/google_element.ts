@@ -1,24 +1,30 @@
 class GoogleElement implements IBlockable {
     private readonly valid: boolean;
+
     private readonly ignoreExplicitly: boolean;
+
     private readonly url: string;
+
     private readonly element: Element;
+
     private readonly title: string;
+
     private readonly contents: string;
+
     private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
-        const classList = element.classList;
+        const { classList } = element;
 
         // ignore if image.
-        if (element.matches("#imagebox_bigimages")) {
+        if (element.matches('#imagebox_bigimages')) {
             this.valid = false;
             this.ignoreExplicitly = true;
             return;
         }
 
         // ignore if dictionary.
-        if (element.querySelector("#dictionary-modules") !== null) {
+        if (element.querySelector('#dictionary-modules') !== null) {
             this.valid = false;
             this.ignoreExplicitly = true;
             return;
@@ -32,7 +38,7 @@ class GoogleElement implements IBlockable {
                 break;
             }
 
-            if (parent.classList.contains("g")) {
+            if (parent.classList.contains('g')) {
                 this.valid = false;
                 this.ignoreExplicitly = true;
                 return;
@@ -42,39 +48,39 @@ class GoogleElement implements IBlockable {
         }
 
         // ignore right pane
-        if (classList.contains("rhsvw")) {
+        if (classList.contains('rhsvw')) {
             this.valid = false;
             this.ignoreExplicitly = true;
             return;
         }
 
-        const anchorList = element.getElementsByTagName("a");
+        const anchorList = element.getElementsByTagName('a');
 
         const urlList: string[] = [];
         for (const anchor of anchorList) {
-            const ping = anchor.getAttribute("ping");
-            const href = anchor.getAttribute("href");
-            const onmouseDown = anchor.getAttribute("onmousedown");
+            const ping = anchor.getAttribute('ping');
+            const href = anchor.getAttribute('href');
+            const onmouseDown = anchor.getAttribute('onmousedown');
 
             if (href === null) {
                 continue;
             }
 
-            if (!href.startsWith("https://books.google") && ping === null && onmouseDown == null) {
+            if (!href.startsWith('https://books.google') && ping === null && onmouseDown == null) {
                 continue;
             }
 
-            if (href.startsWith("https://webcache.googleusercontent.com/")) {
+            if (href.startsWith('https://webcache.googleusercontent.com/')) {
                 continue;
             }
 
-            if (href.startsWith("http://webcache.googleusercontent.com/")) {
+            if (href.startsWith('http://webcache.googleusercontent.com/')) {
                 continue;
             }
 
             // firefox, coccoc, ...
-            if (href.startsWith("/url?")) {
-                const matchData = href.match("&url=(.*)&");
+            if (href.startsWith('/url?')) {
+                const matchData = href.match('&url=(.*)&');
                 if (matchData !== null) {
                     urlList.push(matchData[0]);
                 }
@@ -90,7 +96,7 @@ class GoogleElement implements IBlockable {
             return;
         }
 
-        const h3 = element.querySelector("h3");
+        const h3 = element.querySelector('h3');
 
         // ignore if no h3(ex. Google Translate)
         if (h3 === null) {
@@ -99,9 +105,9 @@ class GoogleElement implements IBlockable {
             return;
         }
 
-        const title = h3.textContent ? h3.textContent : "";
-        const st: HTMLSpanElement | null = element.querySelector(".st");
-        const contents = st ? st.textContent! : "";
+        const title = h3.textContent ? h3.textContent : '';
+        const st: HTMLSpanElement | null = element.querySelector('.st');
+        const contents = st ? st.textContent! : '';
 
         this.valid = true;
         this.ignoreExplicitly = false;
@@ -111,12 +117,12 @@ class GoogleElement implements IBlockable {
         this.contents = contents;
 
         // operation insert point
-        const actionMenu = this.element.querySelector(".action-menu");
+        const actionMenu = this.element.querySelector('.action-menu');
 
         if (actionMenu !== null) {
             this.operationInsertPoint = actionMenu;
         } else {
-            this.operationInsertPoint = element.querySelector("a")!;
+            this.operationInsertPoint = element.querySelector('a')!;
         }
     }
 
@@ -133,7 +139,7 @@ class GoogleElement implements IBlockable {
             return true;
         }
 
-        return this.contents !== "" && this.contents.includes(keyword);
+        return this.contents !== '' && this.contents.includes(keyword);
     }
 
     public containsInTitle(keyword: string): boolean {
@@ -157,10 +163,10 @@ class GoogleElement implements IBlockable {
     }
 
     public getPosition(): string {
-        return "absolute";
+        return 'absolute';
     }
 
     public getCssClass(): string {
-        return "block-google-element";
+        return 'block-google-element';
     }
 }

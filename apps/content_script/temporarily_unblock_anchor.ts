@@ -1,12 +1,13 @@
 class TemporarilyUnblockAnchor {
     private readonly anchor: HTMLAnchorElement;
+
     private readonly mediator: BlockMediator;
 
     constructor(mediator: BlockMediator) {
         this.mediator = mediator;
 
         const anchor = $.anchor();
-        anchor.classList.add("blocker-temporarily-unblock");
+        anchor.classList.add('blocker-temporarily-unblock');
         $.onclick(anchor, this.mediator.temporarilyUnblock.bind(this.mediator));
 
         this.anchor = anchor;
@@ -26,6 +27,6 @@ class TemporarilyUnblockAnchor {
     }
 
     private static message(reason: string) {
-        return chrome.i18n.getMessage("temporarilyUnblock", [$.decodeURI(reason)]);
+        return chrome.i18n.getMessage('temporarilyUnblock', [$.decodeURI(reason)]);
     }
 }

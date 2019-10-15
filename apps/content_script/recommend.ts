@@ -1,15 +1,15 @@
 function makeRecommendUrl(urlWithoutProtocol: string): string | null {
-    let recommended = makeRecommendUrlCommon(urlWithoutProtocol, "d.hatena.ne.jp");
+    let recommended = makeRecommendUrlCommon(urlWithoutProtocol, 'd.hatena.ne.jp');
     if (recommended !== null) {
         return recommended;
     }
 
-    recommended = makeRecommendUrlCommon(urlWithoutProtocol, "ameblo.jp");
+    recommended = makeRecommendUrlCommon(urlWithoutProtocol, 'ameblo.jp');
     if (recommended !== null) {
         return recommended;
     }
 
-    recommended = makeRecommendUrlCommon(urlWithoutProtocol, "blog.livedoor.jp");
+    recommended = makeRecommendUrlCommon(urlWithoutProtocol, 'blog.livedoor.jp');
     if (recommended !== null) {
         return recommended;
     }
@@ -19,15 +19,14 @@ function makeRecommendUrl(urlWithoutProtocol: string): string | null {
 
 function makeRecommendUrlCommon(urlWithoutProtocol: string, prefix: string): string | null {
     if (urlWithoutProtocol.startsWith(prefix)) {
-        const index = urlWithoutProtocol.indexOf("/", prefix.length + 1);
+        const index = urlWithoutProtocol.indexOf('/', prefix.length + 1);
         if (index !== -1) {
             const recommended = urlWithoutProtocol.substring(0, index + 1);
 
             if (recommended === urlWithoutProtocol) {
                 return null;
-            } else {
-                return recommended;
             }
+            return recommended;
         }
     }
 

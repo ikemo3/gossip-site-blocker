@@ -3,6 +3,7 @@
  */
 class BlockedSiteEditButton {
     public element: HTMLInputElement;
+
     public mediator: BlockedSiteOption;
 
     /**
@@ -12,10 +13,10 @@ class BlockedSiteEditButton {
     constructor(mediator: BlockedSiteOption) {
         this.mediator = mediator;
 
-        const input = document.createElement("input");
-        input.setAttribute("type", "button");
-        input.setAttribute("value", chrome.i18n.getMessage("UpdateUrl"));
-        input.addEventListener("click", this.onclick.bind(this));
+        const input = document.createElement('input');
+        input.setAttribute('type', 'button');
+        input.setAttribute('value', chrome.i18n.getMessage('UpdateUrl'));
+        input.addEventListener('click', this.onclick.bind(this));
         this.element = input;
     }
 

@@ -10,7 +10,7 @@ interface IBannedWord {
 
 const BannedWordRepository = {
     async load(): Promise<IBannedWord[]> {
-        const items = await ChromeStorage.get({bannedWords: []}) as IBannedWordItems;
+        const items = await ChromeStorage.get({ bannedWords: [] }) as IBannedWordItems;
 
         const itemsCopy = items.bannedWords;
         for (const item of itemsCopy) {
@@ -23,24 +23,24 @@ const BannedWordRepository = {
             }
         }
 
-        Logger.debug("bannedWords: ", itemsCopy);
+        Logger.debug('bannedWords: ', itemsCopy);
 
         return itemsCopy;
     },
 
     async save(words: IBannedWord[]) {
-        await ChromeStorage.set({bannedWords: words});
+        await ChromeStorage.set({ bannedWords: words });
     },
 
     async clear() {
-        await ChromeStorage.set({bannedWords: []});
+        await ChromeStorage.set({ bannedWords: [] });
     },
 
     async addAll(bannedWordList: IBannedWord[]): Promise<void> {
         const words: IBannedWord[] = await this.load();
 
         for (const bannedWord of bannedWordList) {
-            let found: boolean = false;
+            let found = false;
             for (const word of words) {
                 if (bannedWord.keyword === word.keyword) {
                     // do nothing.
@@ -66,7 +66,7 @@ const BannedWordRepository = {
             }
         }
 
-        words.push({keyword: addWord, blockType: BlockType.SOFT, target: BannedTarget.TITLE_AND_CONTENTS});
+        words.push({ keyword: addWord, blockType: BlockType.SOFT, target: BannedTarget.TITLE_AND_CONTENTS });
         await this.save(words);
         return true;
     },

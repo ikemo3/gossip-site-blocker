@@ -2,10 +2,10 @@ class OperationsBlock {
     private readonly operationDiv: HTMLDivElement;
 
     constructor(temporarilyUnblockAnchor: TemporarilyUnblockAnchor,
-                hideAnchor: HideAnchor,
-                blockAnchor: BlockAnchor,
-                changeAnchor: BlockChangeAnchor) {
-        this.operationDiv = $.div("block-anchor");
+        hideAnchor: HideAnchor,
+        blockAnchor: BlockAnchor,
+        changeAnchor: BlockChangeAnchor) {
+        this.operationDiv = $.div('block-anchor');
 
         this.operationDiv.appendChild(temporarilyUnblockAnchor.getElement());
         this.operationDiv.appendChild(hideAnchor.getElement());

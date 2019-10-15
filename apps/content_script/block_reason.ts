@@ -1,6 +1,8 @@
 class BlockReason {
     private readonly blockType: BlockReasonType;
+
     private readonly url: string;
+
     private readonly reason: string;
 
     constructor(blockType: BlockReasonType, url: string, reason: string) {

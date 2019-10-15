@@ -4,23 +4,31 @@ interface IBlockMediator {
 
 class BlockMediator implements IBlockMediator {
     private readonly url: string;
+
     private blockReason?: BlockReason;
+
     private readonly blockTarget: BlockTarget;
 
     private readonly operationDiv: HTMLDivElement;
+
     private readonly hideAnchor: HideAnchor;
+
     private readonly temporarilyUnblockAnchor: TemporarilyUnblockAnchor;
+
     private readonly blockAnchor: BlockAnchor;
+
     private readonly changeAnchor: BlockChangeAnchor;
 
     private readonly defaultBlockType: string;
+
     private blockDialog: BlockDialog;
+
     private changeStateDialog: BlockChangeAnchorDialog;
 
     constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string, menuPosition: MenuPosition) {
         const blockTarget = new BlockTarget(this, g.getElement());
 
-        this.operationDiv = $.div("block-anchor");
+        this.operationDiv = $.div('block-anchor');
         this.url = g.getUrl();
         this.blockReason = blockState.getReason();
         this.blockTarget = blockTarget;
@@ -32,47 +40,47 @@ class BlockMediator implements IBlockMediator {
 
         let operationsAnchor;
         switch (menuPosition) {
-            case MenuPosition.COMPACT:
-                // insert menu after action menu.
-                operationsAnchor = new OperationsAnchor(this.hideAnchor,
-                    this.blockAnchor, this.changeAnchor, g.getPosition());
-                DOMUtils.insertAfter(g.getOperationInsertPoint(), operationsAnchor.getElement());
+        case MenuPosition.COMPACT:
+            // insert menu after action menu.
+            operationsAnchor = new OperationsAnchor(this.hideAnchor,
+                this.blockAnchor, this.changeAnchor, g.getPosition());
+            DOMUtils.insertAfter(g.getOperationInsertPoint(), operationsAnchor.getElement());
 
-                // insert links after block target.
-                this.operationDiv.classList.add("block-anchor-tmp-unblock-only");
-                this.operationDiv.classList.add(g.getCssClass());
-                this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
-                DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+            // insert links after block target.
+            this.operationDiv.classList.add('block-anchor-tmp-unblock-only');
+            this.operationDiv.classList.add(g.getCssClass());
+            this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
+            DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
-                break;
-            case MenuPosition.DEFAULT:
-                // insert links after block target.
-                this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
-                this.operationDiv.appendChild(this.hideAnchor.getElement());
-                this.operationDiv.appendChild(this.blockAnchor.getElement());
-                this.operationDiv.appendChild(this.changeAnchor.getElement());
-                this.operationDiv.classList.add(g.getCssClass());
-                DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+            break;
+        case MenuPosition.DEFAULT:
+            // insert links after block target.
+            this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
+            this.operationDiv.appendChild(this.hideAnchor.getElement());
+            this.operationDiv.appendChild(this.blockAnchor.getElement());
+            this.operationDiv.appendChild(this.changeAnchor.getElement());
+            this.operationDiv.classList.add(g.getCssClass());
+            DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
-                break;
-            default:
-                throw new ApplicationError("illegal menuPosition:" + menuPosition);
+            break;
+        default:
+            throw new ApplicationError(`illegal menuPosition:${menuPosition}`);
         }
 
         switch (blockState.getState()) {
-            case "none":
-                this.notBlocked();
-                break;
+        case 'none':
+            this.notBlocked();
+            break;
 
-            case "soft":
-                this.hide();
-                break;
+        case 'soft':
+            this.hide();
+            break;
         }
     }
 
     public setWrappable(width: string) {
         this.operationDiv.style.width = width;
-        this.operationDiv.style.whiteSpace = "normal";
+        this.operationDiv.style.whiteSpace = 'normal';
     }
 
     public notBlocked() {
@@ -93,20 +101,20 @@ class BlockMediator implements IBlockMediator {
 
     public temporarilyUnblock() {
         switch (this.blockReason!.getType()) {
-            case BlockReasonType.URL_EXACTLY:
-                this.blockAnchor.hide();
-                this.changeAnchor.show();
-                break;
-            case BlockReasonType.URL:
-                this.blockAnchor.showBlockExplicitly();
-                this.changeAnchor.show();
-                break;
+        case BlockReasonType.URL_EXACTLY:
+            this.blockAnchor.hide();
+            this.changeAnchor.show();
+            break;
+        case BlockReasonType.URL:
+            this.blockAnchor.showBlockExplicitly();
+            this.changeAnchor.show();
+            break;
 
-            case BlockReasonType.IDN:
-            case BlockReasonType.WORD:
-                this.blockAnchor.showBlockExplicitly();
-                this.changeAnchor.hide();
-                break;
+        case BlockReasonType.IDN:
+        case BlockReasonType.WORD:
+            this.blockAnchor.showBlockExplicitly();
+            this.changeAnchor.hide();
+            break;
         }
 
         this.blockTarget.temporarilyUnblock();
@@ -127,7 +135,7 @@ class BlockMediator implements IBlockMediator {
 
     public async block(url: string, blockType: string) {
         await BlockedSitesRepository.add(url, blockType);
-        if (blockType === "hard") {
+        if (blockType === 'hard') {
             this.blockTarget.remove();
             $.removeSelf(this.operationDiv);
             return;

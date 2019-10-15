@@ -6,6 +6,7 @@
  */
 class BlockedSite {
     public url: string;
+
     public block_type: string;
 
     constructor(item: IBlockedSite) {

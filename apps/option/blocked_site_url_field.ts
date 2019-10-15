@@ -10,9 +10,9 @@ class BlockedSiteUrlField {
      * @param {string} url
      */
     constructor(mediator: BlockedSiteOption, url: string) {
-        const input = document.createElement("input");
-        input.setAttribute("type", "text");
-        input.setAttribute("size", "100");
+        const input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        input.setAttribute('size', '100');
         this.element = input;
 
         this.setUrl(url);
@@ -23,7 +23,7 @@ class BlockedSiteUrlField {
     }
 
     public value() {
-        return this.element.getAttribute("data-value");
+        return this.element.getAttribute('data-value');
     }
 
     public getInputValue() {
@@ -39,7 +39,7 @@ class BlockedSiteUrlField {
     }
 
     public setUrl(url: string) {
-        this.element.setAttribute("data-value", url);
+        this.element.setAttribute('data-value', url);
         this.element.value = url;
     }
 }

@@ -1,15 +1,18 @@
 class GoogleInnerCard implements IBlockable {
     public valid: boolean;
+
     public url: string;
+
     public element: Element;
+
     private readonly title: string;
 
     constructor(element: Element) {
-        const anchorList = element.getElementsByTagName("a");
+        const anchorList = element.getElementsByTagName('a');
 
         const urlList = [];
         for (const anchor of anchorList) {
-            const href = anchor.getAttribute("href");
+            const href = anchor.getAttribute('href');
 
             if (href === null) {
                 continue;
@@ -24,9 +27,9 @@ class GoogleInnerCard implements IBlockable {
             return;
         }
 
-        const heading = element.querySelector("[role=heading]");
+        const heading = element.querySelector('[role=heading]');
         if (heading) {
-            this.title = heading.textContent ? heading.textContent : "";
+            this.title = heading.textContent ? heading.textContent : '';
         }
 
         this.valid = true;
@@ -47,12 +50,11 @@ class GoogleInnerCard implements IBlockable {
     }
 
     public getOperationInsertPoint(): Element {
-        const div = this.element.querySelector("div");
+        const div = this.element.querySelector('div');
         if (div !== null) {
             return div;
-        } else {
-            return this.element;
         }
+        return this.element;
     }
 
     public deleteElement() {
@@ -60,18 +62,18 @@ class GoogleInnerCard implements IBlockable {
     }
 
     public contains(keyword: string): boolean {
-        return this.title !== "" && this.title.includes(keyword);
+        return this.title !== '' && this.title.includes(keyword);
     }
 
     public containsInTitle(keyword: string): boolean {
-        return this.title !== "" && this.title.includes(keyword);
+        return this.title !== '' && this.title.includes(keyword);
     }
 
     public getPosition(): string {
-        return "relative";
+        return 'relative';
     }
 
     public getCssClass(): string {
-        return "block-google-inner-card";
+        return 'block-google-inner-card';
     }
 }
