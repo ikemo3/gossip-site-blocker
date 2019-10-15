@@ -3,6 +3,7 @@
  */
 class BlockedSiteDeleteButton {
     public element: HTMLInputElement;
+
     public mediator: BlockedSiteOption;
 
     /**
@@ -13,10 +14,10 @@ class BlockedSiteDeleteButton {
     constructor(mediator: BlockedSiteOption, state: string) {
         this.mediator = mediator;
 
-        const input = document.createElement("input");
-        input.setAttribute("type", "button");
-        input.setAttribute("value", chrome.i18n.getMessage("unblock"));
-        input.addEventListener("click", this.onclick.bind(this));
+        const input = document.createElement('input');
+        input.setAttribute('type', 'button');
+        input.setAttribute('value', chrome.i18n.getMessage('unblock'));
+        input.addEventListener('click', this.onclick.bind(this));
         this.element = input;
 
         this.setState(state);
@@ -31,7 +32,7 @@ class BlockedSiteDeleteButton {
     }
 
     public setState(state: string) {
-        if (state === "hard") {
+        if (state === 'hard') {
             this.toHard();
         } else {
             this.toSoft();
@@ -40,11 +41,11 @@ class BlockedSiteDeleteButton {
 
     public toHard() {
         // disable button.
-        this.element.setAttribute("disabled", "true");
+        this.element.setAttribute('disabled', 'true');
     }
 
     public toSoft() {
         // enable button.
-        this.element.removeAttribute("disabled");
+        this.element.removeAttribute('disabled');
     }
 }

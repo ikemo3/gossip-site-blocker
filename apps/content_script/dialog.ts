@@ -1,8 +1,12 @@
 class BlockDialog {
     public mediator: IBlockMediator;
+
     public background: HTMLDivElement;
+
     public urlText: HTMLInputElement;
+
     public customRadio: HTMLInputElement;
+
     public blockTypeSelect: HTMLSelectElement;
 
     constructor(mediator: IBlockMediator, url: string, defaultBlockType: string) {
@@ -13,7 +17,7 @@ class BlockDialog {
     }
 
     public createBackground(url: string, defaultBlockType: string) {
-        const background = $.div("block-dialog-background");
+        const background = $.div('block-dialog-background');
 
         // create child element.
         const dialog = this.createDialog(url, defaultBlockType);
@@ -23,7 +27,7 @@ class BlockDialog {
     }
 
     public createDialog(url: string, defaultBlockType: string) {
-        const dialog = $.div("block-dialog");
+        const dialog = $.div('block-dialog');
 
         // create child element.
         const urlRadioDiv = this.createRadioDiv(url);
@@ -39,8 +43,8 @@ class BlockDialog {
     }
 
     public createRadioDiv(url: string) {
-        const urlRadioDiv = $.div("block-dialog-url-radios");
-        urlRadioDiv.addEventListener("click", (ignore) => {
+        const urlRadioDiv = $.div('block-dialog-url-radios');
+        urlRadioDiv.addEventListener('click', (ignore) => {
             // If the custom radio button is selected, turn on the URL text, if not, reverse it.
             this.urlText.disabled = !this.customRadio.checked;
         });
@@ -64,18 +68,17 @@ class BlockDialog {
 
         if (blockRecommendDiv !== null) {
             return [blockRecommendDiv, blockDomainDiv, blockUrlDiv, blockCustomDiv];
-        } else {
-            return [blockDomainDiv, blockUrlDiv, blockCustomDiv];
         }
+        return [blockDomainDiv, blockUrlDiv, blockCustomDiv];
     }
 
     public static createBlockDomainRadio(value: string, checked: boolean) {
         const div = $.div();
 
-        const radio = $.radio("block-url-type", value, "blocker-dialog-domain-radio");
+        const radio = $.radio('block-url-type', value, 'blocker-dialog-domain-radio');
         radio.checked = checked;
 
-        const textLabel = $.label($.message("blockThisDomainWithUrl", value), "blocker-dialog-domain-radio");
+        const textLabel = $.label($.message('blockThisDomainWithUrl', value), 'blocker-dialog-domain-radio');
 
         div.appendChild(radio);
         div.appendChild(textLabel);
@@ -90,9 +93,9 @@ class BlockDialog {
         }
 
         const div = $.div();
-        const radio = $.radio("block-url-type", recommend, "blocker-dialog-recommend-radio");
+        const radio = $.radio('block-url-type', recommend, 'blocker-dialog-recommend-radio');
         radio.checked = true;
-        const textLabel = $.label($.message("blockThisPageWithRecommendedPath", $.decodeURI(recommend)), "blocker-dialog-url-radio");
+        const textLabel = $.label($.message('blockThisPageWithRecommendedPath', $.decodeURI(recommend)), 'blocker-dialog-url-radio');
 
         div.appendChild(radio);
         div.appendChild(textLabel);
@@ -103,9 +106,9 @@ class BlockDialog {
     public static createBlockUrlRadio(value: string) {
         const div = $.div();
 
-        const radio = $.radio("block-url-type", value, "blocker-dialog-url-radio");
+        const radio = $.radio('block-url-type', value, 'blocker-dialog-url-radio');
 
-        const textLabel = $.label($.message("blockThisPageWithUrl", $.decodeURI(value)), "blocker-dialog-url-radio");
+        const textLabel = $.label($.message('blockThisPageWithUrl', $.decodeURI(value)), 'blocker-dialog-url-radio');
 
         div.appendChild(radio);
         div.appendChild(textLabel);
@@ -116,10 +119,10 @@ class BlockDialog {
     public createBlockCustomRadio(value: string) {
         const div = $.div();
 
-        const radio = $.radio("block-url-type", "custom", "blocker-dialog-custom-radio");
+        const radio = $.radio('block-url-type', 'custom', 'blocker-dialog-custom-radio');
         this.customRadio = radio;
 
-        const textLabel = $.label($.message("customRadioText"), "blocker-dialog-custom-radio");
+        const textLabel = $.label($.message('customRadioText'), 'blocker-dialog-custom-radio');
 
         const br = $.br();
 
@@ -138,11 +141,11 @@ class BlockDialog {
 
     public createBlockTypeDiv(defaultBlockType: string) {
         const blockTypeDiv = $.div();
-        const select = document.createElement("select");
-        select.classList.add("block-dialog-type-select");
+        const select = document.createElement('select');
+        select.classList.add('block-dialog-type-select');
 
-        const soft = $.option("soft", $.message("softBlock"));
-        const hard = $.option("hard", $.message("hardBlock"));
+        const soft = $.option('soft', $.message('softBlock'));
+        const hard = $.option('hard', $.message('hardBlock'));
 
         select.appendChild(soft);
         select.appendChild(hard);
@@ -155,7 +158,7 @@ class BlockDialog {
     }
 
     public createButtonDiv() {
-        const buttonDiv = $.div("block-dialog-buttons");
+        const buttonDiv = $.div('block-dialog-buttons');
 
         // create child elements(buttons)
         const buttonList = this.createButtons();
@@ -182,7 +185,7 @@ class BlockDialog {
         let url = selected.value;
 
         // when 'custom', get url from text field.
-        if (url === "custom") {
+        if (url === 'custom') {
             url = this.urlText.value;
         }
 
@@ -197,11 +200,11 @@ class BlockDialog {
     }
 
     public createButtons() {
-        const cancelButton = $.button($.message("cancelButtonLabel"), "blocker-secondary-button");
-        cancelButton.id = "blocker-cancel-button";
+        const cancelButton = $.button($.message('cancelButtonLabel'), 'blocker-secondary-button');
+        cancelButton.id = 'blocker-cancel-button';
         $.onclick(cancelButton, this.cancel.bind(this));
 
-        const blockButton = $.button($.message("blockButtonLabel"), "blocker-primary-button");
+        const blockButton = $.button($.message('blockButtonLabel'), 'blocker-primary-button');
         $.onclick(blockButton, this.block.bind(this));
 
         return [cancelButton, blockButton];

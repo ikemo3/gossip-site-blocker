@@ -15,19 +15,19 @@ const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
         for (const node of mutation.addedNodes) {
             if (node instanceof Element) {
-                if (node.classList.contains("g")) {
+                if (node.classList.contains('g')) {
                     if (gsbOptions !== null) {
                         tryBlockGoogleElement(node, gsbOptions);
                     } else {
                         pendingsGoogle.push(node);
                     }
-                } else if (node.nodeName.toLowerCase() === "g-inner-card") {
+                } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
                     if (gsbOptions !== null) {
                         tryBlockGoogleInnerCard(node, gsbOptions);
                     } else {
                         pendingsInnerCard.push(node);
                     }
-                } else if (node.classList.contains("dbsr")) {
+                } else if (node.classList.contains('dbsr')) {
                     if (gsbOptions !== null) {
                         tryBlockGoogleTopNews(node, gsbOptions);
                     } else {
@@ -43,7 +43,7 @@ const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
 const pendingsTopNews: Element[] = [];
 const blockReasons: BlockReason[] = [];
-const config = {childList: true, subtree: true};
+const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 
 (async () => {
@@ -54,9 +54,11 @@ observer.observe(document.documentElement, config);
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();
     const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
-    Logger.debug("autoBlockIDNOption:", idnOption);
+    Logger.debug('autoBlockIDNOption:', idnOption);
 
-    gsbOptions = {blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition, bannedWordOption};
+    gsbOptions = {
+        blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition, bannedWordOption,
+    };
 
     for (const node of pendingsGoogle) {
         tryBlockGoogleElement(node, gsbOptions);
@@ -86,12 +88,12 @@ function tryBlockGoogleElement(node: Element, options: IOptions) {
         block();
     });
 
-    subObserver.observe(node, {childList: true, subtree: true});
+    subObserver.observe(node, { childList: true, subtree: true });
     subObserverList.push(subObserver);
 }
 
 function blockGoogleElementClosure(node: Element, options: IOptions) {
-    let completed: boolean = false;
+    let completed = false;
     return () => {
         if (completed) {
             return;
@@ -113,12 +115,12 @@ function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
         block();
     });
 
-    subObserver.observe(node, {childList: true, subtree: true});
+    subObserver.observe(node, { childList: true, subtree: true });
     subObserverList.push(subObserver);
 }
 
 function blockGoogleInnerCardClosure(node: Element, options: IOptions) {
-    let completed: boolean = false;
+    let completed = false;
     return () => {
         if (completed) {
             return;
@@ -140,12 +142,12 @@ function tryBlockGoogleTopNews(node: Element, options: IOptions) {
         block();
     });
 
-    subObserver.observe(node, {childList: true, subtree: true});
+    subObserver.observe(node, { childList: true, subtree: true });
     subObserverList.push(subObserver);
 }
 
 function blockGoogleTopNewsClosure(node: Element, options: IOptions) {
-    let completed: boolean = false;
+    let completed = false;
     return () => {
         if (completed) {
             return;
@@ -155,7 +157,7 @@ function blockGoogleTopNewsClosure(node: Element, options: IOptions) {
     };
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     // clear sub-observer
     for (const subObserver of subObserverList) {
         subObserver.disconnect();

@@ -3,6 +3,7 @@
  */
 class BlockTarget {
     private readonly mediator: BlockMediator;
+
     private readonly element: Element;
 
     constructor(mediator: BlockMediator, element: Element) {
@@ -19,14 +20,14 @@ class BlockTarget {
     }
 
     public show() {
-        this.element.removeAttribute("data-blocker-display");
+        this.element.removeAttribute('data-blocker-display');
     }
 
     public hide() {
-        this.element.setAttribute("data-blocker-display", "none");
+        this.element.setAttribute('data-blocker-display', 'none');
     }
 
     public temporarilyUnblock() {
-        this.element.setAttribute("data-blocker-display", "unhide");
+        this.element.setAttribute('data-blocker-display', 'unhide');
     }
 }

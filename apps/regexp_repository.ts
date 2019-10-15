@@ -9,7 +9,7 @@ interface IRegExpItem {
 
 const RegExpRepository = {
     async load(): Promise<IRegExpItem[]> {
-        const items = await ChromeStorage.get({regexpList: []}) as IRegExpItemList;
+        const items = await ChromeStorage.get({ regexpList: [] }) as IRegExpItemList;
 
         const itemsCopy = items.regexpList;
 
@@ -19,24 +19,24 @@ const RegExpRepository = {
             }
         }
 
-        Logger.debug("regexpList: ", itemsCopy);
+        Logger.debug('regexpList: ', itemsCopy);
 
         return itemsCopy;
     },
 
     async save(items: IRegExpItem[]) {
-        await ChromeStorage.set({regexpList: items});
+        await ChromeStorage.set({ regexpList: items });
     },
 
     async clear() {
-        await ChromeStorage.set({regexpList: []});
+        await ChromeStorage.set({ regexpList: [] });
     },
 
     async addAll(regexpList: IRegExpItem[]): Promise<void> {
         const items: IRegExpItem[] = await this.load();
 
         for (const regexp of regexpList) {
-            let found: boolean = false;
+            let found = false;
             for (const item of items) {
                 if (regexp.pattern === item.pattern) {
                     // do nothing.
@@ -62,7 +62,7 @@ const RegExpRepository = {
             }
         }
 
-        items.push({pattern, blockType: BlockType.SOFT});
+        items.push({ pattern, blockType: BlockType.SOFT });
         await this.save(items);
         return true;
     },

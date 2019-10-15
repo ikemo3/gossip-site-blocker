@@ -1,6 +1,6 @@
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
     return new Promise((resolve, reject) => {
-        chrome.tabs.query({active: true, currentWindow: true}, ((tabs) => {
+        chrome.tabs.query({ active: true, currentWindow: true }, ((tabs) => {
             if (tabs.length === 0) {
                 reject();
                 return;
@@ -12,30 +12,30 @@ function getCurrentTab(): Promise<chrome.tabs.Tab> {
     });
 }
 
-const exceptIkagadesitakaDiv = document.getElementById("exceptIkagadesitakaDiv") as HTMLDivElement;
-const exceptIkagadesitakaButton = document.getElementById("exceptIkagadesitakaButton") as HTMLButtonElement;
-const searchInEnglishDiv = document.getElementById("searchInEnglishDiv") as HTMLDivElement;
-const searchInEnglishButton = document.getElementById("searchInEnglishButton") as HTMLButtonElement;
-const optionLink = document.getElementById("optionLink") as HTMLAnchorElement;
+const exceptIkagadesitakaDiv = document.getElementById('exceptIkagadesitakaDiv') as HTMLDivElement;
+const exceptIkagadesitakaButton = document.getElementById('exceptIkagadesitakaButton') as HTMLButtonElement;
+const searchInEnglishDiv = document.getElementById('searchInEnglishDiv') as HTMLDivElement;
+const searchInEnglishButton = document.getElementById('searchInEnglishButton') as HTMLButtonElement;
+const optionLink = document.getElementById('optionLink') as HTMLAnchorElement;
 
-searchInEnglishButton.addEventListener("click", async () => {
+searchInEnglishButton.addEventListener('click', async () => {
     const currentTab = await getCurrentTab();
-    const url = currentTab.url;
+    const { url } = currentTab;
 
-    chrome.tabs.update(currentTab.id!, {url: url + "&gl=us&hl=en"});
+    chrome.tabs.update(currentTab.id!, { url: `${url}&gl=us&hl=en` });
 });
 
-exceptIkagadesitakaButton.addEventListener("click", async () => {
+exceptIkagadesitakaButton.addEventListener('click', async () => {
     const currentTab = await getCurrentTab();
     const url = new URL(currentTab.url!);
-    const q = url.searchParams.get("q");
-    const ikagadesuka = "\u3044\u304B\u304C\u3067\u3057\u305F\u304B";
-    url.searchParams.set("q", q + " -" + ikagadesuka);
+    const q = url.searchParams.get('q');
+    const ikagadesuka = '\u3044\u304B\u304C\u3067\u3057\u305F\u304B';
+    url.searchParams.set('q', `${q} -${ikagadesuka}`);
 
-    chrome.tabs.update(currentTab.id!, {url: url.toString()});
+    chrome.tabs.update(currentTab.id!, { url: url.toString() });
 });
 
-optionLink.addEventListener("click", () => {
+optionLink.addEventListener('click', () => {
     chrome.runtime.openOptionsPage();
 });
 
@@ -49,7 +49,7 @@ class PopupMediator implements IBlockMediator {
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
 
     const currentTab = await getCurrentTab();
-    const url = currentTab.url;
+    const { url } = currentTab;
     if (url === undefined) {
         return;
     }
@@ -59,24 +59,24 @@ class PopupMediator implements IBlockMediator {
     const lang = chrome.i18n.getUILanguage();
 
     if (isGoogleSearch) {
-        if (lang.startsWith("ja")) {
-            exceptIkagadesitakaDiv.style.display = "block";
-            searchInEnglishDiv.style.display = "block";
+        if (lang.startsWith('ja')) {
+            exceptIkagadesitakaDiv.style.display = 'block';
+            searchInEnglishDiv.style.display = 'block';
         } else {
-            exceptIkagadesitakaDiv.style.display = "none";
-            searchInEnglishDiv.style.display = "block";
+            exceptIkagadesitakaDiv.style.display = 'none';
+            searchInEnglishDiv.style.display = 'block';
         }
     } else {
-        exceptIkagadesitakaDiv.style.display = "none";
-        searchInEnglishDiv.style.display = "none";
+        exceptIkagadesitakaDiv.style.display = 'none';
+        searchInEnglishDiv.style.display = 'none';
 
         const mediator = new PopupMediator();
         const dialog = new BlockDialog(mediator, url, defaultBlockType);
 
         // hide cancel button.
-        const cancelButton = document.getElementById("blocker-cancel-button");
+        const cancelButton = document.getElementById('blocker-cancel-button');
         if (cancelButton) {
-            cancelButton.style.display = "none";
+            cancelButton.style.display = 'none';
         }
     }
 })();

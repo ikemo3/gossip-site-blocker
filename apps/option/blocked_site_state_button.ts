@@ -1,7 +1,10 @@
 class BlockedSiteStateButton {
     public element: HTMLInputElement;
+
     public mediator: BlockedSiteOption;
+
     public state: string;
+
     public handler: any;
 
     /**
@@ -12,8 +15,8 @@ class BlockedSiteStateButton {
     constructor(mediator: BlockedSiteOption, state: string) {
         this.mediator = mediator;
 
-        const input = document.createElement("input");
-        input.setAttribute("type", "button");
+        const input = document.createElement('input');
+        input.setAttribute('type', 'button');
         this.element = input;
 
         this.setState(state);
@@ -34,11 +37,11 @@ class BlockedSiteStateButton {
     public updateBlockTypeHandler() {
         // remove handler
         if (this.handler) {
-            this.element.removeEventListener("click", this.handler);
+            this.element.removeEventListener('click', this.handler);
             this.handler = null;
         }
 
-        if (this.state === "soft") {
+        if (this.state === 'soft') {
             this.handler = this.mediator.toHard.bind(this.mediator);
         } else {
             this.handler = this.mediator.toSoft.bind(this.mediator);
@@ -46,24 +49,24 @@ class BlockedSiteStateButton {
 
         // set handler
         if (this.handler) {
-            this.element.addEventListener("click", this.handler);
+            this.element.addEventListener('click', this.handler);
         }
     }
 
     public updateLabel(state: string) {
-        if (state === "soft") {
-            this.element.setAttribute("value", chrome.i18n.getMessage("changeToHardBlock"));
+        if (state === 'soft') {
+            this.element.setAttribute('value', chrome.i18n.getMessage('changeToHardBlock'));
         } else {
-            this.element.setAttribute("value", chrome.i18n.getMessage("changeToSoftBlock"));
+            this.element.setAttribute('value', chrome.i18n.getMessage('changeToSoftBlock'));
         }
     }
 
     public toHard() {
-        this.setState("hard");
+        this.setState('hard');
     }
 
     public toSoft() {
-        this.setState("soft");
+        this.setState('soft');
     }
 
     public getElement() {

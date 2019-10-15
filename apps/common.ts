@@ -66,7 +66,7 @@ const DOMUtils = {
      * @return {string} hostname
      */
     getHostName(url: string): string {
-        const tmp = document.createElement("a");
+        const tmp = document.createElement('a');
         tmp.href = url;
         return tmp.hostname;
     },
@@ -78,7 +78,7 @@ const DOMUtils = {
      * @return {string} string without protocol(scheme)
      */
     removeProtocol(url: string) {
-        return url.replace(/^\w+:\/\//, "");
+        return url.replace(/^\w+:\/\//, '');
     },
 };
 
@@ -90,8 +90,8 @@ interface ITextAreaParams {
 
 const $ = {
     anchor(text?: string): HTMLAnchorElement {
-        const anchor = document.createElement("a");
-        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
+        const anchor = document.createElement('a');
+        anchor.setAttribute('href', 'javascript:void(0)'); // change link color.
 
         if (text !== undefined) {
             anchor.textContent = text;
@@ -101,12 +101,12 @@ const $ = {
     },
 
     br(): HTMLBRElement {
-        return document.createElement("br");
+        return document.createElement('br');
     },
 
     button(value: string, clazz?: string): HTMLInputElement {
-        const button = document.createElement("input");
-        button.type = "button";
+        const button = document.createElement('input');
+        button.type = 'button';
         button.value = value;
 
         if (clazz) {
@@ -125,7 +125,7 @@ const $ = {
     },
 
     div(clazz?: string): HTMLDivElement {
-        const div = document.createElement("div");
+        const div = document.createElement('div');
 
         if (clazz !== undefined) {
             div.classList.add(clazz);
@@ -135,11 +135,11 @@ const $ = {
     },
 
     escape(str: string): string {
-        return str.replace(/\\/g, "\\\\").replace(/\+/g, "\\+").replace(/ /g, "+");
+        return str.replace(/\\/g, '\\\\').replace(/\+/g, '\\+').replace(/ /g, '+');
     },
 
     hide(element: HTMLElement): void {
-        element.style.display = "none";
+        element.style.display = 'none';
     },
 
     insertBefore(element: HTMLElement, afterElement: HTMLElement) {
@@ -147,15 +147,15 @@ const $ = {
     },
 
     async isGoogleSearch(url: string): Promise<boolean> {
-        const manifestUrl = chrome.runtime.getURL("manifest.json");
+        const manifestUrl = chrome.runtime.getURL('manifest.json');
 
         const response = await fetch(manifestUrl);
         const manifest = await response.json();
-        const matches = manifest.content_scripts[0].matches;
+        const { matches } = manifest.content_scripts[0];
 
         for (const match of matches) {
             // remove last '*' of pattern.
-            const pattern = match.replace("*", "");
+            const pattern = match.replace('*', '');
 
             if (url.startsWith(pattern)) {
                 return true;
@@ -166,7 +166,7 @@ const $ = {
     },
 
     label(text: string, htmlFor: string): HTMLLabelElement {
-        const label = document.createElement("label");
+        const label = document.createElement('label');
         label.htmlFor = htmlFor;
         label.textContent = text;
         return label;
@@ -177,19 +177,19 @@ const $ = {
     },
 
     onclick(element: HTMLElement, listener: EventListenerOrEventListenerObject): void {
-        element.addEventListener("click", listener);
+        element.addEventListener('click', listener);
     },
 
     option(value: string, text: string): HTMLOptionElement {
-        const option = document.createElement("option");
-        option.setAttribute("value", value);
+        const option = document.createElement('option');
+        option.setAttribute('value', value);
         option.textContent = text;
         return option;
     },
 
     radio(name: string, value: string, id: string): HTMLInputElement {
-        const radio = document.createElement("input");
-        radio.type = "radio";
+        const radio = document.createElement('input');
+        radio.type = 'radio';
         radio.name = name;
         radio.value = value;
         radio.id = id;
@@ -209,15 +209,15 @@ const $ = {
     },
 
     show(element: HTMLElement): void {
-        element.style.display = "inline";
+        element.style.display = 'inline';
     },
 
     showBlock(element: HTMLElement): void {
-        element.style.display = "block";
+        element.style.display = 'block';
     },
 
     span(text: string, clazz?: string): HTMLSpanElement {
-        const span = document.createElement("span");
+        const span = document.createElement('span');
         span.textContent = text;
 
         if (clazz !== undefined) {
@@ -232,7 +232,7 @@ const $ = {
     },
 
     textarea(value: string, params: ITextAreaParams): HTMLTextAreaElement {
-        const textarea = document.createElement("textarea");
+        const textarea = document.createElement('textarea');
         textarea.textContent = value;
 
         if (params.cols) {
@@ -251,8 +251,8 @@ const $ = {
     },
 
     textField(value: string, size?: number): HTMLInputElement {
-        const textField = document.createElement("input");
-        textField.type = "text";
+        const textField = document.createElement('input');
+        textField.type = 'text';
         textField.value = value;
 
         if (size !== undefined) {
@@ -264,63 +264,63 @@ const $ = {
 
     toBlockType(value: string): BlockType {
         switch (value) {
-            case "hard":
-                return BlockType.HARD;
-            case "soft":
-            default:
-                return BlockType.SOFT;
+        case 'hard':
+            return BlockType.HARD;
+        case 'soft':
+        default:
+            return BlockType.SOFT;
         }
     },
 
     toBannedTarget(value: string): BannedTarget {
         switch (value) {
-            case "titleOnly":
-                return BannedTarget.TITLE_ONLY;
-            case "titleAndContents":
-            default:
-                return BannedTarget.TITLE_AND_CONTENTS;
+        case 'titleOnly':
+            return BannedTarget.TITLE_ONLY;
+        case 'titleAndContents':
+        default:
+            return BannedTarget.TITLE_AND_CONTENTS;
         }
     },
 
     unescape(str: string): string {
         return str.replace(/(\\\\|\\\+|\+)/g, (matched) => {
-            if (matched === "\\\\") {
-                return "\\";
-            } else if (matched === "\\+") {
-                return "+";
-            } else if (matched === "+") {
-                return " ";
-            } else {
-                return matched;
+            if (matched === '\\\\') {
+                return '\\';
+            } if (matched === '\\+') {
+                return '+';
+            } if (matched === '+') {
+                return ' ';
             }
+            return matched;
         });
     },
 };
 
 enum MenuPosition {
-    COMPACT = "compact",
-    DEFAULT = "default",
+    COMPACT = 'compact',
+    DEFAULT = 'default',
 }
 
 enum BlockType {
-    SOFT = "soft",
-    HARD = "hard",
+    SOFT = 'soft',
+    HARD = 'hard',
 }
 
 enum BannedTarget {
-    TITLE_AND_CONTENTS = "titleAndContents",
-    TITLE_ONLY = "titleOnly",
+    TITLE_AND_CONTENTS = 'titleAndContents',
+    TITLE_ONLY = 'titleOnly',
 }
 
 class ApplicationError implements Error {
     public message: string;
-    public name: string = "Application Error";
+
+    public name = 'Application Error';
 
     constructor(message: string) {
         this.message = message;
     }
 
     public toString() {
-        return this.name + ": " + this.message;
+        return `${this.name}: ${this.message}`;
     }
 }
