@@ -25,7 +25,7 @@ import { ok, strictEqual } from 'assert';
 
     await driver.get('https://www.google.com/search?q=typescript+wikipedia');
 
-    // click 'this pace'
+    // click 'block this page'
     const blockThisPage = driver.findElement(By.className('block-google-element'));
     const blockTarget = blockThisPage.findElement(By.xpath('preceding-sibling::div'));
     await driver.actions().pause(500).click(blockThisPage).perform();
