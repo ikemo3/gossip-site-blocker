@@ -2,8 +2,20 @@ import {
     Builder, By, Capabilities, WebDriver,
 } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
-import { readFileSync } from 'fs';
+import {
+    existsSync, mkdirSync, readFileSync, writeFileSync,
+} from 'fs';
 import { ok, strictEqual } from 'assert';
+
+async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
+    const dir = 'tmp/screenshots';
+
+    if (!existsSync(dir)) {
+        mkdirSync(dir);
+    }
+
+    writeFileSync(`${dir}/${path}`, Buffer.from(await driver.takeScreenshot(), 'base64'));
+}
 
 (async (): Promise<void> => {
     try {
@@ -25,11 +37,13 @@ import { ok, strictEqual } from 'assert';
             .build();
 
         await driver.get('https://www.google.com/search?q=typescript+wikipedia');
+        await takeScreenShot(driver, 'search_result.png');
 
         // click 'block this page'
         const blockThisPage = driver.findElement(By.className('block-google-element'));
         const blockTarget = blockThisPage.findElement(By.xpath('preceding-sibling::div'));
         await driver.actions().pause(500).click(blockThisPage).perform();
+        await takeScreenShot(driver, 'block_dialog.png');
 
         // assert dialog
         const blockDialog = driver.findElement(By.className('block-dialog'));
@@ -39,6 +53,7 @@ import { ok, strictEqual } from 'assert';
         // click block button
         const blockButton = driver.findElement(By.className('blocker-primary-button'));
         await driver.actions().pause(500).click(blockButton).perform();
+        await takeScreenShot(driver, 'block_clicked.png');
 
         // assert block target is hidden
         const isDisplayed = await blockTarget.isDisplayed();
