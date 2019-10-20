@@ -22,12 +22,14 @@
     "karma-coverage": "^1.1.2",
     "karma-jasmine": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
+    "selenium-webdriver": "^4.0.0-alpha.5",
     "ts-node": "^8.4.1",
     "tslint": "^5.11.0",
     "typescript": "^3.0.1"
   },
   "scripts": {
     "archive": "./scripts/archive.sh",
+    "integration-test": "yarn archive && tsc && node --async-stack-traces test/selenium/test.js",
     "lint": "yarn eslint --ext .ts apps test",
     "test": "karma start --single-run"
   }
