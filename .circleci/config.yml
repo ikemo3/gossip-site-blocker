@@ -15,7 +15,7 @@ jobs:
       - run:
           command: make ci
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: tmp/workspace
           paths:
             - gossip-site-blocker.*
 
@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/workspace
+          at: tmp/workspace
       - run:
           name: "Publish Release on GitHub"
           command: make deploy

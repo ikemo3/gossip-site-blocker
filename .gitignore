@@ -1,3 +1,4 @@
+key.pem
 karma.conf.js
 karma.conf.js.map
 gossip-site-blocker.zip
@@ -5,6 +6,7 @@ apps/**/*.js
 apps/**/*.js.map
 test/**/*.js
 test/**/*.js.map
+tmp
 
 ### https://raw.github.com/github/gitignore/ea28c14da0faf75047165c10223635ba95566ad7/Node.gitignore
 
