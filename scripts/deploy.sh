@@ -21,7 +21,7 @@ else
   DO=echo
 fi
 
-cd /tmp/workspace
+cd tmp/workspace
 if [ "${CIRCLE_BRANCH}" != "" ]; then
   OPTIONS="-prerelease -recreate"
   TAG=snapshot
@@ -72,4 +72,4 @@ fi
 ${DO} go get -u github.com/tcnksm/ghr
 
 cd ${REPOSITORY_TOP}
-${DO} ghr -c ${SHA} -n ${NAME} ${OPTIONS} ${TAG} /tmp/workspace/
+${DO} ghr -c ${SHA} -n ${NAME} ${OPTIONS} ${TAG} tmp/workspace/
