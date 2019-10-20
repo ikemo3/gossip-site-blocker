@@ -27,6 +27,7 @@
     "typescript": "^3.0.1"
   },
   "scripts": {
+    "archive": "./scripts/archive.sh",
     "lint": "yarn eslint --ext .ts apps test",
     "test": "karma start --single-run"
   }
