@@ -15,8 +15,12 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo apt install -y fonts-takao-gothic
       - run:
           command: make ci
+      - store_artifacts:
+          path: tmp/screenshots
+          destination: screenshots
       - persist_to_workspace:
           root: tmp/workspace
           paths:
