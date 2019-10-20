@@ -15,6 +15,7 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo apt install -y fonts-takao-gothic
       - run:
           command: make ci
       - store_artifacts:
