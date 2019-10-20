@@ -6,3 +6,4 @@ yarn lint
 yarn test
 
 yarn archive
+yarn integration-test

@@ -7,6 +7,9 @@ jobs:
   build:
     docker:
       - image: circleci/node:12-browsers
+        environment:
+          - LANG: ja_JP.UTF-8
+          - LANGUAGE: ja_JP.UTF-8
 
     working_directory: ~/repo
 
