@@ -36,7 +36,7 @@ async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
             .setChromeOptions(options)
             .build();
 
-        await driver.get('https://www.google.com/search?q=typescript+wikipedia');
+        await driver.get('https://www.google.com/search?q=typescript+wikipedia+site:ja.wikipedia.org');
         await takeScreenShot(driver, 'search_result.png');
 
         // click 'block this page'
