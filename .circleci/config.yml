@@ -17,6 +17,9 @@ jobs:
       - checkout
       - run:
           command: make ci
+      - store_artifacts:
+          path: tmp/screenshots
+          destination: screenshots
       - persist_to_workspace:
           root: tmp/workspace
           paths:
