@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Config } from 'karma';
 
-module.exports = (config: Config) => {
+module.exports = (config: Config): void => {
     config.set({
         frameworks: ['jasmine'],
         files: [
@@ -10,13 +10,13 @@ module.exports = (config: Config) => {
             'apps/option/blocked_sites.js',
             'apps/content_script/block_reason.js',
             'apps/content_script/block_state.js',
-            'test/*.js'
+            'test/*.js',
         ],
         preprocessors: {
-            'apps/content_script/block_state.js': ['coverage']
+            'apps/content_script/block_state.js': ['coverage'],
         },
         browsers: ['ChromeHeadless'],
         reporters: ['mocha', 'coverage'],
-        logLevel: config.LOG_DEBUG
-    })
-}
+        logLevel: config.LOG_DEBUG,
+    });
+};
