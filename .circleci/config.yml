@@ -57,3 +57,13 @@ workflows:
                 - master
             tags:
               only: /.*/
+  daily_workflow:
+    triggers:
+      - schedule:
+          cron: "0 9 * * *" # 18:00 JST
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
