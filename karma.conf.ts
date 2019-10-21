@@ -15,7 +15,7 @@ module.exports = (config: Config): void => {
         preprocessors: {
             'apps/content_script/block_state.js': ['coverage'],
         },
-        browsers: ['ChromeHeadless'],
+        browsers: ['ChromeHeadless', 'FirefoxHeadless'],
         reporters: ['mocha', 'coverage'],
         logLevel: config.LOG_DEBUG,
     });
