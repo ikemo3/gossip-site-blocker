@@ -21,13 +21,13 @@ else
   DO=echo
 fi
 
-cd tmp/workspace
 if [[ "${CIRCLE_BRANCH}" != "" ]]; then
   OPTIONS="-prerelease -recreate"
   TAG=snapshot
   NAME="snapshot"
 
   # rename assets
+  cd tmp/workspace
   mv ${PACKAGE_NAME}.crx ${PACKAGE_NAME}-snapshot.crx
   mv ${PACKAGE_NAME}.zip ${PACKAGE_NAME}-snapshot.zip
 elif [[ "${CIRCLE_TAG}" != "" ]]; then
@@ -60,10 +60,10 @@ elif [[ "${CIRCLE_TAG}" != "" ]]; then
   NAME=${CIRCLE_TAG}
 
   # rename assets
+  cd tmp/workspace
   mv ${PACKAGE_NAME}.crx ${PACKAGE_NAME}-${MANIFEST_VERSION}.crx
   mv ${PACKAGE_NAME}.zip ${PACKAGE_NAME}-${MANIFEST_VERSION}.zip
 else
-  cd ${REPOSITORY_TOP}
   OPTIONS="-recreate"
   TAG=$(git symbolic-ref --short HEAD)
   NAME="snapshot"
