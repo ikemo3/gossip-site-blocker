@@ -53,7 +53,7 @@ elif [[ "${CIRCLE_TAG}" != "" ]]; then
   fi
 
   echo 'verify version_name does not exist'
-  jq -e .version_name apps/manifest.json
+  ! jq -e .version_name apps/manifest.json
 
   OPTIONS="-recreate"
   TAG=${CIRCLE_TAG}
