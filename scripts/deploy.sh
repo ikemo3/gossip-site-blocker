@@ -57,7 +57,7 @@ elif [[ "${CIRCLE_TAG}" != "" ]]; then
 
   OPTIONS="-recreate"
   TAG=${CIRCLE_TAG}
-  NAME=""
+  NAME=${CIRCLE_TAG}
 
   # rename assets
   mv ${PACKAGE_NAME}.crx ${PACKAGE_NAME}-${MANIFEST_VERSION}.crx
