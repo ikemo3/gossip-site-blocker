@@ -30,6 +30,7 @@ if [[ "${CIRCLE_BRANCH}" != "" ]]; then
   cd tmp/workspace
   mv ${PACKAGE_NAME}.crx ${PACKAGE_NAME}-snapshot.crx
   mv ${PACKAGE_NAME}.zip ${PACKAGE_NAME}-snapshot.zip
+  mv ${PACKAGE_NAME}.xpi ${PACKAGE_NAME}-snapshot.xpi
 elif [[ "${CIRCLE_TAG}" != "" ]]; then
   if [[ "${CIRCLE_TAG}" = "snapshot" ]]; then
     echo 'ignore `snapshot` tag (already released)'
@@ -63,6 +64,7 @@ elif [[ "${CIRCLE_TAG}" != "" ]]; then
   cd tmp/workspace
   mv ${PACKAGE_NAME}.crx ${PACKAGE_NAME}-${MANIFEST_VERSION}.crx
   mv ${PACKAGE_NAME}.zip ${PACKAGE_NAME}-${MANIFEST_VERSION}.zip
+  mv ${PACKAGE_NAME}.xpi ${PACKAGE_NAME}-${MANIFEST_VERSION}.xpi
 else
   OPTIONS="-recreate"
   TAG=$(git symbolic-ref --short HEAD)
