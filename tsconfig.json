@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
+    "alwaysStrict": false,
     "module": "commonjs",
-    "target": "es2017",
     "sourceMap": true,
     "strict": true,
-    "alwaysStrict": false,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "target": "es2017"
   },
   "exclude": [
     "node_modules"
