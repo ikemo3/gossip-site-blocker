@@ -27,3 +27,20 @@ yarn crx pack -o tmp/workspace/${PACKAGE_NAME}.crx apps -p tmp/${PACKAGE_NAME}.p
 # create Chrome Extension(unsigned)
 echo "Create ${PACKAGE_NAME}.zip"
 yarn crx pack --zip-output tmp/workspace/${PACKAGE_NAME}.zip apps
+
+### create Firefox Extension
+EXTENSION_ID=$(cat apps/.web-extension-id | tail -1)
+echo "extension id: ${EXTENSION_ID}"
+
+# rewrite manifest.json
+echo ${MANIFEST} | jq ". | .browser_specific_settings = {\"gecko\": {\"id\": \"${EXTENSION_ID}\"}}" \
+  > apps/manifest.json
+
+# create *.xpi
+echo "Create ${PACKAGE_NAME}.xpi"
+cd apps
+zip -r ../tmp/workspace/${PACKAGE_NAME}.xpi *
+
+# restore manifest.json
+cd ..
+git checkout -- apps/manifest.json
