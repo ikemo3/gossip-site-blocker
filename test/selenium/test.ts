@@ -13,10 +13,7 @@ async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
     writeFileSync(`${dir}/${path}`, Buffer.from(await driver.takeScreenshot(), 'base64'));
 }
 
-(async (): Promise<void> => {
-    try {
-        const driver = chromeDriver();
-
+async function main(driver: WebDriver) {
         await driver.get('https://www.google.com/search?q=typescript+wikipedia+site:ja.wikipedia.org');
         await takeScreenShot(driver, 'search_result.png');
 
@@ -42,6 +39,11 @@ async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
 
         // quit driver.
         await driver.close();
+}
+
+(async (): Promise<void> => {
+    try {
+        await main(chromeDriver());
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
