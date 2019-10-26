@@ -1,11 +1,7 @@
-import {
-    Builder, By, Capabilities, WebDriver,
-} from 'selenium-webdriver';
-import { Options } from 'selenium-webdriver/chrome';
-import {
-    existsSync, mkdirSync, readFileSync, writeFileSync,
-} from 'fs';
+import { By, WebDriver } from 'selenium-webdriver';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { ok, strictEqual } from 'assert';
+import chromeDriver from './chrome';
 
 async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
     const dir = 'tmp/screenshots';
@@ -19,22 +15,7 @@ async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
 
 (async (): Promise<void> => {
     try {
-        const extension = readFileSync('tmp/workspace/gossip-site-blocker.crx', 'base64');
-        const options = new Options()
-            .addExtensions(extension)
-            .windowSize({ width: 1280, height: 800 });
-
-        const capabilities = Capabilities.chrome();
-        capabilities.set('chromeOptions', {
-            args: [
-                '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-            ],
-        });
-
-        const driver: WebDriver = await new Builder()
-            .withCapabilities(capabilities)
-            .setChromeOptions(options)
-            .build();
+        const driver = chromeDriver();
 
         await driver.get('https://www.google.com/search?q=typescript+wikipedia+site:ja.wikipedia.org');
         await takeScreenShot(driver, 'search_result.png');
