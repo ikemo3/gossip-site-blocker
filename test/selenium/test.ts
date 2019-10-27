@@ -1,14 +1,17 @@
-import { By, WebDriver } from 'selenium-webdriver';
+import { By, Capabilities, WebDriver } from 'selenium-webdriver';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { ok, strictEqual } from 'assert';
 import chromeDriver from './chrome';
 import firefoxDriver from './firefox';
 
 async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
-    const dir = 'tmp/screenshots';
+    const capabilities: Capabilities = await driver.getCapabilities();
+    const browserName = capabilities.get('browserName');
+
+    const dir = `tmp/screenshots/${browserName}`;
 
     if (!existsSync(dir)) {
-        mkdirSync(dir);
+        mkdirSync(dir, { recursive: true });
     }
 
     writeFileSync(`${dir}/${path}`, Buffer.from(await driver.takeScreenshot(), 'base64'));
