@@ -98,53 +98,33 @@ function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunctio
     };
 }
 
-function tryBlockGoogleElement(node: Element, options: IOptions): void {
+function tryBlockElement(node: Element, options: IOptions, blockFunction: IBlockFunction): void {
     // first, try block.
-    const completed = blockGoogleElement(node, options);
+    const completed = blockFunction(node, options);
     if (completed) {
         return;
     }
 
     // if failed, add observer for retry.
-    const block = blockClosure(node, options, blockGoogleElement);
+    const block = blockClosure(node, options, blockFunction);
     const subObserver = new MutationObserver(() => {
         block();
     });
 
     subObserver.observe(node, { childList: true, subtree: true });
     subObserverList.push(subObserver);
+}
+
+function tryBlockGoogleElement(node: Element, options: IOptions): void {
+    tryBlockElement(node, options, blockGoogleElement);
 }
 
 function tryBlockGoogleInnerCard(node: Element, options: IOptions): void {
-    const completed = blockGoogleInnerCard(node, options);
-    if (completed) {
-        return;
-    }
-
-    // if failed, add observer for retry.
-    const block = blockClosure(node, options, blockGoogleInnerCard);
-    const subObserver = new MutationObserver(() => {
-        block();
-    });
-
-    subObserver.observe(node, { childList: true, subtree: true });
-    subObserverList.push(subObserver);
+    tryBlockElement(node, options, blockGoogleInnerCard);
 }
 
 function tryBlockGoogleTopNews(node: Element, options: IOptions): void {
-    const completed = blockGoogleTopNews(node, options);
-    if (completed) {
-        return;
-    }
-
-    // if failed, add observer for retry.
-    const block = blockClosure(node, options, blockGoogleTopNews);
-    const subObserver = new MutationObserver(() => {
-        block();
-    });
-
-    subObserver.observe(node, { childList: true, subtree: true });
-    subObserverList.push(subObserver);
+    tryBlockElement(node, options, blockGoogleTopNews);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
