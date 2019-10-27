@@ -2,6 +2,7 @@ import { By, WebDriver } from 'selenium-webdriver';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { ok, strictEqual } from 'assert';
 import chromeDriver from './chrome';
+import firefoxDriver from './firefox';
 
 async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
     const dir = 'tmp/screenshots';
@@ -44,6 +45,16 @@ async function main(driver: WebDriver) {
 (async (): Promise<void> => {
     try {
         await main(chromeDriver());
+    } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        process.exitCode = 1;
+    }
+})();
+
+(async (): Promise<void> => {
+    try {
+        await main(firefoxDriver());
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
