@@ -15,7 +15,9 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt install -y fonts-takao-gothic
+      - run:
+          name: "Install Japanese font"
+          command: sudo apt install -y fonts-takao-gothic
       - run:
           name: "Download Firefox Developer Edition"
           command: |
@@ -34,7 +36,6 @@ jobs:
           root: tmp/workspace
           paths:
             - gossip-site-blocker.*
-
   deploy:
     docker:
       - image: circleci/golang:1.12.10
