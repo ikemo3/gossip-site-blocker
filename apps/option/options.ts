@@ -16,6 +16,9 @@ const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as 
 const defaultBlockSelect = document.getElementById('defaultBlockType') as HTMLSelectElement;
 const menuPositionSelect = document.getElementById('menuPosition') as HTMLSelectElement;
 
+let bannedWords: BannedWords;
+let regexpList: RegExpList;
+
 async function show_lists(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
 
@@ -63,6 +66,12 @@ clearButton.addEventListener('click', clear);
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 document.addEventListener('DOMContentLoaded', async (ignore) => {
     await show_lists();
+
+    regexpList = new RegExpList();
+    await regexpList.load();
+
+    bannedWords = new BannedWords();
+    await bannedWords.load();
 
     const developerMode: boolean = await OptionRepository.isDeveloperMode();
     Logger.log('developerMode is ', developerMode);
