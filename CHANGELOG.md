@@ -1,6 +1,7 @@
 # v1.8.4
 
 * Fix: Remove fragment(#) from URL(#46)
+* Fix: Block anchor is not shown in the Top News(#62)
 
 # v1.8.3
 
