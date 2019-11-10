@@ -72,13 +72,13 @@ const DOMUtils = {
     },
 
     /**
-     * delete protocol(scheme) from URL string.
+     * delete protocol(scheme) and fragment from URL string.
      *
      * @param {string} url URL string
-     * @return {string} string without protocol(scheme)
+     * @return {string} string without protocol(scheme) and fragment
      */
     removeProtocol(url: string) {
-        return url.replace(/^\w+:\/\//, '');
+        return url.replace(/^\w+:\/\//, '').replace(/#.*/, '');
     },
 };
 
