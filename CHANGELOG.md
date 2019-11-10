@@ -1,3 +1,7 @@
+# v1.8.4
+
+* Fix: Remove fragment(#) from URL(#46)
+
 # v1.8.3
 
 * Fix: Not work due to changed Google search results(#37).
