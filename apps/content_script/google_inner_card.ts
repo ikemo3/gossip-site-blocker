@@ -50,7 +50,7 @@ class GoogleInnerCard implements IBlockable {
     }
 
     public getOperationInsertPoint(): Element {
-        const div = this.element.querySelector('div');
+        const div = this.element.querySelector(':scope > div');
         if (div !== null) {
             return div;
         }
