@@ -109,6 +109,10 @@
     z-index: 3;
 }
 
+.blocker-temporarily-unblock {
+    word-break: break-word;
+}
+
 .cv2VAd {
     height: auto !important;
 }
