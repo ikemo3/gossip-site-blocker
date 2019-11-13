@@ -21,7 +21,7 @@ jobs:
       - run:
           name: "Download Firefox Developer Edition"
           command: |
-            curl -L 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US' > firefox.tar.bz2
+            curl -L 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=ja' > firefox.tar.bz2
             tar xvfj firefox.tar.bz2
       - run:
           command: make ci
