@@ -41,9 +41,6 @@ async function main(driver: WebDriver) {
     // assert block target is hidden
     const isDisplayed = await blockTarget.isDisplayed();
     ok(!isDisplayed);
-
-    // quit driver.
-    await driver.close();
 }
 
 async function testGoogleTopNews(driver: WebDriver) {
@@ -66,23 +63,29 @@ async function testGoogleTopNews(driver: WebDriver) {
 }
 
 (async (): Promise<void> => {
+    const driver = chromeDriver();
     try {
-        await main(chromeDriver());
-        await testGoogleTopNews(chromeDriver());
+        await main(driver);
+        await testGoogleTopNews(driver);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
         process.exitCode = 1;
+    } finally {
+        await driver.close();
     }
 })();
 
 (async (): Promise<void> => {
+    const driver = firefoxDriver();
     try {
-        await main(firefoxDriver());
-        await testGoogleTopNews(firefoxDriver());
+        await main(driver);
+        await testGoogleTopNews(driver);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
         process.exitCode = 1;
+    } finally {
+        await driver.close();
     }
 })();
