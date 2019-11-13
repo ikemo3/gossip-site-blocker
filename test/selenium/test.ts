@@ -79,7 +79,7 @@ async function testGoogleTopNews(driver: WebDriver) {
 (async (): Promise<void> => {
     try {
         await main(firefoxDriver());
-        await testGoogleTopNews(chromeDriver());
+        await testGoogleTopNews(firefoxDriver());
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
