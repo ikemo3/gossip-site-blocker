@@ -1,3 +1,8 @@
+# v1.8.4.1
+
+* Fix: Cannot click the icon attached to the top news in compact(#41)
+* Fix: Video URL overflows in Firefox(#88)
+
 # v1.8.4
 
 * Fix: Remove fragment(#) from URL(#46)
