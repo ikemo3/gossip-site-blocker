@@ -75,6 +75,19 @@ observer.observe(document.documentElement, config);
 
 const subObserverList: MutationObserver[] = [];
 
+type IBlockFunction = (g1: Element, options: IOptions) => boolean;
+
+function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunction) {
+    let completed = false;
+    return () => {
+        if (completed) {
+            return;
+        }
+
+        completed = blockFunc(node, options);
+    };
+}
+
 function tryBlockGoogleElement(node: Element, options: IOptions) {
     // first, try block.
     const completed = blockGoogleElement(node, options);
@@ -83,24 +96,13 @@ function tryBlockGoogleElement(node: Element, options: IOptions) {
     }
 
     // if failed, add observer for retry.
-    const block = blockGoogleElementClosure(node, options);
+    const block = blockClosure(node, options, blockGoogleElement);
     const subObserver = new MutationObserver(() => {
         block();
     });
 
     subObserver.observe(node, { childList: true, subtree: true });
     subObserverList.push(subObserver);
-}
-
-function blockGoogleElementClosure(node: Element, options: IOptions) {
-    let completed = false;
-    return () => {
-        if (completed) {
-            return;
-        }
-
-        completed = blockGoogleElement(node, options);
-    };
 }
 
 function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
@@ -110,24 +112,13 @@ function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
     }
 
     // if failed, add observer for retry.
-    const block = blockGoogleInnerCardClosure(node, options);
+    const block = blockClosure(node, options, blockGoogleInnerCard);
     const subObserver = new MutationObserver(() => {
         block();
     });
 
     subObserver.observe(node, { childList: true, subtree: true });
     subObserverList.push(subObserver);
-}
-
-function blockGoogleInnerCardClosure(node: Element, options: IOptions) {
-    let completed = false;
-    return () => {
-        if (completed) {
-            return;
-        }
-
-        completed = blockGoogleInnerCard(node, options);
-    };
 }
 
 function tryBlockGoogleTopNews(node: Element, options: IOptions) {
@@ -137,24 +128,13 @@ function tryBlockGoogleTopNews(node: Element, options: IOptions) {
     }
 
     // if failed, add observer for retry.
-    const block = blockGoogleTopNewsClosure(node, options);
+    const block = blockClosure(node, options, blockGoogleTopNews);
     const subObserver = new MutationObserver(() => {
         block();
     });
 
     subObserver.observe(node, { childList: true, subtree: true });
     subObserverList.push(subObserver);
-}
-
-function blockGoogleTopNewsClosure(node: Element, options: IOptions) {
-    let completed = false;
-    return () => {
-        if (completed) {
-            return;
-        }
-
-        completed = blockGoogleTopNews(node, options);
-    };
 }
 
 document.addEventListener('DOMContentLoaded', () => {
