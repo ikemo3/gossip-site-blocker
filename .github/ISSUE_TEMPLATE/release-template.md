@@ -45,7 +45,7 @@ assignees: ikemo3
     * [ ] 更新履歴を追加(英語)
     * [ ] 更新履歴を追加(日本語)
 * [ ] 次のバージョンのマイルストーンを作成
-* [ ] リリーステンプレートに反映させる
 * [ ] バージョンを変更
     * [ ] `apps/manifest.json`: version, version_nameを更新
     * [ ] `package.json`: versionを更新
+* [ ] リリーステンプレートに反映させる
