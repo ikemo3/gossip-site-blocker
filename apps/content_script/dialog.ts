@@ -5,7 +5,11 @@ class BlockDialog {
 
     public urlText: HTMLInputElement;
 
+    public regexpText: HTMLInputElement;
+
     public customRadio: HTMLInputElement;
+
+    public regexpRadio: HTMLInputElement;
 
     public blockTypeSelect: HTMLSelectElement;
 
@@ -47,6 +51,7 @@ class BlockDialog {
         urlRadioDiv.addEventListener('click', (ignore) => {
             // If the custom radio button is selected, turn on the URL text, if not, reverse it.
             this.urlText.disabled = !this.customRadio.checked;
+            this.regexpText.disabled = !this.regexpRadio.checked;
         });
 
         // create child element(buttons).
@@ -65,11 +70,12 @@ class BlockDialog {
         const blockDomainDiv = BlockDialog.createBlockDomainRadio(DOMUtils.getHostName(url), domainRadioChecked);
         const blockUrlDiv = BlockDialog.createBlockUrlRadio(DOMUtils.removeProtocol(url));
         const blockCustomDiv = this.createBlockCustomRadio(DOMUtils.removeProtocol(url));
+        const blockRegExpDiv = this.createBlockRegexpRadio($.escapeRegExp(DOMUtils.getHostName(url)));
 
         if (blockRecommendDiv !== null) {
-            return [blockRecommendDiv, blockDomainDiv, blockUrlDiv, blockCustomDiv];
+            return [blockRecommendDiv, blockDomainDiv, blockUrlDiv, blockCustomDiv, blockRegExpDiv];
         }
-        return [blockDomainDiv, blockUrlDiv, blockCustomDiv];
+        return [blockDomainDiv, blockUrlDiv, blockCustomDiv, blockRegExpDiv];
     }
 
     public static createBlockDomainRadio(value: string, checked: boolean) {
@@ -139,6 +145,29 @@ class BlockDialog {
         return div;
     }
 
+    public createBlockRegexpRadio(value: string) {
+        const div = $.div();
+
+        const radio = $.radio('block-url-type', 'regexp', 'blocker-dialog-regexp-radio');
+        this.regexpRadio = radio;
+
+        const textLabel = $.label($.message('regexpRadioText'), 'blocker-dialog-regexp-radio');
+
+        const br = $.br();
+
+        const regexpText = $.textField(value, 100);
+        regexpText.disabled = true;
+
+        this.regexpText = regexpText;
+
+        div.appendChild(radio);
+        div.appendChild(textLabel);
+        div.appendChild(br);
+        div.appendChild(regexpText);
+
+        return div;
+    }
+
     public createBlockTypeDiv(defaultBlockType: string) {
         const blockTypeDiv = $.div();
         const select = document.createElement('select');
@@ -182,18 +211,27 @@ class BlockDialog {
             return;
         }
 
-        let url = selected.value;
+        const url = selected.value;
 
         // when 'custom', get url from text field.
+        let pattern;
+        let isUrl;
         if (url === 'custom') {
-            url = this.urlText.value;
+            pattern = this.urlText.value;
+            isUrl = true;
+        } else if (url === 'regexp') {
+            pattern = this.regexpText.value;
+            isUrl = false;
+        } else {
+            pattern = url;
+            isUrl = true;
         }
 
         // get block type.
         const blockType = this.blockTypeSelect.value;
 
         // block page.
-        await this.mediator.blockPage(url, blockType);
+        await this.mediator.blockPage(isUrl, pattern, blockType);
 
         // remove background.
         $.removeSelf(this.background);

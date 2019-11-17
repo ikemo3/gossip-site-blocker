@@ -1,3 +1,9 @@
+# v1.8.5
+
+## Improvements.
+
+* Add: block by regexp from dialog.
+
 # v1.8.4.1
 
 * Fix: Cannot click the icon attached to the top news in compact(#41)

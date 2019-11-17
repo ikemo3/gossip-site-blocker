@@ -179,6 +179,9 @@
   "regexpDescription": {
     "message": "正規表現には'http'や'https'は含まないでください。例: '.*\\.example\\.com'"
   },
+  "regexpRadioText": {
+    "message": "正規表現"
+  },
   "searchInEnglish": {
     "message": "英語で検索"
   },

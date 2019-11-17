@@ -179,6 +179,9 @@
   "regexpDescription": {
     "message": "Do not include 'http' or 'https' in regular expressions. e.g. '.*\\.example\\.com'"
   },
+  "regexpRadioText": {
+    "message": "Regular Expressions"
+  },
   "searchInEnglish": {
     "message": "Search in English"
   },
