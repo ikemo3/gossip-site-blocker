@@ -182,18 +182,27 @@ class BlockDialog {
             return;
         }
 
-        let url = selected.value;
+        const url = selected.value;
 
         // when 'custom', get url from text field.
+        let pattern;
+        let isUrl;
         if (url === 'custom') {
-            url = this.urlText.value;
+            pattern = this.urlText.value;
+            isUrl = true;
+        } else if (url === 'regexp') {
+            pattern = this.regexpText.value;
+            isUrl = false;
+        } else {
+            pattern = url;
+            isUrl = true;
         }
 
         // get block type.
         const blockType = this.blockTypeSelect.value;
 
         // block page.
-        await this.mediator.blockPage(url, blockType);
+        await this.mediator.blockPage(isUrl, pattern, blockType);
 
         // remove background.
         $.removeSelf(this.background);

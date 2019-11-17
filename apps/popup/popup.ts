@@ -40,7 +40,7 @@ optionLink.addEventListener('click', () => {
 });
 
 class PopupMediator implements IBlockMediator {
-    async blockPage(url: string, blockType: string): Promise<void> {
+    async blockPage(isUrl: boolean, url: string, blockType: string): Promise<void> {
         await BlockedSitesRepository.add(url, blockType);
     }
 }

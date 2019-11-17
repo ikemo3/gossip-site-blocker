@@ -1,5 +1,5 @@
 interface IBlockMediator {
-    blockPage(pattern: string, blockType: string): Promise<void>;
+    blockPage(isUrl: boolean, pattern: string, blockType: string): Promise<void>;
 }
 
 class BlockMediator implements IBlockMediator {
@@ -133,8 +133,13 @@ class BlockMediator implements IBlockMediator {
         this.notBlocked();
     }
 
-    public async block(pattern: string, blockType: string) {
-        await BlockedSitesRepository.add(pattern, blockType);
+    public async block(isUrl: boolean, pattern: string, blockType: string) {
+        if (isUrl) {
+            await BlockedSitesRepository.add(pattern, blockType);
+        } else {
+            await RegExpRepository.add(pattern, blockType === 'soft' ? BlockType.SOFT : BlockType.HARD);
+        }
+
         if (blockType === 'hard') {
             this.blockTarget.remove();
             $.removeSelf(this.operationDiv);
@@ -160,7 +165,7 @@ class BlockMediator implements IBlockMediator {
         this.blockDialog = new BlockDialog(this, this.url, this.defaultBlockType);
     }
 
-    public async blockPage(pattern: string, blockType: string): Promise<void> {
-        await this.block(pattern, blockType);
+    public async blockPage(isUrl: boolean, pattern: string, blockType: string): Promise<void> {
+        await this.block(isUrl, pattern, blockType);
     }
 }
