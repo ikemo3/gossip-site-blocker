@@ -6,21 +6,32 @@
 
 # v1.8.4.1
 
+## Bug Fixes
+
 * Fix: Cannot click the icon attached to the top news in compact(#41)
 * Fix: Video URL overflows in Firefox(#88)
 
 # v1.8.4
+
+## Bug Fixes
 
 * Fix: Remove fragment(#) from URL(#46)
 * Fix: Block anchor is not shown in the Top News(#62)
 
 # v1.8.3
 
+## Bug Fixes
+
 * Fix: Not work due to changed Google search results(#37).
 
 # v1.8.2
 
+## Enhancements.
+
 * Add: Lists URLs that are excluded by banned word(#1).
+
+## Bug Fixes
+
 * Fix: Tweet is not blocked.
 
 # v1.8.1
