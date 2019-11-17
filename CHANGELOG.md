@@ -1,3 +1,9 @@
+# v1.8.5.1
+
+## Bug Fixes
+
+* Fix: urls by banned words does not show hard blocked
+
 # v1.8.5
 
 ## Improvements.
