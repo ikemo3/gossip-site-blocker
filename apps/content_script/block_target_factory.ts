@@ -40,13 +40,13 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
     const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
         options.idnOption);
 
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason()!);
+    }
+
     if (blockState.getState() === 'hard') {
         g.deleteElement();
         return true;
-    }
-
-    if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
     }
 
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
@@ -63,13 +63,13 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
         options.idnOption);
 
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason()!);
+    }
+
     if (blockState.getState() === 'hard') {
         g.deleteElement();
         return true;
-    }
-
-    if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
     }
 
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
@@ -87,13 +87,13 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
     const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
         options.idnOption);
 
+    if (blockState.getReason()) {
+        blockReasons.push(blockState.getReason()!);
+    }
+
     if (blockState.getState() === 'hard') {
         g.deleteElement();
         return true;
-    }
-
-    if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
     }
 
     const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
