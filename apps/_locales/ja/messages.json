@@ -186,7 +186,7 @@
     "message": "英語で検索"
   },
   "showBlockedByWordInfo": {
-    "message": "禁止用語でブロックされたサイトの情報を表示(β)"
+    "message": "禁止用語でブロックされたサイトの情報を表示"
   },
   "softBlock": {
     "message": "ソフトブロック(非表示)"
