@@ -138,6 +138,10 @@ const $ = {
         return str.replace(/\\/g, '\\\\').replace(/\+/g, '\\+').replace(/ /g, '+');
     },
 
+    escapeRegExp(str: string): string {
+        return str.replace(/[.*+?^=!:${}()|[\]\/\\]/g, '\\$&');
+    },
+
     hide(element: HTMLElement): void {
         element.style.display = 'none';
     },
