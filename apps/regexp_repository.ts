@@ -52,7 +52,7 @@ const RegExpRepository = {
         await this.save(items);
     },
 
-    async add(pattern: string): Promise<boolean> {
+    async add(pattern: string, blockType: BlockType = BlockType.SOFT): Promise<boolean> {
         const items: IRegExpItem[] = await this.load();
 
         for (const item of items) {
@@ -62,7 +62,7 @@ const RegExpRepository = {
             }
         }
 
-        items.push({ pattern, blockType: BlockType.SOFT });
+        items.push({ pattern, blockType });
         await this.save(items);
         return true;
     },
