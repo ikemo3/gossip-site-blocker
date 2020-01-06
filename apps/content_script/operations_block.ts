@@ -1,3 +1,6 @@
+/* global $ */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class OperationsBlock {
     private readonly operationDiv: HTMLDivElement;
 

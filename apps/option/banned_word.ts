@@ -1,3 +1,5 @@
+/* global $, BannedTarget, BannedWordRepository, BlockType, Logger */
+
 class BannedWords {
     private addButton: HTMLInputElement;
 
@@ -113,7 +115,7 @@ class BannedWords {
 }
 
 let bannedWords: BannedWords;
-(async () => {
+(async (): Promise<void> => {
     bannedWords = new BannedWords();
     await bannedWords.load();
 })();

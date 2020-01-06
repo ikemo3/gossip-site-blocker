@@ -1,3 +1,6 @@
+/* global bannedWords, BannedWordRepository, BlockedSiteOption, BlockedSitesRepository, Logger,
+   OptionRepository, RegExpRepository, regexpList */
+
 const softBlockList = document.getElementById('softBlockList') as HTMLDivElement;
 const hardBlockList = document.getElementById('hardBlockList') as HTMLDivElement;
 const clearButton = document.getElementById('clearButton') as HTMLInputElement;
@@ -13,7 +16,7 @@ const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as 
 const defaultBlockSelect = document.getElementById('defaultBlockType') as HTMLSelectElement;
 const menuPositionSelect = document.getElementById('menuPosition') as HTMLSelectElement;
 
-async function show_lists() {
+async function show_lists(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
 
     // Add after clear.
@@ -36,12 +39,14 @@ async function show_lists() {
     hardBlockList.appendChild(hardTable);
 }
 
-async function clear() {
+async function clear(): Promise<void> {
+    // eslint-disable-next-line no-alert, no-restricted-globals
     if (confirm(chrome.i18n.getMessage('clearConfirm'))) {
         await BlockedSitesRepository.clear();
         await BannedWordRepository.clear();
         await RegExpRepository.clear();
 
+        // eslint-disable-next-line no-alert
         alert(chrome.i18n.getMessage('clearDone'));
 
         // clear all.
@@ -55,6 +60,7 @@ async function clear() {
 // bind event.
 clearButton.addEventListener('click', clear);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 document.addEventListener('DOMContentLoaded', async (ignore) => {
     await show_lists();
 

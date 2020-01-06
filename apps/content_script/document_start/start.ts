@@ -1,3 +1,6 @@
+/* global BannedWordRepository, BlockedSitesRepository, blockGoogleElement, blockGoogleInnerCard,
+   blockGoogleTopNews, Logger, OptionRepository, RegExpRepository */
+
 interface IOptions {
     blockedSites: BlockedSites;
     bannedWords: IBannedWord[];
@@ -42,11 +45,12 @@ const observer = new MutationObserver((mutations) => {
 const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
 const pendingsTopNews: Element[] = [];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const blockReasons: BlockReason[] = [];
 const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 
-(async () => {
+(async (): Promise<void> => {
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
     const bannedWords: IBannedWord[] = await BannedWordRepository.load();
     const regexpList: IRegExpItem[] = await RegExpRepository.load();
@@ -88,7 +92,7 @@ function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunctio
     };
 }
 
-function tryBlockGoogleElement(node: Element, options: IOptions) {
+function tryBlockGoogleElement(node: Element, options: IOptions): void {
     // first, try block.
     const completed = blockGoogleElement(node, options);
     if (completed) {
@@ -105,7 +109,7 @@ function tryBlockGoogleElement(node: Element, options: IOptions) {
     subObserverList.push(subObserver);
 }
 
-function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
+function tryBlockGoogleInnerCard(node: Element, options: IOptions): void {
     const completed = blockGoogleInnerCard(node, options);
     if (completed) {
         return;
@@ -121,7 +125,7 @@ function tryBlockGoogleInnerCard(node: Element, options: IOptions) {
     subObserverList.push(subObserver);
 }
 
-function tryBlockGoogleTopNews(node: Element, options: IOptions) {
+function tryBlockGoogleTopNews(node: Element, options: IOptions): void {
     const completed = blockGoogleTopNews(node, options);
     if (completed) {
         return;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class GoogleInnerCard implements IBlockable {
     public valid: boolean;
 
@@ -37,11 +38,11 @@ class GoogleInnerCard implements IBlockable {
         this.element = element;
     }
 
-    public canBlock() {
+    public canBlock(): boolean {
         return this.valid;
     }
 
-    public getUrl() {
+    public getUrl(): string {
         return this.url;
     }
 
@@ -57,7 +58,7 @@ class GoogleInnerCard implements IBlockable {
         return this.element;
     }
 
-    public deleteElement() {
+    public deleteElement(): void {
         this.element.parentElement!.removeChild(this.element);
     }
 

@@ -17,7 +17,7 @@ async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
     writeFileSync(`${dir}/${path}`, Buffer.from(await driver.takeScreenshot(), 'base64'));
 }
 
-async function main(driver: WebDriver) {
+async function main(driver: WebDriver): Promise<void> {
     await driver.get('https://www.google.com/search?q=typescript+wikipedia+site:ja.wikipedia.org');
     await takeScreenShot(driver, 'search_result.png');
 

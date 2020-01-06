@@ -1,3 +1,6 @@
+/* global $, blockReasons, BlockReasonType, gsbOptions */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function create_appbar_links(): void {
     const resultStats = document.getElementById('resultStats');
     if (resultStats !== null) {

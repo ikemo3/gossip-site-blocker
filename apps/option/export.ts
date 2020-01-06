@@ -1,4 +1,6 @@
-async function exportClicked() {
+/* global $, BannedWordRepository, BlockedSitesRepository, RegExpRepository */
+
+async function exportClicked(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
 
     // block

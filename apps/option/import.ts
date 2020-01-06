@@ -1,4 +1,6 @@
-async function importClicked() {
+/* global $, BannedWordRepository, BlockedSitesRepository, RegExpRepository */
+
+async function importClicked(): Promise<void> {
     // noinspection JSValidateTypes
     /**
      * @type {HTMLTextAreaElement}
@@ -38,6 +40,7 @@ async function importClicked() {
 
     await RegExpRepository.addAll(regexpList);
 
+    // eslint-disable-next-line no-alert
     alert(chrome.i18n.getMessage('importCompleted'));
 }
 

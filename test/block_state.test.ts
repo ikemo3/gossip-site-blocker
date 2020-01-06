@@ -1,10 +1,14 @@
+/* global $, BannedTarget, BlockedSite, BlockReasonType, BlockState, BlockType */
+
 describe('BlockState', () => {
     function createTarget(url: string, contains: boolean): IBlockTarget {
         return {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             contains(keyword: string): boolean {
                 return contains;
             },
 
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             containsInTitle(keyword: string): boolean {
                 return false;
             },
@@ -15,23 +19,25 @@ describe('BlockState', () => {
         };
     }
 
-    function createEmptySites() {
+    function createEmptySites(): IBlockedSites {
         return {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             matches(urlArg: string): BlockedSite | undefined {
                 return undefined;
             },
         };
     }
 
-    function createSites(blockType: string, url: string) {
+    function createSites(blockType: string, url: string): IBlockedSites {
         return {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             matches(urlArg: string): BlockedSite | undefined {
                 return new BlockedSite({ block_type: blockType, url });
             },
         };
     }
 
-    function createBannedWord(keyword: string, blockType: BlockType, target: BannedTarget) {
+    function createBannedWord(keyword: string, blockType: BlockType, target: BannedTarget): IBannedWord {
         return {
             blockType, keyword, target,
         };

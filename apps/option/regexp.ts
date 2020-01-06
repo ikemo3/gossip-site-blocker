@@ -1,3 +1,5 @@
+/* global $, BlockType, RegExpRepository */
+
 class RegExpList {
     private readonly regexpList: HTMLDivElement;
 
@@ -12,7 +14,7 @@ class RegExpList {
         $.onclick(this.addButton, this.addItem.bind(this));
     }
 
-    public async load() {
+    public async load(): Promise<void> {
         const patternList = await RegExpRepository.load();
         for (const pattern of patternList) {
             const itemDiv = this.createItem(pattern);
@@ -20,7 +22,7 @@ class RegExpList {
         }
     }
 
-    public clear() {
+    public clear(): void {
         this.regexpList.innerHTML = '';
     }
 
@@ -70,7 +72,7 @@ class RegExpList {
         this.addText.value = '';
     }
 
-    private async changeType(pattern: string, ev: Event) {
+    private async changeType(pattern: string, ev: Event): Promise<void> {
         const typeSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
         const index = typeSelect.selectedIndex;
         const { value } = typeSelect.options[index];
@@ -93,7 +95,7 @@ class RegExpList {
 }
 
 let regexpList: RegExpList;
-(async () => {
+(async (): Promise<void> => {
     regexpList = new RegExpList();
     await regexpList.load();
 })();

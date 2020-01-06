@@ -1,3 +1,5 @@
+/* global $ */
+
 describe('escape', () => {
     it('space', () => {
         expect($.escape(' ')).toBe('+');

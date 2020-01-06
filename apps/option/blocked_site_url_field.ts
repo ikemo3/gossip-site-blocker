@@ -23,7 +23,7 @@ class BlockedSiteUrlField {
         return this.element;
     }
 
-    public value() {
+    public value(): string | null {
         return this.element.getAttribute('data-value');
     }
 

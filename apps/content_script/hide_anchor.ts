@@ -1,3 +1,6 @@
+/* global $ */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class HideAnchor {
     private readonly anchor: HTMLAnchorElement;
 

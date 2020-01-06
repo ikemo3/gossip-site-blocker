@@ -1,5 +1,6 @@
-/* global $ */
+/* global $, DOMUtils, makeRecommendUrl */
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockDialog {
     public mediator: IBlockMediator;
 

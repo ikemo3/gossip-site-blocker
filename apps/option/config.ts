@@ -1,3 +1,5 @@
+/* global ChromeStorage, Logger, MenuPosition */
+
 interface IOptionRepository {
     isDeveloperMode(): Promise<boolean>;
 
@@ -48,6 +50,7 @@ interface IMenuPositionOption {
     menuPosition: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const OptionRepository: IOptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
         const items = await ChromeStorage.get({ developerMode: false }) as IDeveloperOption;

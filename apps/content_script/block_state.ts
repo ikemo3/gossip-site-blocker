@@ -1,4 +1,4 @@
-/* global BlockReason, BannedTarget, BlockType, DOMUtils */
+/* global $, BlockReason, BannedTarget, BlockType, DOMUtils */
 
 enum BlockReasonType {
     URL_EXACTLY,
@@ -8,6 +8,7 @@ enum BlockReasonType {
     IDN, /* Internationalized Domain Name */
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockState {
     private readonly state: string;
 
