@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockReason {
     private readonly blockType: BlockReasonType;
 

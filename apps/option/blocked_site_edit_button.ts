@@ -1,6 +1,7 @@
 /**
  * Change URL button
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockedSiteEditButton {
     public element: HTMLInputElement;
 
@@ -20,19 +21,19 @@ class BlockedSiteEditButton {
         this.element = input;
     }
 
-    public async onclick() {
+    public async onclick(): Promise<void> {
         await this.mediator.editUrl();
     }
 
-    public getElement() {
+    public getElement(): Element {
         return this.element;
     }
 
-    public toHard() {
+    public toHard(): void {
         // do nothing
     }
 
-    public toSoft() {
+    public toSoft(): void {
         // do nothing
     }
 }

@@ -1,3 +1,6 @@
+/* global $ */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class TemporarilyUnblockAnchor {
     private readonly anchor: HTMLAnchorElement;
 
@@ -17,16 +20,16 @@ class TemporarilyUnblockAnchor {
         return this.anchor;
     }
 
-    public show(reason: string) {
+    public show(reason: string): void {
         $.show(this.anchor);
         $.text(this.anchor, TemporarilyUnblockAnchor.message(reason));
     }
 
-    public hide() {
+    public hide(): void {
         $.hide(this.anchor);
     }
 
-    private static message(reason: string) {
+    private static message(reason: string): string {
         return chrome.i18n.getMessage('temporarilyUnblock', [$.decodeURI(reason)]);
     }
 }

@@ -1,3 +1,5 @@
+/* global DOMUtils */
+
 interface IBlockedSites {
     matches(url: string): BlockedSite | undefined;
 }
@@ -5,6 +7,7 @@ interface IBlockedSites {
 /**
  * @property {Array<BlockedSite>} sites
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockedSites {
     public sites: BlockedSite[];
 
@@ -61,7 +64,7 @@ class BlockedSites {
      *
      * @param url URL
      */
-    public contains(url: string) {
+    public contains(url: string): boolean {
         for (const site of this.sites) {
             if (site.contains(url)) {
                 return true;

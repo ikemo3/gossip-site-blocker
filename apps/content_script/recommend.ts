@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function makeRecommendUrl(urlWithoutProtocol: string): string | null {
     let recommended = makeRecommendUrlCommon(urlWithoutProtocol, 'd.hatena.ne.jp');
     if (recommended !== null) {

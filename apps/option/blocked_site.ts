@@ -4,6 +4,7 @@
  * @property {string} url Beginning of blocked URL(without scheme).
  * @property {"soft"|"hard"} block_type
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockedSite {
     public url: string;
 
@@ -14,11 +15,11 @@ class BlockedSite {
         this.block_type = item.block_type;
     }
 
-    public contains(url: string) {
+    public contains(url: string): boolean {
         return url.startsWith(this.url);
     }
 
-    public equals(url: string) {
+    public equals(url: string): boolean {
         return url === this.url;
     }
 
@@ -26,11 +27,11 @@ class BlockedSite {
      *
      * @param {BlockedSite} site
      */
-    public strongerThan(site: BlockedSite) {
+    public strongerThan(site: BlockedSite): boolean {
         return this.url.length > site.url.length;
     }
 
-    getUrl() {
+    getUrl(): string {
         return this.url;
     }
 
@@ -38,7 +39,7 @@ class BlockedSite {
      *
      * @return {string} block type(soft / hard)
      */
-    public getState() {
+    public getState(): string {
         return this.block_type;
     }
 }

@@ -11,23 +11,23 @@ class BlockTarget {
         this.element = element;
     }
 
-    public remove() {
+    public remove(): void {
         $.removeSelf(this.element);
     }
 
-    public getDOMElement() {
+    public getDOMElement(): Element {
         return this.element;
     }
 
-    public show() {
+    public show(): void {
         this.element.removeAttribute('data-blocker-display');
     }
 
-    public hide() {
+    public hide(): void {
         this.element.setAttribute('data-blocker-display', 'none');
     }
 
-    public temporarilyUnblock() {
+    public temporarilyUnblock(): void {
         this.element.setAttribute('data-blocker-display', 'unhide');
     }
 }

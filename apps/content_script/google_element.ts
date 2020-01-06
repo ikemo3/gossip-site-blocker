@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class GoogleElement implements IBlockable {
     private readonly valid: boolean;
 
@@ -158,7 +159,7 @@ class GoogleElement implements IBlockable {
         return this.operationInsertPoint;
     }
 
-    public deleteElement() {
+    public deleteElement(): void {
         this.element.parentElement!.removeChild(this.element);
     }
 

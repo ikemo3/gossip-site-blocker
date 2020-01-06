@@ -1,3 +1,6 @@
+/* global $ */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockChangeAnchorDialog {
     private readonly mediator: BlockMediator;
 
@@ -46,21 +49,21 @@ class BlockChangeAnchorDialog {
         this.reason = reason;
     }
 
-    private cancel() {
+    private cancel(): void {
         this.closeDialog();
     }
 
-    private async toHard() {
+    private async toHard(): Promise<void> {
         await this.mediator.toHard(this.reason!);
         this.closeDialog();
     }
 
-    private async unblock() {
+    private async unblock(): Promise<void> {
         await this.mediator.unblock(this.reason!);
         this.closeDialog();
     }
 
-    private closeDialog() {
+    private closeDialog(): void {
         // remove background
         $.removeSelf(this.background);
     }

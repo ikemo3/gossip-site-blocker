@@ -1,8 +1,12 @@
+/* global BlockedSitesRepository, BlockedSiteDeleteButton, BlockedSiteEditButton,
+   BlockedSiteStateButton, BlockedSiteUrlField, Logger */
+
 /**
  * @property {BlockedSite} blockedSite
  * @property {BlockedSiteUrlField} urlField
  * @property {BlockedSiteEditButton} editButton
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockedSiteOption {
     public urlField: BlockedSiteUrlField;
 
@@ -30,7 +34,7 @@ class BlockedSiteOption {
         this.element = tr;
     }
 
-    public getElement() {
+    public getElement(): Element {
         return this.element;
     }
 
@@ -38,11 +42,11 @@ class BlockedSiteOption {
         return this.urlField.value()!;
     }
 
-    public getState() {
+    public getState(): string {
         return this.stateButton.getState();
     }
 
-    public setState(state: string) {
+    public setState(state: string): void {
         switch (state) {
         case 'soft':
             // send to Colleagues.
@@ -67,7 +71,7 @@ class BlockedSiteOption {
         this.urlField.setUrl(url);
     }
 
-    public async toHard() {
+    public async toHard(): Promise<void> {
         await BlockedSitesRepository.toHard(this.getUrl());
 
         this.setState('hard');
@@ -75,7 +79,7 @@ class BlockedSiteOption {
         Logger.debug('Changed to hard-block.', this.getUrl());
     }
 
-    public async toSoft() {
+    public async toSoft(): Promise<void> {
         await BlockedSitesRepository.toSoft(this.getUrl());
 
         this.setState('soft');
@@ -83,7 +87,7 @@ class BlockedSiteOption {
         Logger.debug('Changed to soft-block.', this.getUrl());
     }
 
-    public async editUrl() {
+    public async editUrl(): Promise<void> {
         const beforeUrl = this.urlField.value()!;
         const afterUrl = this.urlField.getInputValue();
         await BlockedSitesRepository.edit(beforeUrl, afterUrl);
@@ -93,7 +97,7 @@ class BlockedSiteOption {
         Logger.debug(`Change URL: ${beforeUrl} => ${afterUrl}`);
     }
 
-    public async deleteUrl() {
+    public async deleteUrl(): Promise<void> {
         await BlockedSitesRepository.del(this.getUrl());
 
         this.element.parentElement!.removeChild(this.element);
