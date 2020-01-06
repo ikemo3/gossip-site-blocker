@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockedSiteStateButton {
     public element: HTMLInputElement;
 
@@ -22,11 +23,11 @@ class BlockedSiteStateButton {
         this.setState(state);
     }
 
-    public getState() {
+    public getState(): string {
         return this.state;
     }
 
-    public setState(state: string) {
+    public setState(state: string): void {
         this.state = state;
 
         this.updateLabel(state);
@@ -34,7 +35,7 @@ class BlockedSiteStateButton {
         this.updateBlockTypeHandler();
     }
 
-    public updateBlockTypeHandler() {
+    public updateBlockTypeHandler(): void {
         // remove handler
         if (this.handler) {
             this.element.removeEventListener('click', this.handler);
@@ -53,7 +54,7 @@ class BlockedSiteStateButton {
         }
     }
 
-    public updateLabel(state: string) {
+    public updateLabel(state: string): void {
         if (state === 'soft') {
             this.element.setAttribute('value', chrome.i18n.getMessage('changeToHardBlock'));
         } else {
@@ -61,15 +62,15 @@ class BlockedSiteStateButton {
         }
     }
 
-    public toHard() {
+    public toHard(): void {
         this.setState('hard');
     }
 
-    public toSoft() {
+    public toSoft(): void {
         this.setState('soft');
     }
 
-    public getElement() {
+    public getElement(): Element {
         return this.element;
     }
 }

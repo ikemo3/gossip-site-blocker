@@ -1,3 +1,5 @@
+/* global BlockedSite, BlockedSites, ChromeStorage */
+
 interface IBlockedSitesList {
     blocked: IBlockedSite[];
 }
@@ -13,7 +15,7 @@ const BlockedSitesRepository = {
      *
      * @returns {Promise<Array<BlockedSite>>}
      */
-    async loadData() {
+    async loadData(): Promise<Array<BlockedSite>> {
         const items = await ChromeStorage.get({ blocked: [] }) as IBlockedSitesList;
 
         const sites = [];
@@ -31,7 +33,7 @@ const BlockedSitesRepository = {
      *
      * @returns {Promise<BlockedSites>}
      */
-    async load() {
+    async load(): Promise<BlockedSites> {
         const sites = await BlockedSitesRepository.loadData();
 
         return new BlockedSites(sites);
@@ -61,7 +63,7 @@ const BlockedSitesRepository = {
      * @param blockType {string} type to block(soft/hard)
      * @returns {Promise<BlockedSites>}
      */
-    async add(url: string, blockType: string) {
+    async add(url: string, blockType: string): Promise<BlockedSites> {
         const siteArray = await BlockedSitesRepository.loadData();
 
         const found = siteArray.some((site) => site.url === url);
@@ -82,7 +84,7 @@ const BlockedSitesRepository = {
      *
      * @returns {Promise<BlockedSites>}
      */
-    async del(url: string) {
+    async del(url: string): Promise<BlockedSites> {
         const siteArray = await BlockedSitesRepository.loadData();
 
         // delete items whose URL matches.
@@ -93,7 +95,7 @@ const BlockedSitesRepository = {
         return new BlockedSites(newSiteArray);
     },
 
-    async edit(beforeUrl: string, afterUrl: string) {
+    async edit(beforeUrl: string, afterUrl: string): Promise<void> {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(beforeUrl);
 
@@ -113,7 +115,7 @@ const BlockedSitesRepository = {
         await BlockedSitesRepository.save(sites.sites);
     },
 
-    async toSoft(url: string) {
+    async toSoft(url: string): Promise<void> {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
@@ -127,11 +129,11 @@ const BlockedSitesRepository = {
      * @param sites {Array<BlockedSite>}
      * @returns {Promise<void>}
      */
-    async save(sites: BlockedSite[]) {
+    async save(sites: BlockedSite[]): Promise<void> {
         await ChromeStorage.set({ blocked: sites });
     },
 
-    async clear() {
+    async clear(): Promise<void> {
         await ChromeStorage.set({ blocked: [] });
     },
 };

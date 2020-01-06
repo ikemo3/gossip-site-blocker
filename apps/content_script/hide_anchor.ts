@@ -16,11 +16,11 @@ class HideAnchor {
         return this.anchor;
     }
 
-    public show() {
+    public show(): void {
         $.showBlock(this.anchor);
     }
 
-    public hide() {
+    public hide(): void {
         $.hide(this.anchor);
     }
 }

@@ -24,7 +24,7 @@
     "jasmine"
   ],
   "rules": {
-    "class-methods-use-this": "warn",
+    "class-methods-use-this": "off",
     "consistent-return": "warn",
     "default-case": "warn",
     "indent": [
@@ -43,8 +43,8 @@
     "no-useless-escape": "warn",
     "prefer-destructuring": "warn",
     "@typescript-eslint/ban-ts-ignore": "warn",
-    "@typescript-eslint/camelcase": "warn",
-    "@typescript-eslint/interface-name-prefix": "warn",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-non-null-assertion": "warn",
     "@typescript-eslint/no-unused-vars": [
       "warn",

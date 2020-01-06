@@ -23,15 +23,15 @@ class BlockedSiteDeleteButton {
         this.setState(state);
     }
 
-    public async onclick() {
+    public async onclick(): Promise<void> {
         await this.mediator.deleteUrl();
     }
 
-    public getElement() {
+    public getElement(): Element {
         return this.element;
     }
 
-    public setState(state: string) {
+    public setState(state: string): void {
         if (state === 'hard') {
             this.toHard();
         } else {
@@ -39,12 +39,12 @@ class BlockedSiteDeleteButton {
         }
     }
 
-    public toHard() {
+    public toHard(): void {
         // disable button.
         this.element.setAttribute('disabled', 'true');
     }
 
-    public toSoft() {
+    public toSoft(): void {
         // enable button.
         this.element.removeAttribute('disabled');
     }

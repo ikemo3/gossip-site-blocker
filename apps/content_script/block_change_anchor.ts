@@ -1,3 +1,6 @@
+/* global $ */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockChangeAnchor {
     private readonly mediator: BlockMediator;
 
@@ -16,11 +19,11 @@ class BlockChangeAnchor {
         return this.anchor;
     }
 
-    public hide() {
+    public hide(): void {
         $.hide(this.anchor);
     }
 
-    public show() {
+    public show(): void {
         $.showBlock(this.anchor);
     }
 }

@@ -52,7 +52,7 @@ class OperationsAnchor {
         return this.operationSpan;
     }
 
-    private showOperations() {
+    private showOperations(): void {
         this.isShow = !this.isShow;
 
         if (this.isShow) {

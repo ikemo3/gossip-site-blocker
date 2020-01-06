@@ -1,4 +1,4 @@
-function create_appbar_links() {
+function create_appbar_links(): void {
     const resultStats = document.getElementById('resultStats');
     if (resultStats !== null) {
         const resultStatsIsHidden = getComputedStyle(resultStats).opacity === '0';
@@ -38,7 +38,7 @@ function create_appbar_links() {
     }
 }
 
-function temporarily_unblock_all() {
+function temporarily_unblock_all(): void {
     const anchorList = document.querySelectorAll('.blocker-temporarily-unblock');
 
     for (const anchor of anchorList) {
@@ -50,7 +50,7 @@ function temporarily_unblock_all() {
     }
 }
 
-function show_blocked_by_banned_words() {
+function show_blocked_by_banned_words(): void {
     const id = 'urls_by_banned_words';
 
     const currentTextArea = document.getElementById(id);

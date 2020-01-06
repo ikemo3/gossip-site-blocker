@@ -26,11 +26,11 @@ class BannedWords {
         }));
     }
 
-    public clear() {
+    public clear(): void {
         this.wordList.innerHTML = '';
     }
 
-    public async load() {
+    public async load(): Promise<void> {
         const words: IBannedWord[] = await BannedWordRepository.load();
         this.wordList.innerHTML = '';
 
@@ -39,7 +39,7 @@ class BannedWords {
         }
     }
 
-    private createWidget(word: IBannedWord) {
+    private createWidget(word: IBannedWord): void {
         const wordDiv: HTMLDivElement = document.createElement('div');
 
         const input: HTMLInputElement = document.createElement('input');
@@ -76,7 +76,7 @@ class BannedWords {
         this.wordList.appendChild(wordDiv);
     }
 
-    private async changeType(keyword: string, ev: Event) {
+    private async changeType(keyword: string, ev: Event): Promise<void> {
         const typeSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
         const index = typeSelect.selectedIndex;
         const { value } = typeSelect.options[index];
@@ -91,7 +91,7 @@ class BannedWords {
         }
     }
 
-    private async changeTarget(keyword: string, ev: Event) {
+    private async changeTarget(keyword: string, ev: Event): Promise<void> {
         const targetSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
         const index = targetSelect.selectedIndex;
         const { value } = targetSelect.options[index];
@@ -106,7 +106,7 @@ class BannedWords {
         }
     }
 
-    private async deleteKeyword(keyword: string, wordDiv: HTMLDivElement) {
+    private async deleteKeyword(keyword: string, wordDiv: HTMLDivElement): Promise<void> {
         await BannedWordRepository.delete(keyword);
         this.wordList.removeChild(wordDiv);
     }

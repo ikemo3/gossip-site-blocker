@@ -1,3 +1,5 @@
+/* global BlockReason, BannedTarget, BlockType, DOMUtils */
+
 enum BlockReasonType {
     URL_EXACTLY,
     URL,

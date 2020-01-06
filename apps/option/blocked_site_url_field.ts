@@ -1,6 +1,7 @@
 /**
  * URL field
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockedSiteUrlField {
     public element: HTMLInputElement;
 
@@ -18,7 +19,7 @@ class BlockedSiteUrlField {
         this.setUrl(url);
     }
 
-    public getElement() {
+    public getElement(): Element {
         return this.element;
     }
 
@@ -26,19 +27,19 @@ class BlockedSiteUrlField {
         return this.element.getAttribute('data-value');
     }
 
-    public getInputValue() {
+    public getInputValue(): string {
         return this.element.value;
     }
 
-    public toHard() {
+    public toHard(): void {
         // do nothing
     }
 
-    public toSoft() {
+    public toSoft(): void {
         // do nothing
     }
 
-    public setUrl(url: string) {
+    public setUrl(url: string): void {
         this.element.setAttribute('data-value', url);
         this.element.value = url;
     }

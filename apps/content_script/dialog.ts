@@ -1,3 +1,5 @@
+/* global $ */
+
 class BlockDialog {
     public mediator: IBlockMediator;
 
@@ -20,7 +22,7 @@ class BlockDialog {
         document.body.appendChild(this.background);
     }
 
-    public createBackground(url: string, defaultBlockType: string) {
+    public createBackground(url: string, defaultBlockType: string): HTMLDivElement {
         const background = $.div('block-dialog-background');
 
         // create child element.
@@ -30,7 +32,7 @@ class BlockDialog {
         return background;
     }
 
-    public createDialog(url: string, defaultBlockType: string) {
+    public createDialog(url: string, defaultBlockType: string): HTMLDivElement {
         const dialog = $.div('block-dialog');
 
         // create child element.
@@ -46,7 +48,7 @@ class BlockDialog {
         return dialog;
     }
 
-    public createRadioDiv(url: string) {
+    public createRadioDiv(url: string): HTMLDivElement {
         const urlRadioDiv = $.div('block-dialog-url-radios');
         urlRadioDiv.addEventListener('click', (ignore) => {
             // If the custom radio button is selected, turn on the URL text, if not, reverse it.
@@ -78,7 +80,7 @@ class BlockDialog {
         return [blockDomainDiv, blockUrlDiv, blockCustomDiv, blockRegExpDiv];
     }
 
-    public static createBlockDomainRadio(value: string, checked: boolean) {
+    public static createBlockDomainRadio(value: string, checked: boolean): HTMLDivElement {
         const div = $.div();
 
         const radio = $.radio('block-url-type', value, 'blocker-dialog-domain-radio');
@@ -109,7 +111,7 @@ class BlockDialog {
         return div;
     }
 
-    public static createBlockUrlRadio(value: string) {
+    public static createBlockUrlRadio(value: string): HTMLDivElement {
         const div = $.div();
 
         const radio = $.radio('block-url-type', value, 'blocker-dialog-url-radio');
@@ -122,7 +124,7 @@ class BlockDialog {
         return div;
     }
 
-    public createBlockCustomRadio(value: string) {
+    public createBlockCustomRadio(value: string): HTMLDivElement {
         const div = $.div();
 
         const radio = $.radio('block-url-type', 'custom', 'blocker-dialog-custom-radio');
@@ -145,7 +147,7 @@ class BlockDialog {
         return div;
     }
 
-    public createBlockRegexpRadio(value: string) {
+    public createBlockRegexpRadio(value: string): HTMLDivElement {
         const div = $.div();
 
         const radio = $.radio('block-url-type', 'regexp', 'blocker-dialog-regexp-radio');
@@ -168,7 +170,7 @@ class BlockDialog {
         return div;
     }
 
-    public createBlockTypeDiv(defaultBlockType: string) {
+    public createBlockTypeDiv(defaultBlockType: string): HTMLDivElement {
         const blockTypeDiv = $.div();
         const select = document.createElement('select');
         select.classList.add('block-dialog-type-select');
@@ -186,7 +188,7 @@ class BlockDialog {
         return blockTypeDiv;
     }
 
-    public createButtonDiv() {
+    public createButtonDiv(): HTMLDivElement {
         const buttonDiv = $.div('block-dialog-buttons');
 
         // create child elements(buttons)
@@ -198,12 +200,12 @@ class BlockDialog {
         return buttonDiv;
     }
 
-    public cancel() {
+    public cancel(): void {
         // remove background
         $.removeSelf(this.background);
     }
 
-    public async block() {
+    public async block(): Promise<void> {
         const selected = document.querySelector('input[name="block-url-type"]:checked') as HTMLInputElement;
 
         // ignore when not selected.
