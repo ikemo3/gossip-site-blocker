@@ -42,20 +42,10 @@ async function main(driver: WebDriver) {
     ok(!isDisplayed);
 }
 
-async function testGoogleTopNews(driver: WebDriver) {
-    await driver.get('https://www.google.com/search?q=サッカー');
-    await takeScreenShot(driver, 'search_result_top_news.png');
-
-    const blockInnerCard = await driver.findElement(By.className('block-google-inner-card'));
-    const blockText = await blockInnerCard.getText();
-    ok(blockText.includes('このページをブロックする'));
-}
-
 (async (): Promise<void> => {
     const driver = chromeDriver();
     try {
         await main(driver);
-        await testGoogleTopNews(driver);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
@@ -69,7 +59,6 @@ async function testGoogleTopNews(driver: WebDriver) {
     const driver = firefoxDriver();
     try {
         await main(driver);
-        await testGoogleTopNews(driver);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
