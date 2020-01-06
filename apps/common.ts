@@ -1,52 +1,63 @@
+/* global OptionRepository */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ChromeStorage = {
     async load<T>(keys: T): Promise<T> {
         return new Promise((resolve) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             chrome.storage.local.get(keys, resolve);
         });
     },
 
-    async save<T>(items: T) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async save<T>(items: T): Promise<any> {
         return new Promise((resolve) => {
             chrome.storage.local.set(items, resolve);
         });
     },
 
-    async get(keys: any) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async get(keys: any): Promise<any> {
         return new Promise((resolve) => {
             chrome.storage.local.get(keys, resolve);
         });
     },
 
-    async set(items: any) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async set(items: any): Promise<void> {
         return new Promise((resolve) => {
             chrome.storage.local.set(items, resolve);
         });
     },
 };
 
-// noinspection TsLint
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Logger = {
-    debug(message: any, ...params: any[]) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    debug(message: any, ...params: any[]): void {
         OptionRepository.isDeveloperMode().then((developerMode: boolean) => {
             if (developerMode) {
-                // noinspection TsLint
+                // eslint-disable-next-line no-console
                 console.log(message, ...params);
             }
         });
     },
 
-    log(message: any, ...params: any[]) {
-        // noinspection TsLint
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    log(message: any, ...params: any[]): void {
+        // eslint-disable-next-line no-console
         console.log(message, ...params);
     },
 
-    error(message: any, ...params: any[]) {
-        // noinspection TsLint
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error(message: any, ...params: any[]): void {
+        // eslint-disable-next-line no-console
         console.error(message, ...params);
     },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DOMUtils = {
     /**
      * add element later.
@@ -54,7 +65,7 @@ const DOMUtils = {
      * @param element
      * @param insertElement element to add.
      */
-    insertAfter(element: Element, insertElement: Element) {
+    insertAfter(element: Element, insertElement: Element): void {
         element.parentElement!.insertBefore(insertElement, element.nextSibling);
     },
 
@@ -77,7 +88,7 @@ const DOMUtils = {
      * @param {string} url URL string
      * @return {string} string without protocol(scheme) and fragment
      */
-    removeProtocol(url: string) {
+    removeProtocol(url: string): string {
         return url.replace(/^\w+:\/\//, '').replace(/#.*/, '');
     },
 };
@@ -88,9 +99,11 @@ interface ITextAreaParams {
     rows?: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const $ = {
     anchor(text?: string): HTMLAnchorElement {
         const anchor = document.createElement('a');
+        // eslint-disable-next-line no-script-url
         anchor.setAttribute('href', 'javascript:void(0)'); // change link color.
 
         if (text !== undefined) {
@@ -116,7 +129,7 @@ const $ = {
         return button;
     },
 
-    decodeURI(encodedURI: string) {
+    decodeURI(encodedURI: string): string {
         try {
             return decodeURI(encodedURI);
         } catch (e) {
@@ -143,10 +156,11 @@ const $ = {
     },
 
     hide(element: HTMLElement): void {
+        // eslint-disable-next-line no-param-reassign
         element.style.display = 'none';
     },
 
-    insertBefore(element: HTMLElement, afterElement: HTMLElement) {
+    insertBefore(element: HTMLElement, afterElement: HTMLElement): void {
         afterElement.parentElement!.insertBefore(element, afterElement);
     },
 
@@ -213,10 +227,12 @@ const $ = {
     },
 
     show(element: HTMLElement): void {
+        // eslint-disable-next-line no-param-reassign
         element.style.display = 'inline';
     },
 
     showBlock(element: HTMLElement): void {
+        // eslint-disable-next-line no-param-reassign
         element.style.display = 'block';
     },
 
@@ -232,6 +248,7 @@ const $ = {
     },
 
     text(element: HTMLElement, text: string): void {
+        // eslint-disable-next-line no-param-reassign
         element.textContent = text;
     },
 
@@ -300,6 +317,7 @@ const $ = {
     },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 enum MenuPosition {
     COMPACT = 'compact',
     DEFAULT = 'default',
@@ -315,6 +333,7 @@ enum BannedTarget {
     TITLE_ONLY = 'titleOnly',
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class ApplicationError implements Error {
     public message: string;
 
@@ -324,7 +343,7 @@ class ApplicationError implements Error {
         this.message = message;
     }
 
-    public toString() {
+    public toString(): string {
         return `${this.name}: ${this.message}`;
     }
 }

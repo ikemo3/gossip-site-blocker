@@ -1,7 +1,13 @@
+/* global $, ApplicationError, BlockAnchor, BlockChangeAnchor, BlockChangeAnchorDialog,
+   BlockDialog, BlockedSitesRepository, BlockReason, BlockReasonType, BlockTarget, BlockType,
+   DOMUtils, HideAnchor, MenuPosition, OperationsAnchor, RegExpRepository,
+   TemporarilyUnblockAnchor */
+
 interface IBlockMediator {
     blockPage(isUrl: boolean, pattern: string, blockType: string): Promise<void>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockMediator implements IBlockMediator {
     private readonly url: string;
 
@@ -78,12 +84,12 @@ class BlockMediator implements IBlockMediator {
         }
     }
 
-    public setWrappable(width: string) {
+    public setWrappable(width: string): void {
         this.operationDiv.style.width = width;
         this.operationDiv.style.whiteSpace = 'normal';
     }
 
-    public notBlocked() {
+    public notBlocked(): void {
         this.blockAnchor.showBlockThisPage();
         this.blockTarget.show();
         this.temporarilyUnblockAnchor.hide();
@@ -91,7 +97,7 @@ class BlockMediator implements IBlockMediator {
         this.changeAnchor.hide();
     }
 
-    public hide() {
+    public hide(): void {
         this.blockAnchor.hide();
         this.blockTarget.hide();
         this.temporarilyUnblockAnchor.show(this.blockReason!.getReason());
@@ -99,7 +105,7 @@ class BlockMediator implements IBlockMediator {
         this.changeAnchor.hide();
     }
 
-    public temporarilyUnblock() {
+    public temporarilyUnblock(): void {
         switch (this.blockReason!.getType()) {
         case BlockReasonType.URL_EXACTLY:
             this.blockAnchor.hide();
@@ -122,18 +128,18 @@ class BlockMediator implements IBlockMediator {
         this.hideAnchor.show();
     }
 
-    public async toHard(url: string) {
+    public async toHard(url: string): Promise<void> {
         await BlockedSitesRepository.toHard(url);
         this.blockTarget.remove();
         $.removeSelf(this.operationDiv);
     }
 
-    public async unblock(url: string) {
+    public async unblock(url: string): Promise<void> {
         await BlockedSitesRepository.del(url);
         this.notBlocked();
     }
 
-    public async block(isUrl: boolean, pattern: string, blockType: string) {
+    public async block(isUrl: boolean, pattern: string, blockType: string): Promise<void> {
         if (isUrl) {
             await BlockedSitesRepository.add(pattern, blockType);
         } else {
@@ -155,12 +161,12 @@ class BlockMediator implements IBlockMediator {
         this.hide();
     }
 
-    public showChangeStateDialog() {
+    public showChangeStateDialog(): void {
         // show dialog.
         this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getReason());
     }
 
-    public showBlockDialog() {
+    public showBlockDialog(): void {
         // show dialog.
         this.blockDialog = new BlockDialog(this, this.url, this.defaultBlockType);
     }

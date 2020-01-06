@@ -127,11 +127,11 @@ class GoogleElement implements IBlockable {
         }
     }
 
-    public isIgnoreable() {
+    public isIgnoreable(): boolean {
         return this.ignoreExplicitly;
     }
 
-    public canBlock() {
+    public canBlock(): boolean {
         return this.valid;
     }
 

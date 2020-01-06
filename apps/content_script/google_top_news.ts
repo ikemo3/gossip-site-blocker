@@ -1,3 +1,6 @@
+/* global $ */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class GoogleTopNews implements IBlockable {
     private readonly element: Element;
 
@@ -51,7 +54,7 @@ class GoogleTopNews implements IBlockable {
         return this.element;
     }
 
-    public deleteElement() {
+    public deleteElement(): void {
         $.removeSelf(this.element);
     }
 

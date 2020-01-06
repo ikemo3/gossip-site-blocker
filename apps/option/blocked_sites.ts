@@ -21,7 +21,7 @@ class BlockedSites {
      * @param url
      * @returns {BlockedSite|undefined}
      */
-    public find(url: string) {
+    public find(url: string): BlockedSite | undefined {
         for (const site of this.sites) {
             if (site.equals(url)) {
                 return site;
@@ -74,7 +74,7 @@ class BlockedSites {
         return false;
     }
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): IterableIterator<BlockedSite> {
         return this.sites.values();
     }
 }

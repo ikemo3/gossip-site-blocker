@@ -1,3 +1,5 @@
+/* global BlockType, ChromeStorage, Logger */
+
 interface IRegExpItemList {
     regexpList: IRegExpItem[];
 }
@@ -7,6 +9,7 @@ interface IRegExpItem {
     blockType: BlockType;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RegExpRepository = {
     async load(): Promise<IRegExpItem[]> {
         const items = await ChromeStorage.get({ regexpList: [] }) as IRegExpItemList;
@@ -24,11 +27,11 @@ const RegExpRepository = {
         return itemsCopy;
     },
 
-    async save(items: IRegExpItem[]) {
+    async save(items: IRegExpItem[]): Promise<void> {
         await ChromeStorage.set({ regexpList: items });
     },
 
-    async clear() {
+    async clear(): Promise<void> {
         await ChromeStorage.set({ regexpList: [] });
     },
 

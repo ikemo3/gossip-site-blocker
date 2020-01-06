@@ -1,3 +1,6 @@
+/* global $ */
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockAnchor {
     private readonly anchor: HTMLAnchorElement;
 
@@ -16,17 +19,17 @@ class BlockAnchor {
         return this.anchor;
     }
 
-    public showBlockThisPage() {
+    public showBlockThisPage(): void {
         $.showBlock(this.anchor);
         $.text(this.anchor, $.message('blockThisPage'));
     }
 
-    public showBlockExplicitly() {
+    public showBlockExplicitly(): void {
         $.showBlock(this.anchor);
         $.text(this.anchor, $.message('blockThisPageExplicitly'));
     }
 
-    public hide() {
+    public hide(): void {
         $.hide(this.anchor);
     }
 }

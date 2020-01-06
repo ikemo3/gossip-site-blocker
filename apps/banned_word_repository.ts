@@ -1,3 +1,5 @@
+/* global BannedTarget, BlockType, ChromeStorage, Logger */
+
 interface IBannedWordItems {
     bannedWords: IBannedWord[];
 }
@@ -8,6 +10,7 @@ interface IBannedWord {
     target: BannedTarget;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BannedWordRepository = {
     async load(): Promise<IBannedWord[]> {
         const items = await ChromeStorage.get({ bannedWords: [] }) as IBannedWordItems;
@@ -28,11 +31,11 @@ const BannedWordRepository = {
         return itemsCopy;
     },
 
-    async save(words: IBannedWord[]) {
+    async save(words: IBannedWord[]): Promise<void> {
         await ChromeStorage.set({ bannedWords: words });
     },
 
-    async clear() {
+    async clear(): Promise<void> {
         await ChromeStorage.set({ bannedWords: [] });
     },
 

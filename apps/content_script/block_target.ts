@@ -1,6 +1,9 @@
+/* global $ */
+
 /**
  * Block target element.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BlockTarget {
     private readonly mediator: BlockMediator;
 

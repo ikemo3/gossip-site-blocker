@@ -1,3 +1,5 @@
+/* global $, BlockDialog, BlockedSitesRepository, OptionRepository */
+
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
     return new Promise((resolve, reject) => {
         chrome.tabs.query({ active: true, currentWindow: true }, ((tabs) => {
@@ -45,7 +47,7 @@ class PopupMediator implements IBlockMediator {
     }
 }
 
-(async () => {
+(async (): Promise<void> => {
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
 
     const currentTab = await getCurrentTab();
