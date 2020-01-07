@@ -83,7 +83,7 @@ type IBlockFunction = (g1: Element, options: IOptions) => boolean;
 
 function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunction) {
     let completed = false;
-    return () => {
+    return (): void => {
         if (completed) {
             return;
         }
