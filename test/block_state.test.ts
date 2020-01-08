@@ -4,12 +4,12 @@ describe('BlockState', () => {
     function createTarget(url: string, contains: boolean): IBlockTarget {
         return {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            contains(keyword: string): boolean {
+            contains(_: string): boolean {
                 return contains;
             },
 
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            containsInTitle(keyword: string): boolean {
+            containsInTitle(_: string): boolean {
                 return false;
             },
 
@@ -22,7 +22,7 @@ describe('BlockState', () => {
     function createEmptySites(): IBlockedSites {
         return {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            matches(urlArg: string): BlockedSite | undefined {
+            matches(_: string): BlockedSite | undefined {
                 return undefined;
             },
         };
@@ -31,13 +31,14 @@ describe('BlockState', () => {
     function createSites(blockType: string, url: string): IBlockedSites {
         return {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            matches(urlArg: string): BlockedSite | undefined {
+            matches(_: string): BlockedSite | undefined {
                 return new BlockedSite({ block_type: blockType, url });
             },
         };
     }
 
-    function createBannedWord(keyword: string, blockType: BlockType, target: BannedTarget): IBannedWord {
+    function createBannedWord(keyword: string, blockType: BlockType,
+        target: BannedTarget): IBannedWord {
         return {
             blockType, keyword, target,
         };

@@ -31,9 +31,10 @@
       "error",
       4
     ],
+    "jasmine/no-spec-dupes": [1, "branch"],
     "max-len": "warn",
     "no-case-declarations": "warn",
-    "no-continue": "warn",
+    "no-continue": "off",
     "no-param-reassign": "warn",
     "no-restricted-globals": "warn",
     "no-restricted-syntax": [
@@ -55,7 +56,7 @@
     "no-undef": "warn",
     "no-unused-vars": "off",
     "no-useless-escape": "warn",
-    "prefer-destructuring": "warn",
+    "prefer-destructuring": "off",
     "@typescript-eslint/ban-ts-ignore": "warn",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/interface-name-prefix": "off",

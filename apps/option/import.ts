@@ -16,7 +16,7 @@ async function importClicked(): Promise<void> {
             // url only
             return { url: cols[0], block_type: 'soft' };
         case 2:
-        default:
+        default: {
             const type = cols[1];
             if (type !== 'hard' && type !== 'soft') {
                 return undefined;
@@ -24,6 +24,7 @@ async function importClicked(): Promise<void> {
 
             // url + soft/hard
             return { url: cols[0], block_type: type };
+        }
         }
     }).filter((block) => block !== undefined) as IBlockedSite[];
 
@@ -57,6 +58,8 @@ function lineToBannedWord(line: string): IBannedWord | undefined {
         const target = $.toBannedTarget(cols[3]);
         return { keyword: word, blockType, target };
     }
+
+    return undefined;
 }
 
 function lineToRegexp(line: string): IRegExpItem | null {

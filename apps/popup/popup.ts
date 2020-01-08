@@ -73,7 +73,7 @@ class PopupMediator implements IBlockMediator {
         searchInEnglishDiv.style.display = 'none';
 
         const mediator = new PopupMediator();
-        const dialog = new BlockDialog(mediator, url, defaultBlockType);
+        const _ = new BlockDialog(mediator, url, defaultBlockType);
 
         // hide cancel button.
         const cancelButton = document.getElementById('blocker-cancel-button');

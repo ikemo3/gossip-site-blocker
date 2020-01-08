@@ -69,7 +69,11 @@ const BannedWordRepository = {
             }
         }
 
-        words.push({ keyword: addWord, blockType: BlockType.SOFT, target: BannedTarget.TITLE_AND_CONTENTS });
+        words.push({
+            keyword: addWord,
+            blockType: BlockType.SOFT,
+            target: BannedTarget.TITLE_AND_CONTENTS,
+        });
         await this.save(words);
         return true;
     },
@@ -82,6 +86,7 @@ const BannedWordRepository = {
                 return word;
             }
 
+            // eslint-disable-next-line no-param-reassign
             word.blockType = type;
             return word;
         });
@@ -97,6 +102,7 @@ const BannedWordRepository = {
                 return word;
             }
 
+            // eslint-disable-next-line no-param-reassign
             word.target = target;
             return word;
         });

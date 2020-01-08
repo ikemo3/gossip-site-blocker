@@ -18,7 +18,8 @@ class OperationsAnchor {
 
     private readonly parent: HTMLElement;
 
-    constructor(hideAnchor: HideAnchor, blockAnchor: BlockAnchor, changeAnchor: BlockChangeAnchor, position: string) {
+    constructor(hideAnchor: HideAnchor, blockAnchor: BlockAnchor, changeAnchor: BlockChangeAnchor,
+        position: string) {
         this.operationSpan = $.span('', 'block-anchor');
         this.hideAnchor = hideAnchor;
         this.blockAnchor = blockAnchor;

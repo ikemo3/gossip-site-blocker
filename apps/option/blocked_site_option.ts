@@ -1,4 +1,4 @@
-/* global BlockedSitesRepository, BlockedSiteDeleteButton, BlockedSiteEditButton,
+/* global ApplicationError, BlockedSitesRepository, BlockedSiteDeleteButton, BlockedSiteEditButton,
    BlockedSiteStateButton, BlockedSiteUrlField, Logger */
 
 /**
@@ -64,6 +64,8 @@ class BlockedSiteOption {
             this.deleteButton.toHard();
 
             break;
+        default:
+            throw new ApplicationError(`unknown state:${state}`);
         }
     }
 

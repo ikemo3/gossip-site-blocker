@@ -1,4 +1,4 @@
-/* global $, BannedTarget, BannedWordRepository, BlockType, Logger */
+/* global $, ApplicationError, BannedTarget, BannedWordRepository, BlockType, Logger */
 
 class BannedWords {
     private addButton: HTMLInputElement;
@@ -21,7 +21,11 @@ class BannedWords {
             const added: boolean = await BannedWordRepository.add(word);
             if (added) {
                 Logger.debug('add to Banned Words', word);
-                this.createWidget({ keyword: word, blockType: BlockType.SOFT, target: BannedTarget.TITLE_AND_CONTENTS });
+                this.createWidget({
+                    keyword: word,
+                    blockType: BlockType.SOFT,
+                    target: BannedTarget.TITLE_AND_CONTENTS,
+                });
             }
 
             this.addText.value = '';
@@ -90,6 +94,8 @@ class BannedWords {
         case 'hard':
             await BannedWordRepository.changeType(keyword, BlockType.HARD);
             break;
+        default:
+            throw new ApplicationError(`unknown value:${value}`);
         }
     }
 
@@ -105,6 +111,8 @@ class BannedWords {
         case 'titleOnly':
             await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_ONLY);
             break;
+        default:
+            throw new ApplicationError(`unknown value:${value}`);
         }
     }
 

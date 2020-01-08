@@ -1,4 +1,4 @@
-/* global $, BlockType, RegExpRepository */
+/* global $, ApplicationError, BlockType, RegExpRepository */
 
 class RegExpList {
     private readonly regexpList: HTMLDivElement;
@@ -85,6 +85,8 @@ class RegExpList {
         case 'hard':
             await RegExpRepository.changeType(pattern, BlockType.HARD);
             break;
+        default:
+            throw new ApplicationError(`unknown value:${value}`);
         }
     }
 

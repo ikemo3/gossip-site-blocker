@@ -78,6 +78,7 @@ const RegExpRepository = {
                 return item;
             }
 
+            // eslint-disable-next-line no-param-reassign
             item.blockType = type;
             return item;
         });
