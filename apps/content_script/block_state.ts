@@ -47,19 +47,25 @@ class BlockState {
             this.state = blockedSite.getState();
 
             if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
-                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockable.getUrl(), blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockable.getUrl(),
+                    blockedSite.url);
             } else {
-                this.blockReason = new BlockReason(BlockReasonType.URL, blockable.getUrl(), blockedSite.url);
+                this.blockReason = new BlockReason(BlockReasonType.URL, blockable.getUrl(),
+                    blockedSite.url);
             }
 
             return;
-        } if (banned) {
+        }
+        if (banned) {
             this.state = banned.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.WORD, blockable.getUrl(), banned.keyword);
+            this.blockReason = new BlockReason(BlockReasonType.WORD, blockable.getUrl(),
+                banned.keyword);
             return;
-        } if (regexp) {
+        }
+        if (regexp) {
             this.state = regexp.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.REGEXP, blockable.getUrl(), regexp.pattern);
+            this.blockReason = new BlockReason(BlockReasonType.REGEXP, blockable.getUrl(),
+                regexp.pattern);
             return;
         }
 

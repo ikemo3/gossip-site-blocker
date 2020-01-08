@@ -40,8 +40,8 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
         return false;
     }
 
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
-        options.idnOption);
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
         blockReasons.push(blockState.getReason()!);
@@ -52,7 +52,7 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
         return true;
     }
 
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;
 }
 
@@ -64,8 +64,8 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
         return false;
     }
 
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
-        options.idnOption);
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
         blockReasons.push(blockState.getReason()!);
@@ -76,7 +76,8 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
         return true;
     }
 
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    const mediator = new BlockMediator(g, blockState, options.defaultBlockType,
+        options.menuPosition);
     mediator.setWrappable('205px');
     return true;
 }
@@ -89,8 +90,8 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
         return false;
     }
 
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords, options.regexpList,
-        options.idnOption);
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
         blockReasons.push(blockState.getReason()!);
@@ -101,6 +102,6 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
         return true;
     }
 
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;
 }

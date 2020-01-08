@@ -61,7 +61,13 @@ observer.observe(document.documentElement, config);
     Logger.debug('autoBlockIDNOption:', idnOption);
 
     gsbOptions = {
-        blockedSites, bannedWords, regexpList, idnOption, defaultBlockType, menuPosition, bannedWordOption,
+        blockedSites,
+        bannedWords,
+        regexpList,
+        idnOption,
+        defaultBlockType,
+        menuPosition,
+        bannedWordOption,
     };
 
     for (const node of pendingsGoogle) {
@@ -81,7 +87,7 @@ const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g1: Element, options: IOptions) => boolean;
 
-function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunction) {
+function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunction): () => void {
     let completed = false;
     return (): void => {
         if (completed) {

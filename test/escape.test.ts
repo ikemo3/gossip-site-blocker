@@ -31,8 +31,8 @@ describe('unescape', () => {
         expect($.unescape('\\\\')).toBe('\\');
     });
 
-    it('\\\\\+', () => {
-        expect($.unescape('\\\\\+')).toBe('\\ ');
+    it('\\\\+', () => {
+        expect($.unescape('\\\\+')).toBe('\\ ');
     });
 
     it('+\\++\\++', () => {

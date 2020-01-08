@@ -31,7 +31,8 @@ class BlockMediator implements IBlockMediator {
 
     private changeStateDialog: BlockChangeAnchorDialog;
 
-    constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string, menuPosition: MenuPosition) {
+    constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string,
+        menuPosition: MenuPosition) {
         const blockTarget = new BlockTarget(this, g.getElement());
 
         this.operationDiv = $.div('block-anchor');
@@ -73,7 +74,8 @@ class BlockMediator implements IBlockMediator {
             throw new ApplicationError(`illegal menuPosition:${menuPosition}`);
         }
 
-        switch (blockState.getState()) {
+        const state = blockState.getState();
+        switch (state) {
         case 'none':
             this.notBlocked();
             break;
@@ -81,6 +83,8 @@ class BlockMediator implements IBlockMediator {
         case 'soft':
             this.hide();
             break;
+        default:
+            throw new ApplicationError(`unknown state:${state}`);
         }
     }
 
@@ -106,7 +110,8 @@ class BlockMediator implements IBlockMediator {
     }
 
     public temporarilyUnblock(): void {
-        switch (this.blockReason!.getType()) {
+        const type = this.blockReason!.getType();
+        switch (type) {
         case BlockReasonType.URL_EXACTLY:
             this.blockAnchor.hide();
             this.changeAnchor.show();
@@ -121,6 +126,8 @@ class BlockMediator implements IBlockMediator {
             this.blockAnchor.showBlockExplicitly();
             this.changeAnchor.hide();
             break;
+        default:
+            throw new ApplicationError(`illegal type:${type}`);
         }
 
         this.blockTarget.temporarilyUnblock();
@@ -163,7 +170,8 @@ class BlockMediator implements IBlockMediator {
 
     public showChangeStateDialog(): void {
         // show dialog.
-        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getReason());
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url,
+            this.blockReason!.getReason());
     }
 
     public showBlockDialog(): void {

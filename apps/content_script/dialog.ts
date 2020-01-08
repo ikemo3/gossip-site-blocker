@@ -51,7 +51,7 @@ class BlockDialog {
 
     public createRadioDiv(url: string): HTMLDivElement {
         const urlRadioDiv = $.div('block-dialog-url-radios');
-        urlRadioDiv.addEventListener('click', (ignore) => {
+        urlRadioDiv.addEventListener('click', (_) => {
             // If the custom radio button is selected, turn on the URL text, if not, reverse it.
             this.urlText.disabled = !this.customRadio.checked;
             this.regexpText.disabled = !this.regexpRadio.checked;
@@ -67,13 +67,16 @@ class BlockDialog {
     }
 
     public createRadioButtons(url: string): HTMLDivElement[] {
-        const blockRecommendDiv = BlockDialog.createBlockRecommendRadio(DOMUtils.removeProtocol(url));
+        const urlWithoutProtocol = DOMUtils.removeProtocol(url);
+        const hostName = DOMUtils.getHostName(url);
+
+        const blockRecommendDiv = BlockDialog.createBlockRecommendRadio(urlWithoutProtocol);
         const domainRadioChecked = blockRecommendDiv === null;
 
-        const blockDomainDiv = BlockDialog.createBlockDomainRadio(DOMUtils.getHostName(url), domainRadioChecked);
-        const blockUrlDiv = BlockDialog.createBlockUrlRadio(DOMUtils.removeProtocol(url));
-        const blockCustomDiv = this.createBlockCustomRadio(DOMUtils.removeProtocol(url));
-        const blockRegExpDiv = this.createBlockRegexpRadio($.escapeRegExp(DOMUtils.getHostName(url)));
+        const blockDomainDiv = BlockDialog.createBlockDomainRadio(hostName, domainRadioChecked);
+        const blockUrlDiv = BlockDialog.createBlockUrlRadio(urlWithoutProtocol);
+        const blockCustomDiv = this.createBlockCustomRadio(urlWithoutProtocol);
+        const blockRegExpDiv = this.createBlockRegexpRadio($.escapeRegExp(hostName));
 
         if (blockRecommendDiv !== null) {
             return [blockRecommendDiv, blockDomainDiv, blockUrlDiv, blockCustomDiv, blockRegExpDiv];
@@ -240,7 +243,7 @@ class BlockDialog {
         $.removeSelf(this.background);
     }
 
-    public createButtons() {
+    public createButtons(): HTMLInputElement[] {
         const cancelButton = $.button($.message('cancelButtonLabel'), 'blocker-secondary-button');
         cancelButton.id = 'blocker-cancel-button';
         $.onclick(cancelButton, this.cancel.bind(this));

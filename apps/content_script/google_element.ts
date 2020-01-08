@@ -33,7 +33,7 @@ class GoogleElement implements IBlockable {
 
         // ignore if any element has class=g
         let parent = element.parentElement;
-        while (true) {
+        for (;;) {
             // when root element
             if (parent === null) {
                 break;

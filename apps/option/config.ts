@@ -65,7 +65,9 @@ const OptionRepository: IOptionRepository = {
 
     async getBannedWordOption(): Promise<IBannedWordOption> {
         const bannedWordDefault = { showInfo: false };
-        const items = await ChromeStorage.get({ bannedWord: bannedWordDefault }) as IBannedWordOptionStorage;
+        const items: IBannedWordOptionStorage = await ChromeStorage.get(
+            { bannedWord: bannedWordDefault },
+        );
         return items.bannedWord;
     },
 
@@ -78,7 +80,9 @@ const OptionRepository: IOptionRepository = {
 
     async getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption> {
         const autoBlockIDNDefault = { enabled: false };
-        const items = await ChromeStorage.get({ autoBlockIDN: autoBlockIDNDefault }) as IAutoBlockIDNOptionStorage;
+        const items: IAutoBlockIDNOptionStorage = await ChromeStorage.get(
+            { autoBlockIDN: autoBlockIDNDefault },
+        ) as IAutoBlockIDNOptionStorage;
         return items.autoBlockIDN;
     },
 

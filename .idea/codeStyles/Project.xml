@@ -8,6 +8,7 @@
     </TypeScriptCodeStyleSettings>
     <codeStyleSettings language="TypeScript">
       <option name="INDENT_CASE_FROM_SWITCH" value="false" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
     </codeStyleSettings>
   </code_scheme>
 </component>
