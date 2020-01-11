@@ -1,7 +1,9 @@
-/* global $ */
+import { $ } from '../common';
+import { HideAnchor } from './hide_anchor';
+import { BlockAnchor } from './block_anchor';
+import { BlockChangeAnchor } from './block_change_anchor';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class OperationsAnchor {
+export class OperationsAnchor {
     private readonly operationSpan: HTMLSpanElement;
 
     private readonly iconAnchor: HTMLAnchorElement;

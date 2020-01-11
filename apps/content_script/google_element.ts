@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class GoogleElement implements IBlockable {
+import { IBlockable } from './block_target_factory';
+
+export class GoogleElement implements IBlockable {
     private readonly valid: boolean;
 
     private readonly ignoreExplicitly: boolean;

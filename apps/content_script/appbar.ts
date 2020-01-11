@@ -1,7 +1,8 @@
-/* global $, blockReasons, BlockReasonType, gsbOptions */
+import { $ } from '../common';
+import { BlockReasonType } from './block_state';
+import { blockReasons, gsbOptions } from './document_start/start';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function create_appbar_links(): void {
+export function create_appbar_links(): void {
     const resultStats = document.getElementById('resultStats');
     if (resultStats !== null) {
         const resultStatsIsHidden = getComputedStyle(resultStats).opacity === '0';

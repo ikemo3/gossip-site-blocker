@@ -213,33 +213,7 @@
       ],
       "run_at": "document_start",
       "js": [
-        "banned_word_repository.js",
-        "regexp_repository.js",
-        "common.js",
-        "option/block.js",
-        "option/blocked_site.js",
-        "option/blocked_sites.js",
-        "option/config.js",
-        "content_script/block_anchor.js",
-        "content_script/block_change_anchor.js",
-        "content_script/block_change_anchor_dialog.js",
-        "content_script/block_mediator.js",
-        "content_script/block_reason.js",
-        "content_script/block_state.js",
-        "content_script/block_target.js",
-        "content_script/block_target_factory.js",
-        "content_script/dialog.js",
-        "content_script/google.js",
-        "content_script/google_element.js",
-        "content_script/google_inner_card.js",
-        "content_script/google_top_news.js",
-        "content_script/hide_anchor.js",
-        "content_script/operations_anchor.js",
-        "content_script/operations_block.js",
-        "content_script/recommend.js",
-        "content_script/appbar.js",
-        "content_script/temporarily_unblock_anchor.js",
-        "content_script/document_start/start.js"
+        "document_start.js"
       ],
       "css": [
         "content_script/document_start/start.css",
@@ -443,7 +417,7 @@
         "https://www.google.cat/search*"
       ],
       "js": [
-        "content_script/document_idle/idle.js"
+        "document_idle.js"
       ]
     }
   ],

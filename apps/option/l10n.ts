@@ -1,7 +1,7 @@
-/* global Logger */
+import { Logger } from '../common';
 
 // localize HTML
-function localizeHtmlPage(): void {
+export default function localizeHtmlPage(): void {
     document.querySelectorAll('[data-i18n-text]').forEach((element: Element) => {
         const key = element.getAttribute('data-i18n-text')!;
         // eslint-disable-next-line no-param-reassign
@@ -18,5 +18,3 @@ function localizeHtmlPage(): void {
         }
     });
 }
-
-localizeHtmlPage();

@@ -1,7 +1,8 @@
-/* global $, DOMUtils, makeRecommendUrl */
+import { $, DOMUtils } from '../common';
+import makeRecommendUrl from './recommend';
+import { IBlockMediator } from './block_mediator';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockDialog {
+export class BlockDialog {
     public mediator: IBlockMediator;
 
     public background: HTMLDivElement;

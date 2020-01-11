@@ -1,7 +1,7 @@
-/* global $ */
+import { BlockMediator } from './block_mediator';
+import { $ } from '../common';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockChangeAnchorDialog {
+export class BlockChangeAnchorDialog {
     private readonly mediator: BlockMediator;
 
     private readonly background: HTMLDivElement;

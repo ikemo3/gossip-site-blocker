@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class GoogleInnerCard implements IBlockable {
+import { IBlockable } from './block_target_factory';
+
+export class GoogleInnerCard implements IBlockable {
     public valid: boolean;
 
     public url: string;

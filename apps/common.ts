@@ -1,7 +1,6 @@
-/* global OptionRepository */
+import { OptionRepository } from './option/config';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ChromeStorage = {
+export const ChromeStorage = {
     async load<T>(keys: T): Promise<T> {
         return new Promise((resolve) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -32,8 +31,7 @@ const ChromeStorage = {
     },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Logger = {
+export const Logger = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     debug(message: any, ...params: any[]): void {
         OptionRepository.isDeveloperMode().then((developerMode: boolean) => {
@@ -57,8 +55,7 @@ const Logger = {
     },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const DOMUtils = {
+export const DOMUtils = {
     /**
      * add element later.
      *
@@ -93,14 +90,13 @@ const DOMUtils = {
     },
 };
 
-interface ITextAreaParams {
+export interface ITextAreaParams {
     id?: string;
     cols?: number;
     rows?: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const $ = {
+export const $ = {
     anchor(text?: string): HTMLAnchorElement {
         const anchor = document.createElement('a');
         // eslint-disable-next-line no-script-url
@@ -317,24 +313,22 @@ const $ = {
     },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-enum MenuPosition {
+export enum MenuPosition {
     COMPACT = 'compact',
     DEFAULT = 'default',
 }
 
-enum BlockType {
+export enum BlockType {
     SOFT = 'soft',
     HARD = 'hard',
 }
 
-enum BannedTarget {
+export enum BannedTarget {
     TITLE_AND_CONTENTS = 'titleAndContents',
     TITLE_ONLY = 'titleOnly',
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class ApplicationError implements Error {
+export class ApplicationError implements Error {
     public message: string;
 
     public name = 'Application Error';

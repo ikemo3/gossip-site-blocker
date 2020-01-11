@@ -1,13 +1,17 @@
-/* global ApplicationError, BlockedSitesRepository, BlockedSiteDeleteButton, BlockedSiteEditButton,
-   BlockedSiteStateButton, BlockedSiteUrlField, Logger */
+import { ApplicationError, Logger } from '../common';
+import BlockedSiteDeleteButton from './blocked_site_delete_button';
+import BlockedSiteEditButton from './blocked_site_edit_button';
+import BlockedSiteStateButton from './blocked_site_state_button';
+import BlockedSite from './blocked_site';
+import { BlockedSiteUrlField } from './blocked_site_url_field';
+import { BlockedSitesRepository } from './block';
 
 /**
  * @property {BlockedSite} blockedSite
  * @property {BlockedSiteUrlField} urlField
  * @property {BlockedSiteEditButton} editButton
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockedSiteOption {
+export default class BlockedSiteOption {
     public urlField: BlockedSiteUrlField;
 
     public editButton: BlockedSiteEditButton;

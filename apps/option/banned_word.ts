@@ -1,6 +1,9 @@
-/* global $, ApplicationError, BannedTarget, BannedWordRepository, BlockType, Logger */
+import {
+    $, ApplicationError, BannedTarget, BlockType, Logger,
+} from '../common';
+import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
 
-class BannedWords {
+export default class BannedWords {
     private addButton: HTMLInputElement;
 
     private addText: HTMLInputElement;

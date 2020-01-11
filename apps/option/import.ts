@@ -1,6 +1,9 @@
-/* global $, BannedWordRepository, BlockedSitesRepository, RegExpRepository */
+import { BlockedSitesRepository, IBlockedSite } from './block';
+import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
+import { IRegExpItem, RegExpRepository } from '../regexp_repository';
+import { $ } from '../common';
 
-async function importClicked(): Promise<void> {
+export async function importClicked(): Promise<void> {
     // noinspection JSValidateTypes
     /**
      * @type {HTMLTextAreaElement}
@@ -76,5 +79,3 @@ function lineToRegexp(line: string): IRegExpItem | null {
     }
     return null;
 }
-
-document.getElementById('importButton')!.addEventListener('click', importClicked);

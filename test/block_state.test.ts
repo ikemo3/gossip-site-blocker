@@ -1,14 +1,19 @@
-/* global $, BannedTarget, BlockedSite, BlockReasonType, BlockState, BlockType */
+import { IBlockTarget } from '../apps/content_script/block_target_factory';
+import { IBlockedSites } from '../apps/option/blocked_sites';
+import BlockedSite from '../apps/option/blocked_site';
+import { $, BannedTarget, BlockType } from '../apps/common';
+import { IBannedWord } from '../apps/banned_word_repository';
+import { BlockReasonType, BlockState } from '../apps/content_script/block_state';
+import { IAutoBlockIDNOption } from '../apps/option/config';
+import { IRegExpItem } from '../apps/regexp_repository';
 
 describe('BlockState', () => {
     function createTarget(url: string, contains: boolean): IBlockTarget {
         return {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             contains(_: string): boolean {
                 return contains;
             },
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             containsInTitle(_: string): boolean {
                 return false;
             },
@@ -21,7 +26,6 @@ describe('BlockState', () => {
 
     function createEmptySites(): IBlockedSites {
         return {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             matches(_: string): BlockedSite | undefined {
                 return undefined;
             },
@@ -30,7 +34,6 @@ describe('BlockState', () => {
 
     function createSites(blockType: string, url: string): IBlockedSites {
         return {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             matches(_: string): BlockedSite | undefined {
                 return new BlockedSite({ block_type: blockType, url });
             },

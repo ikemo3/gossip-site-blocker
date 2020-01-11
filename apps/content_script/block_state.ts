@@ -1,6 +1,15 @@
-/* global $, BlockReason, BannedTarget, BlockType, DOMUtils */
+import {
+    $, BannedTarget, BlockType, DOMUtils,
+} from '../common';
+import { IRegExpItem } from '../regexp_repository';
+import { IBlockedSites } from '../option/blocked_sites';
+import { IBannedWord } from '../banned_word_repository';
+import { IAutoBlockIDNOption } from '../option/config';
+import BlockedSite from '../option/blocked_site';
+import { IBlockTarget } from './block_target_factory';
+import { BlockReason } from './block_reason';
 
-enum BlockReasonType {
+export enum BlockReasonType {
     URL_EXACTLY,
     URL,
     WORD, /* Banned Word */
@@ -8,8 +17,7 @@ enum BlockReasonType {
     IDN, /* Internationalized Domain Name */
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockState {
+export class BlockState {
     private readonly state: string;
 
     private readonly blockReason?: BlockReason;

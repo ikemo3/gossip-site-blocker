@@ -1,11 +1,12 @@
+import { IBlockedSite } from './block';
+
 /**
  * Blocked sites
  *
  * @property {string} url Beginning of blocked URL(without scheme).
  * @property {"soft"|"hard"} block_type
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockedSite {
+export default class BlockedSite {
     public url: string;
 
     public block_type: string;

@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockReason {
+import { BlockReasonType } from './block_state';
+
+export class BlockReason {
     private readonly blockType: BlockReasonType;
 
     private readonly url: string;

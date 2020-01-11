@@ -1,7 +1,17 @@
-/* global BannedWordRepository, BlockedSitesRepository, blockGoogleElement, blockGoogleInnerCard,
-   blockGoogleTopNews, Logger, OptionRepository, RegExpRepository */
+import { BlockedSites } from '../../option/blocked_sites';
+import { BannedWordRepository, IBannedWord } from '../../banned_word_repository';
+import { IRegExpItem, RegExpRepository } from '../../regexp_repository';
+import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../../option/config';
+import { Logger, MenuPosition } from '../../common';
+import { BlockReason } from '../block_reason';
+import { BlockedSitesRepository } from '../../option/block';
+import {
+    blockGoogleElement,
+    blockGoogleInnerCard,
+    blockGoogleTopNews,
+} from '../block_target_factory';
 
-interface IOptions {
+export interface IOptions {
     blockedSites: BlockedSites;
     bannedWords: IBannedWord[];
     regexpList: IRegExpItem[];
@@ -11,7 +21,8 @@ interface IOptions {
     bannedWordOption: IBannedWordOption;
 }
 
-let gsbOptions: IOptions | null = null;
+// eslint-disable-next-line import/no-mutable-exports
+export let gsbOptions: IOptions | null = null;
 
 // add observer
 const observer = new MutationObserver((mutations) => {
@@ -45,8 +56,7 @@ const observer = new MutationObserver((mutations) => {
 const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
 const pendingsTopNews: Element[] = [];
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const blockReasons: BlockReason[] = [];
+export const blockReasons: BlockReason[] = [];
 const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 

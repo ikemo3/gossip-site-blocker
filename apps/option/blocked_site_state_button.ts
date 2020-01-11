@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockedSiteStateButton {
+import BlockedSiteOption from './blocked_site_option';
+
+export default class BlockedSiteStateButton {
     public element: HTMLInputElement;
 
     public mediator: BlockedSiteOption;

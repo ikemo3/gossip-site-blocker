@@ -1,8 +1,9 @@
+import BlockedSiteOption from './blocked_site_option';
+
 /**
  * URL field
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockedSiteUrlField {
+export class BlockedSiteUrlField {
     public element: HTMLInputElement;
 
     /**

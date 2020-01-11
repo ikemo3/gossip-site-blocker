@@ -1,6 +1,9 @@
-/* global $, BannedWordRepository, BlockedSitesRepository, RegExpRepository */
+import { BlockedSitesRepository } from './block';
+import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
+import { RegExpRepository } from '../regexp_repository';
+import { $ } from '../common';
 
-async function exportClicked(): Promise<void> {
+export async function exportClicked(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
 
     // block
@@ -40,5 +43,3 @@ async function exportClicked(): Promise<void> {
 
     exportTextArea.value = `${allLines.join('\n')}\n`;
 }
-
-document.getElementById('exportButton')!.addEventListener('click', exportClicked);
