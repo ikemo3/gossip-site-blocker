@@ -14,6 +14,11 @@ if [[ "${CIRCLE_BRANCH}" != "" ]]; then
   NOW=$(date +%Y%m%d-%H%M)
   echo ${MANIFEST} | jq ". | .version_name = \"${MANIFEST_VERSION}-snapshot(${NOW})\"" \
     > dist/manifest.json
+elif [[ "${CIRCLE_TAG}" =~ spike$ ]]; then
+  echo 'add `version_name` to manifest.json'
+  NOW=$(date +%Y%m%d-%H%M)
+  echo ${MANIFEST} | jq ". | .version_name = \"${MANIFEST_VERSION}-${CIRCLE_TAG}(${NOW})\"" \
+    > dist/manifest.json
 fi
 
 # decode private key
