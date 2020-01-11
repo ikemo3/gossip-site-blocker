@@ -17,7 +17,6 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jasmine": "^2.10.1",
     "eslint-plugin-node": "^10.0.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
@@ -35,6 +34,6 @@
     "integration-test": "yarn archive && tsc && node --async-stack-traces test/selenium/test.js",
     "lint": "yarn eslint --ext .ts apps test *.ts",
     "lint-for-ci": "yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps test *.ts",
-    "test": "tsc && karma start --single-run"
+    "test": "tsc && jest"
   }
 }

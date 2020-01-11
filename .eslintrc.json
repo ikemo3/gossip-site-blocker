@@ -2,14 +2,12 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jasmine": true,
     "jest": true,
     "webextensions": true
   },
   "extends": [
     "airbnb-base",
     "plugin:import/typescript",
-    "plugin:jasmine/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "globals": {
@@ -22,8 +20,7 @@
     "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint",
-    "jasmine"
+    "@typescript-eslint"
   ],
   "rules": {
     "class-methods-use-this": "off",
@@ -36,7 +33,6 @@
       "error",
       4
     ],
-    "jasmine/no-spec-dupes": [1, "branch"],
     "max-len": "warn",
     "no-case-declarations": "warn",
     "no-continue": "off",
