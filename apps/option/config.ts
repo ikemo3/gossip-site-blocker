@@ -1,4 +1,4 @@
-/* global ChromeStorage, Logger, MenuPosition */
+import { ChromeStorage, Logger, MenuPosition } from '../common';
 
 interface IOptionRepository {
     isDeveloperMode(): Promise<boolean>;
@@ -34,7 +34,7 @@ interface IBannedWordOptionStorage {
     bannedWord: IBannedWordOption;
 }
 
-interface IBannedWordOption {
+export interface IBannedWordOption {
     showInfo: boolean;
 }
 
@@ -42,7 +42,7 @@ interface IAutoBlockIDNOptionStorage {
     autoBlockIDN: IAutoBlockIDNOption;
 }
 
-interface IAutoBlockIDNOption {
+export interface IAutoBlockIDNOption {
     enabled: boolean;
 }
 
@@ -50,8 +50,7 @@ interface IMenuPositionOption {
     menuPosition: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const OptionRepository: IOptionRepository = {
+export const OptionRepository: IOptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
         const items = await ChromeStorage.get({ developerMode: false }) as IDeveloperOption;
         return items.developerMode;

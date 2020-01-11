@@ -1,5 +1,14 @@
-/* global bannedWords, BannedWordRepository, BlockedSiteOption, BlockedSitesRepository, Logger,
-   OptionRepository, RegExpRepository, regexpList */
+import BannedWords from './banned_word';
+import { BlockedSitesRepository } from './block';
+import BlockedSiteOption from './blocked_site_option';
+import { BannedWordRepository } from '../banned_word_repository';
+import { RegExpRepository } from '../regexp_repository';
+import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from './config';
+import { Logger } from '../common';
+import { RegExpList } from './regexp';
+import localizeHtmlPage from './l10n';
+import { exportClicked } from './export';
+import { importClicked } from './import';
 
 const softBlockList = document.getElementById('softBlockList') as HTMLDivElement;
 const hardBlockList = document.getElementById('hardBlockList') as HTMLDivElement;
@@ -126,3 +135,8 @@ menuPositionSelect.addEventListener('change', async (event) => {
     const { value } = select;
     await OptionRepository.setMenuPosition(value);
 });
+
+localizeHtmlPage();
+
+document.getElementById('exportButton')!.addEventListener('click', exportClicked);
+document.getElementById('importButton')!.addEventListener('click', importClicked);

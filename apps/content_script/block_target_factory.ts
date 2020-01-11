@@ -1,6 +1,11 @@
-/* global BlockMediator, blockReasons, BlockState, GoogleElement, GoogleInnerCard, GoogleTopNews */
+import { GoogleTopNews } from './google_top_news';
+import { BlockState } from './block_state';
+import { BlockMediator } from './block_mediator';
+import { GoogleElement } from './google_element';
+import { GoogleInnerCard } from './google_inner_card';
+import { IOptions } from './document_start/start';
 
-interface IBlockTarget {
+export interface IBlockTarget {
     getUrl(): string;
 
     contains(keyword: string): boolean;
@@ -8,7 +13,7 @@ interface IBlockTarget {
     containsInTitle(keyword: string): boolean;
 }
 
-interface IBlockable {
+export interface IBlockable {
     getUrl(): string;
 
     canBlock(): boolean;
@@ -28,8 +33,7 @@ interface IBlockable {
     getCssClass(): string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function blockGoogleElement(g1: Element, options: IOptions): boolean {
+export function blockGoogleElement(g1: Element, options: IOptions): boolean {
     const g = new GoogleElement(g1);
 
     if (g.isIgnoreable()) {
@@ -44,7 +48,7 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
         options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
+        window.blockReasons.push(blockState.getReason()!);
     }
 
     if (blockState.getState() === 'hard') {
@@ -56,8 +60,7 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
+export function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     const g = new GoogleInnerCard(g1);
 
     if (!g.canBlock()) {
@@ -68,7 +71,7 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
         options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
+        window.blockReasons.push(blockState.getReason()!);
     }
 
     if (blockState.getState() === 'hard') {
@@ -82,8 +85,7 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
+export function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
     const g = new GoogleTopNews(g1);
 
     if (!g.canBlock()) {
@@ -94,7 +96,7 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
         options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
+        window.blockReasons.push(blockState.getReason()!);
     }
 
     if (blockState.getState() === 'hard') {

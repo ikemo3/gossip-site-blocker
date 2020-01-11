@@ -5,3 +5,4 @@ REPOSITORY_TOP=$(pwd)
 
 rm -rf dist
 cp -r apps dist
+webpack

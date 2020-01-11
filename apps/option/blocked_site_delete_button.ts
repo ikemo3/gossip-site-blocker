@@ -1,8 +1,9 @@
+import BlockedSiteOption from './blocked_site_option';
+
 /**
  * Delete button
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockedSiteDeleteButton {
+export default class BlockedSiteDeleteButton {
     public element: HTMLInputElement;
 
     public mediator: BlockedSiteOption;

@@ -1,14 +1,14 @@
-/* global DOMUtils */
+import { DOMUtils } from '../common';
+import BlockedSite from './blocked_site';
 
-interface IBlockedSites {
+export interface IBlockedSites {
     matches(url: string): BlockedSite | undefined;
 }
 
 /**
  * @property {Array<BlockedSite>} sites
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockedSites {
+export class BlockedSites {
     public sites: BlockedSite[];
 
     constructor(sites: BlockedSite[]) {

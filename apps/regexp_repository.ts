@@ -1,16 +1,15 @@
-/* global BlockType, ChromeStorage, Logger */
+import { BlockType, ChromeStorage, Logger } from './common';
 
 interface IRegExpItemList {
     regexpList: IRegExpItem[];
 }
 
-interface IRegExpItem {
+export interface IRegExpItem {
     pattern: string;
     blockType: BlockType;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const RegExpRepository = {
+export const RegExpRepository = {
     async load(): Promise<IRegExpItem[]> {
         const items = await ChromeStorage.get({ regexpList: [] }) as IRegExpItemList;
 

@@ -1,6 +1,7 @@
-/* global $, ApplicationError, BlockType, RegExpRepository */
+import { IRegExpItem, RegExpRepository } from '../regexp_repository';
+import { $, ApplicationError, BlockType } from '../common';
 
-class RegExpList {
+export class RegExpList {
     private readonly regexpList: HTMLDivElement;
 
     private readonly addText: HTMLInputElement;

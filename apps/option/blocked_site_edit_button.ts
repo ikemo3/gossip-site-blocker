@@ -1,8 +1,9 @@
+import BlockedSiteOption from './blocked_site_option';
+
 /**
  * Change URL button
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockedSiteEditButton {
+export default class BlockedSiteEditButton {
     public element: HTMLInputElement;
 
     public mediator: BlockedSiteOption;

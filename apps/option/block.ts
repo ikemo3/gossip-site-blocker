@@ -1,15 +1,17 @@
-/* global BlockedSite, BlockedSites, ChromeStorage */
+import { ChromeStorage } from '../common';
+import BlockedSite from './blocked_site';
+import { BlockedSites } from './blocked_sites';
 
-interface IBlockedSitesList {
+export interface IBlockedSitesList {
     blocked: IBlockedSite[];
 }
 
-interface IBlockedSite {
+export interface IBlockedSite {
     url: string;
     block_type: string;
 }
 
-const BlockedSitesRepository = {
+export const BlockedSitesRepository = {
     /**
      * load values as Array.
      *

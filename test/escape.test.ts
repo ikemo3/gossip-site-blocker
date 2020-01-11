@@ -1,4 +1,4 @@
-/* global $ */
+import { $ } from '../apps/common';
 
 describe('escape', () => {
     it('space', () => {

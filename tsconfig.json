@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "alwaysStrict": false,
     "module": "commonjs",
     "sourceMap": true,
@@ -10,6 +11,8 @@
   },
   "exclude": [
     "dist",
-    "node_modules"
+    "karma.conf.ts",
+    "node_modules",
+    "webpack.config.ts"
   ]
 }

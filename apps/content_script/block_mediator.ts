@@ -1,14 +1,25 @@
-/* global $, ApplicationError, BlockAnchor, BlockChangeAnchor, BlockChangeAnchorDialog,
-   BlockDialog, BlockedSitesRepository, BlockReason, BlockReasonType, BlockTarget, BlockType,
-   DOMUtils, HideAnchor, MenuPosition, OperationsAnchor, RegExpRepository,
-   TemporarilyUnblockAnchor */
+import { BlockReason } from './block_reason';
+import { BlockTarget } from './block_target';
+import { HideAnchor } from './hide_anchor';
+import { BlockReasonType, BlockState } from './block_state';
+import { BlockDialog } from './dialog';
+import { IBlockable } from './block_target_factory';
+import {
+    $, ApplicationError, BlockType, DOMUtils, MenuPosition,
+} from '../common';
+import { BlockedSitesRepository } from '../option/block';
+import { RegExpRepository } from '../regexp_repository';
+import { BlockAnchor } from './block_anchor';
+import { BlockChangeAnchor } from './block_change_anchor';
+import { BlockChangeAnchorDialog } from './block_change_anchor_dialog';
+import { OperationsAnchor } from './operations_anchor';
+import { TemporarilyUnblockAnchor } from './temporarily_unblock_anchor';
 
-interface IBlockMediator {
+export interface IBlockMediator {
     blockPage(isUrl: boolean, pattern: string, blockType: string): Promise<void>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockMediator implements IBlockMediator {
+export class BlockMediator implements IBlockMediator {
     private readonly url: string;
 
     private blockReason?: BlockReason;

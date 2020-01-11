@@ -1,10 +1,10 @@
-/* global $ */
+import { $ } from '../common';
+import { BlockMediator } from './block_mediator';
 
 /**
  * Block target element.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BlockTarget {
+export class BlockTarget {
     private readonly mediator: BlockMediator;
 
     private readonly element: Element;

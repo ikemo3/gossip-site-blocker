@@ -1,7 +1,7 @@
-/* global $ */
+import { $ } from '../common';
+import { IBlockable } from './block_target_factory';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class GoogleTopNews implements IBlockable {
+export class GoogleTopNews implements IBlockable {
     private readonly element: Element;
 
     private readonly valid: boolean;
