@@ -11,6 +11,8 @@
   },
   "exclude": [
     "dist",
-    "node_modules"
+    "karma.conf.ts",
+    "node_modules",
+    "webpack.config.ts"
   ]
 }
