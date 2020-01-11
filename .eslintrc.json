@@ -7,6 +7,7 @@
   },
   "extends": [
     "airbnb-base",
+    "plugin:import/typescript",
     "plugin:jasmine/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
