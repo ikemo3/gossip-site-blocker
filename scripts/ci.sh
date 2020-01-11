@@ -2,7 +2,7 @@
 
 yarn install
 yarn lint-for-ci
-# yarn test
+yarn test
 
 yarn build
 yarn archive

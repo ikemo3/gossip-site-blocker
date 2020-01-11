@@ -6,8 +6,7 @@
   "devDependencies": {
     "@types/chrome": "0.0.91",
     "@types/html-webpack-plugin": "^3.2.1",
-    "@types/jasmine": "^3.4.4",
-    "@types/karma": "^3.0.3",
+    "@types/jest": "^24.0.25",
     "@types/node": "^12.11.2",
     "@types/selenium-webdriver": "^4.0.5",
     "@types/webpack": "^4.41.2",
@@ -18,16 +17,12 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jasmine": "^2.10.1",
+    "eslint-plugin-jest": "^23.4.0",
     "eslint-plugin-node": "^10.0.0",
     "html-webpack-plugin": "^3.2.0",
-    "karma": "^4.4.1",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage": "^2.0.1",
-    "karma-firefox-launcher": "^1.2.0",
-    "karma-jasmine": "^2.0.1",
-    "karma-mocha-reporter": "^2.2.5",
+    "jest": "^24.9.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
+    "ts-jest": "^24.3.0",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4",
@@ -40,6 +35,6 @@
     "integration-test": "yarn archive && tsc && node --async-stack-traces test/selenium/test.js",
     "lint": "yarn eslint --ext .ts apps test *.ts",
     "lint-for-ci": "yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps test *.ts",
-    "test": "tsc && karma start --single-run"
+    "test": "tsc && jest"
   }
 }

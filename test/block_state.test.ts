@@ -124,7 +124,7 @@ describe('BlockState', () => {
     });
 
     it('block by IDN', () => {
-        spyOn($, 'message').withArgs('IDN').and.returnValue('Internationalized Domain Name');
+        jest.spyOn($, 'message').mockReturnValue('Internationalized Domain Name');
 
         const target = createTarget('http://xn--eckwd4c7cu47r2wf.jp', false);
 
