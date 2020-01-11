@@ -1,6 +1,5 @@
 import { $ } from '../common';
 import { BlockReasonType } from './block_state';
-import { blockReasons } from './document_start/start';
 import { OptionRepository } from '../option/config';
 
 export async function create_appbar_links(): Promise<void> {
@@ -66,7 +65,7 @@ function show_blocked_by_banned_words(): void {
         return;
     }
 
-    const lines = blockReasons.map((reason) => {
+    const lines = window.blockReasons.map((reason) => {
         if (reason.getType() === BlockReasonType.WORD) {
             return reason.getUrl();
         }

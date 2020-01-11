@@ -21,7 +21,13 @@ export interface IOptions {
     bannedWordOption: IBannedWordOption;
 }
 
-export const blockReasons: BlockReason[] = [];
+declare global {
+    interface Window {
+        blockReasons: BlockReason[];
+    }
+}
+
+window.blockReasons = [];
 
 (async (): Promise<void> => {
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();

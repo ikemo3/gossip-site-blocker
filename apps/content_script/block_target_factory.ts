@@ -3,7 +3,7 @@ import { BlockState } from './block_state';
 import { BlockMediator } from './block_mediator';
 import { GoogleElement } from './google_element';
 import { GoogleInnerCard } from './google_inner_card';
-import { blockReasons, IOptions } from './document_start/start';
+import { IOptions } from './document_start/start';
 
 export interface IBlockTarget {
     getUrl(): string;
@@ -48,7 +48,7 @@ export function blockGoogleElement(g1: Element, options: IOptions): boolean {
         options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
+        window.blockReasons.push(blockState.getReason()!);
     }
 
     if (blockState.getState() === 'hard') {
@@ -71,7 +71,7 @@ export function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
         options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
+        window.blockReasons.push(blockState.getReason()!);
     }
 
     if (blockState.getState() === 'hard') {
@@ -96,7 +96,7 @@ export function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
         options.regexpList, options.idnOption);
 
     if (blockState.getReason()) {
-        blockReasons.push(blockState.getReason()!);
+        window.blockReasons.push(blockState.getReason()!);
     }
 
     if (blockState.getState() === 'hard') {
