@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "alwaysStrict": false,
     "module": "commonjs",
     "sourceMap": true,
