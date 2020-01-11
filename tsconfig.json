@@ -9,6 +9,7 @@
     "target": "es2017"
   },
   "exclude": [
+    "dist",
     "node_modules"
   ]
 }
