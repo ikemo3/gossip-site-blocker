@@ -96,9 +96,3 @@ class RegExpList {
         $.removeSelf(div);
     }
 }
-
-let regexpList: RegExpList;
-(async (): Promise<void> => {
-    regexpList = new RegExpList();
-    await regexpList.load();
-})();

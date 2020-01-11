@@ -121,9 +121,3 @@ class BannedWords {
         this.wordList.removeChild(wordDiv);
     }
 }
-
-let bannedWords: BannedWords;
-(async (): Promise<void> => {
-    bannedWords = new BannedWords();
-    await bannedWords.load();
-})();
