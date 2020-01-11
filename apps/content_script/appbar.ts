@@ -1,8 +1,9 @@
 import { $ } from '../common';
 import { BlockReasonType } from './block_state';
-import { blockReasons, gsbOptions } from './document_start/start';
+import { blockReasons } from './document_start/start';
+import { OptionRepository } from '../option/config';
 
-export function create_appbar_links(): void {
+export async function create_appbar_links(): Promise<void> {
     const resultStats = document.getElementById('resultStats');
     if (resultStats !== null) {
         const resultStatsIsHidden = getComputedStyle(resultStats).opacity === '0';
@@ -12,7 +13,8 @@ export function create_appbar_links(): void {
 
             resultStats.appendChild(anchor);
 
-            if (gsbOptions!.bannedWordOption.showInfo) {
+            const bannedWordOption = await OptionRepository.getBannedWordOption();
+            if (bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message('showBlockedByWordInfo'));
                 showInfo.style.marginLeft = '1rem';
                 $.onclick(showInfo, show_blocked_by_banned_words);
@@ -32,7 +34,8 @@ export function create_appbar_links(): void {
 
             toolDiv.appendChild(anchor);
 
-            if (gsbOptions!.bannedWordOption.showInfo) {
+            const bannedWordOption = await OptionRepository.getBannedWordOption();
+            if (bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message('showBlockedByWordInfo'));
                 showInfo.style.marginLeft = '1rem';
                 $.onclick(showInfo, show_blocked_by_banned_words);

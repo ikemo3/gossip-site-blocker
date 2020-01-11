@@ -21,44 +21,7 @@ export interface IOptions {
     bannedWordOption: IBannedWordOption;
 }
 
-// eslint-disable-next-line import/no-mutable-exports
-export let gsbOptions: IOptions | null = null;
-
-// add observer
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        for (const node of mutation.addedNodes) {
-            if (node instanceof Element) {
-                if (node.classList.contains('g')) {
-                    if (gsbOptions !== null) {
-                        tryBlockGoogleElement(node, gsbOptions);
-                    } else {
-                        pendingsGoogle.push(node);
-                    }
-                } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
-                    if (gsbOptions !== null) {
-                        tryBlockGoogleInnerCard(node, gsbOptions);
-                    } else {
-                        pendingsInnerCard.push(node);
-                    }
-                } else if (node.classList.contains('dbsr')) {
-                    if (gsbOptions !== null) {
-                        tryBlockGoogleTopNews(node, gsbOptions);
-                    } else {
-                        pendingsTopNews.push(node);
-                    }
-                }
-            }
-        }
-    });
-});
-
-const pendingsGoogle: Element[] = [];
-const pendingsInnerCard: Element[] = [];
-const pendingsTopNews: Element[] = [];
 export const blockReasons: BlockReason[] = [];
-const config = { childList: true, subtree: true };
-observer.observe(document.documentElement, config);
 
 (async (): Promise<void> => {
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
@@ -70,7 +33,7 @@ observer.observe(document.documentElement, config);
     const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug('autoBlockIDNOption:', idnOption);
 
-    gsbOptions = {
+    const gsbOptions = {
         blockedSites,
         bannedWords,
         regexpList,
@@ -80,17 +43,25 @@ observer.observe(document.documentElement, config);
         bannedWordOption,
     };
 
-    for (const node of pendingsGoogle) {
-        tryBlockGoogleElement(node, gsbOptions);
-    }
+    // add observer
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            for (const node of mutation.addedNodes) {
+                if (node instanceof Element) {
+                    if (node.classList.contains('g')) {
+                        tryBlockGoogleElement(node, gsbOptions);
+                    } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
+                        tryBlockGoogleInnerCard(node, gsbOptions);
+                    } else if (node.classList.contains('dbsr')) {
+                        tryBlockGoogleTopNews(node, gsbOptions);
+                    }
+                }
+            }
+        });
+    });
 
-    for (const node of pendingsInnerCard) {
-        tryBlockGoogleInnerCard(node, gsbOptions);
-    }
-
-    for (const node of pendingsTopNews) {
-        tryBlockGoogleTopNews(node, gsbOptions);
-    }
+    const config = { childList: true, subtree: true };
+    observer.observe(document.documentElement, config);
 })();
 
 const subObserverList: MutationObserver[] = [];
