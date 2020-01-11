@@ -8,6 +8,8 @@ dist
 reports
 test/**/*.js
 test/**/*.js.map
+webpack.config.js
+webpack.config.js.map
 tmp
 
 # Tesseract.js
