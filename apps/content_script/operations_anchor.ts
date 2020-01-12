@@ -8,12 +8,6 @@ export class OperationsAnchor {
 
     private readonly iconAnchor: HTMLAnchorElement;
 
-    private readonly hideAnchor: HideAnchor;
-
-    private readonly blockAnchor: BlockAnchor;
-
-    private readonly changeAnchor: BlockChangeAnchor;
-
     private isShow: boolean;
 
     private readonly div: HTMLDivElement;
@@ -23,9 +17,6 @@ export class OperationsAnchor {
     constructor(hideAnchor: HideAnchor, blockAnchor: BlockAnchor, changeAnchor: BlockChangeAnchor,
         position: string) {
         this.operationSpan = $.span('', 'block-anchor');
-        this.hideAnchor = hideAnchor;
-        this.blockAnchor = blockAnchor;
-        this.changeAnchor = changeAnchor;
 
         // add icon
         this.iconAnchor = $.anchor('');
@@ -39,9 +30,9 @@ export class OperationsAnchor {
 
         const div = $.div('block-operations-div');
         div.style.position = position;
-        div.appendChild(this.hideAnchor.getElement());
-        div.appendChild(this.blockAnchor.getElement());
-        div.appendChild(this.changeAnchor.getElement());
+        div.appendChild(hideAnchor.getElement());
+        div.appendChild(blockAnchor.getElement());
+        div.appendChild(changeAnchor.getElement());
         this.div = div;
 
         this.isShow = false;
