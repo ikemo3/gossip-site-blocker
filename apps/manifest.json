@@ -216,8 +216,8 @@
         "document_start.js"
       ],
       "css": [
-        "content_script/document_start/start.css",
-        "content_script/google.css"
+        "styles/start.css",
+        "styles/google.css"
       ]
     },
     {

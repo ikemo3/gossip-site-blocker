@@ -1,6 +1,8 @@
 import { Configuration } from 'webpack';
 import { join } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const config: Configuration = {
     mode: 'development',
@@ -23,6 +25,25 @@ const config: Configuration = {
         extensions: ['.ts', '.js'],
     },
     plugins: [
+        new CleanWebpackPlugin(),
+        new CopyPlugin([
+            {
+                from: 'apps/_locales',
+                to: '_locales',
+            },
+            {
+                from: 'apps/icons',
+                to: 'icons',
+            },
+            {
+                from: 'apps/styles',
+                to: 'styles',
+            },
+            {
+                from: 'apps/.web-extension-id',
+                to: '',
+            },
+        ]),
         new HtmlWebpackPlugin(
             {
                 template: join(__dirname, 'apps/popup/popup.html'),
