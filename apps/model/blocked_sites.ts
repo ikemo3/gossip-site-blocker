@@ -1,5 +1,5 @@
-import { DOMUtils } from '../common';
 import { BlockedSite } from './blocked_site';
+import { removeProtocol } from '../util/util';
 
 export interface IBlockedSites {
     matches(url: string): BlockedSite | undefined;
@@ -45,7 +45,7 @@ export class BlockedSites implements IBlockedSites {
          */
         let found;
 
-        const urlWithoutProtocol = DOMUtils.removeProtocol(url);
+        const urlWithoutProtocol = removeProtocol(url);
 
         for (const site of this.sites) {
             // Forward match comparison without protocol
