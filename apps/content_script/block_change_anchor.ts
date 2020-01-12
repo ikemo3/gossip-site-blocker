@@ -1,12 +1,13 @@
-import { BlockMediator } from './block_mediator';
+import { IBlockMediator } from './mediator';
 import { $ } from '../common';
+import { Anchor } from './anchor';
 
-export class BlockChangeAnchor {
-    private readonly mediator: BlockMediator;
+export class BlockChangeAnchor implements Anchor {
+    private readonly mediator: IBlockMediator;
 
     private readonly anchor: HTMLAnchorElement;
 
-    constructor(mediator: BlockMediator) {
+    constructor(mediator: IBlockMediator) {
         this.mediator = mediator;
 
         const anchor = $.anchor($.message('changeBlockState'));

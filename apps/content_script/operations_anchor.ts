@@ -1,18 +1,10 @@
 import { $ } from '../common';
-import { HideAnchor } from './hide_anchor';
-import { BlockAnchor } from './block_anchor';
-import { BlockChangeAnchor } from './block_change_anchor';
+import { Anchor } from './anchor';
 
 export class OperationsAnchor {
     private readonly operationSpan: HTMLSpanElement;
 
     private readonly iconAnchor: HTMLAnchorElement;
-
-    private readonly hideAnchor: HideAnchor;
-
-    private readonly blockAnchor: BlockAnchor;
-
-    private readonly changeAnchor: BlockChangeAnchor;
 
     private isShow: boolean;
 
@@ -20,12 +12,8 @@ export class OperationsAnchor {
 
     private readonly parent: HTMLElement;
 
-    constructor(hideAnchor: HideAnchor, blockAnchor: BlockAnchor, changeAnchor: BlockChangeAnchor,
-        position: string) {
+    constructor(hideAnchor: Anchor, blockAnchor: Anchor, changeAnchor: Anchor, position: string) {
         this.operationSpan = $.span('', 'block-anchor');
-        this.hideAnchor = hideAnchor;
-        this.blockAnchor = blockAnchor;
-        this.changeAnchor = changeAnchor;
 
         // add icon
         this.iconAnchor = $.anchor('');
@@ -39,9 +27,9 @@ export class OperationsAnchor {
 
         const div = $.div('block-operations-div');
         div.style.position = position;
-        div.appendChild(this.hideAnchor.getElement());
-        div.appendChild(this.blockAnchor.getElement());
-        div.appendChild(this.changeAnchor.getElement());
+        div.appendChild(hideAnchor.getElement());
+        div.appendChild(blockAnchor.getElement());
+        div.appendChild(changeAnchor.getElement());
         this.div = div;
 
         this.isShow = false;

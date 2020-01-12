@@ -14,10 +14,7 @@ import { BlockChangeAnchor } from './block_change_anchor';
 import { BlockChangeAnchorDialog } from './block_change_anchor_dialog';
 import { OperationsAnchor } from './operations_anchor';
 import { TemporarilyUnblockAnchor } from './temporarily_unblock_anchor';
-
-export interface IBlockMediator {
-    blockPage(isUrl: boolean, pattern: string, blockType: string): Promise<void>;
-}
+import { IBlockMediator } from './mediator';
 
 export class BlockMediator implements IBlockMediator {
     private readonly url: string;
