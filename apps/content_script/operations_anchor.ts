@@ -1,7 +1,5 @@
 import { $ } from '../common';
-import { HideAnchor } from './hide_anchor';
-import { BlockAnchor } from './block_anchor';
-import { BlockChangeAnchor } from './block_change_anchor';
+import { Anchor } from './anchor';
 
 export class OperationsAnchor {
     private readonly operationSpan: HTMLSpanElement;
@@ -14,8 +12,7 @@ export class OperationsAnchor {
 
     private readonly parent: HTMLElement;
 
-    constructor(hideAnchor: HideAnchor, blockAnchor: BlockAnchor, changeAnchor: BlockChangeAnchor,
-        position: string) {
+    constructor(hideAnchor: Anchor, blockAnchor: Anchor, changeAnchor: Anchor, position: string) {
         this.operationSpan = $.span('', 'block-anchor');
 
         // add icon

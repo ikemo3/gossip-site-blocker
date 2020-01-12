@@ -1,7 +1,8 @@
 import { BlockMediator } from './block_mediator';
 import { $ } from '../common';
+import { Anchor } from './anchor';
 
-export class BlockChangeAnchor {
+export class BlockChangeAnchor implements Anchor {
     private readonly mediator: BlockMediator;
 
     private readonly anchor: HTMLAnchorElement;
