@@ -13,6 +13,11 @@
     background-color: #FFD2D2;
 }
 
+g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /**
  * Anchor immediately after not blocked element
  */
