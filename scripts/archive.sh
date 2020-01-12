@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 PACKAGE_NAME=$(jq -r .name package.json)
-MANIFEST_VERSION=$(jq -r .version dist/manifest.json)
+MANIFEST_VERSION=$(jq -r .version apps/manifest.json)
 
 # store manifest.json
 git checkout -- apps/manifest.json
