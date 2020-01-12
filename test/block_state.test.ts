@@ -1,6 +1,6 @@
 import { IBlockTarget } from '../apps/content_script/block_target_factory';
-import { IBlockedSites } from '../apps/option/blocked_sites';
-import BlockedSite from '../apps/option/blocked_site';
+import { IBlockedSites } from '../apps/model/blocked_sites';
+import { BlockedSite } from '../apps/model/blocked_site';
 import { $, BannedTarget, BlockType } from '../apps/common';
 import { IBannedWord } from '../apps/banned_word_repository';
 import { BlockReasonType, BlockState } from '../apps/content_script/block_state';

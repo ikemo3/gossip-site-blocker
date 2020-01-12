@@ -1,5 +1,5 @@
 import { ApplicationError, Logger } from '../common';
-import BlockedSite from './blocked_site';
+import { BlockedSite } from '../model/blocked_site';
 import { BlockedSitesRepository } from './block';
 
 /**

@@ -1,5 +1,5 @@
 import { DOMUtils } from '../common';
-import BlockedSite from './blocked_site';
+import { BlockedSite } from './blocked_site';
 
 export interface IBlockedSites {
     matches(url: string): BlockedSite | undefined;
@@ -8,7 +8,7 @@ export interface IBlockedSites {
 /**
  * @property {Array<BlockedSite>} sites
  */
-export class BlockedSites {
+export class BlockedSites implements IBlockedSites {
     public sites: BlockedSite[];
 
     constructor(sites: BlockedSite[]) {

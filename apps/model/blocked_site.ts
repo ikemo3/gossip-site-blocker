@@ -1,4 +1,7 @@
-import { IBlockedSite } from './block';
+export interface IBlockedSite {
+    url: string;
+    block_type: string;
+}
 
 /**
  * Blocked sites
@@ -6,7 +9,7 @@ import { IBlockedSite } from './block';
  * @property {string} url Beginning of blocked URL(without scheme).
  * @property {"soft"|"hard"} block_type
  */
-export default class BlockedSite {
+export class BlockedSite {
     public url: string;
 
     public block_type: string;
