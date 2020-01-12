@@ -1,6 +1,5 @@
 import { BlockReason } from './block_reason';
 import { BlockTarget } from './block_target';
-import { HideAnchor } from './hide_anchor';
 import { BlockReasonType, BlockState } from './block_state';
 import { BlockDialog } from './dialog';
 import { IBlockable } from './block_target_factory';
@@ -9,12 +8,197 @@ import {
 } from '../common';
 import { BlockedSitesRepository } from '../option/block';
 import { RegExpRepository } from '../regexp_repository';
-import { BlockAnchor } from './block_anchor';
-import { BlockChangeAnchor } from './block_change_anchor';
-import { BlockChangeAnchorDialog } from './block_change_anchor_dialog';
 import { OperationsAnchor } from './operations_anchor';
-import { TemporarilyUnblockAnchor } from './temporarily_unblock_anchor';
 import { IBlockMediator } from './mediator';
+import { Anchor } from './anchor';
+
+class HideAnchor implements Anchor {
+    private readonly anchor: HTMLAnchorElement;
+
+    private readonly mediator: IBlockMediator;
+
+    constructor(mediator: IBlockMediator) {
+        this.mediator = mediator;
+
+        const anchor = $.anchor($.message('hideThisPage'));
+        $.onclick(anchor, this.mediator.hide.bind(this.mediator));
+
+        this.anchor = anchor;
+    }
+
+    public getElement(): Element {
+        return this.anchor;
+    }
+
+    public show(): void {
+        $.showBlock(this.anchor);
+    }
+
+    public hide(): void {
+        $.hide(this.anchor);
+    }
+}
+
+class TemporarilyUnblockAnchor {
+    private readonly anchor: HTMLAnchorElement;
+
+    private readonly mediator: BlockMediator;
+
+    constructor(mediator: BlockMediator) {
+        this.mediator = mediator;
+
+        const anchor = $.anchor();
+        anchor.classList.add('blocker-temporarily-unblock');
+        $.onclick(anchor, this.mediator.temporarilyUnblock.bind(this.mediator));
+
+        this.anchor = anchor;
+    }
+
+    public getElement(): Element {
+        return this.anchor;
+    }
+
+    public show(reason: string): void {
+        $.show(this.anchor);
+        $.text(this.anchor, TemporarilyUnblockAnchor.message(reason));
+    }
+
+    public hide(): void {
+        $.hide(this.anchor);
+    }
+
+    private static message(reason: string): string {
+        return chrome.i18n.getMessage('temporarilyUnblock', [$.decodeURI(reason)]);
+    }
+}
+
+class BlockAnchor implements Anchor {
+    private readonly anchor: HTMLAnchorElement;
+
+    private readonly mediator: IBlockMediator;
+
+    constructor(mediator: IBlockMediator) {
+        this.mediator = mediator;
+
+        const anchor = $.anchor($.message('blockThisPage'));
+        $.onclick(anchor, this.mediator.showBlockDialog.bind(this.mediator));
+
+        this.anchor = anchor;
+    }
+
+    public getElement(): Element {
+        return this.anchor;
+    }
+
+    public showBlockThisPage(): void {
+        $.showBlock(this.anchor);
+        $.text(this.anchor, $.message('blockThisPage'));
+    }
+
+    public showBlockExplicitly(): void {
+        $.showBlock(this.anchor);
+        $.text(this.anchor, $.message('blockThisPageExplicitly'));
+    }
+
+    public hide(): void {
+        $.hide(this.anchor);
+    }
+}
+
+class BlockChangeAnchor implements Anchor {
+    private readonly mediator: IBlockMediator;
+
+    private readonly anchor: HTMLAnchorElement;
+
+    constructor(mediator: IBlockMediator) {
+        this.mediator = mediator;
+
+        const anchor = $.anchor($.message('changeBlockState'));
+        $.onclick(anchor, this.mediator.showChangeStateDialog.bind(this.mediator));
+
+        this.anchor = anchor;
+    }
+
+    public getElement(): Element {
+        return this.anchor;
+    }
+
+    public hide(): void {
+        $.hide(this.anchor);
+    }
+
+    public show(): void {
+        $.showBlock(this.anchor);
+    }
+}
+
+class BlockChangeAnchorDialog {
+    private readonly mediator: BlockMediator;
+
+    private readonly background: HTMLDivElement;
+
+    private readonly reason: string | null;
+
+    private readonly url: string;
+
+    constructor(mediator: BlockMediator, url: string, reason: string | null) {
+        this.mediator = mediator;
+        this.url = url;
+
+        const background = $.div('block-dialog-background');
+        this.background = background;
+
+        const dialog = $.div('block-dialog');
+        const explanation = $.message('blockChangeExplanation');
+        const explanationDiv = $.div();
+        explanationDiv.textContent = explanation;
+
+        const reasonDiv = $.div();
+        reasonDiv.textContent = `URL: ${reason}`;
+
+        dialog.appendChild(explanationDiv);
+        dialog.appendChild(reasonDiv);
+
+        const buttonsDiv = $.div('block-dialog-buttons');
+
+        const cancelButton = $.button($.message('cancelButtonLabel'), 'blocker-secondary-button');
+        $.onclick(cancelButton, this.cancel.bind(this));
+
+        const unblockButton = $.button($.message('unblock'), 'blocker-secondary-button');
+        $.onclick(unblockButton, this.unblock.bind(this));
+
+        const hardBlockButton = $.button($.message('hardBlock'), 'blocker-secondary-button');
+        $.onclick(hardBlockButton, this.toHard.bind(this));
+
+        document.body.appendChild(background);
+        background.appendChild(dialog);
+        dialog.appendChild(buttonsDiv);
+        buttonsDiv.appendChild(cancelButton);
+        buttonsDiv.appendChild(unblockButton);
+        buttonsDiv.appendChild(hardBlockButton);
+
+        this.reason = reason;
+    }
+
+    private cancel(): void {
+        this.closeDialog();
+    }
+
+    private async toHard(): Promise<void> {
+        await this.mediator.toHard(this.reason!);
+        this.closeDialog();
+    }
+
+    private async unblock(): Promise<void> {
+        await this.mediator.unblock(this.reason!);
+        this.closeDialog();
+    }
+
+    private closeDialog(): void {
+        // remove background
+        $.removeSelf(this.background);
+    }
+}
 
 export class BlockMediator implements IBlockMediator {
     private readonly url: string;
