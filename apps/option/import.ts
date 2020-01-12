@@ -1,7 +1,8 @@
-import { BlockedSitesRepository, IBlockedSite } from './block';
+import { BlockedSitesRepository } from './block';
 import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
 import { IRegExpItem, RegExpRepository } from '../regexp_repository';
 import { $ } from '../common';
+import { IBlockedSite } from '../model/blocked_site';
 
 export async function importClicked(): Promise<void> {
     // noinspection JSValidateTypes

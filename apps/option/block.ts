@@ -1,14 +1,9 @@
 import { ChromeStorage } from '../common';
-import BlockedSite from './blocked_site';
-import { BlockedSites } from './blocked_sites';
+import { BlockedSites } from '../model/blocked_sites';
+import { IBlockedSite, BlockedSite } from '../model/blocked_site';
 
 export interface IBlockedSitesList {
     blocked: IBlockedSite[];
-}
-
-export interface IBlockedSite {
-    url: string;
-    block_type: string;
 }
 
 export const BlockedSitesRepository = {

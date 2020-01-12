@@ -2,10 +2,10 @@ import {
     $, BannedTarget, BlockType, DOMUtils,
 } from '../common';
 import { IRegExpItem } from '../regexp_repository';
-import { IBlockedSites } from '../option/blocked_sites';
+import { IBlockedSites } from '../model/blocked_sites';
 import { IBannedWord } from '../banned_word_repository';
 import { IAutoBlockIDNOption } from '../option/config';
-import BlockedSite from '../option/blocked_site';
+import { BlockedSite } from '../model/blocked_site';
 import { IBlockTarget } from './block_target_factory';
 import { BlockReason } from './block_reason';
 

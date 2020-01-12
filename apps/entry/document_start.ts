@@ -1,4 +1,4 @@
-import { BlockedSites } from '../option/blocked_sites';
+import { BlockedSites } from '../model/blocked_sites';
 import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
 import { IRegExpItem, RegExpRepository } from '../regexp_repository';
 import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../option/config';
