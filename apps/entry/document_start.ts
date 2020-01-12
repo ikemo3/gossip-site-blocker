@@ -1,15 +1,15 @@
-import { BlockedSites } from '../../option/blocked_sites';
-import { BannedWordRepository, IBannedWord } from '../../banned_word_repository';
-import { IRegExpItem, RegExpRepository } from '../../regexp_repository';
-import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../../option/config';
-import { Logger, MenuPosition } from '../../common';
-import { BlockReason } from '../block_reason';
-import { BlockedSitesRepository } from '../../option/block';
+import { BlockedSites } from '../option/blocked_sites';
+import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
+import { IRegExpItem, RegExpRepository } from '../regexp_repository';
+import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../option/config';
+import { Logger, MenuPosition } from '../common';
+import { BlockReason } from '../content_script/block_reason';
+import { BlockedSitesRepository } from '../option/block';
 import {
     blockGoogleElement,
     blockGoogleInnerCard,
     blockGoogleTopNews,
-} from '../block_target_factory';
+} from '../content_script/block_target_factory';
 
 export interface IOptions {
     blockedSites: BlockedSites;

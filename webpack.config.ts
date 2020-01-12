@@ -7,10 +7,10 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 const config: Configuration = {
     mode: 'development',
     entry: {
-        document_start: join(__dirname, 'apps', 'content_script', 'document_start', 'start.ts'),
-        document_idle: join(__dirname, 'apps', 'content_script', 'document_idle', 'idle.ts'),
-        options: join(__dirname, 'apps', 'option', 'options.ts'),
-        popup: join(__dirname, 'apps', 'popup', 'popup.ts'),
+        document_start: join(__dirname, 'apps', 'entry', 'document_start.ts'),
+        document_idle: join(__dirname, 'apps', 'entry', 'document_idle.ts'),
+        options: join(__dirname, 'apps', 'entry', 'options.ts'),
+        popup: join(__dirname, 'apps', 'entry', 'popup.ts'),
     },
     output: {
         path: join(__dirname, 'dist'),
