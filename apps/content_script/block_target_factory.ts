@@ -3,7 +3,7 @@ import { BlockState } from './block_state';
 import { BlockMediator } from './block_mediator';
 import { GoogleElement } from './google_element';
 import { GoogleInnerCard } from './google_inner_card';
-import { IOptions } from './document_start/start';
+import { IOptions } from '../entry/document_start';
 
 export interface IBlockTarget {
     getUrl(): string;
