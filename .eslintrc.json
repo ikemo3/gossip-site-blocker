@@ -34,6 +34,7 @@
       "error",
       4
     ],
+    "max-classes-per-file": "off",
     "max-len": "warn",
     "no-case-declarations": "warn",
     "no-continue": "off",
