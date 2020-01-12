@@ -1,9 +1,9 @@
 import { $, DOMUtils } from '../common';
 import makeRecommendUrl from './recommend';
-import { IBlockMediator } from './block_mediator';
+import { IBasicBlockMediator } from './mediator';
 
 export class BlockDialog {
-    public mediator: IBlockMediator;
+    public mediator: IBasicBlockMediator;
 
     public background: HTMLDivElement;
 
@@ -17,7 +17,7 @@ export class BlockDialog {
 
     public blockTypeSelect: HTMLSelectElement;
 
-    constructor(mediator: IBlockMediator, url: string, defaultBlockType: string) {
+    constructor(mediator: IBasicBlockMediator, url: string, defaultBlockType: string) {
         this.mediator = mediator;
 
         this.background = this.createBackground(url, defaultBlockType);

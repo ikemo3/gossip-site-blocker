@@ -2,7 +2,7 @@ import { $ } from '../common';
 import { BlockedSitesRepository } from '../option/block';
 import { OptionRepository } from '../option/config';
 import { BlockDialog } from '../content_script/dialog';
-import { IBlockMediator } from '../content_script/block_mediator';
+import { IBasicBlockMediator } from '../content_script/mediator';
 import localizeHtmlPage from '../option/l10n';
 
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
@@ -46,7 +46,7 @@ optionLink.addEventListener('click', () => {
     chrome.runtime.openOptionsPage();
 });
 
-class PopupMediator implements IBlockMediator {
+class PopupMediator implements IBasicBlockMediator {
     async blockPage(isUrl: boolean, url: string, blockType: string): Promise<void> {
         await BlockedSitesRepository.add(url, blockType);
     }
