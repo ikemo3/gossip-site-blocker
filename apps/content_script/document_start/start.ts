@@ -29,6 +29,44 @@ declare global {
 
 window.blockReasons = [];
 
+// This is necessary when using the back button.
+let gsbOptions: IOptions | null = null;
+const pendingsGoogle: Element[] = [];
+const pendingsInnerCard: Element[] = [];
+const pendingsTopNews: Element[] = [];
+
+// add observer
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        for (const node of mutation.addedNodes) {
+            if (node instanceof Element) {
+                if (node.classList.contains('g')) {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleElement(node, gsbOptions);
+                    } else {
+                        pendingsGoogle.push(node);
+                    }
+                } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleInnerCard(node, gsbOptions);
+                    } else {
+                        pendingsInnerCard.push(node);
+                    }
+                } else if (node.classList.contains('dbsr')) {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleTopNews(node, gsbOptions);
+                    } else {
+                        pendingsTopNews.push(node);
+                    }
+                }
+            }
+        }
+    });
+});
+
+const config = { childList: true, subtree: true };
+observer.observe(document.documentElement, config);
+
 (async (): Promise<void> => {
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
     const bannedWords: IBannedWord[] = await BannedWordRepository.load();
@@ -39,7 +77,7 @@ window.blockReasons = [];
     const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug('autoBlockIDNOption:', idnOption);
 
-    const gsbOptions = {
+    gsbOptions = {
         blockedSites,
         bannedWords,
         regexpList,
@@ -49,25 +87,17 @@ window.blockReasons = [];
         bannedWordOption,
     };
 
-    // add observer
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            for (const node of mutation.addedNodes) {
-                if (node instanceof Element) {
-                    if (node.classList.contains('g')) {
-                        tryBlockGoogleElement(node, gsbOptions);
-                    } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
-                        tryBlockGoogleInnerCard(node, gsbOptions);
-                    } else if (node.classList.contains('dbsr')) {
-                        tryBlockGoogleTopNews(node, gsbOptions);
-                    }
-                }
-            }
-        });
-    });
+    for (const node of pendingsGoogle) {
+        tryBlockGoogleElement(node, gsbOptions);
+    }
 
-    const config = { childList: true, subtree: true };
-    observer.observe(document.documentElement, config);
+    for (const node of pendingsInnerCard) {
+        tryBlockGoogleInnerCard(node, gsbOptions);
+    }
+
+    for (const node of pendingsTopNews) {
+        tryBlockGoogleTopNews(node, gsbOptions);
+    }
 })();
 
 const subObserverList: MutationObserver[] = [];
