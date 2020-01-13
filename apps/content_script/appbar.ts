@@ -1,5 +1,5 @@
 import { $ } from '../common';
-import { BlockReasonType } from './block_state';
+import { BlockReasonType } from '../model/block_reason';
 import { OptionRepository } from '../repository/config';
 
 export async function create_appbar_links(): Promise<void> {

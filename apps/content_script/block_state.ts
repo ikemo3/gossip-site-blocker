@@ -7,15 +7,7 @@ import { IBannedWord } from '../repository/banned_word_repository';
 import { IAutoBlockIDNOption } from '../repository/config';
 import { BlockedSite } from '../model/blocked_site';
 import { IBlockTarget } from './block_target_factory';
-import { BlockReason } from './block_reason';
-
-export enum BlockReasonType {
-    URL_EXACTLY,
-    URL,
-    WORD, /* Banned Word */
-    REGEXP, /* Regular Expression */
-    IDN, /* Internationalized Domain Name */
-}
+import { BlockReason, BlockReasonType } from '../model/block_reason';
 
 export class BlockState {
     private readonly state: string;
