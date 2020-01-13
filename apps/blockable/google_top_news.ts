@@ -1,5 +1,5 @@
 import { $ } from '../common';
-import { IBlockable } from './block_target_factory';
+import { IBlockable } from './blockable';
 
 export class GoogleTopNews implements IBlockable {
     private readonly element: Element;

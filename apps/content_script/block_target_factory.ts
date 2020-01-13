@@ -1,8 +1,8 @@
-import { GoogleTopNews } from './google_top_news';
+import { GoogleTopNews } from '../blockable/google_top_news';
 import { BlockState } from './block_state';
 import { BlockMediator } from './block_mediator';
-import { GoogleElement } from './google_element';
-import { GoogleInnerCard } from './google_inner_card';
+import { GoogleElement } from '../blockable/google_element';
+import { GoogleInnerCard } from '../blockable/google_inner_card';
 import { IOptions } from '../entry/document_start';
 
 export interface IBlockTarget {
@@ -11,26 +11,6 @@ export interface IBlockTarget {
     contains(keyword: string): boolean;
 
     containsInTitle(keyword: string): boolean;
-}
-
-export interface IBlockable {
-    getUrl(): string;
-
-    canBlock(): boolean;
-
-    contains(keyword: string): boolean;
-
-    containsInTitle(keyword: string): boolean;
-
-    deleteElement(): void;
-
-    getElement(): Element;
-
-    getOperationInsertPoint(): Element;
-
-    getPosition(): string;
-
-    getCssClass(): string;
 }
 
 export function blockGoogleElement(g1: Element, options: IOptions): boolean {

@@ -1,4 +1,4 @@
-import { IBlockable } from './block_target_factory';
+import { IBlockable } from './blockable';
 
 export class GoogleElement implements IBlockable {
     private readonly valid: boolean;

@@ -2,7 +2,7 @@ import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { BlockTarget } from './block_target';
 import { BlockState } from './block_state';
 import { BlockDialog } from './dialog';
-import { IBlockable } from './block_target_factory';
+import { IBlockable } from '../blockable/blockable';
 import {
     $, ApplicationError, BlockType, DOMUtils, MenuPosition,
 } from '../common';
