@@ -1,6 +1,6 @@
-import { BlockReason } from './block_reason';
+import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { BlockTarget } from './block_target';
-import { BlockReasonType, BlockState } from './block_state';
+import { BlockState } from './block_state';
 import { BlockDialog } from './dialog';
 import { IBlockable } from './block_target_factory';
 import {

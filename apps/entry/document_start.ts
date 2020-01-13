@@ -3,7 +3,7 @@ import { BannedWordRepository, IBannedWord } from '../repository/banned_word_rep
 import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
-import { BlockReason } from '../content_script/block_reason';
+import { BlockReason } from '../model/block_reason';
 import { BlockedSitesRepository } from '../option/block';
 import {
     blockGoogleElement,
