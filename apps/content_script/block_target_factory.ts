@@ -5,14 +5,6 @@ import { GoogleElement } from '../blockable/google_element';
 import { GoogleInnerCard } from '../blockable/google_inner_card';
 import { IOptions } from '../entry/document_start';
 
-export interface IBlockTarget {
-    getUrl(): string;
-
-    contains(keyword: string): boolean;
-
-    containsInTitle(keyword: string): boolean;
-}
-
 export function blockGoogleElement(g1: Element, options: IOptions): boolean {
     const g = new GoogleElement(g1);
 

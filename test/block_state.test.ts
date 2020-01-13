@@ -1,4 +1,3 @@
-import { IBlockTarget } from '../apps/content_script/block_target_factory';
 import { IBlockedSites } from '../apps/model/blocked_sites';
 import { BlockedSite } from '../apps/model/blocked_site';
 import { $, BannedTarget, BlockType } from '../apps/common';
@@ -7,6 +6,7 @@ import { BlockState } from '../apps/content_script/block_state';
 import { IAutoBlockIDNOption } from '../apps/repository/config';
 import { IRegExpItem } from '../apps/repository/regexp_repository';
 import { BlockReasonType } from '../apps/model/block_reason';
+import { IBlockTarget } from '../apps/blockable/blockable';
 
 describe('BlockState', () => {
     function createTarget(url: string, contains: boolean): IBlockTarget {

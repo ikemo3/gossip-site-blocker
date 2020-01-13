@@ -6,8 +6,8 @@ import { IBlockedSites } from '../model/blocked_sites';
 import { IBannedWord } from '../repository/banned_word_repository';
 import { IAutoBlockIDNOption } from '../repository/config';
 import { BlockedSite } from '../model/blocked_site';
-import { IBlockTarget } from './block_target_factory';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
+import { IBlockTarget } from '../blockable/blockable';
 
 export class BlockState {
     private readonly state: string;
