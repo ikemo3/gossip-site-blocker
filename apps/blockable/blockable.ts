@@ -17,3 +17,11 @@ export interface IBlockable {
 
     getCssClass(): string;
 }
+
+export interface IBlockTarget {
+    getUrl(): string;
+
+    contains(keyword: string): boolean;
+
+    containsInTitle(keyword: string): boolean;
+}
