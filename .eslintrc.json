@@ -72,5 +72,13 @@
       }
     ],
     "@typescript-eslint/no-use-before-define": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["scripts/*"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
 }
