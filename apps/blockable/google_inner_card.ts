@@ -1,4 +1,4 @@
-import { IBlockable } from './block_target_factory';
+import { IBlockable } from './blockable';
 
 export class GoogleInnerCard implements IBlockable {
     public valid: boolean;
