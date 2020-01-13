@@ -1,5 +1,5 @@
 import { $, DOMUtils } from '../common';
-import makeRecommendUrl from './recommend';
+import makeRecommendUrl from '../model/recommend';
 import { IBasicBlockMediator } from './mediator';
 
 export class BlockDialog {

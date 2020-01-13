@@ -1,14 +1,47 @@
 import { BlockReason, BlockReasonType } from '../model/block_reason';
-import { BlockTarget } from './block_target';
 import { BlockState } from './block_state';
 import { BlockDialog } from './dialog';
 import { IBlockable } from '../blockable/blockable';
 import {
     $, ApplicationError, BlockType, DOMUtils, MenuPosition,
 } from '../common';
-import { BlockedSitesRepository } from '../option/block';
+import { BlockedSitesRepository } from '../repository/blocked_sites';
 import { RegExpRepository } from '../repository/regexp_repository';
 import { IBlockMediator } from './mediator';
+
+/**
+ * Block target element.
+ */
+class BlockTarget {
+    private readonly mediator: BlockMediator;
+
+    private readonly element: Element;
+
+    constructor(mediator: BlockMediator, element: Element) {
+        this.mediator = mediator;
+        this.element = element;
+    }
+
+    public remove(): void {
+        $.removeSelf(this.element);
+    }
+
+    public getDOMElement(): Element {
+        return this.element;
+    }
+
+    public show(): void {
+        this.element.removeAttribute('data-blocker-display');
+    }
+
+    public hide(): void {
+        this.element.setAttribute('data-blocker-display', 'none');
+    }
+
+    public temporarilyUnblock(): void {
+        this.element.setAttribute('data-blocker-display', 'unhide');
+    }
+}
 
 interface Anchor {
     getElement(): Element;

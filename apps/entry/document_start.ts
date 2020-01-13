@@ -4,12 +4,12 @@ import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
-import { BlockedSitesRepository } from '../option/block';
-import {
-    blockGoogleElement,
-    blockGoogleInnerCard,
-    blockGoogleTopNews,
-} from '../content_script/block_target_factory';
+import { BlockedSitesRepository } from '../repository/blocked_sites';
+import { GoogleElement } from '../blockable/google_element';
+import { BlockState } from '../content_script/block_state';
+import { BlockMediator } from '../content_script/block_mediator';
+import { GoogleInnerCard } from '../blockable/google_inner_card';
+import { GoogleTopNews } from '../blockable/google_top_news';
 
 export interface IOptions {
     blockedSites: BlockedSites;
@@ -103,6 +103,81 @@ observer.observe(document.documentElement, config);
 const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g1: Element, options: IOptions) => boolean;
+
+function blockGoogleElement(g1: Element, options: IOptions): boolean {
+    const g = new GoogleElement(g1);
+
+    if (g.isIgnoreable()) {
+        return true;
+    }
+
+    if (!g.canBlock()) {
+        return false;
+    }
+
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
+
+    if (blockState.getReason()) {
+        window.blockReasons.push(blockState.getReason()!);
+    }
+
+    if (blockState.getState() === 'hard') {
+        g.deleteElement();
+        return true;
+    }
+
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    return true;
+}
+
+function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
+    const g = new GoogleInnerCard(g1);
+
+    if (!g.canBlock()) {
+        return false;
+    }
+
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
+
+    if (blockState.getReason()) {
+        window.blockReasons.push(blockState.getReason()!);
+    }
+
+    if (blockState.getState() === 'hard') {
+        g.deleteElement();
+        return true;
+    }
+
+    const mediator = new BlockMediator(g, blockState, options.defaultBlockType,
+        options.menuPosition);
+    mediator.setWrappable('205px');
+    return true;
+}
+
+function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
+    const g = new GoogleTopNews(g1);
+
+    if (!g.canBlock()) {
+        return false;
+    }
+
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
+
+    if (blockState.getReason()) {
+        window.blockReasons.push(blockState.getReason()!);
+    }
+
+    if (blockState.getState() === 'hard') {
+        g.deleteElement();
+        return true;
+    }
+
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    return true;
+}
 
 function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunction): () => void {
     let completed = false;

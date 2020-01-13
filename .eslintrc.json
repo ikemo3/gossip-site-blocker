@@ -27,7 +27,6 @@
     "class-methods-use-this": "off",
     "consistent-return": "warn",
     "default-case": "warn",
-    "import/no-cycle": "off",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
     "indent": [
