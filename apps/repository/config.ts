@@ -53,11 +53,16 @@ interface IMenuPositionOption {
 export const OptionRepository: IOptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
         const items = await ChromeStorage.get({ developerMode: false }) as IDeveloperOption;
+
+        Logger.mode = items.developerMode;
+
         return items.developerMode;
     },
 
     async setDeveloperMode(mode: boolean): Promise<void> {
         await ChromeStorage.set({ developerMode: mode });
+
+        Logger.mode = mode;
 
         Logger.log("set 'developerMode' to =>", mode);
     },

@@ -1,5 +1,3 @@
-import { OptionRepository } from './repository/config';
-
 export const ChromeStorage = {
     async load<T>(keys: T): Promise<T> {
         return new Promise((resolve) => {
@@ -32,14 +30,14 @@ export const ChromeStorage = {
 };
 
 export const Logger = {
+    mode: false,
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     debug(message: any, ...params: any[]): void {
-        OptionRepository.isDeveloperMode().then((developerMode: boolean) => {
-            if (developerMode) {
-                // eslint-disable-next-line no-console
-                console.log(message, ...params);
-            }
-        });
+        if (this.mode) {
+            // eslint-disable-next-line no-console
+            console.log(message, ...params);
+        }
     },
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -303,9 +301,11 @@ export const $ = {
         return str.replace(/(\\\\|\\\+|\+)/g, (matched) => {
             if (matched === '\\\\') {
                 return '\\';
-            } if (matched === '\\+') {
+            }
+            if (matched === '\\+') {
                 return '+';
-            } if (matched === '+') {
+            }
+            if (matched === '+') {
                 return ' ';
             }
             return matched;
