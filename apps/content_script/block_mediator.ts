@@ -7,7 +7,7 @@ import {
     $, ApplicationError, BlockType, DOMUtils, MenuPosition,
 } from '../common';
 import { BlockedSitesRepository } from '../option/block';
-import { RegExpRepository } from '../regexp_repository';
+import { RegExpRepository } from '../repository/regexp_repository';
 import { IBlockMediator } from './mediator';
 
 interface Anchor {

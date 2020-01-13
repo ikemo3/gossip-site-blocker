@@ -1,6 +1,6 @@
 import { BlockedSitesRepository } from './block';
-import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
-import { RegExpRepository } from '../regexp_repository';
+import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
+import { RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
 
 export async function exportClicked(): Promise<void> {

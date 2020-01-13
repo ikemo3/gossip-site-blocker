@@ -1,9 +1,9 @@
 import BannedWords from '../option/banned_word';
 import { BlockedSitesRepository } from '../option/block';
 import BlockedSiteOption from '../option/blocked_site_option';
-import { BannedWordRepository } from '../banned_word_repository';
-import { RegExpRepository } from '../regexp_repository';
-import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../option/config';
+import { BannedWordRepository } from '../repository/banned_word_repository';
+import { RegExpRepository } from '../repository/regexp_repository';
+import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
 import { Logger } from '../common';
 import { RegExpList } from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';

@@ -1,4 +1,4 @@
-import { OptionRepository } from './option/config';
+import { OptionRepository } from './repository/config';
 
 export const ChromeStorage = {
     async load<T>(keys: T): Promise<T> {

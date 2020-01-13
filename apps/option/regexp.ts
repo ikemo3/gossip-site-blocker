@@ -1,4 +1,4 @@
-import { IRegExpItem, RegExpRepository } from '../regexp_repository';
+import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $, ApplicationError, BlockType } from '../common';
 
 export class RegExpList {

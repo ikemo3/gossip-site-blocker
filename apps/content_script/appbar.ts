@@ -1,6 +1,6 @@
 import { $ } from '../common';
 import { BlockReasonType } from './block_state';
-import { OptionRepository } from '../option/config';
+import { OptionRepository } from '../repository/config';
 
 export async function create_appbar_links(): Promise<void> {
     const resultStats = document.getElementById('resultStats');
