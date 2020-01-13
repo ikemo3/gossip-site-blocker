@@ -40,7 +40,7 @@ if (pem_base64 !== undefined) {
     // decode private key
     const buffer = Buffer.from(pem_base64, 'base64');
     const pem = buffer.toString();
-    const pemPath = join(projectTop, 'tmp', 'workspace', `${packageName}.pem`);
+    const pemPath = join(projectTop, 'tmp', `${packageName}.pem`);
     writeFileSync(pemPath, pem);
 
     // create Chrome Extension(signed)
