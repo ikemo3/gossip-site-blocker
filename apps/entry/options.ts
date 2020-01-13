@@ -1,5 +1,5 @@
 import BannedWords from '../option/banned_word';
-import { BlockedSitesRepository } from '../option/block';
+import { BlockedSitesRepository } from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';

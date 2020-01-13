@@ -1,4 +1,4 @@
-import { BlockedSitesRepository } from './block';
+import { BlockedSitesRepository } from '../repository/blocked_sites';
 import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
 import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';

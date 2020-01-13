@@ -4,7 +4,7 @@ import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
-import { BlockedSitesRepository } from '../option/block';
+import { BlockedSitesRepository } from '../repository/blocked_sites';
 import { GoogleElement } from '../blockable/google_element';
 import { BlockState } from '../content_script/block_state';
 import { BlockMediator } from '../content_script/block_mediator';
