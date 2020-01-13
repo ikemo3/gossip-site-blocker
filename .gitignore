@@ -4,6 +4,8 @@ apps/**/*.js
 apps/**/*.js.map
 dist
 reports
+scripts/*.js
+scripts/*.js.map
 test/**/*.js
 test/**/*.js.map
 webpack.config.js

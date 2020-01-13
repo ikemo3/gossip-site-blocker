@@ -1,6 +1,6 @@
 import { $ } from '../common';
 import { BlockedSitesRepository } from '../option/block';
-import { OptionRepository } from '../option/config';
+import { OptionRepository } from '../repository/config';
 import { BlockDialog } from '../content_script/dialog';
 import { IBasicBlockMediator } from '../content_script/mediator';
 import localizeHtmlPage from '../option/l10n';

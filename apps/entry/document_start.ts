@@ -1,7 +1,7 @@
 import { BlockedSites } from '../model/blocked_sites';
-import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
-import { IRegExpItem, RegExpRepository } from '../regexp_repository';
-import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../option/config';
+import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
+import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
+import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../content_script/block_reason';
 import { BlockedSitesRepository } from '../option/block';

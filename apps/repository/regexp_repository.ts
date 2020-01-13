@@ -1,4 +1,4 @@
-import { BlockType, ChromeStorage, Logger } from './common';
+import { BlockType, ChromeStorage, Logger } from '../common';
 
 interface IRegExpItemList {
     regexpList: IRegExpItem[];

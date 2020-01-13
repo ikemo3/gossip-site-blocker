@@ -1,6 +1,6 @@
 import {
     BannedTarget, BlockType, ChromeStorage, Logger,
-} from './common';
+} from '../common';
 
 interface IBannedWordItems {
     bannedWords: IBannedWord[];

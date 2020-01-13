@@ -1,6 +1,6 @@
 import { BlockedSitesRepository } from './block';
-import { BannedWordRepository, IBannedWord } from '../banned_word_repository';
-import { IRegExpItem, RegExpRepository } from '../regexp_repository';
+import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
+import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
 import { IBlockedSite } from '../model/blocked_site';
 
