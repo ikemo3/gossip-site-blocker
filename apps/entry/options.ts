@@ -3,7 +3,7 @@ import { BlockedSitesRepository } from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
+import { AutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
 import { Logger } from '../common';
 import { RegExpList } from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     Logger.debug('bannedWordOption is ', bannedWordOption);
     showBlockedByWordInfoCheckbox.checked = bannedWordOption.showInfo;
 
-    const autoBlockIDNOption: IAutoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
+    const autoBlockIDNOption: AutoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
     Logger.debug('autoBlockIDNOption is ', autoBlockIDNOption);
     autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;
 
@@ -118,7 +118,7 @@ showBlockedByWordInfoCheckbox.addEventListener('click', async (event) => {
 autoBlockIDNCheckbox.addEventListener('click', async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
-    const autoBlockIDN: IAutoBlockIDNOption = { enabled: checkbox.checked };
+    const autoBlockIDN: AutoBlockIDNOption = { enabled: checkbox.checked };
     await OptionRepository.setAutoBlockIDNOption(autoBlockIDN);
 });
 

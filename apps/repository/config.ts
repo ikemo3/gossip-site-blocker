@@ -17,10 +17,10 @@ export interface IBannedWordOption {
 }
 
 interface IAutoBlockIDNOptionStorage {
-    autoBlockIDN: IAutoBlockIDNOption;
+    autoBlockIDN: AutoBlockIDNOption;
 }
 
-export interface IAutoBlockIDNOption {
+export interface AutoBlockIDNOption {
     enabled: boolean;
 }
 
@@ -60,7 +60,7 @@ export const OptionRepository = {
         Logger.debug("set 'bannedWord' to =>", values);
     },
 
-    async getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption> {
+    async getAutoBlockIDNOption(): Promise<AutoBlockIDNOption> {
         const autoBlockIDNDefault = { enabled: false };
         const items: IAutoBlockIDNOptionStorage = await ChromeStorage.get(
             { autoBlockIDN: autoBlockIDNDefault },
@@ -68,7 +68,7 @@ export const OptionRepository = {
         return items.autoBlockIDN;
     },
 
-    async setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void> {
+    async setAutoBlockIDNOption(autoBlockIDN: AutoBlockIDNOption): Promise<void> {
         await ChromeStorage.set({ autoBlockIDN });
 
         Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);

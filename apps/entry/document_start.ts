@@ -1,7 +1,7 @@
 import { BlockedSites } from '../model/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
+import { AutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
 import { BlockedSitesRepository } from '../repository/blocked_sites';
@@ -15,7 +15,7 @@ export interface IOptions {
     blockedSites: BlockedSites;
     bannedWords: BannedWord[];
     regexpList: IRegExpItem[];
-    idnOption: IAutoBlockIDNOption;
+    idnOption: AutoBlockIDNOption;
     defaultBlockType: string;
     menuPosition: MenuPosition;
     bannedWordOption: IBannedWordOption;

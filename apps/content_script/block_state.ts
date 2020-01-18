@@ -4,7 +4,7 @@ import {
 import { IRegExpItem } from '../repository/regexp_repository';
 import { IBlockedSites } from '../model/blocked_sites';
 import { BannedWord } from '../repository/banned_word_repository';
-import { IAutoBlockIDNOption } from '../repository/config';
+import { AutoBlockIDNOption } from '../repository/config';
 import { BlockedSite } from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { IBlockTarget } from '../blockable/blockable';
@@ -18,7 +18,7 @@ export class BlockState {
         blockedSites: IBlockedSites,
         bannedWords: BannedWord[],
         regexpList: IRegExpItem[],
-        idnOption: IAutoBlockIDNOption) {
+        idnOption: AutoBlockIDNOption) {
         const blockedSite: BlockedSite | undefined = blockedSites.matches(blockable.getUrl());
 
         const banned: BannedWord | undefined = bannedWords.find((bannedWord) => {

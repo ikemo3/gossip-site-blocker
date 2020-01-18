@@ -3,7 +3,7 @@ import { BlockedSite } from '../apps/model/blocked_site';
 import { $, BannedTarget, BlockType } from '../apps/common';
 import { BannedWord } from '../apps/repository/banned_word_repository';
 import { BlockState } from '../apps/content_script/block_state';
-import { IAutoBlockIDNOption } from '../apps/repository/config';
+import { AutoBlockIDNOption } from '../apps/repository/config';
 import { IRegExpItem } from '../apps/repository/regexp_repository';
 import { BlockReasonType } from '../apps/model/block_reason';
 import { IBlockTarget } from '../apps/blockable/blockable';
@@ -54,7 +54,7 @@ describe('BlockState', () => {
         };
     }
 
-    const idnOption: IAutoBlockIDNOption = {
+    const idnOption: AutoBlockIDNOption = {
         enabled: true,
     };
 
