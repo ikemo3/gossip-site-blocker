@@ -11,7 +11,7 @@ import { BlockMediator } from '../content_script/block_mediator';
 import { GoogleInnerCard } from '../blockable/google_inner_card';
 import { GoogleTopNews } from '../blockable/google_top_news';
 
-export interface IOptions {
+export interface Options {
     blockedSites: BlockedSites;
     bannedWords: BannedWord[];
     regexpList: RegExpItem[];
@@ -30,7 +30,7 @@ declare global {
 window.blockReasons = [];
 
 // This is necessary when using the back button.
-let gsbOptions: IOptions | null = null;
+let gsbOptions: Options | null = null;
 const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
 const pendingsTopNews: Element[] = [];
@@ -102,9 +102,9 @@ observer.observe(document.documentElement, config);
 
 const subObserverList: MutationObserver[] = [];
 
-type IBlockFunction = (g1: Element, options: IOptions) => boolean;
+type IBlockFunction = (g1: Element, options: Options) => boolean;
 
-function blockGoogleElement(g1: Element, options: IOptions): boolean {
+function blockGoogleElement(g1: Element, options: Options): boolean {
     const g = new GoogleElement(g1);
 
     if (g.isIgnoreable()) {
@@ -131,7 +131,7 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
+function blockGoogleInnerCard(g1: Element, options: Options): boolean {
     const g = new GoogleInnerCard(g1);
 
     if (!g.canBlock()) {
@@ -156,7 +156,7 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
+function blockGoogleTopNews(g1: Element, options: Options): boolean {
     const g = new GoogleTopNews(g1);
 
     if (!g.canBlock()) {
@@ -179,7 +179,7 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunction): () => void {
+function blockClosure(node: Element, options: Options, blockFunc: IBlockFunction): () => void {
     let completed = false;
     return (): void => {
         if (completed) {
@@ -190,7 +190,7 @@ function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunctio
     };
 }
 
-function tryBlockElement(node: Element, options: IOptions, blockFunction: IBlockFunction): void {
+function tryBlockElement(node: Element, options: Options, blockFunction: IBlockFunction): void {
     // first, try block.
     const completed = blockFunction(node, options);
     if (completed) {
@@ -207,15 +207,15 @@ function tryBlockElement(node: Element, options: IOptions, blockFunction: IBlock
     subObserverList.push(subObserver);
 }
 
-function tryBlockGoogleElement(node: Element, options: IOptions): void {
+function tryBlockGoogleElement(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleElement);
 }
 
-function tryBlockGoogleInnerCard(node: Element, options: IOptions): void {
+function tryBlockGoogleInnerCard(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleInnerCard);
 }
 
-function tryBlockGoogleTopNews(node: Element, options: IOptions): void {
+function tryBlockGoogleTopNews(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleTopNews);
 }
 
