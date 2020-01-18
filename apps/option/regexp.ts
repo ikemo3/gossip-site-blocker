@@ -1,4 +1,4 @@
-import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
+import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $, ApplicationError, BlockType } from '../common';
 
 export class RegExpList {
@@ -27,7 +27,7 @@ export class RegExpList {
         this.regexpList.innerHTML = '';
     }
 
-    private createItem(item: IRegExpItem): HTMLDivElement {
+    private createItem(item: RegExpItem): HTMLDivElement {
         const div = $.div();
         const input = $.textField(item.pattern);
         input.readOnly = true;

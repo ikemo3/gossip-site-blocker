@@ -1,5 +1,5 @@
 import { BlockedSitesRepository } from '../repository/blocked_sites';
-import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
+import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
 
@@ -17,7 +17,7 @@ export async function exportClicked(): Promise<void> {
 
     // banned words
     const bannedLines = [];
-    const words: IBannedWord[] = await BannedWordRepository.load();
+    const words: BannedWord[] = await BannedWordRepository.load();
     for (const word of words) {
         const escaped = word.keyword.replace(/ /g, '+');
         const { blockType } = word;

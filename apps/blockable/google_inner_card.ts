@@ -1,6 +1,6 @@
-import { IBlockable } from './blockable';
+import { Blockable } from './blockable';
 
-export class GoogleInnerCard implements IBlockable {
+export class GoogleInnerCard implements Blockable {
     public valid: boolean;
 
     public url: string;

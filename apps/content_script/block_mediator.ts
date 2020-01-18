@@ -1,13 +1,13 @@
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { BlockState } from './block_state';
 import { BlockDialog } from './dialog';
-import { IBlockable } from '../blockable/blockable';
+import { Blockable } from '../blockable/blockable';
 import {
     $, ApplicationError, BlockType, DOMUtils, MenuPosition,
 } from '../common';
 import { BlockedSitesRepository } from '../repository/blocked_sites';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { IBlockMediator } from './mediator';
+import { IBasicBlockMediator, IBlockMediator } from './mediator';
 
 /**
  * Block target element.
@@ -291,7 +291,7 @@ class OperationsAnchor {
     }
 }
 
-export class BlockMediator implements IBlockMediator {
+export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
     private readonly url: string;
 
     private blockReason?: BlockReason;
@@ -314,7 +314,7 @@ export class BlockMediator implements IBlockMediator {
 
     private changeStateDialog: BlockChangeAnchorDialog;
 
-    constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string,
+    constructor(g: Blockable, blockState: BlockState, defaultBlockType: string,
         menuPosition: MenuPosition) {
         const blockTarget = new BlockTarget(this, g.getElement());
 

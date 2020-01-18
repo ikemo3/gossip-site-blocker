@@ -1,8 +1,8 @@
 import { BlockedSitesRepository } from '../repository/blocked_sites';
-import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
-import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
+import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
+import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
-import { IBlockedSite } from '../model/blocked_site';
+import { BlockedSite } from '../model/blocked_site';
 
 export async function importClicked(): Promise<void> {
     // noinspection JSValidateTypes
@@ -18,7 +18,7 @@ export async function importClicked(): Promise<void> {
         switch (cols.length) {
         case 1:
             // url only
-            return { url: cols[0], block_type: 'soft' };
+            return new BlockedSite(cols[0], 'soft');
         case 2:
         default: {
             const type = cols[1];
@@ -27,21 +27,21 @@ export async function importClicked(): Promise<void> {
             }
 
             // url + soft/hard
-            return { url: cols[0], block_type: type };
+            return new BlockedSite(cols[0], type);
         }
         }
-    }).filter((block) => block !== undefined) as IBlockedSite[];
+    }).filter((block) => block !== undefined) as BlockedSite[];
 
     await BlockedSitesRepository.addAll(blockList);
 
     const bannedWordList = lines.map((line) => lineToBannedWord(line))
-        .filter((banned) => banned !== undefined) as IBannedWord[];
+        .filter((banned) => banned !== undefined) as BannedWord[];
 
     await BannedWordRepository.addAll(bannedWordList);
 
     // regexp
     const regexpList = lines.map((line) => lineToRegexp(line))
-        .filter((regexp) => regexp !== null) as IRegExpItem[];
+        .filter((regexp) => regexp !== null) as RegExpItem[];
 
     await RegExpRepository.addAll(regexpList);
 
@@ -49,7 +49,7 @@ export async function importClicked(): Promise<void> {
     alert(chrome.i18n.getMessage('importCompleted'));
 }
 
-function lineToBannedWord(line: string): IBannedWord | undefined {
+function lineToBannedWord(line: string): BannedWord | undefined {
     const cols = line.split(' ');
     if (cols.length === 1) {
         return undefined;
@@ -66,7 +66,7 @@ function lineToBannedWord(line: string): IBannedWord | undefined {
     return undefined;
 }
 
-function lineToRegexp(line: string): IRegExpItem | null {
+function lineToRegexp(line: string): RegExpItem | null {
     const cols = line.split(' ');
     if (cols.length === 1) {
         return null;

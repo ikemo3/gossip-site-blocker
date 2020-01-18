@@ -1,58 +1,36 @@
 import { ChromeStorage, Logger, MenuPosition } from '../common';
 
-interface IOptionRepository {
-    isDeveloperMode(): Promise<boolean>;
-
-    setDeveloperMode(mode: boolean): Promise<void>;
-
-    getBannedWordOption(): Promise<IBannedWordOption>;
-
-    setShowBlockedByWordInfo(mode: boolean): Promise<void>;
-
-    getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption>;
-
-    setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void>;
-
-    defaultBlockType(): Promise<string>;
-
-    setDefaultBlockType(type: string): Promise<void>;
-
-    menuPosition(): Promise<MenuPosition>;
-
-    setMenuPosition(position: string): Promise<void>;
-}
-
-interface IDefaultBlockTypeOption {
+interface DefaultBlockTypeOption {
     defaultBlockType: string;
 }
 
-interface IDeveloperOption {
+interface DeveloperOption {
     developerMode: boolean;
 }
 
-interface IBannedWordOptionStorage {
-    bannedWord: IBannedWordOption;
+interface BannedWordOptionStorage {
+    bannedWord: BannedWordOption;
 }
 
-export interface IBannedWordOption {
+export interface BannedWordOption {
     showInfo: boolean;
 }
 
-interface IAutoBlockIDNOptionStorage {
-    autoBlockIDN: IAutoBlockIDNOption;
+interface AutoBlockIDNOptionStorage {
+    autoBlockIDN: AutoBlockIDNOption;
 }
 
-export interface IAutoBlockIDNOption {
+export interface AutoBlockIDNOption {
     enabled: boolean;
 }
 
-interface IMenuPositionOption {
+interface MenuPositionOption {
     menuPosition: string;
 }
 
-export const OptionRepository: IOptionRepository = {
+export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
-        const items = await ChromeStorage.get({ developerMode: false }) as IDeveloperOption;
+        const items = await ChromeStorage.get({ developerMode: false }) as DeveloperOption;
 
         Logger.mode = items.developerMode;
 
@@ -67,37 +45,37 @@ export const OptionRepository: IOptionRepository = {
         Logger.log("set 'developerMode' to =>", mode);
     },
 
-    async getBannedWordOption(): Promise<IBannedWordOption> {
+    async getBannedWordOption(): Promise<BannedWordOption> {
         const bannedWordDefault = { showInfo: false };
-        const items: IBannedWordOptionStorage = await ChromeStorage.get(
+        const items: BannedWordOptionStorage = await ChromeStorage.get(
             { bannedWord: bannedWordDefault },
         );
         return items.bannedWord;
     },
 
     async setShowBlockedByWordInfo(showBlockInfo: boolean): Promise<void> {
-        const values: IBannedWordOption = { showInfo: showBlockInfo };
+        const values: BannedWordOption = { showInfo: showBlockInfo };
         await ChromeStorage.set({ bannedWord: values });
 
         Logger.debug("set 'bannedWord' to =>", values);
     },
 
-    async getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption> {
+    async getAutoBlockIDNOption(): Promise<AutoBlockIDNOption> {
         const autoBlockIDNDefault = { enabled: false };
-        const items: IAutoBlockIDNOptionStorage = await ChromeStorage.get(
+        const items: AutoBlockIDNOptionStorage = await ChromeStorage.get(
             { autoBlockIDN: autoBlockIDNDefault },
-        ) as IAutoBlockIDNOptionStorage;
+        ) as AutoBlockIDNOptionStorage;
         return items.autoBlockIDN;
     },
 
-    async setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void> {
+    async setAutoBlockIDNOption(autoBlockIDN: AutoBlockIDNOption): Promise<void> {
         await ChromeStorage.set({ autoBlockIDN });
 
         Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
     },
 
     async defaultBlockType(): Promise<string> {
-        const items = await ChromeStorage.load({ defaultBlockType: 'soft' }) as IDefaultBlockTypeOption;
+        const items = await ChromeStorage.load({ defaultBlockType: 'soft' }) as DefaultBlockTypeOption;
         return items.defaultBlockType;
     },
 
@@ -108,7 +86,7 @@ export const OptionRepository: IOptionRepository = {
     },
 
     async menuPosition(): Promise<MenuPosition> {
-        const items = await ChromeStorage.load({ menuPosition: 'default' }) as IMenuPositionOption;
+        const items = await ChromeStorage.load({ menuPosition: 'default' }) as MenuPositionOption;
         const { menuPosition } = items;
 
         switch (menuPosition) {

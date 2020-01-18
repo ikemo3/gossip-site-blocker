@@ -1,7 +1,7 @@
 import { BlockedSites } from '../model/blocked_sites';
-import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
-import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { IAutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
+import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
+import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
+import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
 import { BlockedSitesRepository } from '../repository/blocked_sites';
@@ -11,14 +11,14 @@ import { BlockMediator } from '../content_script/block_mediator';
 import { GoogleInnerCard } from '../blockable/google_inner_card';
 import { GoogleTopNews } from '../blockable/google_top_news';
 
-export interface IOptions {
+export interface Options {
     blockedSites: BlockedSites;
-    bannedWords: IBannedWord[];
-    regexpList: IRegExpItem[];
-    idnOption: IAutoBlockIDNOption;
+    bannedWords: BannedWord[];
+    regexpList: RegExpItem[];
+    idnOption: AutoBlockIDNOption;
     defaultBlockType: string;
     menuPosition: MenuPosition;
-    bannedWordOption: IBannedWordOption;
+    bannedWordOption: BannedWordOption;
 }
 
 declare global {
@@ -30,7 +30,7 @@ declare global {
 window.blockReasons = [];
 
 // This is necessary when using the back button.
-let gsbOptions: IOptions | null = null;
+let gsbOptions: Options | null = null;
 const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
 const pendingsTopNews: Element[] = [];
@@ -69,12 +69,12 @@ observer.observe(document.documentElement, config);
 
 (async (): Promise<void> => {
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
-    const bannedWords: IBannedWord[] = await BannedWordRepository.load();
-    const regexpList: IRegExpItem[] = await RegExpRepository.load();
+    const bannedWords: BannedWord[] = await BannedWordRepository.load();
+    const regexpList: RegExpItem[] = await RegExpRepository.load();
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();
-    const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
+    const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug('autoBlockIDNOption:', idnOption);
 
     gsbOptions = {
@@ -102,9 +102,9 @@ observer.observe(document.documentElement, config);
 
 const subObserverList: MutationObserver[] = [];
 
-type IBlockFunction = (g1: Element, options: IOptions) => boolean;
+type IBlockFunction = (g1: Element, options: Options) => boolean;
 
-function blockGoogleElement(g1: Element, options: IOptions): boolean {
+function blockGoogleElement(g1: Element, options: Options): boolean {
     const g = new GoogleElement(g1);
 
     if (g.isIgnoreable()) {
@@ -131,7 +131,7 @@ function blockGoogleElement(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
+function blockGoogleInnerCard(g1: Element, options: Options): boolean {
     const g = new GoogleInnerCard(g1);
 
     if (!g.canBlock()) {
@@ -156,7 +156,7 @@ function blockGoogleInnerCard(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
+function blockGoogleTopNews(g1: Element, options: Options): boolean {
     const g = new GoogleTopNews(g1);
 
     if (!g.canBlock()) {
@@ -179,7 +179,7 @@ function blockGoogleTopNews(g1: Element, options: IOptions): boolean {
     return true;
 }
 
-function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunction): () => void {
+function blockClosure(node: Element, options: Options, blockFunc: IBlockFunction): () => void {
     let completed = false;
     return (): void => {
         if (completed) {
@@ -190,7 +190,7 @@ function blockClosure(node: Element, options: IOptions, blockFunc: IBlockFunctio
     };
 }
 
-function tryBlockElement(node: Element, options: IOptions, blockFunction: IBlockFunction): void {
+function tryBlockElement(node: Element, options: Options, blockFunction: IBlockFunction): void {
     // first, try block.
     const completed = blockFunction(node, options);
     if (completed) {
@@ -207,15 +207,15 @@ function tryBlockElement(node: Element, options: IOptions, blockFunction: IBlock
     subObserverList.push(subObserver);
 }
 
-function tryBlockGoogleElement(node: Element, options: IOptions): void {
+function tryBlockGoogleElement(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleElement);
 }
 
-function tryBlockGoogleInnerCard(node: Element, options: IOptions): void {
+function tryBlockGoogleInnerCard(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleInnerCard);
 }
 
-function tryBlockGoogleTopNews(node: Element, options: IOptions): void {
+function tryBlockGoogleTopNews(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleTopNews);
 }
 

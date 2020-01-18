@@ -1,17 +1,17 @@
 import { BlockType, ChromeStorage, Logger } from '../common';
 
-interface IRegExpItemList {
-    regexpList: IRegExpItem[];
+interface RegExpItemList {
+    regexpList: RegExpItem[];
 }
 
-export interface IRegExpItem {
+export interface RegExpItem {
     pattern: string;
     blockType: BlockType;
 }
 
 export const RegExpRepository = {
-    async load(): Promise<IRegExpItem[]> {
-        const items = await ChromeStorage.get({ regexpList: [] }) as IRegExpItemList;
+    async load(): Promise<RegExpItem[]> {
+        const items = await ChromeStorage.get({ regexpList: [] }) as RegExpItemList;
 
         const itemsCopy = items.regexpList;
 
@@ -26,7 +26,7 @@ export const RegExpRepository = {
         return itemsCopy;
     },
 
-    async save(items: IRegExpItem[]): Promise<void> {
+    async save(items: RegExpItem[]): Promise<void> {
         await ChromeStorage.set({ regexpList: items });
     },
 
@@ -34,8 +34,8 @@ export const RegExpRepository = {
         await ChromeStorage.set({ regexpList: [] });
     },
 
-    async addAll(regexpList: IRegExpItem[]): Promise<void> {
-        const items: IRegExpItem[] = await this.load();
+    async addAll(regexpList: RegExpItem[]): Promise<void> {
+        const items: RegExpItem[] = await this.load();
 
         for (const regexp of regexpList) {
             let found = false;
@@ -55,7 +55,7 @@ export const RegExpRepository = {
     },
 
     async add(pattern: string, blockType: BlockType = BlockType.SOFT): Promise<boolean> {
-        const items: IRegExpItem[] = await this.load();
+        const items: RegExpItem[] = await this.load();
 
         for (const item of items) {
             if (pattern === item.pattern) {
@@ -70,7 +70,7 @@ export const RegExpRepository = {
     },
 
     async changeType(pattern: string, type: BlockType): Promise<void> {
-        const items: IRegExpItem[] = await this.load();
+        const items: RegExpItem[] = await this.load();
 
         const filteredItems = items.map((item) => {
             if (item.pattern !== pattern) {
@@ -86,7 +86,7 @@ export const RegExpRepository = {
     },
 
     async delete(deletePattern: string): Promise<boolean> {
-        const items: IRegExpItem[] = await this.load();
+        const items: RegExpItem[] = await this.load();
 
         const contains = items.find((item) => item.pattern !== deletePattern) !== undefined;
         const filteredPatterns = items.filter((item) => item.pattern !== deletePattern);

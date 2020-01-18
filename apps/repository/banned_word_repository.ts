@@ -2,19 +2,19 @@ import {
     BannedTarget, BlockType, ChromeStorage, Logger,
 } from '../common';
 
-interface IBannedWordItems {
-    bannedWords: IBannedWord[];
+interface BannedWordItems {
+    bannedWords: BannedWord[];
 }
 
-export interface IBannedWord {
+export interface BannedWord {
     keyword: string;
     blockType: BlockType;
     target: BannedTarget;
 }
 
 export const BannedWordRepository = {
-    async load(): Promise<IBannedWord[]> {
-        const items = await ChromeStorage.get({ bannedWords: [] }) as IBannedWordItems;
+    async load(): Promise<BannedWord[]> {
+        const items = await ChromeStorage.get({ bannedWords: [] }) as BannedWordItems;
 
         const itemsCopy = items.bannedWords;
         for (const item of itemsCopy) {
@@ -32,7 +32,7 @@ export const BannedWordRepository = {
         return itemsCopy;
     },
 
-    async save(words: IBannedWord[]): Promise<void> {
+    async save(words: BannedWord[]): Promise<void> {
         await ChromeStorage.set({ bannedWords: words });
     },
 
@@ -40,8 +40,8 @@ export const BannedWordRepository = {
         await ChromeStorage.set({ bannedWords: [] });
     },
 
-    async addAll(bannedWordList: IBannedWord[]): Promise<void> {
-        const words: IBannedWord[] = await this.load();
+    async addAll(bannedWordList: BannedWord[]): Promise<void> {
+        const words: BannedWord[] = await this.load();
 
         for (const bannedWord of bannedWordList) {
             let found = false;
@@ -61,7 +61,7 @@ export const BannedWordRepository = {
     },
 
     async add(addWord: string): Promise<boolean> {
-        const words: IBannedWord[] = await this.load();
+        const words: BannedWord[] = await this.load();
 
         for (const word of words) {
             if (addWord === word.keyword) {
@@ -80,7 +80,7 @@ export const BannedWordRepository = {
     },
 
     async changeType(changeWord: string, type: BlockType): Promise<void> {
-        const words: IBannedWord[] = await this.load();
+        const words: BannedWord[] = await this.load();
 
         const filteredWords = words.map((word) => {
             if (word.keyword !== changeWord) {
@@ -96,7 +96,7 @@ export const BannedWordRepository = {
     },
 
     async changeTarget(changeWord: string, target: BannedTarget): Promise<void> {
-        const words: IBannedWord[] = await this.load();
+        const words: BannedWord[] = await this.load();
 
         const filteredWords = words.map((word) => {
             if (word.keyword !== changeWord) {
@@ -112,7 +112,7 @@ export const BannedWordRepository = {
     },
 
     async delete(deleteWord: string): Promise<boolean> {
-        const words: IBannedWord[] = await this.load();
+        const words: BannedWord[] = await this.load();
 
         const contains = words.find((word) => word.keyword !== deleteWord) !== undefined;
         const filteredWords = words.filter((word) => word.keyword !== deleteWord);

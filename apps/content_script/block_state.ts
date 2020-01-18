@@ -1,27 +1,27 @@
 import {
     $, BannedTarget, BlockType, DOMUtils,
 } from '../common';
-import { IRegExpItem } from '../repository/regexp_repository';
-import { IBlockedSites } from '../model/blocked_sites';
-import { IBannedWord } from '../repository/banned_word_repository';
-import { IAutoBlockIDNOption } from '../repository/config';
+import { RegExpItem } from '../repository/regexp_repository';
+import { BlockedSites } from '../model/blocked_sites';
+import { BannedWord } from '../repository/banned_word_repository';
+import { AutoBlockIDNOption } from '../repository/config';
 import { BlockedSite } from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
-import { IBlockTarget } from '../blockable/blockable';
+import { BlockableContents } from '../blockable/blockable';
 
 export class BlockState {
     private readonly state: string;
 
     private readonly blockReason?: BlockReason;
 
-    constructor(blockable: IBlockTarget,
-        blockedSites: IBlockedSites,
-        bannedWords: IBannedWord[],
-        regexpList: IRegExpItem[],
-        idnOption: IAutoBlockIDNOption) {
+    constructor(blockable: BlockableContents,
+        blockedSites: BlockedSites,
+        bannedWords: BannedWord[],
+        regexpList: RegExpItem[],
+        idnOption: AutoBlockIDNOption) {
         const blockedSite: BlockedSite | undefined = blockedSites.matches(blockable.getUrl());
 
-        const banned: IBannedWord | undefined = bannedWords.find((bannedWord) => {
+        const banned: BannedWord | undefined = bannedWords.find((bannedWord) => {
             const { keyword } = bannedWord;
 
             switch (bannedWord.target) {
@@ -34,7 +34,7 @@ export class BlockState {
             }
         });
 
-        const regexp: IRegExpItem | undefined = regexpList.find((regexpItem) => {
+        const regexp: RegExpItem | undefined = regexpList.find((regexpItem) => {
             const pattern = new RegExp(regexpItem.pattern);
 
             return pattern.test(DOMUtils.removeProtocol(blockable.getUrl()));
