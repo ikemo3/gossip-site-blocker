@@ -34,75 +34,37 @@ let gsbOptions: Options | null = null;
 const pendingsGoogle: Element[] = [];
 const pendingsInnerCard: Element[] = [];
 const pendingsTopNews: Element[] = [];
-
-// add observer
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        for (const node of mutation.addedNodes) {
-            if (node instanceof Element) {
-                if (node.classList.contains('g')) {
-                    if (gsbOptions !== null) {
-                        tryBlockGoogleElement(node, gsbOptions);
-                    } else {
-                        pendingsGoogle.push(node);
-                    }
-                } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
-                    if (gsbOptions !== null) {
-                        tryBlockGoogleInnerCard(node, gsbOptions);
-                    } else {
-                        pendingsInnerCard.push(node);
-                    }
-                } else if (node.classList.contains('dbsr')) {
-                    if (gsbOptions !== null) {
-                        tryBlockGoogleTopNews(node, gsbOptions);
-                    } else {
-                        pendingsTopNews.push(node);
-                    }
-                }
-            }
-        }
-    });
-});
-
-const config = { childList: true, subtree: true };
-observer.observe(document.documentElement, config);
-
-(async (): Promise<void> => {
-    const blockedSites: BlockedSites = await BlockedSitesRepository.load();
-    const bannedWords: BannedWord[] = await BannedWordRepository.load();
-    const regexpList: RegExpItem[] = await RegExpRepository.load();
-    const idnOption = await OptionRepository.getAutoBlockIDNOption();
-    const defaultBlockType: string = await OptionRepository.defaultBlockType();
-    const menuPosition: MenuPosition = await OptionRepository.menuPosition();
-    const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
-    Logger.debug('autoBlockIDNOption:', idnOption);
-
-    gsbOptions = {
-        blockedSites,
-        bannedWords,
-        regexpList,
-        idnOption,
-        defaultBlockType,
-        menuPosition,
-        bannedWordOption,
-    };
-
-    for (const node of pendingsGoogle) {
-        tryBlockGoogleElement(node, gsbOptions);
-    }
-
-    for (const node of pendingsInnerCard) {
-        tryBlockGoogleInnerCard(node, gsbOptions);
-    }
-
-    for (const node of pendingsTopNews) {
-        tryBlockGoogleTopNews(node, gsbOptions);
-    }
-})();
-
 const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g1: Element, options: Options) => boolean;
+
+function blockClosure(node: Element, options: Options, blockFunc: IBlockFunction): () => void {
+    let completed = false;
+    return (): void => {
+        if (completed) {
+            return;
+        }
+
+        completed = blockFunc(node, options);
+    };
+}
+
+function tryBlockElement(node: Element, options: Options, blockFunction: IBlockFunction): void {
+    // first, try block.
+    const completed = blockFunction(node, options);
+    if (completed) {
+        return;
+    }
+
+    // if failed, add observer for retry.
+    const block = blockClosure(node, options, blockFunction);
+    const subObserver = new MutationObserver(() => {
+        block();
+    });
+
+    subObserver.observe(node, { childList: true, subtree: true });
+    subObserverList.push(subObserver);
+}
 
 function blockGoogleElement(g1: Element, options: Options): boolean {
     const g = new GoogleElement(g1);
@@ -179,34 +141,6 @@ function blockGoogleTopNews(g1: Element, options: Options): boolean {
     return true;
 }
 
-function blockClosure(node: Element, options: Options, blockFunc: IBlockFunction): () => void {
-    let completed = false;
-    return (): void => {
-        if (completed) {
-            return;
-        }
-
-        completed = blockFunc(node, options);
-    };
-}
-
-function tryBlockElement(node: Element, options: Options, blockFunction: IBlockFunction): void {
-    // first, try block.
-    const completed = blockFunction(node, options);
-    if (completed) {
-        return;
-    }
-
-    // if failed, add observer for retry.
-    const block = blockClosure(node, options, blockFunction);
-    const subObserver = new MutationObserver(() => {
-        block();
-    });
-
-    subObserver.observe(node, { childList: true, subtree: true });
-    subObserverList.push(subObserver);
-}
-
 function tryBlockGoogleElement(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleElement);
 }
@@ -218,6 +152,71 @@ function tryBlockGoogleInnerCard(node: Element, options: Options): void {
 function tryBlockGoogleTopNews(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleTopNews);
 }
+
+// add observer
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        for (const node of mutation.addedNodes) {
+            if (node instanceof Element) {
+                if (node.classList.contains('g')) {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleElement(node, gsbOptions);
+                    } else {
+                        pendingsGoogle.push(node);
+                    }
+                } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleInnerCard(node, gsbOptions);
+                    } else {
+                        pendingsInnerCard.push(node);
+                    }
+                } else if (node.classList.contains('dbsr')) {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleTopNews(node, gsbOptions);
+                    } else {
+                        pendingsTopNews.push(node);
+                    }
+                }
+            }
+        }
+    });
+});
+
+const config = { childList: true, subtree: true };
+observer.observe(document.documentElement, config);
+
+(async (): Promise<void> => {
+    const blockedSites: BlockedSites = await BlockedSitesRepository.load();
+    const bannedWords: BannedWord[] = await BannedWordRepository.load();
+    const regexpList: RegExpItem[] = await RegExpRepository.load();
+    const idnOption = await OptionRepository.getAutoBlockIDNOption();
+    const defaultBlockType: string = await OptionRepository.defaultBlockType();
+    const menuPosition: MenuPosition = await OptionRepository.menuPosition();
+    const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
+    Logger.debug('autoBlockIDNOption:', idnOption);
+
+    gsbOptions = {
+        blockedSites,
+        bannedWords,
+        regexpList,
+        idnOption,
+        defaultBlockType,
+        menuPosition,
+        bannedWordOption,
+    };
+
+    for (const node of pendingsGoogle) {
+        tryBlockGoogleElement(node, gsbOptions);
+    }
+
+    for (const node of pendingsInnerCard) {
+        tryBlockGoogleInnerCard(node, gsbOptions);
+    }
+
+    for (const node of pendingsTopNews) {
+        tryBlockGoogleTopNews(node, gsbOptions);
+    }
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
     // clear sub-observer

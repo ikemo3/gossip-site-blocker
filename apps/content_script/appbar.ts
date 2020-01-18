@@ -2,6 +2,46 @@ import { $ } from '../common';
 import { BlockReasonType } from '../model/block_reason';
 import { OptionRepository } from '../repository/config';
 
+function temporarily_unblock_all(): void {
+    const anchorList = document.querySelectorAll('.blocker-temporarily-unblock');
+
+    for (const anchor of anchorList) {
+        if (anchor instanceof HTMLAnchorElement) {
+            if (anchor.style.display !== 'none') {
+                anchor.click();
+            }
+        }
+    }
+}
+
+function show_blocked_by_banned_words(): void {
+    const id = 'urls_by_banned_words';
+
+    const currentTextArea = document.getElementById(id);
+    if (currentTextArea) {
+        $.removeSelf(currentTextArea);
+        return;
+    }
+
+    const lines = window.blockReasons.map((reason) => {
+        if (reason.getType() === BlockReasonType.WORD) {
+            return reason.getUrl();
+        }
+        return undefined;
+    }).filter((v) => v); // remove undefined.
+
+    // create textarea after 'topstuff'
+    const textarea = $.textarea(lines.join('\n'), {
+        cols: 70,
+        id,
+        rows: 10,
+    });
+
+    const topStuff = document.getElementById('topstuff') as HTMLDivElement;
+    topStuff.appendChild(textarea);
+    $.insertBefore(textarea, topStuff);
+}
+
 export async function create_appbar_links(): Promise<void> {
     const resultStats = document.getElementById('resultStats');
     if (resultStats !== null) {
@@ -42,44 +82,4 @@ export async function create_appbar_links(): Promise<void> {
             }
         }
     }
-}
-
-function temporarily_unblock_all(): void {
-    const anchorList = document.querySelectorAll('.blocker-temporarily-unblock');
-
-    for (const anchor of anchorList) {
-        if (anchor instanceof HTMLAnchorElement) {
-            if (anchor.style.display !== 'none') {
-                anchor.click();
-            }
-        }
-    }
-}
-
-function show_blocked_by_banned_words(): void {
-    const id = 'urls_by_banned_words';
-
-    const currentTextArea = document.getElementById(id);
-    if (currentTextArea) {
-        $.removeSelf(currentTextArea);
-        return;
-    }
-
-    const lines = window.blockReasons.map((reason) => {
-        if (reason.getType() === BlockReasonType.WORD) {
-            return reason.getUrl();
-        }
-        return undefined;
-    }).filter((v) => v); // remove undefined.
-
-    // create textarea after 'topstuff'
-    const textarea = $.textarea(lines.join('\n'), {
-        cols: 70,
-        id,
-        rows: 10,
-    });
-
-    const topStuff = document.getElementById('topstuff') as HTMLDivElement;
-    topStuff.appendChild(textarea);
-    $.insertBefore(textarea, topStuff);
 }
