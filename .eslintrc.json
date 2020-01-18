@@ -40,7 +40,6 @@
     "max-len": "warn",
     "no-case-declarations": "warn",
     "no-continue": "off",
-    "no-param-reassign": "warn",
     "no-restricted-globals": "warn",
     "no-restricted-syntax": [
       "warn",
