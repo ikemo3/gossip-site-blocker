@@ -1,3 +1,13 @@
+export enum BlockType {
+    SOFT = 'soft',
+    HARD = 'hard',
+}
+
+export enum BannedTarget {
+    TITLE_AND_CONTENTS = 'titleAndContents',
+    TITLE_ONLY = 'titleOnly',
+}
+
 export const ChromeStorage = {
     async load<T>(keys: T): Promise<T> {
         return new Promise((resolve) => {
@@ -316,16 +326,6 @@ export const $ = {
 export enum MenuPosition {
     COMPACT = 'compact',
     DEFAULT = 'default',
-}
-
-export enum BlockType {
-    SOFT = 'soft',
-    HARD = 'hard',
-}
-
-export enum BannedTarget {
-    TITLE_AND_CONTENTS = 'titleAndContents',
-    TITLE_ONLY = 'titleOnly',
 }
 
 export class ApplicationError implements Error {

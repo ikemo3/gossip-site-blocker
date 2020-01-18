@@ -4,6 +4,38 @@ import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
 import { BlockedSite } from '../model/blocked_site';
 
+function lineToBannedWord(line: string): BannedWord | undefined {
+    const cols = line.split(' ');
+    if (cols.length === 1) {
+        return undefined;
+    }
+
+    const type = cols[1];
+    if (type === 'banned') {
+        const word = cols[0].replace(/\+/g, ' ');
+        const blockType = $.toBlockType(cols[2]);
+        const target = $.toBannedTarget(cols[3]);
+        return { keyword: word, blockType, target };
+    }
+
+    return undefined;
+}
+
+function lineToRegexp(line: string): RegExpItem | null {
+    const cols = line.split(' ');
+    if (cols.length === 1) {
+        return null;
+    }
+
+    const type = cols[1];
+    if (type === 'regexp') {
+        const pattern = $.unescape(cols[0]);
+        const blockType = $.toBlockType(cols[2]);
+        return { pattern, blockType };
+    }
+    return null;
+}
+
 export async function importClicked(): Promise<void> {
     // noinspection JSValidateTypes
     /**
@@ -47,36 +79,4 @@ export async function importClicked(): Promise<void> {
 
     // eslint-disable-next-line no-alert
     alert(chrome.i18n.getMessage('importCompleted'));
-}
-
-function lineToBannedWord(line: string): BannedWord | undefined {
-    const cols = line.split(' ');
-    if (cols.length === 1) {
-        return undefined;
-    }
-
-    const type = cols[1];
-    if (type === 'banned') {
-        const word = cols[0].replace(/\+/g, ' ');
-        const blockType = $.toBlockType(cols[2]);
-        const target = $.toBannedTarget(cols[3]);
-        return { keyword: word, blockType, target };
-    }
-
-    return undefined;
-}
-
-function lineToRegexp(line: string): RegExpItem | null {
-    const cols = line.split(' ');
-    if (cols.length === 1) {
-        return null;
-    }
-
-    const type = cols[1];
-    if (type === 'regexp') {
-        const pattern = $.unescape(cols[0]);
-        const blockType = $.toBlockType(cols[2]);
-        return { pattern, blockType };
-    }
-    return null;
 }
