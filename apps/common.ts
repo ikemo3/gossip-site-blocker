@@ -88,7 +88,7 @@ export const DOMUtils = {
     },
 };
 
-export interface ITextAreaParams {
+export interface TextAreaParams {
     id?: string;
     cols?: number;
     rows?: number;
@@ -246,7 +246,7 @@ export const $ = {
         element.textContent = text;
     },
 
-    textarea(value: string, params: ITextAreaParams): HTMLTextAreaElement {
+    textarea(value: string, params: TextAreaParams): HTMLTextAreaElement {
         const textarea = document.createElement('textarea');
         textarea.textContent = value;
 
