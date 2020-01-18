@@ -59,7 +59,6 @@
         "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
       }
     ],
-    "no-script-url": "warn",
     "no-undef": "warn",
     "prefer-destructuring": "off",
     "@typescript-eslint/camelcase": "off",
