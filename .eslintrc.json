@@ -25,7 +25,6 @@
   ],
   "rules": {
     "class-methods-use-this": "off",
-    "consistent-return": "warn",
     "default-case": "warn",
     "import/no-extraneous-dependencies": [
       "error",
