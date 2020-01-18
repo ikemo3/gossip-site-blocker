@@ -3,7 +3,7 @@ import { BlockedSitesRepository } from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { AutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
+import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
 import { Logger } from '../common';
 import { RegExpList } from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     Logger.log('developerMode is ', developerMode);
     developerCheckbox.checked = developerMode;
 
-    const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
+    const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug('bannedWordOption is ', bannedWordOption);
     showBlockedByWordInfoCheckbox.checked = bannedWordOption.showInfo;
 

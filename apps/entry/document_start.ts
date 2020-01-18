@@ -1,7 +1,7 @@
 import { BlockedSites } from '../model/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { AutoBlockIDNOption, IBannedWordOption, OptionRepository } from '../repository/config';
+import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
 import { BlockedSitesRepository } from '../repository/blocked_sites';
@@ -18,7 +18,7 @@ export interface IOptions {
     idnOption: AutoBlockIDNOption;
     defaultBlockType: string;
     menuPosition: MenuPosition;
-    bannedWordOption: IBannedWordOption;
+    bannedWordOption: BannedWordOption;
 }
 
 declare global {
@@ -74,7 +74,7 @@ observer.observe(document.documentElement, config);
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();
-    const bannedWordOption: IBannedWordOption = await OptionRepository.getBannedWordOption();
+    const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug('autoBlockIDNOption:', idnOption);
 
     gsbOptions = {

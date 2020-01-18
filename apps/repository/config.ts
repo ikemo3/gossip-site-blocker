@@ -9,10 +9,10 @@ interface IDeveloperOption {
 }
 
 interface IBannedWordOptionStorage {
-    bannedWord: IBannedWordOption;
+    bannedWord: BannedWordOption;
 }
 
-export interface IBannedWordOption {
+export interface BannedWordOption {
     showInfo: boolean;
 }
 
@@ -45,7 +45,7 @@ export const OptionRepository = {
         Logger.log("set 'developerMode' to =>", mode);
     },
 
-    async getBannedWordOption(): Promise<IBannedWordOption> {
+    async getBannedWordOption(): Promise<BannedWordOption> {
         const bannedWordDefault = { showInfo: false };
         const items: IBannedWordOptionStorage = await ChromeStorage.get(
             { bannedWord: bannedWordDefault },
@@ -54,7 +54,7 @@ export const OptionRepository = {
     },
 
     async setShowBlockedByWordInfo(showBlockInfo: boolean): Promise<void> {
-        const values: IBannedWordOption = { showInfo: showBlockInfo };
+        const values: BannedWordOption = { showInfo: showBlockInfo };
         await ChromeStorage.set({ bannedWord: values });
 
         Logger.debug("set 'bannedWord' to =>", values);
