@@ -1,14 +1,10 @@
 import { BlockedSite } from './blocked_site';
 import { removeProtocol } from '../util/util';
 
-export interface IBlockedSites {
-    matches(url: string): BlockedSite | undefined;
-}
-
 /**
  * @property {Array<BlockedSite>} sites
  */
-export class BlockedSites implements IBlockedSites {
+export class BlockedSites {
     public sites: BlockedSite[];
 
     constructor(sites: BlockedSite[]) {

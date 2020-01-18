@@ -1,4 +1,4 @@
-import { IBlockedSites } from '../apps/model/blocked_sites';
+import { BlockedSites } from '../apps/model/blocked_sites';
 import { BlockedSite } from '../apps/model/blocked_site';
 import { $, BannedTarget, BlockType } from '../apps/common';
 import { BannedWord } from '../apps/repository/banned_word_repository';
@@ -25,20 +25,13 @@ describe('BlockState', () => {
         };
     }
 
-    function createEmptySites(): IBlockedSites {
-        return {
-            matches(_: string): BlockedSite | undefined {
-                return undefined;
-            },
-        };
+    function createEmptySites(): BlockedSites {
+        return new BlockedSites([]);
     }
 
-    function createSites(blockType: string, url: string): IBlockedSites {
-        return {
-            matches(_: string): BlockedSite | undefined {
-                return new BlockedSite({ block_type: blockType, url });
-            },
-        };
+    function createSites(blockType: string, url: string): BlockedSites {
+        const blockedSite = new BlockedSite({ block_type: blockType, url });
+        return new BlockedSites([blockedSite]);
     }
 
     function createBannedWord(keyword: string, blockType: BlockType,

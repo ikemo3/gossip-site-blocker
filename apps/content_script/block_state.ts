@@ -2,7 +2,7 @@ import {
     $, BannedTarget, BlockType, DOMUtils,
 } from '../common';
 import { RegExpItem } from '../repository/regexp_repository';
-import { IBlockedSites } from '../model/blocked_sites';
+import { BlockedSites } from '../model/blocked_sites';
 import { BannedWord } from '../repository/banned_word_repository';
 import { AutoBlockIDNOption } from '../repository/config';
 import { BlockedSite } from '../model/blocked_site';
@@ -15,7 +15,7 @@ export class BlockState {
     private readonly blockReason?: BlockReason;
 
     constructor(blockable: IBlockTarget,
-        blockedSites: IBlockedSites,
+        blockedSites: BlockedSites,
         bannedWords: BannedWord[],
         regexpList: RegExpItem[],
         idnOption: AutoBlockIDNOption) {
