@@ -3,7 +3,7 @@ import {
 } from '../common';
 import { IRegExpItem } from '../repository/regexp_repository';
 import { IBlockedSites } from '../model/blocked_sites';
-import { IBannedWord } from '../repository/banned_word_repository';
+import { BannedWord } from '../repository/banned_word_repository';
 import { IAutoBlockIDNOption } from '../repository/config';
 import { BlockedSite } from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
@@ -16,12 +16,12 @@ export class BlockState {
 
     constructor(blockable: IBlockTarget,
         blockedSites: IBlockedSites,
-        bannedWords: IBannedWord[],
+        bannedWords: BannedWord[],
         regexpList: IRegExpItem[],
         idnOption: IAutoBlockIDNOption) {
         const blockedSite: BlockedSite | undefined = blockedSites.matches(blockable.getUrl());
 
-        const banned: IBannedWord | undefined = bannedWords.find((bannedWord) => {
+        const banned: BannedWord | undefined = bannedWords.find((bannedWord) => {
             const { keyword } = bannedWord;
 
             switch (bannedWord.target) {

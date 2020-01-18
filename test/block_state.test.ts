@@ -1,7 +1,7 @@
 import { IBlockedSites } from '../apps/model/blocked_sites';
 import { BlockedSite } from '../apps/model/blocked_site';
 import { $, BannedTarget, BlockType } from '../apps/common';
-import { IBannedWord } from '../apps/repository/banned_word_repository';
+import { BannedWord } from '../apps/repository/banned_word_repository';
 import { BlockState } from '../apps/content_script/block_state';
 import { IAutoBlockIDNOption } from '../apps/repository/config';
 import { IRegExpItem } from '../apps/repository/regexp_repository';
@@ -42,7 +42,7 @@ describe('BlockState', () => {
     }
 
     function createBannedWord(keyword: string, blockType: BlockType,
-        target: BannedTarget): IBannedWord {
+        target: BannedTarget): BannedWord {
         return {
             blockType, keyword, target,
         };

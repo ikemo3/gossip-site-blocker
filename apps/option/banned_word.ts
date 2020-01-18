@@ -1,7 +1,7 @@
 import {
     $, ApplicationError, BannedTarget, BlockType, Logger,
 } from '../common';
-import { BannedWordRepository, IBannedWord } from '../repository/banned_word_repository';
+import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 
 export default class BannedWords {
     private addButton: HTMLInputElement;
@@ -40,7 +40,7 @@ export default class BannedWords {
     }
 
     public async load(): Promise<void> {
-        const words: IBannedWord[] = await BannedWordRepository.load();
+        const words: BannedWord[] = await BannedWordRepository.load();
         this.wordList.innerHTML = '';
 
         for (const word of words) {
@@ -48,7 +48,7 @@ export default class BannedWords {
         }
     }
 
-    private createWidget(word: IBannedWord): void {
+    private createWidget(word: BannedWord): void {
         const wordDiv: HTMLDivElement = document.createElement('div');
 
         const input: HTMLInputElement = document.createElement('input');
