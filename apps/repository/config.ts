@@ -16,7 +16,7 @@ export interface IBannedWordOption {
     showInfo: boolean;
 }
 
-interface IAutoBlockIDNOptionStorage {
+interface AutoBlockIDNOptionStorage {
     autoBlockIDN: AutoBlockIDNOption;
 }
 
@@ -62,9 +62,9 @@ export const OptionRepository = {
 
     async getAutoBlockIDNOption(): Promise<AutoBlockIDNOption> {
         const autoBlockIDNDefault = { enabled: false };
-        const items: IAutoBlockIDNOptionStorage = await ChromeStorage.get(
+        const items: AutoBlockIDNOptionStorage = await ChromeStorage.get(
             { autoBlockIDN: autoBlockIDNDefault },
-        ) as IAutoBlockIDNOptionStorage;
+        ) as AutoBlockIDNOptionStorage;
         return items.autoBlockIDN;
     },
 
