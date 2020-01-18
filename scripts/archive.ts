@@ -16,7 +16,7 @@ const distDir = join(projectTop, 'dist');
 const packageName = getPackageName();
 const branch = process.env.CIRCLE_BRANCH;
 const tag = process.env.CIRCLE_TAG;
-const pem_base64 = process.env.PEM_BASE64;
+const pemBase64 = process.env.PEM_BASE64;
 
 // create Chrome Extension
 // rewrite manifest.json
@@ -36,9 +36,9 @@ if (branch && branch !== '') {
 mkdirIfNeeded(join(projectTop, 'tmp'));
 mkdirIfNeeded(join(projectTop, 'tmp', 'workspace'));
 
-if (pem_base64 !== undefined) {
+if (pemBase64 !== undefined) {
     // decode private key
-    const buffer = Buffer.from(pem_base64, 'base64');
+    const buffer = Buffer.from(pemBase64, 'base64');
     const pem = buffer.toString();
     const pemPath = join(projectTop, 'tmp', `${packageName}.pem`);
     writeFileSync(pemPath, pem);

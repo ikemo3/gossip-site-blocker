@@ -9,9 +9,9 @@ class BlockedSite {
 
     public block_type: string;
 
-    constructor(url: string, block_type: string) {
+    constructor(url: string, blockType: string) {
         this.url = url;
-        this.block_type = block_type;
+        this.block_type = blockType;
     }
 
     public contains(url: string): boolean {
