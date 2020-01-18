@@ -28,7 +28,7 @@ const menuPositionSelect = document.getElementById('menuPosition') as HTMLSelect
 let bannedWords: BannedWords;
 let regexpList: RegExpList;
 
-async function show_lists(): Promise<void> {
+async function showLists(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
 
     // Add after clear.
@@ -74,7 +74,7 @@ clearButton.addEventListener('click', clear);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 document.addEventListener('DOMContentLoaded', async (ignore) => {
-    await show_lists();
+    await showLists();
 
     regexpList = new RegExpList();
     await regexpList.load();
