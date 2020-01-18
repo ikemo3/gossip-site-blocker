@@ -2,7 +2,7 @@ import { BlockedSitesRepository } from '../repository/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
-import { IBlockedSite } from '../model/blocked_site';
+import { BlockedSite } from '../model/blocked_site';
 
 export async function importClicked(): Promise<void> {
     // noinspection JSValidateTypes
@@ -18,7 +18,7 @@ export async function importClicked(): Promise<void> {
         switch (cols.length) {
         case 1:
             // url only
-            return { url: cols[0], block_type: 'soft' };
+            return new BlockedSite(cols[0], 'soft');
         case 2:
         default: {
             const type = cols[1];
@@ -27,10 +27,10 @@ export async function importClicked(): Promise<void> {
             }
 
             // url + soft/hard
-            return { url: cols[0], block_type: type };
+            return new BlockedSite(cols[0], type);
         }
         }
-    }).filter((block) => block !== undefined) as IBlockedSite[];
+    }).filter((block) => block !== undefined) as BlockedSite[];
 
     await BlockedSitesRepository.addAll(blockList);
 

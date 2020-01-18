@@ -30,7 +30,7 @@ describe('BlockState', () => {
     }
 
     function createSites(blockType: string, url: string): BlockedSites {
-        const blockedSite = new BlockedSite({ block_type: blockType, url });
+        const blockedSite = new BlockedSite(url, blockType);
         return new BlockedSites([blockedSite]);
     }
 

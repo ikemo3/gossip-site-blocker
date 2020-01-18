@@ -1,8 +1,3 @@
-export interface IBlockedSite {
-    url: string;
-    block_type: string;
-}
-
 /**
  * Blocked sites
  *
@@ -14,9 +9,9 @@ export class BlockedSite {
 
     public block_type: string;
 
-    constructor(item: IBlockedSite) {
-        this.url = item.url;
-        this.block_type = item.block_type;
+    constructor(url: string, block_type: string) {
+        this.url = url;
+        this.block_type = block_type;
     }
 
     public contains(url: string): boolean {

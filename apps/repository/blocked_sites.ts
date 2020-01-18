@@ -1,9 +1,14 @@
 import { ChromeStorage } from '../common';
 import { BlockedSites } from '../model/blocked_sites';
-import { IBlockedSite, BlockedSite } from '../model/blocked_site';
+import { BlockedSite } from '../model/blocked_site';
 
-export interface BlockedSitesList {
-    blocked: IBlockedSite[];
+interface BlockedSiteData {
+    url: string;
+    block_type: string;
+}
+
+interface BlockedSitesListData {
+    blocked: BlockedSiteData[];
 }
 
 export const BlockedSitesRepository = {
@@ -13,12 +18,12 @@ export const BlockedSitesRepository = {
      * @returns {Promise<Array<BlockedSite>>}
      */
     async loadData(): Promise<Array<BlockedSite>> {
-        const items = await ChromeStorage.get({ blocked: [] }) as BlockedSitesList;
+        const items = await ChromeStorage.get({ blocked: [] }) as BlockedSitesListData;
 
         const sites = [];
 
         for (const item of items.blocked) {
-            const site = new BlockedSite(item);
+            const site = new BlockedSite(item.url, item.block_type);
             sites.push(site);
         }
 
@@ -36,14 +41,14 @@ export const BlockedSitesRepository = {
         return new BlockedSites(sites);
     },
 
-    async addAll(blockList: IBlockedSite[]): Promise<BlockedSites> {
+    async addAll(blockList: BlockedSite[]): Promise<BlockedSites> {
         const siteArray = await BlockedSitesRepository.loadData();
 
         for (const block of blockList) {
             const found = siteArray.some((site) => site.url === block.url);
 
             if (!found) {
-                const site = new BlockedSite({ url: block.url, block_type: block.block_type });
+                const site = new BlockedSite(block.url, block.block_type);
                 siteArray.push(site);
             }
         }
@@ -67,7 +72,7 @@ export const BlockedSitesRepository = {
 
         // add if not found.
         if (!found) {
-            const site = new BlockedSite({ url, block_type: blockType });
+            const site = new BlockedSite(url, blockType);
             siteArray.push(site);
         }
 
