@@ -14,7 +14,7 @@ function temporarilyUnblockAll(): void {
     }
 }
 
-function show_blocked_by_banned_words(): void {
+function showBlockedByBannedWords(): void {
     const id = 'urls_by_banned_words';
 
     const currentTextArea = document.getElementById(id);
@@ -56,7 +56,7 @@ async function create_appbar_links(): Promise<void> {
             if (bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message('showBlockedByWordInfo'));
                 showInfo.style.marginLeft = '1rem';
-                $.onclick(showInfo, show_blocked_by_banned_words);
+                $.onclick(showInfo, showBlockedByBannedWords);
                 resultStats.appendChild(showInfo);
             }
 
@@ -77,7 +77,7 @@ async function create_appbar_links(): Promise<void> {
             if (bannedWordOption.showInfo) {
                 const showInfo = $.anchor($.message('showBlockedByWordInfo'));
                 showInfo.style.marginLeft = '1rem';
-                $.onclick(showInfo, show_blocked_by_banned_words);
+                $.onclick(showInfo, showBlockedByBannedWords);
                 toolDiv.appendChild(showInfo);
             }
         }
