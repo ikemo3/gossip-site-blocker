@@ -2,7 +2,7 @@ import { ChromeStorage } from '../common';
 import { BlockedSites } from '../model/blocked_sites';
 import { IBlockedSite, BlockedSite } from '../model/blocked_site';
 
-export interface IBlockedSitesList {
+export interface BlockedSitesList {
     blocked: IBlockedSite[];
 }
 
@@ -13,7 +13,7 @@ export const BlockedSitesRepository = {
      * @returns {Promise<Array<BlockedSite>>}
      */
     async loadData(): Promise<Array<BlockedSite>> {
-        const items = await ChromeStorage.get({ blocked: [] }) as IBlockedSitesList;
+        const items = await ChromeStorage.get({ blocked: [] }) as BlockedSitesList;
 
         const sites = [];
 
