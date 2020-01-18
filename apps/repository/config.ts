@@ -1,6 +1,6 @@
 import { ChromeStorage, Logger, MenuPosition } from '../common';
 
-interface IDefaultBlockTypeOption {
+interface DefaultBlockTypeOption {
     defaultBlockType: string;
 }
 
@@ -75,7 +75,7 @@ export const OptionRepository = {
     },
 
     async defaultBlockType(): Promise<string> {
-        const items = await ChromeStorage.load({ defaultBlockType: 'soft' }) as IDefaultBlockTypeOption;
+        const items = await ChromeStorage.load({ defaultBlockType: 'soft' }) as DefaultBlockTypeOption;
         return items.defaultBlockType;
     },
 
