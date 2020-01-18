@@ -41,7 +41,6 @@
       4
     ],
     "max-classes-per-file": "off",
-    "max-len": "warn",
     "no-continue": "off",
     "no-restricted-syntax": [
       "warn",
