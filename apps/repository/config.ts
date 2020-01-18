@@ -8,7 +8,7 @@ interface DeveloperOption {
     developerMode: boolean;
 }
 
-interface IBannedWordOptionStorage {
+interface BannedWordOptionStorage {
     bannedWord: BannedWordOption;
 }
 
@@ -47,7 +47,7 @@ export const OptionRepository = {
 
     async getBannedWordOption(): Promise<BannedWordOption> {
         const bannedWordDefault = { showInfo: false };
-        const items: IBannedWordOptionStorage = await ChromeStorage.get(
+        const items: BannedWordOptionStorage = await ChromeStorage.get(
             { bannedWord: bannedWordDefault },
         );
         return items.bannedWord;
