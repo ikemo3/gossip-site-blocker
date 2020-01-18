@@ -2,7 +2,7 @@ import {
     BannedTarget, BlockType, ChromeStorage, Logger,
 } from '../common';
 
-interface IBannedWordItems {
+interface BannedWordItems {
     bannedWords: BannedWord[];
 }
 
@@ -14,7 +14,7 @@ export interface BannedWord {
 
 export const BannedWordRepository = {
     async load(): Promise<BannedWord[]> {
-        const items = await ChromeStorage.get({ bannedWords: [] }) as IBannedWordItems;
+        const items = await ChromeStorage.get({ bannedWords: [] }) as BannedWordItems;
 
         const itemsCopy = items.bannedWords;
         for (const item of itemsCopy) {
