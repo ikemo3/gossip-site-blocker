@@ -2,14 +2,14 @@ import {
     $, BannedTarget, BlockType, DOMUtils,
 } from '../common';
 import { RegExpItem } from '../repository/regexp_repository';
-import { BlockedSites } from '../model/blocked_sites';
+import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from '../repository/banned_word_repository';
 import { AutoBlockIDNOption } from '../repository/config';
-import { BlockedSite } from '../model/blocked_site';
+import BlockedSite from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { BlockableContents } from '../blockable/blockable';
 
-export class BlockState {
+class BlockState {
     private readonly state: string;
 
     private readonly blockReason?: BlockReason;
@@ -94,3 +94,5 @@ export class BlockState {
         return this.state;
     }
 }
+
+export default BlockState;

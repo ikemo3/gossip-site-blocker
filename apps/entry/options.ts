@@ -1,14 +1,14 @@
 import BannedWords from '../option/banned_word';
-import { BlockedSitesRepository } from '../repository/blocked_sites';
+import BlockedSitesRepository from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
 import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
 import { Logger } from '../common';
-import { RegExpList } from '../option/regexp';
+import RegExpList from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';
-import { exportClicked } from '../option/export';
-import { importClicked } from '../option/import';
+import exportClicked from '../option/export';
+import importClicked from '../option/import';
 
 const softBlockList = document.getElementById('softBlockList') as HTMLDivElement;
 const hardBlockList = document.getElementById('hardBlockList') as HTMLDivElement;

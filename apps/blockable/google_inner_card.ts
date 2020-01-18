@@ -1,6 +1,6 @@
 import { Blockable } from './blockable';
 
-export class GoogleInnerCard implements Blockable {
+class GoogleInnerCard implements Blockable {
     public valid: boolean;
 
     public url: string;
@@ -79,3 +79,5 @@ export class GoogleInnerCard implements Blockable {
         return 'block-google-inner-card';
     }
 }
+
+export default GoogleInnerCard;

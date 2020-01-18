@@ -28,6 +28,7 @@ interface MenuPositionOption {
     menuPosition: string;
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
         const items = await ChromeStorage.get({ developerMode: false }) as DeveloperOption;

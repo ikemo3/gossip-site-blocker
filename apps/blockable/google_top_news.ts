@@ -1,7 +1,7 @@
 import { $ } from '../common';
 import { Blockable } from './blockable';
 
-export class GoogleTopNews implements Blockable {
+class GoogleTopNews implements Blockable {
     private readonly element: Element;
 
     private readonly valid: boolean;
@@ -74,3 +74,5 @@ export class GoogleTopNews implements Blockable {
         return 'block-google-top-news';
     }
 }
+
+export default GoogleTopNews;

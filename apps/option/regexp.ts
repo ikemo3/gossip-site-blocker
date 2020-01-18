@@ -1,7 +1,7 @@
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $, ApplicationError, BlockType } from '../common';
 
-export class RegExpList {
+class RegExpList {
     private readonly regexpList: HTMLDivElement;
 
     private readonly addText: HTMLInputElement;
@@ -97,3 +97,5 @@ export class RegExpList {
         $.removeSelf(div);
     }
 }
+
+export default RegExpList;

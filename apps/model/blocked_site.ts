@@ -4,7 +4,7 @@
  * @property {string} url Beginning of blocked URL(without scheme).
  * @property {"soft"|"hard"} block_type
  */
-export class BlockedSite {
+class BlockedSite {
     public url: string;
 
     public block_type: string;
@@ -42,3 +42,5 @@ export class BlockedSite {
         return this.block_type;
     }
 }
+
+export default BlockedSite;

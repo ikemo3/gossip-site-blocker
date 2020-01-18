@@ -2,7 +2,7 @@ import { $, DOMUtils } from '../common';
 import makeRecommendUrl from '../model/recommend';
 import { IBasicBlockMediator } from './mediator';
 
-export class BlockDialog {
+class BlockDialog {
     public mediator: IBasicBlockMediator;
 
     public background: HTMLDivElement;
@@ -255,3 +255,5 @@ export class BlockDialog {
         return [cancelButton, blockButton];
     }
 }
+
+export default BlockDialog;
