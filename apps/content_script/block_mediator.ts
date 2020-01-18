@@ -7,7 +7,7 @@ import {
 } from '../common';
 import { BlockedSitesRepository } from '../repository/blocked_sites';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { IBlockMediator } from './mediator';
+import { IBasicBlockMediator, IBlockMediator } from './mediator';
 
 /**
  * Block target element.
@@ -291,7 +291,7 @@ class OperationsAnchor {
     }
 }
 
-export class BlockMediator implements IBlockMediator {
+export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
     private readonly url: string;
 
     private blockReason?: BlockReason;
