@@ -1,3 +1,4 @@
+// noinspection NonAsciiCharacters
 module.exports = {
     types: [
         {

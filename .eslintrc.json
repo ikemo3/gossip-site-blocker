@@ -27,7 +27,17 @@
     "class-methods-use-this": "off",
     "consistent-return": "warn",
     "default-case": "warn",
-    "import/no-extraneous-dependencies": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "webpack.config.ts",
+          "test/**/*.ts",
+          "scripts/*.ts"
+        ],
+        "optionalDependencies": false
+      }
+    ],
     "import/prefer-default-export": "off",
     "indent": [
       "error",
@@ -37,7 +47,6 @@
     "max-len": "warn",
     "no-case-declarations": "warn",
     "no-continue": "off",
-    "no-param-reassign": "warn",
     "no-restricted-globals": "warn",
     "no-restricted-syntax": [
       "warn",
@@ -56,10 +65,7 @@
     ],
     "no-script-url": "warn",
     "no-undef": "warn",
-    "no-unused-vars": "off",
-    "no-useless-escape": "warn",
     "prefer-destructuring": "off",
-    "@typescript-eslint/ban-ts-ignore": "warn",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -74,7 +80,9 @@
   },
   "overrides": [
     {
-      "files": ["scripts/*"],
+      "files": [
+        "scripts/*"
+      ],
       "rules": {
         "no-console": "off"
       }
