@@ -1,7 +1,7 @@
 import { $ } from '../common';
-import { IBlockable } from './blockable';
+import { Blockable } from './blockable';
 
-export class GoogleTopNews implements IBlockable {
+export class GoogleTopNews implements Blockable {
     private readonly element: Element;
 
     private readonly valid: boolean;

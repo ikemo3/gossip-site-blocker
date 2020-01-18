@@ -1,6 +1,6 @@
-import { IBlockable } from './blockable';
+import { Blockable } from './blockable';
 
-export class GoogleElement implements IBlockable {
+export class GoogleElement implements Blockable {
     private readonly valid: boolean;
 
     private readonly ignoreExplicitly: boolean;

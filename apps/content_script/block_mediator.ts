@@ -1,7 +1,7 @@
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { BlockState } from './block_state';
 import { BlockDialog } from './dialog';
-import { IBlockable } from '../blockable/blockable';
+import { Blockable } from '../blockable/blockable';
 import {
     $, ApplicationError, BlockType, DOMUtils, MenuPosition,
 } from '../common';
@@ -314,7 +314,7 @@ export class BlockMediator implements IBlockMediator {
 
     private changeStateDialog: BlockChangeAnchorDialog;
 
-    constructor(g: IBlockable, blockState: BlockState, defaultBlockType: string,
+    constructor(g: Blockable, blockState: BlockState, defaultBlockType: string,
         menuPosition: MenuPosition) {
         const blockTarget = new BlockTarget(this, g.getElement());
 

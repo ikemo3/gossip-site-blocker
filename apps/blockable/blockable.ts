@@ -1,4 +1,4 @@
-export interface IBlockable {
+export interface Blockable {
     getUrl(): string;
 
     canBlock(): boolean;
