@@ -1,27 +1,5 @@
 import { ChromeStorage, Logger, MenuPosition } from '../common';
 
-interface IOptionRepository {
-    isDeveloperMode(): Promise<boolean>;
-
-    setDeveloperMode(mode: boolean): Promise<void>;
-
-    getBannedWordOption(): Promise<IBannedWordOption>;
-
-    setShowBlockedByWordInfo(mode: boolean): Promise<void>;
-
-    getAutoBlockIDNOption(): Promise<IAutoBlockIDNOption>;
-
-    setAutoBlockIDNOption(autoBlockIDN: IAutoBlockIDNOption): Promise<void>;
-
-    defaultBlockType(): Promise<string>;
-
-    setDefaultBlockType(type: string): Promise<void>;
-
-    menuPosition(): Promise<MenuPosition>;
-
-    setMenuPosition(position: string): Promise<void>;
-}
-
 interface IDefaultBlockTypeOption {
     defaultBlockType: string;
 }
@@ -50,7 +28,7 @@ interface IMenuPositionOption {
     menuPosition: string;
 }
 
-export const OptionRepository: IOptionRepository = {
+export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
         const items = await ChromeStorage.get({ developerMode: false }) as IDeveloperOption;
 
