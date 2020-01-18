@@ -4,7 +4,7 @@ interface IDefaultBlockTypeOption {
     defaultBlockType: string;
 }
 
-interface IDeveloperOption {
+interface DeveloperOption {
     developerMode: boolean;
 }
 
@@ -30,7 +30,7 @@ interface MenuPositionOption {
 
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
-        const items = await ChromeStorage.get({ developerMode: false }) as IDeveloperOption;
+        const items = await ChromeStorage.get({ developerMode: false }) as DeveloperOption;
 
         Logger.mode = items.developerMode;
 
