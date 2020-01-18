@@ -4,7 +4,7 @@ import { $, BannedTarget, BlockType } from '../apps/common';
 import { BannedWord } from '../apps/repository/banned_word_repository';
 import { BlockState } from '../apps/content_script/block_state';
 import { AutoBlockIDNOption } from '../apps/repository/config';
-import { IRegExpItem } from '../apps/repository/regexp_repository';
+import { RegExpItem } from '../apps/repository/regexp_repository';
 import { BlockReasonType } from '../apps/model/block_reason';
 import { IBlockTarget } from '../apps/blockable/blockable';
 
@@ -48,7 +48,7 @@ describe('BlockState', () => {
         };
     }
 
-    function createRegexp(pattern: string, blockType: BlockType): IRegExpItem {
+    function createRegexp(pattern: string, blockType: BlockType): RegExpItem {
         return {
             blockType, pattern,
         };

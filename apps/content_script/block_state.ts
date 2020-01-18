@@ -1,7 +1,7 @@
 import {
     $, BannedTarget, BlockType, DOMUtils,
 } from '../common';
-import { IRegExpItem } from '../repository/regexp_repository';
+import { RegExpItem } from '../repository/regexp_repository';
 import { IBlockedSites } from '../model/blocked_sites';
 import { BannedWord } from '../repository/banned_word_repository';
 import { AutoBlockIDNOption } from '../repository/config';
@@ -17,7 +17,7 @@ export class BlockState {
     constructor(blockable: IBlockTarget,
         blockedSites: IBlockedSites,
         bannedWords: BannedWord[],
-        regexpList: IRegExpItem[],
+        regexpList: RegExpItem[],
         idnOption: AutoBlockIDNOption) {
         const blockedSite: BlockedSite | undefined = blockedSites.matches(blockable.getUrl());
 
@@ -34,7 +34,7 @@ export class BlockState {
             }
         });
 
-        const regexp: IRegExpItem | undefined = regexpList.find((regexpItem) => {
+        const regexp: RegExpItem | undefined = regexpList.find((regexpItem) => {
             const pattern = new RegExp(regexpItem.pattern);
 
             return pattern.test(DOMUtils.removeProtocol(blockable.getUrl()));

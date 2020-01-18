@@ -1,6 +1,6 @@
 import { BlockedSites } from '../model/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
-import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
+import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
@@ -14,7 +14,7 @@ import { GoogleTopNews } from '../blockable/google_top_news';
 export interface IOptions {
     blockedSites: BlockedSites;
     bannedWords: BannedWord[];
-    regexpList: IRegExpItem[];
+    regexpList: RegExpItem[];
     idnOption: AutoBlockIDNOption;
     defaultBlockType: string;
     menuPosition: MenuPosition;
@@ -70,7 +70,7 @@ observer.observe(document.documentElement, config);
 (async (): Promise<void> => {
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
     const bannedWords: BannedWord[] = await BannedWordRepository.load();
-    const regexpList: IRegExpItem[] = await RegExpRepository.load();
+    const regexpList: RegExpItem[] = await RegExpRepository.load();
     const idnOption = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();

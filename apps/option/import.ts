@@ -1,6 +1,6 @@
 import { BlockedSitesRepository } from '../repository/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
-import { IRegExpItem, RegExpRepository } from '../repository/regexp_repository';
+import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
 import { IBlockedSite } from '../model/blocked_site';
 
@@ -41,7 +41,7 @@ export async function importClicked(): Promise<void> {
 
     // regexp
     const regexpList = lines.map((line) => lineToRegexp(line))
-        .filter((regexp) => regexp !== null) as IRegExpItem[];
+        .filter((regexp) => regexp !== null) as RegExpItem[];
 
     await RegExpRepository.addAll(regexpList);
 
@@ -66,7 +66,7 @@ function lineToBannedWord(line: string): BannedWord | undefined {
     return undefined;
 }
 
-function lineToRegexp(line: string): IRegExpItem | null {
+function lineToRegexp(line: string): RegExpItem | null {
     const cols = line.split(' ');
     if (cols.length === 1) {
         return null;
