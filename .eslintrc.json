@@ -27,7 +27,10 @@
     "class-methods-use-this": "off",
     "consistent-return": "warn",
     "default-case": "warn",
-    "import/no-extraneous-dependencies": "off",
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["webpack.config.ts", "test/**/*.ts", "scripts/*.ts"],
+      "optionalDependencies": false
+    }],
     "import/prefer-default-export": "off",
     "indent": [
       "error",
