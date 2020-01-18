@@ -35,7 +35,7 @@ class GoogleInnerCard implements Blockable {
         }
 
         this.valid = true;
-        this.url = urlList[0];
+        [this.url] = urlList;
         this.element = element;
     }
 

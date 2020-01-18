@@ -34,7 +34,7 @@ class GoogleElement implements Blockable {
 
         // ignore if any element has class=g
         let parent = element.parentElement;
-        for (;;) {
+        for (; ;) {
             // when root element
             if (parent === null) {
                 break;
@@ -113,7 +113,7 @@ class GoogleElement implements Blockable {
 
         this.valid = true;
         this.ignoreExplicitly = false;
-        this.url = urlList[0];
+        [this.url] = urlList;
         this.element = element;
         this.title = title;
         this.contents = contents;
