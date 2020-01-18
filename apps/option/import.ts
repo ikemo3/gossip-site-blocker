@@ -1,8 +1,8 @@
-import { BlockedSitesRepository } from '../repository/blocked_sites';
+import BlockedSitesRepository from '../repository/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
-import { BlockedSite } from '../model/blocked_site';
+import BlockedSite from '../model/blocked_site';
 
 function lineToBannedWord(line: string): BannedWord | undefined {
     const cols = line.split(' ');
@@ -36,7 +36,7 @@ function lineToRegexp(line: string): RegExpItem | null {
     return null;
 }
 
-export async function importClicked(): Promise<void> {
+async function importClicked(): Promise<void> {
     // noinspection JSValidateTypes
     /**
      * @type {HTMLTextAreaElement}
@@ -80,3 +80,5 @@ export async function importClicked(): Promise<void> {
     // eslint-disable-next-line no-alert
     alert(chrome.i18n.getMessage('importCompleted'));
 }
+
+export default importClicked;

@@ -1,9 +1,9 @@
-import { BlockedSitesRepository } from '../repository/blocked_sites';
+import BlockedSitesRepository from '../repository/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
 
-export async function exportClicked(): Promise<void> {
+async function exportClicked(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
 
     // block
@@ -43,3 +43,5 @@ export async function exportClicked(): Promise<void> {
 
     exportTextArea.value = `${allLines.join('\n')}\n`;
 }
+
+export default exportClicked;

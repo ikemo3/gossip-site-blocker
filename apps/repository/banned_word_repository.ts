@@ -12,6 +12,7 @@ export interface BannedWord {
     target: BannedTarget;
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export const BannedWordRepository = {
     async load(): Promise<BannedWord[]> {
         const items = await ChromeStorage.get({ bannedWords: [] }) as BannedWordItems;

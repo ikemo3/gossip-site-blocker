@@ -1,6 +1,6 @@
 import { ChromeStorage } from '../common';
-import { BlockedSites } from '../model/blocked_sites';
-import { BlockedSite } from '../model/blocked_site';
+import BlockedSites from '../model/blocked_sites';
+import BlockedSite from '../model/blocked_site';
 
 interface BlockedSiteData {
     url: string;
@@ -11,7 +11,7 @@ interface BlockedSitesListData {
     blocked: BlockedSiteData[];
 }
 
-export const BlockedSitesRepository = {
+const BlockedSitesRepository = {
     /**
      * load values as Array.
      *
@@ -139,3 +139,5 @@ export const BlockedSitesRepository = {
         await ChromeStorage.set({ blocked: [] });
     },
 };
+
+export default BlockedSitesRepository;

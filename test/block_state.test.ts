@@ -1,8 +1,8 @@
-import { BlockedSites } from '../apps/model/blocked_sites';
-import { BlockedSite } from '../apps/model/blocked_site';
+import BlockedSites from '../apps/model/blocked_sites';
+import BlockedSite from '../apps/model/blocked_site';
 import { $, BannedTarget, BlockType } from '../apps/common';
 import { BannedWord } from '../apps/repository/banned_word_repository';
-import { BlockState } from '../apps/content_script/block_state';
+import BlockState from '../apps/content_script/block_state';
 import { AutoBlockIDNOption } from '../apps/repository/config';
 import { RegExpItem } from '../apps/repository/regexp_repository';
 import { BlockReasonType } from '../apps/model/block_reason';

@@ -1,6 +1,6 @@
 import { Blockable } from './blockable';
 
-export class GoogleElement implements Blockable {
+class GoogleElement implements Blockable {
     private readonly valid: boolean;
 
     private readonly ignoreExplicitly: boolean;
@@ -172,3 +172,5 @@ export class GoogleElement implements Blockable {
         return 'block-google-element';
     }
 }
+
+export default GoogleElement;

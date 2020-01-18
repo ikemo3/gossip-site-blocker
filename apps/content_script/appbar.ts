@@ -42,7 +42,7 @@ function show_blocked_by_banned_words(): void {
     $.insertBefore(textarea, topStuff);
 }
 
-export async function create_appbar_links(): Promise<void> {
+async function create_appbar_links(): Promise<void> {
     const resultStats = document.getElementById('resultStats');
     if (resultStats !== null) {
         const resultStatsIsHidden = getComputedStyle(resultStats).opacity === '0';
@@ -83,3 +83,5 @@ export async function create_appbar_links(): Promise<void> {
         }
     }
 }
+
+export default create_appbar_links;

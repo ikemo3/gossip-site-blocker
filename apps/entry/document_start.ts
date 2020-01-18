@@ -1,15 +1,15 @@
-import { BlockedSites } from '../model/blocked_sites';
+import BlockedSites from '../model/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
-import { BlockedSitesRepository } from '../repository/blocked_sites';
-import { GoogleElement } from '../blockable/google_element';
-import { BlockState } from '../content_script/block_state';
-import { BlockMediator } from '../content_script/block_mediator';
-import { GoogleInnerCard } from '../blockable/google_inner_card';
-import { GoogleTopNews } from '../blockable/google_top_news';
+import BlockedSitesRepository from '../repository/blocked_sites';
+import GoogleElement from '../blockable/google_element';
+import BlockState from '../content_script/block_state';
+import BlockMediator from '../content_script/block_mediator';
+import GoogleInnerCard from '../blockable/google_inner_card';
+import GoogleTopNews from '../blockable/google_top_news';
 
 export interface Options {
     blockedSites: BlockedSites;
