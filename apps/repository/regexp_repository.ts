@@ -1,6 +1,6 @@
 import { BlockType, ChromeStorage, Logger } from '../common';
 
-interface IRegExpItemList {
+interface RegExpItemList {
     regexpList: RegExpItem[];
 }
 
@@ -11,7 +11,7 @@ export interface RegExpItem {
 
 export const RegExpRepository = {
     async load(): Promise<RegExpItem[]> {
-        const items = await ChromeStorage.get({ regexpList: [] }) as IRegExpItemList;
+        const items = await ChromeStorage.get({ regexpList: [] }) as RegExpItemList;
 
         const itemsCopy = items.regexpList;
 
