@@ -24,7 +24,7 @@ export interface IAutoBlockIDNOption {
     enabled: boolean;
 }
 
-interface IMenuPositionOption {
+interface MenuPositionOption {
     menuPosition: string;
 }
 
@@ -86,7 +86,7 @@ export const OptionRepository = {
     },
 
     async menuPosition(): Promise<MenuPosition> {
-        const items = await ChromeStorage.load({ menuPosition: 'default' }) as IMenuPositionOption;
+        const items = await ChromeStorage.load({ menuPosition: 'default' }) as MenuPositionOption;
         const { menuPosition } = items;
 
         switch (menuPosition) {
