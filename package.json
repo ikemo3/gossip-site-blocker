@@ -35,10 +35,11 @@
   },
   "scripts": {
     "archive": "ts-node ./scripts/archive.ts",
-    "build": "webpack",
+    "build": "webpack && yarn manifest",
     "integration-test": "yarn archive && tsc && node --async-stack-traces test/selenium/test.js",
     "lint": "yarn eslint --ext .ts apps test *.ts",
     "lint-for-ci": "yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps test *.ts",
+    "manifest": "ts-node ./scripts/make_manifest.ts",
     "test": "tsc && jest"
   }
 }
