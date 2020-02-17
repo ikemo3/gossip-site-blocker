@@ -1,4 +1,6 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync, } from 'fs';
+import {
+    existsSync, mkdirSync, readFileSync, writeFileSync,
+} from 'fs';
 import { join } from 'path';
 import dayjs from 'dayjs';
 
@@ -71,6 +73,10 @@ export function createManifest(): void {
         console.info('add `version_name` to manifest.json');
         const manifest = getManifest();
         manifest.version_name = `${manifest.version}-${tag}(${now})`;
+        writeManifest(manifest);
+    } else {
+        console.info('copy manifest.json');
+        const manifest = getManifest();
         writeManifest(manifest);
     }
 }
