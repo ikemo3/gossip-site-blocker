@@ -1,38 +1,23 @@
 import { writeFileSync } from 'fs';
-import dayjs from 'dayjs';
 import { join } from 'path';
 import { execFileSync, execSync } from 'child_process';
 import {
+    createManifest,
     getManifest,
     getPackageName,
     getWebExtensionId,
     mkdirIfNeeded,
     writeManifest,
 } from './libs';
+import { distDir, projectTop } from './const';
 
-const now = dayjs().format('YYYYMMDD-HHmm');
-const projectTop = join(__dirname, '..');
-const distDir = join(projectTop, 'dist');
 const packageName = getPackageName();
-const branch = process.env.CIRCLE_BRANCH;
-const tag = process.env.CIRCLE_TAG;
 const pemBase64 = process.env.PEM_BASE64;
 
-// create Chrome Extension
-// rewrite manifest.json
-mkdirIfNeeded(distDir);
-if (branch && branch !== '') {
-    console.info('add `version_name` to manifest.json');
-    const manifest = getManifest();
-    manifest.version_name = `${manifest.version}-snapshot(${now})`;
-    writeManifest(manifest);
-} else if (tag && tag.endsWith('spike')) {
-    console.info('add `version_name` to manifest.json');
-    const manifest = getManifest();
-    manifest.version_name = `${manifest.version}-${tag}(${now})`;
-    writeManifest(manifest);
-}
+// create manifest.json
+createManifest();
 
+// create Chrome Extension
 mkdirIfNeeded(join(projectTop, 'tmp'));
 mkdirIfNeeded(join(projectTop, 'tmp', 'workspace'));
 
