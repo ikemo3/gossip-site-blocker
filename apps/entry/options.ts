@@ -20,6 +20,7 @@ const clearButton = document.getElementById('clearButton') as HTMLInputElement;
  */
 const developerCheckbox = document.getElementById('developerCheckbox') as HTMLInputElement;
 
+const displayTemporarilyUnblockAllCheckbox = document.getElementById('displayTemporarilyUnblockAllCheckbox') as HTMLInputElement;
 const showBlockedByWordInfoCheckbox = document.getElementById('showBlockedByWordInfoCheckbox') as HTMLInputElement;
 const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as HTMLInputElement;
 const defaultBlockSelect = document.getElementById('defaultBlockType') as HTMLSelectElement;
@@ -86,6 +87,11 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     Logger.log('developerMode is ', developerMode);
     developerCheckbox.checked = developerMode;
 
+    const displayTemporarilyUnblockAll: boolean = await OptionRepository
+        .isDisplayTemporarilyUnblockAll();
+    Logger.debug('displayTemporarilyUnblockAll is ', displayTemporarilyUnblockAll);
+    displayTemporarilyUnblockAllCheckbox.checked = displayTemporarilyUnblockAll;
+
     const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
     Logger.debug('bannedWordOption is ', bannedWordOption);
     showBlockedByWordInfoCheckbox.checked = bannedWordOption.showInfo;
@@ -107,6 +113,12 @@ developerCheckbox.addEventListener('click', async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
     await OptionRepository.setDeveloperMode(checkbox.checked);
+});
+
+displayTemporarilyUnblockAllCheckbox.addEventListener('click', async (event) => {
+    const checkbox = event.target as HTMLInputElement;
+
+    await OptionRepository.setDisplayTemporarilyUnblockAll(checkbox.checked);
 });
 
 showBlockedByWordInfoCheckbox.addEventListener('click', async (event) => {

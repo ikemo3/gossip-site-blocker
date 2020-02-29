@@ -28,6 +28,10 @@ interface MenuPositionOption {
     menuPosition: string;
 }
 
+interface DisplayTemporarilyUnblockAllOption {
+    displayTemporarilyUnblockAll: boolean;
+}
+
 // eslint-disable-next-line import/prefer-default-export
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
@@ -103,5 +107,18 @@ export const OptionRepository = {
         await ChromeStorage.save({ menuPosition: position });
 
         Logger.debug("set 'menuPosition' to =>", position);
+    },
+
+    async isDisplayTemporarilyUnblockAll(): Promise<boolean> {
+        const items = await ChromeStorage.load({
+            displayTemporarilyUnblockAll: true,
+        }) as DisplayTemporarilyUnblockAllOption;
+
+        return items.displayTemporarilyUnblockAll;
+    },
+
+    async setDisplayTemporarilyUnblockAll(displayTemporarilyUnblockAll: boolean): Promise<void> {
+        await ChromeStorage.save({ displayTemporarilyUnblockAll });
+        Logger.debug("set 'displayTemporarilyUnblockAll' to =>", displayTemporarilyUnblockAll);
     },
 };
