@@ -3,6 +3,7 @@ import { join } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import WebpackShellPluginNext from 'webpack-shell-plugin-next';
 
 const config: Configuration = {
     mode: 'development',
@@ -56,6 +57,15 @@ const config: Configuration = {
                 template: join(__dirname, 'apps/option/options.html'),
                 filename: 'option/options.html',
                 chunks: ['options'],
+            },
+        ),
+        new WebpackShellPluginNext(
+            {
+                onBuildExit: {
+                    scripts: ['yarn manifest'],
+                    blocking: true,
+                    parallel: false,
+                },
             },
         ),
     ],

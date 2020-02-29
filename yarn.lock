@@ -6159,6 +6159,11 @@ webpack-log@^2.0.0:
     ansi-colors "^3.0.0"
     uuid "^3.3.2"
 
+webpack-shell-plugin-next@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/webpack-shell-plugin-next/-/webpack-shell-plugin-next-1.1.5.tgz#559211903088fe27a32fc3a1b58daba5d24509f2"
+  integrity sha512-pyoQGQ9f7jiyeLJ6059aJSj/Myz/TfDz+R/gTYxQwBkYfRtU8/afUwckeSFDBiRDg/BxHNukAM9uAiutmgsMqw==
+
 webpack-sources@^1.4.0, webpack-sources@^1.4.1:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.4.3.tgz#eedd8ec0b928fbf1cbfe994e22d2d890f330a933"

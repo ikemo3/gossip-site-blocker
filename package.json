@@ -31,11 +31,12 @@
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-shell-plugin-next": "^1.1.5"
   },
   "scripts": {
     "archive": "ts-node ./scripts/archive.ts",
-    "build": "webpack && yarn manifest",
+    "build": "webpack",
     "integration-test": "yarn archive && tsc && node --async-stack-traces test/selenium/test.js",
     "lint": "yarn eslint --ext .ts apps test *.ts",
     "lint-for-ci": "yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps test *.ts",
