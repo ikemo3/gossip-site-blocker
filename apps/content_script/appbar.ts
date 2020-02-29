@@ -43,7 +43,7 @@ function showBlockedByBannedWords(): void {
 }
 
 async function createAppbarLinks(): Promise<void> {
-    const resultStats = document.getElementById('resultStats');
+    const resultStats = document.getElementById('result-stats');
     if (resultStats !== null) {
         const resultStatsIsHidden = getComputedStyle(resultStats).opacity === '0';
         if (!resultStatsIsHidden) {
