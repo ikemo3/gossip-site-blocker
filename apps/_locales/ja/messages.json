@@ -92,6 +92,9 @@
   "developerMode": {
     "message": "開発者モード"
   },
+  "displayTemporarilyUnblockAll": {
+    "message": "「全てのブロックを一時解除」を表示"
+  },
   "exceptIkagadesitaka": {
     "message": "「いかがでしたか」を除外して検索"
   },

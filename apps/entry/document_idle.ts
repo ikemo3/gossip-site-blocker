@@ -1,5 +1,9 @@
 import createAppbarLinks from '../content_script/appbar';
+import { OptionRepository } from '../repository/config';
 
 (async (): Promise<void> => {
-    await createAppbarLinks();
+    const display = await OptionRepository.isDisplayTemporarilyUnblockAll();
+    if (display) {
+        await createAppbarLinks();
+    }
 })();

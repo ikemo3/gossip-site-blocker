@@ -92,6 +92,9 @@
   "developerMode": {
     "message": "Developer Mode"
   },
+  "displayTemporarilyUnblockAll": {
+    "message": "Display `Temporarily unblock all`"
+  },
   "exceptIkagadesitaka": {
     "message": "Search excluding 'ikagadesitaka(Japanese)'"
   },
