@@ -9,6 +9,15 @@ Google Web Store
 
 https://chrome.google.com/webstore/detail/gossip-site-blocker/mjojhcmecfehllhcjcbhkkpohadogplk
 
+## Compile
+
+```sh
+yarn install
+make ci
+```
+
+creates archive in `tmp/workspaces`.
+
 ## Special Thanks
 
 I got Extension's icon from that site.
