@@ -1,3 +1,14 @@
+# v1.9.0
+
+## Improvements.
+
+* Add: option for display 'Temporarily unblock all'(#101, #142)
+
+## Bug Fixes
+
+* Fix: wrong menu position in compact mode(#40, #117)
+* Fix: 'temporarily unblock all' does not working(#148, #141)
+
 # v1.8.5.1
 
 ## Bug Fixes
