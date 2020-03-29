@@ -14,30 +14,30 @@ class BlockState {
 
     private readonly blockReason?: BlockReason;
 
-    constructor(blockable: ContentToBlock,
+    constructor(content: ContentToBlock,
         blockedSites: BlockedSites,
         bannedWords: BannedWord[],
         regexpList: RegExpItem[],
         idnOption: AutoBlockIDNOption) {
-        const blockedSite: BlockedSite | undefined = blockedSites.matches(blockable.getUrl());
+        const blockedSite: BlockedSite | undefined = blockedSites.matches(content.getUrl());
 
         const banned: BannedWord | undefined = bannedWords.find((bannedWord) => {
             const { keyword } = bannedWord;
 
             switch (bannedWord.target) {
             case BannedTarget.TITLE_ONLY:
-                return blockable.containsInTitle(keyword);
+                return content.containsInTitle(keyword);
 
             case BannedTarget.TITLE_AND_CONTENTS:
             default:
-                return blockable.contains(keyword);
+                return content.contains(keyword);
             }
         });
 
         const regexp: RegExpItem | undefined = regexpList.find((regexpItem) => {
             const pattern = new RegExp(regexpItem.pattern);
 
-            return pattern.test(DOMUtils.removeProtocol(blockable.getUrl()));
+            return pattern.test(DOMUtils.removeProtocol(content.getUrl()));
         });
 
         // FIXME: priority
@@ -46,11 +46,11 @@ class BlockState {
             && (!regexp || regexp.blockType !== BlockType.HARD)) {
             this.state = blockedSite.getState();
 
-            if (DOMUtils.removeProtocol(blockable.getUrl()) === blockedSite.url) {
-                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, blockable.getUrl(),
+            if (DOMUtils.removeProtocol(content.getUrl()) === blockedSite.url) {
+                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, content.getUrl(),
                     blockedSite.url);
             } else {
-                this.blockReason = new BlockReason(BlockReasonType.URL, blockable.getUrl(),
+                this.blockReason = new BlockReason(BlockReasonType.URL, content.getUrl(),
                     blockedSite.url);
             }
 
@@ -58,13 +58,13 @@ class BlockState {
         }
         if (banned) {
             this.state = banned.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.WORD, blockable.getUrl(),
+            this.blockReason = new BlockReason(BlockReasonType.WORD, content.getUrl(),
                 banned.keyword);
             return;
         }
         if (regexp) {
             this.state = regexp.blockType.toString();
-            this.blockReason = new BlockReason(BlockReasonType.REGEXP, blockable.getUrl(),
+            this.blockReason = new BlockReason(BlockReasonType.REGEXP, content.getUrl(),
                 regexp.pattern);
             return;
         }
@@ -73,7 +73,7 @@ class BlockState {
         const { enabled } = idnOption;
 
         if (enabled) {
-            const url = blockable.getUrl();
+            const url = content.getUrl();
             const hostname = DOMUtils.getHostName(url);
 
             if (hostname.startsWith('xn--') || hostname.includes('.xn--')) {
