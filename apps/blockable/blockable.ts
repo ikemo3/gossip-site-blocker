@@ -1,4 +1,4 @@
-export interface Blockable {
+export interface SearchResultToBlock {
     getUrl(): string;
 
     canBlock(): boolean;
