@@ -18,7 +18,7 @@ export interface SearchResultToBlock {
     getCssClass(): string;
 }
 
-export interface BlockableContents {
+export interface ContentToBlock {
     getUrl(): string;
 
     contains(keyword: string): boolean;

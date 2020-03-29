@@ -6,10 +6,10 @@ import BlockState from '../apps/content_script/block_state';
 import { AutoBlockIDNOption } from '../apps/repository/config';
 import { RegExpItem } from '../apps/repository/regexp_repository';
 import { BlockReasonType } from '../apps/model/block_reason';
-import { BlockableContents } from '../apps/blockable/blockable';
+import { ContentToBlock } from '../apps/blockable/blockable';
 
 describe('BlockState', () => {
-    function createContents(url: string, contains: boolean): BlockableContents {
+    function createContents(url: string, contains: boolean): ContentToBlock {
         return {
             contains(_: string): boolean {
                 return contains;

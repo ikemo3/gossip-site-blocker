@@ -7,14 +7,14 @@ import { BannedWord } from '../repository/banned_word_repository';
 import { AutoBlockIDNOption } from '../repository/config';
 import BlockedSite from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
-import { BlockableContents } from '../blockable/blockable';
+import { ContentToBlock } from '../blockable/blockable';
 
 class BlockState {
     private readonly state: string;
 
     private readonly blockReason?: BlockReason;
 
-    constructor(blockable: BlockableContents,
+    constructor(blockable: ContentToBlock,
         blockedSites: BlockedSites,
         bannedWords: BannedWord[],
         regexpList: RegExpItem[],
