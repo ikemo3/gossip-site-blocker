@@ -69,7 +69,7 @@ function tryBlockElement(node: Element, options: Options, blockFunction: IBlockF
 function blockGoogleElement(g1: Element, options: Options): boolean {
     const g = new GoogleElement(g1);
 
-    if (g.isIgnoreable()) {
+    if (g.isIgnorable()) {
         return true;
     }
 

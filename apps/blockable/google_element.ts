@@ -128,7 +128,7 @@ class GoogleElement implements Blockable {
         }
     }
 
-    public isIgnoreable(): boolean {
+    public isIgnorable(): boolean {
         return this.ignoreExplicitly;
     }
 
