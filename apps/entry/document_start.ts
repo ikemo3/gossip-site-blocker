@@ -5,11 +5,11 @@ import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repos
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
 import BlockedSitesRepository from '../repository/blocked_sites';
-import GoogleSearchResult from '../blockable/google_search_result';
+import GoogleSearchResult from '../block/google_search_result';
 import BlockState from '../content_script/block_state';
 import BlockMediator from '../content_script/block_mediator';
-import GoogleInnerCard from '../blockable/google_inner_card';
-import GoogleTopNews from '../blockable/google_top_news';
+import GoogleInnerCard from '../block/google_inner_card';
+import GoogleTopNews from '../block/google_top_news';
 
 export interface Options {
     blockedSites: BlockedSites;

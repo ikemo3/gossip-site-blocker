@@ -1,5 +1,5 @@
 import { $ } from '../common';
-import { SearchResultToBlock } from './blockable';
+import { SearchResultToBlock } from './block';
 
 class GoogleTopNews implements SearchResultToBlock {
     private readonly element: Element;

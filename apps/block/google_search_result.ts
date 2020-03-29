@@ -1,4 +1,4 @@
-import { SearchResultToBlock } from './blockable';
+import { SearchResultToBlock } from './block';
 
 class GoogleSearchResult implements SearchResultToBlock {
     private readonly valid: boolean;

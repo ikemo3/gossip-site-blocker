@@ -1,4 +1,4 @@
-import { SearchResultToBlock } from './blockable';
+import { SearchResultToBlock } from './block';
 
 class GoogleInnerCard implements SearchResultToBlock {
     public valid: boolean;

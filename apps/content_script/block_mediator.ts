@@ -1,7 +1,7 @@
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import BlockState from './block_state';
 import BlockDialog from './dialog';
-import { SearchResultToBlock } from '../blockable/blockable';
+import { SearchResultToBlock } from '../block/block';
 import {
     $, ApplicationError, BlockType, DOMUtils, MenuPosition,
 } from '../common';

@@ -7,7 +7,7 @@ import { BannedWord } from '../repository/banned_word_repository';
 import { AutoBlockIDNOption } from '../repository/config';
 import BlockedSite from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
-import { ContentToBlock } from '../blockable/blockable';
+import { ContentToBlock } from '../block/block';
 
 class BlockState {
     private readonly state: string;
