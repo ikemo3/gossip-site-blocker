@@ -5,7 +5,7 @@ import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repos
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
 import BlockedSitesRepository from '../repository/blocked_sites';
-import GoogleElement from '../blockable/google_element';
+import GoogleSearchResult from '../blockable/google_search_result';
 import BlockState from '../content_script/block_state';
 import BlockMediator from '../content_script/block_mediator';
 import GoogleInnerCard from '../blockable/google_inner_card';
@@ -66,8 +66,8 @@ function tryBlockElement(node: Element, options: Options, blockFunction: IBlockF
     subObserverList.push(subObserver);
 }
 
-function blockGoogleElement(g1: Element, options: Options): boolean {
-    const g = new GoogleElement(g1);
+function blockGoogleSearchResult(g1: Element, options: Options): boolean {
+    const g = new GoogleSearchResult(g1);
 
     if (g.isIgnorable()) {
         return true;
@@ -141,8 +141,8 @@ function blockGoogleTopNews(g1: Element, options: Options): boolean {
     return true;
 }
 
-function tryBlockGoogleElement(node: Element, options: Options): void {
-    tryBlockElement(node, options, blockGoogleElement);
+function tryBlockGoogleSearchResult(node: Element, options: Options): void {
+    tryBlockElement(node, options, blockGoogleSearchResult);
 }
 
 function tryBlockGoogleInnerCard(node: Element, options: Options): void {
@@ -160,7 +160,7 @@ const observer = new MutationObserver((mutations) => {
             if (node instanceof Element) {
                 if (node.classList.contains('g')) {
                     if (gsbOptions !== null) {
-                        tryBlockGoogleElement(node, gsbOptions);
+                        tryBlockGoogleSearchResult(node, gsbOptions);
                     } else {
                         pendingsGoogle.push(node);
                     }
@@ -206,7 +206,7 @@ observer.observe(document.documentElement, config);
     };
 
     for (const node of pendingsGoogle) {
-        tryBlockGoogleElement(node, gsbOptions);
+        tryBlockGoogleSearchResult(node, gsbOptions);
     }
 
     for (const node of pendingsInnerCard) {
