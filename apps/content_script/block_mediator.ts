@@ -1,7 +1,7 @@
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import BlockState from './block_state';
 import BlockDialog from './dialog';
-import { Blockable } from '../blockable/blockable';
+import { SearchResultToBlock } from '../block/block';
 import {
     $, ApplicationError, BlockType, DOMUtils, MenuPosition,
 } from '../common';
@@ -12,7 +12,7 @@ import { IBasicBlockMediator, IBlockMediator } from './mediator';
 /**
  * Block target element.
  */
-class BlockTarget {
+class BlockTargetElement {
     private readonly mediator: BlockMediator;
 
     private readonly element: Element;
@@ -296,7 +296,7 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
     private blockReason?: BlockReason;
 
-    private readonly blockTarget: BlockTarget;
+    private readonly blockTarget: BlockTargetElement;
 
     private readonly operationDiv: HTMLDivElement;
 
@@ -314,9 +314,9 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
     private changeStateDialog: BlockChangeAnchorDialog;
 
-    constructor(g: Blockable, blockState: BlockState, defaultBlockType: string,
+    constructor(g: SearchResultToBlock, blockState: BlockState, defaultBlockType: string,
         menuPosition: MenuPosition) {
-        const blockTarget = new BlockTarget(this, g.getElement());
+        const blockTarget = new BlockTargetElement(this, g.getElement());
 
         this.operationDiv = $.div('block-anchor');
         this.url = g.getUrl();

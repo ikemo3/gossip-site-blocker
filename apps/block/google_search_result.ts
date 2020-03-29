@@ -1,6 +1,6 @@
-import { Blockable } from './blockable';
+import { SearchResultToBlock } from './block';
 
-class GoogleElement implements Blockable {
+class GoogleSearchResult implements SearchResultToBlock {
     private readonly valid: boolean;
 
     private readonly ignoreExplicitly: boolean;
@@ -128,7 +128,7 @@ class GoogleElement implements Blockable {
         }
     }
 
-    public isIgnoreable(): boolean {
+    public isIgnorable(): boolean {
         return this.ignoreExplicitly;
     }
 
@@ -173,4 +173,4 @@ class GoogleElement implements Blockable {
     }
 }
 
-export default GoogleElement;
+export default GoogleSearchResult;

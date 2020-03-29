@@ -1,6 +1,6 @@
-import { Blockable } from './blockable';
+import { SearchResultToBlock } from './block';
 
-class GoogleInnerCard implements Blockable {
+class GoogleInnerCard implements SearchResultToBlock {
     public valid: boolean;
 
     public url: string;

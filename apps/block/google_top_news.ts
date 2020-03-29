@@ -1,7 +1,7 @@
 import { $ } from '../common';
-import { Blockable } from './blockable';
+import { SearchResultToBlock } from './block';
 
-class GoogleTopNews implements Blockable {
+class GoogleTopNews implements SearchResultToBlock {
     private readonly element: Element;
 
     private readonly valid: boolean;
