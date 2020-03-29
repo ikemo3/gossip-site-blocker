@@ -31,9 +31,9 @@ window.blockReasons = [];
 
 // This is necessary when using the back button.
 let gsbOptions: Options | null = null;
-const pendingsGoogle: Element[] = [];
-const pendingsInnerCard: Element[] = [];
-const pendingsTopNews: Element[] = [];
+const pendingGoogleSearchResultList: Element[] = [];
+const pendingGoogleInnerCardList: Element[] = [];
+const pendingGoogleTopNewsList: Element[] = [];
 const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g1: Element, options: Options) => boolean;
@@ -162,19 +162,19 @@ const observer = new MutationObserver((mutations) => {
                     if (gsbOptions !== null) {
                         tryBlockGoogleSearchResult(node, gsbOptions);
                     } else {
-                        pendingsGoogle.push(node);
+                        pendingGoogleSearchResultList.push(node);
                     }
                 } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
                     if (gsbOptions !== null) {
                         tryBlockGoogleInnerCard(node, gsbOptions);
                     } else {
-                        pendingsInnerCard.push(node);
+                        pendingGoogleInnerCardList.push(node);
                     }
                 } else if (node.classList.contains('dbsr')) {
                     if (gsbOptions !== null) {
                         tryBlockGoogleTopNews(node, gsbOptions);
                     } else {
-                        pendingsTopNews.push(node);
+                        pendingGoogleTopNewsList.push(node);
                     }
                 }
             }
@@ -205,15 +205,15 @@ observer.observe(document.documentElement, config);
         bannedWordOption,
     };
 
-    for (const node of pendingsGoogle) {
+    for (const node of pendingGoogleSearchResultList) {
         tryBlockGoogleSearchResult(node, gsbOptions);
     }
 
-    for (const node of pendingsInnerCard) {
+    for (const node of pendingGoogleInnerCardList) {
         tryBlockGoogleInnerCard(node, gsbOptions);
     }
 
-    for (const node of pendingsTopNews) {
+    for (const node of pendingGoogleTopNewsList) {
         tryBlockGoogleTopNews(node, gsbOptions);
     }
 })();
