@@ -21,6 +21,7 @@ export interface Options {
     defaultBlockType: string;
     menuPosition: MenuPosition;
     bannedWordOption: BannedWordOption;
+    blockGoogleNewsTab: boolean;
 }
 
 declare global {
@@ -146,6 +147,10 @@ function blockGoogleTopNews(g1: Element, options: Options): boolean {
 }
 
 function blockGoogleNewsTabCardSection(g1: Element, options: Options): boolean {
+    if (!options.blockGoogleNewsTab) {
+        return true;
+    }
+
     const g = new GoogleNewsTabCardSection(g1);
 
     if (g.isIgnorable()) {
@@ -173,6 +178,10 @@ function blockGoogleNewsTabCardSection(g1: Element, options: Options): boolean {
 }
 
 function blockGoogleNewsTabTop(g1: Element, options: Options): boolean {
+    if (!options.blockGoogleNewsTab) {
+        return true;
+    }
+
     const g = new GoogleNewsTabTop(g1);
 
     if (g.isIgnorable()) {
@@ -277,6 +286,7 @@ observer.observe(document.documentElement, config);
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();
     const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
+    const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
     Logger.debug('autoBlockIDNOption:', idnOption);
 
     gsbOptions = {
@@ -287,6 +297,7 @@ observer.observe(document.documentElement, config);
         defaultBlockType,
         menuPosition,
         bannedWordOption,
+        blockGoogleNewsTab,
     };
 
     for (const node of pendingGoogleSearchResultList) {

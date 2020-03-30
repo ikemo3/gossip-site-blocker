@@ -25,6 +25,7 @@ const showBlockedByWordInfoCheckbox = document.getElementById('showBlockedByWord
 const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as HTMLInputElement;
 const defaultBlockSelect = document.getElementById('defaultBlockType') as HTMLSelectElement;
 const menuPositionSelect = document.getElementById('menuPosition') as HTMLSelectElement;
+const blockGoogleNewsTabCheckbox = document.getElementById('blockGoogleNewsTabCheckbox') as HTMLInputElement;
 
 let bannedWords: BannedWords;
 let regexpList: RegExpList;
@@ -107,6 +108,10 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     const menuPosition: string = await OptionRepository.menuPosition();
     Logger.debug('menuPosition is ', menuPosition);
     menuPositionSelect.value = menuPosition;
+
+    const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
+    Logger.debug('blockGoogleNewsTab is ', blockGoogleNewsTab);
+    blockGoogleNewsTabCheckbox.checked = blockGoogleNewsTab;
 });
 
 developerCheckbox.addEventListener('click', async (event) => {
@@ -146,6 +151,12 @@ menuPositionSelect.addEventListener('change', async (event) => {
 
     const { value } = select;
     await OptionRepository.setMenuPosition(value);
+});
+
+blockGoogleNewsTabCheckbox.addEventListener('click', async (event) => {
+    const checkbox = event.target as HTMLInputElement;
+
+    await OptionRepository.setBlockGoogleNewsTab(checkbox.checked);
 });
 
 localizeHtmlPage();
