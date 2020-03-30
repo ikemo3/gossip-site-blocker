@@ -10,6 +10,8 @@ import BlockState from '../content_script/block_state';
 import BlockMediator from '../content_script/block_mediator';
 import GoogleInnerCard from '../block/google_inner_card';
 import GoogleTopNews from '../block/google_top_news';
+import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
+import GoogleNewsTabTop from '../block/google_news_tab_top';
 
 export interface Options {
     blockedSites: BlockedSites;
@@ -34,6 +36,8 @@ let gsbOptions: Options | null = null;
 const pendingGoogleSearchResultList: Element[] = [];
 const pendingGoogleInnerCardList: Element[] = [];
 const pendingGoogleTopNewsList: Element[] = [];
+const pendingGoogleNewsTabCardSectionList: Element[] = [];
+const pendingGoogleNewsTabTopList: Element[] = [];
 const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g1: Element, options: Options) => boolean;
@@ -141,6 +145,60 @@ function blockGoogleTopNews(g1: Element, options: Options): boolean {
     return true;
 }
 
+function blockGoogleNewsTabCardSection(g1: Element, options: Options): boolean {
+    const g = new GoogleNewsTabCardSection(g1);
+
+    if (g.isIgnorable()) {
+        return true;
+    }
+
+    if (!g.canBlock()) {
+        return false;
+    }
+
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
+
+    if (blockState.getReason()) {
+        window.blockReasons.push(blockState.getReason()!);
+    }
+
+    if (blockState.getState() === 'hard') {
+        g.deleteElement();
+        return true;
+    }
+
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    return true;
+}
+
+function blockGoogleNewsTabTop(g1: Element, options: Options): boolean {
+    const g = new GoogleNewsTabTop(g1);
+
+    if (g.isIgnorable()) {
+        return true;
+    }
+
+    if (!g.canBlock()) {
+        return false;
+    }
+
+    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
+        options.regexpList, options.idnOption);
+
+    if (blockState.getReason()) {
+        window.blockReasons.push(blockState.getReason()!);
+    }
+
+    if (blockState.getState() === 'hard') {
+        g.deleteElement();
+        return true;
+    }
+
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    return true;
+}
+
 function tryBlockGoogleSearchResult(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleSearchResult);
 }
@@ -153,12 +211,38 @@ function tryBlockGoogleTopNews(node: Element, options: Options): void {
     tryBlockElement(node, options, blockGoogleTopNews);
 }
 
+function tryBlockGoogleNewsTabCardSection(node: Element, options: Options): void {
+    tryBlockElement(node, options, blockGoogleNewsTabCardSection);
+}
+
+function tryBlockGoogleNewsTabTop(node: Element, options: Options): void {
+    tryBlockElement(node, options, blockGoogleNewsTabTop);
+}
+
 // add observer
 const observer = new MutationObserver((mutations) => {
+    const params = (new URL(document.location.href)).searchParams;
+    const isGoogleNews = params.get('tbm') === 'nws';
+
     mutations.forEach((mutation) => {
         for (const node of mutation.addedNodes) {
             if (node instanceof Element) {
-                if (node.classList.contains('g')) {
+                const isGoogleNewsCardSection = node.matches('div.card-section');
+                const isGoogleNewsTop = node.matches('div.gG0TJc');
+
+                if (isGoogleNewsCardSection && isGoogleNews) {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleNewsTabCardSection(node, gsbOptions);
+                    } else {
+                        pendingGoogleNewsTabCardSectionList.push(node);
+                    }
+                } else if (isGoogleNewsTop && isGoogleNews) {
+                    if (gsbOptions !== null) {
+                        tryBlockGoogleNewsTabTop(node, gsbOptions);
+                    } else {
+                        pendingGoogleNewsTabTopList.push(node);
+                    }
+                } else if (node.classList.contains('g') && !isGoogleNews) {
                     if (gsbOptions !== null) {
                         tryBlockGoogleSearchResult(node, gsbOptions);
                     } else {
@@ -215,6 +299,14 @@ observer.observe(document.documentElement, config);
 
     for (const node of pendingGoogleTopNewsList) {
         tryBlockGoogleTopNews(node, gsbOptions);
+    }
+
+    for (const node of pendingGoogleNewsTabCardSectionList) {
+        tryBlockGoogleNewsTabCardSection(node, gsbOptions);
+    }
+
+    for (const node of pendingGoogleNewsTabTopList) {
+        tryBlockGoogleNewsTabTop(node, gsbOptions);
     }
 })();
 
