@@ -32,6 +32,10 @@ interface DisplayTemporarilyUnblockAllOption {
     displayTemporarilyUnblockAll: boolean;
 }
 
+interface BlockGoogleNewsTabOption {
+    blockGoogleNewsTab: boolean;
+}
+
 // eslint-disable-next-line import/prefer-default-export
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
@@ -120,5 +124,18 @@ export const OptionRepository = {
     async setDisplayTemporarilyUnblockAll(displayTemporarilyUnblockAll: boolean): Promise<void> {
         await ChromeStorage.save({ displayTemporarilyUnblockAll });
         Logger.debug("set 'displayTemporarilyUnblockAll' to =>", displayTemporarilyUnblockAll);
+    },
+
+    async isBlockGoogleNewsTab(): Promise<boolean> {
+        const items = await ChromeStorage.load({
+            blockGoogleNewsTab: true,
+        }) as BlockGoogleNewsTabOption;
+
+        return items.blockGoogleNewsTab;
+    },
+
+    async setBlockGoogleNewsTab(blockGoogleNewsTab: boolean): Promise<void> {
+        await ChromeStorage.save({ blockGoogleNewsTab });
+        Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
     },
 };

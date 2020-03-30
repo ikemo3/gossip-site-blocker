@@ -23,6 +23,9 @@
   "blockChangeExplanation": {
     "message": "現在以下の理由でブロックされています。変更しますか?"
   },
+  "blockGoogleNewsTab": {
+    "message": "(β)「ニュース」タブをブロック"
+  },
   "blockThisDomainWithUrl": {
     "message": "このドメインをブロック($domain$)",
     "placeholders": {

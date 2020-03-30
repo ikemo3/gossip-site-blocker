@@ -36,6 +36,13 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
     margin-bottom: 0;
 }
 
+:not(g-inner-card):not([data-blocker-display=none]) + .block-anchor.block-google-news-top {
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    margin-left: 108px; /* width of class="dfhHve" + margin-right of class="NQHJEb" */
+}
+
 /**
  * Anchor immediately after blocked element
  */
@@ -46,6 +53,13 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
 
 .block-anchor a {
     font-size: 1rem;
+}
+
+/**
+ * Grouped Google News.
+ */
+.block-google-news-card-section {
+    margin-top: 0 !important;
 }
 
 /**
