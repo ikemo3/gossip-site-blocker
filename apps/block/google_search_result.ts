@@ -16,6 +16,8 @@ class GoogleSearchResult implements SearchResultToBlock {
     private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
+        this.element = element;
+
         const { classList } = element;
 
         // ignore if image.
@@ -114,7 +116,6 @@ class GoogleSearchResult implements SearchResultToBlock {
         this.valid = true;
         this._canRetry = true;
         [this.url] = urlList;
-        this.element = element;
         this.title = title;
         this.contents = contents;
 

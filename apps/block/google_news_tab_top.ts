@@ -16,6 +16,8 @@ class GoogleNewsTabTop implements SearchResultToBlock {
     private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
+        this.element = element;
+
         const anchor: HTMLAnchorElement | null = element.querySelector('a');
         if (anchor === null) {
             this.valid = false;
@@ -49,7 +51,6 @@ class GoogleNewsTabTop implements SearchResultToBlock {
         this.valid = true;
         this._canRetry = true;
         this.url = href;
-        this.element = element;
         this.title = title;
         this.contents = contents;
 
