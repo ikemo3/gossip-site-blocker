@@ -101,6 +101,10 @@ function blockGoogleSearchResult(g1: Element, options: Options): boolean {
 function blockGoogleInnerCard(g1: Element, options: Options): boolean {
     const g = new GoogleInnerCard(g1);
 
+    if (!g.canRetry()) {
+        return true;
+    }
+
     if (!g.canBlock()) {
         return false;
     }
@@ -123,6 +127,10 @@ function blockGoogleInnerCard(g1: Element, options: Options): boolean {
 
 function blockGoogleTopNews(g1: Element, options: Options): boolean {
     const g = new GoogleTopNews(g1);
+
+    if (!g.canRetry()) {
+        return true;
+    }
 
     if (!g.canBlock()) {
         return false;

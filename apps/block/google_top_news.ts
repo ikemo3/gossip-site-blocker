@@ -38,6 +38,10 @@ class GoogleTopNews implements SearchResultToBlock {
         this.title = titleDiv.textContent !== null ? titleDiv.textContent : '';
     }
 
+    public canRetry(): boolean {
+        return true;
+    }
+
     public canBlock(): boolean {
         return this.valid;
     }
