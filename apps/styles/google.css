@@ -128,6 +128,11 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
     z-index: 3;
 }
 
+.block-google-inner-card {
+    width: 205px;
+    white-space: normal;
+}
+
 .blocker-temporarily-unblock {
     word-break: break-word;
 }
