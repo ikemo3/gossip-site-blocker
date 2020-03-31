@@ -1,6 +1,8 @@
 export interface SearchResultToBlock {
     getUrl(): string;
 
+    canRetry(): boolean;
+
     canBlock(): boolean;
 
     contains(keyword: string): boolean;

@@ -39,6 +39,10 @@ class GoogleInnerCard implements SearchResultToBlock {
         this.element = element;
     }
 
+    public canRetry(): boolean {
+        return true;
+    }
+
     public canBlock(): boolean {
         return this.valid;
     }

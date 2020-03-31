@@ -101,6 +101,10 @@ function blockGoogleSearchResult(g1: Element, options: Options): boolean {
 function blockGoogleInnerCard(g1: Element, options: Options): boolean {
     const g = new GoogleInnerCard(g1);
 
+    if (!g.canRetry()) {
+        return true;
+    }
+
     if (!g.canBlock()) {
         return false;
     }
@@ -124,6 +128,10 @@ function blockGoogleInnerCard(g1: Element, options: Options): boolean {
 function blockGoogleTopNews(g1: Element, options: Options): boolean {
     const g = new GoogleTopNews(g1);
 
+    if (!g.canRetry()) {
+        return true;
+    }
+
     if (!g.canBlock()) {
         return false;
     }
@@ -145,10 +153,6 @@ function blockGoogleTopNews(g1: Element, options: Options): boolean {
 }
 
 function blockGoogleNewsTabCardSection(g1: Element, options: Options): boolean {
-    if (!options.blockGoogleNewsTab) {
-        return true;
-    }
-
     const g = new GoogleNewsTabCardSection(g1);
 
     if (!g.canRetry()) {
@@ -176,10 +180,6 @@ function blockGoogleNewsTabCardSection(g1: Element, options: Options): boolean {
 }
 
 function blockGoogleNewsTabTop(g1: Element, options: Options): boolean {
-    if (!options.blockGoogleNewsTab) {
-        return true;
-    }
-
     const g = new GoogleNewsTabTop(g1);
 
     if (!g.canRetry()) {
@@ -219,11 +219,15 @@ function tryBlockGoogleTopNews(node: Element, options: Options): void {
 }
 
 function tryBlockGoogleNewsTabCardSection(node: Element, options: Options): void {
-    tryBlockElement(node, options, blockGoogleNewsTabCardSection);
+    if (options.blockGoogleNewsTab) {
+        tryBlockElement(node, options, blockGoogleNewsTabCardSection);
+    }
 }
 
 function tryBlockGoogleNewsTabTop(node: Element, options: Options): void {
-    tryBlockElement(node, options, blockGoogleNewsTabTop);
+    if (options.blockGoogleNewsTab) {
+        tryBlockElement(node, options, blockGoogleNewsTabTop);
+    }
 }
 
 // add observer
