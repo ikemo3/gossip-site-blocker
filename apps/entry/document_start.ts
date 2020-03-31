@@ -117,9 +117,7 @@ function blockGoogleInnerCard(g1: Element, options: Options): boolean {
         return true;
     }
 
-    const mediator = new BlockMediator(g, blockState, options.defaultBlockType,
-        options.menuPosition);
-    mediator.setWrappable('205px');
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
     return true;
 }
 

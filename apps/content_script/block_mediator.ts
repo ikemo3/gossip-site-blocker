@@ -371,11 +371,6 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         }
     }
 
-    public setWrappable(width: string): void {
-        this.operationDiv.style.width = width;
-        this.operationDiv.style.whiteSpace = 'normal';
-    }
-
     public notBlocked(): void {
         this.blockAnchor.showBlockThisPage();
         this.blockTarget.show();
