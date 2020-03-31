@@ -52,7 +52,7 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
 }
 
 .block-anchor a {
-    font-size: 1rem;
+    font-size: 14px;
 }
 
 /**
