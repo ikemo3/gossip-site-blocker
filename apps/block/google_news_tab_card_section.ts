@@ -4,8 +4,6 @@ import { SearchResultToBlock } from './block';
 class GoogleNewsTabCardSection implements SearchResultToBlock {
     private readonly valid: boolean;
 
-    private readonly ignoreExplicitly: boolean;
-
     private readonly url: string;
 
     private readonly element: Element;
@@ -33,7 +31,6 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
         const contents = st ? st.textContent! : '';
 
         this.valid = true;
-        this.ignoreExplicitly = false;
         this.url = href;
         this.element = element;
         this.title = title;
@@ -49,8 +46,8 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
         }
     }
 
-    public isIgnorable(): boolean {
-        return this.ignoreExplicitly;
+    public canRetry(): boolean {
+        return true;
     }
 
     public canBlock(): boolean {

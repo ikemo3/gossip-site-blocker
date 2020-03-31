@@ -74,7 +74,7 @@ function tryBlockElement(node: Element, options: Options, blockFunction: IBlockF
 function blockGoogleSearchResult(g1: Element, options: Options): boolean {
     const g = new GoogleSearchResult(g1);
 
-    if (g.isIgnorable()) {
+    if (!g.canRetry()) {
         return true;
     }
 
@@ -153,7 +153,7 @@ function blockGoogleNewsTabCardSection(g1: Element, options: Options): boolean {
 
     const g = new GoogleNewsTabCardSection(g1);
 
-    if (g.isIgnorable()) {
+    if (!g.canRetry()) {
         return true;
     }
 
@@ -184,7 +184,7 @@ function blockGoogleNewsTabTop(g1: Element, options: Options): boolean {
 
     const g = new GoogleNewsTabTop(g1);
 
-    if (g.isIgnorable()) {
+    if (!g.canRetry()) {
         return true;
     }
 
