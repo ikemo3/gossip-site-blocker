@@ -10,6 +10,8 @@ class GoogleInnerCard implements SearchResultToBlock {
     private readonly title: string;
 
     constructor(element: Element) {
+        this.element = element;
+
         const anchorList = element.getElementsByTagName('a');
 
         const urlList = [];
@@ -36,7 +38,6 @@ class GoogleInnerCard implements SearchResultToBlock {
 
         this.valid = true;
         [this.url] = urlList;
-        this.element = element;
     }
 
     public canRetry(): boolean {

@@ -13,6 +13,8 @@ class GoogleTopNews implements SearchResultToBlock {
     private readonly insertPoint: Element;
 
     constructor(element: Element) {
+        this.element = element;
+
         const anchor = element.querySelector('a') as HTMLAnchorElement;
         if (anchor === null) {
             this.valid = false;
@@ -34,7 +36,6 @@ class GoogleTopNews implements SearchResultToBlock {
         this.insertPoint = anchor;
         this.valid = true;
         this.url = href;
-        this.element = element;
         this.title = titleDiv.textContent !== null ? titleDiv.textContent : '';
     }
 

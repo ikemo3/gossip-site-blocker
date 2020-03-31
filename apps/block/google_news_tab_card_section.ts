@@ -15,6 +15,8 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
     private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
+        this.element = element;
+
         const anchor = element.querySelector('a.RTNUJf') as HTMLAnchorElement;
         let href = anchor.getAttribute('href') as string;
 
@@ -32,7 +34,6 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
 
         this.valid = true;
         this.url = href;
-        this.element = element;
         this.title = title;
         this.contents = contents;
 
