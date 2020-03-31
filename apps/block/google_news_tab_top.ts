@@ -3,7 +3,7 @@ import { SearchResultToBlock } from './block';
 class GoogleNewsTabTop implements SearchResultToBlock {
     private readonly valid: boolean;
 
-    private readonly ignoreExplicitly: boolean;
+    private readonly _canRetry: boolean;
 
     private readonly url: string;
 
@@ -19,7 +19,7 @@ class GoogleNewsTabTop implements SearchResultToBlock {
         const anchor: HTMLAnchorElement | null = element.querySelector('a');
         if (anchor === null) {
             this.valid = false;
-            this.ignoreExplicitly = false;
+            this._canRetry = true;
             return;
         }
 
@@ -38,7 +38,7 @@ class GoogleNewsTabTop implements SearchResultToBlock {
         // ignore if no h3(ex. Google Translate)
         if (h3 === null) {
             this.valid = false;
-            this.ignoreExplicitly = true;
+            this._canRetry = false;
             return;
         }
 
@@ -47,7 +47,7 @@ class GoogleNewsTabTop implements SearchResultToBlock {
         const contents = st ? st.textContent! : '';
 
         this.valid = true;
-        this.ignoreExplicitly = false;
+        this._canRetry = true;
         this.url = href;
         this.element = element;
         this.title = title;
@@ -63,8 +63,8 @@ class GoogleNewsTabTop implements SearchResultToBlock {
         }
     }
 
-    public isIgnorable(): boolean {
-        return this.ignoreExplicitly;
+    public canRetry(): boolean {
+        return this._canRetry;
     }
 
     public canBlock(): boolean {

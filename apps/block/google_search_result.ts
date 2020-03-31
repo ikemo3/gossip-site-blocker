@@ -3,7 +3,7 @@ import { SearchResultToBlock } from './block';
 class GoogleSearchResult implements SearchResultToBlock {
     private readonly valid: boolean;
 
-    private readonly ignoreExplicitly: boolean;
+    private readonly _canRetry: boolean;
 
     private readonly url: string;
 
@@ -21,14 +21,14 @@ class GoogleSearchResult implements SearchResultToBlock {
         // ignore if image.
         if (element.matches('#imagebox_bigimages')) {
             this.valid = false;
-            this.ignoreExplicitly = true;
+            this._canRetry = false;
             return;
         }
 
         // ignore if dictionary.
         if (element.querySelector('#dictionary-modules') !== null) {
             this.valid = false;
-            this.ignoreExplicitly = true;
+            this._canRetry = false;
             return;
         }
 
@@ -42,7 +42,7 @@ class GoogleSearchResult implements SearchResultToBlock {
 
             if (parent.classList.contains('g')) {
                 this.valid = false;
-                this.ignoreExplicitly = true;
+                this._canRetry = false;
                 return;
             }
 
@@ -52,7 +52,7 @@ class GoogleSearchResult implements SearchResultToBlock {
         // ignore right pane
         if (classList.contains('rhsvw')) {
             this.valid = false;
-            this.ignoreExplicitly = true;
+            this._canRetry = false;
             return;
         }
 
@@ -94,7 +94,7 @@ class GoogleSearchResult implements SearchResultToBlock {
         // ignore if no anchor.
         if (urlList.length === 0) {
             this.valid = false;
-            this.ignoreExplicitly = false;
+            this._canRetry = true;
             return;
         }
 
@@ -103,7 +103,7 @@ class GoogleSearchResult implements SearchResultToBlock {
         // ignore if no h3(ex. Google Translate)
         if (h3 === null) {
             this.valid = false;
-            this.ignoreExplicitly = true;
+            this._canRetry = false;
             return;
         }
 
@@ -112,7 +112,7 @@ class GoogleSearchResult implements SearchResultToBlock {
         const contents = st ? st.textContent! : '';
 
         this.valid = true;
-        this.ignoreExplicitly = false;
+        this._canRetry = true;
         [this.url] = urlList;
         this.element = element;
         this.title = title;
@@ -128,8 +128,8 @@ class GoogleSearchResult implements SearchResultToBlock {
         }
     }
 
-    public isIgnorable(): boolean {
-        return this.ignoreExplicitly;
+    public canRetry(): boolean {
+        return this._canRetry;
     }
 
     public canBlock(): boolean {
