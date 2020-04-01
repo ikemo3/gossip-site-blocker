@@ -112,15 +112,11 @@ function tryBlockGoogleTopNews(node: SearchResultToBlock, options: Options): voi
 }
 
 function tryBlockGoogleNewsTabCardSection(node: SearchResultToBlock, options: Options): void {
-    if (options.blockGoogleNewsTab) {
-        tryBlockElement(node, options, blockElement);
-    }
+    tryBlockElement(node, options, blockElement);
 }
 
 function tryBlockGoogleNewsTabTop(node: SearchResultToBlock, options: Options): void {
-    if (options.blockGoogleNewsTab) {
-        tryBlockElement(node, options, blockElement);
-    }
+    tryBlockElement(node, options, blockElement);
 }
 
 // add observer
@@ -136,15 +132,19 @@ const observer = new MutationObserver((mutations) => {
 
                 if (isGoogleNewsCardSection && isGoogleNews) {
                     if (gsbOptions !== null) {
-                        const g = new GoogleNewsTabCardSection(node);
-                        tryBlockGoogleNewsTabCardSection(g, gsbOptions);
+                        if (gsbOptions.blockGoogleNewsTab) {
+                            const g = new GoogleNewsTabCardSection(node);
+                            tryBlockGoogleNewsTabCardSection(g, gsbOptions);
+                        }
                     } else {
                         pendingGoogleNewsTabCardSectionList.push(node);
                     }
                 } else if (isGoogleNewsTop && isGoogleNews) {
                     if (gsbOptions !== null) {
-                        const g = new GoogleNewsTabTop(node);
-                        tryBlockGoogleNewsTabTop(g, gsbOptions);
+                        if (gsbOptions.blockGoogleNewsTab) {
+                            const g = new GoogleNewsTabTop(node);
+                            tryBlockGoogleNewsTabTop(g, gsbOptions);
+                        }
                     } else {
                         pendingGoogleNewsTabTopList.push(node);
                     }
@@ -216,13 +216,17 @@ observer.observe(document.documentElement, config);
     }
 
     for (const node of pendingGoogleNewsTabCardSectionList) {
-        const g = new GoogleNewsTabCardSection(node);
-        tryBlockGoogleNewsTabCardSection(g, gsbOptions);
+        if (gsbOptions.blockGoogleNewsTab) {
+            const g = new GoogleNewsTabCardSection(node);
+            tryBlockGoogleNewsTabCardSection(g, gsbOptions);
+        }
     }
 
     for (const node of pendingGoogleNewsTabTopList) {
-        const g = new GoogleNewsTabTop(node);
-        tryBlockGoogleNewsTabTop(g, gsbOptions);
+        if (gsbOptions.blockGoogleNewsTab) {
+            const g = new GoogleNewsTabTop(node);
+            tryBlockGoogleNewsTabTop(g, gsbOptions);
+        }
     }
 })();
 
