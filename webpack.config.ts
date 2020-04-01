@@ -26,7 +26,9 @@ const config: Configuration = {
         extensions: ['.ts', '.js'],
     },
     plugins: [
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            cleanAfterEveryBuildPatterns: ['!_locales/*/*', '!icons/*', '!styles/*', '!.web-extension-id'],
+        }),
         new CopyPlugin([
             {
                 from: 'apps/_locales',
