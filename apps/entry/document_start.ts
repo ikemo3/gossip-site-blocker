@@ -74,107 +74,7 @@ function tryBlockElement(g: SearchResultToBlock, options: Options,
     subObserverList.push(subObserver);
 }
 
-function blockGoogleSearchResult(g: SearchResultToBlock, options: Options): boolean {
-    if (!g.canRetry()) {
-        return true;
-    }
-
-    if (!g.canBlock()) {
-        return false;
-    }
-
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
-        options.regexpList, options.idnOption);
-
-    if (blockState.getReason()) {
-        window.blockReasons.push(blockState.getReason()!);
-    }
-
-    if (blockState.getState() === 'hard') {
-        g.deleteElement();
-        return true;
-    }
-
-    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
-    return true;
-}
-
-function blockGoogleInnerCard(g: SearchResultToBlock, options: Options): boolean {
-    if (!g.canRetry()) {
-        return true;
-    }
-
-    if (!g.canBlock()) {
-        return false;
-    }
-
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
-        options.regexpList, options.idnOption);
-
-    if (blockState.getReason()) {
-        window.blockReasons.push(blockState.getReason()!);
-    }
-
-    if (blockState.getState() === 'hard') {
-        g.deleteElement();
-        return true;
-    }
-
-    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
-    return true;
-}
-
-function blockGoogleTopNews(g: SearchResultToBlock, options: Options): boolean {
-    if (!g.canRetry()) {
-        return true;
-    }
-
-    if (!g.canBlock()) {
-        return false;
-    }
-
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
-        options.regexpList, options.idnOption);
-
-    if (blockState.getReason()) {
-        window.blockReasons.push(blockState.getReason()!);
-    }
-
-    if (blockState.getState() === 'hard') {
-        g.deleteElement();
-        return true;
-    }
-
-    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
-    return true;
-}
-
-function blockGoogleNewsTabCardSection(g: SearchResultToBlock, options: Options): boolean {
-    if (!g.canRetry()) {
-        return true;
-    }
-
-    if (!g.canBlock()) {
-        return false;
-    }
-
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
-        options.regexpList, options.idnOption);
-
-    if (blockState.getReason()) {
-        window.blockReasons.push(blockState.getReason()!);
-    }
-
-    if (blockState.getState() === 'hard') {
-        g.deleteElement();
-        return true;
-    }
-
-    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
-    return true;
-}
-
-function blockGoogleNewsTabTop(g: SearchResultToBlock, options: Options): boolean {
+function blockElement(g: SearchResultToBlock, options: Options): boolean {
     if (!g.canRetry()) {
         return true;
     }
@@ -200,26 +100,26 @@ function blockGoogleNewsTabTop(g: SearchResultToBlock, options: Options): boolea
 }
 
 function tryBlockGoogleSearchResult(node: SearchResultToBlock, options: Options): void {
-    tryBlockElement(node, options, blockGoogleSearchResult);
+    tryBlockElement(node, options, blockElement);
 }
 
 function tryBlockGoogleInnerCard(node: SearchResultToBlock, options: Options): void {
-    tryBlockElement(node, options, blockGoogleInnerCard);
+    tryBlockElement(node, options, blockElement);
 }
 
 function tryBlockGoogleTopNews(node: SearchResultToBlock, options: Options): void {
-    tryBlockElement(node, options, blockGoogleTopNews);
+    tryBlockElement(node, options, blockElement);
 }
 
 function tryBlockGoogleNewsTabCardSection(node: SearchResultToBlock, options: Options): void {
     if (options.blockGoogleNewsTab) {
-        tryBlockElement(node, options, blockGoogleNewsTabCardSection);
+        tryBlockElement(node, options, blockElement);
     }
 }
 
 function tryBlockGoogleNewsTabTop(node: SearchResultToBlock, options: Options): void {
     if (options.blockGoogleNewsTab) {
-        tryBlockElement(node, options, blockGoogleNewsTabTop);
+        tryBlockElement(node, options, blockElement);
     }
 }
 
