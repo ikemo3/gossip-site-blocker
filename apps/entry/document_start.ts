@@ -44,36 +44,6 @@ const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g: SearchResultToBlock, options: Options) => boolean;
 
-function blockClosure(node: SearchResultToBlock, options: Options,
-    blockFunc: IBlockFunction): () => void {
-    let completed = false;
-    return (): void => {
-        if (completed) {
-            return;
-        }
-
-        completed = blockFunc(node, options);
-    };
-}
-
-function tryBlockElement(g: SearchResultToBlock, options: Options,
-    blockFunction: IBlockFunction): void {
-    // first, try block.
-    const completed = blockFunction(g, options);
-    if (completed) {
-        return;
-    }
-
-    // if failed, add observer for retry.
-    const block = blockClosure(g, options, blockFunction);
-    const subObserver = new MutationObserver(() => {
-        block();
-    });
-
-    subObserver.observe(g.getElement(), { childList: true, subtree: true });
-    subObserverList.push(subObserver);
-}
-
 function blockElement(g: SearchResultToBlock, options: Options): boolean {
     if (!g.canRetry()) {
         return true;
@@ -99,8 +69,32 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
     return true;
 }
 
-function tryBlock(node: SearchResultToBlock, options: Options): void {
-    tryBlockElement(node, options, blockElement);
+function blockClosure(node: SearchResultToBlock, options: Options): () => void {
+    let completed = false;
+    return (): void => {
+        if (completed) {
+            return;
+        }
+
+        completed = blockElement(node, options);
+    };
+}
+
+function tryBlockElement(g: SearchResultToBlock, options: Options): void {
+    // first, try block.
+    const completed = blockElement(g, options);
+    if (completed) {
+        return;
+    }
+
+    // if failed, add observer for retry.
+    const block = blockClosure(g, options);
+    const subObserver = new MutationObserver(() => {
+        block();
+    });
+
+    subObserver.observe(g.getElement(), { childList: true, subtree: true });
+    subObserverList.push(subObserver);
 }
 
 // add observer
@@ -118,7 +112,7 @@ const observer = new MutationObserver((mutations) => {
                     if (gsbOptions !== null) {
                         if (gsbOptions.blockGoogleNewsTab) {
                             const g = new GoogleNewsTabCardSection(node);
-                            tryBlock(g, gsbOptions);
+                            tryBlockElement(g, gsbOptions);
                         }
                     } else {
                         pendingGoogleNewsTabCardSectionList.push(node);
@@ -127,7 +121,7 @@ const observer = new MutationObserver((mutations) => {
                     if (gsbOptions !== null) {
                         if (gsbOptions.blockGoogleNewsTab) {
                             const g = new GoogleNewsTabTop(node);
-                            tryBlock(g, gsbOptions);
+                            tryBlockElement(g, gsbOptions);
                         }
                     } else {
                         pendingGoogleNewsTabTopList.push(node);
@@ -135,21 +129,21 @@ const observer = new MutationObserver((mutations) => {
                 } else if (node.classList.contains('g') && !isGoogleNews) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchResult(node);
-                        tryBlock(g, gsbOptions);
+                        tryBlockElement(g, gsbOptions);
                     } else {
                         pendingGoogleSearchResultList.push(node);
                     }
                 } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
                     if (gsbOptions !== null) {
                         const g = new GoogleInnerCard(node);
-                        tryBlock(g, gsbOptions);
+                        tryBlockElement(g, gsbOptions);
                     } else {
                         pendingGoogleInnerCardList.push(node);
                     }
                 } else if (node.classList.contains('dbsr')) {
                     if (gsbOptions !== null) {
                         const g = new GoogleTopNews(node);
-                        tryBlock(g, gsbOptions);
+                        tryBlockElement(g, gsbOptions);
                     } else {
                         pendingGoogleTopNewsList.push(node);
                     }
@@ -186,30 +180,30 @@ observer.observe(document.documentElement, config);
 
     for (const node of pendingGoogleSearchResultList) {
         const g = new GoogleSearchResult(node);
-        tryBlock(g, gsbOptions);
+        tryBlockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleInnerCardList) {
         const g = new GoogleInnerCard(node);
-        tryBlock(g, gsbOptions);
+        tryBlockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleTopNewsList) {
         const g = new GoogleTopNews(node);
-        tryBlock(g, gsbOptions);
+        tryBlockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleNewsTabCardSectionList) {
         if (gsbOptions.blockGoogleNewsTab) {
             const g = new GoogleNewsTabCardSection(node);
-            tryBlock(g, gsbOptions);
+            tryBlockElement(g, gsbOptions);
         }
     }
 
     for (const node of pendingGoogleNewsTabTopList) {
         if (gsbOptions.blockGoogleNewsTab) {
             const g = new GoogleNewsTabTop(node);
-            tryBlock(g, gsbOptions);
+            tryBlockElement(g, gsbOptions);
         }
     }
 })();
