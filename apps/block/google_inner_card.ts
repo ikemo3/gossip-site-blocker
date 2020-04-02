@@ -56,7 +56,7 @@ class GoogleInnerCard implements SearchResultToBlock {
         return this.element;
     }
 
-    public getOperationInsertPoint(): Element {
+    public getCompactMenuInsertElement(): Element {
         const div = this.element.querySelector(':scope > div');
         if (div !== null) {
             return div;

@@ -13,7 +13,7 @@ export interface SearchResultToBlock {
 
     getElement(): Element;
 
-    getOperationInsertPoint(): Element;
+    getCompactMenuInsertElement(): Element;
 
     getPosition(): string;
 

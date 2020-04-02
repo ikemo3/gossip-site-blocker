@@ -235,7 +235,7 @@ class BlockChangeAnchorDialog {
     }
 }
 
-class OperationsAnchor {
+class CompactMenu {
     private readonly operationSpan: HTMLSpanElement;
 
     private readonly iconAnchor: HTMLAnchorElement;
@@ -328,13 +328,13 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         this.changeAnchor = new BlockChangeAnchor(this);
         this.defaultBlockType = defaultBlockType;
 
-        let operationsAnchor;
+        let compactMenu;
         switch (menuPosition) {
         case MenuPosition.COMPACT:
             // insert menu after action menu.
-            operationsAnchor = new OperationsAnchor(this.hideAnchor,
-                this.blockAnchor, this.changeAnchor, g.getPosition());
-            DOMUtils.insertAfter(g.getOperationInsertPoint(), operationsAnchor.getElement());
+            compactMenu = new CompactMenu(this.hideAnchor, this.blockAnchor, this.changeAnchor,
+                g.getPosition());
+            DOMUtils.insertAfter(g.getCompactMenuInsertElement(), compactMenu.getElement());
 
             // insert links after block target.
             this.operationDiv.classList.add('block-anchor-tmp-unblock-only');

@@ -63,7 +63,7 @@ class GoogleTopNews implements SearchResultToBlock {
         $.removeSelf(this.element);
     }
 
-    public getOperationInsertPoint(): Element {
+    public getCompactMenuInsertElement(): Element {
         return this.insertPoint;
     }
 
