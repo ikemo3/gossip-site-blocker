@@ -97,6 +97,11 @@ class GoogleNewsTabTop implements SearchResultToBlock {
     }
 
     public deleteElement(): void {
+        const imageLink = this.element.previousSibling;
+        if (imageLink instanceof HTMLAnchorElement) {
+            imageLink.removeAttribute('href');
+        }
+
         this.element.parentElement!.removeChild(this.element);
     }
 
