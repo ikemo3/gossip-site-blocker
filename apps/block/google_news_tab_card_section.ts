@@ -75,7 +75,7 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
         return this.element;
     }
 
-    public getOperationInsertPoint(): Element {
+    public getCompactMenuInsertElement(): Element {
         return this.operationInsertPoint;
     }
 

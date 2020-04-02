@@ -334,7 +334,7 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
             // insert menu after action menu.
             operationsAnchor = new OperationsAnchor(this.hideAnchor,
                 this.blockAnchor, this.changeAnchor, g.getPosition());
-            DOMUtils.insertAfter(g.getOperationInsertPoint(), operationsAnchor.getElement());
+            DOMUtils.insertAfter(g.getCompactMenuInsertElement(), operationsAnchor.getElement());
 
             // insert links after block target.
             this.operationDiv.classList.add('block-anchor-tmp-unblock-only');
