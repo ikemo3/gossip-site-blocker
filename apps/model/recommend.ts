@@ -4,6 +4,8 @@ function makeRecommendUrlCommon(urlWithoutProtocol: string, prefix: string): str
         if (index !== -1) {
             const recommended = urlWithoutProtocol.substring(0, index + 1);
 
+            // If the recommended URL is exactly the same as the original URL, it returns null.
+            // Because there is no point in recommending it.
             if (recommended === urlWithoutProtocol) {
                 return null;
             }
