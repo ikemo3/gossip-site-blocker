@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from './block';
 
-class GoogleInnerCard implements SearchResultToBlock {
+class GoogleSearchInnerCard implements SearchResultToBlock {
     public valid: boolean;
 
     public url: string;
@@ -85,4 +85,4 @@ class GoogleInnerCard implements SearchResultToBlock {
     }
 }
 
-export default GoogleInnerCard;
+export default GoogleSearchInnerCard;

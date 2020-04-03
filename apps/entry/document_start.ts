@@ -8,7 +8,7 @@ import BlockedSitesRepository from '../repository/blocked_sites';
 import GoogleSearchResult from '../block/google_search_result';
 import BlockState from '../content_script/block_state';
 import BlockMediator from '../content_script/block_mediator';
-import GoogleInnerCard from '../block/google_inner_card';
+import GoogleSearchInnerCard from '../block/google_search_inner_card';
 import GoogleSearchTopNews from '../block/google_search_top_news';
 import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
 import GoogleNewsTabTop from '../block/google_news_tab_top';
@@ -36,7 +36,7 @@ window.blockReasons = [];
 // This is necessary when using the back button.
 let gsbOptions: Options | null = null;
 const pendingGoogleSearchResultList: Element[] = [];
-const pendingGoogleInnerCardList: Element[] = [];
+const pendingGoogleSearchInnerCardList: Element[] = [];
 const pendingGoogleSearchTopNewsList: Element[] = [];
 const pendingGoogleNewsTabCardSectionList: Element[] = [];
 const pendingGoogleNewsTabTopList: Element[] = [];
@@ -135,10 +135,10 @@ const observer = new MutationObserver((mutations) => {
                     }
                 } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
                     if (gsbOptions !== null) {
-                        const g = new GoogleInnerCard(node);
+                        const g = new GoogleSearchInnerCard(node);
                         tryBlockElement(g, gsbOptions);
                     } else {
-                        pendingGoogleInnerCardList.push(node);
+                        pendingGoogleSearchInnerCardList.push(node);
                     }
                 } else if (node.classList.contains('dbsr')) {
                     if (gsbOptions !== null) {
@@ -183,8 +183,8 @@ observer.observe(document.documentElement, config);
         tryBlockElement(g, gsbOptions);
     }
 
-    for (const node of pendingGoogleInnerCardList) {
-        const g = new GoogleInnerCard(node);
+    for (const node of pendingGoogleSearchInnerCardList) {
+        const g = new GoogleSearchInnerCard(node);
         tryBlockElement(g, gsbOptions);
     }
 
