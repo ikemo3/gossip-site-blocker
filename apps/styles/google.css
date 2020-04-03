@@ -140,3 +140,8 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
 .cv2VAd {
     height: auto !important;
 }
+
+/* for compact menu in 'News' tab */
+#res h3.r.dO0Ag {
+    overflow: visible;
+}
