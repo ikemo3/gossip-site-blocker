@@ -1,7 +1,7 @@
 import { $ } from '../common';
 import { SearchResultToBlock } from './block';
 
-class GoogleTopNews implements SearchResultToBlock {
+class GoogleSearchTopNews implements SearchResultToBlock {
     private readonly element: Element;
 
     private readonly valid: boolean;
@@ -80,4 +80,4 @@ class GoogleTopNews implements SearchResultToBlock {
     }
 }
 
-export default GoogleTopNews;
+export default GoogleSearchTopNews;
