@@ -15,4 +15,9 @@ describe('makeRecommendUrl', () => {
         expect(makeRecommendUrl('blog.livedoor.jp/foo-bar/abc-def')).toBe('blog.livedoor.jp/foo-bar/');
         expect(makeRecommendUrl('blog.livedoor.jp/foo-bar/')).toBe(null);
     });
+
+    it('twitter.com', () => {
+        expect(makeRecommendUrl('twitter.com/ikemo/status/1239312305457737728')).toBe('twitter.com/ikemo');
+        expect(makeRecommendUrl('twitter.com/ikemo')).toBe(null);
+    });
 });

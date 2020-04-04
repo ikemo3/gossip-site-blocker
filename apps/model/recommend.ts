@@ -2,6 +2,7 @@ const PATTERN_LIST = [
     /(^d\.hatena\.ne\.jp\/[^/]+\/)/,
     /(^ameblo\.jp\/[^/]+\/)/,
     /(^blog\.livedoor\.jp\/[^/]+\/)/,
+    /(^twitter\.com\/[^/]+)/,
 ];
 
 function search(urlWithoutProtocol: string, pattern: RegExp): string | null {
