@@ -42,23 +42,33 @@ function showBlockedByBannedWords(): void {
     $.insertBefore(textarea, topStuff);
 }
 
+async function appendTemporarilyUnblockAllAnchor(element: Element): Promise<void> {
+    const display = await OptionRepository.isDisplayTemporarilyUnblockAll();
+    if (display) {
+        const anchor = $.anchor($.message('temporarilyUnblockAll'));
+        $.onclick(anchor, temporarilyUnblockAll);
+
+        element.appendChild(anchor);
+    }
+}
+
+async function appendShowBlockedByWordInfoAnchor(element: Element): Promise<void> {
+    const bannedWordOption = await OptionRepository.getBannedWordOption();
+    if (bannedWordOption.showInfo) {
+        const showInfo = $.anchor($.message('showBlockedByWordInfo'));
+        showInfo.style.marginLeft = '1rem';
+        $.onclick(showInfo, showBlockedByBannedWords);
+        element.appendChild(showInfo);
+    }
+}
+
 async function createAppbarLinks(): Promise<void> {
     const resultStats = document.getElementById('result-stats');
     if (resultStats !== null) {
         const resultStatsIsHidden = getComputedStyle(resultStats).opacity === '0';
         if (!resultStatsIsHidden) {
-            const anchor = $.anchor($.message('temporarilyUnblockAll'));
-            $.onclick(anchor, temporarilyUnblockAll);
-
-            resultStats.appendChild(anchor);
-
-            const bannedWordOption = await OptionRepository.getBannedWordOption();
-            if (bannedWordOption.showInfo) {
-                const showInfo = $.anchor($.message('showBlockedByWordInfo'));
-                showInfo.style.marginLeft = '1rem';
-                $.onclick(showInfo, showBlockedByBannedWords);
-                resultStats.appendChild(showInfo);
-            }
+            await appendTemporarilyUnblockAllAnchor(resultStats);
+            await appendShowBlockedByWordInfoAnchor(resultStats);
 
             return;
         }
@@ -68,18 +78,8 @@ async function createAppbarLinks(): Promise<void> {
     if (menu !== null && menu.style.display !== 'none') {
         const toolDiv = document.querySelector('.hdtb-mn-cont');
         if (toolDiv !== null) {
-            const anchor = $.anchor($.message('temporarilyUnblockAll'));
-            $.onclick(anchor, temporarilyUnblockAll);
-
-            toolDiv.appendChild(anchor);
-
-            const bannedWordOption = await OptionRepository.getBannedWordOption();
-            if (bannedWordOption.showInfo) {
-                const showInfo = $.anchor($.message('showBlockedByWordInfo'));
-                showInfo.style.marginLeft = '1rem';
-                $.onclick(showInfo, showBlockedByBannedWords);
-                toolDiv.appendChild(showInfo);
-            }
+            await appendTemporarilyUnblockAllAnchor(toolDiv);
+            await appendShowBlockedByWordInfoAnchor(toolDiv);
         }
     }
 }
