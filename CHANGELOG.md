@@ -1,3 +1,20 @@
+# v1.10.0
+
+## Enhancements.
+
+* Add: Block 'News' tab individually(#14, #155)
+
+## Improvements.
+
+* Add: add Twitter for 'Block recommend path'(closes #57, #174)
+* Add: add atwiki for 'Block recommend path'(closes #29, #174)
+* Add: add wikiwiki for 'Block recommend path'(closes #175, #174)
+
+## Bug Fixes
+
+* Fix: `webpack --watch` does not work(#139, #168)
+* Fix: disable 'temporarily unblock all' causes disable 'show information of blocked by banned words'(#149, #176)
+
 # v1.9.0
 
 ## Improvements.
