@@ -25,4 +25,9 @@ describe('makeRecommendUrl', () => {
         expect(makeRecommendUrl('w.atwiki.jp/foo/bar/baz')).toBe('w.atwiki.jp/foo/');
         expect(makeRecommendUrl('w.atwiki.jp/foo/')).toBe(null);
     });
+
+    it('wikiwiki.jp', () => {
+        expect(makeRecommendUrl('wikiwiki.jp/foo/bar/baz')).toBe('wikiwiki.jp/foo/');
+        expect(makeRecommendUrl('wikiwiki.jp/foo/')).toBe(null);
+    });
 });
