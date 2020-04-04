@@ -43,10 +43,13 @@ function showBlockedByBannedWords(): void {
 }
 
 async function appendTemporarilyUnblockAllAnchor(element: Element): Promise<void> {
-    const anchor = $.anchor($.message('temporarilyUnblockAll'));
-    $.onclick(anchor, temporarilyUnblockAll);
+    const display = await OptionRepository.isDisplayTemporarilyUnblockAll();
+    if (display) {
+        const anchor = $.anchor($.message('temporarilyUnblockAll'));
+        $.onclick(anchor, temporarilyUnblockAll);
 
-    element.appendChild(anchor);
+        element.appendChild(anchor);
+    }
 }
 
 async function appendShowBlockedByWordInfoAnchor(element: Element): Promise<void> {
