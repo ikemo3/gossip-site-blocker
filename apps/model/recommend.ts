@@ -3,6 +3,7 @@ const PATTERN_LIST = [
     /(^ameblo\.jp\/[^/]+\/)/,
     /(^blog\.livedoor\.jp\/[^/]+\/)/,
     /(^twitter\.com\/[^/]+)/,
+    /(^w\.atwiki\.jp\/[^/]+\/)/,
 ];
 
 function search(urlWithoutProtocol: string, pattern: RegExp): string | null {

@@ -20,4 +20,9 @@ describe('makeRecommendUrl', () => {
         expect(makeRecommendUrl('twitter.com/ikemo/status/1239312305457737728')).toBe('twitter.com/ikemo');
         expect(makeRecommendUrl('twitter.com/ikemo')).toBe(null);
     });
+
+    it('w.atwiki.jp', () => {
+        expect(makeRecommendUrl('w.atwiki.jp/foo/bar/baz')).toBe('w.atwiki.jp/foo/');
+        expect(makeRecommendUrl('w.atwiki.jp/foo/')).toBe(null);
+    });
 });
