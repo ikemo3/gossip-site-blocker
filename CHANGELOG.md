@@ -6,9 +6,9 @@
 
 ## Improvements.
 
-* Add: add Twitter for 'Block recommend path'(closes #57, #174)
-* Add: add atwiki for 'Block recommend path'(closes #29, #174)
-* Add: add wikiwiki for 'Block recommend path'(closes #175, #174)
+* Add: add Twitter for 'Block recommend path'(#57, #174)
+* Add: add atwiki for 'Block recommend path'(#29, #174)
+* Add: add wikiwiki for 'Block recommend path'(#175, #174)
 
 ## Bug Fixes
 
