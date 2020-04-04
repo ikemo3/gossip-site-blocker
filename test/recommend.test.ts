@@ -15,4 +15,19 @@ describe('makeRecommendUrl', () => {
         expect(makeRecommendUrl('blog.livedoor.jp/foo-bar/abc-def')).toBe('blog.livedoor.jp/foo-bar/');
         expect(makeRecommendUrl('blog.livedoor.jp/foo-bar/')).toBe(null);
     });
+
+    it('twitter.com', () => {
+        expect(makeRecommendUrl('twitter.com/ikemo/status/1239312305457737728')).toBe('twitter.com/ikemo');
+        expect(makeRecommendUrl('twitter.com/ikemo')).toBe(null);
+    });
+
+    it('w.atwiki.jp', () => {
+        expect(makeRecommendUrl('w.atwiki.jp/foo/bar/baz')).toBe('w.atwiki.jp/foo/');
+        expect(makeRecommendUrl('w.atwiki.jp/foo/')).toBe(null);
+    });
+
+    it('wikiwiki.jp', () => {
+        expect(makeRecommendUrl('wikiwiki.jp/foo/bar/baz')).toBe('wikiwiki.jp/foo/');
+        expect(makeRecommendUrl('wikiwiki.jp/foo/')).toBe(null);
+    });
 });
