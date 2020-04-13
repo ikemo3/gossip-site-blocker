@@ -49,14 +49,6 @@ elif [[ "${CIRCLE_TAG}" != "" ]]; then
       exit 1
     fi
 
-    # verify manifest version == package version
-    if [[ "${MANIFEST_VERSION}" != "${PACKAGE_VERSION}" ]]; then
-      echo "manifest_version != package_version"
-      echo "manifest: ${MANIFEST_VERSION}"
-      echo "package : ${PACKAGE_VERSION}"
-      exit 1
-    fi
-
     echo 'verify version_name does not exist'
     ! jq -e .version_name apps/manifest.json
   fi
