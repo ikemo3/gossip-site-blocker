@@ -18,16 +18,19 @@ const config: Configuration = {
         filename: '[name].js',
     },
     module: {
-        rules: [
-            { test: /\.ts$/, loader: 'ts-loader' },
-        ],
+        rules: [{ test: /\.ts$/, loader: 'ts-loader' }],
     },
     resolve: {
         extensions: ['.ts', '.js'],
     },
     plugins: [
         new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ['!_locales/*/*', '!icons/*', '!styles/*', '!.web-extension-id'],
+            cleanAfterEveryBuildPatterns: [
+                '!_locales/*/*',
+                '!icons/*',
+                '!styles/*',
+                '!.web-extension-id',
+            ],
         }),
         new CopyPlugin([
             {
@@ -47,29 +50,23 @@ const config: Configuration = {
                 to: '',
             },
         ]),
-        new HtmlWebpackPlugin(
-            {
-                template: join(__dirname, 'apps/popup/popup.html'),
-                filename: 'popup/popup.html',
-                chunks: ['popup'],
+        new HtmlWebpackPlugin({
+            template: join(__dirname, 'apps/popup/popup.html'),
+            filename: 'popup/popup.html',
+            chunks: ['popup'],
+        }),
+        new HtmlWebpackPlugin({
+            template: join(__dirname, 'apps/option/options.html'),
+            filename: 'option/options.html',
+            chunks: ['options'],
+        }),
+        new WebpackShellPluginNext({
+            onBuildExit: {
+                scripts: ['yarn manifest'],
+                blocking: true,
+                parallel: false,
             },
-        ),
-        new HtmlWebpackPlugin(
-            {
-                template: join(__dirname, 'apps/option/options.html'),
-                filename: 'option/options.html',
-                chunks: ['options'],
-            },
-        ),
-        new WebpackShellPluginNext(
-            {
-                onBuildExit: {
-                    scripts: ['yarn manifest'],
-                    blocking: true,
-                    parallel: false,
-                },
-            },
-        ),
+        }),
     ],
     devtool: 'source-map',
 };

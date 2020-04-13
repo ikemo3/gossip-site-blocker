@@ -7,7 +7,7 @@ import localizeHtmlPage from '../option/l10n';
 
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
     return new Promise((resolve, reject) => {
-        chrome.tabs.query({ active: true, currentWindow: true }, ((tabs) => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             if (tabs.length === 0) {
                 reject();
                 return;
@@ -15,12 +15,14 @@ function getCurrentTab(): Promise<chrome.tabs.Tab> {
 
             const currentTab = tabs[0];
             resolve(currentTab);
-        }));
+        });
     });
 }
 
 const exceptIkagadesitakaDiv = document.getElementById('exceptIkagadesitakaDiv') as HTMLDivElement;
-const exceptIkagadesitakaButton = document.getElementById('exceptIkagadesitakaButton') as HTMLButtonElement;
+const exceptIkagadesitakaButton = document.getElementById(
+    'exceptIkagadesitakaButton',
+) as HTMLButtonElement;
 const searchInEnglishDiv = document.getElementById('searchInEnglishDiv') as HTMLDivElement;
 const searchInEnglishButton = document.getElementById('searchInEnglishButton') as HTMLButtonElement;
 const optionLink = document.getElementById('optionLink') as HTMLAnchorElement;

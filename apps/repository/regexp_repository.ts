@@ -12,7 +12,7 @@ export interface RegExpItem {
 // eslint-disable-next-line import/prefer-default-export
 export const RegExpRepository = {
     async load(): Promise<RegExpItem[]> {
-        const items = await ChromeStorage.get({ regexpList: [] }) as RegExpItemList;
+        const items = (await ChromeStorage.get({ regexpList: [] })) as RegExpItemList;
 
         const itemsCopy = items.regexpList;
 

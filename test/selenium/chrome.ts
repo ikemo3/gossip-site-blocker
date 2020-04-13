@@ -4,9 +4,7 @@ import { readFileSync } from 'fs';
 
 export default function (): WebDriver {
     const extension = readFileSync('tmp/workspace/gossip-site-blocker.crx', 'base64');
-    const options = new Options()
-        .addExtensions(extension)
-        .windowSize({ width: 1280, height: 800 });
+    const options = new Options().addExtensions(extension).windowSize({ width: 1280, height: 800 });
 
     const capabilities = Capabilities.chrome();
     capabilities.set('chromeOptions', {
@@ -15,8 +13,5 @@ export default function (): WebDriver {
         ],
     });
 
-    return new Builder()
-        .withCapabilities(capabilities)
-        .setChromeOptions(options)
-        .build();
+    return new Builder().withCapabilities(capabilities).setChromeOptions(options).build();
 }

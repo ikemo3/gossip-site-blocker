@@ -262,24 +262,24 @@ export default class BlockedSiteOption {
 
     public setState(state: string): void {
         switch (state) {
-        case 'soft':
-            // send to Colleagues.
-            this.urlField.toSoft();
-            this.editButton.toSoft();
-            this.stateButton.toSoft();
-            this.deleteButton.toSoft();
+            case 'soft':
+                // send to Colleagues.
+                this.urlField.toSoft();
+                this.editButton.toSoft();
+                this.stateButton.toSoft();
+                this.deleteButton.toSoft();
 
-            break;
-        case 'hard':
-            // send to Colleagues.
-            this.urlField.toHard();
-            this.editButton.toHard();
-            this.stateButton.toHard();
-            this.deleteButton.toHard();
+                break;
+            case 'hard':
+                // send to Colleagues.
+                this.urlField.toHard();
+                this.editButton.toHard();
+                this.stateButton.toHard();
+                this.deleteButton.toHard();
 
-            break;
-        default:
-            throw new ApplicationError(`unknown state:${state}`);
+                break;
+            default:
+                throw new ApplicationError(`unknown state:${state}`);
         }
     }
 

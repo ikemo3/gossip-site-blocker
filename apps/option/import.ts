@@ -45,34 +45,38 @@ async function importClicked(): Promise<void> {
     const text = textArea.value;
     const lines = text.split('\n').filter((line) => line !== '');
 
-    const blockList = lines.map((line) => {
-        const cols = line.split(' ');
-        switch (cols.length) {
-        case 1:
-            // url only
-            return new BlockedSite(cols[0], 'soft');
-        case 2:
-        default: {
-            const type = cols[1];
-            if (type !== 'hard' && type !== 'soft') {
-                return undefined;
-            }
+    const blockList = lines
+        .map((line) => {
+            const cols = line.split(' ');
+            switch (cols.length) {
+                case 1:
+                    // url only
+                    return new BlockedSite(cols[0], 'soft');
+                case 2:
+                default: {
+                    const type = cols[1];
+                    if (type !== 'hard' && type !== 'soft') {
+                        return undefined;
+                    }
 
-            // url + soft/hard
-            return new BlockedSite(cols[0], type);
-        }
-        }
-    }).filter((block) => block !== undefined) as BlockedSite[];
+                    // url + soft/hard
+                    return new BlockedSite(cols[0], type);
+                }
+            }
+        })
+        .filter((block) => block !== undefined) as BlockedSite[];
 
     await BlockedSitesRepository.addAll(blockList);
 
-    const bannedWordList = lines.map((line) => lineToBannedWord(line))
+    const bannedWordList = lines
+        .map((line) => lineToBannedWord(line))
         .filter((banned) => banned !== undefined) as BannedWord[];
 
     await BannedWordRepository.addAll(bannedWordList);
 
     // regexp
-    const regexpList = lines.map((line) => lineToRegexp(line))
+    const regexpList = lines
+        .map((line) => lineToRegexp(line))
         .filter((regexp) => regexp !== null) as RegExpItem[];
 
     await RegExpRepository.addAll(regexpList);

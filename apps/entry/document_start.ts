@@ -53,8 +53,13 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
         return false;
     }
 
-    const blockState: BlockState = new BlockState(g, options.blockedSites, options.bannedWords,
-        options.regexpList, options.idnOption);
+    const blockState: BlockState = new BlockState(
+        g,
+        options.blockedSites,
+        options.bannedWords,
+        options.regexpList,
+        options.idnOption,
+    );
 
     if (blockState.getReason()) {
         window.blockReasons.push(blockState.getReason()!);
@@ -99,7 +104,7 @@ function tryBlockElement(g: SearchResultToBlock, options: Options): void {
 
 // add observer
 const observer = new MutationObserver((mutations) => {
-    const params = (new URL(document.location.href)).searchParams;
+    const params = new URL(document.location.href).searchParams;
     const isGoogleNews = params.get('tbm') === 'nws';
 
     mutations.forEach((mutation) => {

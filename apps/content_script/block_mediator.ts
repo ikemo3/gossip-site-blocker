@@ -2,9 +2,7 @@ import { BlockReason, BlockReasonType } from '../model/block_reason';
 import BlockState from './block_state';
 import BlockDialog from './dialog';
 import { SearchResultToBlock } from '../block/block';
-import {
-    $, ApplicationError, BlockType, DOMUtils, MenuPosition,
-} from '../common';
+import { $, ApplicationError, BlockType, DOMUtils, MenuPosition } from '../common';
 import BlockedSitesRepository from '../repository/blocked_sites';
 import { RegExpRepository } from '../repository/regexp_repository';
 import { IBasicBlockMediator, IBlockMediator } from './mediator';
@@ -314,8 +312,12 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
     private changeStateDialog: BlockChangeAnchorDialog;
 
-    constructor(g: SearchResultToBlock, blockState: BlockState, defaultBlockType: string,
-        menuPosition: MenuPosition) {
+    constructor(
+        g: SearchResultToBlock,
+        blockState: BlockState,
+        defaultBlockType: string,
+        menuPosition: MenuPosition,
+    ) {
         const blockTarget = new BlockTargetElement(this, g.getElement());
 
         this.operationDiv = $.div('block-anchor');
@@ -330,44 +332,48 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
         let compactMenu;
         switch (menuPosition) {
-        case MenuPosition.COMPACT:
-            // insert menu after action menu.
-            compactMenu = new CompactMenu(this.hideAnchor, this.blockAnchor, this.changeAnchor,
-                g.getPosition());
-            DOMUtils.insertAfter(g.getCompactMenuInsertElement(), compactMenu.getElement());
+            case MenuPosition.COMPACT:
+                // insert menu after action menu.
+                compactMenu = new CompactMenu(
+                    this.hideAnchor,
+                    this.blockAnchor,
+                    this.changeAnchor,
+                    g.getPosition(),
+                );
+                DOMUtils.insertAfter(g.getCompactMenuInsertElement(), compactMenu.getElement());
 
-            // insert links after block target.
-            this.operationDiv.classList.add('block-anchor-tmp-unblock-only');
-            this.operationDiv.classList.add(g.getCssClass());
-            this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
-            DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+                // insert links after block target.
+                this.operationDiv.classList.add('block-anchor-tmp-unblock-only');
+                this.operationDiv.classList.add(g.getCssClass());
+                this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
+                DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
-            break;
-        case MenuPosition.DEFAULT:
-            // insert links after block target.
-            this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
-            this.operationDiv.appendChild(this.hideAnchor.getElement());
-            this.operationDiv.appendChild(this.blockAnchor.getElement());
-            this.operationDiv.appendChild(this.changeAnchor.getElement());
-            this.operationDiv.classList.add(g.getCssClass());
-            DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+                break;
+            case MenuPosition.DEFAULT:
+                // insert links after block target.
+                this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
+                this.operationDiv.appendChild(this.hideAnchor.getElement());
+                this.operationDiv.appendChild(this.blockAnchor.getElement());
+                this.operationDiv.appendChild(this.changeAnchor.getElement());
+                this.operationDiv.classList.add(g.getCssClass());
+                DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
-            break;
-        default:
-            throw new ApplicationError(`illegal menuPosition:${menuPosition}`);
+                break;
+            default:
+                throw new ApplicationError(`illegal menuPosition:${menuPosition}`);
         }
 
         const state = blockState.getState();
         switch (state) {
-        case 'none':
-            this.notBlocked();
-            break;
+            case 'none':
+                this.notBlocked();
+                break;
 
-        case 'soft':
-            this.hide();
-            break;
-        default:
-            throw new ApplicationError(`unknown state:${state}`);
+            case 'soft':
+                this.hide();
+                break;
+            default:
+                throw new ApplicationError(`unknown state:${state}`);
         }
     }
 
@@ -390,22 +396,22 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
     public temporarilyUnblock(): void {
         const type = this.blockReason!.getType();
         switch (type) {
-        case BlockReasonType.URL_EXACTLY:
-            this.blockAnchor.hide();
-            this.changeAnchor.show();
-            break;
-        case BlockReasonType.URL:
-            this.blockAnchor.showBlockExplicitly();
-            this.changeAnchor.show();
-            break;
+            case BlockReasonType.URL_EXACTLY:
+                this.blockAnchor.hide();
+                this.changeAnchor.show();
+                break;
+            case BlockReasonType.URL:
+                this.blockAnchor.showBlockExplicitly();
+                this.changeAnchor.show();
+                break;
 
-        case BlockReasonType.IDN:
-        case BlockReasonType.WORD:
-            this.blockAnchor.showBlockExplicitly();
-            this.changeAnchor.hide();
-            break;
-        default:
-            throw new ApplicationError(`illegal type:${type}`);
+            case BlockReasonType.IDN:
+            case BlockReasonType.WORD:
+                this.blockAnchor.showBlockExplicitly();
+                this.changeAnchor.hide();
+                break;
+            default:
+                throw new ApplicationError(`illegal type:${type}`);
         }
 
         this.blockTarget.temporarilyUnblock();
@@ -428,7 +434,10 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         if (isUrl) {
             await BlockedSitesRepository.add(pattern, blockType);
         } else {
-            await RegExpRepository.add(pattern, blockType === 'soft' ? BlockType.SOFT : BlockType.HARD);
+            await RegExpRepository.add(
+                pattern,
+                blockType === 'soft' ? BlockType.SOFT : BlockType.HARD,
+            );
         }
 
         if (blockType === 'hard') {
@@ -448,8 +457,11 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
     public showChangeStateDialog(): void {
         // show dialog.
-        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url,
-            this.blockReason!.getReason());
+        this.changeStateDialog = new BlockChangeAnchorDialog(
+            this,
+            this.url,
+            this.blockReason!.getReason(),
+        );
     }
 
     public showBlockDialog(): void {

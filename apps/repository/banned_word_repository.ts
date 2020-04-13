@@ -1,6 +1,4 @@
-import {
-    BannedTarget, BlockType, ChromeStorage, Logger,
-} from '../common';
+import { BannedTarget, BlockType, ChromeStorage, Logger } from '../common';
 
 interface BannedWordItems {
     bannedWords: BannedWord[];
@@ -15,7 +13,7 @@ export interface BannedWord {
 // eslint-disable-next-line import/prefer-default-export
 export const BannedWordRepository = {
     async load(): Promise<BannedWord[]> {
-        const items = await ChromeStorage.get({ bannedWords: [] }) as BannedWordItems;
+        const items = (await ChromeStorage.get({ bannedWords: [] })) as BannedWordItems;
 
         const itemsCopy = items.bannedWords;
         for (const item of itemsCopy) {
