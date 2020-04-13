@@ -23,12 +23,14 @@ function showBlockedByBannedWords(): void {
         return;
     }
 
-    const lines = window.blockReasons.map((reason) => {
-        if (reason.getType() === BlockReasonType.WORD) {
-            return reason.getUrl();
-        }
-        return undefined;
-    }).filter((v) => v); // remove undefined.
+    const lines = window.blockReasons
+        .map((reason) => {
+            if (reason.getType() === BlockReasonType.WORD) {
+                return reason.getUrl();
+            }
+            return undefined;
+        })
+        .filter((v) => v); // remove undefined.
 
     // create textarea after 'topstuff'
     const textarea = $.textarea(lines.join('\n'), {

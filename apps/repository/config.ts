@@ -39,7 +39,7 @@ interface BlockGoogleNewsTabOption {
 // eslint-disable-next-line import/prefer-default-export
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
-        const items = await ChromeStorage.get({ developerMode: false }) as DeveloperOption;
+        const items = (await ChromeStorage.get({ developerMode: false })) as DeveloperOption;
 
         Logger.mode = items.developerMode;
 
@@ -56,9 +56,9 @@ export const OptionRepository = {
 
     async getBannedWordOption(): Promise<BannedWordOption> {
         const bannedWordDefault = { showInfo: false };
-        const items: BannedWordOptionStorage = await ChromeStorage.get(
-            { bannedWord: bannedWordDefault },
-        );
+        const items: BannedWordOptionStorage = await ChromeStorage.get({
+            bannedWord: bannedWordDefault,
+        });
         return items.bannedWord;
     },
 
@@ -71,9 +71,9 @@ export const OptionRepository = {
 
     async getAutoBlockIDNOption(): Promise<AutoBlockIDNOption> {
         const autoBlockIDNDefault = { enabled: false };
-        const items: AutoBlockIDNOptionStorage = await ChromeStorage.get(
-            { autoBlockIDN: autoBlockIDNDefault },
-        ) as AutoBlockIDNOptionStorage;
+        const items: AutoBlockIDNOptionStorage = (await ChromeStorage.get({
+            autoBlockIDN: autoBlockIDNDefault,
+        })) as AutoBlockIDNOptionStorage;
         return items.autoBlockIDN;
     },
 
@@ -84,7 +84,9 @@ export const OptionRepository = {
     },
 
     async defaultBlockType(): Promise<string> {
-        const items = await ChromeStorage.load({ defaultBlockType: 'soft' }) as DefaultBlockTypeOption;
+        const items = (await ChromeStorage.load({
+            defaultBlockType: 'soft',
+        })) as DefaultBlockTypeOption;
         return items.defaultBlockType;
     },
 
@@ -95,15 +97,15 @@ export const OptionRepository = {
     },
 
     async menuPosition(): Promise<MenuPosition> {
-        const items = await ChromeStorage.load({ menuPosition: 'default' }) as MenuPositionOption;
+        const items = (await ChromeStorage.load({ menuPosition: 'default' })) as MenuPositionOption;
         const { menuPosition } = items;
 
         switch (menuPosition) {
-        case MenuPosition.COMPACT:
-            return MenuPosition.COMPACT;
-        case MenuPosition.DEFAULT:
-        default:
-            return MenuPosition.DEFAULT;
+            case MenuPosition.COMPACT:
+                return MenuPosition.COMPACT;
+            case MenuPosition.DEFAULT:
+            default:
+                return MenuPosition.DEFAULT;
         }
     },
 
@@ -114,9 +116,9 @@ export const OptionRepository = {
     },
 
     async isDisplayTemporarilyUnblockAll(): Promise<boolean> {
-        const items = await ChromeStorage.load({
+        const items = (await ChromeStorage.load({
             displayTemporarilyUnblockAll: true,
-        }) as DisplayTemporarilyUnblockAllOption;
+        })) as DisplayTemporarilyUnblockAllOption;
 
         return items.displayTemporarilyUnblockAll;
     },
@@ -127,9 +129,9 @@ export const OptionRepository = {
     },
 
     async isBlockGoogleNewsTab(): Promise<boolean> {
-        const items = await ChromeStorage.load({
+        const items = (await ChromeStorage.load({
             blockGoogleNewsTab: true,
-        }) as BlockGoogleNewsTabOption;
+        })) as BlockGoogleNewsTabOption;
 
         return items.blockGoogleNewsTab;
     },

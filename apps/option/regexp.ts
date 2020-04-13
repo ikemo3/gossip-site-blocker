@@ -80,14 +80,14 @@ class RegExpList {
         const { value } = typeSelect.options[index];
 
         switch (value) {
-        case 'soft':
-            await RegExpRepository.changeType(pattern, BlockType.SOFT);
-            break;
-        case 'hard':
-            await RegExpRepository.changeType(pattern, BlockType.HARD);
-            break;
-        default:
-            throw new ApplicationError(`unknown value:${value}`);
+            case 'soft':
+                await RegExpRepository.changeType(pattern, BlockType.SOFT);
+                break;
+            case 'hard':
+                await RegExpRepository.changeType(pattern, BlockType.HARD);
+                break;
+            default:
+                throw new ApplicationError(`unknown value:${value}`);
         }
     }
 

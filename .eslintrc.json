@@ -8,7 +8,8 @@
   "extends": [
     "airbnb-base",
     "plugin:import/typescript",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -21,7 +22,8 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "jest"
+    "jest",
+    "prettier"
   ],
   "rules": {
     "class-methods-use-this": "off",
@@ -42,10 +44,6 @@
         ],
         "optionalDependencies": false
       }
-    ],
-    "indent": [
-      "error",
-      4
     ],
     "max-classes-per-file": "off",
     "no-continue": "off",
@@ -70,6 +68,7 @@
         "allowAfterThis": true
       }
     ],
+    "prettier/prettier": "error",
     "@typescript-eslint/camelcase": [
       "error",
       {

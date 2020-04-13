@@ -1,9 +1,9 @@
 export enum BlockReasonType {
     URL_EXACTLY,
     URL,
-    WORD, /* Banned Word */
-    REGEXP, /* Regular Expression */
-    IDN, /* Internationalized Domain Name */
+    WORD /* Banned Word */,
+    REGEXP /* Regular Expression */,
+    IDN /* Internationalized Domain Name */,
 }
 
 export class BlockReason {

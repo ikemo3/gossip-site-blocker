@@ -18,7 +18,7 @@ const BlockedSitesRepository = {
      * @returns {Promise<Array<BlockedSite>>}
      */
     async loadData(): Promise<Array<BlockedSite>> {
-        const items = await ChromeStorage.get({ blocked: [] }) as BlockedSitesListData;
+        const items = (await ChromeStorage.get({ blocked: [] })) as BlockedSitesListData;
 
         const sites = [];
 

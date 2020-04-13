@@ -36,7 +36,7 @@ class GoogleSearchResult implements SearchResultToBlock {
 
         // ignore if any element has class=g
         let parent = element.parentElement;
-        for (; ;) {
+        for (;;) {
             // when root element
             if (parent === null) {
                 break;

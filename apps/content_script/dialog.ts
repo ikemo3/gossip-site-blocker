@@ -91,7 +91,10 @@ class BlockDialog {
         const radio = $.radio('block-url-type', value, 'blocker-dialog-domain-radio');
         radio.checked = checked;
 
-        const textLabel = $.label($.message('blockThisDomainWithUrl', value), 'blocker-dialog-domain-radio');
+        const textLabel = $.label(
+            $.message('blockThisDomainWithUrl', value),
+            'blocker-dialog-domain-radio',
+        );
 
         div.appendChild(radio);
         div.appendChild(textLabel);
@@ -108,7 +111,10 @@ class BlockDialog {
         const div = $.div();
         const radio = $.radio('block-url-type', recommend, 'blocker-dialog-recommend-radio');
         radio.checked = true;
-        const textLabel = $.label($.message('blockThisPageWithRecommendedPath', $.decodeURI(recommend)), 'blocker-dialog-url-radio');
+        const textLabel = $.label(
+            $.message('blockThisPageWithRecommendedPath', $.decodeURI(recommend)),
+            'blocker-dialog-url-radio',
+        );
 
         div.appendChild(radio);
         div.appendChild(textLabel);
@@ -121,7 +127,10 @@ class BlockDialog {
 
         const radio = $.radio('block-url-type', value, 'blocker-dialog-url-radio');
 
-        const textLabel = $.label($.message('blockThisPageWithUrl', $.decodeURI(value)), 'blocker-dialog-url-radio');
+        const textLabel = $.label(
+            $.message('blockThisPageWithUrl', $.decodeURI(value)),
+            'blocker-dialog-url-radio',
+        );
 
         div.appendChild(radio);
         div.appendChild(textLabel);
@@ -211,7 +220,9 @@ class BlockDialog {
     }
 
     public async block(): Promise<void> {
-        const selected = document.querySelector('input[name="block-url-type"]:checked') as HTMLInputElement;
+        const selected = document.querySelector(
+            'input[name="block-url-type"]:checked',
+        ) as HTMLInputElement;
 
         // ignore when not selected.
         if (!selected) {

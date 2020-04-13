@@ -1,6 +1,5 @@
 import { SearchResultToBlock } from './block';
 
-
 class GoogleNewsTabCardSection implements SearchResultToBlock {
     private readonly valid: boolean;
 

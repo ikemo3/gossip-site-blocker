@@ -1,6 +1,4 @@
-import {
-    $, ApplicationError, BannedTarget, BlockType, Logger,
-} from '../common';
+import { $, ApplicationError, BannedTarget, BlockType, Logger } from '../common';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 
 export default class BannedWords {
@@ -15,7 +13,7 @@ export default class BannedWords {
         this.addText = document.getElementById('bannedWordAddText') as HTMLInputElement;
         this.wordList = document.getElementById('bannedWordList') as HTMLDivElement;
 
-        this.addButton.addEventListener('click', (async () => {
+        this.addButton.addEventListener('click', async () => {
             const word = this.addText.value;
             if (word === '') {
                 return;
@@ -32,7 +30,7 @@ export default class BannedWords {
             }
 
             this.addText.value = '';
-        }));
+        });
     }
 
     public clear(): void {
@@ -91,14 +89,14 @@ export default class BannedWords {
         const { value } = typeSelect.options[index];
 
         switch (value) {
-        case 'soft':
-            await BannedWordRepository.changeType(keyword, BlockType.SOFT);
-            break;
-        case 'hard':
-            await BannedWordRepository.changeType(keyword, BlockType.HARD);
-            break;
-        default:
-            throw new ApplicationError(`unknown value:${value}`);
+            case 'soft':
+                await BannedWordRepository.changeType(keyword, BlockType.SOFT);
+                break;
+            case 'hard':
+                await BannedWordRepository.changeType(keyword, BlockType.HARD);
+                break;
+            default:
+                throw new ApplicationError(`unknown value:${value}`);
         }
     }
 
@@ -108,14 +106,14 @@ export default class BannedWords {
         const { value } = targetSelect.options[index];
 
         switch (value) {
-        case 'titleAndContents':
-            await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_AND_CONTENTS);
-            break;
-        case 'titleOnly':
-            await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_ONLY);
-            break;
-        default:
-            throw new ApplicationError(`unknown value:${value}`);
+            case 'titleAndContents':
+                await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_AND_CONTENTS);
+                break;
+            case 'titleOnly':
+                await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_ONLY);
+                break;
+            default:
+                throw new ApplicationError(`unknown value:${value}`);
         }
     }
 

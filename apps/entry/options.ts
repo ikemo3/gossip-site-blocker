@@ -20,12 +20,18 @@ const clearButton = document.getElementById('clearButton') as HTMLInputElement;
  */
 const developerCheckbox = document.getElementById('developerCheckbox') as HTMLInputElement;
 
-const displayTemporarilyUnblockAllCheckbox = document.getElementById('displayTemporarilyUnblockAllCheckbox') as HTMLInputElement;
-const showBlockedByWordInfoCheckbox = document.getElementById('showBlockedByWordInfoCheckbox') as HTMLInputElement;
+const displayTemporarilyUnblockAllCheckbox = document.getElementById(
+    'displayTemporarilyUnblockAllCheckbox',
+) as HTMLInputElement;
+const showBlockedByWordInfoCheckbox = document.getElementById(
+    'showBlockedByWordInfoCheckbox',
+) as HTMLInputElement;
 const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as HTMLInputElement;
 const defaultBlockSelect = document.getElementById('defaultBlockType') as HTMLSelectElement;
 const menuPositionSelect = document.getElementById('menuPosition') as HTMLSelectElement;
-const blockGoogleNewsTabCheckbox = document.getElementById('blockGoogleNewsTabCheckbox') as HTMLInputElement;
+const blockGoogleNewsTabCheckbox = document.getElementById(
+    'blockGoogleNewsTabCheckbox',
+) as HTMLInputElement;
 
 let bannedWords: BannedWords;
 let regexpList: RegExpList;
@@ -88,8 +94,7 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     Logger.log('developerMode is ', developerMode);
     developerCheckbox.checked = developerMode;
 
-    const displayTemporarilyUnblockAll: boolean = await OptionRepository
-        .isDisplayTemporarilyUnblockAll();
+    const displayTemporarilyUnblockAll: boolean = await OptionRepository.isDisplayTemporarilyUnblockAll();
     Logger.debug('displayTemporarilyUnblockAll is ', displayTemporarilyUnblockAll);
     displayTemporarilyUnblockAllCheckbox.checked = displayTemporarilyUnblockAll;
 

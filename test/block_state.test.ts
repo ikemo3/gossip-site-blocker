@@ -34,16 +34,22 @@ describe('BlockState', () => {
         return new BlockedSites([blockedSite]);
     }
 
-    function createBannedWord(keyword: string, blockType: BlockType,
-        target: BannedTarget): BannedWord {
+    function createBannedWord(
+        keyword: string,
+        blockType: BlockType,
+        target: BannedTarget,
+    ): BannedWord {
         return {
-            blockType, keyword, target,
+            blockType,
+            keyword,
+            target,
         };
     }
 
     function createRegexp(pattern: string, blockType: BlockType): RegExpItem {
         return {
-            blockType, pattern,
+            blockType,
+            pattern,
         };
     }
 
@@ -85,7 +91,9 @@ describe('BlockState', () => {
 
     it('block by word', () => {
         const target = createContents('http://example.com', true);
-        const bannedList = [createBannedWord('evil', BlockType.SOFT, BannedTarget.TITLE_AND_CONTENTS)];
+        const bannedList = [
+            createBannedWord('evil', BlockType.SOFT, BannedTarget.TITLE_AND_CONTENTS),
+        ];
 
         const blockState = new BlockState(target, createEmptySites(), bannedList, [], idnOption);
 
@@ -108,7 +116,9 @@ describe('BlockState', () => {
     it('block by URL(exactly) vs word(hard block) => word(hard block)', () => {
         const target = createContents('http://example.com', true);
         const sites = createSites('soft', 'example.com');
-        const bannedList = [createBannedWord('evil', BlockType.HARD, BannedTarget.TITLE_AND_CONTENTS)];
+        const bannedList = [
+            createBannedWord('evil', BlockType.HARD, BannedTarget.TITLE_AND_CONTENTS),
+        ];
 
         const blockState = new BlockState(target, sites, bannedList, [], idnOption);
 
