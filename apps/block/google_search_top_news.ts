@@ -11,6 +11,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
 
     private readonly insertPoint: Element;
 
+    // noinspection DuplicatedCode
     constructor(element: Element) {
         super();
         this.element = element;

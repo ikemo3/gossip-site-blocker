@@ -15,6 +15,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
 
     private readonly operationInsertPoint: Element;
 
+    // noinspection DuplicatedCode
     constructor(element: Element) {
         super();
         this.element = element;
