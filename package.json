@@ -40,10 +40,10 @@
   "scripts": {
     "archive": "ts-node ./scripts/archive.ts",
     "build": "webpack",
-    "fix": "yarn eslint --fix --ext .ts apps test *.ts",
+    "fix": "yarn eslint --fix --ext .ts apps scripts test *.ts jest.config.js",
     "integration-test": "yarn archive && tsc && node --async-stack-traces test/selenium/test.js",
-    "lint": "yarn eslint --ext .ts apps test *.ts",
-    "lint-for-ci": "yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps test *.ts",
+    "lint": "yarn eslint --ext .ts apps scripts test *.ts jest.config.js",
+    "lint-for-ci": "yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.js",
     "manifest": "ts-node ./scripts/make_manifest.ts",
     "test": "tsc && jest"
   },

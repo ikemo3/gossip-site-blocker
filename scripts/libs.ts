@@ -1,6 +1,4 @@
-import {
-    existsSync, mkdirSync, readFileSync, writeFileSync,
-} from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import dayjs from 'dayjs';
 
