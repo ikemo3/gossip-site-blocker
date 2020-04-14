@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from './block';
 
-class GoogleSearchInnerCard implements SearchResultToBlock {
+class GoogleSearchInnerCard extends SearchResultToBlock {
     public valid: boolean;
 
     public url: string;
@@ -10,6 +10,7 @@ class GoogleSearchInnerCard implements SearchResultToBlock {
     private readonly title: string;
 
     constructor(element: Element) {
+        super();
         this.element = element;
 
         const anchorList = element.getElementsByTagName('a');
@@ -64,24 +65,20 @@ class GoogleSearchInnerCard implements SearchResultToBlock {
         return this.element;
     }
 
-    public deleteElement(): void {
-        this.element.parentElement!.removeChild(this.element);
-    }
-
-    public contains(keyword: string): boolean {
-        return this.title !== '' && this.title.includes(keyword);
-    }
-
-    public containsInTitle(keyword: string): boolean {
-        return this.title !== '' && this.title.includes(keyword);
-    }
-
     public getPosition(): string {
         return 'relative';
     }
 
     public getCssClass(): string {
         return 'block-google-inner-card';
+    }
+
+    public getTitle(): string {
+        return this.title;
+    }
+
+    public getContents(): string {
+        return '';
     }
 }
 

@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from './block';
 
-class GoogleNewsTabTop implements SearchResultToBlock {
+class GoogleNewsTabTop extends SearchResultToBlock {
     private readonly valid: boolean;
 
     private readonly _canRetry: boolean;
@@ -16,6 +16,7 @@ class GoogleNewsTabTop implements SearchResultToBlock {
     private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
+        super();
         this.element = element;
 
         const anchor: HTMLAnchorElement | null = element.querySelector('a');
@@ -72,18 +73,6 @@ class GoogleNewsTabTop implements SearchResultToBlock {
         return this.valid;
     }
 
-    public contains(keyword: string): boolean {
-        if (this.title.includes(keyword)) {
-            return true;
-        }
-
-        return this.contents !== '' && this.contents.includes(keyword);
-    }
-
-    public containsInTitle(keyword: string): boolean {
-        return this.title.includes(keyword);
-    }
-
     public getUrl(): string {
         return this.url;
     }
@@ -111,6 +100,14 @@ class GoogleNewsTabTop implements SearchResultToBlock {
 
     public getCssClass(): string {
         return 'block-google-news-top';
+    }
+
+    public getTitle(): string {
+        return this.title;
+    }
+
+    public getContents(): string {
+        return this.contents;
     }
 }
 

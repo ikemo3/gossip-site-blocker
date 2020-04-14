@@ -1,7 +1,6 @@
-import { $ } from '../common';
 import { SearchResultToBlock } from './block';
 
-class GoogleSearchTopNews implements SearchResultToBlock {
+class GoogleSearchTopNews extends SearchResultToBlock {
     private readonly element: Element;
 
     private readonly valid: boolean;
@@ -13,6 +12,7 @@ class GoogleSearchTopNews implements SearchResultToBlock {
     private readonly insertPoint: Element;
 
     constructor(element: Element) {
+        super();
         this.element = element;
 
         const anchor = element.querySelector('a') as HTMLAnchorElement;
@@ -47,20 +47,8 @@ class GoogleSearchTopNews implements SearchResultToBlock {
         return this.valid;
     }
 
-    public contains(keyword: string): boolean {
-        return this.title.includes(keyword);
-    }
-
-    public containsInTitle(keyword: string): boolean {
-        return this.title.includes(keyword);
-    }
-
     public getElement(): Element {
         return this.element;
-    }
-
-    public deleteElement(): void {
-        $.removeSelf(this.element);
     }
 
     public getCompactMenuInsertElement(): Element {
@@ -77,6 +65,14 @@ class GoogleSearchTopNews implements SearchResultToBlock {
 
     public getCssClass(): string {
         return 'block-google-top-news';
+    }
+
+    public getTitle(): string {
+        return this.title;
+    }
+
+    public getContents(): string {
+        return '';
     }
 }
 
