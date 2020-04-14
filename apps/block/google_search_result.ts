@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from './block';
 
-class GoogleSearchResult implements SearchResultToBlock {
+class GoogleSearchResult extends SearchResultToBlock {
     private readonly valid: boolean;
 
     private readonly _canRetry: boolean;
@@ -16,6 +16,7 @@ class GoogleSearchResult implements SearchResultToBlock {
     private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
+        super();
         this.element = element;
 
         const { classList } = element;
@@ -137,18 +138,6 @@ class GoogleSearchResult implements SearchResultToBlock {
         return this.valid;
     }
 
-    public contains(keyword: string): boolean {
-        if (this.title.includes(keyword)) {
-            return true;
-        }
-
-        return this.contents !== '' && this.contents.includes(keyword);
-    }
-
-    public containsInTitle(keyword: string): boolean {
-        return this.title.includes(keyword);
-    }
-
     public getUrl(): string {
         return this.url;
     }
@@ -161,16 +150,20 @@ class GoogleSearchResult implements SearchResultToBlock {
         return this.operationInsertPoint;
     }
 
-    public deleteElement(): void {
-        this.element.parentElement!.removeChild(this.element);
-    }
-
     public getPosition(): string {
         return 'absolute';
     }
 
     public getCssClass(): string {
         return 'block-google-element';
+    }
+
+    public getTitle(): string {
+        return this.title;
+    }
+
+    public getContents(): string {
+        return this.contents;
     }
 }
 

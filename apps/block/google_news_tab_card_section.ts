@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from './block';
 
-class GoogleNewsTabCardSection implements SearchResultToBlock {
+class GoogleNewsTabCardSection extends SearchResultToBlock {
     private readonly valid: boolean;
 
     private readonly url: string;
@@ -14,6 +14,7 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
     private readonly operationInsertPoint: Element;
 
     constructor(element: Element) {
+        super();
         this.element = element;
 
         const anchor = element.querySelector('a.RTNUJf') as HTMLAnchorElement;
@@ -54,18 +55,6 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
         return this.valid;
     }
 
-    public contains(keyword: string): boolean {
-        if (this.title.includes(keyword)) {
-            return true;
-        }
-
-        return this.contents !== '' && this.contents.includes(keyword);
-    }
-
-    public containsInTitle(keyword: string): boolean {
-        return this.title.includes(keyword);
-    }
-
     public getUrl(): string {
         return this.url;
     }
@@ -78,16 +67,20 @@ class GoogleNewsTabCardSection implements SearchResultToBlock {
         return this.operationInsertPoint;
     }
 
-    public deleteElement(): void {
-        this.element.parentElement!.removeChild(this.element);
-    }
-
     public getPosition(): string {
         return 'absolute';
     }
 
     public getCssClass(): string {
         return 'block-google-news-card-section';
+    }
+
+    public getTitle(): string {
+        return this.title;
+    }
+
+    public getContents(): string {
+        return this.contents;
     }
 }
 

@@ -6,24 +6,44 @@ export interface ContentToBlock {
     containsInTitle(keyword: string): boolean;
 }
 
-export interface SearchResultToBlock {
-    getUrl(): string;
+export abstract class SearchResultToBlock implements ContentToBlock {
+    abstract getUrl(): string;
 
-    canRetry(): boolean;
+    abstract canRetry(): boolean;
 
-    canBlock(): boolean;
+    abstract canBlock(): boolean;
 
-    contains(keyword: string): boolean;
+    contains(keyword: string): boolean {
+        if (this.getTitle().includes(keyword)) {
+            return true;
+        }
 
-    containsInTitle(keyword: string): boolean;
+        return this.getContents().includes(keyword);
+    }
 
-    deleteElement(): void;
+    abstract getTitle(): string;
 
-    getElement(): Element;
+    abstract getContents(): string;
 
-    getCompactMenuInsertElement(): Element;
+    containsInTitle(keyword: string): boolean {
+        return this.getTitle().includes(keyword);
+    }
 
-    getPosition(): string;
+    deleteElement(): void {
+        const element = this.getElement();
+        const parent = element.parentElement;
+        if (!parent) {
+            return;
+        }
 
-    getCssClass(): string;
+        parent!.removeChild(element);
+    }
+
+    abstract getElement(): Element;
+
+    abstract getCompactMenuInsertElement(): Element;
+
+    abstract getPosition(): string;
+
+    abstract getCssClass(): string;
 }
