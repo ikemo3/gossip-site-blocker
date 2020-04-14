@@ -30,7 +30,15 @@ if (pemBase64 !== undefined) {
 
     // create Chrome Extension(signed)
     console.info(`Create ${packageName}.crx with private key`);
-    execFileSync('yarn', ['crx', 'pack', '-o', `tmp/workspace/${packageName}.crx`, 'dist', '-p', `tmp/${packageName}.pem`]);
+    execFileSync('yarn', [
+        'crx',
+        'pack',
+        '-o',
+        `tmp/workspace/${packageName}.crx`,
+        'dist',
+        '-p',
+        `tmp/${packageName}.pem`,
+    ]);
 } else {
     // create Chrome Extension(signed, create private key)
     console.info(`Create ${packageName}.crx`);
