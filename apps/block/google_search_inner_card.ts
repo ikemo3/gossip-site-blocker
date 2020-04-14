@@ -9,6 +9,7 @@ class GoogleSearchInnerCard extends SearchResultToBlock {
 
     private readonly title: string;
 
+    // noinspection DuplicatedCode
     constructor(element: Element) {
         super();
         this.element = element;
