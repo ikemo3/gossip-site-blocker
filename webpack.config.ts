@@ -12,6 +12,7 @@ const config: Configuration = {
         document_idle: join(__dirname, 'apps', 'entry', 'document_idle.ts'),
         options: join(__dirname, 'apps', 'entry', 'options.ts'),
         popup: join(__dirname, 'apps', 'entry', 'popup.ts'),
+        tabby: join(__dirname, 'apps', 'entry', 'options-tabby.ts'),
     },
     output: {
         path: join(__dirname, 'dist'),
@@ -46,6 +47,10 @@ const config: Configuration = {
                 to: 'styles',
             },
             {
+                from: 'node_modules/tabbyjs/dist/css/tabby-ui.css',
+                to: 'styles',
+            },
+            {
                 from: 'apps/.web-extension-id',
                 to: '',
             },
@@ -58,7 +63,7 @@ const config: Configuration = {
         new HtmlWebpackPlugin({
             template: join(__dirname, 'apps/option/options.html'),
             filename: 'option/options.html',
-            chunks: ['options'],
+            chunks: ['options', 'tabby'],
         }),
         new WebpackShellPluginNext({
             onBuildExit: {

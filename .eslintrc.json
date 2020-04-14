@@ -68,6 +68,7 @@
         "allowAfterThis": true
       }
     ],
+    "no-useless-constructor": "off",
     "prettier/prettier": "error",
     "@typescript-eslint/camelcase": [
       "error",
@@ -82,7 +83,8 @@
         "argsIgnorePattern": "^_",
         "varsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "@typescript-eslint/no-useless-constructor": "error"
   },
   "overrides": [
     {
