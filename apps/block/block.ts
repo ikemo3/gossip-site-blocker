@@ -1,3 +1,11 @@
+export interface ContentToBlock {
+    getUrl(): string;
+
+    contains(keyword: string): boolean;
+
+    containsInTitle(keyword: string): boolean;
+}
+
 export interface SearchResultToBlock {
     getUrl(): string;
 
@@ -18,12 +26,4 @@ export interface SearchResultToBlock {
     getPosition(): string;
 
     getCssClass(): string;
-}
-
-export interface ContentToBlock {
-    getUrl(): string;
-
-    contains(keyword: string): boolean;
-
-    containsInTitle(keyword: string): boolean;
 }
