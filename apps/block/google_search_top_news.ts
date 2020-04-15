@@ -1,4 +1,5 @@
 import { SearchResultToBlock } from './block';
+import DocumentURL from '../values/document_url';
 
 class GoogleSearchTopNews extends SearchResultToBlock {
     private readonly element: Element;
@@ -10,6 +11,10 @@ class GoogleSearchTopNews extends SearchResultToBlock {
     private readonly title: string;
 
     private readonly compactMenuInsertElement: Element;
+
+    static isCandidate(element: Element, _: DocumentURL): boolean {
+        return element.classList.contains('dbsr');
+    }
 
     // noinspection DuplicatedCode
     constructor(element: Element) {

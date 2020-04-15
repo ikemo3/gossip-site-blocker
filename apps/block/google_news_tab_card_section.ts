@@ -1,4 +1,5 @@
 import { SearchResultToBlock } from './block';
+import DocumentURL from '../values/document_url';
 
 class GoogleNewsTabCardSection extends SearchResultToBlock {
     private readonly valid: boolean;
@@ -12,6 +13,10 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
     private readonly contents: string;
 
     private readonly compactMenuInsertElement: Element;
+
+    static isCandidate(element: Element, documentURL: DocumentURL): boolean {
+        return element.matches('div.card-section') && documentURL.isGoogleNews();
+    }
 
     // noinspection DuplicatedCode
     constructor(element: Element) {

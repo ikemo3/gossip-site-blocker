@@ -1,4 +1,5 @@
 import { SearchResultToBlock } from './block';
+import DocumentURL from '../values/document_url';
 
 class GoogleSearchResult extends SearchResultToBlock {
     private readonly valid: boolean;
@@ -14,6 +15,10 @@ class GoogleSearchResult extends SearchResultToBlock {
     private readonly contents: string;
 
     private readonly compactMenuInsertElement: Element;
+
+    static isCandidate(element: Element, documentURL: DocumentURL): boolean {
+        return element.classList.contains('g') && documentURL.isGoogleSearch();
+    }
 
     // noinspection DuplicatedCode
     constructor(element: Element) {
