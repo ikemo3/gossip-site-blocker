@@ -1,7 +1,7 @@
 import BlockedSites from '../model/blocked_sites';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
+import { BannedWordOption, OptionRepository, Options } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
 import BlockedSitesRepository from '../repository/blocked_sites';
@@ -14,17 +14,6 @@ import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
 import GoogleNewsTabTop from '../block/google_news_tab_top';
 import { SearchResultToBlock } from '../block/block';
 import DocumentURL from '../values/document_url';
-
-export interface Options {
-    blockedSites: BlockedSites;
-    bannedWords: BannedWord[];
-    regexpList: RegExpItem[];
-    idnOption: AutoBlockIDNOption;
-    defaultBlockType: string;
-    menuPosition: MenuPosition;
-    bannedWordOption: BannedWordOption;
-    blockGoogleNewsTab: boolean;
-}
 
 declare global {
     interface Window {
