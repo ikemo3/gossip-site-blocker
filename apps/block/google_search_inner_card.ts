@@ -1,5 +1,6 @@
 import { SearchResultToBlock } from './block';
 import DocumentURL from '../values/document_url';
+import { Options } from '../repository/config';
 
 class GoogleSearchInnerCard extends SearchResultToBlock {
     public valid: boolean;
@@ -9,6 +10,10 @@ class GoogleSearchInnerCard extends SearchResultToBlock {
     public element: Element;
 
     private readonly title: string;
+
+    static isOptionallyEnabled(_: Options): boolean {
+        return true;
+    }
 
     static isCandidate(element: Element, _: DocumentURL): boolean {
         return element.nodeName.toLowerCase() === 'g-inner-card';

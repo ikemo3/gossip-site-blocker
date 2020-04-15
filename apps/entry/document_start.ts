@@ -168,18 +168,14 @@ observer.observe(document.documentElement, config);
         blockGoogleNewsTab,
     };
 
-    for (const node of pendingGoogleSearchResultList) {
-        const g = new GoogleSearchResult(node);
-        tryBlockElement(g, gsbOptions);
-    }
-
-    for (const node of pendingGoogleSearchInnerCardList) {
-        const g = new GoogleSearchInnerCard(node);
-        tryBlockElement(g, gsbOptions);
-    }
-
     const options = gsbOptions;
-    const classes = [GoogleSearchTopNews, GoogleNewsTabCardSection, GoogleNewsTabTop];
+    const classes = [
+        GoogleSearchResult,
+        GoogleSearchInnerCard,
+        GoogleSearchTopNews,
+        GoogleNewsTabCardSection,
+        GoogleNewsTabTop,
+    ];
     classes.forEach((Klass) => {
         for (const node of pendingList) {
             if (Klass.isOptionallyEnabled(options)) {

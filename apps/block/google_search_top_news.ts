@@ -13,7 +13,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
 
     private readonly compactMenuInsertElement: Element;
 
-    static isOptionallyEnabled(options: Options): boolean {
+    static isOptionallyEnabled(_: Options): boolean {
         return true;
     }
 
