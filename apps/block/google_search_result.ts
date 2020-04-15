@@ -13,7 +13,7 @@ class GoogleSearchResult extends SearchResultToBlock {
 
     private readonly contents: string;
 
-    private readonly operationInsertPoint: Element;
+    private readonly compactMenuInsertElement: Element;
 
     // noinspection DuplicatedCode
     constructor(element: Element) {
@@ -125,9 +125,9 @@ class GoogleSearchResult extends SearchResultToBlock {
         const actionMenu = this.element.querySelector('.action-menu');
 
         if (actionMenu !== null) {
-            this.operationInsertPoint = actionMenu;
+            this.compactMenuInsertElement = actionMenu;
         } else {
-            this.operationInsertPoint = element.querySelector('a')!;
+            this.compactMenuInsertElement = element.querySelector('a')!;
         }
     }
 
@@ -148,7 +148,7 @@ class GoogleSearchResult extends SearchResultToBlock {
     }
 
     public getCompactMenuInsertElement(): Element {
-        return this.operationInsertPoint;
+        return this.compactMenuInsertElement;
     }
 
     public getPosition(): string {
