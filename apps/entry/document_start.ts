@@ -13,6 +13,7 @@ import GoogleSearchTopNews from '../block/google_search_top_news';
 import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
 import GoogleNewsTabTop from '../block/google_news_tab_top';
 import { SearchResultToBlock } from '../block/block';
+import DocumentURL from '../values/document_url';
 
 export interface Options {
     blockedSites: BlockedSites;
@@ -104,8 +105,8 @@ function tryBlockElement(g: SearchResultToBlock, options: Options): void {
 
 // add observer
 const observer = new MutationObserver((mutations) => {
-    const params = new URL(document.location.href).searchParams;
-    const isGoogleNews = params.get('tbm') === 'nws';
+    const documentURL = new DocumentURL();
+    const isGoogleNews = documentURL.isGoogleNews();
 
     mutations.forEach((mutation) => {
         for (const node of mutation.addedNodes) {
