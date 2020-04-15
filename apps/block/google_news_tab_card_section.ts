@@ -15,7 +15,7 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
     private readonly compactMenuInsertElement: Element;
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches('div.card-section') && documentURL.isGoogleNews();
+        return element.matches('div.card-section') && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
