@@ -178,13 +178,8 @@ observer.observe(document.documentElement, config);
         tryBlockElement(g, gsbOptions);
     }
 
-    for (const node of pendingGoogleSearchTopNewsList) {
-        const g = new GoogleSearchTopNews(node);
-        tryBlockElement(g, gsbOptions);
-    }
-
     const options = gsbOptions;
-    const classes = [GoogleNewsTabCardSection, GoogleNewsTabTop];
+    const classes = [GoogleSearchTopNews, GoogleNewsTabCardSection, GoogleNewsTabTop];
     classes.forEach((Klass) => {
         for (const node of pendingList) {
             if (Klass.isOptionallyEnabled(options)) {
