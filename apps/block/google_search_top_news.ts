@@ -9,7 +9,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
 
     private readonly title: string;
 
-    private readonly insertPoint: Element;
+    private readonly compactMenuInsertElement: Element;
 
     // noinspection DuplicatedCode
     constructor(element: Element) {
@@ -34,7 +34,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
             return;
         }
 
-        this.insertPoint = anchor;
+        this.compactMenuInsertElement = anchor;
         this.valid = true;
         this.url = href;
         this.title = titleDiv.textContent !== null ? titleDiv.textContent : '';
@@ -53,7 +53,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
     }
 
     public getCompactMenuInsertElement(): Element {
-        return this.insertPoint;
+        return this.compactMenuInsertElement;
     }
 
     public getPosition(): string {

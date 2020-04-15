@@ -13,7 +13,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
 
     private readonly contents: string;
 
-    private readonly operationInsertPoint: Element;
+    private readonly compactMenuInsertElement: Element;
 
     // noinspection DuplicatedCode
     constructor(element: Element) {
@@ -60,9 +60,9 @@ class GoogleNewsTabTop extends SearchResultToBlock {
         const actionMenu = this.element.querySelector('.action-menu');
 
         if (actionMenu !== null) {
-            this.operationInsertPoint = actionMenu;
+            this.compactMenuInsertElement = actionMenu;
         } else {
-            this.operationInsertPoint = element.querySelector('a')!;
+            this.compactMenuInsertElement = element.querySelector('a')!;
         }
     }
 
@@ -83,7 +83,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     }
 
     public getCompactMenuInsertElement(): Element {
-        return this.operationInsertPoint;
+        return this.compactMenuInsertElement;
     }
 
     public deleteElement(): void {
