@@ -28,7 +28,8 @@ let gsbOptions: Options | null = null;
 const pendingGoogleSearchResultList: Element[] = [];
 const pendingGoogleSearchInnerCardList: Element[] = [];
 const pendingGoogleSearchTopNewsList: Element[] = [];
-const pendingList: Element[] = [];
+const pendingGoogleNewsTabCardSectionList: Element[] = [];
+const pendingGoogleNewsTabTopList: Element[] = [];
 const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g: SearchResultToBlock, options: Options) => boolean;
@@ -105,7 +106,7 @@ const observer = new MutationObserver((mutations) => {
                             tryBlockElement(g, gsbOptions);
                         }
                     } else {
-                        pendingList.push(node);
+                        pendingGoogleNewsTabCardSectionList.push(node);
                     }
                 } else if (GoogleNewsTabTop.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
@@ -114,7 +115,7 @@ const observer = new MutationObserver((mutations) => {
                             tryBlockElement(g, gsbOptions);
                         }
                     } else {
-                        pendingList.push(node);
+                        pendingGoogleNewsTabTopList.push(node);
                     }
                 } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
@@ -183,16 +184,19 @@ observer.observe(document.documentElement, config);
         tryBlockElement(g, gsbOptions);
     }
 
-    const options = gsbOptions;
-    const classes = [GoogleNewsTabCardSection, GoogleNewsTabTop];
-    classes.forEach((Klass) => {
-        for (const node of pendingList) {
-            if (Klass.isOptionallyEnabled(options)) {
-                const g = new Klass(node);
-                tryBlockElement(g, options);
-            }
+    for (const node of pendingGoogleNewsTabCardSectionList) {
+        if (GoogleNewsTabCardSection.isOptionallyEnabled(gsbOptions)) {
+            const g = new GoogleNewsTabCardSection(node);
+            tryBlockElement(g, gsbOptions);
         }
-    });
+    }
+
+    for (const node of pendingGoogleNewsTabTopList) {
+        if (GoogleNewsTabTop.isOptionallyEnabled(gsbOptions)) {
+            const g = new GoogleNewsTabTop(node);
+            tryBlockElement(g, gsbOptions);
+        }
+    }
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
