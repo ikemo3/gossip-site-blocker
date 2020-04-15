@@ -1,4 +1,5 @@
 import { SearchResultToBlock } from './block';
+import DocumentURL from '../values/document_url';
 
 class GoogleNewsTabTop extends SearchResultToBlock {
     private readonly valid: boolean;
@@ -14,6 +15,10 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     private readonly contents: string;
 
     private readonly compactMenuInsertElement: Element;
+
+    static isCandidate(element: Element, documentURL: DocumentURL): boolean {
+        return element.matches('div.gG0TJc') && documentURL.isGoogleNews();
+    }
 
     // noinspection DuplicatedCode
     constructor(element: Element) {

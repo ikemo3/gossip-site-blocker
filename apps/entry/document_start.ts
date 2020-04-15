@@ -106,15 +106,11 @@ function tryBlockElement(g: SearchResultToBlock, options: Options): void {
 // add observer
 const observer = new MutationObserver((mutations) => {
     const documentURL = new DocumentURL();
-    const isGoogleNews = documentURL.isGoogleNews();
 
     mutations.forEach((mutation) => {
         for (const node of mutation.addedNodes) {
             if (node instanceof Element) {
-                const isGoogleNewsCardSection = node.matches('div.card-section');
-                const isGoogleNewsTop = node.matches('div.gG0TJc');
-
-                if (isGoogleNewsCardSection && isGoogleNews) {
+                if (GoogleNewsTabCardSection.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         if (gsbOptions.blockGoogleNewsTab) {
                             const g = new GoogleNewsTabCardSection(node);
@@ -123,7 +119,7 @@ const observer = new MutationObserver((mutations) => {
                     } else {
                         pendingGoogleNewsTabCardSectionList.push(node);
                     }
-                } else if (isGoogleNewsTop && isGoogleNews) {
+                } else if (GoogleNewsTabTop.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         if (gsbOptions.blockGoogleNewsTab) {
                             const g = new GoogleNewsTabTop(node);
@@ -132,21 +128,21 @@ const observer = new MutationObserver((mutations) => {
                     } else {
                         pendingGoogleNewsTabTopList.push(node);
                     }
-                } else if (node.classList.contains('g') && !isGoogleNews) {
+                } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchResult(node);
                         tryBlockElement(g, gsbOptions);
                     } else {
                         pendingGoogleSearchResultList.push(node);
                     }
-                } else if (node.nodeName.toLowerCase() === 'g-inner-card') {
+                } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchInnerCard(node);
                         tryBlockElement(g, gsbOptions);
                     } else {
                         pendingGoogleSearchInnerCardList.push(node);
                     }
-                } else if (node.classList.contains('dbsr')) {
+                } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchTopNews(node);
                         tryBlockElement(g, gsbOptions);

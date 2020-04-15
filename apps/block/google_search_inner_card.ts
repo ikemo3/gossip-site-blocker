@@ -1,4 +1,5 @@
 import { SearchResultToBlock } from './block';
+import DocumentURL from '../values/document_url';
 
 class GoogleSearchInnerCard extends SearchResultToBlock {
     public valid: boolean;
@@ -8,6 +9,10 @@ class GoogleSearchInnerCard extends SearchResultToBlock {
     public element: Element;
 
     private readonly title: string;
+
+    static isCandidate(element: Element, _: DocumentURL): boolean {
+        return element.nodeName.toLowerCase() === 'g-inner-card';
+    }
 
     // noinspection DuplicatedCode
     constructor(element: Element) {
