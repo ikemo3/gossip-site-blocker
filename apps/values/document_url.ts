@@ -5,13 +5,13 @@ class DocumentURL {
         this.url = new URL(document.location.href);
     }
 
-    isGoogleNews(): boolean {
+    isGoogleSearchNewsTab(): boolean {
         const params = this.url.searchParams;
         return params.get('tbm') === 'nws';
     }
 
     isGoogleSearch(): boolean {
-        return !this.isGoogleNews();
+        return !this.isGoogleSearchNewsTab();
     }
 }
 

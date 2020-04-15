@@ -17,7 +17,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     private readonly compactMenuInsertElement: Element;
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches('div.gG0TJc') && documentURL.isGoogleNews();
+        return element.matches('div.gG0TJc') && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
