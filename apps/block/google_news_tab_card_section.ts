@@ -28,7 +28,12 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector('a.RTNUJf') as HTMLAnchorElement;
+        const anchor = element.querySelector('a.RTNUJf');
+        if (!anchor) {
+            this.valid = false;
+            return;
+        }
+
         let href = anchor.getAttribute('href') as string;
 
         // firefox, coccoc, ...
