@@ -1,4 +1,7 @@
 import { ChromeStorage, Logger, MenuPosition } from '../common';
+import BlockedSites from '../model/blocked_sites';
+import { BannedWord } from './banned_word_repository';
+import { RegExpItem } from './regexp_repository';
 
 interface DefaultBlockTypeOption {
     defaultBlockType: string;
@@ -141,3 +144,14 @@ export const OptionRepository = {
         Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
     },
 };
+
+export interface Options {
+    blockedSites: BlockedSites;
+    bannedWords: BannedWord[];
+    regexpList: RegExpItem[];
+    idnOption: AutoBlockIDNOption;
+    defaultBlockType: string;
+    menuPosition: MenuPosition;
+    bannedWordOption: BannedWordOption;
+    blockGoogleNewsTab: boolean;
+}
