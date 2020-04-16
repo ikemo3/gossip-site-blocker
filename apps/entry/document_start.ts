@@ -64,10 +64,6 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
     return true;
 }
 
-function tryBlockElement(g: SearchResultToBlock, options: Options): boolean {
-    return blockElement(g, options);
-}
-
 // add observer
 const observer = new MutationObserver((mutations) => {
     const documentURL = new DocumentURL();
@@ -79,7 +75,7 @@ const observer = new MutationObserver((mutations) => {
                     if (gsbOptions !== null) {
                         if (GoogleNewsTabCardSection.isOptionallyEnabled(gsbOptions)) {
                             const g = new GoogleNewsTabCardSection(node);
-                            if (!tryBlockElement(g, gsbOptions)) {
+                            if (!blockElement(g, gsbOptions)) {
                                 pendingGoogleNewsTabCardSectionList.push(node);
                             }
                         }
@@ -90,7 +86,7 @@ const observer = new MutationObserver((mutations) => {
                     if (gsbOptions !== null) {
                         if (GoogleNewsTabTop.isOptionallyEnabled(gsbOptions)) {
                             const g = new GoogleNewsTabTop(node);
-                            if (!tryBlockElement(g, gsbOptions)) {
+                            if (!blockElement(g, gsbOptions)) {
                                 pendingGoogleNewsTabTopList.push(node);
                             }
                         }
@@ -100,7 +96,7 @@ const observer = new MutationObserver((mutations) => {
                 } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchResult(node);
-                        if (!tryBlockElement(g, gsbOptions)) {
+                        if (!blockElement(g, gsbOptions)) {
                             pendingGoogleSearchResultList.push(node);
                         }
                     } else {
@@ -109,7 +105,7 @@ const observer = new MutationObserver((mutations) => {
                 } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchInnerCard(node);
-                        if (!tryBlockElement(g, gsbOptions)) {
+                        if (!blockElement(g, gsbOptions)) {
                             pendingGoogleSearchInnerCardList.push(node);
                         }
                     } else {
@@ -118,7 +114,7 @@ const observer = new MutationObserver((mutations) => {
                 } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchTopNews(node);
-                        if (!tryBlockElement(g, gsbOptions)) {
+                        if (!blockElement(g, gsbOptions)) {
                             pendingGoogleSearchTopNewsList.push(node);
                         }
                     } else {
@@ -157,30 +153,30 @@ observer.observe(document.documentElement, config);
 
     for (const node of pendingGoogleSearchResultList) {
         const g = new GoogleSearchResult(node);
-        tryBlockElement(g, gsbOptions);
+        blockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleSearchInnerCardList) {
         const g = new GoogleSearchInnerCard(node);
-        tryBlockElement(g, gsbOptions);
+        blockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleSearchTopNewsList) {
         const g = new GoogleSearchTopNews(node);
-        tryBlockElement(g, gsbOptions);
+        blockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleNewsTabCardSectionList) {
         if (GoogleNewsTabCardSection.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleNewsTabCardSection(node);
-            tryBlockElement(g, gsbOptions);
+            blockElement(g, gsbOptions);
         }
     }
 
     for (const node of pendingGoogleNewsTabTopList) {
         if (GoogleNewsTabTop.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleNewsTabTop(node);
-            tryBlockElement(g, gsbOptions);
+            blockElement(g, gsbOptions);
         }
     }
 })();
