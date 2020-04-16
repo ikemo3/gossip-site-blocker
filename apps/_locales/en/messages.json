@@ -26,6 +26,9 @@
   "blockGoogleNewsTab": {
     "message": "Block 'News' tab"
   },
+  "blockGoogleImagesTab": {
+    "message": "Block 'Images' tab"
+  },
   "blockThisDomainWithUrl": {
     "message": "Block this domain($domain$)",
     "placeholders": {
@@ -193,6 +196,9 @@
   },
   "showBlockedByWordInfo": {
     "message": "Show information of blocked by banned words."
+  },
+  "showMenuInGoogleImagesTab": {
+    "message": "Show block menu in the 'Images' tab."
   },
   "softBlock": {
     "message": "Soft block(hide)"

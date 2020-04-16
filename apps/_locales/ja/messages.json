@@ -26,6 +26,9 @@
   "blockGoogleNewsTab": {
     "message": "「ニュース」タブをブロック"
   },
+  "blockGoogleImagesTab": {
+    "message": "「画像」タブをブロック"
+  },
   "blockThisDomainWithUrl": {
     "message": "このドメインをブロック($domain$)",
     "placeholders": {
@@ -193,6 +196,9 @@
   },
   "showBlockedByWordInfo": {
     "message": "禁止用語でブロックされたサイトの情報を表示"
+  },
+  "showMenuInGoogleImagesTab": {
+    "message": "「画像」タブ中でブロックメニューを表示"
   },
   "softBlock": {
     "message": "ソフトブロック(非表示)"

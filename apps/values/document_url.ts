@@ -10,8 +10,13 @@ class DocumentURL {
         return params.get('tbm') === 'nws';
     }
 
+    isGoogleSearchImageTab(): boolean {
+        const params = this.url.searchParams;
+        return params.get('tbm') === 'isch';
+    }
+
     isGoogleSearch(): boolean {
-        return !this.isGoogleSearchNewsTab();
+        return !this.isGoogleSearchNewsTab() && !this.isGoogleSearchImageTab();
     }
 }
 
