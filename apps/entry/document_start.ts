@@ -30,7 +30,6 @@ const pendingGoogleSearchInnerCardList: Element[] = [];
 const pendingGoogleSearchTopNewsList: Element[] = [];
 const pendingGoogleNewsTabCardSectionList: Element[] = [];
 const pendingGoogleNewsTabTopList: Element[] = [];
-const subObserverList: MutationObserver[] = [];
 
 type IBlockFunction = (g: SearchResultToBlock, options: Options) => boolean;
 
@@ -180,10 +179,3 @@ observer.observe(document.documentElement, config);
         }
     }
 })();
-
-document.addEventListener('DOMContentLoaded', () => {
-    // clear sub-observer
-    for (const subObserver of subObserverList) {
-        subObserver.disconnect();
-    }
-});
