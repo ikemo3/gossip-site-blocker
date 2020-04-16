@@ -1,5 +1,5 @@
 import BlockedSites from '../model/blocked_sites';
-import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
+import { BannedWord, BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { BannedWordOption, OptionRepository, Options } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
@@ -64,32 +64,8 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
     return true;
 }
 
-function blockClosure(node: SearchResultToBlock, options: Options): () => void {
-    let completed = false;
-    return (): void => {
-        if (completed) {
-            return;
-        }
-
-        completed = blockElement(node, options);
-    };
-}
-
-function tryBlockElement(g: SearchResultToBlock, options: Options): void {
-    // first, try block.
-    const completed = blockElement(g, options);
-    if (completed) {
-        return;
-    }
-
-    // if failed, add observer for retry.
-    const block = blockClosure(g, options);
-    const subObserver = new MutationObserver(() => {
-        block();
-    });
-
-    subObserver.observe(g.getElement(), { childList: true, subtree: true });
-    subObserverList.push(subObserver);
+function tryBlockElement(g: SearchResultToBlock, options: Options): boolean {
+    return blockElement(g, options);
 }
 
 // add observer
@@ -103,7 +79,9 @@ const observer = new MutationObserver((mutations) => {
                     if (gsbOptions !== null) {
                         if (GoogleNewsTabCardSection.isOptionallyEnabled(gsbOptions)) {
                             const g = new GoogleNewsTabCardSection(node);
-                            tryBlockElement(g, gsbOptions);
+                            if (!tryBlockElement(g, gsbOptions)) {
+                                pendingGoogleNewsTabCardSectionList.push(node);
+                            }
                         }
                     } else {
                         pendingGoogleNewsTabCardSectionList.push(node);
@@ -112,7 +90,9 @@ const observer = new MutationObserver((mutations) => {
                     if (gsbOptions !== null) {
                         if (GoogleNewsTabTop.isOptionallyEnabled(gsbOptions)) {
                             const g = new GoogleNewsTabTop(node);
-                            tryBlockElement(g, gsbOptions);
+                            if (!tryBlockElement(g, gsbOptions)) {
+                                pendingGoogleNewsTabTopList.push(node);
+                            }
                         }
                     } else {
                         pendingGoogleNewsTabTopList.push(node);
@@ -120,21 +100,27 @@ const observer = new MutationObserver((mutations) => {
                 } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchResult(node);
-                        tryBlockElement(g, gsbOptions);
+                        if (!tryBlockElement(g, gsbOptions)) {
+                            pendingGoogleSearchResultList.push(node);
+                        }
                     } else {
                         pendingGoogleSearchResultList.push(node);
                     }
                 } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchInnerCard(node);
-                        tryBlockElement(g, gsbOptions);
+                        if (!tryBlockElement(g, gsbOptions)) {
+                            pendingGoogleSearchInnerCardList.push(node);
+                        }
                     } else {
                         pendingGoogleSearchInnerCardList.push(node);
                     }
                 } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
                         const g = new GoogleSearchTopNews(node);
-                        tryBlockElement(g, gsbOptions);
+                        if (!tryBlockElement(g, gsbOptions)) {
+                            pendingGoogleSearchTopNewsList.push(node);
+                        }
                     } else {
                         pendingGoogleSearchTopNewsList.push(node);
                     }
