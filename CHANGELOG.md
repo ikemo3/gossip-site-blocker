@@ -1,3 +1,14 @@
+# v1.11.0
+
+## Improvements:
+
+* Add: add Yahoo! News byline for 'Block recommend path'(#211, #212)
+* Add: add note.com for 'Block recommend path'(#211, #217)
+* Prettier support(#180)
+* remove `tsc` for ci/build(#189, #195)
+* set name for beta version(#143, #214)
+* use tabby for option(#182, #183)
+
 # v1.10.0
 
 ## Enhancements.
