@@ -47,7 +47,7 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
         options.blockedSites,
         options.bannedWords,
         options.regexpList,
-        options.idnOption,
+        options.autoBlockIDN,
     );
 
     if (blockState.getReason()) {
@@ -132,18 +132,18 @@ observer.observe(document.documentElement, config);
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
     const bannedWords: BannedWord[] = await BannedWordRepository.load();
     const regexpList: RegExpItem[] = await RegExpRepository.load();
-    const idnOption = await OptionRepository.getAutoBlockIDNOption();
+    const autoBlockIDN = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();
     const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
     const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
-    Logger.debug('autoBlockIDNOption:', idnOption);
+    Logger.debug('autoBlockIDNOption:', autoBlockIDN);
 
     gsbOptions = {
         blockedSites,
         bannedWords,
         regexpList,
-        idnOption,
+        autoBlockIDN,
         defaultBlockType,
         menuPosition,
         bannedWordOption,
