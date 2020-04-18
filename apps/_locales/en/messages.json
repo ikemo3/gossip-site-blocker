@@ -24,7 +24,7 @@
     "message": "Currently blocked for the following reason. Do you want to change it?"
   },
   "blockGoogleNewsTab": {
-    "message": "(Beta)Block 'News' tab"
+    "message": "Block 'News' tab"
   },
   "blockThisDomainWithUrl": {
     "message": "Block this domain($domain$)",
