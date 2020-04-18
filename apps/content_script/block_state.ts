@@ -2,7 +2,6 @@ import { $, BannedTarget, BlockType, DOMUtils } from '../common';
 import { RegExpItem } from '../repository/regexp_repository';
 import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from '../repository/banned_word_repository';
-import { AutoBlockIDNOption } from '../repository/config';
 import BlockedSite from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { ContentToBlock } from '../block/block';
@@ -17,7 +16,7 @@ class BlockState {
         blockedSites: BlockedSites,
         bannedWords: BannedWord[],
         regexpList: RegExpItem[],
-        idnOption: AutoBlockIDNOption,
+        autoBlockIDN: boolean,
     ) {
         const blockedSite: BlockedSite | undefined = blockedSites.matches(content.getUrl());
 
@@ -84,9 +83,7 @@ class BlockState {
         }
 
         // check IDN
-        const { enabled } = idnOption;
-
-        if (enabled) {
+        if (autoBlockIDN) {
             const url = content.getUrl();
             const hostname = DOMUtils.getHostName(url);
 

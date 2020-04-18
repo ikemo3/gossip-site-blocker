@@ -56,16 +56,20 @@ export const OptionRepository = {
         Logger.debug("set 'bannedWord' to =>", values);
     },
 
-    async getAutoBlockIDNOption(): Promise<AutoBlockIDNOption> {
+    async getAutoBlockIDNOption(): Promise<boolean> {
         const autoBlockIDNDefault = { enabled: false };
         const items: AutoBlockIDNOptionStorage = (await ChromeStorage.get({
             autoBlockIDN: autoBlockIDNDefault,
         })) as AutoBlockIDNOptionStorage;
-        return items.autoBlockIDN;
+        return items.autoBlockIDN.enabled;
     },
 
-    async setAutoBlockIDNOption(autoBlockIDN: AutoBlockIDNOption): Promise<void> {
-        await ChromeStorage.set({ autoBlockIDN });
+    async setAutoBlockIDNOption(autoBlockIDN: boolean): Promise<void> {
+        await ChromeStorage.set({
+            autoBlockIDN: {
+                enabled: autoBlockIDN,
+            },
+        });
 
         Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
     },
@@ -153,7 +157,7 @@ export interface Options {
     blockedSites: BlockedSites;
     bannedWords: BannedWord[];
     regexpList: RegExpItem[];
-    idnOption: AutoBlockIDNOption;
+    autoBlockIDN: boolean;
     defaultBlockType: string;
     menuPosition: MenuPosition;
     bannedWordOption: BannedWordOption;

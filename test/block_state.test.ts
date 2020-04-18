@@ -53,15 +53,11 @@ describe('BlockState', () => {
         };
     }
 
-    const idnOption: AutoBlockIDNOption = {
-        enabled: true,
-    };
-
     it('not blocked', () => {
         const target = createContents('http://example.com/foo/bar', false);
         const sites = createEmptySites();
 
-        const blockState = new BlockState(target, sites, [], [], idnOption);
+        const blockState = new BlockState(target, sites, [], [], true);
 
         expect(blockState.getReason()).toBeUndefined();
         expect(blockState.getState()).toBe('none');
@@ -71,7 +67,7 @@ describe('BlockState', () => {
         const target = createContents('http://example.com/foo/bar', false);
         const sites = createSites('soft', 'example.com');
 
-        const blockState = new BlockState(target, sites, [], [], idnOption);
+        const blockState = new BlockState(target, sites, [], [], true);
 
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.URL);
         expect(blockState.getReason()!.getReason()).toBe('example.com');
@@ -82,7 +78,7 @@ describe('BlockState', () => {
         const target = createContents('http://example.com', false);
         const sites = createSites('soft', 'example.com');
 
-        const blockState = new BlockState(target, sites, [], [], idnOption);
+        const blockState = new BlockState(target, sites, [], [], true);
 
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.URL_EXACTLY);
         expect(blockState.getReason()!.getReason()).toBe('example.com');
@@ -95,7 +91,7 @@ describe('BlockState', () => {
             createBannedWord('evil', BlockType.SOFT, BannedTarget.TITLE_AND_CONTENTS),
         ];
 
-        const blockState = new BlockState(target, createEmptySites(), bannedList, [], idnOption);
+        const blockState = new BlockState(target, createEmptySites(), bannedList, [], true);
 
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
         expect(blockState.getReason()!.getReason()).toBe('evil');
@@ -106,7 +102,7 @@ describe('BlockState', () => {
         const target = createContents('http://example.com', true);
         const regexpList = [createRegexp('example\\..*', BlockType.SOFT)];
 
-        const blockState = new BlockState(target, createEmptySites(), [], regexpList, idnOption);
+        const blockState = new BlockState(target, createEmptySites(), [], regexpList, true);
 
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
         expect(blockState.getReason()!.getReason()).toBe('example\\..*');
@@ -120,7 +116,7 @@ describe('BlockState', () => {
             createBannedWord('evil', BlockType.HARD, BannedTarget.TITLE_AND_CONTENTS),
         ];
 
-        const blockState = new BlockState(target, sites, bannedList, [], idnOption);
+        const blockState = new BlockState(target, sites, bannedList, [], true);
 
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
         expect(blockState.getReason()!.getReason()).toBe('evil');
@@ -132,7 +128,7 @@ describe('BlockState', () => {
 
         const target = createContents('http://xn--eckwd4c7cu47r2wf.jp', false);
 
-        const blockState = new BlockState(target, createEmptySites(), [], [], idnOption);
+        const blockState = new BlockState(target, createEmptySites(), [], [], true);
 
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.IDN);
         expect(blockState.getReason()!.getReason()).toBe('Internationalized Domain Name');
