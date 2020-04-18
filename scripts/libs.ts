@@ -32,12 +32,6 @@ export function getPackageName(): string {
     return packageObj.name;
 }
 
-export function getPackageVersion(): string {
-    const packageJsonPath = join(projectTop, 'package.json');
-    const packageObj = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
-    return packageObj.version;
-}
-
 export function getManifest(): Manifest {
     const manifestJsonPath = join(projectTop, 'apps', 'manifest.json');
     const manifestJson = readFileSync(manifestJsonPath, 'utf-8');
