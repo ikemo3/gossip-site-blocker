@@ -18,11 +18,23 @@ const softBlockList = document.getElementById('softBlockList') as HTMLDivElement
 const hardBlockList = document.getElementById('hardBlockList') as HTMLDivElement;
 const clearButton = document.getElementById('clearButton') as HTMLInputElement;
 
-// noinspection JSValidateTypes
-/**
- * @type {HTMLInputElement}
- */
-const developerCheckbox = document.getElementById('developerCheckbox') as HTMLInputElement;
+type LoadFunc = () => Promise<boolean>;
+type SetFunc = (value: boolean) => Promise<void>;
+
+async function initCheckbox(id: string, loadFunc: LoadFunc, setFunc: SetFunc): Promise<void> {
+    const checkbox = document.getElementById(id);
+    if (!(checkbox instanceof HTMLInputElement)) {
+        throw new Error(`${id} is not HTMLInputElement`);
+    }
+
+    const value = await loadFunc();
+    Logger.log(`${id} is `, value);
+    checkbox.checked = value;
+
+    checkbox.addEventListener('click', async () => {
+        await setFunc(checkbox.checked);
+    });
+}
 
 const displayTemporarilyUnblockAllCheckbox = document.getElementById(
     'displayTemporarilyUnblockAllCheckbox',
@@ -94,9 +106,7 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     bannedWords = new BannedWords();
     await bannedWords.load();
 
-    const developerMode: boolean = await Option.isDeveloperMode();
-    Logger.log('developerMode is ', developerMode);
-    developerCheckbox.checked = developerMode;
+    await initCheckbox('developerMode', Option.isDeveloperMode, Option.setDeveloperMode);
 
     const displayTemporarilyUnblockAll: boolean = await Option.isDisplayTemporarilyUnblockAll();
     Logger.debug('displayTemporarilyUnblockAll is ', displayTemporarilyUnblockAll);
@@ -121,12 +131,6 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     const blockGoogleNewsTab: boolean = await Option.isBlockGoogleNewsTab();
     Logger.debug('blockGoogleNewsTab is ', blockGoogleNewsTab);
     blockGoogleNewsTabCheckbox.checked = blockGoogleNewsTab;
-});
-
-developerCheckbox.addEventListener('click', async (event) => {
-    const checkbox = event.target as HTMLInputElement;
-
-    await Option.setDeveloperMode(checkbox.checked);
 });
 
 displayTemporarilyUnblockAllCheckbox.addEventListener('click', async (event) => {
