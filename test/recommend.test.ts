@@ -41,4 +41,9 @@ describe('makeRecommendUrl', () => {
         );
         expect(makeRecommendUrl('news.yahoo.co.jp/byline/')).toBe(null);
     });
+
+    it('note.com', () => {
+        expect(makeRecommendUrl('note.com/ikemo/n/n30cca332ccd3')).toBe('note.com/ikemo');
+        expect(makeRecommendUrl('note.com/ikemo')).toBe(null);
+    });
 });
