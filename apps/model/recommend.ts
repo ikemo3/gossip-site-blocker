@@ -5,6 +5,7 @@ const PATTERN_LIST = [
     /(^twitter\.com\/[^/]+)/,
     /(^w\.atwiki\.jp\/[^/]+\/)/,
     /(^wikiwiki\.jp\/[^/]+\/)/,
+    /(^news\.yahoo\.co\.jp\/byline\/[^/]+\/)/,
 ];
 
 function search(urlWithoutProtocol: string, pattern: RegExp): string | null {
