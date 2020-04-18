@@ -34,4 +34,11 @@ describe('makeRecommendUrl', () => {
         expect(makeRecommendUrl('wikiwiki.jp/foo/bar/baz')).toBe('wikiwiki.jp/foo/');
         expect(makeRecommendUrl('wikiwiki.jp/foo/')).toBe(null);
     });
+
+    it('news.yahoo.co.jp/byline', () => {
+        expect(makeRecommendUrl('news.yahoo.co.jp/byline/foo/bar/')).toBe(
+            'news.yahoo.co.jp/byline/foo/',
+        );
+        expect(makeRecommendUrl('news.yahoo.co.jp/byline/')).toBe(null);
+    });
 });
