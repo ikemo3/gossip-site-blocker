@@ -36,18 +36,12 @@ async function initCheckbox(id: string, loadFunc: LoadFunc, setFunc: SetFunc): P
     });
 }
 
-const displayTemporarilyUnblockAllCheckbox = document.getElementById(
-    'displayTemporarilyUnblockAllCheckbox',
-) as HTMLInputElement;
 const showBlockedByWordInfoCheckbox = document.getElementById(
     'showBlockedByWordInfoCheckbox',
 ) as HTMLInputElement;
 const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as HTMLInputElement;
 const defaultBlockSelect = document.getElementById('defaultBlockType') as HTMLSelectElement;
 const menuPositionSelect = document.getElementById('menuPosition') as HTMLSelectElement;
-const blockGoogleNewsTabCheckbox = document.getElementById(
-    'blockGoogleNewsTabCheckbox',
-) as HTMLInputElement;
 
 let bannedWords: BannedWords;
 let regexpList: RegExpList;
@@ -108,9 +102,11 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
 
     await initCheckbox('developerMode', Option.isDeveloperMode, Option.setDeveloperMode);
 
-    const displayTemporarilyUnblockAll: boolean = await Option.isDisplayTemporarilyUnblockAll();
-    Logger.debug('displayTemporarilyUnblockAll is ', displayTemporarilyUnblockAll);
-    displayTemporarilyUnblockAllCheckbox.checked = displayTemporarilyUnblockAll;
+    await initCheckbox(
+        'displayTemporarilyUnblockAll',
+        Option.isDisplayTemporarilyUnblockAll,
+        Option.setDisplayTemporarilyUnblockAll,
+    );
 
     const bannedWordOption: BannedWordOption = await Option.getBannedWordOption();
     Logger.debug('bannedWordOption is ', bannedWordOption);
@@ -128,15 +124,11 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     Logger.debug('menuPosition is ', menuPosition);
     menuPositionSelect.value = menuPosition;
 
-    const blockGoogleNewsTab: boolean = await Option.isBlockGoogleNewsTab();
-    Logger.debug('blockGoogleNewsTab is ', blockGoogleNewsTab);
-    blockGoogleNewsTabCheckbox.checked = blockGoogleNewsTab;
-});
-
-displayTemporarilyUnblockAllCheckbox.addEventListener('click', async (event) => {
-    const checkbox = event.target as HTMLInputElement;
-
-    await Option.setDisplayTemporarilyUnblockAll(checkbox.checked);
+    await initCheckbox(
+        'blockGoogleNewsTab',
+        Option.isBlockGoogleNewsTab,
+        Option.setBlockGoogleNewsTab,
+    );
 });
 
 showBlockedByWordInfoCheckbox.addEventListener('click', async (event) => {
@@ -164,12 +156,6 @@ menuPositionSelect.addEventListener('change', async (event) => {
 
     const { value } = select;
     await Option.setMenuPosition(value);
-});
-
-blockGoogleNewsTabCheckbox.addEventListener('click', async (event) => {
-    const checkbox = event.target as HTMLInputElement;
-
-    await Option.setBlockGoogleNewsTab(checkbox.checked);
 });
 
 localizeHtmlPage();
