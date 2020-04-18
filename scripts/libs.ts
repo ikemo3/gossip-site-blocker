@@ -15,6 +15,7 @@ interface BrowserSpecificSettings {
 }
 
 interface Manifest {
+    name: string;
     version: string;
     version_name: string;
     browser_specific_settings: BrowserSpecificSettings;
@@ -59,11 +60,13 @@ export function createManifest(): void {
     if (branch && branch !== '') {
         console.info('add `version_name` to manifest.json');
         const manifest = getManifest();
+        manifest.name = 'Gossip Site Blocker(snapshot)';
         manifest.version_name = `${manifest.version}-snapshot(${now})`;
         writeManifest(manifest);
     } else if (tag && tag.endsWith('spike')) {
         console.info('add `version_name` to manifest.json');
         const manifest = getManifest();
+        manifest.name = `Gossip Site Blocker(${tag})`;
         manifest.version_name = `${manifest.version}-${tag}(${now})`;
         writeManifest(manifest);
     } else {
