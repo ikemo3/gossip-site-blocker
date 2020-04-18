@@ -20,6 +20,8 @@ const clearButton = document.getElementById('clearButton') as HTMLInputElement;
 
 type LoadFunc = () => Promise<boolean>;
 type SetFunc = (value: boolean) => Promise<void>;
+type LoadStringFunc = () => Promise<string>;
+type SetStringFunc = (value: string) => Promise<void>;
 
 async function initCheckbox(id: string, loadFunc: LoadFunc, setFunc: SetFunc): Promise<void> {
     const checkbox = document.getElementById(id);
@@ -36,12 +38,29 @@ async function initCheckbox(id: string, loadFunc: LoadFunc, setFunc: SetFunc): P
     });
 }
 
+async function initSelect(
+    id: string,
+    loadFunc: LoadStringFunc,
+    setFunc: SetStringFunc,
+): Promise<void> {
+    const select = document.getElementById(id);
+    if (!(select instanceof HTMLSelectElement)) {
+        throw new Error(`${id} is not HTMLSelectElement`);
+    }
+
+    const value = await loadFunc();
+    Logger.log(`${id} is `, value);
+    select.value = value;
+
+    select.addEventListener('change', async () => {
+        await setFunc(select.value);
+    });
+}
+
 const showBlockedByWordInfoCheckbox = document.getElementById(
     'showBlockedByWordInfoCheckbox',
 ) as HTMLInputElement;
 const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as HTMLInputElement;
-const defaultBlockSelect = document.getElementById('defaultBlockType') as HTMLSelectElement;
-const menuPositionSelect = document.getElementById('menuPosition') as HTMLSelectElement;
 
 let bannedWords: BannedWords;
 let regexpList: RegExpList;
@@ -116,13 +135,9 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     Logger.debug('autoBlockIDNOption is ', autoBlockIDNOption);
     autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;
 
-    const defaultBlockType: string = await Option.defaultBlockType();
-    Logger.debug('defaultBlockType is ', defaultBlockType);
-    defaultBlockSelect.value = defaultBlockType;
+    await initSelect('defaultBlockType', Option.defaultBlockType, Option.setDefaultBlockType);
 
-    const menuPosition: string = await Option.menuPosition();
-    Logger.debug('menuPosition is ', menuPosition);
-    menuPositionSelect.value = menuPosition;
+    await initSelect('menuPosition', Option.menuPosition, Option.setMenuPosition);
 
     await initCheckbox(
         'blockGoogleNewsTab',
@@ -142,20 +157,6 @@ autoBlockIDNCheckbox.addEventListener('click', async (event) => {
 
     const autoBlockIDN: AutoBlockIDNOption = { enabled: checkbox.checked };
     await Option.setAutoBlockIDNOption(autoBlockIDN);
-});
-
-defaultBlockSelect.addEventListener('change', async (event) => {
-    const select = event.target as HTMLSelectElement;
-
-    const { value } = select;
-    await Option.setDefaultBlockType(value);
-});
-
-menuPositionSelect.addEventListener('change', async (event) => {
-    const select = event.target as HTMLSelectElement;
-
-    const { value } = select;
-    await Option.setMenuPosition(value);
 });
 
 localizeHtmlPage();
