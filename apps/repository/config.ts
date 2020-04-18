@@ -3,14 +3,6 @@ import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from './banned_word_repository';
 import { RegExpItem } from './regexp_repository';
 
-interface DefaultBlockTypeOption {
-    defaultBlockType: string;
-}
-
-interface DeveloperOption {
-    developerMode: boolean;
-}
-
 interface BannedWordOptionStorage {
     bannedWord: BannedWordOption;
 }
@@ -27,21 +19,13 @@ export interface AutoBlockIDNOption {
     enabled: boolean;
 }
 
-interface MenuPositionOption {
-    menuPosition: string;
-}
-
-interface DisplayTemporarilyUnblockAllOption {
-    displayTemporarilyUnblockAll: boolean;
-}
-
-interface BlockGoogleNewsTabOption {
-    blockGoogleNewsTab: boolean;
-}
-
 // eslint-disable-next-line import/prefer-default-export
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
+        interface DeveloperOption {
+            developerMode: boolean;
+        }
+
         const items = (await ChromeStorage.get({ developerMode: false })) as DeveloperOption;
 
         Logger.mode = items.developerMode;
@@ -87,6 +71,10 @@ export const OptionRepository = {
     },
 
     async defaultBlockType(): Promise<string> {
+        interface DefaultBlockTypeOption {
+            defaultBlockType: string;
+        }
+
         const items = (await ChromeStorage.load({
             defaultBlockType: 'soft',
         })) as DefaultBlockTypeOption;
@@ -100,6 +88,14 @@ export const OptionRepository = {
     },
 
     async menuPosition(): Promise<MenuPosition> {
+        interface MenuPositionOption {
+            menuPosition: string;
+        }
+
+        interface MenuPositionOption {
+            menuPosition: string;
+        }
+
         const items = (await ChromeStorage.load({ menuPosition: 'default' })) as MenuPositionOption;
         const { menuPosition } = items;
 
@@ -119,6 +115,10 @@ export const OptionRepository = {
     },
 
     async isDisplayTemporarilyUnblockAll(): Promise<boolean> {
+        interface DisplayTemporarilyUnblockAllOption {
+            displayTemporarilyUnblockAll: boolean;
+        }
+
         const items = (await ChromeStorage.load({
             displayTemporarilyUnblockAll: true,
         })) as DisplayTemporarilyUnblockAllOption;
@@ -132,6 +132,10 @@ export const OptionRepository = {
     },
 
     async isBlockGoogleNewsTab(): Promise<boolean> {
+        interface BlockGoogleNewsTabOption {
+            blockGoogleNewsTab: boolean;
+        }
+
         const items = (await ChromeStorage.load({
             blockGoogleNewsTab: true,
         })) as BlockGoogleNewsTabOption;
