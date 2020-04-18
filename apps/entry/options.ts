@@ -3,7 +3,11 @@ import BlockedSitesRepository from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { AutoBlockIDNOption, BannedWordOption, OptionRepository } from '../repository/config';
+import {
+    AutoBlockIDNOption,
+    BannedWordOption,
+    OptionRepository as Option,
+} from '../repository/config';
 import { Logger } from '../common';
 import RegExpList from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';
@@ -90,31 +94,31 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     bannedWords = new BannedWords();
     await bannedWords.load();
 
-    const developerMode: boolean = await OptionRepository.isDeveloperMode();
+    const developerMode: boolean = await Option.isDeveloperMode();
     Logger.log('developerMode is ', developerMode);
     developerCheckbox.checked = developerMode;
 
-    const displayTemporarilyUnblockAll: boolean = await OptionRepository.isDisplayTemporarilyUnblockAll();
+    const displayTemporarilyUnblockAll: boolean = await Option.isDisplayTemporarilyUnblockAll();
     Logger.debug('displayTemporarilyUnblockAll is ', displayTemporarilyUnblockAll);
     displayTemporarilyUnblockAllCheckbox.checked = displayTemporarilyUnblockAll;
 
-    const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
+    const bannedWordOption: BannedWordOption = await Option.getBannedWordOption();
     Logger.debug('bannedWordOption is ', bannedWordOption);
     showBlockedByWordInfoCheckbox.checked = bannedWordOption.showInfo;
 
-    const autoBlockIDNOption: AutoBlockIDNOption = await OptionRepository.getAutoBlockIDNOption();
+    const autoBlockIDNOption: AutoBlockIDNOption = await Option.getAutoBlockIDNOption();
     Logger.debug('autoBlockIDNOption is ', autoBlockIDNOption);
     autoBlockIDNCheckbox.checked = autoBlockIDNOption.enabled;
 
-    const defaultBlockType: string = await OptionRepository.defaultBlockType();
+    const defaultBlockType: string = await Option.defaultBlockType();
     Logger.debug('defaultBlockType is ', defaultBlockType);
     defaultBlockSelect.value = defaultBlockType;
 
-    const menuPosition: string = await OptionRepository.menuPosition();
+    const menuPosition: string = await Option.menuPosition();
     Logger.debug('menuPosition is ', menuPosition);
     menuPositionSelect.value = menuPosition;
 
-    const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
+    const blockGoogleNewsTab: boolean = await Option.isBlockGoogleNewsTab();
     Logger.debug('blockGoogleNewsTab is ', blockGoogleNewsTab);
     blockGoogleNewsTabCheckbox.checked = blockGoogleNewsTab;
 });
@@ -122,46 +126,46 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
 developerCheckbox.addEventListener('click', async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
-    await OptionRepository.setDeveloperMode(checkbox.checked);
+    await Option.setDeveloperMode(checkbox.checked);
 });
 
 displayTemporarilyUnblockAllCheckbox.addEventListener('click', async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
-    await OptionRepository.setDisplayTemporarilyUnblockAll(checkbox.checked);
+    await Option.setDisplayTemporarilyUnblockAll(checkbox.checked);
 });
 
 showBlockedByWordInfoCheckbox.addEventListener('click', async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
-    await OptionRepository.setShowBlockedByWordInfo(checkbox.checked);
+    await Option.setShowBlockedByWordInfo(checkbox.checked);
 });
 
 autoBlockIDNCheckbox.addEventListener('click', async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
     const autoBlockIDN: AutoBlockIDNOption = { enabled: checkbox.checked };
-    await OptionRepository.setAutoBlockIDNOption(autoBlockIDN);
+    await Option.setAutoBlockIDNOption(autoBlockIDN);
 });
 
 defaultBlockSelect.addEventListener('change', async (event) => {
     const select = event.target as HTMLSelectElement;
 
     const { value } = select;
-    await OptionRepository.setDefaultBlockType(value);
+    await Option.setDefaultBlockType(value);
 });
 
 menuPositionSelect.addEventListener('change', async (event) => {
     const select = event.target as HTMLSelectElement;
 
     const { value } = select;
-    await OptionRepository.setMenuPosition(value);
+    await Option.setMenuPosition(value);
 });
 
 blockGoogleNewsTabCheckbox.addEventListener('click', async (event) => {
     const checkbox = event.target as HTMLInputElement;
 
-    await OptionRepository.setBlockGoogleNewsTab(checkbox.checked);
+    await Option.setBlockGoogleNewsTab(checkbox.checked);
 });
 
 localizeHtmlPage();
