@@ -31,8 +31,6 @@ const pendingGoogleSearchTopNewsList: Element[] = [];
 const pendingGoogleNewsTabCardSectionList: Element[] = [];
 const pendingGoogleNewsTabTopList: Element[] = [];
 
-type IBlockFunction = (g: SearchResultToBlock, options: Options) => boolean;
-
 function blockElement(g: SearchResultToBlock, options: Options): boolean {
     if (!g.canRetry()) {
         return true;
