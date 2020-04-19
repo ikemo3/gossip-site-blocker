@@ -34,22 +34,18 @@ async function initCheckbox(id: string, option: OptionInterface<boolean>): Promi
     });
 }
 
-async function initSelect(
-    id: string,
-    loadFunc: LoadStringFunc,
-    setFunc: SetStringFunc,
-): Promise<void> {
+async function initSelect(id: string, option: OptionInterface<string>): Promise<void> {
     const select = document.getElementById(id);
     if (!(select instanceof HTMLSelectElement)) {
         throw new Error(`${id} is not HTMLSelectElement`);
     }
 
-    const value = await loadFunc();
+    const value = await option.load();
     Logger.log(`${id} is `, value);
     select.value = value;
 
     select.addEventListener('change', async () => {
-        await setFunc(select.value);
+        await option.save(select.value);
     });
 }
 
@@ -118,9 +114,9 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
 
     await initCheckbox('autoBlockIDN', Option.autoBlockIDN());
 
-    await initSelect('defaultBlockType', Option.getDefaultBlockType, Option.setDefaultBlockType);
+    await initSelect('defaultBlockType', Option.defaultBlockType());
 
-    await initSelect('menuPosition', Option.getMenuPosition, Option.setMenuPosition);
+    await initSelect('menuPosition', Option.menuPosition());
 
     await initCheckbox('blockGoogleNewsTab', Option.blockGoogleNewsTab());
 });
