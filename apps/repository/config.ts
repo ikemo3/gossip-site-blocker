@@ -82,6 +82,13 @@ export const OptionRepository = {
         Logger.log("set 'defaultBlockType' to =>", defaultBlockType);
     },
 
+    defaultBlockType(): OptionInterface<string> {
+        return {
+            load: this.getDefaultBlockType,
+            save: this.setDefaultBlockType,
+        };
+    },
+
     async getMenuPosition(): Promise<MenuPosition> {
         const items = await ChromeStorage.load({ menuPosition: 'default' });
         const { menuPosition } = items;
@@ -99,6 +106,13 @@ export const OptionRepository = {
         await ChromeStorage.save({ menuPosition });
 
         Logger.debug("set 'menuPosition' to =>", menuPosition);
+    },
+
+    menuPosition(): OptionInterface<string> {
+        return {
+            load: this.getMenuPosition,
+            save: this.setMenuPosition,
+        };
     },
 
     async isDisplayTemporarilyUnblockAll(): Promise<boolean> {
