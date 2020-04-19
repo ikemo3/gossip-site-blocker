@@ -70,7 +70,7 @@ export const OptionRepository = {
         };
     },
 
-    async defaultBlockType(): Promise<string> {
+    async getDefaultBlockType(): Promise<string> {
         const items = await ChromeStorage.load({ defaultBlockType: 'soft' });
 
         return items.defaultBlockType;

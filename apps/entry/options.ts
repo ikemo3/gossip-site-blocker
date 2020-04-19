@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
 
     await initCheckbox('autoBlockIDN', Option.autoBlockIDN());
 
-    await initSelect('defaultBlockType', Option.defaultBlockType, Option.setDefaultBlockType);
+    await initSelect('defaultBlockType', Option.getDefaultBlockType, Option.setDefaultBlockType);
 
     await initSelect('menuPosition', Option.getMenuPosition, Option.setMenuPosition);
 
