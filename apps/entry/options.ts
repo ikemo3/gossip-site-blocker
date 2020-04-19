@@ -14,11 +14,6 @@ const softBlockList = document.getElementById('softBlockList') as HTMLDivElement
 const hardBlockList = document.getElementById('hardBlockList') as HTMLDivElement;
 const clearButton = document.getElementById('clearButton') as HTMLInputElement;
 
-type LoadFunc = () => Promise<boolean>;
-type SetFunc = (value: boolean) => Promise<void>;
-type LoadStringFunc = () => Promise<string>;
-type SetStringFunc = (value: string) => Promise<void>;
-
 async function initCheckbox(id: string, option: OptionInterface<boolean>): Promise<void> {
     const checkbox = document.getElementById(id);
     if (!(checkbox instanceof HTMLInputElement)) {
