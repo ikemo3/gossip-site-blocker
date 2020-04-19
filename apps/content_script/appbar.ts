@@ -56,7 +56,7 @@ async function appendTemporarilyUnblockAllAnchor(element: Element): Promise<void
 
 async function appendShowBlockedByWordInfoAnchor(element: Element): Promise<void> {
     const bannedWordOption = await OptionRepository.getBannedWordOption();
-    if (bannedWordOption.showInfo) {
+    if (bannedWordOption) {
         const showInfo = $.anchor($.message('showBlockedByWordInfo'));
         showInfo.style.marginLeft = '1rem';
         $.onclick(showInfo, showBlockedByBannedWords);

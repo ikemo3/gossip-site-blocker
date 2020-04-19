@@ -41,12 +41,12 @@ export const OptionRepository = {
         Logger.log("set 'developerMode' to =>", mode);
     },
 
-    async getBannedWordOption(): Promise<BannedWordOption> {
+    async getBannedWordOption(): Promise<boolean> {
         const bannedWordDefault = { showInfo: false };
         const items: BannedWordOptionStorage = await ChromeStorage.get({
             bannedWord: bannedWordDefault,
         });
-        return items.bannedWord;
+        return items.bannedWord.showInfo;
     },
 
     async setShowBlockedByWordInfo(showBlockInfo: boolean): Promise<void> {
@@ -160,6 +160,6 @@ export interface Options {
     autoBlockIDN: boolean;
     defaultBlockType: string;
     menuPosition: MenuPosition;
-    bannedWordOption: BannedWordOption;
+    bannedWordOption: boolean;
     blockGoogleNewsTab: boolean;
 }
