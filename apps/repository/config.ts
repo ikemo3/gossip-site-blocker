@@ -3,14 +3,9 @@ import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from './banned_word_repository';
 import { RegExpItem } from './regexp_repository';
 
-// eslint-disable-next-line import/prefer-default-export
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
-        interface DeveloperOption {
-            developerMode: boolean;
-        }
-
-        const items = (await ChromeStorage.get({ developerMode: false })) as DeveloperOption;
+        const items = await ChromeStorage.load({ developerMode: false });
 
         Logger.mode = items.developerMode;
 
@@ -18,7 +13,7 @@ export const OptionRepository = {
     },
 
     async setDeveloperMode(mode: boolean): Promise<void> {
-        await ChromeStorage.set({ developerMode: mode });
+        await ChromeStorage.save({ developerMode: mode });
 
         Logger.mode = mode;
 
@@ -26,80 +21,43 @@ export const OptionRepository = {
     },
 
     async getBannedWordOption(): Promise<boolean> {
-        interface BannedWordOption {
-            showInfo: boolean;
-        }
+        const items = await ChromeStorage.load({ bannedWord: { showInfo: false } });
 
-        interface BannedWordOptionStorage {
-            bannedWord: BannedWordOption;
-        }
-
-        const bannedWordDefault = { showInfo: false };
-        const items: BannedWordOptionStorage = await ChromeStorage.get({
-            bannedWord: bannedWordDefault,
-        });
         return items.bannedWord.showInfo;
     },
 
     async setShowBlockedByWordInfo(showBlockInfo: boolean): Promise<void> {
-        await ChromeStorage.set({ bannedWord: { showInfo: showBlockInfo } });
+        await ChromeStorage.save({ bannedWord: { showInfo: showBlockInfo } });
 
         Logger.debug("set 'showBlockInfo' to =>", showBlockInfo);
     },
 
     async getAutoBlockIDNOption(): Promise<boolean> {
-        interface AutoBlockIDNOptionStorage {
-            autoBlockIDN: AutoBlockIDNOption;
-        }
-
-        interface AutoBlockIDNOption {
-            enabled: boolean;
-        }
-
-        const items: AutoBlockIDNOptionStorage = (await ChromeStorage.get({
-            autoBlockIDN: { enabled: false },
-        })) as AutoBlockIDNOptionStorage;
+        const items = await ChromeStorage.load({ autoBlockIDN: { enabled: false } });
 
         return items.autoBlockIDN.enabled;
     },
 
     async setAutoBlockIDNOption(autoBlockIDN: boolean): Promise<void> {
-        await ChromeStorage.set({
-            autoBlockIDN: {
-                enabled: autoBlockIDN,
-            },
-        });
+        await ChromeStorage.save({ autoBlockIDN: { enabled: autoBlockIDN } });
 
         Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
     },
 
     async defaultBlockType(): Promise<string> {
-        interface DefaultBlockTypeOption {
-            defaultBlockType: string;
-        }
+        const items = await ChromeStorage.load({ defaultBlockType: 'soft' });
 
-        const items = (await ChromeStorage.load({
-            defaultBlockType: 'soft',
-        })) as DefaultBlockTypeOption;
         return items.defaultBlockType;
     },
 
-    async setDefaultBlockType(type: string): Promise<void> {
-        await ChromeStorage.save({ defaultBlockType: type });
+    async setDefaultBlockType(defaultBlockType: string): Promise<void> {
+        await ChromeStorage.save({ defaultBlockType });
 
-        Logger.log("set 'defaultBlockType' to =>", type);
+        Logger.log("set 'defaultBlockType' to =>", defaultBlockType);
     },
 
     async menuPosition(): Promise<MenuPosition> {
-        interface MenuPositionOption {
-            menuPosition: string;
-        }
-
-        interface MenuPositionOption {
-            menuPosition: string;
-        }
-
-        const items = (await ChromeStorage.load({ menuPosition: 'default' })) as MenuPositionOption;
+        const items = await ChromeStorage.load({ menuPosition: 'default' });
         const { menuPosition } = items;
 
         switch (menuPosition) {
@@ -111,43 +69,33 @@ export const OptionRepository = {
         }
     },
 
-    async setMenuPosition(position: string): Promise<void> {
-        await ChromeStorage.save({ menuPosition: position });
+    async setMenuPosition(menuPosition: string): Promise<void> {
+        await ChromeStorage.save({ menuPosition });
 
-        Logger.debug("set 'menuPosition' to =>", position);
+        Logger.debug("set 'menuPosition' to =>", menuPosition);
     },
 
     async isDisplayTemporarilyUnblockAll(): Promise<boolean> {
-        interface DisplayTemporarilyUnblockAllOption {
-            displayTemporarilyUnblockAll: boolean;
-        }
-
-        const items = (await ChromeStorage.load({
-            displayTemporarilyUnblockAll: true,
-        })) as DisplayTemporarilyUnblockAllOption;
+        const items = await ChromeStorage.load({ displayTemporarilyUnblockAll: true });
 
         return items.displayTemporarilyUnblockAll;
     },
 
     async setDisplayTemporarilyUnblockAll(displayTemporarilyUnblockAll: boolean): Promise<void> {
         await ChromeStorage.save({ displayTemporarilyUnblockAll });
+
         Logger.debug("set 'displayTemporarilyUnblockAll' to =>", displayTemporarilyUnblockAll);
     },
 
     async isBlockGoogleNewsTab(): Promise<boolean> {
-        interface BlockGoogleNewsTabOption {
-            blockGoogleNewsTab: boolean;
-        }
-
-        const items = (await ChromeStorage.load({
-            blockGoogleNewsTab: true,
-        })) as BlockGoogleNewsTabOption;
+        const items = await ChromeStorage.load({ blockGoogleNewsTab: true });
 
         return items.blockGoogleNewsTab;
     },
 
     async setBlockGoogleNewsTab(blockGoogleNewsTab: boolean): Promise<void> {
         await ChromeStorage.save({ blockGoogleNewsTab });
+
         Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
     },
 };
