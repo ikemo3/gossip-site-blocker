@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
 
     await initSelect('menuPosition', Option.menuPosition());
 
-    await initCheckbox('blockGoogleNewsTab', Option.blockGoogleNewsTab());
+    await initCheckbox('blockGoogleNewsTab', Option.BlockGoogleNewsTab);
 });
 
 localizeHtmlPage();
