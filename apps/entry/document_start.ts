@@ -134,7 +134,7 @@ observer.observe(document.documentElement, config);
     const regexpList: RegExpItem[] = await RegExpRepository.load();
     const autoBlockIDN = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
-    const menuPosition: MenuPosition = await OptionRepository.menuPosition();
+    const menuPosition: MenuPosition = await OptionRepository.getMenuPosition();
     const bannedWordOption: boolean = await OptionRepository.getBannedWordOption();
     const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
     Logger.debug('autoBlockIDNOption:', autoBlockIDN);

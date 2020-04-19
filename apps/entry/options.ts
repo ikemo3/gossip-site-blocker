@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
 
     await initSelect('defaultBlockType', Option.defaultBlockType, Option.setDefaultBlockType);
 
-    await initSelect('menuPosition', Option.menuPosition, Option.setMenuPosition);
+    await initSelect('menuPosition', Option.getMenuPosition, Option.setMenuPosition);
 
     await initCheckbox('blockGoogleNewsTab', Option.blockGoogleNewsTab());
 });
