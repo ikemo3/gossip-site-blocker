@@ -30,7 +30,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor: HTMLAnchorElement | null = element.querySelector('a');
+        const anchor = element.querySelector('a');
         if (anchor === null) {
             this.valid = false;
             this._canRetry = true;

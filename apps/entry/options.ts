@@ -91,8 +91,7 @@ async function clear(): Promise<void> {
 // bind event.
 clearButton.addEventListener('click', clear);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-document.addEventListener('DOMContentLoaded', async (ignore) => {
+document.addEventListener('DOMContentLoaded', async (_) => {
     await showLists();
 
     regexpList = new RegExpList();

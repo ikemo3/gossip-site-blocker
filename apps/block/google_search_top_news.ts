@@ -21,7 +21,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector('a') as HTMLAnchorElement;
+        const anchor = element.querySelector('a');
         if (anchor === null) {
             this.valid = false;
             return;
