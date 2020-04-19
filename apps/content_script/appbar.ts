@@ -45,7 +45,7 @@ function showBlockedByBannedWords(): void {
 }
 
 async function appendTemporarilyUnblockAllAnchor(element: Element): Promise<void> {
-    const display = await OptionRepository.isDisplayTemporarilyUnblockAll();
+    const display = await OptionRepository.DisplayTemporarilyUnblockAll.load();
     if (display) {
         const anchor = $.anchor($.message('temporarilyUnblockAll'));
         $.onclick(anchor, temporarilyUnblockAll);
@@ -55,7 +55,7 @@ async function appendTemporarilyUnblockAllAnchor(element: Element): Promise<void
 }
 
 async function appendShowBlockedByWordInfoAnchor(element: Element): Promise<void> {
-    const bannedWordOption = await OptionRepository.getBannedWordOption();
+    const bannedWordOption = await OptionRepository.ShowBlockedByWordInfo.load();
     if (bannedWordOption) {
         const showInfo = $.anchor($.message('showBlockedByWordInfo'));
         showInfo.style.marginLeft = '1rem';
