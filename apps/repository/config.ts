@@ -3,22 +3,6 @@ import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from './banned_word_repository';
 import { RegExpItem } from './regexp_repository';
 
-interface BannedWordOptionStorage {
-    bannedWord: BannedWordOption;
-}
-
-export interface BannedWordOption {
-    showInfo: boolean;
-}
-
-interface AutoBlockIDNOptionStorage {
-    autoBlockIDN: AutoBlockIDNOption;
-}
-
-export interface AutoBlockIDNOption {
-    enabled: boolean;
-}
-
 // eslint-disable-next-line import/prefer-default-export
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
@@ -42,6 +26,14 @@ export const OptionRepository = {
     },
 
     async getBannedWordOption(): Promise<boolean> {
+        interface BannedWordOption {
+            showInfo: boolean;
+        }
+
+        interface BannedWordOptionStorage {
+            bannedWord: BannedWordOption;
+        }
+
         const bannedWordDefault = { showInfo: false };
         const items: BannedWordOptionStorage = await ChromeStorage.get({
             bannedWord: bannedWordDefault,
@@ -50,17 +42,24 @@ export const OptionRepository = {
     },
 
     async setShowBlockedByWordInfo(showBlockInfo: boolean): Promise<void> {
-        const values: BannedWordOption = { showInfo: showBlockInfo };
-        await ChromeStorage.set({ bannedWord: values });
+        await ChromeStorage.set({ bannedWord: { showInfo: showBlockInfo } });
 
-        Logger.debug("set 'bannedWord' to =>", values);
+        Logger.debug("set 'showBlockInfo' to =>", showBlockInfo);
     },
 
     async getAutoBlockIDNOption(): Promise<boolean> {
-        const autoBlockIDNDefault = { enabled: false };
+        interface AutoBlockIDNOptionStorage {
+            autoBlockIDN: AutoBlockIDNOption;
+        }
+
+        interface AutoBlockIDNOption {
+            enabled: boolean;
+        }
+
         const items: AutoBlockIDNOptionStorage = (await ChromeStorage.get({
-            autoBlockIDN: autoBlockIDNDefault,
+            autoBlockIDN: { enabled: false },
         })) as AutoBlockIDNOptionStorage;
+
         return items.autoBlockIDN.enabled;
     },
 
