@@ -1,3 +1,5 @@
+import { MenuPosition } from '../common';
+
 export interface ContentToBlock {
     getUrl(): string;
 
@@ -42,6 +44,10 @@ export abstract class SearchResultToBlock implements ContentToBlock {
     abstract getElement(): Element;
 
     abstract getCompactMenuInsertElement(): Element;
+
+    getMenuPosition(option: MenuPosition): MenuPosition {
+        return option;
+    }
 
     abstract getPosition(): string;
 

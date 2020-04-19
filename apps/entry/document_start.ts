@@ -57,7 +57,9 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
         return true;
     }
 
-    const _ = new BlockMediator(g, blockState, options.defaultBlockType, options.menuPosition);
+    const menuPosition = g.getMenuPosition(options.menuPosition);
+
+    const _ = new BlockMediator(g, blockState, options.defaultBlockType, menuPosition);
     return true;
 }
 
