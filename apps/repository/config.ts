@@ -82,7 +82,7 @@ export const OptionRepository = {
         Logger.log("set 'defaultBlockType' to =>", defaultBlockType);
     },
 
-    async menuPosition(): Promise<MenuPosition> {
+    async getMenuPosition(): Promise<MenuPosition> {
         const items = await ChromeStorage.load({ menuPosition: 'default' });
         const { menuPosition } = items;
 
