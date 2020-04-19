@@ -57,7 +57,7 @@ class PopupMediator implements IBasicBlockMediator {
 (async (): Promise<void> => {
     localizeHtmlPage();
 
-    const defaultBlockType: string = await OptionRepository.defaultBlockType();
+    const defaultBlockType: string = await OptionRepository.getDefaultBlockType();
 
     const currentTab = await getCurrentTab();
     const { url } = currentTab;

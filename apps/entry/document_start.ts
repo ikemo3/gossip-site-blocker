@@ -133,7 +133,7 @@ observer.observe(document.documentElement, config);
     const bannedWords: BannedWord[] = await BannedWordRepository.load();
     const regexpList: RegExpItem[] = await RegExpRepository.load();
     const autoBlockIDN = await OptionRepository.getAutoBlockIDNOption();
-    const defaultBlockType: string = await OptionRepository.defaultBlockType();
+    const defaultBlockType: string = await OptionRepository.getDefaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.getMenuPosition();
     const bannedWordOption: boolean = await OptionRepository.getBannedWordOption();
     const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
