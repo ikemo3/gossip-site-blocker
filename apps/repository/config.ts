@@ -3,6 +3,11 @@ import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from './banned_word_repository';
 import { RegExpItem } from './regexp_repository';
 
+export interface OptionInterface<T> {
+    load: () => Promise<T>;
+    save: (value: T) => Promise<void>;
+}
+
 export const OptionRepository = {
     async isDeveloperMode(): Promise<boolean> {
         const items = await ChromeStorage.load({ developerMode: false });
@@ -20,6 +25,13 @@ export const OptionRepository = {
         Logger.log("set 'developerMode' to =>", mode);
     },
 
+    developerMode(): OptionInterface<boolean> {
+        return {
+            load: this.isDeveloperMode,
+            save: this.setDeveloperMode,
+        };
+    },
+
     async getBannedWordOption(): Promise<boolean> {
         const items = await ChromeStorage.load({ bannedWord: { showInfo: false } });
 
@@ -32,6 +44,13 @@ export const OptionRepository = {
         Logger.debug("set 'showBlockInfo' to =>", showBlockInfo);
     },
 
+    showBlockedByWordInfo(): OptionInterface<boolean> {
+        return {
+            load: this.getBannedWordOption,
+            save: this.setShowBlockedByWordInfo,
+        };
+    },
+
     async getAutoBlockIDNOption(): Promise<boolean> {
         const items = await ChromeStorage.load({ autoBlockIDN: { enabled: false } });
 
@@ -42,6 +61,13 @@ export const OptionRepository = {
         await ChromeStorage.save({ autoBlockIDN: { enabled: autoBlockIDN } });
 
         Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
+    },
+
+    autoBlockIDN(): OptionInterface<boolean> {
+        return {
+            load: this.getAutoBlockIDNOption,
+            save: this.setAutoBlockIDNOption,
+        };
     },
 
     async defaultBlockType(): Promise<string> {
@@ -87,6 +113,13 @@ export const OptionRepository = {
         Logger.debug("set 'displayTemporarilyUnblockAll' to =>", displayTemporarilyUnblockAll);
     },
 
+    displayTemporarilyUnblockAll(): OptionInterface<boolean> {
+        return {
+            load: this.isDisplayTemporarilyUnblockAll,
+            save: this.setDisplayTemporarilyUnblockAll,
+        };
+    },
+
     async isBlockGoogleNewsTab(): Promise<boolean> {
         const items = await ChromeStorage.load({ blockGoogleNewsTab: true });
 
@@ -97,6 +130,13 @@ export const OptionRepository = {
         await ChromeStorage.save({ blockGoogleNewsTab });
 
         Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
+    },
+
+    blockGoogleNewsTab(): OptionInterface<boolean> {
+        return {
+            load: this.isBlockGoogleNewsTab,
+            save: this.setBlockGoogleNewsTab,
+        };
     },
 };
 

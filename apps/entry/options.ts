@@ -3,7 +3,7 @@ import BlockedSitesRepository from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { OptionRepository as Option } from '../repository/config';
+import { OptionInterface, OptionRepository as Option } from '../repository/config';
 import { Logger } from '../common';
 import RegExpList from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';
@@ -19,18 +19,18 @@ type SetFunc = (value: boolean) => Promise<void>;
 type LoadStringFunc = () => Promise<string>;
 type SetStringFunc = (value: string) => Promise<void>;
 
-async function initCheckbox(id: string, loadFunc: LoadFunc, setFunc: SetFunc): Promise<void> {
+async function initCheckbox(id: string, option: OptionInterface<boolean>): Promise<void> {
     const checkbox = document.getElementById(id);
     if (!(checkbox instanceof HTMLInputElement)) {
         throw new Error(`${id} is not HTMLInputElement`);
     }
 
-    const value = await loadFunc();
+    const value = await option.load();
     Logger.log(`${id} is `, value);
     checkbox.checked = value;
 
     checkbox.addEventListener('click', async () => {
-        await setFunc(checkbox.checked);
+        await option.save(checkbox.checked);
     });
 }
 
@@ -110,31 +110,19 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     bannedWords = new BannedWords();
     await bannedWords.load();
 
-    await initCheckbox('developerMode', Option.isDeveloperMode, Option.setDeveloperMode);
+    await initCheckbox('developerMode', Option.developerMode());
 
-    await initCheckbox(
-        'displayTemporarilyUnblockAll',
-        Option.isDisplayTemporarilyUnblockAll,
-        Option.setDisplayTemporarilyUnblockAll,
-    );
+    await initCheckbox('displayTemporarilyUnblockAll', Option.displayTemporarilyUnblockAll());
 
-    await initCheckbox(
-        'showBlockedByWordInfo',
-        Option.getBannedWordOption,
-        Option.setShowBlockedByWordInfo,
-    );
+    await initCheckbox('showBlockedByWordInfo', Option.showBlockedByWordInfo());
 
-    await initCheckbox('autoBlockIDN', Option.getAutoBlockIDNOption, Option.setAutoBlockIDNOption);
+    await initCheckbox('autoBlockIDN', Option.autoBlockIDN());
 
     await initSelect('defaultBlockType', Option.defaultBlockType, Option.setDefaultBlockType);
 
     await initSelect('menuPosition', Option.menuPosition, Option.setMenuPosition);
 
-    await initCheckbox(
-        'blockGoogleNewsTab',
-        Option.isBlockGoogleNewsTab,
-        Option.setBlockGoogleNewsTab,
-    );
+    await initCheckbox('blockGoogleNewsTab', Option.blockGoogleNewsTab());
 });
 
 localizeHtmlPage();
