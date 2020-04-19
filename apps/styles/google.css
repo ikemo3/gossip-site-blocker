@@ -137,6 +137,17 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
     word-break: break-word;
 }
 
+.block-google-image-tab {
+    display: inline-block;
+}
+
+/*
+ * ad-hoc fix for Google's Image tab.
+ */
+#yDmH0d .block-anchor + .block-anchor {
+    display: none;
+}
+
 .cv2VAd {
     height: auto !important;
 }

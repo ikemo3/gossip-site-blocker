@@ -12,6 +12,7 @@ import GoogleSearchInnerCard from '../block/google_search_inner_card';
 import GoogleSearchTopNews from '../block/google_search_top_news';
 import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
 import GoogleNewsTabTop from '../block/google_news_tab_top';
+import GoogleImageTab from '../block/google_image_tab';
 import { SearchResultToBlock } from '../block/block';
 import DocumentURL from '../values/document_url';
 
@@ -30,6 +31,7 @@ const pendingGoogleSearchInnerCardList: Element[] = [];
 const pendingGoogleSearchTopNewsList: Element[] = [];
 const pendingGoogleNewsTabCardSectionList: Element[] = [];
 const pendingGoogleNewsTabTopList: Element[] = [];
+const pendingGoogleImageTabList: Element[] = [];
 
 function blockElement(g: SearchResultToBlock, options: Options): boolean {
     if (!g.canRetry()) {
@@ -54,6 +56,10 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
 
     if (blockState.getState() === 'hard') {
         g.deleteElement();
+        return true;
+    }
+
+    if (!g.isShowBlockMenu(options)) {
         return true;
     }
 
@@ -119,6 +125,17 @@ const observer = new MutationObserver((mutations) => {
                     } else {
                         pendingGoogleSearchTopNewsList.push(node);
                     }
+                } else if (GoogleImageTab.isCandidate(node, documentURL)) {
+                    if (gsbOptions !== null) {
+                        if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
+                            const g = new GoogleImageTab(node);
+                            if (!blockElement(g, gsbOptions)) {
+                                pendingGoogleImageTabList.push(node);
+                            }
+                        }
+                    } else {
+                        pendingGoogleImageTabList.push(node);
+                    }
                 }
             }
         }
@@ -137,6 +154,8 @@ observer.observe(document.documentElement, config);
     const menuPosition: MenuPosition = await OptionRepository.MenuPosition.load();
     const bannedWordOption: boolean = await OptionRepository.ShowBlockedByWordInfo.load();
     const blockGoogleNewsTab: boolean = await OptionRepository.BlockGoogleNewsTab.load();
+    const blockGoogleImagesTab: boolean = await OptionRepository.BlockGoogleImagesTab.load();
+    const showMenuInGoogleImagesTab: boolean = await OptionRepository.ShowMenuInGoogleImagesTab.load();
     Logger.debug('autoBlockIDNOption:', autoBlockIDN);
 
     gsbOptions = {
@@ -148,6 +167,8 @@ observer.observe(document.documentElement, config);
         menuPosition,
         bannedWordOption,
         blockGoogleNewsTab,
+        blockGoogleImagesTab,
+        showMenuInGoogleImagesTab,
     };
 
     for (const node of pendingGoogleSearchResultList) {
@@ -175,6 +196,13 @@ observer.observe(document.documentElement, config);
     for (const node of pendingGoogleNewsTabTopList) {
         if (GoogleNewsTabTop.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleNewsTabTop(node);
+            blockElement(g, gsbOptions);
+        }
+    }
+
+    for (const node of pendingGoogleImageTabList) {
+        if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
+            const g = new GoogleImageTab(node);
             blockElement(g, gsbOptions);
         }
     }
