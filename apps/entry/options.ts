@@ -101,17 +101,17 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
     bannedWords = new BannedWords();
     await bannedWords.load();
 
-    await initCheckbox('developerMode', Option.developerMode());
+    await initCheckbox('developerMode', Option.DeveloperMode);
 
-    await initCheckbox('displayTemporarilyUnblockAll', Option.displayTemporarilyUnblockAll());
+    await initCheckbox('displayTemporarilyUnblockAll', Option.DisplayTemporarilyUnblockAll);
 
-    await initCheckbox('showBlockedByWordInfo', Option.showBlockedByWordInfo());
+    await initCheckbox('showBlockedByWordInfo', Option.ShowBlockedByWordInfo);
 
-    await initCheckbox('autoBlockIDN', Option.autoBlockIDN());
+    await initCheckbox('autoBlockIDN', Option.AutoBlockIDN);
 
-    await initSelect('defaultBlockType', Option.defaultBlockType());
+    await initSelect('defaultBlockType', Option.DefaultBlockType);
 
-    await initSelect('menuPosition', Option.menuPosition());
+    await initSelect('menuPosition', Option.MenuPosition);
 
     await initCheckbox('blockGoogleNewsTab', Option.BlockGoogleNewsTab);
 });

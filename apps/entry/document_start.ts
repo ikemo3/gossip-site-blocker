@@ -132,10 +132,10 @@ observer.observe(document.documentElement, config);
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
     const bannedWords: BannedWord[] = await BannedWordRepository.load();
     const regexpList: RegExpItem[] = await RegExpRepository.load();
-    const autoBlockIDN = await OptionRepository.getAutoBlockIDNOption();
-    const defaultBlockType: string = await OptionRepository.getDefaultBlockType();
-    const menuPosition: MenuPosition = await OptionRepository.getMenuPosition();
-    const bannedWordOption: boolean = await OptionRepository.getBannedWordOption();
+    const autoBlockIDN = await OptionRepository.AutoBlockIDN.load();
+    const defaultBlockType: string = await OptionRepository.DefaultBlockType.load();
+    const menuPosition: MenuPosition = await OptionRepository.MenuPosition.load();
+    const bannedWordOption: boolean = await OptionRepository.ShowBlockedByWordInfo.load();
     const blockGoogleNewsTab: boolean = await OptionRepository.BlockGoogleNewsTab.load();
     Logger.debug('autoBlockIDNOption:', autoBlockIDN);
 
