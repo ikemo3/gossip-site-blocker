@@ -3,7 +3,7 @@ import BlockedSitesRepository from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { BannedWordOption, OptionRepository as Option } from '../repository/config';
+import { OptionRepository as Option } from '../repository/config';
 import { Logger } from '../common';
 import RegExpList from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';
@@ -123,9 +123,9 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
         Option.setDisplayTemporarilyUnblockAll,
     );
 
-    const bannedWordOption: BannedWordOption = await Option.getBannedWordOption();
+    const bannedWordOption: boolean = await Option.getBannedWordOption();
     Logger.debug('bannedWordOption is ', bannedWordOption);
-    showBlockedByWordInfoCheckbox.checked = bannedWordOption.showInfo;
+    showBlockedByWordInfoCheckbox.checked = bannedWordOption;
 
     const autoBlockIDNOption: boolean = await Option.getAutoBlockIDNOption();
     Logger.debug('autoBlockIDNOption is ', autoBlockIDNOption);

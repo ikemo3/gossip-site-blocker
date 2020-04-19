@@ -1,7 +1,7 @@
 import BlockedSites from '../model/blocked_sites';
 import { BannedWord, BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { BannedWordOption, OptionRepository, Options } from '../repository/config';
+import { OptionRepository, Options } from '../repository/config';
 import { Logger, MenuPosition } from '../common';
 import { BlockReason } from '../model/block_reason';
 import BlockedSitesRepository from '../repository/blocked_sites';
@@ -135,7 +135,7 @@ observer.observe(document.documentElement, config);
     const autoBlockIDN = await OptionRepository.getAutoBlockIDNOption();
     const defaultBlockType: string = await OptionRepository.defaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.menuPosition();
-    const bannedWordOption: BannedWordOption = await OptionRepository.getBannedWordOption();
+    const bannedWordOption: boolean = await OptionRepository.getBannedWordOption();
     const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
     Logger.debug('autoBlockIDNOption:', autoBlockIDN);
 
