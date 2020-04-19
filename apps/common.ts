@@ -17,8 +17,7 @@ export const ChromeStorage = {
         });
     },
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async save<T>(items: T): Promise<any> {
+    async save(items: object): Promise<void> {
         return new Promise((resolve) => {
             chrome.storage.local.set(items, resolve);
         });
