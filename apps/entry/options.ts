@@ -53,11 +53,6 @@ async function initSelect(
     });
 }
 
-const showBlockedByWordInfoCheckbox = document.getElementById(
-    'showBlockedByWordInfoCheckbox',
-) as HTMLInputElement;
-const autoBlockIDNCheckbox = document.getElementById('autoBlockIDNCheckBox') as HTMLInputElement;
-
 let bannedWords: BannedWords;
 let regexpList: RegExpList;
 
@@ -123,13 +118,13 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
         Option.setDisplayTemporarilyUnblockAll,
     );
 
-    const bannedWordOption: boolean = await Option.getBannedWordOption();
-    Logger.debug('bannedWordOption is ', bannedWordOption);
-    showBlockedByWordInfoCheckbox.checked = bannedWordOption;
+    await initCheckbox(
+        'showBlockedByWordInfo',
+        Option.getBannedWordOption,
+        Option.setShowBlockedByWordInfo,
+    );
 
-    const autoBlockIDNOption: boolean = await Option.getAutoBlockIDNOption();
-    Logger.debug('autoBlockIDNOption is ', autoBlockIDNOption);
-    autoBlockIDNCheckbox.checked = autoBlockIDNOption;
+    await initCheckbox('autoBlockIDN', Option.getAutoBlockIDNOption, Option.setAutoBlockIDNOption);
 
     await initSelect('defaultBlockType', Option.defaultBlockType, Option.setDefaultBlockType);
 
@@ -140,18 +135,6 @@ document.addEventListener('DOMContentLoaded', async (ignore) => {
         Option.isBlockGoogleNewsTab,
         Option.setBlockGoogleNewsTab,
     );
-});
-
-showBlockedByWordInfoCheckbox.addEventListener('click', async (event) => {
-    const checkbox = event.target as HTMLInputElement;
-
-    await Option.setShowBlockedByWordInfo(checkbox.checked);
-});
-
-autoBlockIDNCheckbox.addEventListener('click', async (event) => {
-    const checkbox = event.target as HTMLInputElement;
-
-    await Option.setAutoBlockIDNOption(checkbox.checked);
 });
 
 localizeHtmlPage();
