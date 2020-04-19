@@ -134,23 +134,18 @@ export const OptionRepository = {
         };
     },
 
-    async isBlockGoogleNewsTab(): Promise<boolean> {
-        const items = await ChromeStorage.load({ blockGoogleNewsTab: true });
+    BlockGoogleNewsTab: {
+        load: async (): Promise<boolean> => {
+            const items = await ChromeStorage.load({ blockGoogleNewsTab: true });
 
-        return items.blockGoogleNewsTab;
-    },
+            return items.blockGoogleNewsTab;
+        },
 
-    async setBlockGoogleNewsTab(blockGoogleNewsTab: boolean): Promise<void> {
-        await ChromeStorage.save({ blockGoogleNewsTab });
+        save: async (blockGoogleNewsTab: boolean): Promise<void> => {
+            await ChromeStorage.save({ blockGoogleNewsTab });
 
-        Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
-    },
-
-    blockGoogleNewsTab(): OptionInterface<boolean> {
-        return {
-            load: this.isBlockGoogleNewsTab,
-            save: this.setBlockGoogleNewsTab,
-        };
+            Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
+        },
     },
 };
 

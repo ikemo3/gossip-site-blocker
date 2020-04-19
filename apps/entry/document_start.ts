@@ -136,7 +136,7 @@ observer.observe(document.documentElement, config);
     const defaultBlockType: string = await OptionRepository.getDefaultBlockType();
     const menuPosition: MenuPosition = await OptionRepository.getMenuPosition();
     const bannedWordOption: boolean = await OptionRepository.getBannedWordOption();
-    const blockGoogleNewsTab: boolean = await OptionRepository.isBlockGoogleNewsTab();
+    const blockGoogleNewsTab: boolean = await OptionRepository.BlockGoogleNewsTab.load();
     Logger.debug('autoBlockIDNOption:', autoBlockIDN);
 
     gsbOptions = {
