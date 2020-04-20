@@ -59,10 +59,6 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
         return true;
     }
 
-    if (!g.isShowBlockMenu(options)) {
-        return true;
-    }
-
     const menuPosition = g.getMenuPosition(options.menuPosition);
 
     const _ = new BlockMediator(g, blockState, options.defaultBlockType, menuPosition);
@@ -155,7 +151,6 @@ observer.observe(document.documentElement, config);
     const bannedWordOption: boolean = await OptionRepository.ShowBlockedByWordInfo.load();
     const blockGoogleNewsTab: boolean = await OptionRepository.BlockGoogleNewsTab.load();
     const blockGoogleImagesTab: boolean = await OptionRepository.BlockGoogleImagesTab.load();
-    const showMenuInGoogleImagesTab: boolean = await OptionRepository.ShowMenuInGoogleImagesTab.load();
     Logger.debug('autoBlockIDNOption:', autoBlockIDN);
 
     gsbOptions = {
@@ -168,7 +163,6 @@ observer.observe(document.documentElement, config);
         bannedWordOption,
         blockGoogleNewsTab,
         blockGoogleImagesTab,
-        showMenuInGoogleImagesTab,
     };
 
     for (const node of pendingGoogleSearchResultList) {

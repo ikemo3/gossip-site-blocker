@@ -131,20 +131,6 @@ export const OptionRepository = {
             Logger.debug("set 'blockGoogleImagesTab' to =>", blockGoogleImagesTab);
         },
     },
-
-    ShowMenuInGoogleImagesTab: {
-        load: async (): Promise<boolean> => {
-            const items = await ChromeStorage.load({ showMenuInGoogleImagesTab: false });
-
-            return items.showMenuInGoogleImagesTab;
-        },
-
-        save: async (showMenuInGoogleImagesTab: boolean): Promise<void> => {
-            await ChromeStorage.save({ showMenuInGoogleImagesTab });
-
-            Logger.debug("set 'showMenuInGoogleImagesTab' to =>", showMenuInGoogleImagesTab);
-        },
-    },
 };
 
 export interface Options {
@@ -157,5 +143,4 @@ export interface Options {
     bannedWordOption: boolean;
     blockGoogleNewsTab: boolean;
     blockGoogleImagesTab: boolean;
-    showMenuInGoogleImagesTab: boolean;
 }
