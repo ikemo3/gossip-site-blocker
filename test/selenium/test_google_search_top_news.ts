@@ -1,8 +1,6 @@
 import { By, Capabilities, WebDriver } from 'selenium-webdriver';
 import { ok, strictEqual } from 'assert';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import chromeDriver from './chrome';
-import firefoxDriver from './firefox';
 
 async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
     const capabilities: Capabilities = await driver.getCapabilities();
@@ -17,7 +15,7 @@ async function takeScreenShot(driver: WebDriver, path: string): Promise<void> {
     writeFileSync(`${dir}/${path}`, Buffer.from(await driver.takeScreenshot(), 'base64'));
 }
 
-async function main(driver: WebDriver): Promise<void> {
+export default async function main(driver: WebDriver): Promise<void> {
     await driver.get('https://www.google.com/search?q=switch+site:game.watch.impress.co.jp');
     await driver.actions().pause(500).perform();
     await takeScreenShot(driver, 'search_result.png');
@@ -42,29 +40,3 @@ async function main(driver: WebDriver): Promise<void> {
     const isDisplayed = await blockTarget.isDisplayed();
     ok(!isDisplayed);
 }
-
-(async (): Promise<void> => {
-    const driver = chromeDriver();
-    try {
-        await main(driver);
-    } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e);
-        process.exitCode = 1;
-    } finally {
-        await driver.close();
-    }
-})();
-
-(async (): Promise<void> => {
-    const driver = firefoxDriver();
-    try {
-        await main(driver);
-    } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e);
-        process.exitCode = 1;
-    } finally {
-        await driver.close();
-    }
-})();
