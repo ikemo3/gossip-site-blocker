@@ -115,8 +115,6 @@ document.addEventListener('DOMContentLoaded', async (_) => {
     await initCheckbox('blockGoogleNewsTab', Option.BlockGoogleNewsTab);
 
     await initCheckbox('blockGoogleImagesTab', Option.BlockGoogleImagesTab);
-
-    await initCheckbox('showMenuInGoogleImagesTab', Option.ShowMenuInGoogleImagesTab);
 });
 
 localizeHtmlPage();

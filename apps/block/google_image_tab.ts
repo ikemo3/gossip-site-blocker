@@ -96,10 +96,6 @@ class GoogleImageTab extends SearchResultToBlock {
     getMenuPosition(_: MenuPosition): MenuPosition {
         return MenuPosition.COMPACT;
     }
-
-    isShowBlockMenu(options: Options): boolean {
-        return options.showMenuInGoogleImagesTab;
-    }
 }
 
 export default GoogleImageTab;

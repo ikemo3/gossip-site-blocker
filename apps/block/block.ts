@@ -1,5 +1,4 @@
 import { MenuPosition } from '../common';
-import { Options } from '../repository/config';
 
 export interface ContentToBlock {
     getUrl(): string;
@@ -53,8 +52,4 @@ export abstract class SearchResultToBlock implements ContentToBlock {
     abstract getPosition(): string;
 
     abstract getCssClass(): string;
-
-    isShowBlockMenu(_: Options): boolean {
-        return true;
-    }
 }
