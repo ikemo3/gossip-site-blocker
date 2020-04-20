@@ -33,7 +33,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
             return;
         }
 
-        const titleDiv = anchor.querySelector('.nDgy9d');
+        const titleDiv = anchor.querySelector('.y9oXvf');
         if (titleDiv === null) {
             this.valid = false;
             return;
