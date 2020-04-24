@@ -6,6 +6,45 @@ import BlockedSite from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { ContentToBlock } from '../block/block';
 
+function first<T>(array: Array<T>): T | undefined {
+    return array.shift();
+}
+
+interface HasBlockType {
+    blockType: BlockType;
+}
+
+function compare(a: HasBlockType, b: HasBlockType): number {
+    if (a.blockType === b.blockType) {
+        return 0;
+    }
+
+    if (a.blockType === BlockType.SOFT && b.blockType === BlockType.HARD) {
+        return 1;
+    }
+
+    return -1;
+}
+
+function matchesByWord(content: ContentToBlock, bannedWord: BannedWord): boolean {
+    const { keyword } = bannedWord;
+
+    switch (bannedWord.target) {
+        case BannedTarget.TITLE_ONLY:
+            return content.containsInTitle(keyword);
+
+        case BannedTarget.TITLE_AND_CONTENTS:
+        default:
+            return content.contains(keyword);
+    }
+}
+
+function matchesByRegexp(content: ContentToBlock, regexpItem: RegExpItem): boolean {
+    const pattern = new RegExp(regexpItem.pattern);
+
+    return pattern.test(DOMUtils.removeProtocol(content.getUrl()));
+}
+
 class BlockState {
     private readonly state: string;
 
@@ -18,28 +57,19 @@ class BlockState {
         regexpList: RegExpItem[],
         autoBlockIDN: boolean,
     ) {
+        // The longest matched site
         const blockedSite: BlockedSite | undefined = blockedSites.matches(content.getUrl());
 
-        const banned: BannedWord | undefined = bannedWords.find((bannedWord) => {
-            const { keyword } = bannedWord;
+        // The strongest banned word
+        const banned: BannedWord | undefined = first(
+            bannedWords.filter((bannedWord) => matchesByWord(content, bannedWord)).sort(compare),
+        );
 
-            switch (bannedWord.target) {
-                case BannedTarget.TITLE_ONLY:
-                    return content.containsInTitle(keyword);
+        // The strongest regexp
+        const regexp: RegExpItem | undefined = first(
+            regexpList.filter((regexpItem) => matchesByRegexp(content, regexpItem)).sort(compare),
+        );
 
-                case BannedTarget.TITLE_AND_CONTENTS:
-                default:
-                    return content.contains(keyword);
-            }
-        });
-
-        const regexp: RegExpItem | undefined = regexpList.find((regexpItem) => {
-            const pattern = new RegExp(regexpItem.pattern);
-
-            return pattern.test(DOMUtils.removeProtocol(content.getUrl()));
-        });
-
-        // FIXME: priority
         if (
             blockedSite &&
             (!banned || banned.blockType !== BlockType.HARD) &&
@@ -63,7 +93,8 @@ class BlockState {
 
             return;
         }
-        if (banned) {
+
+        if (banned && (!regexp || regexp.blockType !== BlockType.HARD)) {
             this.state = banned.blockType.toString();
             this.blockReason = new BlockReason(
                 BlockReasonType.WORD,
@@ -72,6 +103,7 @@ class BlockState {
             );
             return;
         }
+
         if (regexp) {
             this.state = regexp.blockType.toString();
             this.blockReason = new BlockReason(

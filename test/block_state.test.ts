@@ -97,6 +97,20 @@ describe('BlockState', () => {
         expect(blockState.getState()).toBe('soft');
     });
 
+    it('block by words', () => {
+        const target = createContents('http://example.com', true);
+        const bannedList = [
+            createBannedWord('evil', BlockType.SOFT, BannedTarget.TITLE_AND_CONTENTS),
+            createBannedWord('evil2', BlockType.HARD, BannedTarget.TITLE_AND_CONTENTS),
+        ];
+
+        const blockState = new BlockState(target, createEmptySites(), bannedList, [], true);
+
+        expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
+        expect(blockState.getReason()!.getReason()).toBe('evil2');
+        expect(blockState.getState()).toBe('hard');
+    });
+
     it('block by regexp', () => {
         const target = createContents('http://example.com', true);
         const regexpList = [createRegexp('example\\..*', BlockType.SOFT)];
@@ -106,6 +120,20 @@ describe('BlockState', () => {
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
         expect(blockState.getReason()!.getReason()).toBe('example\\..*');
         expect(blockState.getState()).toBe('soft');
+    });
+
+    it('block by regexps', () => {
+        const target = createContents('http://example.com', true);
+        const regexpList = [
+            createRegexp('example\\..*', BlockType.SOFT),
+            createRegexp('example\\.com', BlockType.HARD),
+        ];
+
+        const blockState = new BlockState(target, createEmptySites(), [], regexpList, true);
+
+        expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
+        expect(blockState.getReason()!.getReason()).toBe('example\\.com');
+        expect(blockState.getState()).toBe('hard');
     });
 
     it('block by URL(exactly) vs word(hard block) => word(hard block)', () => {
@@ -119,6 +147,21 @@ describe('BlockState', () => {
 
         expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
         expect(blockState.getReason()!.getReason()).toBe('evil');
+        expect(blockState.getState()).toBe('hard');
+    });
+
+    it('block by word(soft block) vs regexp(hard block) => regexp(hard block)', () => {
+        const target = createContents('http://example.com', true);
+        const sites = createSites('soft', 'example.com');
+        const bannedList = [
+            createBannedWord('evil', BlockType.HARD, BannedTarget.TITLE_AND_CONTENTS),
+        ];
+        const regexpList = [createRegexp('example\\..*', BlockType.HARD)];
+
+        const blockState = new BlockState(target, sites, bannedList, regexpList, true);
+
+        expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
+        expect(blockState.getReason()!.getReason()).toBe('example\\..*');
         expect(blockState.getState()).toBe('hard');
     });
 
