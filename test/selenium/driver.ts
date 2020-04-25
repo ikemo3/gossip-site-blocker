@@ -6,6 +6,30 @@ export enum DriverType {
     Firefox = 'firefox',
 }
 
+class TestBlockDialog {
+    private _driver: WebDriver;
+
+    private _dialog: WebElement;
+
+    constructor(driver: WebDriver) {
+        this._driver = driver;
+    }
+
+    async init(): Promise<void> {
+        this._dialog = await this._driver.findElement(By.css('.block-dialog'));
+    }
+
+    async getDomainRadioValue(): Promise<string> {
+        const domainRadio = await this._dialog.findElement(By.id('blocker-dialog-domain-radio'));
+        return domainRadio.getAttribute('value');
+    }
+
+    async block(): Promise<void> {
+        const blockButton = await this._driver.findElement(By.css('.blocker-primary-button'));
+        return this._driver.actions().click(blockButton).pause(500).perform();
+    }
+}
+
 export class TestWebDriver {
     private readonly _driver: WebDriver;
 
@@ -31,12 +55,13 @@ export class TestWebDriver {
     async googleSearch(keywords: string[]): Promise<void> {
         const query = keywords.join('+');
         await this._driver.get(`https://www.google.com/search?q=${query}`);
-        return this.pause(500);
+        return this.pause(1000);
     }
 
     async googleImageSearch(keywords: string[]): Promise<void> {
         const query = keywords.join('+');
-        return this._driver.get(`https://www.google.com/search?q=${query}&tbm=isch`);
+        await this._driver.get(`https://www.google.com/search?q=${query}&tbm=isch`);
+        return this.pause(1000);
     }
 
     async querySelector(css: string): Promise<WebElement> {
@@ -45,6 +70,13 @@ export class TestWebDriver {
 
     async querySelectorAll(css: string): Promise<WebElement[]> {
         return this._driver.findElements(By.css(css));
+    }
+
+    async findDialog(): Promise<TestBlockDialog> {
+        const dialog = new TestBlockDialog(this._driver);
+        await dialog.init();
+
+        return dialog;
     }
 
     async pause(milliSeconds: number): Promise<void> {

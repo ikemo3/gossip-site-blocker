@@ -13,13 +13,11 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.takeScreenShot('test_google_search_result', 'block_dialog.png');
 
     // assert dialog
-    const blockDialog = await driver.querySelector('.block-dialog');
-    const domainRadio = await blockDialog.findElement(By.id('blocker-dialog-domain-radio'));
-    strictEqual(await domainRadio.getAttribute('value'), 'ja.wikipedia.org');
+    const blockDialog = await driver.findDialog();
+    strictEqual(await blockDialog.getDomainRadioValue(), 'ja.wikipedia.org');
 
     // click block button
-    const blockButton = await driver.querySelector('.blocker-primary-button');
-    await driver.click(blockButton);
+    await blockDialog.block();
     await driver.takeScreenShot('test_google_search_result', 'block_clicked.png');
 
     // assert block target is hidden
