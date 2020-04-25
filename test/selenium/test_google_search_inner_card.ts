@@ -4,7 +4,6 @@ import { TestWebDriver } from './driver';
 
 export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.googleSearch(['自炊', '動画']);
-    await driver.pause(500);
     await driver.takeScreenShot('test_inner_card', 'search_result.png');
 
     // click 'block this page'
@@ -12,7 +11,6 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     const blockTarget = await blockThisPage.findElement(
         By.xpath('preceding-sibling::g-inner-card'),
     );
-    await driver.pause(500);
     await driver.click(blockThisPage);
     await driver.takeScreenShot('test_inner_card', 'block_dialog.png');
 
@@ -23,7 +21,6 @@ export default async function main(driver: TestWebDriver): Promise<void> {
 
     // click block button
     const blockButton = await driver.querySelector('.blocker-primary-button');
-    await driver.pause(500);
     await driver.click(blockButton);
     await driver.takeScreenShot('test_inner_card', 'block_clicked.png');
 
