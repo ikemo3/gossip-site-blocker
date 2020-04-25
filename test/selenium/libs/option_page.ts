@@ -59,6 +59,7 @@ export class TestOptionPage {
         // open dialog
         await this.openOption();
 
+        // Possible: true, false, undefined
         const current1: BlockGoogleImagesTab = await this.getLocalStorage('blockGoogleImagesTab');
         if (current1.blockGoogleImagesTab === expected) {
             return;
