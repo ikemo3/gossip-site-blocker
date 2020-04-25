@@ -24,23 +24,19 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     // click compact menu
     const blockAnchor = await driver.querySelector('.block-anchor');
     const blockTarget = await blockAnchor.findElement(By.xpath('parent::div'));
-    await driver.pause(500);
     await driver.click(blockAnchor);
     await driver.takeScreenShot('test_google_images_tab', 'block_menu.png');
 
     // click 'block this page'
     const blockThisPage = await driver.querySelector('.block-operations-div');
-    await driver.pause(500);
     await driver.click(blockThisPage);
     await driver.takeScreenShot('test_google_images_tab', 'block_dialog.png');
 
     // assert dialog
-    await driver.pause(500);
     const blockDialog = await driver.querySelector('.block-dialog');
 
     // click block button
     const blockButton = await blockDialog.findElement(By.className('blocker-primary-button'));
-    await driver.pause(500);
     await driver.click(blockButton);
     await driver.takeScreenShot('test_google_images_tab', 'block_clicked.png');
 

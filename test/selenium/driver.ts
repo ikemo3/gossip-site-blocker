@@ -25,11 +25,13 @@ export class TestWebDriver {
 
     async get(url: string): Promise<void> {
         await this._driver.get(url);
+        return this.pause(500);
     }
 
     async googleSearch(keywords: string[]): Promise<void> {
         const query = keywords.join('+');
-        return this._driver.get(`https://www.google.com/search?q=${query}`);
+        await this._driver.get(`https://www.google.com/search?q=${query}`);
+        return this.pause(500);
     }
 
     async googleImageSearch(keywords: string[]): Promise<void> {
@@ -50,7 +52,7 @@ export class TestWebDriver {
     }
 
     async click(button: WebElement): Promise<void> {
-        return this._driver.actions().click(button).perform();
+        return this._driver.actions().click(button).pause(500).perform();
     }
 
     async takeScreenShot(testName: string, filename: string): Promise<void> {
@@ -68,16 +70,16 @@ export class TestWebDriver {
         this._counter += 1;
     }
 
-    async getLocalStorage<T>(key: string): Promise<T> {
+    private async getLocalStorage<T>(key: string): Promise<T> {
         const js = `return (() => new Promise(r => chrome.storage.local.get('${key}', r)))();`;
         return this._driver.executeScript(js);
     }
 
-    async getShadowRoot(element: WebElement): Promise<WebElement> {
+    private async getShadowRoot(element: WebElement): Promise<WebElement> {
         return this._driver.executeScript('return arguments[0].shadowRoot', element);
     }
 
-    async getChromeExtensionId(): Promise<string> {
+    private async getChromeExtensionId(): Promise<string> {
         await this.get('about:extensions');
 
         const manager = await this.querySelector('extensions-manager');
@@ -91,15 +93,14 @@ export class TestWebDriver {
         return item.getAttribute('id');
     }
 
-    async getFirefoxAddonId(): Promise<string> {
+    private async getFirefoxAddonId(): Promise<string> {
         await this.get('about:debugging#/runtime/this-firefox');
-        await this.pause(500);
 
         const dd = await this.querySelector('.debug-target-list dl div:nth-child(2) dd');
         return dd.getText();
     }
 
-    async openOption(): Promise<void> {
+    private async openOption(): Promise<void> {
         if (this._driverType === DriverType.Chrome) {
             const extensionId = await this.getChromeExtensionId();
             await this.get(`chrome-extension://${extensionId}/option/options.html`);
