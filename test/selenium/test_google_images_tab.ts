@@ -33,11 +33,10 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.takeScreenShot('test_google_images_tab', 'block_dialog.png');
 
     // assert dialog
-    const blockDialog = await driver.querySelector('.block-dialog');
+    const blockDialog = await driver.findDialog();
 
     // click block button
-    const blockButton = await blockDialog.findElement(By.className('blocker-primary-button'));
-    await driver.click(blockButton);
+    await blockDialog.block();
     await driver.takeScreenShot('test_google_images_tab', 'block_clicked.png');
 
     // assert block target is hidden
