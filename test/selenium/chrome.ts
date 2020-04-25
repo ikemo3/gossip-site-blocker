@@ -1,8 +1,9 @@
-import { Builder, Capabilities, WebDriver } from 'selenium-webdriver';
+import { Builder, Capabilities } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
 import { readFileSync } from 'fs';
+import { DriverType, TestWebDriver } from './driver';
 
-export default function (): WebDriver {
+export default function (): TestWebDriver {
     const extension = readFileSync('tmp/workspace/gossip-site-blocker.crx', 'base64');
     const options = new Options().addExtensions(extension).windowSize({ width: 1280, height: 800 });
 
@@ -13,5 +14,6 @@ export default function (): WebDriver {
         ],
     });
 
-    return new Builder().withCapabilities(capabilities).setChromeOptions(options).build();
+    const driver = new Builder().withCapabilities(capabilities).setChromeOptions(options).build();
+    return new TestWebDriver(driver, DriverType.Chrome);
 }
