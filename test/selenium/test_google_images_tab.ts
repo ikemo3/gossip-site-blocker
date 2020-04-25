@@ -20,19 +20,19 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.googleImageSearch(['初音ミク', 'かわいい']);
     const compactMenu = new TestCompactMenu(driver, '.block-anchor');
     await compactMenu.click();
-    await driver.takeScreenShot('test_google_images_tab', 'block_menu.png');
+    await driver.takeScreenShot('block_menu.png');
 
     // click 'block this page'
     const blockAnchor = await compactMenu.clickToBlock('.block-operations-div');
     await blockAnchor.click();
-    await driver.takeScreenShot('test_google_images_tab', 'block_dialog.png');
+    await driver.takeScreenShot('block_dialog.png');
 
     // assert dialog
     const blockDialog = await driver.findDialog();
 
     // click block button
     await blockDialog.block();
-    await driver.takeScreenShot('test_google_images_tab', 'block_clicked.png');
+    await driver.takeScreenShot('block_clicked.png');
 
     // assert block target is hidden
     const blockTarget = await compactMenu.getTarget('parent::div');

@@ -1,5 +1,7 @@
 import { By, WebDriver, WebElement } from 'selenium-webdriver';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { basename, parse } from 'path';
+import { get as getStackTrace } from 'stack-trace';
 import { DriverType, TestDriverInterface } from './libs/interface';
 import { TestOptionPage } from './libs/option_page';
 import TestBlockDialog from './libs/block_dialog';
@@ -74,19 +76,29 @@ export class TestWebDriver implements TestDriverInterface {
         return this._driver.executeScript(script, ...varArgs);
     }
 
-    async takeScreenShot(testName: string, filename: string): Promise<void> {
-        const dir = `tmp/screenshots/${testName}/${this._driverType}`;
+    async takeScreenShot(filename: string): Promise<void> {
+        const stackTrace = getStackTrace();
 
+        // get directory from caller's file name.
+        // eslint-disable-next-line no-console
+        console.assert(stackTrace.length >= 2);
+        const caller = stackTrace[1];
+        const testName = parse(basename(caller.getFileName())).name;
+
+        // create dir if not exist
+        const dir = `tmp/screenshots/${testName}/${this._driverType}`;
         if (!existsSync(dir)) {
             mkdirSync(dir, { recursive: true });
         }
 
+        // generate numbered filename
         const num = this._counter.toString().padStart(4, '0');
-        writeFileSync(
-            `${dir}/${num}_${filename}`,
-            Buffer.from(await this._driver.takeScreenshot(), 'base64'),
-        );
+        const numberedFilename = `${num}_${filename}`;
         this._counter += 1;
+
+        // write screenshot to file
+        const buffer = Buffer.from(await this._driver.takeScreenshot(), 'base64');
+        writeFileSync(`${dir}/${numberedFilename}`, buffer);
     }
 
     async optionPage(): Promise<TestOptionPage> {
