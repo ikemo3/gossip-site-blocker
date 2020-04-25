@@ -148,6 +148,13 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
     display: none;
 }
 
+/*
+ * ad-hoc fix for compact menu of Firefox in Google's Image tab.
+ */
+#yDmH0d .block-operations-div {
+    top: 16px;
+}
+
 .cv2VAd {
     height: auto !important;
 }
