@@ -1,15 +1,14 @@
-import { By } from 'selenium-webdriver';
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
+import TestBlockAnchor from './libs/block_anchor';
 
 export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.googleNewsSearch(['初音ミク', 'PR', 'TIMES']);
     await driver.takeScreenShot('test_google_news_tab_top', 'search_result.png');
 
     // click 'block this page'
-    const blockThisPage = await driver.querySelector('.block-google-news-top');
-    const blockTarget = await blockThisPage.findElement(By.xpath('preceding-sibling::div'));
-    await driver.click(blockThisPage);
+    const blockAnchor = new TestBlockAnchor(driver, '.block-google-news-top');
+    await blockAnchor.click();
     await driver.takeScreenShot('test_google_news_tab_top', 'block_dialog.png');
 
     // assert dialog
@@ -21,6 +20,7 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.takeScreenShot('test_google_news_tab_top', 'block_clicked.png');
 
     // assert block target is hidden
+    const blockTarget = await blockAnchor.getTarget('preceding-sibling::div');
     const isDisplayed = await blockTarget.isDisplayed();
     ok(!isDisplayed);
 }

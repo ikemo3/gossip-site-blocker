@@ -1,6 +1,6 @@
-import { By } from 'selenium-webdriver';
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
+import TestCompactMenu from './libs/compact_menu';
 
 export default async function main(driver: TestWebDriver): Promise<void> {
     const optionPage = await driver.optionPage();
@@ -18,14 +18,13 @@ export default async function main(driver: TestWebDriver): Promise<void> {
 
     // click compact menu
     await driver.googleImageSearch(['初音ミク', 'かわいい']);
-    const blockAnchor = await driver.querySelector('.block-anchor');
-    const blockTarget = await blockAnchor.findElement(By.xpath('parent::div'));
-    await driver.click(blockAnchor);
+    const compactMenu = new TestCompactMenu(driver, '.block-anchor');
+    await compactMenu.click();
     await driver.takeScreenShot('test_google_images_tab', 'block_menu.png');
 
     // click 'block this page'
-    const blockThisPage = await driver.querySelector('.block-operations-div');
-    await driver.click(blockThisPage);
+    const blockAnchor = await compactMenu.clickToBlock('.block-operations-div');
+    await blockAnchor.click();
     await driver.takeScreenShot('test_google_images_tab', 'block_dialog.png');
 
     // assert dialog
@@ -36,6 +35,7 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.takeScreenShot('test_google_images_tab', 'block_clicked.png');
 
     // assert block target is hidden
+    const blockTarget = await compactMenu.getTarget('parent::div');
     const isDisplayed = await blockTarget.isDisplayed();
     ok(!isDisplayed);
 }
