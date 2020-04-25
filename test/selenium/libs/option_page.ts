@@ -1,11 +1,8 @@
 import { By, WebElement } from 'selenium-webdriver';
 import { DriverType, TestDriverInterface } from './interface';
+import { MenuPosition } from '../../../apps/common';
 
-export interface BlockGoogleImagesTab {
-    blockGoogleImagesTab: boolean;
-}
-
-export class TestOptionPage {
+export default class TestOptionPage {
     private readonly _driver: TestDriverInterface;
 
     private readonly _driverType: DriverType;
@@ -55,7 +52,39 @@ export class TestOptionPage {
         }
     }
 
+    async setMenuPosition(expected: MenuPosition): Promise<void> {
+        interface MenuPositionConfig {
+            menuPosition: string;
+        }
+
+        // open dialog
+        await this.openOption();
+
+        // Possible: true, false, undefined
+        const current1: MenuPositionConfig = await this.getLocalStorage('menuPosition');
+        if (current1.menuPosition === expected) {
+            return;
+        }
+
+        const option1 = await this._driver.querySelector(
+            `#menuPosition > option[value="${expected}"]`,
+        );
+        await this._driver.click(option1);
+
+        const current2: MenuPositionConfig = await this.getLocalStorage('menuPosition');
+        if (current2.menuPosition === expected) {
+            return;
+        }
+
+        const menu2 = await this._driver.querySelector(`#menuPosition`);
+        await this._driver.click(menu2);
+    }
+
     async setBlockGoogleImagesTab(expected: boolean): Promise<void> {
+        interface BlockGoogleImagesTab {
+            blockGoogleImagesTab: boolean;
+        }
+
         // open dialog
         await this.openOption();
 
