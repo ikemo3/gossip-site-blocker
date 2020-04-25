@@ -4,6 +4,7 @@ import googleSearchResult from './test_google_search_result';
 import googleSearchInnerCard from './test_google_search_inner_card';
 import googleSearchTopNews from './test_google_search_top_news';
 import googleSearchTweet from './test_google_search_tweet';
+import googleNewsTabTop from './test_google_news_tab_top';
 import googleImagesTab from './test_google_images_tab';
 
 (async (): Promise<void> => {
@@ -13,6 +14,7 @@ import googleImagesTab from './test_google_images_tab';
         await googleSearchInnerCard(testDriver);
         await googleSearchTopNews(testDriver);
         await googleSearchTweet(testDriver);
+        await googleNewsTabTop(testDriver);
         await googleImagesTab(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console
@@ -30,6 +32,7 @@ import googleImagesTab from './test_google_images_tab';
         await googleSearchInnerCard(testDriver);
         await googleSearchTopNews(testDriver);
         await googleSearchTweet(testDriver);
+        await googleNewsTabTop(testDriver);
         await googleImagesTab(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console
