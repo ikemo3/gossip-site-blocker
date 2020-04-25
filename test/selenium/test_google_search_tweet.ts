@@ -3,9 +3,9 @@ import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
 
 export default async function main(driver: TestWebDriver): Promise<void> {
-    await driver.googleSearch(['自炊', '動画']);
+    await driver.googleSearch(['hyuki']);
     await driver.pause(500);
-    await driver.takeScreenShot('test_inner_card', 'search_result.png');
+    await driver.takeScreenShot('test_tweet', 'search_result.png');
 
     // click 'block this page'
     const blockThisPage = await driver.querySelector('.block-google-inner-card');
@@ -14,18 +14,17 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     );
     await driver.pause(500);
     await driver.click(blockThisPage);
-    await driver.takeScreenShot('test_inner_card', 'block_dialog.png');
+    await driver.takeScreenShot('test_tweet', 'block_dialog.png');
 
     // assert dialog
-    const blockDialog = await driver.querySelector('.block-dialog');
-    const domainRadio = await blockDialog.findElement(By.id('blocker-dialog-domain-radio'));
-    strictEqual(await domainRadio.getAttribute('value'), 'www.youtube.com');
+    const domainRadio = await driver.querySelector('.block-dialog #blocker-dialog-domain-radio');
+    strictEqual(await domainRadio.getAttribute('value'), 'twitter.com');
 
     // click block button
     const blockButton = await driver.querySelector('.blocker-primary-button');
     await driver.pause(500);
     await driver.click(blockButton);
-    await driver.takeScreenShot('test_inner_card', 'block_clicked.png');
+    await driver.takeScreenShot('test_tweet', 'block_clicked.png');
 
     // assert block target is hidden
     const isDisplayed = await blockTarget.isDisplayed();

@@ -3,33 +3,39 @@ import firefoxDriver from './firefox';
 import googleSearchResult from './test_google_search_result';
 import googleSearchInnerCard from './test_google_search_inner_card';
 import googleSearchTopNews from './test_google_search_top_news';
+import googleSearchTweet from './test_google_search_tweet';
+import googleImagesTab from './test_google_images_tab';
 
 (async (): Promise<void> => {
-    const driver = chromeDriver();
+    const testDriver = chromeDriver();
     try {
-        await googleSearchResult(driver);
-        await googleSearchInnerCard(driver);
-        await googleSearchTopNews(driver);
+        await googleSearchResult(testDriver);
+        await googleSearchInnerCard(testDriver);
+        await googleSearchTopNews(testDriver);
+        await googleSearchTweet(testDriver);
+        await googleImagesTab(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
         process.exitCode = 1;
     } finally {
-        await driver.close();
+        await testDriver.close();
     }
 })();
 
 (async (): Promise<void> => {
-    const driver = firefoxDriver();
+    const testDriver = firefoxDriver();
     try {
-        await googleSearchResult(driver);
-        await googleSearchInnerCard(driver);
-        await googleSearchTopNews(driver);
+        await googleSearchResult(testDriver);
+        await googleSearchInnerCard(testDriver);
+        await googleSearchTopNews(testDriver);
+        await googleSearchTweet(testDriver);
+        await googleImagesTab(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
         process.exitCode = 1;
     } finally {
-        await driver.close();
+        await testDriver.close();
     }
 })();
