@@ -58,6 +58,12 @@ export class TestWebDriver {
         return this.pause(1000);
     }
 
+    async googleNewsSearch(keywords: string[]): Promise<void> {
+        const query = keywords.join('+');
+        await this._driver.get(`https://www.google.com/search?q=${query}&tbm=nws`);
+        return this.pause(1000);
+    }
+
     async googleImageSearch(keywords: string[]): Promise<void> {
         const query = keywords.join('+');
         await this._driver.get(`https://www.google.com/search?q=${query}&tbm=isch`);
