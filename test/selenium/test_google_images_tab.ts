@@ -2,26 +2,22 @@ import { By } from 'selenium-webdriver';
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
 
-interface BlockGoogleImagesTab {
-    blockGoogleImagesTab: boolean;
-}
-
 export default async function main(driver: TestWebDriver): Promise<void> {
-    // change checkbox to false
-    const option: BlockGoogleImagesTab = await driver.changeOption('blockGoogleImagesTab');
-    ok(!option.blockGoogleImagesTab);
+    const optionPage = await driver.optionPage();
 
+    // change option to false
+    await optionPage.setBlockGoogleImagesTab(false);
+
+    // cannot block
     await driver.googleImageSearch(['初音ミク', 'かわいい']);
     const blockAnchors = await driver.querySelectorAll('.block-anchor');
     strictEqual(blockAnchors.length, 0);
 
-    // change checkbox to true
-    const option2: BlockGoogleImagesTab = await driver.changeOption('blockGoogleImagesTab');
-    ok(option2.blockGoogleImagesTab);
-
-    await driver.googleImageSearch(['初音ミク', 'かわいい']);
+    // change option to true
+    await optionPage.setBlockGoogleImagesTab(true);
 
     // click compact menu
+    await driver.googleImageSearch(['初音ミク', 'かわいい']);
     const blockAnchor = await driver.querySelector('.block-anchor');
     const blockTarget = await blockAnchor.findElement(By.xpath('parent::div'));
     await driver.click(blockAnchor);
