@@ -1,10 +1,13 @@
 import chromeDriver from './chrome';
 import firefoxDriver from './firefox';
 import { googleSearchResult, googleSearchResultCompactMenu } from './test_google_search_result';
-import googleSearchInnerCard from './test_google_search_inner_card';
-import googleSearchTopNews from './test_google_search_top_news';
-import googleSearchTweet from './test_google_search_tweet';
-import googleNewsTabTop from './test_google_news_tab_top';
+import {
+    googleSearchInnerCard,
+    googleSearchInnerCardCompactMenu,
+} from './test_google_search_inner_card';
+import { googleSearchTopNews, googleSearchTopNewsCompactMenu } from './test_google_search_top_news';
+import { googleSearchTweet, googleSearchTweetCompactMenu } from './test_google_search_tweet';
+import { googleNewsTabTop, googleNewsTabTopCompactMenu } from './test_google_news_tab_top';
 import googleImagesTab from './test_google_images_tab';
 import { TestWebDriver } from './driver';
 
@@ -12,9 +15,13 @@ const testCases = [
     googleSearchResult,
     googleSearchResultCompactMenu,
     googleSearchInnerCard,
+    googleSearchInnerCardCompactMenu,
     googleSearchTopNews,
+    googleSearchTopNewsCompactMenu,
     googleSearchTweet,
+    googleSearchTweetCompactMenu,
     googleNewsTabTop,
+    googleNewsTabTopCompactMenu,
     googleImagesTab,
 ];
 

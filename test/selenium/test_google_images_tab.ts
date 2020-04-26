@@ -17,12 +17,12 @@ export default async function main(driver: TestWebDriver): Promise<void> {
 
     // click compact menu
     await driver.googleImageSearch(['初音ミク', 'かわいい']);
-    const compactMenu = await driver.compactMenu('.block-anchor');
+    const compactMenu = await driver.compactMenu('.block-anchor a');
     await compactMenu.click();
     await driver.takeScreenShot('block_menu.png');
 
     // click 'block this page'
-    const blockAnchor = await compactMenu.clickToBlock('.block-operations-div');
+    const blockAnchor = await compactMenu.clickToBlock('.block-operations-div a:nth-child(2)');
     await blockAnchor.click();
     await driver.takeScreenShot('block_dialog.png');
 
@@ -34,7 +34,7 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.takeScreenShot('block_clicked.png');
 
     // assert block target is hidden
-    const blockTarget = await compactMenu.getTarget('parent::div');
+    const blockTarget = await compactMenu.getTarget('../..');
     const isDisplayed = await blockTarget.isDisplayed();
     ok(!isDisplayed);
 }
