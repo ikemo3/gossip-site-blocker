@@ -1,7 +1,7 @@
 import { By, WebDriver, WebElement } from 'selenium-webdriver';
 
 export default class TestBlockDialog {
-    private _driver: WebDriver;
+    private readonly _driver: WebDriver;
 
     private _dialog: WebElement;
 

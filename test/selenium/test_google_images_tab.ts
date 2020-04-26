@@ -1,6 +1,5 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import TestCompactMenu from './libs/compact_menu';
 
 export default async function main(driver: TestWebDriver): Promise<void> {
     const optionPage = await driver.optionPage();
@@ -18,7 +17,7 @@ export default async function main(driver: TestWebDriver): Promise<void> {
 
     // click compact menu
     await driver.googleImageSearch(['初音ミク', 'かわいい']);
-    const compactMenu = new TestCompactMenu(driver, '.block-anchor');
+    const compactMenu = await driver.compactMenu('.block-anchor');
     await compactMenu.click();
     await driver.takeScreenShot('block_menu.png');
 
