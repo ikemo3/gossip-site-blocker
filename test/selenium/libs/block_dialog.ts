@@ -20,6 +20,7 @@ export default class TestBlockDialog {
 
     async block(): Promise<void> {
         const blockButton = await this._driver.findElement(By.css('.blocker-primary-button'));
-        return this._driver.actions().click(blockButton).pause(500).perform();
+        await blockButton.click();
+        await this._driver.sleep(500);
     }
 }

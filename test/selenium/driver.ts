@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { basename, parse } from 'path';
 import { get as getStackTrace } from 'stack-trace';
 import { DriverType, TestDriverInterface } from './libs/interface';
-import { TestOptionPage } from './libs/option_page';
+import TestOptionPage from './libs/option_page';
 import TestBlockDialog from './libs/block_dialog';
 
 export { DriverType } from './libs/interface';
@@ -64,11 +64,13 @@ export class TestWebDriver implements TestDriverInterface {
     }
 
     async pause(milliSeconds: number): Promise<void> {
-        return this._driver.actions().pause(milliSeconds).perform();
+        await this._driver.sleep(milliSeconds);
     }
 
-    async click(button: WebElement): Promise<void> {
-        return this._driver.actions().click(button).pause(500).perform();
+    async click(element: WebElement): Promise<void> {
+        // cannot use Actions API for <select>.
+        await element.click();
+        await this._driver.sleep(500);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -13,5 +13,7 @@ export interface TestDriverInterface {
 
     get(url: string): Promise<void>;
 
+    pause(milliSeconds: number): Promise<void>;
+
     querySelector(css: string): Promise<WebElement>;
 }
