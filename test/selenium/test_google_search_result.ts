@@ -3,6 +3,7 @@ import { TestWebDriver } from './driver';
 import { MenuPosition } from '../../apps/common';
 
 export async function googleSearchResult(driver: TestWebDriver): Promise<void> {
+    // search
     await driver.googleSearch(['typescript', 'wikipedia', 'site:ja.wikipedia.org']);
     await driver.takeScreenShot('search_result.png');
 
@@ -36,12 +37,12 @@ export async function googleSearchResultCompactMenu(driver: TestWebDriver): Prom
     await driver.takeScreenShot('search_result.png');
 
     // click compact menu
-    const compactMenu = await driver.compactMenu('.block-anchor');
+    const compactMenu = await driver.compactMenu('.block-anchor a');
     await compactMenu.click();
     await driver.takeScreenShot('block_menu.png');
 
     // click 'block this page'
-    const blockAnchor = await compactMenu.clickToBlock('.block-operations-div');
+    const blockAnchor = await compactMenu.clickToBlock('.block-operations-div a:nth-child(2)');
     await blockAnchor.click();
     await driver.takeScreenShot('block_dialog.png');
 
