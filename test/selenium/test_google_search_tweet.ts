@@ -1,13 +1,12 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import TestBlockAnchor from './libs/block_anchor';
 
 export default async function main(driver: TestWebDriver): Promise<void> {
     await driver.googleSearch(['hyuki']);
     await driver.takeScreenShot('search_result.png');
 
     // click 'block this page'
-    const blockAnchor = new TestBlockAnchor(driver, '.block-google-inner-card');
+    const blockAnchor = await driver.blockAnchor('.block-google-inner-card');
     await blockAnchor.click();
     await driver.takeScreenShot('block_dialog.png');
 
