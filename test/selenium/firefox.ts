@@ -2,6 +2,7 @@ import { Builder } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/firefox';
 import * as os from 'os';
 import { DriverType, TestWebDriver } from './driver';
+import { TestCase } from './libs/interface';
 
 function getBinary(): string {
     const platform = os.platform();
@@ -15,7 +16,7 @@ function getBinary(): string {
     }
 }
 
-export default function (): TestWebDriver {
+export default function (testCase: TestCase<TestWebDriver>): TestWebDriver {
     const options = new Options()
         .addExtensions('tmp/workspace/gossip-site-blocker.xpi')
         .setBinary(getBinary())
@@ -24,5 +25,5 @@ export default function (): TestWebDriver {
         .windowSize({ width: 1280, height: 800 });
 
     const driver = new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
-    return new TestWebDriver(driver, DriverType.Firefox);
+    return new TestWebDriver(driver, DriverType.Firefox, testCase);
 }
