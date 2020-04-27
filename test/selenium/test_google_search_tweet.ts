@@ -1,8 +1,8 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import { MenuPosition } from '../../apps/common';
+import { BlockType, MenuPosition } from '../../apps/common';
 
-export async function googleSearchTweet(driver: TestWebDriver): Promise<void> {
+async function googleSearchTweet(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search
     await driver.googleSearch(['hyuki']);
     await driver.takeScreenShot('search_result.png');
@@ -16,14 +16,32 @@ export async function googleSearchTweet(driver: TestWebDriver): Promise<void> {
     const blockDialog = await driver.findDialog();
     strictEqual(await blockDialog.getDomainRadioValue(), 'twitter.com');
 
+    if (!isSoft) {
+        // set select to hard
+        await blockDialog.setType(BlockType.HARD);
+    }
+
     // click block button
     await blockDialog.block();
     await driver.takeScreenShot('block_clicked.png');
 
-    // assert block target is hidden
-    const blockTarget = await blockAnchor.getTarget('preceding-sibling::g-inner-card');
-    const isDisplayed = await blockTarget.isDisplayed();
-    ok(!isDisplayed);
+    if (isSoft) {
+        // assert block target is hidden
+        const blockTarget = await blockAnchor.getTarget('preceding-sibling::g-inner-card');
+        const isDisplayed = await blockTarget.isDisplayed();
+        ok(!isDisplayed);
+    } else {
+        // assert block target is gone
+        ok(await blockAnchor.isGone());
+    }
+}
+
+export async function googleSearchTweetSoftBlock(driver: TestWebDriver): Promise<void> {
+    return googleSearchTweet(driver, true);
+}
+
+export async function googleSearchTweetHardBlock(driver: TestWebDriver): Promise<void> {
+    return googleSearchTweet(driver, false);
 }
 
 export async function googleSearchTweetCompactMenu(driver: TestWebDriver): Promise<void> {

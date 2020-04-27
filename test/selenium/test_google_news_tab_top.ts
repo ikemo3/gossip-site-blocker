@@ -1,8 +1,8 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import { MenuPosition } from '../../apps/common';
+import { BlockType, MenuPosition } from '../../apps/common';
 
-export async function googleNewsTabTop(driver: TestWebDriver): Promise<void> {
+async function googleNewsTabTop(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search
     await driver.googleNewsSearch(['初音ミク', 'PR', 'TIMES']);
     await driver.takeScreenShot('search_result.png');
@@ -16,14 +16,32 @@ export async function googleNewsTabTop(driver: TestWebDriver): Promise<void> {
     const blockDialog = await driver.findDialog();
     strictEqual(await blockDialog.getDomainRadioValue(), 'prtimes.jp');
 
+    if (!isSoft) {
+        // set select to hard
+        await blockDialog.setType(BlockType.HARD);
+    }
+
     // click block button
     await blockDialog.block();
     await driver.takeScreenShot('block_clicked.png');
 
-    // assert block target is hidden
-    const blockTarget = await blockAnchor.getTarget('preceding-sibling::div');
-    const isDisplayed = await blockTarget.isDisplayed();
-    ok(!isDisplayed);
+    if (isSoft) {
+        // assert block target is hidden
+        const blockTarget = await blockAnchor.getTarget('preceding-sibling::div');
+        const isDisplayed = await blockTarget.isDisplayed();
+        ok(!isDisplayed);
+    } else {
+        // assert block target is gone
+        ok(await blockAnchor.isGone());
+    }
+}
+
+export async function googleNewsTabTopSoftBlock(driver: TestWebDriver): Promise<void> {
+    return googleNewsTabTop(driver, true);
+}
+
+export async function googleNewsTabTopHardBlock(driver: TestWebDriver): Promise<void> {
+    return googleNewsTabTop(driver, false);
 }
 
 export async function googleNewsTabTopCompactMenu(driver: TestWebDriver): Promise<void> {
