@@ -1,7 +1,8 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
+import { BlockType } from '../../apps/common';
 
-export default async function main(driver: TestWebDriver): Promise<void> {
+async function googleImagesTab(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     const optionPage = await driver.optionPage();
 
     // change option to false
@@ -29,12 +30,30 @@ export default async function main(driver: TestWebDriver): Promise<void> {
     // assert dialog
     const blockDialog = await driver.findDialog();
 
+    if (!isSoft) {
+        // set select to hard
+        await blockDialog.setType(BlockType.HARD);
+    }
+
     // click block button
     await blockDialog.block();
     await driver.takeScreenShot('block_clicked.png');
 
-    // assert block target is hidden
-    const blockTarget = await compactMenu.getTarget('../..');
-    const isDisplayed = await blockTarget.isDisplayed();
-    ok(!isDisplayed);
+    if (isSoft) {
+        // assert block target is hidden
+        const blockTarget = await compactMenu.getTarget('../..');
+        const isDisplayed = await blockTarget.isDisplayed();
+        ok(!isDisplayed);
+    } else {
+        // assert block target is gone
+        ok(await blockAnchor.isGone());
+    }
+}
+
+export async function googleImagesTabSoftBlock(driver: TestWebDriver): Promise<void> {
+    return googleImagesTab(driver, true);
+}
+
+export async function googleImagesTabHardBlock(driver: TestWebDriver): Promise<void> {
+    return googleImagesTab(driver, false);
 }

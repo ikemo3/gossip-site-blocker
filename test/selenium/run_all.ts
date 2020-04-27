@@ -1,33 +1,51 @@
 import chromeDriver from './chrome';
 import firefoxDriver from './firefox';
 import {
-    googleSearchResult,
-    googleSearchResultCompactMenu,
+    googleSearchResultSoftBlock,
     googleSearchResultHardBlock,
+    googleSearchResultCompactMenu,
 } from './test_google_search_result';
 import {
-    googleSearchInnerCard,
+    googleSearchInnerCardSoftBlock,
+    googleSearchInnerCardHardBlock,
     googleSearchInnerCardCompactMenu,
 } from './test_google_search_inner_card';
-import { googleSearchTopNews, googleSearchTopNewsCompactMenu } from './test_google_search_top_news';
-import { googleSearchTweet, googleSearchTweetCompactMenu } from './test_google_search_tweet';
-import { googleNewsTabTop, googleNewsTabTopCompactMenu } from './test_google_news_tab_top';
-import googleImagesTab from './test_google_images_tab';
+import {
+    googleSearchTopNewsSoftBlock,
+    googleSearchTopNewsHardBlock,
+    googleSearchTopNewsCompactMenu,
+} from './test_google_search_top_news';
+import {
+    googleSearchTweetSoftBlock,
+    googleSearchTweetHardBlock,
+    googleSearchTweetCompactMenu,
+} from './test_google_search_tweet';
+import {
+    googleNewsTabTopSoftBlock,
+    googleNewsTabTopHardBlock,
+    googleNewsTabTopCompactMenu,
+} from './test_google_news_tab_top';
+import { googleImagesTabSoftBlock, googleImagesTabHardBlock } from './test_google_images_tab';
 import { TestWebDriver } from './driver';
 
 const testCases = [
-    googleSearchResult,
-    googleSearchResultCompactMenu,
+    googleSearchResultSoftBlock,
     googleSearchResultHardBlock,
-    googleSearchInnerCard,
+    googleSearchResultCompactMenu,
+    googleSearchInnerCardSoftBlock,
+    googleSearchInnerCardHardBlock,
     googleSearchInnerCardCompactMenu,
-    googleSearchTopNews,
+    googleSearchTopNewsSoftBlock,
+    googleSearchTopNewsHardBlock,
     googleSearchTopNewsCompactMenu,
-    googleSearchTweet,
+    googleSearchTweetSoftBlock,
+    googleSearchTweetHardBlock,
     googleSearchTweetCompactMenu,
-    googleNewsTabTop,
+    googleNewsTabTopSoftBlock,
+    googleNewsTabTopHardBlock,
     googleNewsTabTopCompactMenu,
-    googleImagesTab,
+    googleImagesTabSoftBlock,
+    googleImagesTabHardBlock,
 ];
 
 type TestCase = (driver: TestWebDriver) => Promise<void>;

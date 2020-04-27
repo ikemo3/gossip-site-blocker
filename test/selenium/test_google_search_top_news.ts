@@ -1,8 +1,8 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import { MenuPosition } from '../../apps/common';
+import { BlockType, MenuPosition } from '../../apps/common';
 
-export async function googleSearchTopNews(driver: TestWebDriver): Promise<void> {
+async function googleSearchTopNews(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search
     await driver.googleSearch(['switch', 'site:game.watch.impress.co.jp']);
     await driver.takeScreenShot('search_result.png');
@@ -16,14 +16,32 @@ export async function googleSearchTopNews(driver: TestWebDriver): Promise<void> 
     const blockDialog = await driver.findDialog();
     strictEqual(await blockDialog.getDomainRadioValue(), 'game.watch.impress.co.jp');
 
+    if (!isSoft) {
+        // set select to hard
+        await blockDialog.setType(BlockType.HARD);
+    }
+
     // click block button
     await blockDialog.block();
     await driver.takeScreenShot('block_clicked.png');
 
-    // assert block target is hidden
-    const blockTarget = await blockAnchor.getTarget('preceding-sibling::div');
-    const isDisplayed = await blockTarget.isDisplayed();
-    ok(!isDisplayed);
+    if (isSoft) {
+        // assert block target is hidden
+        const blockTarget = await blockAnchor.getTarget('preceding-sibling::div');
+        const isDisplayed = await blockTarget.isDisplayed();
+        ok(!isDisplayed);
+    } else {
+        // assert block target is gone
+        ok(await blockAnchor.isGone());
+    }
+}
+
+export async function googleSearchTopNewsSoftBlock(driver: TestWebDriver): Promise<void> {
+    return googleSearchTopNews(driver, true);
+}
+
+export async function googleSearchTopNewsHardBlock(driver: TestWebDriver): Promise<void> {
+    return googleSearchTopNews(driver, false);
 }
 
 export async function googleSearchTopNewsCompactMenu(driver: TestWebDriver): Promise<void> {

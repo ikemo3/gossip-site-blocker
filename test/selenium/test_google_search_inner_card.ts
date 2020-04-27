@@ -1,8 +1,8 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import { MenuPosition } from '../../apps/common';
+import { BlockType, MenuPosition } from '../../apps/common';
 
-export async function googleSearchInnerCard(driver: TestWebDriver): Promise<void> {
+async function googleSearchInnerCard(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search
     await driver.googleSearch(['自炊', '動画']);
     await driver.takeScreenShot('search_result.png');
@@ -16,14 +16,32 @@ export async function googleSearchInnerCard(driver: TestWebDriver): Promise<void
     const blockDialog = await driver.findDialog();
     strictEqual(await blockDialog.getDomainRadioValue(), 'www.youtube.com');
 
+    if (!isSoft) {
+        // set select to hard
+        await blockDialog.setType(BlockType.HARD);
+    }
+
     // click block button
     await blockDialog.block();
     await driver.takeScreenShot('block_clicked.png');
 
-    // assert block target is hidden
-    const blockTarget = await blockAnchor.getTarget('preceding-sibling::g-inner-card');
-    const isDisplayed = await blockTarget.isDisplayed();
-    ok(!isDisplayed);
+    if (isSoft) {
+        // assert block target is hidden
+        const blockTarget = await blockAnchor.getTarget('preceding-sibling::g-inner-card');
+        const isDisplayed = await blockTarget.isDisplayed();
+        ok(!isDisplayed);
+    } else {
+        // assert block target is gone
+        ok(await blockAnchor.isGone());
+    }
+}
+
+export async function googleSearchInnerCardSoftBlock(driver: TestWebDriver): Promise<void> {
+    return googleSearchInnerCard(driver, true);
+}
+
+export async function googleSearchInnerCardHardBlock(driver: TestWebDriver): Promise<void> {
+    return googleSearchInnerCard(driver, false);
 }
 
 export async function googleSearchInnerCardCompactMenu(driver: TestWebDriver): Promise<void> {
