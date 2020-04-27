@@ -1,13 +1,22 @@
 # v1.11.0
 
+## Enhancements.
+
+* Add: Block 'Images' tab(#9, #186)
+
 ## Improvements:
 
 * Add: add Yahoo! News byline for 'Block recommend path'(#211, #212)
-* Add: add note.com for 'Block recommend path'(#211, #217)
+* Add: add note.com for 'Block recommend path'(#217)
 * Prettier support(#180)
 * remove `tsc` for ci/build(#189, #195)
 * set name for beta version(#143, #214)
-* use tabby for option(#182, #183)
+* use tabby for option(#15, #182, #183)
+
+## Bug Fixes
+
+* Fix: can't block Top News of Google Search(Firefox)(#245, #246)
+* Fix: the priority of blocking is incorrect(#249, #250)
 
 # v1.10.0
 
