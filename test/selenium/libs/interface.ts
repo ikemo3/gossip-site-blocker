@@ -17,3 +17,5 @@ export interface TestDriverInterface {
 
     querySelector(css: string): Promise<WebElement>;
 }
+
+export type TestCase<T extends TestDriverInterface> = (driver: T) => Promise<void>;

@@ -27,6 +27,7 @@ import {
 } from './test_google_news_tab_top';
 import { googleImagesTabSoftBlock, googleImagesTabHardBlock } from './test_google_images_tab';
 import { TestWebDriver } from './driver';
+import { TestCase } from './libs/interface';
 
 const testCases = [
     googleSearchResultSoftBlock,
@@ -48,10 +49,8 @@ const testCases = [
     googleImagesTabHardBlock,
 ];
 
-type TestCase = (driver: TestWebDriver) => Promise<void>;
-
-async function runTestWithChrome(testCase: TestCase): Promise<void> {
-    const testDriver = chromeDriver();
+async function runTestWithChrome(testCase: TestCase<TestWebDriver>): Promise<void> {
+    const testDriver = chromeDriver(testCase);
     try {
         await testCase(testDriver);
     } catch (e) {
@@ -63,8 +62,8 @@ async function runTestWithChrome(testCase: TestCase): Promise<void> {
     }
 }
 
-async function runTestWithFirefox(testCase: TestCase): Promise<void> {
-    const testDriver = firefoxDriver();
+async function runTestWithFirefox(testCase: TestCase<TestWebDriver>): Promise<void> {
+    const testDriver = firefoxDriver(testCase);
     try {
         await testCase(testDriver);
     } catch (e) {

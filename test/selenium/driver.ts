@@ -1,8 +1,6 @@
 import { By, WebDriver, WebElement } from 'selenium-webdriver';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import { basename, parse } from 'path';
-import { get as getStackTrace } from 'stack-trace';
-import { DriverType, TestDriverInterface } from './libs/interface';
+import { DriverType, TestCase, TestDriverInterface } from './libs/interface';
 import TestOptionPage from './libs/option_page';
 import TestBlockDialog from './libs/block_dialog';
 import TestBlockAnchor from './libs/block_anchor';
@@ -15,11 +13,14 @@ export class TestWebDriver implements TestDriverInterface {
 
     private readonly _driverType: DriverType;
 
+    private readonly _testCase: TestCase<TestWebDriver>;
+
     private _counter: number;
 
-    constructor(driver: WebDriver, driverType: DriverType) {
+    constructor(driver: WebDriver, driverType: DriverType, testCase: TestCase<TestWebDriver>) {
         this._driver = driver;
         this._driverType = driverType;
+        this._testCase = testCase;
         this._counter = 1;
     }
 
@@ -81,17 +82,11 @@ export class TestWebDriver implements TestDriverInterface {
     }
 
     async takeScreenShot(filename: string): Promise<void> {
-        const stackTrace = getStackTrace();
-
-        // get directory from caller's file name.
-        // eslint-disable-next-line no-console
-        console.assert(stackTrace.length >= 2);
-        const caller = stackTrace[1];
-        const testFileName = parse(basename(caller.getFileName())).name;
-        const testFuncName = caller.getFunctionName();
+        // get directory from test case
+        const testFuncName = this._testCase.name;
 
         // create dir if not exist
-        const dir = `tmp/screenshots/${testFileName}__${testFuncName}/${this._driverType}`;
+        const dir = `tmp/screenshots/${testFuncName}/${this._driverType}`;
         if (!existsSync(dir)) {
             mkdirSync(dir, { recursive: true });
         }
