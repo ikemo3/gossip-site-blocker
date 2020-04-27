@@ -107,7 +107,8 @@ export class TestWebDriver implements TestDriverInterface {
     }
 
     async blockAnchor(anchorCss: string): Promise<TestBlockAnchor> {
-        return new TestBlockAnchor(this._driver, anchorCss);
+        const anchor = this._driver.findElement(By.css(anchorCss));
+        return new TestBlockAnchor(this._driver, anchor);
     }
 
     async compactMenu(anchorCss: string): Promise<TestCompactMenu> {

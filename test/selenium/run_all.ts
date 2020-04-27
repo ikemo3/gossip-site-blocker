@@ -1,6 +1,10 @@
 import chromeDriver from './chrome';
 import firefoxDriver from './firefox';
-import { googleSearchResult, googleSearchResultCompactMenu } from './test_google_search_result';
+import {
+    googleSearchResult,
+    googleSearchResultCompactMenu,
+    googleSearchResultHardBlock,
+} from './test_google_search_result';
 import {
     googleSearchInnerCard,
     googleSearchInnerCardCompactMenu,
@@ -14,6 +18,7 @@ import { TestWebDriver } from './driver';
 const testCases = [
     googleSearchResult,
     googleSearchResultCompactMenu,
+    googleSearchResultHardBlock,
     googleSearchInnerCard,
     googleSearchInnerCardCompactMenu,
     googleSearchTopNews,

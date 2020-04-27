@@ -1,22 +1,31 @@
-import { By, WebDriver, WebElement } from 'selenium-webdriver';
+import { By, WebDriver, WebElement, WebElementPromise } from 'selenium-webdriver';
 
 export default class TestBlockAnchor {
     private readonly _driver: WebDriver;
 
     private readonly _anchorCss: string;
 
-    constructor(driver: WebDriver, anchorCss: string) {
+    private readonly _anchor: WebElementPromise;
+
+    constructor(driver: WebDriver, anchor: WebElementPromise) {
         this._driver = driver;
-        this._anchorCss = anchorCss;
+        this._anchor = anchor;
     }
 
     async click(): Promise<void> {
-        const anchor = await this._driver.findElement(By.css(this._anchorCss));
-        await anchor.click();
+        await this._anchor.click();
     }
 
     async getTarget(targetXpath: string): Promise<WebElement> {
-        const anchor = await this._driver.findElement(By.css(this._anchorCss));
-        return anchor.findElement(By.xpath(targetXpath));
+        return this._anchor.findElement(By.xpath(targetXpath));
+    }
+
+    async isGone(): Promise<boolean> {
+        try {
+            await this._anchor.click();
+            return false;
+        } catch (StaleElementReferenceError) {
+            return true;
+        }
     }
 }
