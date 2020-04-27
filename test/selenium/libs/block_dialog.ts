@@ -1,4 +1,5 @@
 import { By, WebDriver, WebElement } from 'selenium-webdriver';
+import { BlockType } from '../../../apps/common';
 
 export default class TestBlockDialog {
     private readonly _driver: WebDriver;
@@ -21,6 +22,13 @@ export default class TestBlockDialog {
     async block(): Promise<void> {
         const blockButton = await this._driver.findElement(By.css('.blocker-primary-button'));
         await blockButton.click();
+        await this._driver.sleep(500);
+    }
+
+    async setType(blockType: BlockType): Promise<void> {
+        const typeSelect = await this._driver.findElement(By.css('.block-dialog-type-select'));
+        const option = await typeSelect.findElement(By.css(`option[value="${blockType}"]`));
+        await option.click();
         await this._driver.sleep(500);
     }
 }
