@@ -25,7 +25,11 @@ import {
     googleNewsTabTopHardBlock,
     googleNewsTabTopCompactMenu,
 } from './test_google_news_tab_top';
-import { googleImagesTabSoftBlock, googleImagesTabHardBlock } from './test_google_images_tab';
+import {
+    googleImagesTabSoftBlock,
+    googleImagesTabHardBlock,
+    googleImagesTabOff,
+} from './test_google_images_tab';
 import { TestWebDriver } from './driver';
 import { TestCase } from './libs/interface';
 
@@ -47,6 +51,7 @@ const testCases = [
     googleNewsTabTopCompactMenu,
     googleImagesTabSoftBlock,
     googleImagesTabHardBlock,
+    googleImagesTabOff,
 ];
 
 async function runTestWithChrome(testCase: TestCase<TestWebDriver>): Promise<void> {

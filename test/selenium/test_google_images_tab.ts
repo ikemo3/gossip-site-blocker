@@ -3,19 +3,6 @@ import { TestWebDriver } from './driver';
 import { BlockType } from '../../apps/common';
 
 async function googleImagesTab(driver: TestWebDriver, isSoft: boolean): Promise<void> {
-    const optionPage = await driver.optionPage();
-
-    // change option to false
-    await optionPage.setBlockGoogleImagesTab(false);
-
-    // cannot block
-    await driver.googleImageSearch(['初音ミク', 'かわいい']);
-    const blockAnchors = await driver.querySelectorAll('.block-anchor');
-    strictEqual(blockAnchors.length, 0);
-
-    // change option to true
-    await optionPage.setBlockGoogleImagesTab(true);
-
     // click compact menu
     await driver.googleImageSearch(['初音ミク', 'かわいい']);
     const compactMenu = await driver.compactMenu('.block-anchor a');
@@ -56,4 +43,16 @@ export async function googleImagesTabSoftBlock(driver: TestWebDriver): Promise<v
 
 export async function googleImagesTabHardBlock(driver: TestWebDriver): Promise<void> {
     return googleImagesTab(driver, false);
+}
+
+export async function googleImagesTabOff(driver: TestWebDriver): Promise<void> {
+    const optionPage = await driver.optionPage();
+
+    // change option to false
+    await optionPage.setBlockGoogleImagesTab(false);
+
+    // cannot block
+    await driver.googleImageSearch(['初音ミク', 'かわいい']);
+    const blockAnchors = await driver.querySelectorAll('.block-anchor');
+    strictEqual(blockAnchors.length, 0);
 }
