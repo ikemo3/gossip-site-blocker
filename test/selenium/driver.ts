@@ -1,4 +1,4 @@
-import { By, WebDriver, WebElement } from 'selenium-webdriver';
+import { By, until, WebDriver, WebElement } from 'selenium-webdriver';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { DriverType, TestCase, TestDriverInterface } from './libs/interface';
 import TestOptionPage from './libs/option_page';
@@ -102,7 +102,7 @@ export class TestWebDriver implements TestDriverInterface {
     }
 
     async blockAnchor(anchorCss: string): Promise<TestBlockAnchor> {
-        const anchor = this._driver.findElement(By.css(anchorCss));
+        const anchor = this._driver.wait(until.elementLocated(By.css(anchorCss)));
         return new TestBlockAnchor(this._driver, anchor);
     }
 
