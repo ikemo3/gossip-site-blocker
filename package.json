@@ -1,6 +1,6 @@
 {
   "name": "gossip-site-blocker",
-  "version": "1.10.0.3",
+  "version": "1.11.0",
   "author": "Hideki Ikemoto",
   "license": "MIT",
   "devDependencies": {
