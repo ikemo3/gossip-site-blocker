@@ -4,7 +4,7 @@ import { BlockType, MenuPosition } from '../../apps/common';
 
 async function googleSearchInnerCard(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search
-    await driver.googleSearch(['自炊', '動画']);
+    await driver.googleSearch(['自炊', '料理', '動画']);
     await driver.takeScreenShot('search_result.png');
 
     // click 'block this page'
@@ -51,7 +51,7 @@ export async function googleSearchInnerCardCompactMenu(driver: TestWebDriver): P
     await optionPage.setMenuPosition(MenuPosition.COMPACT);
 
     // search
-    await driver.googleSearch(['自炊', '動画']);
+    await driver.googleSearch(['自炊', '料理', '動画']);
     await driver.takeScreenShot('search_result.png');
 
     // click compact menu
