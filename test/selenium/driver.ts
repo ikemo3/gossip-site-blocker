@@ -36,7 +36,7 @@ export class TestWebDriver implements TestDriverInterface {
     async googleSearch(keywords: string[]): Promise<void> {
         const query = keywords.join('+');
         await this._driver.get(`https://www.google.com/search?q=${query}`);
-        return this.pause(1000);
+        return this.pause(2000);
     }
 
     async googleNewsSearch(keywords: string[]): Promise<void> {
