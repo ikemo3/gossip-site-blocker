@@ -18,7 +18,7 @@ import {
 import {
     googleSearchTweetSoftBlock,
     googleSearchTweetHardBlock,
-    googleSearchTweetCompactMenu,
+    // googleSearchTweetCompactMenu,
 } from './test_google_search_tweet';
 import {
     googleNewsTabTopSoftBlock,
@@ -45,7 +45,7 @@ const testCases = [
     googleSearchTopNewsCompactMenu,
     googleSearchTweetSoftBlock,
     googleSearchTweetHardBlock,
-    googleSearchTweetCompactMenu,
+    // googleSearchTweetCompactMenu,
     googleNewsTabTopSoftBlock,
     googleNewsTabTopHardBlock,
     googleNewsTabTopCompactMenu,
