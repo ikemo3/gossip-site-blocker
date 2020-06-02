@@ -1,3 +1,9 @@
+# v1.11.1
+
+## Bug Fixes
+
+* Fix: can't unblock temporarily if the site is blocked by regexp
+
 # v1.11.0
 
 ## Enhancements.
