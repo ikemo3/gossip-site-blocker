@@ -400,6 +400,7 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
                 this.blockAnchor.hide();
                 this.changeAnchor.show();
                 break;
+
             case BlockReasonType.URL:
                 this.blockAnchor.showBlockExplicitly();
                 this.changeAnchor.show();
@@ -407,9 +408,11 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
             case BlockReasonType.IDN:
             case BlockReasonType.WORD:
+            case BlockReasonType.REGEXP:
                 this.blockAnchor.showBlockExplicitly();
                 this.changeAnchor.hide();
                 break;
+
             default:
                 throw new ApplicationError(`illegal type:${type}`);
         }
