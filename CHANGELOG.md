@@ -8,7 +8,7 @@
 
 ## Bug Fixes
 
-* Fix: can't unblock temporarily if the site is blocked by regexp
+* Fix: can't unblock temporarily if the site is blocked by regexp(#275)
 
 # v1.11.0
 
