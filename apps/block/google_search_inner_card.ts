@@ -43,6 +43,7 @@ class GoogleSearchInnerCard extends SearchResultToBlock {
             this.title = heading.textContent ? heading.textContent : '';
         }
 
+        element.setAttribute('data-gsb-element-type', 'google-search-inner-card');
         this.valid = true;
         [this.url] = urlList;
     }
