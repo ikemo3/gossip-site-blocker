@@ -319,6 +319,7 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         menuPosition: MenuPosition,
     ) {
         const blockTarget = new BlockTargetElement(this, g.getElement());
+        g.getElement().setAttribute('data-gsb-menu-position', menuPosition.toString());
 
         this.operationDiv = $.div('block-anchor');
         this.url = g.getUrl();

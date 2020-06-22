@@ -1,3 +1,9 @@
+# v1.11.2
+
+## Bug Fixes
+
+* Fix cannot click compact menu when tweet is long(#273)
+
 # v1.11.1
 
 ## Bug Fixes

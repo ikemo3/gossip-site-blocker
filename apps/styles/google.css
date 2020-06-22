@@ -155,8 +155,9 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
     top: 16px;
 }
 
-.cv2VAd {
-    height: auto !important;
+[data-gsb-element-type='google-search-inner-card'][data-gsb-menu-position='compact'] {
+    height: 360px !important;
+    max-height: 360px !important;
 }
 
 /* for compact menu in 'News' tab */
