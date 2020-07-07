@@ -12,8 +12,8 @@ class GoogleSearchTopNews extends SearchResultToBlock {
 
     private readonly compactMenuInsertElement: Element;
 
-    static isCandidate(element: Element, _: DocumentURL): boolean {
-        return element.classList.contains('dbsr');
+    static isCandidate(element: Element, documentURL: DocumentURL): boolean {
+        return element.classList.contains('dbsr') && !documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode

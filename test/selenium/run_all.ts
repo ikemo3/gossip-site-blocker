@@ -57,6 +57,8 @@ const testCases = [
 async function runTestWithChrome(testCase: TestCase<TestWebDriver>): Promise<void> {
     const testDriver = chromeDriver(testCase);
     try {
+        // eslint-disable-next-line no-console
+        console.log(testCase, testDriver.getDriverType());
         await testCase(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console
@@ -70,6 +72,8 @@ async function runTestWithChrome(testCase: TestCase<TestWebDriver>): Promise<voi
 async function runTestWithFirefox(testCase: TestCase<TestWebDriver>): Promise<void> {
     const testDriver = firefoxDriver(testCase);
     try {
+        // eslint-disable-next-line no-console
+        console.log(testCase, testDriver.getDriverType());
         await testCase(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console

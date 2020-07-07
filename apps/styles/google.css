@@ -164,3 +164,12 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
 #res h3.r.dO0Ag {
     overflow: visible;
 }
+
+[data-gsb-element-type='google-news-card'] + .block-anchor {
+    margin-top: -13px !important;
+    margin-bottom: 13px !important;
+}
+
+[data-gsb-element-type='google-news-card'][data-gsb-menu-position='compact'] {
+    height: auto;
+}

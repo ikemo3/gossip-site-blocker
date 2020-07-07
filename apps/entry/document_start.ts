@@ -10,6 +10,7 @@ import BlockState from '../content_script/block_state';
 import BlockMediator from '../content_script/block_mediator';
 import GoogleSearchInnerCard from '../block/google_search_inner_card';
 import GoogleSearchTopNews from '../block/google_search_top_news';
+import GoogleNewsCard from '../block/google_news_card';
 import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
 import GoogleNewsTabTop from '../block/google_news_tab_top';
 import GoogleImageTab from '../block/google_image_tab';
@@ -32,6 +33,7 @@ const pendingGoogleSearchTopNewsList: Element[] = [];
 const pendingGoogleNewsTabCardSectionList: Element[] = [];
 const pendingGoogleNewsTabTopList: Element[] = [];
 const pendingGoogleImageTabList: Element[] = [];
+const pendingGoogleNewsCardList: Element[] = [];
 
 function blockElement(g: SearchResultToBlock, options: Options): boolean {
     if (!g.canRetry()) {
@@ -132,6 +134,15 @@ const observer = new MutationObserver((mutations) => {
                     } else {
                         pendingGoogleImageTabList.push(node);
                     }
+                } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
+                    if (gsbOptions !== null) {
+                        const g = new GoogleNewsCard(node);
+                        if (!blockElement(g, gsbOptions)) {
+                            pendingGoogleNewsCardList.push(node);
+                        }
+                    } else {
+                        pendingGoogleNewsCardList.push(node);
+                    }
                 }
             }
         }
@@ -197,6 +208,13 @@ observer.observe(document.documentElement, config);
     for (const node of pendingGoogleImageTabList) {
         if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleImageTab(node);
+            blockElement(g, gsbOptions);
+        }
+    }
+
+    for (const node of pendingGoogleNewsCardList) {
+        if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
+            const g = new GoogleNewsCard(node);
             blockElement(g, gsbOptions);
         }
     }
