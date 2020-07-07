@@ -1,4 +1,4 @@
-import { $, BannedTarget, BlockType, DOMUtils } from '../common';
+import { $, BannedTarget, BlockType, DOMUtils, Logger } from '../common';
 import { RegExpItem } from '../repository/regexp_repository';
 import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from '../repository/banned_word_repository';
@@ -40,9 +40,14 @@ function matchesByWord(content: ContentToBlock, bannedWord: BannedWord): boolean
 }
 
 function matchesByRegexp(content: ContentToBlock, regexpItem: RegExpItem): boolean {
-    const pattern = new RegExp(regexpItem.pattern);
+    try {
+        const pattern = new RegExp(regexpItem.pattern);
 
-    return pattern.test(DOMUtils.removeProtocol(content.getUrl()));
+        return pattern.test(DOMUtils.removeProtocol(content.getUrl()));
+    } catch (e) {
+        Logger.log(`Invalid regexp: ${regexpItem.pattern}`);
+        return false;
+    }
 }
 
 class BlockState {
