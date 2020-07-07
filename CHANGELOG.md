@@ -1,3 +1,9 @@
+# v1.12.0
+
+## Enhancements.
+
+* Add: Block new 'Google News' tab(card layout)
+
 # v1.11.2
 
 ## Bug Fixes

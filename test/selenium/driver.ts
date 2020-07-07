@@ -33,6 +33,10 @@ export class TestWebDriver implements TestDriverInterface {
         return this.pause(500);
     }
 
+    getDriverType(): DriverType {
+        return this._driverType;
+    }
+
     async googleSearch(keywords: string[]): Promise<void> {
         const query = keywords.join('+');
         await this._driver.get(`https://www.google.com/search?q=${query}`);
