@@ -2,13 +2,17 @@
 
 ## Enhancements.
 
-* Add: Block new 'Google News' tab(card layout)
+* Add: Block new 'Google News' tab(card layout)(#281)
+
+## Bug Fixes
+
+* Fix: cantch exception by invalid regexp(#284)
 
 # v1.11.2
 
 ## Bug Fixes
 
-* Fix cannot click compact menu when tweet is long(#273)
+* Fix: cannot click compact menu when tweet is long(#273)
 
 # v1.11.1
 
