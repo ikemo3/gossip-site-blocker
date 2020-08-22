@@ -1,3 +1,9 @@
+# v1.12.1
+
+## Bug Fixes
+
+* Fix: can't block image because Google changed the results(#291)
+
 # v1.12.0
 
 ## Enhancements.
