@@ -43,14 +43,15 @@ class GoogleImageTab extends SearchResultToBlock {
             return;
         }
 
-        const title = anchor.querySelector('div.WGvvNb');
-        if (!title) {
+        const image = element.querySelector('img.Q4LuWd');
+        if (!image) {
             this.valid = false;
             this._canRetry = true;
             return;
         }
 
-        this.title = title.textContent ? title.textContent : '';
+        const alt = image.getAttribute('alt');
+        this.title = alt || '';
         this.url = href;
         this.valid = true;
         this._canRetry = true;
