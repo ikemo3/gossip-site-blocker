@@ -1,3 +1,9 @@
+# v1.12.2
+
+## Bug Fixes
+
+* Fix: update content detection(#295)
+
 # v1.12.1
 
 ## Bug Fixes
