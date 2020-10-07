@@ -1,6 +1,9 @@
 import { SearchResultToBlock } from './block';
 import DocumentURL from '../values/document_url';
 
+// noinspection SpellCheckingInspection
+const CONTENT_SELECTOR = '.IsZvec';
+
 class GoogleSearchResult extends SearchResultToBlock {
     private readonly valid: boolean;
 
@@ -117,7 +120,7 @@ class GoogleSearchResult extends SearchResultToBlock {
         }
 
         const title = h3.textContent ? h3.textContent : '';
-        const st: HTMLSpanElement | null = element.querySelector('.st');
+        const st: HTMLSpanElement | null = element.querySelector(CONTENT_SELECTOR);
         const contents = st ? st.textContent! : '';
 
         this.valid = true;
