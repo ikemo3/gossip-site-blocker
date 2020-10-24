@@ -1,3 +1,9 @@
+# v1.13.0
+
+## Enhancements.
+
+* Add: Block 'Movie' in google search(#298)
+
 # v1.12.2
 
 ## Bug Fixes

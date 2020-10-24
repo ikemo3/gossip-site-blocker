@@ -43,6 +43,11 @@ g-inner-card:not([data-blocker-display=none]) > span.block-anchor {
     margin-left: 108px; /* width of class="dfhHve" + margin-right of class="NQHJEb" */
 }
 
+:not(g-inner-card):not([data-blocker-display=none]) + .block-anchor.block-google-movie {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /**
  * Anchor immediately after blocked element
  */

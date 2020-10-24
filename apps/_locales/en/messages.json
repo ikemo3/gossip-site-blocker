@@ -29,6 +29,9 @@
   "blockGoogleImagesTab": {
     "message": "Block 'Images' tab"
   },
+  "blockGoogleSearchMovie": {
+    "message": "Block 'Movie'"
+  },
   "blockThisDomainWithUrl": {
     "message": "Block this domain($domain$)",
     "placeholders": {

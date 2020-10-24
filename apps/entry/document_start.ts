@@ -14,6 +14,7 @@ import GoogleNewsCard from '../block/google_news_card';
 import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
 import GoogleNewsTabTop from '../block/google_news_tab_top';
 import GoogleImageTab from '../block/google_image_tab';
+import GoogleSearchMovie from '../block/google_search_movie';
 import { SearchResultToBlock } from '../block/block';
 import DocumentURL from '../values/document_url';
 
@@ -34,6 +35,7 @@ const pendingGoogleNewsTabCardSectionList: Element[] = [];
 const pendingGoogleNewsTabTopList: Element[] = [];
 const pendingGoogleImageTabList: Element[] = [];
 const pendingGoogleNewsCardList: Element[] = [];
+const pendingGoogleSearchMovieList: Element[] = [];
 
 function blockElement(g: SearchResultToBlock, options: Options): boolean {
     if (!g.canRetry()) {
@@ -143,6 +145,17 @@ const observer = new MutationObserver((mutations) => {
                     } else {
                         pendingGoogleNewsCardList.push(node);
                     }
+                } else if (GoogleSearchMovie.isCandidate(node, documentURL)) {
+                    if (gsbOptions !== null) {
+                        if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
+                            const g = new GoogleSearchMovie(node);
+                            if (!blockElement(g, gsbOptions)) {
+                                pendingGoogleSearchMovieList.push(node);
+                            }
+                        }
+                    } else {
+                        pendingGoogleSearchMovieList.push(node);
+                    }
                 }
             }
         }
@@ -162,6 +175,7 @@ observer.observe(document.documentElement, config);
     const bannedWordOption: boolean = await OptionRepository.ShowBlockedByWordInfo.load();
     const blockGoogleNewsTab: boolean = await OptionRepository.BlockGoogleNewsTab.load();
     const blockGoogleImagesTab: boolean = await OptionRepository.BlockGoogleImagesTab.load();
+    const blockGoogleSearchMovie: boolean = await OptionRepository.BlockGoogleSearchMovie.load();
     Logger.debug('autoBlockIDNOption:', autoBlockIDN);
 
     gsbOptions = {
@@ -174,6 +188,7 @@ observer.observe(document.documentElement, config);
         bannedWordOption,
         blockGoogleNewsTab,
         blockGoogleImagesTab,
+        blockGoogleSearchMovie,
     };
 
     for (const node of pendingGoogleSearchResultList) {
@@ -215,6 +230,13 @@ observer.observe(document.documentElement, config);
     for (const node of pendingGoogleNewsCardList) {
         if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleNewsCard(node);
+            blockElement(g, gsbOptions);
+        }
+    }
+
+    for (const node of pendingGoogleSearchMovieList) {
+        if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
+            const g = new GoogleSearchMovie(node);
             blockElement(g, gsbOptions);
         }
     }
