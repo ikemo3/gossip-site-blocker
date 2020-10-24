@@ -29,6 +29,9 @@
   "blockGoogleImagesTab": {
     "message": "「画像」タブをブロック"
   },
+  "blockGoogleSearchMovie": {
+    "message": "「動画」をブロック"
+  },
   "blockThisDomainWithUrl": {
     "message": "このドメインをブロック($domain$)",
     "placeholders": {

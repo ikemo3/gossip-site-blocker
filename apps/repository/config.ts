@@ -131,6 +131,20 @@ export const OptionRepository = {
             Logger.debug("set 'blockGoogleImagesTab' to =>", blockGoogleImagesTab);
         },
     },
+
+    BlockGoogleSearchMovie: {
+        load: async (): Promise<boolean> => {
+            const items = await ChromeStorage.load({ blockGoogleSearchMovie: true });
+
+            return items.blockGoogleSearchMovie;
+        },
+
+        save: async (blockGoogleSearchMovie: boolean): Promise<void> => {
+            await ChromeStorage.save({ blockGoogleSearchMovie });
+
+            Logger.debug("set 'blockGoogleSearchMovie' to =>", blockGoogleSearchMovie);
+        },
+    },
 };
 
 export interface Options {
@@ -143,4 +157,5 @@ export interface Options {
     bannedWordOption: boolean;
     blockGoogleNewsTab: boolean;
     blockGoogleImagesTab: boolean;
+    blockGoogleSearchMovie: boolean;
 }
