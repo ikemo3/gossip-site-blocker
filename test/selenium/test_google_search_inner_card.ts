@@ -4,7 +4,7 @@ import { BlockType, MenuPosition } from '../../apps/common';
 
 async function googleSearchInnerCard(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search
-    await driver.googleSearch(['自炊', '料理', '動画']);
+    await driver.googleSearch(['自炊', 'レシピ', 'クックパッド']);
     await driver.takeScreenShot('search_result.png');
 
     // click 'block this page'
@@ -14,7 +14,7 @@ async function googleSearchInnerCard(driver: TestWebDriver, isSoft: boolean): Pr
 
     // assert dialog
     const blockDialog = await driver.findDialog();
-    strictEqual(await blockDialog.getDomainRadioValue(), 'www.youtube.com');
+    strictEqual(await blockDialog.getDomainRadioValue(), 'cookpad.com');
 
     if (!isSoft) {
         // set select to hard
@@ -51,7 +51,7 @@ export async function googleSearchInnerCardCompactMenu(driver: TestWebDriver): P
     await optionPage.setMenuPosition(MenuPosition.COMPACT);
 
     // search
-    await driver.googleSearch(['自炊', '料理', '動画']);
+    await driver.googleSearch(['自炊', 'レシピ', 'クックパッド']);
     await driver.takeScreenShot('search_result.png');
 
     // click compact menu
@@ -66,7 +66,7 @@ export async function googleSearchInnerCardCompactMenu(driver: TestWebDriver): P
 
     // assert dialog
     const blockDialog = await driver.findDialog();
-    strictEqual(await blockDialog.getDomainRadioValue(), 'www.youtube.com');
+    strictEqual(await blockDialog.getDomainRadioValue(), 'cookpad.com');
 
     // click block button
     await blockDialog.block();

@@ -8,7 +8,7 @@ async function googleNewsTabTop(driver: TestWebDriver, isSoft: boolean): Promise
     await driver.takeScreenShot('search_result.png');
 
     // click 'block this page'
-    const blockAnchor = await driver.blockAnchor('.block-google-news-top');
+    const blockAnchor = await driver.blockAnchor('.block-google-card');
     await blockAnchor.click();
     await driver.takeScreenShot('block_dialog.png');
 
@@ -27,7 +27,7 @@ async function googleNewsTabTop(driver: TestWebDriver, isSoft: boolean): Promise
 
     if (isSoft) {
         // assert block target is hidden
-        const blockTarget = await blockAnchor.getTarget('preceding-sibling::div');
+        const blockTarget = await blockAnchor.getTarget('preceding-sibling::g-card');
         const isDisplayed = await blockTarget.isDisplayed();
         ok(!isDisplayed);
     } else {

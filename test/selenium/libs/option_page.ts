@@ -31,7 +31,7 @@ export default class TestOptionPage {
         const itemListShadowRoot = await this.getShadowRoot(itemList);
 
         const itemsContainer = await itemListShadowRoot.findElement(By.css('.items-container'));
-        const item = await itemsContainer.findElement(By.css('extensions-item:nth-child(3)'));
+        const item = await itemsContainer.findElement(By.css('extensions-item'));
         return item.getAttribute('id');
     }
 
