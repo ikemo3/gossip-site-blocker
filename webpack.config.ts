@@ -33,28 +33,30 @@ const config: Configuration = {
                 '!.web-extension-id',
             ],
         }),
-        new CopyPlugin([
-            {
-                from: 'apps/_locales',
-                to: '_locales',
-            },
-            {
-                from: 'apps/icons',
-                to: 'icons',
-            },
-            {
-                from: 'apps/styles',
-                to: 'styles',
-            },
-            {
-                from: 'node_modules/tabbyjs/dist/css/tabby-ui.css',
-                to: 'styles',
-            },
-            {
-                from: 'apps/.web-extension-id',
-                to: '',
-            },
-        ]),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: 'apps/_locales',
+                    to: '_locales',
+                },
+                {
+                    from: 'apps/icons',
+                    to: 'icons',
+                },
+                {
+                    from: 'apps/styles',
+                    to: 'styles',
+                },
+                {
+                    from: 'node_modules/tabbyjs/dist/css/tabby-ui.css',
+                    to: 'styles',
+                },
+                {
+                    from: 'apps/.web-extension-id',
+                    to: '',
+                },
+            ],
+        }),
         new HtmlWebpackPlugin({
             template: join(__dirname, 'apps/popup/popup.html'),
             filename: 'popup/popup.html',
