@@ -67,7 +67,7 @@ async function appendShowBlockedByWordInfoAnchor(element: Element): Promise<void
 async function createAppbarLinks(): Promise<void> {
     const resultStats = document.getElementById('result-stats');
     if (resultStats !== null) {
-        const resultStatsIsHidden = getComputedStyle(resultStats).opacity === '0';
+        const resultStatsIsHidden = getComputedStyle(resultStats.parentElement!).opacity === '0';
         if (!resultStatsIsHidden) {
             await appendTemporarilyUnblockAllAnchor(resultStats);
             await appendShowBlockedByWordInfoAnchor(resultStats);
@@ -76,7 +76,7 @@ async function createAppbarLinks(): Promise<void> {
         }
     }
 
-    const menu = document.getElementById('hdtbMenus');
+    const menu = document.getElementById('hdtb-rst');
     if (menu !== null && menu.style.display !== 'none') {
         const toolDiv = document.querySelector('.hdtb-mn-cont');
         if (toolDiv !== null) {
