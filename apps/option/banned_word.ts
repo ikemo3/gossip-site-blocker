@@ -1,5 +1,6 @@
 import { $, ApplicationError, BannedTarget, BlockType, Logger } from '../common';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
+import { createSelectOption } from '../util/dom';
 
 export default class BannedWords {
     private addButton: HTMLInputElement;
@@ -59,22 +60,36 @@ export default class BannedWords {
         $.onclick(deleteButton, this.deleteKeyword.bind(this, word.keyword, wordDiv));
         wordDiv.appendChild(deleteButton);
 
-        const typeSelect: HTMLSelectElement = document.createElement('select');
-        const softOption: HTMLOptionElement = $.option('soft', $.message('softBlock'));
-        const hardOption: HTMLOptionElement = $.option('hard', $.message('hardBlock'));
-        typeSelect.appendChild(softOption);
-        typeSelect.appendChild(hardOption);
-        typeSelect.addEventListener('change', this.changeType.bind(this, word.keyword));
-        typeSelect.value = word.blockType.toString();
+        const typeSelect: HTMLSelectElement = createSelectOption({
+            options: [
+                {
+                    value: 'soft',
+                    message: $.message('softBlock'),
+                },
+                {
+                    value: 'hard',
+                    message: $.message('hardBlock'),
+                },
+            ],
+            onChange: this.changeType.bind(this, word.keyword),
+            selectedValue: word.blockType.toString(),
+        });
         wordDiv.appendChild(typeSelect);
 
-        const targetSelect = document.createElement('select');
-        const titleAndContentsOption = $.option('titleAndContents', $.message('titleAndContents'));
-        const titleOnly = $.option('titleOnly', $.message('titleOnly'));
-        targetSelect.appendChild(titleAndContentsOption);
-        targetSelect.appendChild(titleOnly);
-        targetSelect.addEventListener('change', this.changeTarget.bind(this, word.keyword));
-        targetSelect.value = word.target.toString();
+        const targetSelect: HTMLSelectElement = createSelectOption({
+            options: [
+                {
+                    value: 'titleAndContents',
+                    message: $.message('titleAndContents'),
+                },
+                {
+                    value: 'titleOnly',
+                    message: $.message('titleOnly'),
+                },
+            ],
+            onChange: this.changeTarget.bind(this, word.keyword),
+            selectedValue: word.target.toString(),
+        });
         wordDiv.appendChild(targetSelect);
 
         const br = $.br();
