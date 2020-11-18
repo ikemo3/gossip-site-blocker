@@ -1,6 +1,6 @@
 import { ChromeStorage, Logger } from '../common';
 import BlockedSites from '../model/blocked_sites';
-import { BannedWord } from './banned_word_repository';
+import { BannedWord } from './banned_words';
 import { RegExpItem } from './regexp_repository';
 import { MenuPosition } from './enums';
 

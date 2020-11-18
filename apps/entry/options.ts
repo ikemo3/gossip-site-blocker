@@ -1,7 +1,7 @@
 import BannedWords from '../option/banned_word';
 import BlockedSitesRepository from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
-import { BannedWordRepository } from '../repository/banned_word_repository';
+import { BannedWordRepository } from '../repository/banned_words';
 import { RegExpRepository } from '../repository/regexp_repository';
 import { OptionInterface, OptionRepository as Option } from '../repository/options';
 import { Logger } from '../common';
