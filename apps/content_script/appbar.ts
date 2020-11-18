@@ -1,6 +1,6 @@
 import { $ } from '../common';
 import { BlockReasonType } from '../model/block_reason';
-import { OptionRepository } from '../repository/config';
+import { OptionRepository } from '../repository/options';
 
 function temporarilyUnblockAll(): void {
     const anchorList = document.querySelectorAll('.blocker-temporarily-unblock');

@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from './block';
 import DocumentURL from '../values/document_url';
-import { Options } from '../repository/config';
+import { Options } from '../repository/options';
 import { MenuPosition } from '../repository/enums';
 
 class GoogleImageTab extends SearchResultToBlock {
