@@ -2,7 +2,7 @@ import BlockedSites from '../model/blocked_sites';
 import { BannedWord, BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { OptionRepository, Options } from '../repository/config';
-import { Logger, MenuPosition } from '../common';
+import { Logger } from '../common';
 import { BlockReason } from '../model/block_reason';
 import BlockedSitesRepository from '../repository/blocked_sites';
 import GoogleSearchResult from '../block/google_search_result';
@@ -17,6 +17,7 @@ import GoogleImageTab from '../block/google_image_tab';
 import GoogleSearchMovie from '../block/google_search_movie';
 import { SearchResultToBlock } from '../block/block';
 import DocumentURL from '../values/document_url';
+import { MenuPosition } from '../repository/enums';
 
 declare global {
     interface Window {

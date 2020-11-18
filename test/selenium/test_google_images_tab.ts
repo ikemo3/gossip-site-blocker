@@ -1,6 +1,6 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import { BlockType } from '../../apps/common';
+import { BlockType } from '../../apps/repository/enums';
 
 async function googleImagesTab(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // click compact menu

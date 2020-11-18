@@ -1,5 +1,5 @@
 import { By, WebDriver, WebElement } from 'selenium-webdriver';
-import { BlockType } from '../../../apps/common';
+import { BlockType } from '../../../apps/repository/enums';
 
 export default class TestBlockDialog {
     private readonly _driver: WebDriver;

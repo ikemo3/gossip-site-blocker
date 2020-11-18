@@ -1,4 +1,5 @@
-import { BannedTarget, BlockType, ChromeStorage, Logger } from '../common';
+import { ChromeStorage, Logger } from '../common';
+import { BannedTarget, BlockType } from './enums';
 
 interface BannedWordItems {
     bannedWords: BannedWord[];

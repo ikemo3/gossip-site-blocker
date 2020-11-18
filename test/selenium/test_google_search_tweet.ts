@@ -1,6 +1,6 @@
 import { ok, strictEqual } from 'assert';
 import { TestWebDriver } from './driver';
-import { BlockType, MenuPosition } from '../../apps/common';
+import { BlockType, MenuPosition } from '../../apps/repository/enums';
 
 async function googleSearchTweet(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search

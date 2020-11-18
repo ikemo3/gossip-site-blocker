@@ -1,4 +1,4 @@
-import { MenuPosition } from '../common';
+import { MenuPosition } from '../repository/enums';
 
 export interface ContentToBlock {
     getUrl(): string;
