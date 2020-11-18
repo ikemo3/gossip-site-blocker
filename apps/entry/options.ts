@@ -3,7 +3,7 @@ import BlockedSitesRepository from '../repository/blocked_sites';
 import BlockedSiteOption from '../option/blocked_site_option';
 import { BannedWordRepository } from '../repository/banned_word_repository';
 import { RegExpRepository } from '../repository/regexp_repository';
-import { OptionInterface, OptionRepository as Option } from '../repository/config';
+import { OptionInterface, OptionRepository as Option } from '../repository/options';
 import { Logger } from '../common';
 import RegExpList from '../option/regexp';
 import localizeHtmlPage from '../option/l10n';
