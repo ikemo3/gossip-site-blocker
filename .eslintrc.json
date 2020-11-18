@@ -45,6 +45,7 @@
         "optionalDependencies": false
       }
     ],
+    "import/prefer-default-export": "off",
     "max-classes-per-file": "off",
     "no-continue": "off",
     "no-restricted-syntax": [
