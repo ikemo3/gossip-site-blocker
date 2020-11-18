@@ -2,10 +2,11 @@ import { BlockReason, BlockReasonType } from '../model/block_reason';
 import BlockState from './block_state';
 import BlockDialog from './dialog';
 import { SearchResultToBlock } from '../block/block';
-import { $, ApplicationError, BlockType, DOMUtils, MenuPosition } from '../common';
+import { $, ApplicationError, DOMUtils } from '../common';
 import BlockedSitesRepository from '../repository/blocked_sites';
 import { RegExpRepository } from '../repository/regexp_repository';
 import { IBasicBlockMediator, IBlockMediator } from './mediator';
+import { BlockType, MenuPosition } from '../repository/enums';
 
 /**
  * Block target element.

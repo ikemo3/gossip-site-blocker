@@ -1,6 +1,6 @@
 import { By, WebElement } from 'selenium-webdriver';
 import { DriverType, TestDriverInterface } from './interface';
-import { MenuPosition } from '../../../apps/common';
+import { MenuPosition } from '../../../apps/repository/enums';
 
 export default class TestOptionPage {
     private readonly _driver: TestDriverInterface;

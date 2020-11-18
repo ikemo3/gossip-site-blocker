@@ -1,5 +1,6 @@
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { $, ApplicationError, BlockType } from '../common';
+import { $, ApplicationError } from '../common';
+import { BlockType } from '../repository/enums';
 
 class RegExpList {
     private readonly regexpList: HTMLDivElement;

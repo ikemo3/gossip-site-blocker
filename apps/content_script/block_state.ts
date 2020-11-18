@@ -1,10 +1,11 @@
-import { $, BannedTarget, BlockType, DOMUtils, Logger } from '../common';
+import { $, DOMUtils, Logger } from '../common';
 import { RegExpItem } from '../repository/regexp_repository';
 import BlockedSites from '../model/blocked_sites';
 import { BannedWord } from '../repository/banned_word_repository';
 import BlockedSite from '../model/blocked_site';
 import { BlockReason, BlockReasonType } from '../model/block_reason';
 import { ContentToBlock } from '../block/block';
+import { BannedTarget, BlockType } from '../repository/enums';
 
 function first<T>(array: Array<T>): T | undefined {
     return array.shift();

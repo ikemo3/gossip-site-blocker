@@ -1,0 +1,14 @@
+export enum BlockType {
+    SOFT = 'soft',
+    HARD = 'hard',
+}
+
+export enum BannedTarget {
+    TITLE_AND_CONTENTS = 'titleAndContents',
+    TITLE_ONLY = 'titleOnly',
+}
+
+export enum MenuPosition {
+    COMPACT = 'compact',
+    DEFAULT = 'default',
+}
