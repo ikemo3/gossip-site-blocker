@@ -1,5 +1,5 @@
 import { ChromeStorage, Logger } from '../common';
-import { BannedTarget, BlockType } from './enums';
+import { BannedTarget, BlockType, KeywordType } from './enums';
 
 interface BannedWordItems {
     bannedWords: BannedWord[];
@@ -9,6 +9,7 @@ export interface BannedWord {
     keyword: string;
     blockType: BlockType;
     target: BannedTarget;
+    keywordType: KeywordType;
 }
 
 // eslint-disable-next-line import/prefer-default-export
@@ -24,6 +25,10 @@ export const BannedWordRepository = {
 
             if (!item.target) {
                 item.target = BannedTarget.TITLE_AND_CONTENTS;
+            }
+
+            if (!item.keywordType) {
+                item.keywordType = KeywordType.STRING;
             }
         }
 
@@ -74,6 +79,7 @@ export const BannedWordRepository = {
             keyword: addWord,
             blockType: BlockType.SOFT,
             target: BannedTarget.TITLE_AND_CONTENTS,
+            keywordType: KeywordType.STRING,
         });
         await this.save(words);
         return true;
@@ -105,6 +111,22 @@ export const BannedWordRepository = {
 
             // eslint-disable-next-line no-param-reassign
             word.target = target;
+            return word;
+        });
+
+        await this.save(filteredWords);
+    },
+
+    async changeKeywordType(changeWord: string, keywordType: KeywordType): Promise<void> {
+        const words: BannedWord[] = await this.load();
+
+        const filteredWords = words.map((word) => {
+            if (word.keyword !== changeWord) {
+                return word;
+            }
+
+            // eslint-disable-next-line no-param-reassign
+            word.keywordType = keywordType;
             return word;
         });
 

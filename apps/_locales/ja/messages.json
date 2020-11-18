@@ -182,6 +182,9 @@
   "optionTitle": {
     "message": "ゴシップサイトブロッカー: オプション"
   },
+  "regexp": {
+    "message": "正規表現"
+  },
   "regexpAddButton": {
     "message": "追加"
   },
@@ -202,6 +205,9 @@
   },
   "softBlock": {
     "message": "ソフトブロック(非表示)"
+  },
+  "string": {
+    "message": "文字列"
   },
   "temporarilyUnblock": {
     "message": "ブロックを一時解除($url$)",

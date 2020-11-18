@@ -3,6 +3,8 @@ import { BannedWordRepository, BannedWord } from '../repository/banned_word_repo
 import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
 import { $ } from '../common';
 import BlockedSite from '../model/blocked_site';
+import BannedWords from './banned_word';
+import { KeywordType } from '../repository/enums';
 
 function lineToBannedWord(line: string): BannedWord | undefined {
     const cols = line.split(' ');
@@ -15,7 +17,14 @@ function lineToBannedWord(line: string): BannedWord | undefined {
         const word = cols[0].replace(/\+/g, ' ');
         const blockType = $.toBlockType(cols[2]);
         const target = $.toBannedTarget(cols[3]);
-        return { keyword: word, blockType, target };
+        let keywordType;
+        if (cols.length >= 5) {
+            keywordType = BannedWords.strToKeywordType(cols[4]);
+        } else {
+            keywordType = KeywordType.STRING;
+        }
+
+        return { keyword: word, blockType, target, keywordType };
     }
 
     return undefined;

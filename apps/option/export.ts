@@ -20,9 +20,8 @@ async function exportClicked(): Promise<void> {
     const words: BannedWord[] = await BannedWordRepository.load();
     for (const word of words) {
         const escaped = word.keyword.replace(/ /g, '+');
-        const { blockType } = word;
-        const { target } = word;
-        const line = `${escaped} banned ${blockType} ${target}`;
+        const { blockType, target, keywordType } = word;
+        const line = `${escaped} banned ${blockType} ${target} ${keywordType}`;
         bannedLines.push(line);
     }
 

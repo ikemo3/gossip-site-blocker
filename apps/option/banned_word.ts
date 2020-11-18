@@ -1,7 +1,7 @@
 import { $, ApplicationError, Logger } from '../common';
 import { BannedWordRepository, BannedWord } from '../repository/banned_word_repository';
 import { createSelectOption } from '../util/dom';
-import { BannedTarget, BlockType } from '../repository/enums';
+import { BannedTarget, BlockType, KeywordType } from '../repository/enums';
 
 export default class BannedWords {
     private addButton: HTMLInputElement;
@@ -28,11 +28,22 @@ export default class BannedWords {
                     keyword: word,
                     blockType: BlockType.SOFT,
                     target: BannedTarget.TITLE_AND_CONTENTS,
+                    keywordType: KeywordType.STRING,
                 });
             }
 
             this.addText.value = '';
         });
+    }
+
+    static strToKeywordType(value: string): KeywordType {
+        switch (value) {
+            case 'regexp':
+                return KeywordType.REGEXP;
+            case 'string':
+            default:
+                return KeywordType.STRING;
+        }
     }
 
     public clear(): void {
@@ -93,6 +104,22 @@ export default class BannedWords {
         });
         wordDiv.appendChild(targetSelect);
 
+        const keywordTypeSelect: HTMLSelectElement = createSelectOption({
+            options: [
+                {
+                    value: 'string',
+                    message: $.message('string'),
+                },
+                {
+                    value: 'regexp',
+                    message: $.message('regexp'),
+                },
+            ],
+            onChange: this.changeKeywordType.bind(this, word.keyword),
+            selectedValue: word.keywordType.toString(),
+        });
+        wordDiv.appendChild(keywordTypeSelect);
+
         const br = $.br();
         wordDiv.appendChild(br);
 
@@ -127,6 +154,23 @@ export default class BannedWords {
                 break;
             case 'titleOnly':
                 await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_ONLY);
+                break;
+            default:
+                throw new ApplicationError(`unknown value:${value}`);
+        }
+    }
+
+    private async changeKeywordType(keyword: string, ev: Event): Promise<void> {
+        const targetSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
+        const index = targetSelect.selectedIndex;
+        const { value } = targetSelect.options[index];
+
+        switch (value) {
+            case 'string':
+                await BannedWordRepository.changeKeywordType(keyword, KeywordType.STRING);
+                break;
+            case 'regexp':
+                await BannedWordRepository.changeKeywordType(keyword, KeywordType.REGEXP);
                 break;
             default:
                 throw new ApplicationError(`unknown value:${value}`);
