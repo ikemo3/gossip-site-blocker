@@ -28,15 +28,15 @@ function compare(a: HasBlockType, b: HasBlockType): number {
 }
 
 function matchesByWord(content: ContentToBlock, bannedWord: BannedWord): boolean {
-    const { keyword } = bannedWord;
+    const { keyword, keywordType } = bannedWord;
 
     switch (bannedWord.target) {
         case BannedTarget.TITLE_ONLY:
-            return content.containsInTitle(keyword);
+            return content.containsInTitle(keyword, keywordType);
 
         case BannedTarget.TITLE_AND_CONTENTS:
         default:
-            return content.contains(keyword);
+            return content.contains(keyword, keywordType);
     }
 }
 

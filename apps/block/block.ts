@@ -1,11 +1,22 @@
-import { MenuPosition } from '../repository/enums';
+import { KeywordType, MenuPosition } from '../repository/enums';
+import { Logger } from '../common';
 
 export interface ContentToBlock {
     getUrl(): string;
 
-    contains(keyword: string): boolean;
+    contains(keyword: string, keywordType: KeywordType): boolean;
 
-    containsInTitle(keyword: string): boolean;
+    containsInTitle(keyword: string, keywordType: KeywordType): boolean;
+}
+
+function matchesByRegExp(contents: string, keyword: string): boolean {
+    try {
+        const regexp = new RegExp(keyword);
+        return regexp.test(contents);
+    } catch (e) {
+        Logger.log(`Invalid regexp: ${keyword}`);
+        return false;
+    }
 }
 
 export abstract class SearchResultToBlock implements ContentToBlock {
@@ -15,7 +26,15 @@ export abstract class SearchResultToBlock implements ContentToBlock {
 
     abstract canBlock(): boolean;
 
-    contains(keyword: string): boolean {
+    contains(keyword: string, keywordType: KeywordType): boolean {
+        if (keywordType === KeywordType.REGEXP) {
+            if (matchesByRegExp(this.getTitle(), keyword)) {
+                return true;
+            }
+
+            return matchesByRegExp(this.getContents(), keyword);
+        }
+
         if (this.getTitle().includes(keyword)) {
             return true;
         }
@@ -27,7 +46,11 @@ export abstract class SearchResultToBlock implements ContentToBlock {
 
     abstract getContents(): string;
 
-    containsInTitle(keyword: string): boolean {
+    containsInTitle(keyword: string, keywordType: KeywordType): boolean {
+        if (keywordType === KeywordType.REGEXP) {
+            return matchesByRegExp(this.getTitle(), keyword);
+        }
+
         return this.getTitle().includes(keyword);
     }
 

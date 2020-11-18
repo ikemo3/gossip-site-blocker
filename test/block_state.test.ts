@@ -6,7 +6,7 @@ import BlockState from '../apps/content_script/block_state';
 import { RegExpItem } from '../apps/repository/regexp_repository';
 import { BlockReasonType } from '../apps/model/block_reason';
 import { ContentToBlock } from '../apps/block/block';
-import { BannedTarget, BlockType } from '../apps/repository/enums';
+import { BannedTarget, BlockType, KeywordType } from '../apps/repository/enums';
 
 describe('BlockState', () => {
     function createContents(url: string, contains: boolean): ContentToBlock {
@@ -38,11 +38,13 @@ describe('BlockState', () => {
         keyword: string,
         blockType: BlockType,
         target: BannedTarget,
+        keywordType: KeywordType = KeywordType.STRING,
     ): BannedWord {
         return {
             blockType,
             keyword,
             target,
+            keywordType,
         };
     }
 
