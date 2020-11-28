@@ -182,6 +182,9 @@
   "optionTitle": {
     "message": "Gossip Site Blocker: Option"
   },
+  "regexp": {
+    "message": "Regular Expression"
+  },
   "regexpAddButton": {
     "message": "Add"
   },
@@ -202,6 +205,9 @@
   },
   "softBlock": {
     "message": "Soft block(hide)"
+  },
+  "string": {
+    "message": "string"
   },
   "temporarilyUnblock": {
     "message": "Temporarily unblock($url$)",

@@ -12,3 +12,8 @@ export enum MenuPosition {
     COMPACT = 'compact',
     DEFAULT = 'default',
 }
+
+export enum KeywordType {
+    STRING = 'string',
+    REGEXP = 'regexp',
+}
