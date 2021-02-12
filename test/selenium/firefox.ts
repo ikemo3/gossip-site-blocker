@@ -8,7 +8,7 @@ function getBinary(): string {
     const platform = os.platform();
     switch (platform) {
         case 'darwin':
-            return '/Applications/Firefox Developer Edition.app';
+            return '/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox-bin';
         case 'linux':
             return 'firefox/firefox';
         default:

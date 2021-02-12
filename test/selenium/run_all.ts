@@ -62,8 +62,8 @@ async function runTestWithChrome(testCase: TestCase<TestWebDriver>): Promise<voi
         await testCase(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console
-        console.error(e);
-        process.exitCode = 1;
+        console.error(testCase, e);
+        process.exit(1);
     } finally {
         await testDriver.close();
     }
@@ -77,15 +77,29 @@ async function runTestWithFirefox(testCase: TestCase<TestWebDriver>): Promise<vo
         await testCase(testDriver);
     } catch (e) {
         // eslint-disable-next-line no-console
-        console.error(e);
-        process.exitCode = 1;
+        console.error(testCase, e);
+        process.exit(1);
     } finally {
         await testDriver.close();
     }
 }
 
+function getExecTestCase(): string | null {
+    if (process.argv.length >= 3) {
+        return process.argv[2];
+    }
+
+    return null;
+}
+
+const execTestCase = getExecTestCase();
+
 (async (): Promise<void> => {
     for (const testCase of testCases) {
+        if (execTestCase && testCase.name !== execTestCase) {
+            continue;
+        }
+
         // eslint-disable-next-line no-await-in-loop
         await runTestWithChrome(testCase);
     }
@@ -93,6 +107,10 @@ async function runTestWithFirefox(testCase: TestCase<TestWebDriver>): Promise<vo
 
 (async (): Promise<void> => {
     for (const testCase of testCases) {
+        if (execTestCase && testCase.name !== execTestCase) {
+            continue;
+        }
+
         // eslint-disable-next-line no-await-in-loop
         await runTestWithFirefox(testCase);
     }
