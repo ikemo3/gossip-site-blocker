@@ -22,7 +22,7 @@ export default class TestOptionPage {
     }
 
     private async getChromeExtensionId(): Promise<string> {
-        await this._driver.get('about:extensions');
+        await this._driver.get('chrome://extensions/');
 
         const manager = await this._driver.querySelector('extensions-manager');
         const managerShadowRoot = await this.getShadowRoot(manager);
