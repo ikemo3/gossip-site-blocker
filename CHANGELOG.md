@@ -1,3 +1,9 @@
+# v1.13.1
+
+## Bug Fixes
+
+* Fix: 'News' tab does not work(#320)
+
 # v1.13.0
 
 ## Enhancements.
