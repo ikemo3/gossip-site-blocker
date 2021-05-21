@@ -22,7 +22,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches('div.gG0TJc') && documentURL.isGoogleSearchNewsTab();
+        return element.matches('div.nChh6e') && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
