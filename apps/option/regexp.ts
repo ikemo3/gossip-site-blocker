@@ -1,6 +1,6 @@
-import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { $, ApplicationError } from '../common';
-import { BlockType } from '../repository/enums';
+import { RegExpItem, RegExpRepository } from "../repository/regexp_repository";
+import { $, ApplicationError } from "../common";
+import { BlockType } from "../repository/enums";
 
 class RegExpList {
     private readonly regexpList: HTMLDivElement;
@@ -10,9 +10,9 @@ class RegExpList {
     private readonly addButton: HTMLInputElement;
 
     constructor() {
-        this.regexpList = document.getElementById('regexpList') as HTMLDivElement;
-        this.addText = document.getElementById('regexpAddText') as HTMLInputElement;
-        this.addButton = document.getElementById('regexpAddButton') as HTMLInputElement;
+        this.regexpList = document.getElementById("regexpList") as HTMLDivElement;
+        this.addText = document.getElementById("regexpAddText") as HTMLInputElement;
+        this.addButton = document.getElementById("regexpAddButton") as HTMLInputElement;
         $.onclick(this.addButton, this.addItem.bind(this));
     }
 
@@ -25,7 +25,7 @@ class RegExpList {
     }
 
     public clear(): void {
-        this.regexpList.innerHTML = '';
+        this.regexpList.innerHTML = "";
     }
 
     private createItem(item: RegExpItem): HTMLDivElement {
@@ -33,15 +33,15 @@ class RegExpList {
         const input = $.textField(item.pattern);
         input.readOnly = true;
 
-        const delButton = $.button($.message('regexpDeleteButton'));
+        const delButton = $.button($.message("regexpDeleteButton"));
         $.onclick(delButton, this.deleteItem.bind(this, item.pattern, div));
 
-        const typeSelect = document.createElement('select');
-        const softOption = $.option('soft', $.message('softBlock'));
-        const hardOption = $.option('hard', $.message('hardBlock'));
+        const typeSelect = document.createElement("select");
+        const softOption = $.option("soft", $.message("softBlock"));
+        const hardOption = $.option("hard", $.message("hardBlock"));
         typeSelect.appendChild(softOption);
         typeSelect.appendChild(hardOption);
-        typeSelect.addEventListener('change', this.changeType.bind(this, item.pattern));
+        typeSelect.addEventListener("change", this.changeType.bind(this, item.pattern));
         typeSelect.value = item.blockType.toString();
 
         div.appendChild(input);
@@ -53,14 +53,14 @@ class RegExpList {
 
     private async addItem(): Promise<void> {
         const pattern = this.addText.value;
-        if (pattern === '') {
+        if (pattern === "") {
             return;
         }
 
         const regexp = $.regexp(pattern);
         if (regexp === null) {
             // eslint-disable-next-line no-alert
-            alert($.message('invalidPattern'));
+            alert($.message("invalidPattern"));
             return;
         }
 
@@ -72,7 +72,7 @@ class RegExpList {
         }
 
         // clear text
-        this.addText.value = '';
+        this.addText.value = "";
     }
 
     private async changeType(pattern: string, ev: Event): Promise<void> {
@@ -81,10 +81,10 @@ class RegExpList {
         const { value } = typeSelect.options[index];
 
         switch (value) {
-            case 'soft':
+            case "soft":
                 await RegExpRepository.changeType(pattern, BlockType.SOFT);
                 break;
-            case 'hard':
+            case "hard":
                 await RegExpRepository.changeType(pattern, BlockType.HARD);
                 break;
             default:

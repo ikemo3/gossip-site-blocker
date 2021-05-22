@@ -1,3 +1,3 @@
-import { createManifest } from './libs';
+import { createManifest } from "./libs";
 
 createManifest();

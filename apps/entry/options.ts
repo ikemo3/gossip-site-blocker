@@ -1,18 +1,18 @@
-import BannedWords from '../option/banned_word';
-import BlockedSitesRepository from '../repository/blocked_sites';
-import BlockedSiteOption from '../option/blocked_site_option';
-import { BannedWordRepository } from '../repository/banned_words';
-import { RegExpRepository } from '../repository/regexp_repository';
-import { OptionInterface, OptionRepository as Option } from '../repository/options';
-import { Logger } from '../common';
-import RegExpList from '../option/regexp';
-import localizeHtmlPage from '../option/l10n';
-import exportClicked from '../option/export';
-import importClicked from '../option/import';
+import BannedWords from "../option/banned_word";
+import BlockedSitesRepository from "../repository/blocked_sites";
+import BlockedSiteOption from "../option/blocked_site_option";
+import { BannedWordRepository } from "../repository/banned_words";
+import { RegExpRepository } from "../repository/regexp_repository";
+import { OptionInterface, OptionRepository as Option } from "../repository/options";
+import { Logger } from "../common";
+import RegExpList from "../option/regexp";
+import localizeHtmlPage from "../option/l10n";
+import exportClicked from "../option/export";
+import importClicked from "../option/import";
 
-const softBlockList = document.getElementById('softBlockList') as HTMLDivElement;
-const hardBlockList = document.getElementById('hardBlockList') as HTMLDivElement;
-const clearButton = document.getElementById('clearButton') as HTMLInputElement;
+const softBlockList = document.getElementById("softBlockList") as HTMLDivElement;
+const hardBlockList = document.getElementById("hardBlockList") as HTMLDivElement;
+const clearButton = document.getElementById("clearButton") as HTMLInputElement;
 
 async function initCheckbox(id: string, option: OptionInterface<boolean>): Promise<void> {
     const checkbox = document.getElementById(id);
@@ -24,7 +24,7 @@ async function initCheckbox(id: string, option: OptionInterface<boolean>): Promi
     Logger.log(`${id} is `, value);
     checkbox.checked = value;
 
-    checkbox.addEventListener('click', async () => {
+    checkbox.addEventListener("click", async () => {
         await option.save(checkbox.checked);
     });
 }
@@ -39,7 +39,7 @@ async function initSelect(id: string, option: OptionInterface<string>): Promise<
     Logger.log(`${id} is `, value);
     select.value = value;
 
-    select.addEventListener('change', async () => {
+    select.addEventListener("change", async () => {
         await option.save(select.value);
     });
 }
@@ -51,15 +51,15 @@ async function showLists(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
 
     // Add after clear.
-    softBlockList.innerHTML = '';
-    hardBlockList.innerHTML = '';
+    softBlockList.innerHTML = "";
+    hardBlockList.innerHTML = "";
 
-    const softTable = document.createElement('table');
-    const hardTable = document.createElement('table');
+    const softTable = document.createElement("table");
+    const hardTable = document.createElement("table");
     for (const site of sites) {
         const option = new BlockedSiteOption(site);
 
-        if (option.getState() === 'soft') {
+        if (option.getState() === "soft") {
             softTable.appendChild(option.getElement());
         } else {
             hardTable.appendChild(option.getElement());
@@ -72,26 +72,26 @@ async function showLists(): Promise<void> {
 
 async function clear(): Promise<void> {
     // eslint-disable-next-line no-alert, no-restricted-globals
-    if (confirm(chrome.i18n.getMessage('clearConfirm'))) {
+    if (confirm(chrome.i18n.getMessage("clearConfirm"))) {
         await BlockedSitesRepository.clear();
         await BannedWordRepository.clear();
         await RegExpRepository.clear();
 
         // eslint-disable-next-line no-alert
-        alert(chrome.i18n.getMessage('clearDone'));
+        alert(chrome.i18n.getMessage("clearDone"));
 
         // clear all.
-        softBlockList.innerHTML = '';
-        hardBlockList.innerHTML = '';
+        softBlockList.innerHTML = "";
+        hardBlockList.innerHTML = "";
         bannedWords.clear();
         regexpList.clear();
     }
 }
 
 // bind event.
-clearButton.addEventListener('click', clear);
+clearButton.addEventListener("click", clear);
 
-document.addEventListener('DOMContentLoaded', async (_) => {
+document.addEventListener("DOMContentLoaded", async (_) => {
     await showLists();
 
     regexpList = new RegExpList();
@@ -100,26 +100,26 @@ document.addEventListener('DOMContentLoaded', async (_) => {
     bannedWords = new BannedWords();
     await bannedWords.load();
 
-    await initCheckbox('developerMode', Option.DeveloperMode);
+    await initCheckbox("developerMode", Option.DeveloperMode);
 
-    await initCheckbox('displayTemporarilyUnblockAll', Option.DisplayTemporarilyUnblockAll);
+    await initCheckbox("displayTemporarilyUnblockAll", Option.DisplayTemporarilyUnblockAll);
 
-    await initCheckbox('showBlockedByWordInfo', Option.ShowBlockedByWordInfo);
+    await initCheckbox("showBlockedByWordInfo", Option.ShowBlockedByWordInfo);
 
-    await initCheckbox('autoBlockIDN', Option.AutoBlockIDN);
+    await initCheckbox("autoBlockIDN", Option.AutoBlockIDN);
 
-    await initSelect('defaultBlockType', Option.DefaultBlockType);
+    await initSelect("defaultBlockType", Option.DefaultBlockType);
 
-    await initSelect('menuPosition', Option.MenuPosition);
+    await initSelect("menuPosition", Option.MenuPosition);
 
-    await initCheckbox('blockGoogleNewsTab', Option.BlockGoogleNewsTab);
+    await initCheckbox("blockGoogleNewsTab", Option.BlockGoogleNewsTab);
 
-    await initCheckbox('blockGoogleImagesTab', Option.BlockGoogleImagesTab);
+    await initCheckbox("blockGoogleImagesTab", Option.BlockGoogleImagesTab);
 
-    await initCheckbox('blockGoogleSearchMovie', Option.BlockGoogleSearchMovie);
+    await initCheckbox("blockGoogleSearchMovie", Option.BlockGoogleSearchMovie);
 });
 
 localizeHtmlPage();
 
-document.getElementById('exportButton')!.addEventListener('click', exportClicked);
-document.getElementById('importButton')!.addEventListener('click', importClicked);
+document.getElementById("exportButton")!.addEventListener("click", exportClicked);
+document.getElementById("importButton")!.addEventListener("click", importClicked);

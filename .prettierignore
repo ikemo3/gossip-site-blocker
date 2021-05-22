@@ -1,0 +1,6 @@
+coverage
+dist
+dist-chrome
+dist-firefox
+venv
+*.md

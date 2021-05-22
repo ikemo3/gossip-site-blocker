@@ -4,6 +4,6 @@ body {
     background-color: white;
 }
 
-input[type=button] {
+input[type="button"] {
     font-size: 1rem;
 }

@@ -1,6 +1,6 @@
-import { ApplicationError, Logger } from '../common';
-import BlockedSite from '../model/blocked_site';
-import BlockedSitesRepository from '../repository/blocked_sites';
+import { ApplicationError, Logger } from "../common";
+import BlockedSite from "../model/blocked_site";
+import BlockedSitesRepository from "../repository/blocked_sites";
 
 /**
  * URL field
@@ -14,9 +14,9 @@ class BlockedSiteUrlField {
      * @param {string} url
      */
     constructor(mediator: BlockedSiteOption, url: string) {
-        const input = document.createElement('input');
-        input.setAttribute('type', 'text');
-        input.setAttribute('size', '100');
+        const input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("size", "100");
         this.element = input;
 
         this.setUrl(url);
@@ -27,7 +27,7 @@ class BlockedSiteUrlField {
     }
 
     public value(): string | null {
-        return this.element.getAttribute('data-value');
+        return this.element.getAttribute("data-value");
     }
 
     public getInputValue(): string {
@@ -43,7 +43,7 @@ class BlockedSiteUrlField {
     }
 
     public setUrl(url: string): void {
-        this.element.setAttribute('data-value', url);
+        this.element.setAttribute("data-value", url);
         this.element.value = url;
     }
 }
@@ -63,10 +63,10 @@ class BlockedSiteEditButton {
     constructor(mediator: BlockedSiteOption) {
         this.mediator = mediator;
 
-        const input = document.createElement('input');
-        input.setAttribute('type', 'button');
-        input.setAttribute('value', chrome.i18n.getMessage('UpdateUrl'));
-        input.addEventListener('click', this.onclick.bind(this));
+        const input = document.createElement("input");
+        input.setAttribute("type", "button");
+        input.setAttribute("value", chrome.i18n.getMessage("UpdateUrl"));
+        input.addEventListener("click", this.onclick.bind(this));
         this.element = input;
     }
 
@@ -105,8 +105,8 @@ class BlockedSiteStateButton {
     constructor(mediator: BlockedSiteOption, state: string) {
         this.mediator = mediator;
 
-        const input = document.createElement('input');
-        input.setAttribute('type', 'button');
+        const input = document.createElement("input");
+        input.setAttribute("type", "button");
         this.element = input;
 
         this.setState(state);
@@ -127,11 +127,11 @@ class BlockedSiteStateButton {
     public updateBlockTypeHandler(): void {
         // remove handler
         if (this.handler) {
-            this.element.removeEventListener('click', this.handler);
+            this.element.removeEventListener("click", this.handler);
             this.handler = null;
         }
 
-        if (this.state === 'soft') {
+        if (this.state === "soft") {
             this.handler = this.mediator.toHard.bind(this.mediator);
         } else {
             this.handler = this.mediator.toSoft.bind(this.mediator);
@@ -139,24 +139,24 @@ class BlockedSiteStateButton {
 
         // set handler
         if (this.handler) {
-            this.element.addEventListener('click', this.handler);
+            this.element.addEventListener("click", this.handler);
         }
     }
 
     public updateLabel(state: string): void {
-        if (state === 'soft') {
-            this.element.setAttribute('value', chrome.i18n.getMessage('changeToHardBlock'));
+        if (state === "soft") {
+            this.element.setAttribute("value", chrome.i18n.getMessage("changeToHardBlock"));
         } else {
-            this.element.setAttribute('value', chrome.i18n.getMessage('changeToSoftBlock'));
+            this.element.setAttribute("value", chrome.i18n.getMessage("changeToSoftBlock"));
         }
     }
 
     public toHard(): void {
-        this.setState('hard');
+        this.setState("hard");
     }
 
     public toSoft(): void {
-        this.setState('soft');
+        this.setState("soft");
     }
 
     public getElement(): Element {
@@ -180,10 +180,10 @@ class BlockedSiteDeleteButton {
     constructor(mediator: BlockedSiteOption, state: string) {
         this.mediator = mediator;
 
-        const input = document.createElement('input');
-        input.setAttribute('type', 'button');
-        input.setAttribute('value', chrome.i18n.getMessage('unblock'));
-        input.addEventListener('click', this.onclick.bind(this));
+        const input = document.createElement("input");
+        input.setAttribute("type", "button");
+        input.setAttribute("value", chrome.i18n.getMessage("unblock"));
+        input.addEventListener("click", this.onclick.bind(this));
         this.element = input;
 
         this.setState(state);
@@ -198,7 +198,7 @@ class BlockedSiteDeleteButton {
     }
 
     public setState(state: string): void {
-        if (state === 'hard') {
+        if (state === "hard") {
             this.toHard();
         } else {
             this.toSoft();
@@ -207,12 +207,12 @@ class BlockedSiteDeleteButton {
 
     public toHard(): void {
         // disable button.
-        this.element.setAttribute('disabled', 'true');
+        this.element.setAttribute("disabled", "true");
     }
 
     public toSoft(): void {
         // enable button.
-        this.element.removeAttribute('disabled');
+        this.element.removeAttribute("disabled");
     }
 }
 
@@ -240,11 +240,11 @@ export default class BlockedSiteOption {
         this.deleteButton = new BlockedSiteDeleteButton(this, blockedSite.getState());
 
         // Create tr element surrounding all input fields.
-        const tr = document.createElement('tr');
-        tr.appendChild(document.createElement('td')).appendChild(this.urlField.getElement());
-        tr.appendChild(document.createElement('td')).appendChild(this.editButton.getElement());
-        tr.appendChild(document.createElement('td')).appendChild(this.stateButton.getElement());
-        tr.appendChild(document.createElement('td')).appendChild(this.deleteButton.getElement());
+        const tr = document.createElement("tr");
+        tr.appendChild(document.createElement("td")).appendChild(this.urlField.getElement());
+        tr.appendChild(document.createElement("td")).appendChild(this.editButton.getElement());
+        tr.appendChild(document.createElement("td")).appendChild(this.stateButton.getElement());
+        tr.appendChild(document.createElement("td")).appendChild(this.deleteButton.getElement());
         this.element = tr;
     }
 
@@ -262,7 +262,7 @@ export default class BlockedSiteOption {
 
     public setState(state: string): void {
         switch (state) {
-            case 'soft':
+            case "soft":
                 // send to Colleagues.
                 this.urlField.toSoft();
                 this.editButton.toSoft();
@@ -270,7 +270,7 @@ export default class BlockedSiteOption {
                 this.deleteButton.toSoft();
 
                 break;
-            case 'hard':
+            case "hard":
                 // send to Colleagues.
                 this.urlField.toHard();
                 this.editButton.toHard();
@@ -290,17 +290,17 @@ export default class BlockedSiteOption {
     public async toHard(): Promise<void> {
         await BlockedSitesRepository.toHard(this.getUrl());
 
-        this.setState('hard');
+        this.setState("hard");
 
-        Logger.debug('Changed to hard-block.', this.getUrl());
+        Logger.debug("Changed to hard-block.", this.getUrl());
     }
 
     public async toSoft(): Promise<void> {
         await BlockedSitesRepository.toSoft(this.getUrl());
 
-        this.setState('soft');
+        this.setState("soft");
 
-        Logger.debug('Changed to soft-block.', this.getUrl());
+        Logger.debug("Changed to soft-block.", this.getUrl());
     }
 
     public async editUrl(): Promise<void> {

@@ -1,7 +1,7 @@
-import { $, ApplicationError, Logger } from '../common';
-import { BannedWordRepository, BannedWord } from '../repository/banned_words';
-import { createSelectOption } from '../util/dom';
-import { BannedTarget, BlockType, KeywordType } from '../repository/enums';
+import { $, ApplicationError, Logger } from "../common";
+import { BannedWordRepository, BannedWord } from "../repository/banned_words";
+import { createSelectOption } from "../util/dom";
+import { BannedTarget, BlockType, KeywordType } from "../repository/enums";
 
 export default class BannedWords {
     private addButton: HTMLInputElement;
@@ -11,19 +11,19 @@ export default class BannedWords {
     private wordList: HTMLDivElement;
 
     constructor() {
-        this.addButton = document.getElementById('bannedWordAddButton') as HTMLInputElement;
-        this.addText = document.getElementById('bannedWordAddText') as HTMLInputElement;
-        this.wordList = document.getElementById('bannedWordList') as HTMLDivElement;
+        this.addButton = document.getElementById("bannedWordAddButton") as HTMLInputElement;
+        this.addText = document.getElementById("bannedWordAddText") as HTMLInputElement;
+        this.wordList = document.getElementById("bannedWordList") as HTMLDivElement;
 
-        this.addButton.addEventListener('click', async () => {
+        this.addButton.addEventListener("click", async () => {
             const word = this.addText.value;
-            if (word === '') {
+            if (word === "") {
                 return;
             }
 
             const added: boolean = await BannedWordRepository.add(word);
             if (added) {
-                Logger.debug('add to Banned Words', word);
+                Logger.debug("add to Banned Words", word);
                 this.createWidget({
                     keyword: word,
                     blockType: BlockType.SOFT,
@@ -32,27 +32,27 @@ export default class BannedWords {
                 });
             }
 
-            this.addText.value = '';
+            this.addText.value = "";
         });
     }
 
     static strToKeywordType(value: string): KeywordType {
         switch (value) {
-            case 'regexp':
+            case "regexp":
                 return KeywordType.REGEXP;
-            case 'string':
+            case "string":
             default:
                 return KeywordType.STRING;
         }
     }
 
     public clear(): void {
-        this.wordList.innerHTML = '';
+        this.wordList.innerHTML = "";
     }
 
     public async load(): Promise<void> {
         const words: BannedWord[] = await BannedWordRepository.load();
-        this.wordList.innerHTML = '';
+        this.wordList.innerHTML = "";
 
         for (const word of words) {
             this.createWidget(word);
@@ -60,27 +60,27 @@ export default class BannedWords {
     }
 
     private createWidget(word: BannedWord): void {
-        const wordDiv: HTMLDivElement = document.createElement('div');
+        const wordDiv: HTMLDivElement = document.createElement("div");
 
-        const input: HTMLInputElement = document.createElement('input');
-        input.type = 'text';
+        const input: HTMLInputElement = document.createElement("input");
+        input.type = "text";
         input.value = word.keyword;
         input.readOnly = true;
         wordDiv.appendChild(input);
 
-        const deleteButton: HTMLInputElement = $.button($.message('bannedWordDeleteButton'));
+        const deleteButton: HTMLInputElement = $.button($.message("bannedWordDeleteButton"));
         $.onclick(deleteButton, this.deleteKeyword.bind(this, word.keyword, wordDiv));
         wordDiv.appendChild(deleteButton);
 
         const typeSelect: HTMLSelectElement = createSelectOption({
             options: [
                 {
-                    value: 'soft',
-                    message: $.message('softBlock'),
+                    value: "soft",
+                    message: $.message("softBlock"),
                 },
                 {
-                    value: 'hard',
-                    message: $.message('hardBlock'),
+                    value: "hard",
+                    message: $.message("hardBlock"),
                 },
             ],
             onChange: this.changeType.bind(this, word.keyword),
@@ -91,12 +91,12 @@ export default class BannedWords {
         const targetSelect: HTMLSelectElement = createSelectOption({
             options: [
                 {
-                    value: 'titleAndContents',
-                    message: $.message('titleAndContents'),
+                    value: "titleAndContents",
+                    message: $.message("titleAndContents"),
                 },
                 {
-                    value: 'titleOnly',
-                    message: $.message('titleOnly'),
+                    value: "titleOnly",
+                    message: $.message("titleOnly"),
                 },
             ],
             onChange: this.changeTarget.bind(this, word.keyword),
@@ -107,12 +107,12 @@ export default class BannedWords {
         const keywordTypeSelect: HTMLSelectElement = createSelectOption({
             options: [
                 {
-                    value: 'string',
-                    message: $.message('string'),
+                    value: "string",
+                    message: $.message("string"),
                 },
                 {
-                    value: 'regexp',
-                    message: $.message('regexp'),
+                    value: "regexp",
+                    message: $.message("regexp"),
                 },
             ],
             onChange: this.changeKeywordType.bind(this, word.keyword),
@@ -132,10 +132,10 @@ export default class BannedWords {
         const { value } = typeSelect.options[index];
 
         switch (value) {
-            case 'soft':
+            case "soft":
                 await BannedWordRepository.changeType(keyword, BlockType.SOFT);
                 break;
-            case 'hard':
+            case "hard":
                 await BannedWordRepository.changeType(keyword, BlockType.HARD);
                 break;
             default:
@@ -149,10 +149,10 @@ export default class BannedWords {
         const { value } = targetSelect.options[index];
 
         switch (value) {
-            case 'titleAndContents':
+            case "titleAndContents":
                 await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_AND_CONTENTS);
                 break;
-            case 'titleOnly':
+            case "titleOnly":
                 await BannedWordRepository.changeTarget(keyword, BannedTarget.TITLE_ONLY);
                 break;
             default:
@@ -166,10 +166,10 @@ export default class BannedWords {
         const { value } = targetSelect.options[index];
 
         switch (value) {
-            case 'string':
+            case "string":
                 await BannedWordRepository.changeKeywordType(keyword, KeywordType.STRING);
                 break;
-            case 'regexp':
+            case "regexp":
                 await BannedWordRepository.changeKeywordType(keyword, KeywordType.REGEXP);
                 break;
             default:

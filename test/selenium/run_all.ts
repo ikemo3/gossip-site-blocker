@@ -1,37 +1,33 @@
-import chromeDriver from './chrome';
-import firefoxDriver from './firefox';
+import chromeDriver from "./chrome";
+import firefoxDriver from "./firefox";
 import {
     googleSearchResultSoftBlock,
     googleSearchResultHardBlock,
     googleSearchResultCompactMenu,
-} from './test_google_search_result';
+} from "./test_google_search_result";
 import {
     googleSearchInnerCardSoftBlock,
     googleSearchInnerCardHardBlock,
     googleSearchInnerCardCompactMenu,
-} from './test_google_search_inner_card';
+} from "./test_google_search_inner_card";
 import {
     googleSearchTopNewsSoftBlock,
     googleSearchTopNewsHardBlock,
     googleSearchTopNewsCompactMenu,
-} from './test_google_search_top_news';
+} from "./test_google_search_top_news";
 import {
     googleSearchTweetSoftBlock,
     googleSearchTweetHardBlock,
     // googleSearchTweetCompactMenu,
-} from './test_google_search_tweet';
+} from "./test_google_search_tweet";
 import {
     googleNewsTabTopSoftBlock,
     googleNewsTabTopHardBlock,
     googleNewsTabTopCompactMenu,
-} from './test_google_news_tab_top';
-import {
-    googleImagesTabSoftBlock,
-    googleImagesTabHardBlock,
-    googleImagesTabOff,
-} from './test_google_images_tab';
-import { TestWebDriver } from './driver';
-import { TestCase } from './libs/interface';
+} from "./test_google_news_tab_top";
+import { googleImagesTabSoftBlock, googleImagesTabHardBlock, googleImagesTabOff } from "./test_google_images_tab";
+import { TestWebDriver } from "./driver";
+import { TestCase } from "./libs/interface";
 
 const testCases = [
     googleSearchResultSoftBlock,

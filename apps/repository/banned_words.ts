@@ -1,5 +1,5 @@
-import { ChromeStorage, Logger } from '../common';
-import { BannedTarget, BlockType, KeywordType } from './enums';
+import { ChromeStorage, Logger } from "../common";
+import { BannedTarget, BlockType, KeywordType } from "./enums";
 
 interface BannedWordItems {
     bannedWords: BannedWord[];
@@ -12,7 +12,6 @@ export interface BannedWord {
     keywordType: KeywordType;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const BannedWordRepository = {
     async load(): Promise<BannedWord[]> {
         const items = (await ChromeStorage.get({ bannedWords: [] })) as BannedWordItems;
@@ -32,7 +31,7 @@ export const BannedWordRepository = {
             }
         }
 
-        Logger.debug('bannedWords: ', itemsCopy);
+        Logger.debug("bannedWords: ", itemsCopy);
 
         return itemsCopy;
     },

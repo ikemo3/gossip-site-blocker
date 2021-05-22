@@ -1,4 +1,4 @@
-import { By, WebDriver, WebElement, WebElementPromise } from 'selenium-webdriver';
+import { By, WebDriver, WebElement, WebElementPromise } from "selenium-webdriver";
 
 export default class TestBlockAnchor {
     private readonly _driver: WebDriver;

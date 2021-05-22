@@ -7,12 +7,12 @@ class DocumentURL {
 
     isGoogleSearchNewsTab(): boolean {
         const params = this.url.searchParams;
-        return params.get('tbm') === 'nws';
+        return params.get("tbm") === "nws";
     }
 
     isGoogleSearchImageTab(): boolean {
         const params = this.url.searchParams;
-        return params.get('tbm') === 'isch';
+        return params.get("tbm") === "isch";
     }
 
     isGoogleSearch(): boolean {

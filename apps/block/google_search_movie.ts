@@ -1,6 +1,6 @@
-import { SearchResultToBlock } from './block';
-import DocumentURL from '../values/document_url';
-import { Options } from '../repository/options';
+import { SearchResultToBlock } from "./block";
+import DocumentURL from "../values/document_url";
+import { Options } from "../repository/options";
 
 class GoogleSearchMovie extends SearchResultToBlock {
     private readonly element: Element;
@@ -18,7 +18,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.classList.contains('VibNM') && !documentURL.isGoogleSearchNewsTab();
+        return element.classList.contains("VibNM") && !documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -26,19 +26,19 @@ class GoogleSearchMovie extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector('a');
+        const anchor = element.querySelector("a");
         if (anchor === null) {
             this.valid = false;
             return;
         }
 
         const { href } = anchor;
-        if (href === '') {
+        if (href === "") {
             this.valid = false;
             return;
         }
 
-        const titleDiv = anchor.querySelector('.fJiQld');
+        const titleDiv = anchor.querySelector(".fJiQld");
         if (titleDiv === null) {
             this.valid = false;
             return;
@@ -47,7 +47,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
         this.compactMenuInsertElement = anchor;
         this.valid = true;
         this.url = href;
-        this.title = titleDiv.textContent !== null ? titleDiv.textContent : '';
+        this.title = titleDiv.textContent !== null ? titleDiv.textContent : "";
     }
 
     public canRetry(): boolean {
@@ -67,7 +67,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
     }
 
     public getPosition(): string {
-        return 'relative';
+        return "relative";
     }
 
     public getUrl(): string {
@@ -75,7 +75,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
     }
 
     public getCssClass(): string {
-        return 'block-google-movie';
+        return "block-google-movie";
     }
 
     public getTitle(): string {
@@ -83,7 +83,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
     }
 
     public getContents(): string {
-        return '';
+        return "";
     }
 }
 

@@ -4,78 +4,78 @@
 #
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/node:12-browsers
-        environment:
-          - LANG: ja_JP.UTF-8
-          - LANGUAGE: ja_JP.UTF-8
+    build:
+        docker:
+            - image: circleci/node:12-browsers
+              environment:
+                  - LANG: ja_JP.UTF-8
+                  - LANGUAGE: ja_JP.UTF-8
 
-    working_directory: ~/repo
+        working_directory: ~/repo
 
-    steps:
-      - checkout
-      - run:
-          name: "Install Japanese font"
-          command: sudo apt install -y fonts-takao-gothic
-      - run:
-          name: "Download Firefox Developer Edition"
-          command: |
-            curl -L 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=ja' > firefox.tar.bz2
-            tar xvfj firefox.tar.bz2
-      - run:
-          command: make ci
-#      - run:
-#          name: "Archive screenshots"
-#          command: cd tmp/screenshots; tar cvfj screenshots.tar.bz2 *
-#          when: always
-      - store_test_results:
-          path: reports
-#      - store_artifacts:
-#          path: tmp/screenshots
-#          destination: screenshots
-      - persist_to_workspace:
-          root: tmp/workspace
-          paths:
-            - gossip-site-blocker.*
-  deploy:
-    docker:
-      - image: circleci/golang:1.12.10
+        steps:
+            - checkout
+            - run:
+                  name: "Install Japanese font"
+                  command: sudo apt install -y fonts-takao-gothic
+            - run:
+                  name: "Download Firefox Developer Edition"
+                  command: |
+                      curl -L 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=ja' > firefox.tar.bz2
+                      tar xvfj firefox.tar.bz2
+            - run:
+                  command: make ci
+            #      - run:
+            #          name: "Archive screenshots"
+            #          command: cd tmp/screenshots; tar cvfj screenshots.tar.bz2 *
+            #          when: always
+            - store_test_results:
+                  path: reports
+            #      - store_artifacts:
+            #          path: tmp/screenshots
+            #          destination: screenshots
+            - persist_to_workspace:
+                  root: tmp/workspace
+                  paths:
+                      - gossip-site-blocker.*
+    deploy:
+        docker:
+            - image: circleci/golang:1.12.10
 
-    working_directory: ~/repo
+        working_directory: ~/repo
 
-    steps:
-      - checkout
-      - attach_workspace:
-          at: tmp/workspace
-      - run:
-          name: "Publish Release on GitHub"
-          command: make deploy
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: tmp/workspace
+            - run:
+                  name: "Publish Release on GitHub"
+                  command: make deploy
 
 workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build:
-          filters:
-            tags:
-              only: /.*/
-      - deploy:
-          requires:
+    version: 2
+    build-deploy:
+        jobs:
+            - build:
+                  filters:
+                      tags:
+                          only: /.*/
+            - deploy:
+                  requires:
+                      - build
+                  filters:
+                      branches:
+                          only:
+                              - master
+                      tags:
+                          only: /.*/
+    daily_workflow:
+        triggers:
+            - schedule:
+                  cron: "0 9 * * *" # 18:00 JST
+                  filters:
+                      branches:
+                          only:
+                              - master
+        jobs:
             - build
-          filters:
-            branches:
-              only:
-                - master
-            tags:
-              only: /.*/
-  daily_workflow:
-    triggers:
-      - schedule:
-          cron: "0 9 * * *" # 18:00 JST
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - build

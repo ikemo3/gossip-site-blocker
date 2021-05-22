@@ -1,11 +1,11 @@
-import { $, DOMUtils, Logger } from '../common';
-import { RegExpItem } from '../repository/regexp_repository';
-import BlockedSites from '../model/blocked_sites';
-import { BannedWord } from '../repository/banned_words';
-import BlockedSite from '../model/blocked_site';
-import { BlockReason, BlockReasonType } from '../model/block_reason';
-import { ContentToBlock } from '../block/block';
-import { BannedTarget, BlockType } from '../repository/enums';
+import { $, DOMUtils, Logger } from "../common";
+import { RegExpItem } from "../repository/regexp_repository";
+import BlockedSites from "../model/blocked_sites";
+import { BannedWord } from "../repository/banned_words";
+import BlockedSite from "../model/blocked_site";
+import { BlockReason, BlockReasonType } from "../model/block_reason";
+import { ContentToBlock } from "../block/block";
+import { BannedTarget, BlockType } from "../repository/enums";
 
 function first<T>(array: Array<T>): T | undefined {
     return array.shift();
@@ -61,19 +61,19 @@ class BlockState {
         blockedSites: BlockedSites,
         bannedWords: BannedWord[],
         regexpList: RegExpItem[],
-        autoBlockIDN: boolean,
+        autoBlockIDN: boolean
     ) {
         // The longest matched site
         const blockedSite: BlockedSite | undefined = blockedSites.matches(content.getUrl());
 
         // The strongest banned word
         const banned: BannedWord | undefined = first(
-            bannedWords.filter((bannedWord) => matchesByWord(content, bannedWord)).sort(compare),
+            bannedWords.filter((bannedWord) => matchesByWord(content, bannedWord)).sort(compare)
         );
 
         // The strongest regexp
         const regexp: RegExpItem | undefined = first(
-            regexpList.filter((regexpItem) => matchesByRegexp(content, regexpItem)).sort(compare),
+            regexpList.filter((regexpItem) => matchesByRegexp(content, regexpItem)).sort(compare)
         );
 
         if (
@@ -84,17 +84,9 @@ class BlockState {
             this.state = blockedSite.getState();
 
             if (DOMUtils.removeProtocol(content.getUrl()) === blockedSite.url) {
-                this.blockReason = new BlockReason(
-                    BlockReasonType.URL_EXACTLY,
-                    content.getUrl(),
-                    blockedSite.url,
-                );
+                this.blockReason = new BlockReason(BlockReasonType.URL_EXACTLY, content.getUrl(), blockedSite.url);
             } else {
-                this.blockReason = new BlockReason(
-                    BlockReasonType.URL,
-                    content.getUrl(),
-                    blockedSite.url,
-                );
+                this.blockReason = new BlockReason(BlockReasonType.URL, content.getUrl(), blockedSite.url);
             }
 
             return;
@@ -102,21 +94,13 @@ class BlockState {
 
         if (banned && (!regexp || regexp.blockType !== BlockType.HARD)) {
             this.state = banned.blockType.toString();
-            this.blockReason = new BlockReason(
-                BlockReasonType.WORD,
-                content.getUrl(),
-                banned.keyword,
-            );
+            this.blockReason = new BlockReason(BlockReasonType.WORD, content.getUrl(), banned.keyword);
             return;
         }
 
         if (regexp) {
             this.state = regexp.blockType.toString();
-            this.blockReason = new BlockReason(
-                BlockReasonType.REGEXP,
-                content.getUrl(),
-                regexp.pattern,
-            );
+            this.blockReason = new BlockReason(BlockReasonType.REGEXP, content.getUrl(), regexp.pattern);
             return;
         }
 
@@ -125,14 +109,14 @@ class BlockState {
             const url = content.getUrl();
             const hostname = DOMUtils.getHostName(url);
 
-            if (hostname.startsWith('xn--') || hostname.includes('.xn--')) {
-                this.state = 'soft';
-                this.blockReason = new BlockReason(BlockReasonType.IDN, url, $.message('IDN'));
+            if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {
+                this.state = "soft";
+                this.blockReason = new BlockReason(BlockReasonType.IDN, url, $.message("IDN"));
                 return;
             }
         }
 
-        this.state = 'none';
+        this.state = "none";
     }
 
     public getReason(): BlockReason | undefined {

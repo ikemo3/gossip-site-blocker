@@ -1,23 +1,23 @@
-import BlockedSites from '../model/blocked_sites';
-import { BannedWord, BannedWordRepository } from '../repository/banned_words';
-import { RegExpItem, RegExpRepository } from '../repository/regexp_repository';
-import { OptionRepository, Options } from '../repository/options';
-import { Logger } from '../common';
-import { BlockReason } from '../model/block_reason';
-import BlockedSitesRepository from '../repository/blocked_sites';
-import GoogleSearchResult from '../block/google_search_result';
-import BlockState from '../content_script/block_state';
-import BlockMediator from '../content_script/block_mediator';
-import GoogleSearchInnerCard from '../block/google_search_inner_card';
-import GoogleSearchTopNews from '../block/google_search_top_news';
-import GoogleNewsCard from '../block/google_news_card';
-import GoogleNewsTabCardSection from '../block/google_news_tab_card_section';
-import GoogleNewsTabTop from '../block/google_news_tab_top';
-import GoogleImageTab from '../block/google_image_tab';
-import GoogleSearchMovie from '../block/google_search_movie';
-import { SearchResultToBlock } from '../block/block';
-import DocumentURL from '../values/document_url';
-import { MenuPosition } from '../repository/enums';
+import BlockedSites from "../model/blocked_sites";
+import { BannedWord, BannedWordRepository } from "../repository/banned_words";
+import { RegExpItem, RegExpRepository } from "../repository/regexp_repository";
+import { OptionRepository, Options } from "../repository/options";
+import { Logger } from "../common";
+import { BlockReason } from "../model/block_reason";
+import BlockedSitesRepository from "../repository/blocked_sites";
+import GoogleSearchResult from "../block/google_search_result";
+import BlockState from "../content_script/block_state";
+import BlockMediator from "../content_script/block_mediator";
+import GoogleSearchInnerCard from "../block/google_search_inner_card";
+import GoogleSearchTopNews from "../block/google_search_top_news";
+import GoogleNewsCard from "../block/google_news_card";
+import GoogleNewsTabCardSection from "../block/google_news_tab_card_section";
+import GoogleNewsTabTop from "../block/google_news_tab_top";
+import GoogleImageTab from "../block/google_image_tab";
+import GoogleSearchMovie from "../block/google_search_movie";
+import { SearchResultToBlock } from "../block/block";
+import DocumentURL from "../values/document_url";
+import { MenuPosition } from "../repository/enums";
 
 declare global {
     interface Window {
@@ -52,14 +52,14 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
         options.blockedSites,
         options.bannedWords,
         options.regexpList,
-        options.autoBlockIDN,
+        options.autoBlockIDN
     );
 
     if (blockState.getReason()) {
         window.blockReasons.push(blockState.getReason()!);
     }
 
-    if (blockState.getState() === 'hard') {
+    if (blockState.getState() === "hard") {
         g.deleteElement();
         return true;
     }
@@ -177,7 +177,7 @@ observer.observe(document.documentElement, config);
     const blockGoogleNewsTab: boolean = await OptionRepository.BlockGoogleNewsTab.load();
     const blockGoogleImagesTab: boolean = await OptionRepository.BlockGoogleImagesTab.load();
     const blockGoogleSearchMovie: boolean = await OptionRepository.BlockGoogleSearchMovie.load();
-    Logger.debug('autoBlockIDNOption:', autoBlockIDN);
+    Logger.debug("autoBlockIDNOption:", autoBlockIDN);
 
     gsbOptions = {
         blockedSites,

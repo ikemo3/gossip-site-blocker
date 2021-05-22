@@ -1,6 +1,6 @@
-import { By, WebElement } from 'selenium-webdriver';
-import { DriverType, TestDriverInterface } from './interface';
-import { MenuPosition } from '../../../apps/repository/enums';
+import { By, WebElement } from "selenium-webdriver";
+import { DriverType, TestDriverInterface } from "./interface";
+import { MenuPosition } from "../../../apps/repository/enums";
 
 export default class TestOptionPage {
     private readonly _driver: TestDriverInterface;
@@ -13,7 +13,7 @@ export default class TestOptionPage {
     }
 
     async getShadowRoot(element: WebElement): Promise<WebElement> {
-        return this._driver.executeScript('return arguments[0].shadowRoot', element);
+        return this._driver.executeScript("return arguments[0].shadowRoot", element);
     }
 
     async getLocalStorage<T>(key: string): Promise<T> {
@@ -22,23 +22,23 @@ export default class TestOptionPage {
     }
 
     private async getChromeExtensionId(): Promise<string> {
-        await this._driver.get('chrome://extensions/');
+        await this._driver.get("chrome://extensions/");
 
-        const manager = await this._driver.querySelector('extensions-manager');
+        const manager = await this._driver.querySelector("extensions-manager");
         const managerShadowRoot = await this.getShadowRoot(manager);
 
-        const itemList = await managerShadowRoot.findElement(By.css('extensions-item-list'));
+        const itemList = await managerShadowRoot.findElement(By.css("extensions-item-list"));
         const itemListShadowRoot = await this.getShadowRoot(itemList);
 
-        const itemsContainer = await itemListShadowRoot.findElement(By.css('.items-container'));
-        const item = await itemsContainer.findElement(By.css('extensions-item'));
-        return item.getAttribute('id');
+        const itemsContainer = await itemListShadowRoot.findElement(By.css(".items-container"));
+        const item = await itemsContainer.findElement(By.css("extensions-item"));
+        return item.getAttribute("id");
     }
 
     private async getFirefoxAddonId(): Promise<string> {
-        await this._driver.get('about:debugging#/runtime/this-firefox');
+        await this._driver.get("about:debugging#/runtime/this-firefox");
 
-        const dd = await this._driver.querySelector('.debug-target-list dl div:nth-child(2) dd');
+        const dd = await this._driver.querySelector(".debug-target-list dl div:nth-child(2) dd");
         return dd.getText();
     }
 
@@ -61,17 +61,15 @@ export default class TestOptionPage {
         await this.openOption();
 
         // Possible: true, false, undefined
-        const current1: MenuPositionConfig = await this.getLocalStorage('menuPosition');
+        const current1: MenuPositionConfig = await this.getLocalStorage("menuPosition");
         if (current1.menuPosition === expected) {
             return;
         }
 
-        const option1 = await this._driver.querySelector(
-            `#menuPosition > option[value="${expected}"]`,
-        );
+        const option1 = await this._driver.querySelector(`#menuPosition > option[value="${expected}"]`);
         await this._driver.click(option1);
 
-        const current2: MenuPositionConfig = await this.getLocalStorage('menuPosition');
+        const current2: MenuPositionConfig = await this.getLocalStorage("menuPosition");
         if (current2.menuPosition === expected) {
             return;
         }
@@ -89,7 +87,7 @@ export default class TestOptionPage {
         await this.openOption();
 
         // Possible: true, false, undefined
-        const current1: BlockGoogleImagesTab = await this.getLocalStorage('blockGoogleImagesTab');
+        const current1: BlockGoogleImagesTab = await this.getLocalStorage("blockGoogleImagesTab");
         if (current1.blockGoogleImagesTab === expected) {
             return;
         }
@@ -97,7 +95,7 @@ export default class TestOptionPage {
         const checkbox1 = await this._driver.querySelector(`#blockGoogleImagesTab`);
         await this._driver.click(checkbox1);
 
-        const current2: BlockGoogleImagesTab = await this.getLocalStorage('blockGoogleImagesTab');
+        const current2: BlockGoogleImagesTab = await this.getLocalStorage("blockGoogleImagesTab");
         if (current2.blockGoogleImagesTab === expected) {
             return;
         }
