@@ -37,4 +37,5 @@ assignees: ikemo3
     * [ ] `package.json`: versionを更新
 * [ ] リリーステンプレートに反映させる
 * [ ] 次の次のバージョンのマイルストーンを作成
+* [ ] Gossip Site Blocker(snapshot)をアップロード
 * [ ] マイルストーンをクローズ
