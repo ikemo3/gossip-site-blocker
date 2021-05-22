@@ -1,5 +1,5 @@
-import { By, WebDriver, WebElement, WebElementPromise } from 'selenium-webdriver';
-import TestBlockAnchor from './block_anchor';
+import { By, WebDriver, WebElement, WebElementPromise } from "selenium-webdriver";
+import TestBlockAnchor from "./block_anchor";
 
 export default class TestCompactMenu {
     private readonly _driver: WebDriver;

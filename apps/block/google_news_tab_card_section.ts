@@ -1,6 +1,6 @@
-import { SearchResultToBlock } from './block';
-import DocumentURL from '../values/document_url';
-import { Options } from '../repository/options';
+import { SearchResultToBlock } from "./block";
+import DocumentURL from "../values/document_url";
+import { Options } from "../repository/options";
 
 class GoogleNewsTabCardSection extends SearchResultToBlock {
     private readonly valid: boolean;
@@ -20,7 +20,7 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches('div.card-section') && documentURL.isGoogleSearchNewsTab();
+        return element.matches("div.card-section") && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -28,25 +28,25 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector('a.RTNUJf');
+        const anchor = element.querySelector("a.RTNUJf");
         if (!anchor) {
             this.valid = false;
             return;
         }
 
-        let href = anchor.getAttribute('href') as string;
+        let href = anchor.getAttribute("href") as string;
 
         // firefox, coccoc, ...
-        if (href.startsWith('/url?')) {
-            const matchData = href.match('&url=(.*)&');
+        if (href.startsWith("/url?")) {
+            const matchData = href.match("&url=(.*)&");
             if (matchData !== null) {
                 [href] = matchData;
             }
         }
 
-        const title = anchor.textContent ? anchor.textContent : '';
-        const st: HTMLSpanElement | null = element.querySelector('.st');
-        const contents = st ? st.textContent! : '';
+        const title = anchor.textContent ? anchor.textContent : "";
+        const st: HTMLSpanElement | null = element.querySelector(".st");
+        const contents = st ? st.textContent! : "";
 
         this.valid = true;
         this.url = href;
@@ -54,12 +54,12 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
         this.contents = contents;
 
         // operation insert point
-        const actionMenu = this.element.querySelector('.action-menu');
+        const actionMenu = this.element.querySelector(".action-menu");
 
         if (actionMenu !== null) {
             this.compactMenuInsertElement = actionMenu;
         } else {
-            this.compactMenuInsertElement = element.querySelector('a')!;
+            this.compactMenuInsertElement = element.querySelector("a")!;
         }
     }
 
@@ -84,11 +84,11 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
     }
 
     public getPosition(): string {
-        return 'absolute';
+        return "absolute";
     }
 
     public getCssClass(): string {
-        return 'block-google-news-card-section';
+        return "block-google-news-card-section";
     }
 
     public getTitle(): string {

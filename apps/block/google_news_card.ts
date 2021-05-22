@@ -1,6 +1,6 @@
-import { SearchResultToBlock } from './block';
-import DocumentURL from '../values/document_url';
-import { Options } from '../repository/options';
+import { SearchResultToBlock } from "./block";
+import DocumentURL from "../values/document_url";
+import { Options } from "../repository/options";
 
 class GoogleNewsCard extends SearchResultToBlock {
     public valid: boolean;
@@ -16,7 +16,7 @@ class GoogleNewsCard extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.nodeName.toLowerCase() === 'g-card' && documentURL.isGoogleSearchNewsTab();
+        return element.nodeName.toLowerCase() === "g-card" && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -24,11 +24,11 @@ class GoogleNewsCard extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchorList = element.getElementsByTagName('a');
+        const anchorList = element.getElementsByTagName("a");
 
         const urlList = [];
         for (const anchor of anchorList) {
-            const href = anchor.getAttribute('href');
+            const href = anchor.getAttribute("href");
 
             if (href === null) {
                 continue;
@@ -43,12 +43,12 @@ class GoogleNewsCard extends SearchResultToBlock {
             return;
         }
 
-        const heading = element.querySelector('[role=heading]');
+        const heading = element.querySelector("[role=heading]");
         if (heading) {
-            this.title = heading.textContent ? heading.textContent : '';
+            this.title = heading.textContent ? heading.textContent : "";
         }
 
-        element.setAttribute('data-gsb-element-type', 'google-news-card');
+        element.setAttribute("data-gsb-element-type", "google-news-card");
         this.valid = true;
         [this.url] = urlList;
     }
@@ -70,7 +70,7 @@ class GoogleNewsCard extends SearchResultToBlock {
     }
 
     public getCompactMenuInsertElement(): Element {
-        const div = this.element.querySelector(':scope > div');
+        const div = this.element.querySelector(":scope > div");
         if (div !== null) {
             return div;
         }
@@ -78,11 +78,11 @@ class GoogleNewsCard extends SearchResultToBlock {
     }
 
     public getPosition(): string {
-        return 'relative';
+        return "relative";
     }
 
     public getCssClass(): string {
-        return 'block-google-card';
+        return "block-google-card";
     }
 
     public getTitle(): string {
@@ -90,7 +90,7 @@ class GoogleNewsCard extends SearchResultToBlock {
     }
 
     public getContents(): string {
-        return '';
+        return "";
     }
 }
 

@@ -1,7 +1,7 @@
-import BlockedSitesRepository from '../repository/blocked_sites';
-import { BannedWordRepository, BannedWord } from '../repository/banned_words';
-import { RegExpRepository } from '../repository/regexp_repository';
-import { $ } from '../common';
+import BlockedSitesRepository from "../repository/blocked_sites";
+import { BannedWordRepository, BannedWord } from "../repository/banned_words";
+import { RegExpRepository } from "../repository/regexp_repository";
+import { $ } from "../common";
 
 async function exportClicked(): Promise<void> {
     const sites = await BlockedSitesRepository.load();
@@ -19,7 +19,7 @@ async function exportClicked(): Promise<void> {
     const bannedLines = [];
     const words: BannedWord[] = await BannedWordRepository.load();
     for (const word of words) {
-        const escaped = word.keyword.replace(/ /g, '+');
+        const escaped = word.keyword.replace(/ /g, "+");
         const { blockType, target, keywordType } = word;
         const line = `${escaped} banned ${blockType} ${target} ${keywordType}`;
         bannedLines.push(line);
@@ -38,11 +38,9 @@ async function exportClicked(): Promise<void> {
     }
 
     const allLines = lines.concat(bannedLines).concat(regexpLines);
-    const exportTextArea: HTMLTextAreaElement = document.getElementById(
-        'exportTextArea',
-    ) as HTMLTextAreaElement;
+    const exportTextArea: HTMLTextAreaElement = document.getElementById("exportTextArea") as HTMLTextAreaElement;
 
-    exportTextArea.value = `${allLines.join('\n')}\n`;
+    exportTextArea.value = `${allLines.join("\n")}\n`;
 }
 
 export default exportClicked;

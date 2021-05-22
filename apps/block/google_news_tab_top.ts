@@ -1,6 +1,6 @@
-import { SearchResultToBlock } from './block';
-import DocumentURL from '../values/document_url';
-import { Options } from '../repository/options';
+import { SearchResultToBlock } from "./block";
+import DocumentURL from "../values/document_url";
+import { Options } from "../repository/options";
 
 class GoogleNewsTabTop extends SearchResultToBlock {
     private readonly valid: boolean;
@@ -22,7 +22,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches('div.nChh6e') && documentURL.isGoogleSearchNewsTab();
+        return element.matches("div.nChh6e") && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -30,24 +30,24 @@ class GoogleNewsTabTop extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector('a');
+        const anchor = element.querySelector("a");
         if (anchor === null) {
             this.valid = false;
             this._canRetry = true;
             return;
         }
 
-        let href = anchor.getAttribute('href') as string;
+        let href = anchor.getAttribute("href") as string;
 
         // firefox, coccoc, ...
-        if (href.startsWith('/url?')) {
-            const matchData = href.match('&url=(.*)&');
+        if (href.startsWith("/url?")) {
+            const matchData = href.match("&url=(.*)&");
             if (matchData !== null) {
                 [href] = matchData;
             }
         }
 
-        const h3 = element.querySelector('h3');
+        const h3 = element.querySelector("h3");
 
         // ignore if no h3(ex. Google Translate)
         if (h3 === null) {
@@ -56,9 +56,9 @@ class GoogleNewsTabTop extends SearchResultToBlock {
             return;
         }
 
-        const title = h3.textContent ? h3.textContent : '';
-        const st: HTMLSpanElement | null = element.querySelector('.st');
-        const contents = st ? st.textContent! : '';
+        const title = h3.textContent ? h3.textContent : "";
+        const st: HTMLSpanElement | null = element.querySelector(".st");
+        const contents = st ? st.textContent! : "";
 
         this.valid = true;
         this._canRetry = true;
@@ -67,12 +67,12 @@ class GoogleNewsTabTop extends SearchResultToBlock {
         this.contents = contents;
 
         // operation insert point
-        const actionMenu = this.element.querySelector('.action-menu');
+        const actionMenu = this.element.querySelector(".action-menu");
 
         if (actionMenu !== null) {
             this.compactMenuInsertElement = actionMenu;
         } else {
-            this.compactMenuInsertElement = element.querySelector('a')!;
+            this.compactMenuInsertElement = element.querySelector("a")!;
         }
     }
 
@@ -99,18 +99,18 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     public deleteElement(): void {
         const imageLink = this.element.previousSibling;
         if (imageLink instanceof HTMLAnchorElement) {
-            imageLink.removeAttribute('href');
+            imageLink.removeAttribute("href");
         }
 
         this.element.parentElement!.removeChild(this.element);
     }
 
     public getPosition(): string {
-        return 'absolute';
+        return "absolute";
     }
 
     public getCssClass(): string {
-        return 'block-google-news-top';
+        return "block-google-news-top";
     }
 
     public getTitle(): string {

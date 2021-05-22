@@ -1,5 +1,5 @@
-import { ChromeStorage, Logger } from '../common';
-import { BlockType } from './enums';
+import { ChromeStorage, Logger } from "../common";
+import { BlockType } from "./enums";
 
 interface RegExpItemList {
     regexpList: RegExpItem[];
@@ -10,7 +10,6 @@ export interface RegExpItem {
     blockType: BlockType;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const RegExpRepository = {
     async load(): Promise<RegExpItem[]> {
         const items = (await ChromeStorage.get({ regexpList: [] })) as RegExpItemList;
@@ -23,7 +22,7 @@ export const RegExpRepository = {
             }
         }
 
-        Logger.debug('regexpList: ', itemsCopy);
+        Logger.debug("regexpList: ", itemsCopy);
 
         return itemsCopy;
     },

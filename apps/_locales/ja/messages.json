@@ -1,235 +1,235 @@
 {
-  "autoBlock": {
-    "message": "自動ブロック"
-  },
-  "autoBlockIDN": {
-    "message": "国際化ドメイン名を自動ブロック"
-  },
-  "bannedWord": {
-    "message": "禁止用語"
-  },
-  "bannedWordAddButton": {
-    "message": "追加"
-  },
-  "bannedWordDeleteButton": {
-    "message": "削除"
-  },
-  "blockButtonLabel": {
-    "message": "ブロック"
-  },
-  "blockByRegexp": {
-    "message": "正規表現でブロック"
-  },
-  "blockChangeExplanation": {
-    "message": "現在以下の理由でブロックされています。変更しますか?"
-  },
-  "blockGoogleNewsTab": {
-    "message": "「ニュース」タブをブロック"
-  },
-  "blockGoogleImagesTab": {
-    "message": "「画像」タブをブロック"
-  },
-  "blockGoogleSearchMovie": {
-    "message": "「動画」をブロック"
-  },
-  "blockThisDomainWithUrl": {
-    "message": "このドメインをブロック($domain$)",
-    "placeholders": {
-      "domain": {
-        "content": "$1"
-      }
+    "autoBlock": {
+        "message": "自動ブロック"
+    },
+    "autoBlockIDN": {
+        "message": "国際化ドメイン名を自動ブロック"
+    },
+    "bannedWord": {
+        "message": "禁止用語"
+    },
+    "bannedWordAddButton": {
+        "message": "追加"
+    },
+    "bannedWordDeleteButton": {
+        "message": "削除"
+    },
+    "blockButtonLabel": {
+        "message": "ブロック"
+    },
+    "blockByRegexp": {
+        "message": "正規表現でブロック"
+    },
+    "blockChangeExplanation": {
+        "message": "現在以下の理由でブロックされています。変更しますか?"
+    },
+    "blockGoogleNewsTab": {
+        "message": "「ニュース」タブをブロック"
+    },
+    "blockGoogleImagesTab": {
+        "message": "「画像」タブをブロック"
+    },
+    "blockGoogleSearchMovie": {
+        "message": "「動画」をブロック"
+    },
+    "blockThisDomainWithUrl": {
+        "message": "このドメインをブロック($domain$)",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "blockThisPageWithRecommendedPath": {
+        "message": "推奨するパスでブロック($path$)",
+        "placeholders": {
+            "path": {
+                "content": "$1"
+            }
+        }
+    },
+    "blockThisPageWithUrl": {
+        "message": "このページをブロック($url$)",
+        "placeholders": {
+            "url": {
+                "content": "$1"
+            }
+        }
+    },
+    "blockedUrls": {
+        "message": "ブロックしたURL"
+    },
+    "blockThisPage": {
+        "message": "このページをブロックする"
+    },
+    "blockThisPageExplicitly": {
+        "message": "このページを明示的にブロック"
+    },
+    "cancelButtonLabel": {
+        "message": "キャンセル"
+    },
+    "changeBlockState": {
+        "message": "ブロック状態を変更"
+    },
+    "changeToHardBlock": {
+        "message": "ハードブロックに変更"
+    },
+    "changeToSoftBlock": {
+        "message": "ソフトブロックに変更"
+    },
+    "clearAll": {
+        "message": "全てクリアする"
+    },
+    "clearConfirm": {
+        "message": "全てクリアしていいでしょうか?"
+    },
+    "clearDone": {
+        "message": "クリアしました。"
+    },
+    "collectivelyBlock": {
+        "message": "まとめてブロック"
+    },
+    "customRadioText": {
+        "message": "カスタム"
+    },
+    "dangerZone": {
+        "message": "危険地帯"
+    },
+    "defaultBlockType": {
+        "message": "デフォルトのブロック形式"
+    },
+    "developerMode": {
+        "message": "開発者モード"
+    },
+    "displayTemporarilyUnblockAll": {
+        "message": "「全てのブロックを一時解除」を表示"
+    },
+    "exceptIkagadesitaka": {
+        "message": "「いかがでしたか」を除外して検索"
+    },
+    "exportButton": {
+        "message": "エクスポート"
+    },
+    "exportSection": {
+        "message": "エクスポート"
+    },
+    "extensionDescription": {
+        "message": "Google検索の結果から有害なサイトを隠します。"
+    },
+    "extensionName": {
+        "message": "ゴシップサイトブロッカー"
+    },
+    "forDeveloper": {
+        "message": "開発者向けオプション"
+    },
+    "general": {
+        "message": "一般"
+    },
+    "hardBlock": {
+        "message": "ハードブロック(削除)"
+    },
+    "hideThisPage": {
+        "message": "非表示にする"
+    },
+    "IDN": {
+        "message": "国際化ドメイン名"
+    },
+    "importButton": {
+        "message": "インポート"
+    },
+    "importSection": {
+        "message": "インポート"
+    },
+    "importCompleted": {
+        "message": "インポートが完了しました。"
+    },
+    "importFormat": {
+        "message": "フォーマット(1行ごと)"
+    },
+    "importFormatBannedWord": {
+        "message": "禁止ワード(空白は'+'に置換) + 'banned'。例: 'sad+news banned'"
+    },
+    "importFormatDomainOnly": {
+        "message": "ドメイン名(またはドメイン名とパス)。例: 'example.com', 'example.com/path'"
+    },
+    "importFormatDomainPlusType": {
+        "message": "ドメイン名(またはドメイン名とパス) + 'soft'/'hard'. 例: 'example.com soft', 'example.com hard', 'example.com/path soft'"
+    },
+    "importFormatPersonalBlocklist": {
+        "message": "Personal Blocklistからインポート可能です。"
+    },
+    "importFormatRegexp": {
+        "message": "正規表現(' ' => '+', '+' => '\\+', '\\' => '\\\\'). 例: '.*\\.example\\.com'"
+    },
+    "importTextAreaLabel": {
+        "message": "追加するサイトを1行に1つずつ入力して「インポート」ボタンを押してください。"
+    },
+    "invalidPattern": {
+        "message": "不正なパターンです。"
+    },
+    "menuCompact": {
+        "message": "コンパクト"
+    },
+    "menuDefault": {
+        "message": "デフォルト"
+    },
+    "menuPosition": {
+        "message": "メニューの位置"
+    },
+    "optionLabel": {
+        "message": "オプション"
+    },
+    "optionTitle": {
+        "message": "ゴシップサイトブロッカー: オプション"
+    },
+    "regexp": {
+        "message": "正規表現"
+    },
+    "regexpAddButton": {
+        "message": "追加"
+    },
+    "regexpDeleteButton": {
+        "message": "削除"
+    },
+    "regexpDescription": {
+        "message": "正規表現には'http'や'https'は含まないでください。例: '.*\\.example\\.com'"
+    },
+    "regexpRadioText": {
+        "message": "正規表現"
+    },
+    "searchInEnglish": {
+        "message": "英語で検索"
+    },
+    "showBlockedByWordInfo": {
+        "message": "禁止用語でブロックされたサイトの情報を表示"
+    },
+    "softBlock": {
+        "message": "ソフトブロック(非表示)"
+    },
+    "string": {
+        "message": "文字列"
+    },
+    "temporarilyUnblock": {
+        "message": "ブロックを一時解除($url$)",
+        "placeholders": {
+            "url": {
+                "content": "$1"
+            }
+        }
+    },
+    "temporarilyUnblockAll": {
+        "message": "全てのブロックを一時解除"
+    },
+    "titleAndContents": {
+        "message": "タイトルと内容"
+    },
+    "titleOnly": {
+        "message": "タイトルのみ"
+    },
+    "unblock": {
+        "message": "ブロックを解除"
+    },
+    "updateUrl": {
+        "message": "URLを更新"
     }
-  },
-  "blockThisPageWithRecommendedPath": {
-    "message": "推奨するパスでブロック($path$)",
-    "placeholders": {
-      "path": {
-        "content": "$1"
-      }
-    }
-  },
-  "blockThisPageWithUrl": {
-    "message": "このページをブロック($url$)",
-    "placeholders": {
-      "url": {
-        "content": "$1"
-      }
-    }
-  },
-  "blockedUrls": {
-    "message": "ブロックしたURL"
-  },
-  "blockThisPage": {
-    "message": "このページをブロックする"
-  },
-  "blockThisPageExplicitly": {
-    "message": "このページを明示的にブロック"
-  },
-  "cancelButtonLabel": {
-    "message": "キャンセル"
-  },
-  "changeBlockState": {
-    "message": "ブロック状態を変更"
-  },
-  "changeToHardBlock": {
-    "message": "ハードブロックに変更"
-  },
-  "changeToSoftBlock": {
-    "message": "ソフトブロックに変更"
-  },
-  "clearAll": {
-    "message": "全てクリアする"
-  },
-  "clearConfirm": {
-    "message": "全てクリアしていいでしょうか?"
-  },
-  "clearDone": {
-    "message": "クリアしました。"
-  },
-  "collectivelyBlock": {
-    "message": "まとめてブロック"
-  },
-  "customRadioText": {
-    "message": "カスタム"
-  },
-  "dangerZone": {
-    "message": "危険地帯"
-  },
-  "defaultBlockType": {
-    "message": "デフォルトのブロック形式"
-  },
-  "developerMode": {
-    "message": "開発者モード"
-  },
-  "displayTemporarilyUnblockAll": {
-    "message": "「全てのブロックを一時解除」を表示"
-  },
-  "exceptIkagadesitaka": {
-    "message": "「いかがでしたか」を除外して検索"
-  },
-  "exportButton": {
-    "message": "エクスポート"
-  },
-  "exportSection": {
-    "message": "エクスポート"
-  },
-  "extensionDescription": {
-    "message": "Google検索の結果から有害なサイトを隠します。"
-  },
-  "extensionName": {
-    "message": "ゴシップサイトブロッカー"
-  },
-  "forDeveloper": {
-    "message": "開発者向けオプション"
-  },
-  "general": {
-    "message": "一般"
-  },
-  "hardBlock": {
-    "message": "ハードブロック(削除)"
-  },
-  "hideThisPage": {
-    "message": "非表示にする"
-  },
-  "IDN": {
-    "message": "国際化ドメイン名"
-  },
-  "importButton": {
-    "message": "インポート"
-  },
-  "importSection": {
-    "message": "インポート"
-  },
-  "importCompleted": {
-    "message": "インポートが完了しました。"
-  },
-  "importFormat": {
-    "message": "フォーマット(1行ごと)"
-  },
-  "importFormatBannedWord": {
-    "message": "禁止ワード(空白は'+'に置換) + 'banned'。例: 'sad+news banned'"
-  },
-  "importFormatDomainOnly": {
-    "message": "ドメイン名(またはドメイン名とパス)。例: 'example.com', 'example.com/path'"
-  },
-  "importFormatDomainPlusType": {
-    "message": "ドメイン名(またはドメイン名とパス) + 'soft'/'hard'. 例: 'example.com soft', 'example.com hard', 'example.com/path soft'"
-  },
-  "importFormatPersonalBlocklist": {
-    "message": "Personal Blocklistからインポート可能です。"
-  },
-  "importFormatRegexp": {
-    "message": "正規表現(' ' => '+', '+' => '\\+', '\\' => '\\\\'). 例: '.*\\.example\\.com'"
-  },
-  "importTextAreaLabel": {
-    "message": "追加するサイトを1行に1つずつ入力して「インポート」ボタンを押してください。"
-  },
-  "invalidPattern": {
-    "message": "不正なパターンです。"
-  },
-  "menuCompact": {
-    "message": "コンパクト"
-  },
-  "menuDefault": {
-    "message": "デフォルト"
-  },
-  "menuPosition": {
-    "message": "メニューの位置"
-  },
-  "optionLabel": {
-    "message": "オプション"
-  },
-  "optionTitle": {
-    "message": "ゴシップサイトブロッカー: オプション"
-  },
-  "regexp": {
-    "message": "正規表現"
-  },
-  "regexpAddButton": {
-    "message": "追加"
-  },
-  "regexpDeleteButton": {
-    "message": "削除"
-  },
-  "regexpDescription": {
-    "message": "正規表現には'http'や'https'は含まないでください。例: '.*\\.example\\.com'"
-  },
-  "regexpRadioText": {
-    "message": "正規表現"
-  },
-  "searchInEnglish": {
-    "message": "英語で検索"
-  },
-  "showBlockedByWordInfo": {
-    "message": "禁止用語でブロックされたサイトの情報を表示"
-  },
-  "softBlock": {
-    "message": "ソフトブロック(非表示)"
-  },
-  "string": {
-    "message": "文字列"
-  },
-  "temporarilyUnblock": {
-    "message": "ブロックを一時解除($url$)",
-    "placeholders": {
-      "url": {
-        "content": "$1"
-      }
-    }
-  },
-  "temporarilyUnblockAll": {
-    "message": "全てのブロックを一時解除"
-  },
-  "titleAndContents": {
-    "message": "タイトルと内容"
-  },
-  "titleOnly": {
-    "message": "タイトルのみ"
-  },
-  "unblock": {
-    "message": "ブロックを解除"
-  },
-  "updateUrl": {
-    "message": "URLを更新"
-  }
 }

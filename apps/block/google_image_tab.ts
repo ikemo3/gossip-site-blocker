@@ -1,7 +1,7 @@
-import { SearchResultToBlock } from './block';
-import DocumentURL from '../values/document_url';
-import { Options } from '../repository/options';
-import { MenuPosition } from '../repository/enums';
+import { SearchResultToBlock } from "./block";
+import DocumentURL from "../values/document_url";
+import { Options } from "../repository/options";
+import { MenuPosition } from "../repository/enums";
 
 class GoogleImageTab extends SearchResultToBlock {
     private readonly valid: boolean;
@@ -21,7 +21,7 @@ class GoogleImageTab extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.classList.contains('MSM1fd') && documentURL.isGoogleSearchImageTab();
+        return element.classList.contains("MSM1fd") && documentURL.isGoogleSearchImageTab();
     }
 
     // noinspection DuplicatedCode
@@ -29,29 +29,29 @@ class GoogleImageTab extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector('a.VFACy');
+        const anchor = element.querySelector("a.VFACy");
         if (!anchor) {
             this.valid = false;
             this._canRetry = true;
             return;
         }
 
-        const href = anchor.getAttribute('href');
+        const href = anchor.getAttribute("href");
         if (!href) {
             this.valid = false;
             this._canRetry = true;
             return;
         }
 
-        const image = element.querySelector('img.Q4LuWd');
+        const image = element.querySelector("img.Q4LuWd");
         if (!image) {
             this.valid = false;
             this._canRetry = true;
             return;
         }
 
-        const alt = image.getAttribute('alt');
-        this.title = alt || '';
+        const alt = image.getAttribute("alt");
+        this.title = alt || "";
         this.url = href;
         this.valid = true;
         this._canRetry = true;
@@ -71,7 +71,7 @@ class GoogleImageTab extends SearchResultToBlock {
     }
 
     getCssClass(): string {
-        return 'block-google-image-tab';
+        return "block-google-image-tab";
     }
 
     getElement(): Element {
@@ -79,7 +79,7 @@ class GoogleImageTab extends SearchResultToBlock {
     }
 
     getPosition(): string {
-        return 'absolute';
+        return "absolute";
     }
 
     getUrl(): string {
@@ -87,7 +87,7 @@ class GoogleImageTab extends SearchResultToBlock {
     }
 
     getContents(): string {
-        return '';
+        return "";
     }
 
     getTitle(): string {

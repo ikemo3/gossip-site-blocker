@@ -1,12 +1,12 @@
-import { BlockReason, BlockReasonType } from '../model/block_reason';
-import BlockState from './block_state';
-import BlockDialog from './dialog';
-import { SearchResultToBlock } from '../block/block';
-import { $, ApplicationError, DOMUtils } from '../common';
-import BlockedSitesRepository from '../repository/blocked_sites';
-import { RegExpRepository } from '../repository/regexp_repository';
-import { IBasicBlockMediator, IBlockMediator } from './mediator';
-import { BlockType, MenuPosition } from '../repository/enums';
+import { BlockReason, BlockReasonType } from "../model/block_reason";
+import BlockState from "./block_state";
+import BlockDialog from "./dialog";
+import { SearchResultToBlock } from "../block/block";
+import { $, ApplicationError, DOMUtils } from "../common";
+import BlockedSitesRepository from "../repository/blocked_sites";
+import { RegExpRepository } from "../repository/regexp_repository";
+import { IBasicBlockMediator, IBlockMediator } from "./mediator";
+import { BlockType, MenuPosition } from "../repository/enums";
 
 /**
  * Block target element.
@@ -30,15 +30,15 @@ class BlockTargetElement {
     }
 
     public show(): void {
-        this.element.removeAttribute('data-blocker-display');
+        this.element.removeAttribute("data-blocker-display");
     }
 
     public hide(): void {
-        this.element.setAttribute('data-blocker-display', 'none');
+        this.element.setAttribute("data-blocker-display", "none");
     }
 
     public temporarilyUnblock(): void {
-        this.element.setAttribute('data-blocker-display', 'unhide');
+        this.element.setAttribute("data-blocker-display", "unhide");
     }
 }
 
@@ -54,7 +54,7 @@ class HideAnchor implements Anchor {
     constructor(mediator: IBlockMediator) {
         this.mediator = mediator;
 
-        const anchor = $.anchor($.message('hideThisPage'));
+        const anchor = $.anchor($.message("hideThisPage"));
         $.onclick(anchor, this.mediator.hide.bind(this.mediator));
 
         this.anchor = anchor;
@@ -82,7 +82,7 @@ class TemporarilyUnblockAnchor {
         this.mediator = mediator;
 
         const anchor = $.anchor();
-        anchor.classList.add('blocker-temporarily-unblock');
+        anchor.classList.add("blocker-temporarily-unblock");
         $.onclick(anchor, this.mediator.temporarilyUnblock.bind(this.mediator));
 
         this.anchor = anchor;
@@ -102,7 +102,7 @@ class TemporarilyUnblockAnchor {
     }
 
     private static message(reason: string): string {
-        return chrome.i18n.getMessage('temporarilyUnblock', [$.decodeURI(reason)]);
+        return chrome.i18n.getMessage("temporarilyUnblock", [$.decodeURI(reason)]);
     }
 }
 
@@ -114,7 +114,7 @@ class BlockAnchor implements Anchor {
     constructor(mediator: IBlockMediator) {
         this.mediator = mediator;
 
-        const anchor = $.anchor($.message('blockThisPage'));
+        const anchor = $.anchor($.message("blockThisPage"));
         $.onclick(anchor, this.mediator.showBlockDialog.bind(this.mediator));
 
         this.anchor = anchor;
@@ -126,12 +126,12 @@ class BlockAnchor implements Anchor {
 
     public showBlockThisPage(): void {
         $.showBlock(this.anchor);
-        $.text(this.anchor, $.message('blockThisPage'));
+        $.text(this.anchor, $.message("blockThisPage"));
     }
 
     public showBlockExplicitly(): void {
         $.showBlock(this.anchor);
-        $.text(this.anchor, $.message('blockThisPageExplicitly'));
+        $.text(this.anchor, $.message("blockThisPageExplicitly"));
     }
 
     public hide(): void {
@@ -147,7 +147,7 @@ class BlockChangeAnchor implements Anchor {
     constructor(mediator: IBlockMediator) {
         this.mediator = mediator;
 
-        const anchor = $.anchor($.message('changeBlockState'));
+        const anchor = $.anchor($.message("changeBlockState"));
         $.onclick(anchor, this.mediator.showChangeStateDialog.bind(this.mediator));
 
         this.anchor = anchor;
@@ -179,11 +179,11 @@ class BlockChangeAnchorDialog {
         this.mediator = mediator;
         this.url = url;
 
-        const background = $.div('block-dialog-background');
+        const background = $.div("block-dialog-background");
         this.background = background;
 
-        const dialog = $.div('block-dialog');
-        const explanation = $.message('blockChangeExplanation');
+        const dialog = $.div("block-dialog");
+        const explanation = $.message("blockChangeExplanation");
         const explanationDiv = $.div();
         explanationDiv.textContent = explanation;
 
@@ -193,15 +193,15 @@ class BlockChangeAnchorDialog {
         dialog.appendChild(explanationDiv);
         dialog.appendChild(reasonDiv);
 
-        const buttonsDiv = $.div('block-dialog-buttons');
+        const buttonsDiv = $.div("block-dialog-buttons");
 
-        const cancelButton = $.button($.message('cancelButtonLabel'), 'blocker-secondary-button');
+        const cancelButton = $.button($.message("cancelButtonLabel"), "blocker-secondary-button");
         $.onclick(cancelButton, this.cancel.bind(this));
 
-        const unblockButton = $.button($.message('unblock'), 'blocker-secondary-button');
+        const unblockButton = $.button($.message("unblock"), "blocker-secondary-button");
         $.onclick(unblockButton, this.unblock.bind(this));
 
-        const hardBlockButton = $.button($.message('hardBlock'), 'blocker-secondary-button');
+        const hardBlockButton = $.button($.message("hardBlock"), "blocker-secondary-button");
         $.onclick(hardBlockButton, this.toHard.bind(this));
 
         document.body.appendChild(background);
@@ -246,19 +246,19 @@ class CompactMenu {
     private readonly parent: HTMLElement;
 
     constructor(hideAnchor: Anchor, blockAnchor: Anchor, changeAnchor: Anchor, position: string) {
-        this.operationSpan = $.span('', 'block-anchor');
+        this.operationSpan = $.span("", "block-anchor");
 
         // add icon
-        this.iconAnchor = $.anchor('');
-        this.iconAnchor.style.position = 'relative';
-        const iconUrl = chrome.runtime.getURL('icons/icon-12.png');
-        const iconImg: HTMLImageElement = document.createElement('img');
+        this.iconAnchor = $.anchor("");
+        this.iconAnchor.style.position = "relative";
+        const iconUrl = chrome.runtime.getURL("icons/icon-12.png");
+        const iconImg: HTMLImageElement = document.createElement("img");
         iconImg.src = iconUrl;
         this.operationSpan.appendChild(this.iconAnchor);
         this.iconAnchor.appendChild(iconImg);
         $.onclick(this.iconAnchor, this.showOperations.bind(this));
 
-        const div = $.div('block-operations-div');
+        const div = $.div("block-operations-div");
         div.style.position = position;
         div.appendChild(hideAnchor.getElement());
         div.appendChild(blockAnchor.getElement());
@@ -268,7 +268,7 @@ class CompactMenu {
         this.isShow = false;
 
         // FIXME: ad hoc
-        if (position === 'absolute') {
+        if (position === "absolute") {
             this.parent = this.iconAnchor;
         } else {
             this.parent = this.operationSpan;
@@ -313,16 +313,11 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
     private changeStateDialog: BlockChangeAnchorDialog;
 
-    constructor(
-        g: SearchResultToBlock,
-        blockState: BlockState,
-        defaultBlockType: string,
-        menuPosition: MenuPosition,
-    ) {
+    constructor(g: SearchResultToBlock, blockState: BlockState, defaultBlockType: string, menuPosition: MenuPosition) {
         const blockTarget = new BlockTargetElement(this, g.getElement());
-        g.getElement().setAttribute('data-gsb-menu-position', menuPosition.toString());
+        g.getElement().setAttribute("data-gsb-menu-position", menuPosition.toString());
 
-        this.operationDiv = $.div('block-anchor');
+        this.operationDiv = $.div("block-anchor");
         this.url = g.getUrl();
         this.blockReason = blockState.getReason();
         this.blockTarget = blockTarget;
@@ -336,16 +331,11 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         switch (menuPosition) {
             case MenuPosition.COMPACT:
                 // insert menu after action menu.
-                compactMenu = new CompactMenu(
-                    this.hideAnchor,
-                    this.blockAnchor,
-                    this.changeAnchor,
-                    g.getPosition(),
-                );
+                compactMenu = new CompactMenu(this.hideAnchor, this.blockAnchor, this.changeAnchor, g.getPosition());
                 DOMUtils.insertAfter(g.getCompactMenuInsertElement(), compactMenu.getElement());
 
                 // insert links after block target.
-                this.operationDiv.classList.add('block-anchor-tmp-unblock-only');
+                this.operationDiv.classList.add("block-anchor-tmp-unblock-only");
                 this.operationDiv.classList.add(g.getCssClass());
                 this.operationDiv.appendChild(this.temporarilyUnblockAnchor.getElement());
                 DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
@@ -367,11 +357,11 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
         const state = blockState.getState();
         switch (state) {
-            case 'none':
+            case "none":
                 this.notBlocked();
                 break;
 
-            case 'soft':
+            case "soft":
                 this.hide();
                 break;
             default:
@@ -439,13 +429,10 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         if (isUrl) {
             await BlockedSitesRepository.add(pattern, blockType);
         } else {
-            await RegExpRepository.add(
-                pattern,
-                blockType === 'soft' ? BlockType.SOFT : BlockType.HARD,
-            );
+            await RegExpRepository.add(pattern, blockType === "soft" ? BlockType.SOFT : BlockType.HARD);
         }
 
-        if (blockType === 'hard') {
+        if (blockType === "hard") {
             this.blockTarget.remove();
             $.removeSelf(this.operationDiv);
             return;
@@ -462,11 +449,7 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
     public showChangeStateDialog(): void {
         // show dialog.
-        this.changeStateDialog = new BlockChangeAnchorDialog(
-            this,
-            this.url,
-            this.blockReason!.getReason(),
-        );
+        this.changeStateDialog = new BlockChangeAnchorDialog(this, this.url, this.blockReason!.getReason());
     }
 
     public showBlockDialog(): void {

@@ -1,12 +1,12 @@
-import { By, until, WebDriver, WebElement } from 'selenium-webdriver';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import { DriverType, TestCase, TestDriverInterface } from './libs/interface';
-import TestOptionPage from './libs/option_page';
-import TestBlockDialog from './libs/block_dialog';
-import TestBlockAnchor from './libs/block_anchor';
-import TestCompactMenu from './libs/compact_menu';
+import { By, until, WebDriver, WebElement } from "selenium-webdriver";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { DriverType, TestCase, TestDriverInterface } from "./libs/interface";
+import TestOptionPage from "./libs/option_page";
+import TestBlockDialog from "./libs/block_dialog";
+import TestBlockAnchor from "./libs/block_anchor";
+import TestCompactMenu from "./libs/compact_menu";
 
-export { DriverType } from './libs/interface';
+export { DriverType } from "./libs/interface";
 
 export class TestWebDriver implements TestDriverInterface {
     private readonly _driver: WebDriver;
@@ -38,19 +38,19 @@ export class TestWebDriver implements TestDriverInterface {
     }
 
     async googleSearch(keywords: string[]): Promise<void> {
-        const query = keywords.join('+');
+        const query = keywords.join("+");
         await this._driver.get(`https://www.google.com/search?q=${query}`);
         return this.pause(2000);
     }
 
     async googleNewsSearch(keywords: string[]): Promise<void> {
-        const query = keywords.join('+');
+        const query = keywords.join("+");
         await this._driver.get(`https://www.google.com/search?q=${query}&tbm=nws`);
         return this.pause(1000);
     }
 
     async googleImageSearch(keywords: string[]): Promise<void> {
-        const query = keywords.join('+');
+        const query = keywords.join("+");
         await this._driver.get(`https://www.google.com/search?q=${query}&tbm=isch`);
         return this.pause(1000);
     }
@@ -96,12 +96,12 @@ export class TestWebDriver implements TestDriverInterface {
         }
 
         // generate numbered filename
-        const num = this._counter.toString().padStart(4, '0');
+        const num = this._counter.toString().padStart(4, "0");
         const numberedFilename = `${num}_${filename}`;
         this._counter += 1;
 
         // write screenshot to file
-        const buffer = Buffer.from(await this._driver.takeScreenshot(), 'base64');
+        const buffer = Buffer.from(await this._driver.takeScreenshot(), "base64");
         writeFileSync(`${dir}/${numberedFilename}`, buffer);
     }
 

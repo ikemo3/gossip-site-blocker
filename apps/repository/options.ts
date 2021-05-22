@@ -1,8 +1,8 @@
-import { ChromeStorage, Logger } from '../common';
-import BlockedSites from '../model/blocked_sites';
-import { BannedWord } from './banned_words';
-import { RegExpItem } from './regexp_repository';
-import { MenuPosition } from './enums';
+import { ChromeStorage, Logger } from "../common";
+import BlockedSites from "../model/blocked_sites";
+import { BannedWord } from "./banned_words";
+import { RegExpItem } from "./regexp_repository";
+import { MenuPosition } from "./enums";
 
 export interface OptionInterface<T> {
     load: () => Promise<T>;
@@ -58,7 +58,7 @@ export const OptionRepository = {
 
     DefaultBlockType: {
         load: async (): Promise<string> => {
-            const items = await ChromeStorage.load({ defaultBlockType: 'soft' });
+            const items = await ChromeStorage.load({ defaultBlockType: "soft" });
 
             return items.defaultBlockType;
         },
@@ -72,7 +72,7 @@ export const OptionRepository = {
 
     MenuPosition: {
         load: async (): Promise<MenuPosition> => {
-            const items = await ChromeStorage.load({ menuPosition: 'default' });
+            const items = await ChromeStorage.load({ menuPosition: "default" });
             const { menuPosition } = items;
 
             switch (menuPosition) {

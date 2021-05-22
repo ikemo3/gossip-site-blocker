@@ -1,6 +1,6 @@
-import { ChromeStorage } from '../common';
-import BlockedSites from '../model/blocked_sites';
-import BlockedSite from '../model/blocked_site';
+import { ChromeStorage } from "../common";
+import BlockedSites from "../model/blocked_sites";
+import BlockedSite from "../model/blocked_site";
 
 interface BlockedSiteData {
     url: string;
@@ -112,7 +112,7 @@ const BlockedSitesRepository = {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
-        site!.block_type = 'hard';
+        site!.block_type = "hard";
 
         await BlockedSitesRepository.save(sites.sites);
     },
@@ -121,7 +121,7 @@ const BlockedSitesRepository = {
         const sites = await BlockedSitesRepository.load();
         const site = sites.find(url);
 
-        site!.block_type = 'soft';
+        site!.block_type = "soft";
 
         await BlockedSitesRepository.save(sites.sites);
     },

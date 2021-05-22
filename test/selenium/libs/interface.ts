@@ -1,8 +1,8 @@
-import { WebElement } from 'selenium-webdriver';
+import { WebElement } from "selenium-webdriver";
 
 export enum DriverType {
-    Chrome = 'chrome',
-    Firefox = 'firefox',
+    Chrome = "chrome",
+    Firefox = "firefox",
 }
 
 export interface TestDriverInterface {

@@ -1,235 +1,235 @@
 {
-  "autoBlock": {
-    "message": "Auto Block"
-  },
-  "autoBlockIDN": {
-    "message": "Auto Block Internationalized Domain Name"
-  },
-  "bannedWord": {
-    "message": "Banned Words"
-  },
-  "bannedWordAddButton": {
-    "message": "Add"
-  },
-  "bannedWordDeleteButton": {
-    "message": "Delete"
-  },
-  "blockButtonLabel": {
-    "message": "Block"
-  },
-  "blockByRegexp": {
-    "message": "Block by Regular Expression"
-  },
-  "blockChangeExplanation": {
-    "message": "Currently blocked for the following reason. Do you want to change it?"
-  },
-  "blockGoogleNewsTab": {
-    "message": "Block 'News' tab"
-  },
-  "blockGoogleImagesTab": {
-    "message": "Block 'Images' tab"
-  },
-  "blockGoogleSearchMovie": {
-    "message": "Block 'Movie'"
-  },
-  "blockThisDomainWithUrl": {
-    "message": "Block this domain($domain$)",
-    "placeholders": {
-      "domain": {
-        "content": "$1"
-      }
+    "autoBlock": {
+        "message": "Auto Block"
+    },
+    "autoBlockIDN": {
+        "message": "Auto Block Internationalized Domain Name"
+    },
+    "bannedWord": {
+        "message": "Banned Words"
+    },
+    "bannedWordAddButton": {
+        "message": "Add"
+    },
+    "bannedWordDeleteButton": {
+        "message": "Delete"
+    },
+    "blockButtonLabel": {
+        "message": "Block"
+    },
+    "blockByRegexp": {
+        "message": "Block by Regular Expression"
+    },
+    "blockChangeExplanation": {
+        "message": "Currently blocked for the following reason. Do you want to change it?"
+    },
+    "blockGoogleNewsTab": {
+        "message": "Block 'News' tab"
+    },
+    "blockGoogleImagesTab": {
+        "message": "Block 'Images' tab"
+    },
+    "blockGoogleSearchMovie": {
+        "message": "Block 'Movie'"
+    },
+    "blockThisDomainWithUrl": {
+        "message": "Block this domain($domain$)",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "blockThisPageWithRecommendedPath": {
+        "message": "Block recommended path($path$)",
+        "placeholders": {
+            "path": {
+                "content": "$1"
+            }
+        }
+    },
+    "blockThisPageWithUrl": {
+        "message": "Block this page($url$)",
+        "placeholders": {
+            "url": {
+                "content": "$1"
+            }
+        }
+    },
+    "blockedUrls": {
+        "message": "Blocked URLs"
+    },
+    "blockThisPage": {
+        "message": "Block this page"
+    },
+    "blockThisPageExplicitly": {
+        "message": "Block this page explicitly"
+    },
+    "cancelButtonLabel": {
+        "message": "Cancel"
+    },
+    "changeBlockState": {
+        "message": "Change block state"
+    },
+    "changeToHardBlock": {
+        "message": "Change to hard block"
+    },
+    "changeToSoftBlock": {
+        "message": "Change to soft block"
+    },
+    "clearAll": {
+        "message": "Clear all"
+    },
+    "clearConfirm": {
+        "message": "Are you sure you want to clear all?"
+    },
+    "clearDone": {
+        "message": "Clear completed."
+    },
+    "collectivelyBlock": {
+        "message": "Collectively Block"
+    },
+    "customRadioText": {
+        "message": "Custom"
+    },
+    "dangerZone": {
+        "message": "Danger Zone"
+    },
+    "defaultBlockType": {
+        "message": "Default Block Type"
+    },
+    "developerMode": {
+        "message": "Developer Mode"
+    },
+    "displayTemporarilyUnblockAll": {
+        "message": "Display `Temporarily unblock all`"
+    },
+    "exceptIkagadesitaka": {
+        "message": "Search excluding 'ikagadesitaka(Japanese)'"
+    },
+    "exportButton": {
+        "message": "Export"
+    },
+    "exportSection": {
+        "message": "Export"
+    },
+    "extensionDescription": {
+        "message": "Hide harmful sites from Google search results."
+    },
+    "extensionName": {
+        "message": "Gossip Site Blocker"
+    },
+    "forDeveloper": {
+        "message": "For Developer"
+    },
+    "general": {
+        "message": "General"
+    },
+    "hardBlock": {
+        "message": "Hard block(erase)"
+    },
+    "hideThisPage": {
+        "message": "Hide"
+    },
+    "IDN": {
+        "message": "Internationalized Domain Name"
+    },
+    "importButton": {
+        "message": "Import"
+    },
+    "importSection": {
+        "message": "Import"
+    },
+    "importCompleted": {
+        "message": "Import completed."
+    },
+    "importFormat": {
+        "message": "Format(per line)"
+    },
+    "importFormatBannedWord": {
+        "message": "banned word(replace blank to '+') + 'banned'. Example: 'sad+news banned'"
+    },
+    "importFormatDomainOnly": {
+        "message": "domain name (or domain name with path). Example: 'example.com', 'example.com/path'"
+    },
+    "importFormatDomainPlusType": {
+        "message": "domain name (or domain name with path) + 'soft'/'hard'. Example: 'example.com soft', 'example.com hard', 'example.com/path soft'"
+    },
+    "importFormatPersonalBlocklist": {
+        "message": "can import from Personal Blocklist."
+    },
+    "importFormatRegexp": {
+        "message": "regexp(' ' => '+', '+' => '\\+', '\\' => '\\\\'). Example: '.*\\.example\\.com'"
+    },
+    "importTextAreaLabel": {
+        "message": "Please enter sites to add, one per line, and press the 'Import' button."
+    },
+    "invalidPattern": {
+        "message": "Invalid Pattern."
+    },
+    "menuCompact": {
+        "message": "Compact"
+    },
+    "menuDefault": {
+        "message": "Default"
+    },
+    "menuPosition": {
+        "message": "Menu Position"
+    },
+    "optionLabel": {
+        "message": "Option"
+    },
+    "optionTitle": {
+        "message": "Gossip Site Blocker: Option"
+    },
+    "regexp": {
+        "message": "Regular Expression"
+    },
+    "regexpAddButton": {
+        "message": "Add"
+    },
+    "regexpDeleteButton": {
+        "message": "Delete"
+    },
+    "regexpDescription": {
+        "message": "Do not include 'http' or 'https' in regular expressions. e.g. '.*\\.example\\.com'"
+    },
+    "regexpRadioText": {
+        "message": "Regular Expressions"
+    },
+    "searchInEnglish": {
+        "message": "Search in English"
+    },
+    "showBlockedByWordInfo": {
+        "message": "Show information of blocked by banned words."
+    },
+    "softBlock": {
+        "message": "Soft block(hide)"
+    },
+    "string": {
+        "message": "string"
+    },
+    "temporarilyUnblock": {
+        "message": "Temporarily unblock($url$)",
+        "placeholders": {
+            "url": {
+                "content": "$1"
+            }
+        }
+    },
+    "temporarilyUnblockAll": {
+        "message": "Temporarily unblock all"
+    },
+    "titleAndContents": {
+        "message": "Title and contents"
+    },
+    "titleOnly": {
+        "message": "Title only"
+    },
+    "unblock": {
+        "message": "Unblock"
+    },
+    "updateUrl": {
+        "message": "Update URL"
     }
-  },
-  "blockThisPageWithRecommendedPath": {
-    "message": "Block recommended path($path$)",
-    "placeholders": {
-      "path": {
-        "content": "$1"
-      }
-    }
-  },
-  "blockThisPageWithUrl": {
-    "message": "Block this page($url$)",
-    "placeholders": {
-      "url": {
-        "content": "$1"
-      }
-    }
-  },
-  "blockedUrls": {
-    "message": "Blocked URLs"
-  },
-  "blockThisPage": {
-    "message": "Block this page"
-  },
-  "blockThisPageExplicitly": {
-    "message": "Block this page explicitly"
-  },
-  "cancelButtonLabel": {
-    "message": "Cancel"
-  },
-  "changeBlockState": {
-    "message": "Change block state"
-  },
-  "changeToHardBlock": {
-    "message": "Change to hard block"
-  },
-  "changeToSoftBlock": {
-    "message": "Change to soft block"
-  },
-  "clearAll": {
-    "message": "Clear all"
-  },
-  "clearConfirm": {
-    "message": "Are you sure you want to clear all?"
-  },
-  "clearDone": {
-    "message": "Clear completed."
-  },
-  "collectivelyBlock": {
-    "message": "Collectively Block"
-  },
-  "customRadioText": {
-    "message": "Custom"
-  },
-  "dangerZone": {
-    "message": "Danger Zone"
-  },
-  "defaultBlockType": {
-    "message": "Default Block Type"
-  },
-  "developerMode": {
-    "message": "Developer Mode"
-  },
-  "displayTemporarilyUnblockAll": {
-    "message": "Display `Temporarily unblock all`"
-  },
-  "exceptIkagadesitaka": {
-    "message": "Search excluding 'ikagadesitaka(Japanese)'"
-  },
-  "exportButton": {
-    "message": "Export"
-  },
-  "exportSection": {
-    "message": "Export"
-  },
-  "extensionDescription": {
-    "message": "Hide harmful sites from Google search results."
-  },
-  "extensionName": {
-    "message": "Gossip Site Blocker"
-  },
-  "forDeveloper": {
-    "message": "For Developer"
-  },
-  "general": {
-    "message": "General"
-  },
-  "hardBlock": {
-    "message": "Hard block(erase)"
-  },
-  "hideThisPage": {
-    "message": "Hide"
-  },
-  "IDN": {
-    "message": "Internationalized Domain Name"
-  },
-  "importButton": {
-    "message": "Import"
-  },
-  "importSection": {
-    "message": "Import"
-  },
-  "importCompleted": {
-    "message": "Import completed."
-  },
-  "importFormat": {
-    "message": "Format(per line)"
-  },
-  "importFormatBannedWord": {
-    "message": "banned word(replace blank to '+') + 'banned'. Example: 'sad+news banned'"
-  },
-  "importFormatDomainOnly": {
-    "message": "domain name (or domain name with path). Example: 'example.com', 'example.com/path'"
-  },
-  "importFormatDomainPlusType": {
-    "message": "domain name (or domain name with path) + 'soft'/'hard'. Example: 'example.com soft', 'example.com hard', 'example.com/path soft'"
-  },
-  "importFormatPersonalBlocklist": {
-    "message": "can import from Personal Blocklist."
-  },
-  "importFormatRegexp": {
-    "message": "regexp(' ' => '+', '+' => '\\+', '\\' => '\\\\'). Example: '.*\\.example\\.com'"
-  },
-  "importTextAreaLabel": {
-    "message": "Please enter sites to add, one per line, and press the 'Import' button."
-  },
-  "invalidPattern": {
-    "message": "Invalid Pattern."
-  },
-  "menuCompact": {
-    "message": "Compact"
-  },
-  "menuDefault": {
-    "message": "Default"
-  },
-  "menuPosition": {
-    "message": "Menu Position"
-  },
-  "optionLabel": {
-    "message": "Option"
-  },
-  "optionTitle": {
-    "message": "Gossip Site Blocker: Option"
-  },
-  "regexp": {
-    "message": "Regular Expression"
-  },
-  "regexpAddButton": {
-    "message": "Add"
-  },
-  "regexpDeleteButton": {
-    "message": "Delete"
-  },
-  "regexpDescription": {
-    "message": "Do not include 'http' or 'https' in regular expressions. e.g. '.*\\.example\\.com'"
-  },
-  "regexpRadioText": {
-    "message": "Regular Expressions"
-  },
-  "searchInEnglish": {
-    "message": "Search in English"
-  },
-  "showBlockedByWordInfo": {
-    "message": "Show information of blocked by banned words."
-  },
-  "softBlock": {
-    "message": "Soft block(hide)"
-  },
-  "string": {
-    "message": "string"
-  },
-  "temporarilyUnblock": {
-    "message": "Temporarily unblock($url$)",
-    "placeholders": {
-      "url": {
-        "content": "$1"
-      }
-    }
-  },
-  "temporarilyUnblockAll": {
-    "message": "Temporarily unblock all"
-  },
-  "titleAndContents": {
-    "message": "Title and contents"
-  },
-  "titleOnly": {
-    "message": "Title only"
-  },
-  "unblock": {
-    "message": "Unblock"
-  },
-  "updateUrl": {
-    "message": "Update URL"
-  }
 }

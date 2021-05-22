@@ -1,5 +1,5 @@
-import { KeywordType, MenuPosition } from '../repository/enums';
-import { Logger } from '../common';
+import { KeywordType, MenuPosition } from "../repository/enums";
+import { Logger } from "../common";
 
 export interface ContentToBlock {
     getUrl(): string;
