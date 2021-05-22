@@ -42,12 +42,6 @@
             }
         ],
         "no-useless-constructor": "off",
-        "@typescript-eslint/camelcase": [
-            "error",
-            {
-                "properties": "never"
-            }
-        ],
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-unused-vars": [
             "error",

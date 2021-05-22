@@ -3,12 +3,13 @@ import { BannedTarget, BlockType } from "./repository/enums";
 export const ChromeStorage = {
     async load<T>(keys: T): Promise<T> {
         return new Promise((resolve) => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             chrome.storage.local.get(keys, resolve);
         });
     },
 
+    // eslint-disable-next-line @typescript-eslint/ban-types
     async save(items: object): Promise<void> {
         return new Promise((resolve) => {
             chrome.storage.local.set(items, resolve);
