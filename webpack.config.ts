@@ -2,7 +2,6 @@ import { Configuration } from "webpack";
 import { join } from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import WebpackShellPluginNext from "webpack-shell-plugin-next";
 
 const config: Configuration = {
@@ -17,6 +16,7 @@ const config: Configuration = {
     output: {
         path: join(__dirname, "dist"),
         filename: "[name].js",
+        clean: true,
     },
     module: {
         rules: [{ test: /\.ts$/, loader: "ts-loader" }],
@@ -25,9 +25,6 @@ const config: Configuration = {
         extensions: [".ts", ".js"],
     },
     plugins: [
-        new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ["!_locales/*/*", "!icons/*", "!styles/*", "!.web-extension-id"],
-        }),
         new CopyPlugin({
             patterns: [
                 {
