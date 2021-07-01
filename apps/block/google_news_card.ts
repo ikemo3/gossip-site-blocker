@@ -43,9 +43,12 @@ class GoogleNewsCard extends SearchResultToBlock {
             return;
         }
 
-        const heading = element.querySelector("[role=heading]");
+        const heading = element.querySelector(".nDgy9d");
         if (heading) {
             this.title = heading.textContent ? heading.textContent : "";
+        } else {
+            // fallback
+            this.title = "";
         }
 
         element.setAttribute("data-gsb-element-type", "google-news-card");
