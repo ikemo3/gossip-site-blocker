@@ -1,3 +1,9 @@
+# v1.13.2
+
+## Bug Fixes
+
+* Fix: can't get title if 'g-card' does not contains 'role=heading' attribute(#331)
+
 # v1.13.1
 
 ## Bug Fixes
