@@ -1,5 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
+import GoogleSearchURL from '../values/google_search_url';
+import { Logger } from '../common';
 
 // noinspection SpellCheckingInspection
 const CONTENT_SELECTOR = ".IsZvec";
@@ -26,12 +28,14 @@ class GoogleSearchResult extends SearchResultToBlock {
     // noinspection DuplicatedCode
     constructor(element: Element) {
         super();
+        Logger.debug("GoogleSearchResult: constructor");
         this.element = element;
 
         const { classList } = element;
 
         // ignore if image.
         if (element.matches("#imagebox_bigimages")) {
+            Logger.debug("GoogleSearchResult: #imagebox_bigimages");
             this.valid = false;
             this._canRetry = false;
             return;
@@ -39,6 +43,14 @@ class GoogleSearchResult extends SearchResultToBlock {
 
         // ignore if dictionary.
         if (element.querySelector("#dictionary-modules") !== null) {
+            Logger.debug("GoogleSearchResult: dictionary");
+            this.valid = false;
+            this._canRetry = false;
+            return;
+        }
+
+        // ignore if Google Books
+        if (element.classList.contains("VjDLd")) {
             this.valid = false;
             this._canRetry = false;
             return;
@@ -53,6 +65,7 @@ class GoogleSearchResult extends SearchResultToBlock {
             }
 
             if (parent.classList.contains("g")) {
+                Logger.debug("GoogleSearchResult: parent is 'g' element");
                 this.valid = false;
                 this._canRetry = false;
                 return;
@@ -63,6 +76,7 @@ class GoogleSearchResult extends SearchResultToBlock {
 
         // ignore right pane
         if (classList.contains("rhsvw")) {
+            Logger.debug("GoogleSearchResult: right pane");
             this.valid = false;
             this._canRetry = false;
             return;
@@ -72,33 +86,38 @@ class GoogleSearchResult extends SearchResultToBlock {
 
         const urlList: string[] = [];
         for (const anchor of anchorList) {
-            const ping = anchor.getAttribute("ping");
+            Logger.debug("GoogleSearchResult: anchor:", anchor);
             const href = anchor.getAttribute("href");
-            const onmouseDown = anchor.getAttribute("onmousedown");
 
             if (href === null) {
-                continue;
-            }
-
-            if (!href.startsWith("https://books.google") && ping === null && onmouseDown == null) {
+                Logger.debug("GoogleSearchResult: href === null");
                 continue;
             }
 
             if (href.startsWith("https://webcache.googleusercontent.com/")) {
+                Logger.debug("GoogleSearchResult: cache(https)");
                 continue;
             }
 
             if (href.startsWith("http://webcache.googleusercontent.com/")) {
+                Logger.debug("GoogleSearchResult: cache(http)");
                 continue;
             }
 
             // firefox, coccoc, ...
             if (href.startsWith("/url?")) {
-                const matchData = href.match("&url=(.*)&");
-                if (matchData !== null) {
-                    urlList.push(matchData[0]);
+                Logger.debug("GoogleSearchResult: href.startsWith");
+                Logger.debug(`href: ${href}`);
+                const searchURL = new GoogleSearchURL(href);
+                const urlParameter = searchURL.getURLParameter();
+                if (urlParameter !== null) {
+                    Logger.debug("`url` parameter found.");
+                    urlList.push(urlParameter);
+                } else {
+                    Logger.debug("`url` parameter not found.");
                 }
             } else {
+                Logger.debug("GoogleSearchResult: ! href.startsWith")
                 urlList.push(href);
             }
         }

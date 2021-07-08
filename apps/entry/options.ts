@@ -92,6 +92,7 @@ async function clear(): Promise<void> {
 clearButton.addEventListener("click", clear);
 
 document.addEventListener("DOMContentLoaded", async (_) => {
+    Logger.log("DOMContentLoaded");
     await showLists();
 
     regexpList = new RegExpList();
