@@ -16,6 +16,8 @@ export const OptionRepository = {
 
             Logger.mode = items.developerMode;
 
+            Logger.log("set 'developerMode' to =>", items.developerMode);
+
             return items.developerMode;
         },
 
