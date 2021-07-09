@@ -167,6 +167,8 @@ const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 
 (async (): Promise<void> => {
+    await OptionRepository.DeveloperMode.load();
+
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
     const bannedWords: BannedWord[] = await BannedWordRepository.load();
     const regexpList: RegExpItem[] = await RegExpRepository.load();
