@@ -1,5 +1,6 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
+import GoogleSearchURL from "../values/google_search_url";
 
 // noinspection SpellCheckingInspection
 const CONTENT_SELECTOR = ".IsZvec";
@@ -44,6 +45,13 @@ class GoogleSearchResult extends SearchResultToBlock {
             return;
         }
 
+        // ignore if Google Books
+        if (element.classList.contains("VjDLd")) {
+            this.valid = false;
+            this._canRetry = false;
+            return;
+        }
+
         // ignore if any element has class=g
         let parent = element.parentElement;
         for (;;) {
@@ -72,15 +80,9 @@ class GoogleSearchResult extends SearchResultToBlock {
 
         const urlList: string[] = [];
         for (const anchor of anchorList) {
-            const ping = anchor.getAttribute("ping");
             const href = anchor.getAttribute("href");
-            const onmouseDown = anchor.getAttribute("onmousedown");
 
             if (href === null) {
-                continue;
-            }
-
-            if (!href.startsWith("https://books.google") && ping === null && onmouseDown == null) {
                 continue;
             }
 
@@ -94,9 +96,10 @@ class GoogleSearchResult extends SearchResultToBlock {
 
             // firefox, coccoc, ...
             if (href.startsWith("/url?")) {
-                const matchData = href.match("&url=(.*)&");
-                if (matchData !== null) {
-                    urlList.push(matchData[0]);
+                const searchURL = new GoogleSearchURL(href);
+                const urlParameter = searchURL.getURLParameter();
+                if (urlParameter !== null) {
+                    urlList.push(urlParameter);
                 }
             } else {
                 urlList.push(href);
