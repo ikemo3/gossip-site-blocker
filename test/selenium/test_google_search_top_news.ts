@@ -27,7 +27,7 @@ async function googleSearchTopNews(driver: TestWebDriver, isSoft: boolean): Prom
 
     if (isSoft) {
         // assert block target is hidden
-        const blockTarget = await blockAnchor.getTarget("preceding-sibling::div");
+        const blockTarget = await blockAnchor.getTarget("preceding-sibling::div[position()=1]"); // just before
         const isDisplayed = await blockTarget.isDisplayed();
         ok(!isDisplayed);
     } else {

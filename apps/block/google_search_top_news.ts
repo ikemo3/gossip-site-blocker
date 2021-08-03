@@ -13,7 +13,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
     private readonly compactMenuInsertElement: Element;
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.classList.contains("dbsr") && !documentURL.isGoogleSearchNewsTab();
+        return element.matches("g-section-with-header > div[data-ved]") && !documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -33,7 +33,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
             return;
         }
 
-        const titleDiv = anchor.querySelector(".y9oXvf");
+        const titleDiv = anchor.querySelector("[role='heading']");
         if (titleDiv === null) {
             this.valid = false;
             return;
