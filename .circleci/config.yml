@@ -25,15 +25,15 @@ jobs:
                       tar xvfj firefox.tar.bz2
             - run:
                   command: make ci
-            #      - run:
-            #          name: "Archive screenshots"
-            #          command: cd tmp/screenshots; tar cvfj screenshots.tar.bz2 *
-            #          when: always
+            - run:
+                  name: "Archive screenshots"
+                  command: cd tmp/screenshots; tar cvfj screenshots.tar.bz2 *
+                  when: always
             - store_test_results:
                   path: reports
-            #      - store_artifacts:
-            #          path: tmp/screenshots
-            #          destination: screenshots
+            - store_artifacts:
+                  path: tmp/screenshots
+                  destination: screenshots
             - persist_to_workspace:
                   root: tmp/workspace
                   paths:
