@@ -1,3 +1,11 @@
+# v1.13.3
+
+## Bug Fixes
+
+* Fix: developer mode is not working(#335)
+* Fix: block links are not displayed in some environments(#336)
+* Fix: extra element matched in the top news(#339)
+
 # v1.13.2
 
 ## Bug Fixes
