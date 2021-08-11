@@ -4,7 +4,7 @@ import { BlockType, MenuPosition } from "../../apps/repository/enums";
 
 async function googleSearchTopNews(driver: TestWebDriver, isSoft: boolean): Promise<void> {
     // search
-    await driver.googleSearch(["switch", "site:game.watch.impress.co.jp"]);
+    await driver.googleSearch(["nintendo", "switch", "site:game.watch.impress.co.jp"]);
     await driver.takeScreenShot("search_result.png");
 
     // click 'block this page'
