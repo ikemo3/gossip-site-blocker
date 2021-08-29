@@ -11,11 +11,6 @@ import {
     googleSearchInnerCardCompactMenu,
 } from "./test_google_search_inner_card";
 import {
-    googleSearchTopNewsSoftBlock,
-    googleSearchTopNewsHardBlock,
-    googleSearchTopNewsCompactMenu,
-} from "./test_google_search_top_news";
-import {
     googleSearchTweetSoftBlock,
     googleSearchTweetHardBlock,
     // googleSearchTweetCompactMenu,
@@ -36,9 +31,9 @@ const testCases = [
     googleSearchInnerCardSoftBlock,
     googleSearchInnerCardHardBlock,
     googleSearchInnerCardCompactMenu,
-    googleSearchTopNewsSoftBlock,
-    googleSearchTopNewsHardBlock,
-    googleSearchTopNewsCompactMenu,
+    // googleSearchTopNewsSoftBlock,
+    // googleSearchTopNewsHardBlock,
+    // googleSearchTopNewsCompactMenu,
     googleSearchTweetSoftBlock,
     googleSearchTweetHardBlock,
     // googleSearchTweetCompactMenu,
