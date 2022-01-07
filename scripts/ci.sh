@@ -19,4 +19,3 @@ yarn test
 
 yarn build
 yarn archive
-yarn integration-test
