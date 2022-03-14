@@ -8,7 +8,7 @@ orbs:
 jobs:
     build:
         docker:
-            - image: cimg/node:14.18.0-browsers
+            - image: cimg/node:14.19.0-browsers
               environment:
                   - LANG: ja_JP.UTF-8
                   - LANGUAGE: ja_JP.UTF-8
