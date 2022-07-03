@@ -1064,10 +1064,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/chrome@0.0.179":
-  version "0.0.179"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.179.tgz#57f93c9bd2e4ebf3a517698868d2012b870bb4df"
-  integrity sha512-60zloNApIf88RwiG3Q7E+4NBG+znchhWmcaEVAAhUZahQbft5LWBzij4sinsfpAwbTtuWdFfUSpZsFhXTEFPVw==
+"@types/chrome@0.0.191":
+  version "0.0.191"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.191.tgz#e14dc52c53e5e89ab74dc0f1e641066c7939ed55"
+  integrity sha512-hXYHJJ1Y265xKCw0o2Kz4CnR8aUhOMdyxK1AinET4EDr3fhpEMvOFDwdqz9LUX4syfTVYWb8w7vfC12s112ehg==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
@@ -1241,10 +1241,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.11.1.tgz#49a2a83df9d26daacead30d0ccc8762b128d53c7"
   integrity sha512-eWQGP3qtxwL8FGneRrC5DwrJLGN4/dH1clNTuLfN81HCrxVtxRjygDTUoZJ5ASlDEeo0ppYFQjQIlXhtXpOn6g==
 
-"@types/node@^14.18.12":
-  version "14.18.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.12.tgz#0d4557fd3b94497d793efd4e7d92df2f83b4ef24"
-  integrity sha512-q4jlIR71hUpWTnGhXWcakgkZeHa3CCjcQcnuzU8M891BAWA2jHiziiWEPEkdS5pFsz7H9HJiy8BrK7tBRNrY7A==
+"@types/node@^18.0.0":
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.0.tgz#67c7b724e1bcdd7a8821ce0d5ee184d3b4dd525a"
+  integrity sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==
 
 "@types/parse5@*":
   version "6.0.3"
@@ -1266,10 +1266,10 @@
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
 
-"@types/stack-trace@^0.0.29":
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.29.tgz#eb7a7c60098edb35630ed900742a5ecb20cfcb4d"
-  integrity sha512-TgfOX+mGY/NyNxJLIbDWrO9DjGoVSW9+aB8H2yy1fy32jsvxijhmyJI9fDFgvz3YP4lvJaq9DzdR/M1bOgVc9g==
+"@types/stack-trace@^0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.30.tgz#6a3c0aee5e91d8c0086926013be0ec125cafa17f"
+  integrity sha512-g58ZMrK7OLAzzxqeGF/w9jYsIWMuA9I/p/d493+x5vz3LyIEhrh3swszq28poF45X0ZD8vpAznMLBTyKPYFBeA==
 
 "@types/stack-utils@^2.0.0":
   version "2.0.0"
