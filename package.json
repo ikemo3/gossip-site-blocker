@@ -13,7 +13,7 @@
         "@types/stack-trace": "^0.0.30",
         "@types/webpack": "^5.28.0",
         "@typescript-eslint/eslint-plugin": "^5.30.3",
-        "@typescript-eslint/parser": "^5.30.3",
+        "@typescript-eslint/parser": "^5.33.0",
         "copy-webpack-plugin": "^11.0.0",
         "crx": "^5.0.1",
         "dayjs": "^1.11.3",
