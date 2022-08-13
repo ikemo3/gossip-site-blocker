@@ -2,13 +2,13 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: '2.1'
+version: "2.1"
 orbs:
-  browser-tools: circleci/browser-tools@1.2.3
+    browser-tools: circleci/browser-tools@1.2.3
 jobs:
     build:
         docker:
-            - image: cimg/node:18.4.0-browsers
+            - image: cimg/node:16.16-browsers
               environment:
                   - LANG: ja_JP.UTF-8
                   - LANGUAGE: ja_JP.UTF-8
@@ -17,29 +17,19 @@ jobs:
 
         steps:
             - checkout
-            - browser-tools/install-chrome
-            - browser-tools/install-chromedriver
-            - run:
-                  name: "Install Japanese font"
-                  command: |
-                    sudo apt update
-                    sudo apt install -y fonts-takao-gothic
-            - run:
-                  name: "Download Firefox Developer Edition"
-                  command: |
-                      curl -L 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=ja' > firefox.tar.bz2
-                      tar xvfj firefox.tar.bz2
             - run:
                   command: make ci
             - store_test_results:
                   path: reports
+            - store_artifacts:
+                  path: reports
             - persist_to_workspace:
                   root: tmp/workspace
                   paths:
-                      - gossip-site-blocker.*
+                      - gossip-site-blocker-*
     deploy:
         docker:
-            - image: cimg/go:1.17.1
+            - image: cimg/node:16.16
 
         working_directory: ~/repo
 
@@ -49,7 +39,16 @@ jobs:
                   at: tmp/workspace
             - run:
                   name: "Publish Release on GitHub"
-                  command: make deploy
+                  command: |
+                      # install ghr
+                      sudo apt update
+                      sudo apt install -y golang
+                      go get -u -v github.com/tcnksm/ghr
+
+                      # deploy
+                      yarn install
+                      export PATH=$PATH:~/go/bin
+                      make deploy
 
 workflows:
     version: 2
