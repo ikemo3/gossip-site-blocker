@@ -1,6 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
+import { Logger } from '../common';
 
 class GoogleSearchMovie extends SearchResultToBlock {
     private readonly element: Element;
@@ -18,7 +19,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.classList.contains("VibNM") && !documentURL.isGoogleSearchNewsTab();
+        return element.matches('video-voyager') && !documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -28,26 +29,32 @@ class GoogleSearchMovie extends SearchResultToBlock {
 
         const anchor = element.querySelector("a");
         if (anchor === null) {
+            Logger.debug("movie: anchor not found", element);
             this.valid = false;
             return;
         }
 
         const { href } = anchor;
         if (href === "") {
+            Logger.debug("movie: anchor.href is empty", element);
             this.valid = false;
             return;
         }
 
-        const titleDiv = anchor.querySelector(".fJiQld");
+        const titleDiv = anchor.querySelector(".cHaqb");
         if (titleDiv === null) {
+            Logger.debug("movie: title not found", element);
             this.valid = false;
             return;
         }
+
+        const title = titleDiv.textContent !== null ? titleDiv.textContent : "";
+        Logger.debug("movie: valid", anchor, href, title);
 
         this.compactMenuInsertElement = anchor;
         this.valid = true;
         this.url = href;
-        this.title = titleDiv.textContent !== null ? titleDiv.textContent : "";
+        this.title = title;
     }
 
     public canRetry(): boolean {
