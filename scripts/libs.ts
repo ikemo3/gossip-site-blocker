@@ -1,77 +1,70 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { join } from "path";
-import dayjs from "dayjs";
+import { execSync } from "child_process";
 
-const projectTop = join(__dirname, "..");
-const srcDir = join(__dirname, "..", "apps");
-const distDir = join(__dirname, "..", "dist");
-
-interface Gecko {
-    id: string;
-}
-
-interface BrowserSpecificSettings {
-    gecko: Gecko;
-}
-
-interface Manifest {
+export type NormalOption = {
     name: string;
-    version: string;
-    version_name: string;
-    browser_specific_settings: BrowserSpecificSettings;
+    tag: string;
+    ghrOptions: string[];
+};
+
+export type ErrorOption = {
+    message: string;
+    exitCode: number;
+};
+
+export function isError(option: NormalOption | ErrorOption): option is ErrorOption {
+    return "message" in option;
 }
 
-export function mkdirIfNeeded(path: string): void {
-    if (!existsSync(path)) {
-        mkdirSync(path);
-    }
-}
+export function configureGhrOption(
+    branch: string | undefined,
+    tag: string | undefined,
+    manifestVersion: string,
+    manifestVersionName: string,
+    packageVersion: string
+): NormalOption | ErrorOption {
+    if (branch) {
+        const ghrOptions = ["-prerelease", "-recreate"];
+        let optionName;
+        let optionTag;
+        if (branch.endsWith("-prototype")) {
+            optionTag = branch;
+            optionName = branch;
+        } else {
+            optionTag = "snapshot";
+            optionName = `v${manifestVersion}-snapshot`;
+        }
 
-export function getPackageName(): string {
-    const packageJsonPath = join(projectTop, "package.json");
-    const packageObj = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
-    return packageObj.name;
-}
+        return { name: optionName, tag: optionTag, ghrOptions: ghrOptions };
+    } else if (tag) {
+        if (tag === "snapshot") {
+            return { message: "ignore `snapshot` tag (already released)", exitCode: 0 };
+        }
 
-export function getManifest(): Manifest {
-    const manifestJsonPath = join(projectTop, "apps", "manifest.json");
-    const manifestJson = readFileSync(manifestJsonPath, "utf-8");
-    return JSON.parse(manifestJson);
-}
+        if (tag !== `v${manifestVersion}`) {
+            const message = `tag(${tag}) != 'v' + manifest_version(${manifestVersion})`;
+            return { message: message, exitCode: 1 };
+        }
 
-export function writeManifest(manifest: Manifest): void {
-    const distManifestJsonPath = join(distDir, "manifest.json");
-    writeFileSync(distManifestJsonPath, JSON.stringify(manifest, null, 2));
-}
+        if (manifestVersion !== packageVersion) {
+            const message = `manifest_version(${manifestVersion}) != package_version(${packageVersion})`;
+            return { message: message, exitCode: 1 };
+        }
 
-export function getWebExtensionId(): string {
-    const webExtensionIdPath = join(srcDir, ".web-extension-id");
-    const contents = readFileSync(webExtensionIdPath, "utf-8");
-    const lines = contents.split("\n");
-    return lines[lines.length - 2];
-}
+        if (manifestVersionName) {
+            return { message: "version_name exists", exitCode: 1 };
+        }
 
-export function createManifest(): void {
-    const now = dayjs().format("YYYYMMDD-HHmm");
-    const branch = process.env.CIRCLE_BRANCH;
-    const tag = process.env.CIRCLE_TAG;
-
-    mkdirIfNeeded(distDir);
-    if (branch && branch !== "") {
-        console.info("add `version_name` to manifest.json");
-        const manifest = getManifest();
-        manifest.name = "Gossip Site Blocker(snapshot)";
-        manifest.version_name = `${manifest.version}-snapshot(${now})`;
-        writeManifest(manifest);
-    } else if (tag && tag.endsWith("spike")) {
-        console.info("add `version_name` to manifest.json");
-        const manifest = getManifest();
-        manifest.name = `Gossip Site Blocker(${tag})`;
-        manifest.version_name = `${manifest.version}-${tag}(${now})`;
-        writeManifest(manifest);
+        const ghrOptions = ["-recreate"];
+        return { name: tag, tag: tag, ghrOptions: ghrOptions };
     } else {
-        console.info("copy manifest.json");
-        const manifest = getManifest();
-        writeManifest(manifest);
+        const ghrOptions = ["-recreate"];
+        const optionTag = getGitBranch();
+        const optionName = "snapshot";
+        return { name: optionName, tag: optionTag, ghrOptions: ghrOptions };
     }
+}
+
+function getGitBranch() {
+    const result = execSync("git symbolic-ref --short HEAD");
+    return result.toString().trim();
 }
