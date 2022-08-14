@@ -10,7 +10,7 @@
  * color when unhide
  */
 [data-blocker-display="unhide"] {
-    background-color: #ffd2d2;
+    background-color: #ffd2d2 !important;
 }
 
 g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
