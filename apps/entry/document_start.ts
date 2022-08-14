@@ -11,7 +11,7 @@ import BlockMediator from "../content_script/block_mediator";
 import GoogleSearchInnerCard from "../block/google_search_inner_card";
 import GoogleSearchTopNews from "../block/google_search_top_news";
 import GoogleNewsCard from "../block/google_news_card";
-import GoogleNewsTabCardSection from "../block/google_news_tab_card_section";
+import GoogleNewsSectionWithHeader from "../block/google_news_section_with_header";
 import GoogleNewsResult from "../block/google_news_result";
 import GoogleImageTab from "../block/google_image_tab";
 import GoogleSearchMovie from "../block/google_search_movie";
@@ -32,7 +32,7 @@ let gsbOptions: Options | null = null;
 const pendingGoogleSearchResultList: Element[] = [];
 const pendingGoogleSearchInnerCardList: Element[] = [];
 const pendingGoogleSearchTopNewsList: Element[] = [];
-const pendingGoogleNewsTabCardSectionList: Element[] = [];
+const pendingGoogleNewsSectionWithHeaderList: Element[] = [];
 const pendingGoogleNewsResultList: Element[] = [];
 const pendingGoogleImageTabList: Element[] = [];
 const pendingGoogleNewsCardList: Element[] = [];
@@ -77,16 +77,16 @@ const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
         for (const node of mutation.addedNodes) {
             if (node instanceof Element) {
-                if (GoogleNewsTabCardSection.isCandidate(node, documentURL)) {
+                if (GoogleNewsSectionWithHeader.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
-                        if (GoogleNewsTabCardSection.isOptionallyEnabled(gsbOptions)) {
-                            const g = new GoogleNewsTabCardSection(node);
+                        if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
+                            const g = new GoogleNewsSectionWithHeader(node);
                             if (!blockElement(g, gsbOptions)) {
-                                pendingGoogleNewsTabCardSectionList.push(node);
+                                pendingGoogleNewsSectionWithHeaderList.push(node);
                             }
                         }
                     } else {
-                        pendingGoogleNewsTabCardSectionList.push(node);
+                        pendingGoogleNewsSectionWithHeaderList.push(node);
                     }
                 } else if (GoogleNewsResult.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
@@ -211,9 +211,9 @@ observer.observe(document.documentElement, config);
         blockElement(g, gsbOptions);
     }
 
-    for (const node of pendingGoogleNewsTabCardSectionList) {
-        if (GoogleNewsTabCardSection.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleNewsTabCardSection(node);
+    for (const node of pendingGoogleNewsSectionWithHeaderList) {
+        if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
+            const g = new GoogleNewsSectionWithHeader(node);
             blockElement(g, gsbOptions);
         }
     }
