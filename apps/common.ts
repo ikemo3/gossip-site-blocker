@@ -32,11 +32,11 @@ export const ChromeStorage = {
 };
 
 export const Logger = {
-    mode: false,
+    developerMode: false,
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     debug(message: any, ...params: any[]): void {
-        if (this.mode) {
+        if (this.developerMode) {
             // eslint-disable-next-line no-console
             console.log(message, ...params);
         }
