@@ -1,9 +1,12 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
+import { Logger } from '../common';
 
 class GoogleNewsTabCardSection extends SearchResultToBlock {
     private readonly valid: boolean;
+
+    private readonly _canRetry: boolean;
 
     private readonly url: string;
 
@@ -20,7 +23,7 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches("div.card-section") && documentURL.isGoogleSearchNewsTab();
+        return element.matches(".xuvV6b > div[data-hveid]") && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -28,9 +31,11 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector("a.RTNUJf");
-        if (!anchor) {
+        const anchor = element.querySelector("a");
+        if (anchor === null) {
+            Logger.debug("news top: anchor not found", element);
             this.valid = false;
+            this._canRetry = true;
             return;
         }
 
@@ -44,11 +49,23 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
             }
         }
 
-        const title = anchor.textContent ? anchor.textContent : "";
+        const titleElement = element.querySelector("[role='heading']");
+
+        // ignore if no titleElement(ex. Google Translate)
+        if (titleElement === null) {
+            Logger.debug("news top: no title element(ex. Google Translate)", element);
+            this.valid = false;
+            this._canRetry = false;
+            return;
+        }
+
+        const title = titleElement.textContent ? titleElement.textContent : "";
         const st: HTMLSpanElement | null = element.querySelector(".st");
         const contents = st ? st.textContent! : "";
 
+        element.setAttribute("data-gsb-element-type", "google-news-section-with-header");
         this.valid = true;
+        this._canRetry = true;
         this.url = href;
         this.title = title;
         this.contents = contents;
@@ -64,7 +81,7 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
     }
 
     public canRetry(): boolean {
-        return true;
+        return this._canRetry;
     }
 
     public canBlock(): boolean {
@@ -83,12 +100,21 @@ class GoogleNewsTabCardSection extends SearchResultToBlock {
         return this.compactMenuInsertElement;
     }
 
+    public deleteElement(): void {
+        const imageLink = this.element.previousSibling;
+        if (imageLink instanceof HTMLAnchorElement) {
+            imageLink.removeAttribute("href");
+        }
+
+        this.element.parentElement!.removeChild(this.element);
+    }
+
     public getPosition(): string {
         return "absolute";
     }
 
     public getCssClass(): string {
-        return "block-google-news-card-section";
+        return "block-google-news-top";
     }
 
     public getTitle(): string {
