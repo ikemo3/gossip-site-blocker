@@ -14,7 +14,7 @@ export const OptionRepository = {
         load: async (): Promise<boolean> => {
             const items = await ChromeStorage.load({ developerMode: false });
 
-            Logger.mode = items.developerMode;
+            Logger.developerMode = items.developerMode;
 
             Logger.log("set 'developerMode' to =>", items.developerMode);
 
@@ -24,7 +24,7 @@ export const OptionRepository = {
         save: async (mode: boolean): Promise<void> => {
             await ChromeStorage.save({ developerMode: mode });
 
-            Logger.mode = mode;
+            Logger.developerMode = mode;
 
             Logger.log("set 'developerMode' to =>", mode);
         },
