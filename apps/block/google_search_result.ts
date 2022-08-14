@@ -126,6 +126,7 @@ class GoogleSearchResult extends SearchResultToBlock {
         const st: HTMLSpanElement | null = element.querySelector(CONTENT_SELECTOR);
         const contents = st ? st.textContent! : "";
 
+        element.setAttribute("data-gsb-element-type", "google-search-result");
         this.valid = true;
         this._canRetry = true;
         [this.url] = urlList;
