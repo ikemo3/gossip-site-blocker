@@ -139,9 +139,11 @@ const observer = new MutationObserver((mutations) => {
                     }
                 } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
                     if (gsbOptions !== null) {
-                        const g = new GoogleNewsCard(node);
-                        if (!blockElement(g, gsbOptions)) {
-                            pendingGoogleNewsCardList.push(node);
+                        if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
+                            const g = new GoogleNewsCard(node);
+                            if (!blockElement(g, gsbOptions)) {
+                                pendingGoogleNewsCardList.push(node);
+                            }
                         }
                     } else {
                         pendingGoogleNewsCardList.push(node);
