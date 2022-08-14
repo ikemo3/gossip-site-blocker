@@ -1,6 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
+import { Logger } from '../common';
 
 class GoogleNewsTabTop extends SearchResultToBlock {
     private readonly valid: boolean;
@@ -22,7 +23,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches("div.nChh6e") && documentURL.isGoogleSearchNewsTab();
+        return element.matches("div.Cq2QEe") && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -32,6 +33,7 @@ class GoogleNewsTabTop extends SearchResultToBlock {
 
         const anchor = element.querySelector("a");
         if (anchor === null) {
+            Logger.debug("news top: anchor not found", element);
             this.valid = false;
             this._canRetry = true;
             return;
@@ -47,19 +49,21 @@ class GoogleNewsTabTop extends SearchResultToBlock {
             }
         }
 
-        const h3 = element.querySelector("h3");
+        const titleElement = element.querySelector("[role='heading']");
 
-        // ignore if no h3(ex. Google Translate)
-        if (h3 === null) {
+        // ignore if no titleElement(ex. Google Translate)
+        if (titleElement === null) {
+            Logger.debug("news top: no title element(ex. Google Translate)", element);
             this.valid = false;
             this._canRetry = false;
             return;
         }
 
-        const title = h3.textContent ? h3.textContent : "";
+        const title = titleElement.textContent ? titleElement.textContent : "";
         const st: HTMLSpanElement | null = element.querySelector(".st");
         const contents = st ? st.textContent! : "";
 
+        element.setAttribute("data-gsb-element-type", "google-news-tab-top");
         this.valid = true;
         this._canRetry = true;
         this.url = href;

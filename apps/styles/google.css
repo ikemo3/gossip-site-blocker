@@ -179,6 +179,13 @@ div[role="listitem"] {
     margin-bottom: 0 !important;
 }
 
+[data-gsb-element-type="google-news-tab-top"] + .block-anchor {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    white-space: normal !important;
+}
+
 [data-gsb-element-type="google-news-card"][data-gsb-menu-position="compact"] {
     height: auto;
 }
