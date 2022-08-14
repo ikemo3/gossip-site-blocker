@@ -3,7 +3,7 @@ import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
 import { Logger } from '../common';
 
-class GoogleNewsTabTop extends SearchResultToBlock {
+class GoogleNewsResult extends SearchResultToBlock {
     private readonly valid: boolean;
 
     private readonly _canRetry: boolean;
@@ -126,4 +126,4 @@ class GoogleNewsTabTop extends SearchResultToBlock {
     }
 }
 
-export default GoogleNewsTabTop;
+export default GoogleNewsResult;
