@@ -175,8 +175,8 @@ div[role="listitem"] {
 }
 
 [data-gsb-element-type="google-news-card"] + .block-anchor {
-    margin-top: -13px !important;
-    margin-bottom: 13px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 [data-gsb-element-type="google-news-card"][data-gsb-menu-position="compact"] {
