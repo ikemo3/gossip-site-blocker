@@ -76,9 +76,9 @@ async function createAppbarLinks(): Promise<void> {
         }
     }
 
-    const menu = document.getElementById("hdtb-rst");
+    const menu = document.getElementById("hdtbMenus");
     if (menu !== null && menu.style.display !== "none") {
-        const toolDiv = document.querySelector(".hdtb-mn-cont");
+        const toolDiv = menu.querySelector("#tn_1");
         if (toolDiv !== null) {
             await appendTemporarilyUnblockAllAnchor(toolDiv);
             await appendShowBlockedByWordInfoAnchor(toolDiv);
