@@ -100,7 +100,8 @@ export const $ = {
     anchor(text?: string): HTMLAnchorElement {
         const anchor = document.createElement("a");
         // eslint-disable-next-line no-script-url
-        anchor.setAttribute("href", "javascript:void(0)"); // change link color.
+        anchor.removeAttribute("href");
+        anchor.classList.add("gsb-anchor");
 
         if (text !== undefined) {
             anchor.textContent = text;

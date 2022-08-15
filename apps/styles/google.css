@@ -189,3 +189,7 @@ div[role="listitem"] {
     margin-left: 0 !important;
     white-space: normal !important;
 }
+
+.gsb-anchor {
+    cursor: pointer;
+}
