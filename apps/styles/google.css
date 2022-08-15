@@ -163,8 +163,8 @@ div[role="listitem"] {
 }
 
 [data-gsb-element-type="google-search-result"] + .block-anchor.block-anchor-tmp-unblock-only {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 26px;
+    margin-bottom: 26px;
 }
 
 [data-gsb-element-type="google-news-card"] + .block-anchor {
