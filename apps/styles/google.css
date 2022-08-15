@@ -193,3 +193,13 @@ div[role="listitem"] {
 .gsb-anchor {
     cursor: pointer;
 }
+
+.gsb-compact-menu-block-anchor {
+    margin-left: 5px;
+}
+
+/* HACK for compact menu */
+.UK95Uc {
+    overflow: visible !important;
+    contain: none !important;
+}
