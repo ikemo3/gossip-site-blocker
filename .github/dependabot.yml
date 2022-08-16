@@ -11,3 +11,4 @@ updates:
           interval: "daily"
       assignees:
           - "ikemo3"
+      open-pull-requests-limit: 20
