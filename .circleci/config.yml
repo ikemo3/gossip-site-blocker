@@ -29,7 +29,7 @@ jobs:
                       - gossip-site-blocker-*
     deploy:
         docker:
-            - image: cimg/node:16.16
+            - image: cimg/go:1.19-node
 
         working_directory: ~/repo
 
@@ -41,9 +41,7 @@ jobs:
                   name: "Publish Release on GitHub"
                   command: |
                       # install ghr
-                      sudo apt update
-                      sudo apt install -y golang
-                      go get -u -v github.com/tcnksm/ghr
+                      go install github.com/tcnksm/ghr@v0.15.0
 
                       # deploy
                       yarn install
