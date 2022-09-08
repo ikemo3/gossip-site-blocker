@@ -13,8 +13,11 @@ class GoogleSearchTopNews extends SearchResultToBlock {
     private readonly compactMenuInsertElement: Element;
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
+        const is_flex_type_1 = element.matches("g-section-with-header div.MkXWrd > div");
+        const is_flex_type_2 = element.matches("g-section-with-header div.Dnzdlc div[data-hveid]");
+
         return (
-            element.matches("g-section-with-header div.MkXWrd > div") &&
+            (is_flex_type_1 || is_flex_type_2) &&
             !element.querySelector("g-scrolling-carousel") &&
             !documentURL.isGoogleSearchNewsTab()
         );
