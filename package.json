@@ -16,7 +16,7 @@
         "date-fns": "2.29.3",
         "eslint": "^8.24.0",
         "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-jest": "^27.0.4",
+        "eslint-plugin-jest": "^27.1.0",
         "eslint-plugin-node": "^11.1.0",
         "html-webpack-plugin": "^5.5.0",
         "jest": "^28.1.3",
