@@ -1,4 +1,4 @@
-import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, renameSync, readFileSync, rmSync } from "fs";
 import path from "path";
 import { execSync } from "child_process";
 import { zip } from "zip-a-folder";
@@ -15,31 +15,13 @@ function getPackageName(projectDir: string) {
     return packageJson.name;
 }
 
-function getExtensionId(projectDir: string) {
-    const extensionIdPath = projectDir + "/apps/.web-extension-id";
-    const webExtensionId = readFileSync(extensionIdPath).toString();
-    return webExtensionId.split("\n")[2];
-}
-
 async function createChromeExtension(packageName: string, projectDir: string) {
     console.log(`Create ${packageName}.zip`);
     await zip(projectDir + "/dist-chrome", projectDir + `/tmp/workspace/${packageName}-chrome.zip`);
 }
 
 async function createFirefoxExtension(packageName: string, projectDir: string) {
-    // load manifest.json
-    const extensionId = getExtensionId(projectDir);
-    console.log(`Extension ID: ${extensionId}`);
-
-    const manifestJsonPath = projectDir + "/apps/manifest.json";
-    const manifestJson = JSON.parse(readFileSync(manifestJsonPath).toString());
-    manifestJson.browser_specific_settings = { gecko: { id: extensionId } };
-
-    // write manifest.json
-    const manifestJsonWritePath = projectDir + "/dist-firefox/manifest.json";
-    writeFileSync(manifestJsonWritePath, JSON.stringify(manifestJson, null, 2));
-
-    // create Firefox extension(xpi)
+    console.log(`Create ${packageName}.xpi`);
     await zip(projectDir + "/dist-firefox", projectDir + `/tmp/workspace/${packageName}-firefox.xpi`);
 }
 
@@ -57,6 +39,8 @@ async function main() {
     cpSync(projectDir + "/dist", projectDir + "/dist-chrome", { recursive: true });
     cpSync(projectDir + "/dist", projectDir + "/dist-firefox", { recursive: true });
     copyFileSync(projectDir + "/apps/.web-extension-id", projectDir + "/dist-firefox/.web-extension-id");
+    rmSync(projectDir + "/dist-chrome/manifest.firefox.json");
+    renameSync(projectDir + "/dist-firefox/manifest.firefox.json", projectDir + "/dist-firefox/manifest.json");
 
     // load package.json
     const packageName = getPackageName(projectDir);

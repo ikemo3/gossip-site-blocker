@@ -3,6 +3,8 @@ gossip-site-blocker.zip
 apps/**/*.js
 apps/**/*.js.map
 dist
+dist-chrome
+dist-firefox
 reports
 scripts/*.js
 scripts/*.js.map
