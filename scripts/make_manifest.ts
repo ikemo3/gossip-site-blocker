@@ -22,7 +22,9 @@ if (branch) {
     const version = manifest.version;
     const now = format(new Date(), "yyyyMMdd-HHmm");
     manifest.version_name = `${version}-snapshot(${now})`;
+    manifest.name = "Gossip Site Blocker(beta)";
     firefoxManifest.version_name = `${version}-snapshot(${now})`;
+    firefoxManifest.name = "Gossip Site Blocker(beta)";
 }
 
 const manifestWriteJsonPath = distDir + "/manifest.json";
