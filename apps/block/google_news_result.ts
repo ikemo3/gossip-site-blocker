@@ -23,7 +23,7 @@ class GoogleNewsResult extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches("div.Cq2QEe") && documentURL.isGoogleSearchNewsTab();
+        return element.matches("div.SoaBEf") && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -31,9 +31,9 @@ class GoogleNewsResult extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector("a");
+        const anchor = this.getElement().querySelector("a");
         if (anchor === null) {
-            Logger.debug("news top: anchor not found", element);
+            Logger.debug("news top: anchor not found", this.getElement());
             this.valid = false;
             this._canRetry = true;
             return;
@@ -49,21 +49,21 @@ class GoogleNewsResult extends SearchResultToBlock {
             }
         }
 
-        const titleElement = element.querySelector("[role='heading']");
+        const titleElement = this.getElement().querySelector("[role='heading']");
 
         // ignore if no titleElement(ex. Google Translate)
         if (titleElement === null) {
-            Logger.debug("news top: no title element(ex. Google Translate)", element);
+            Logger.debug("news top: no title element(ex. Google Translate)", this.getElement());
             this.valid = false;
             this._canRetry = false;
             return;
         }
 
         const title = titleElement.textContent ? titleElement.textContent : "";
-        const st: HTMLSpanElement | null = element.querySelector(".st");
+        const st: HTMLSpanElement | null = this.getElement().querySelector(".st");
         const contents = st ? st.textContent! : "";
 
-        element.setAttribute("data-gsb-element-type", "google-news-tab-top");
+        this.getElement().setAttribute("data-gsb-element-type", "google-news-tab-top");
         this.valid = true;
         this._canRetry = true;
         this.url = href;
@@ -76,7 +76,7 @@ class GoogleNewsResult extends SearchResultToBlock {
         if (actionMenu !== null) {
             this.compactMenuInsertElement = actionMenu;
         } else {
-            this.compactMenuInsertElement = element.querySelector("a")!;
+            this.compactMenuInsertElement = this.getElement().querySelector("a")!;
         }
     }
 
@@ -93,7 +93,7 @@ class GoogleNewsResult extends SearchResultToBlock {
     }
 
     public getElement(): Element {
-        return this.element;
+        return this.element.firstElementChild || this.element;
     }
 
     public getCompactMenuInsertElement(): Element {
