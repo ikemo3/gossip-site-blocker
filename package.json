@@ -39,7 +39,7 @@
         "fix": "yarn eslint --fix --ext .ts apps scripts test *.ts jest.config.js",
         "lint": "prettier --write .; yarn eslint --ext .ts apps scripts test *.ts jest.config.js",
         "lint-for-ci": "prettier --check .; yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.js",
-        "lint:deps": "depcruise apps test",
+        "lint:deps": "depcruise --config .dependency-cruiser.js apps test",
         "manifest": "ts-node ./scripts/make_manifest.ts",
         "test": "jest"
     },
