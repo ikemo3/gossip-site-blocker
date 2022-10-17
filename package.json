@@ -14,6 +14,7 @@
         "@typescript-eslint/parser": "^5.40.0",
         "copy-webpack-plugin": "^11.0.0",
         "date-fns": "2.29.3",
+        "dependency-cruiser": "^11.17.0",
         "eslint": "^8.25.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-jest": "^27.1.2",
@@ -38,6 +39,7 @@
         "fix": "yarn eslint --fix --ext .ts apps scripts test *.ts jest.config.js",
         "lint": "prettier --write .; yarn eslint --ext .ts apps scripts test *.ts jest.config.js",
         "lint-for-ci": "prettier --check .; yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.js",
+        "lint:deps": "depcruise apps test",
         "manifest": "ts-node ./scripts/make_manifest.ts",
         "test": "jest"
     },
