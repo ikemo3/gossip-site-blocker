@@ -188,6 +188,20 @@ module.exports = {
                 dependencyTypes: ["npm-peer"],
             },
         },
+        {
+            name: "not-to-entry",
+            comment: "don't allow dependencies from outside the 'entry' folder to 'entry'",
+            severity: "error",
+            from: { pathNot: "^apps/entry" },
+            to: { path: "^apps/entry" },
+        },
+        {
+            name: "not-to-popup",
+            comment: "don't allow dependencies from outside the 'popup' folder to 'popup'",
+            severity: "error",
+            from: { pathNot: "^apps/popup" },
+            to: { path: "^apps/popup" },
+        },
     ],
     options: {
         /* conditions specifying which files not to follow further when encountered:
