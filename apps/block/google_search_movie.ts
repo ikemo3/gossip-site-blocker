@@ -1,7 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
-import { Logger } from '../common';
+import { Logger } from "../common";
 
 class GoogleSearchMovie extends SearchResultToBlock {
     private readonly element: Element;
@@ -19,7 +19,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches('video-voyager') && !documentURL.isGoogleSearchNewsTab();
+        return element.matches("video-voyager") && !documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode

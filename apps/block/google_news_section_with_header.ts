@@ -1,7 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
-import { Logger } from '../common';
+import { Logger } from "../common";
 
 class GoogleNewsSectionWithHeader extends SearchResultToBlock {
     private readonly valid: boolean;

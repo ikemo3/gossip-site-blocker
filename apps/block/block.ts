@@ -19,6 +19,30 @@ function matchesByRegExp(contents: string, keyword: string): boolean {
     }
 }
 
+export function containsInTitleOrContents(keywordType: KeywordType, keyword: string, title: string, contents: string) {
+    if (keywordType === KeywordType.REGEXP) {
+        if (matchesByRegExp(title, keyword)) {
+            return true;
+        }
+
+        return matchesByRegExp(contents, keyword);
+    }
+
+    if (title.includes(keyword)) {
+        return true;
+    }
+
+    return contents.includes(keyword);
+}
+
+export function containsInTitle(keywordType: KeywordType, keyword: string, title: string) {
+    if (keywordType === KeywordType.REGEXP) {
+        return matchesByRegExp(title, keyword);
+    }
+
+    return title.includes(keyword);
+}
+
 export abstract class SearchResultToBlock implements ContentToBlock {
     abstract getUrl(): string;
 
@@ -27,19 +51,9 @@ export abstract class SearchResultToBlock implements ContentToBlock {
     abstract canBlock(): boolean;
 
     contains(keyword: string, keywordType: KeywordType): boolean {
-        if (keywordType === KeywordType.REGEXP) {
-            if (matchesByRegExp(this.getTitle(), keyword)) {
-                return true;
-            }
-
-            return matchesByRegExp(this.getContents(), keyword);
-        }
-
-        if (this.getTitle().includes(keyword)) {
-            return true;
-        }
-
-        return this.getContents().includes(keyword);
+        const title = this.getTitle();
+        const contents = this.getContents();
+        return containsInTitleOrContents(keywordType, keyword, title, contents);
     }
 
     abstract getTitle(): string;
@@ -47,11 +61,8 @@ export abstract class SearchResultToBlock implements ContentToBlock {
     abstract getContents(): string;
 
     containsInTitle(keyword: string, keywordType: KeywordType): boolean {
-        if (keywordType === KeywordType.REGEXP) {
-            return matchesByRegExp(this.getTitle(), keyword);
-        }
-
-        return this.getTitle().includes(keyword);
+        const title = this.getTitle();
+        return containsInTitle(keywordType, keyword, title);
     }
 
     deleteElement(): void {
