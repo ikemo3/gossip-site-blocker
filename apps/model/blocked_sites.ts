@@ -1,5 +1,5 @@
 import BlockedSite from "./blocked_site";
-import removeProtocol from "../util/util";
+import removeProtocol from "../libs/string";
 
 /**
  * @property {Array<BlockedSite>} sites

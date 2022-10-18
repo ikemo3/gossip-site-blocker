@@ -1,6 +1,6 @@
 import { $, ApplicationError, Logger } from "../common";
 import { BannedWordRepository, BannedWord } from "../repository/banned_words";
-import { createSelectOption } from "../util/dom";
+import { createSelectOption } from "../libs/dom";
 import { BannedTarget, BlockType, KeywordType } from "../repository/enums";
 
 export default class BannedWords {
