@@ -14,7 +14,7 @@
         "@typescript-eslint/parser": "^5.41.0",
         "copy-webpack-plugin": "^11.0.0",
         "date-fns": "2.29.3",
-        "dependency-cruiser": "^11.17.0",
+        "dependency-cruiser": "^11.18.0",
         "eslint": "^8.26.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-jest": "^27.1.3",
