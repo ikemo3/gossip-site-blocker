@@ -3,9 +3,17 @@ import { join } from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import WebpackShellPluginNext from "webpack-shell-plugin-next";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config: Configuration = {
     mode: "development",
+    experiments: {
+        topLevelAwait: true,
+    },
     entry: {
         document_start: join(__dirname, "apps", "entry", "document_start.ts"),
         document_idle: join(__dirname, "apps", "entry", "document_idle.ts"),
