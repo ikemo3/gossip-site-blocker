@@ -2,6 +2,10 @@ import { copyFileSync, cpSync, existsSync, mkdirSync, renameSync, readFileSync, 
 import path from "path";
 import { execSync } from "child_process";
 import { zip } from "zip-a-folder";
+import { fileURLToPath } from "url";
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function clearDirectory(path: string) {
     if (existsSync(path)) {

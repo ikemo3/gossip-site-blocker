@@ -3,10 +3,10 @@
     "version": "1.15.0.1",
     "author": "Hideki Ikemoto",
     "license": "MIT",
+    "type": "module",
     "devDependencies": {
         "@types/chrome": "0.0.202",
         "@types/copy-webpack-plugin": "^10.1.0",
-        "@types/html-webpack-plugin": "^3.2.6",
         "@types/jest": "^28.1.8",
         "@types/node": "^18.11.9",
         "@types/webpack": "^5.28.0",
@@ -33,13 +33,13 @@
         "zip-a-folder": "1.1.5"
     },
     "scripts": {
-        "archive": "ts-node ./scripts/archive.ts",
-        "build": "webpack",
-        "deploy": "ts-node scripts/github_release.ts",
-        "fix": "yarn eslint --fix --ext .ts apps scripts test *.ts jest.config.js",
-        "lint": "prettier --write .; yarn eslint --ext .ts apps scripts test *.ts jest.config.js",
-        "lint-for-ci": "prettier --check .; yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.js",
-        "lint:deps": "depcruise --config .dependency-cruiser.js apps test",
+        "archive": "NODE_OPTIONS='--loader ts-node/esm' ts-node ./scripts/archive.ts",
+        "build": "NODE_OPTIONS='--loader ts-node/esm' webpack",
+        "develop": "NODE_OPTIONS='--loader ts-node/esm' webpack --watch",
+        "deploy": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/github_release.ts",
+        "fix": "yarn eslint --fix --ext .ts apps scripts test *.ts jest.config.cjs",
+        "lint": "prettier --write .; yarn eslint --ext .ts apps scripts test *.ts jest.config.cjs",
+        "lint-for-ci": "prettier --check .; yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs",
         "manifest": "ts-node ./scripts/make_manifest.ts",
         "test": "jest"
     },

@@ -25,7 +25,6 @@ fi
 
 yarn install
 yarn lint-for-ci
-yarn lint:deps
 yarn test
 
 yarn build

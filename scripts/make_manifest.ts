@@ -1,6 +1,10 @@
 import path from "path";
 import { mkdirSync, existsSync, readFileSync, writeFileSync } from "fs";
 import { format } from "date-fns";
+import { fileURLToPath } from "url";
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Create if there is no dist directory
 const projectDir = path.dirname(__dirname);
