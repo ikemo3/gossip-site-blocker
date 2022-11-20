@@ -1,7 +1,7 @@
 import { execSync, spawnSync } from "child_process";
 import { readFileSync, renameSync } from "fs";
 import path from "path";
-import { isError, configureGhrOption } from "./libs";
+import { isError, configureGhrOption } from "./libs.js";
 import { fileURLToPath } from "url";
 
 // eslint-disable-next-line no-underscore-dangle
