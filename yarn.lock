@@ -2163,10 +2163,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-dependency-cruiser@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.0.0.tgz#9b49cb28154272a861c4357deb989919c5bdcdab"
-  integrity sha512-rP68sCpTyH4wUaehGP4sDyLe5LvIXTzykXl67zZ7OvIJHroYffrP+QZwL3ir2kxjCpVU38D22EY/tLS6dIb7SA==
+dependency-cruiser@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.0.1.tgz#e2f736e9d6f7b362fd8a35956fbce8f7c88194f0"
+  integrity sha512-dOFWLBp/X1oSpwKiK3uDK1WrnfC7u0JirHHm7HGDet0CEU0boMPHYlX0KQb2txYWvj9TLCYtF+9aUjtCJKv2Rw==
   dependencies:
     acorn "8.8.1"
     acorn-jsx "5.3.2"
@@ -2190,10 +2190,10 @@ dependency-cruiser@^12.0.0:
     rechoir "^0.8.0"
     safe-regex "2.1.1"
     semver "^7.3.7"
-    semver-try-require "5.0.4"
+    semver-try-require "6.0.0"
     teamcity-service-messages "0.1.14"
     tsconfig-paths-webpack-plugin "4.0.0"
-    watskeburt "0.8.1"
+    watskeburt "0.9.0"
     wrap-ansi "^7.0.0"
 
 detect-newline@^3.0.0:
@@ -4285,10 +4285,10 @@ schema-utils@^4.0.0:
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
 
-semver-try-require@5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/semver-try-require/-/semver-try-require-5.0.4.tgz#f2cf25ffddd30e0dfdcc4c8132ad3310ac9b2810"
-  integrity sha512-Abn38ZyrV6BV+tjyf2T9b6Qx7GiVIIrkiTLHEDDeboNzAPPBAqLnbW+eRtiln7iqNGBOmQrXtQSjCLOTGK+NyA==
+semver-try-require@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/semver-try-require/-/semver-try-require-6.0.0.tgz#10e4a25b7780062add0e1239e4f115680000b274"
+  integrity sha512-C3RwXtL5VHhGcUeH+t/Gybit9XGHutb1fX8mp2L2v6rrD1GPC9FLQuYN/RoZAedmoWKmuWWDGbfej1LpJOcJxA==
   dependencies:
     semver "^7.3.8"
 
@@ -4802,10 +4802,10 @@ watchpack@^2.4.0:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-watskeburt@0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/watskeburt/-/watskeburt-0.8.1.tgz#5f34cae5307d2b1b61d8d6d4b2a4b6d91ca80f10"
-  integrity sha512-QpTiPIyYJMzr+HxwZSM1pZk9sfOFhycuINSC2N+SmFwA4PVA++GNxaCC8Lr9PGWGwxB+uGlpTlF9IrfiqUBPeg==
+watskeburt@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/watskeburt/-/watskeburt-0.9.0.tgz#14504b1fb2953e7f52887b6f9b90c49b395ce33c"
+  integrity sha512-rurSBKVssJXoiHGzYINYdFPd1M6a0HYA2KNoFj+qB3AvpDOIBbytMfeZo0oTMQqLs8YBjswonGt2ri8z1p3F6A==
   dependencies:
     commander "9.4.1"
 
