@@ -183,37 +183,27 @@ observer.observe(document.documentElement, config);
     }
 
     for (const node of pendingGoogleNewsSectionWithHeaderList) {
-        if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleNewsSectionWithHeader(node);
-            blockElement(g, gsbOptions);
-        }
+        const g = new GoogleNewsSectionWithHeader(node);
+        blockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleNewsResultList) {
-        if (GoogleNewsResult.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleNewsResult(node);
-            blockElement(g, gsbOptions);
-        }
+        const g = new GoogleNewsResult(node);
+        blockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleImageTabList) {
-        if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleImageTab(node);
-            blockElement(g, gsbOptions);
-        }
+        const g = new GoogleImageTab(node);
+        blockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleNewsCardList) {
-        if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleNewsCard(node);
-            blockElement(g, gsbOptions);
-        }
+        const g = new GoogleNewsCard(node);
+        blockElement(g, gsbOptions);
     }
 
     for (const node of pendingGoogleSearchMovieList) {
-        if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleSearchMovie(node);
-            blockElement(g, gsbOptions);
-        }
+        const g = new GoogleSearchMovie(node);
+        blockElement(g, gsbOptions);
     }
 })();
