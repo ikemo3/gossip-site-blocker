@@ -28,7 +28,6 @@ declare global {
 window.blockReasons = [];
 
 // This is necessary when using the back button.
-let gsbOptions: Options | null = null;
 const pendingGoogleSearchResultList: Element[] = [];
 const pendingGoogleSearchInnerCardList: Element[] = [];
 const pendingGoogleSearchTopNewsList: Element[] = [];
@@ -70,105 +69,7 @@ function blockElement(g: SearchResultToBlock, options: Options): boolean {
     return true;
 }
 
-// add observer
-const observer = new MutationObserver((mutations) => {
-    const documentURL = new DocumentURL();
-
-    mutations.forEach((mutation) => {
-        for (const node of mutation.addedNodes) {
-            if (node instanceof Element) {
-                if (GoogleNewsSectionWithHeader.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
-                            const g = new GoogleNewsSectionWithHeader(node);
-                            if (!blockElement(g, gsbOptions)) {
-                                pendingGoogleNewsSectionWithHeaderList.push(node);
-                            }
-                        }
-                    } else {
-                        pendingGoogleNewsSectionWithHeaderList.push(node);
-                    }
-                } else if (GoogleNewsResult.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        if (GoogleNewsResult.isOptionallyEnabled(gsbOptions)) {
-                            const g = new GoogleNewsResult(node);
-                            if (!blockElement(g, gsbOptions)) {
-                                pendingGoogleNewsResultList.push(node);
-                            }
-                        }
-                    } else {
-                        pendingGoogleNewsResultList.push(node);
-                    }
-                } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        const g = new GoogleSearchResult(node);
-                        if (!blockElement(g, gsbOptions)) {
-                            pendingGoogleSearchResultList.push(node);
-                        }
-                    } else {
-                        pendingGoogleSearchResultList.push(node);
-                    }
-                } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        const g = new GoogleSearchInnerCard(node);
-                        if (!blockElement(g, gsbOptions)) {
-                            pendingGoogleSearchInnerCardList.push(node);
-                        }
-                    } else {
-                        pendingGoogleSearchInnerCardList.push(node);
-                    }
-                } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        const g = new GoogleSearchTopNews(node);
-                        if (!blockElement(g, gsbOptions)) {
-                            pendingGoogleSearchTopNewsList.push(node);
-                        }
-                    } else {
-                        pendingGoogleSearchTopNewsList.push(node);
-                    }
-                } else if (GoogleImageTab.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
-                            const g = new GoogleImageTab(node);
-                            if (!blockElement(g, gsbOptions)) {
-                                pendingGoogleImageTabList.push(node);
-                            }
-                        }
-                    } else {
-                        pendingGoogleImageTabList.push(node);
-                    }
-                } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
-                            const g = new GoogleNewsCard(node);
-                            if (!blockElement(g, gsbOptions)) {
-                                pendingGoogleNewsCardList.push(node);
-                            }
-                        }
-                    } else {
-                        pendingGoogleNewsCardList.push(node);
-                    }
-                } else if (GoogleSearchMovie.isCandidate(node, documentURL)) {
-                    if (gsbOptions !== null) {
-                        if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
-                            const g = new GoogleSearchMovie(node);
-                            if (!blockElement(g, gsbOptions)) {
-                                pendingGoogleSearchMovieList.push(node);
-                            }
-                        }
-                    } else {
-                        pendingGoogleSearchMovieList.push(node);
-                    }
-                }
-            }
-        }
-    });
-});
-
-const config = { childList: true, subtree: true };
-observer.observe(document.documentElement, config);
-
-(async (): Promise<void> => {
+async function loadOption(): Promise<Options> {
     await OptionRepository.DeveloperMode.load();
 
     const blockedSites: BlockedSites = await BlockedSitesRepository.load();
@@ -183,7 +84,7 @@ observer.observe(document.documentElement, config);
     const blockGoogleSearchMovie: boolean = await OptionRepository.BlockGoogleSearchMovie.load();
     Logger.debug("autoBlockIDNOption:", autoBlockIDN);
 
-    gsbOptions = {
+    return {
         blockedSites,
         bannedWords,
         regexpList,
@@ -195,7 +96,77 @@ observer.observe(document.documentElement, config);
         blockGoogleImagesTab,
         blockGoogleSearchMovie,
     };
+}
 
+const gsbOptions: Options = await loadOption();
+
+// add observer
+const observer = new MutationObserver((mutations) => {
+    const documentURL = new DocumentURL();
+
+    mutations.forEach((mutation) => {
+        for (const node of mutation.addedNodes) {
+            if (node instanceof Element) {
+                if (GoogleNewsSectionWithHeader.isCandidate(node, documentURL)) {
+                    if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
+                        const g = new GoogleNewsSectionWithHeader(node);
+                        if (!blockElement(g, gsbOptions)) {
+                            pendingGoogleNewsSectionWithHeaderList.push(node);
+                        }
+                    }
+                } else if (GoogleNewsResult.isCandidate(node, documentURL)) {
+                    if (GoogleNewsResult.isOptionallyEnabled(gsbOptions)) {
+                        const g = new GoogleNewsResult(node);
+                        if (!blockElement(g, gsbOptions)) {
+                            pendingGoogleNewsResultList.push(node);
+                        }
+                    }
+                } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
+                    const g = new GoogleSearchResult(node);
+                    if (!blockElement(g, gsbOptions)) {
+                        pendingGoogleSearchResultList.push(node);
+                    }
+                } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
+                    const g = new GoogleSearchInnerCard(node);
+                    if (!blockElement(g, gsbOptions)) {
+                        pendingGoogleSearchInnerCardList.push(node);
+                    }
+                } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
+                    const g = new GoogleSearchTopNews(node);
+                    if (!blockElement(g, gsbOptions)) {
+                        pendingGoogleSearchTopNewsList.push(node);
+                    }
+                } else if (GoogleImageTab.isCandidate(node, documentURL)) {
+                    if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
+                        const g = new GoogleImageTab(node);
+                        if (!blockElement(g, gsbOptions)) {
+                            pendingGoogleImageTabList.push(node);
+                        }
+                    }
+                } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
+                    if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
+                        const g = new GoogleNewsCard(node);
+                        if (!blockElement(g, gsbOptions)) {
+                            pendingGoogleNewsCardList.push(node);
+                        }
+                    }
+                } else if (GoogleSearchMovie.isCandidate(node, documentURL)) {
+                    if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
+                        const g = new GoogleSearchMovie(node);
+                        if (!blockElement(g, gsbOptions)) {
+                            pendingGoogleSearchMovieList.push(node);
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+
+const config = { childList: true, subtree: true };
+observer.observe(document.documentElement, config);
+
+(async (): Promise<void> => {
     for (const node of pendingGoogleSearchResultList) {
         const g = new GoogleSearchResult(node);
         blockElement(g, gsbOptions);
