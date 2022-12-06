@@ -11,7 +11,7 @@
         "@types/node": "^18.11.11",
         "@types/webpack": "^5.28.0",
         "@typescript-eslint/eslint-plugin": "^5.45.1",
-        "@typescript-eslint/parser": "^5.45.0",
+        "@typescript-eslint/parser": "^5.45.1",
         "copy-webpack-plugin": "^11.0.0",
         "date-fns": "2.29.3",
         "dependency-cruiser": "^12.1.0",
