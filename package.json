@@ -8,7 +8,7 @@
         "@types/chrome": "0.0.204",
         "@types/copy-webpack-plugin": "^10.1.0",
         "@types/jest": "^28.1.8",
-        "@types/node": "^18.11.13",
+        "@types/node": "^18.11.14",
         "@types/webpack": "^5.28.0",
         "@typescript-eslint/eslint-plugin": "^5.46.0",
         "@typescript-eslint/parser": "^5.46.0",
