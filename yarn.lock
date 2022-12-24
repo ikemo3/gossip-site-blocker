@@ -2197,10 +2197,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-dependency-cruiser@^12.1.0:
-  version "12.1.0"
-  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.1.0.tgz#1336a2618075e0862b98fe6f3ed5494b584a63e7"
-  integrity sha512-pl6fiJsM/WEgJ9SX5Co3BNKNLnzcCj7lLAMfBbmtvoKacGFyD7BDD029ld3jOWPPD6iRLa2TRxq8hWSBVn93+w==
+dependency-cruiser@^12.1.1:
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.1.1.tgz#0c4a9139b42f5e5c5188ba8b4d38574786e5be5f"
+  integrity sha512-NWDTbotDtnZfghU6r9mpz+7REuxxmN13af40sncGzOZqv0UDNiIa/T0ETHfoHP3I0MpoCdosOy8GHX72YKrfjA==
   dependencies:
     acorn "8.8.1"
     acorn-jsx "5.3.2"
@@ -2218,7 +2218,7 @@ dependency-cruiser@^12.1.0:
     indent-string "^4.0.0"
     interpret "^2.2.0"
     is-installed-globally "0.4.0"
-    json5 "2.2.1"
+    json5 "2.2.2"
     lodash "4.17.21"
     prompts "2.4.2"
     rechoir "^0.8.0"
@@ -3649,10 +3649,10 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
-json5@2.2.1, json5@^2.1.2, json5@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
-  integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
+json5@2.2.2, json5@^2.1.2, json5@^2.2.1:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.2.tgz#64471c5bdcc564c18f7c1d4df2e2297f2457c5ab"
+  integrity sha512-46Tk9JiOL2z7ytNQWFLpj99RZkVgeHf87yGQKsIkaPz1qSH9UczKH1rO7K3wgRselo0tYMUNfecYpm/p1vC7tQ==
 
 kind-of@^6.0.2:
   version "6.0.3"
