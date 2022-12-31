@@ -2163,10 +2163,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-dependency-cruiser@^12.1.1:
-  version "12.1.1"
-  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.1.1.tgz#0c4a9139b42f5e5c5188ba8b4d38574786e5be5f"
-  integrity sha512-NWDTbotDtnZfghU6r9mpz+7REuxxmN13af40sncGzOZqv0UDNiIa/T0ETHfoHP3I0MpoCdosOy8GHX72YKrfjA==
+dependency-cruiser@^12.3.0:
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.3.0.tgz#a75fc3a7344d95707952cc220b9770b7f01cda49"
+  integrity sha512-izkszSM6NmVe5a/Y5IZSbMEFKAyF4XlrmTJXUcjQS92yBIk65qx2bUlKdlCEzFND9U+BMu80JGljh4NYLDRNVQ==
   dependencies:
     acorn "8.8.1"
     acorn-jsx "5.3.2"
@@ -2182,7 +2182,7 @@ dependency-cruiser@^12.1.1:
     glob "7.2.0"
     handlebars "4.7.7"
     indent-string "^4.0.0"
-    interpret "^2.2.0"
+    interpret "^3.1.0"
     is-installed-globally "0.4.0"
     json5 "2.2.2"
     lodash "4.17.21"
@@ -2974,12 +2974,7 @@ ini@2.0.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-2.0.0.tgz#e5fd556ecdd5726be978fa1001862eacb0a94bc5"
   integrity sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA==
 
-interpret@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/interpret/-/interpret-2.2.0.tgz#1a78a0b5965c40a5416d007ad6f50ad27c417df9"
-  integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
-
-interpret@^3.1.1:
+interpret@^3.1.0, interpret@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-3.1.1.tgz#5be0ceed67ca79c6c4bc5cf0d7ee843dcea110c4"
   integrity sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==
