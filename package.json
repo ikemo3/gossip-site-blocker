@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "module",
     "devDependencies": {
-        "@types/chrome": "0.0.208",
+        "@types/chrome": "0.0.209",
         "@types/copy-webpack-plugin": "^10.1.0",
         "@types/jest": "^28.1.8",
         "@types/node": "^18.11.18",
