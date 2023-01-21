@@ -2025,15 +2025,15 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.0.tgz#71797971162cd3cf65f0b9d24eb28f8d303acdf1"
+  integrity sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==
+
 commander@9.4.1:
   version "9.4.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
   integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
-
-commander@9.5.0, commander@^9.4.1:
-  version "9.5.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
-  integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
 commander@^2.20.0:
   version "2.20.3"
@@ -2044,6 +2044,11 @@ commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
+
+commander@^9.4.1:
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
+  integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
 compress-commons@^4.1.0:
   version "4.1.1"
@@ -2202,10 +2207,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-dependency-cruiser@^12.4.0:
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.4.0.tgz#fa9ecb771749f05093e6fccd2f5abab137efee57"
-  integrity sha512-JVCXuJkHBLDPjcNDifrcaqOVM/yT3xwZ+BNfg3Omg8fgccgpx1oYT3mYkHoucUoGyPmD07KLpPi3rm124Qy4vA==
+dependency-cruiser@^12.5.1:
+  version "12.5.1"
+  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-12.5.1.tgz#19ba6f9b1db9f9860301258f5ae097ac27ac69c2"
+  integrity sha512-jU7uI2coWjd1+mPQw/wQqVe/2FIKcePCqiTsUwwgzvPGL0LnBjyD75YwNkYP+T7eYYdZeBi8THe1I8W1s4Dbfg==
   dependencies:
     acorn "8.8.1"
     acorn-jsx "5.3.2"
@@ -2214,7 +2219,7 @@ dependency-cruiser@^12.4.0:
     acorn-walk "8.2.0"
     ajv "8.12.0"
     chalk "^4.1.2"
-    commander "9.5.0"
+    commander "10.0.0"
     enhanced-resolve "5.12.0"
     figures "^3.2.0"
     get-stream "^6.0.1"
