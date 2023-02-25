@@ -10,7 +10,7 @@
         "@types/jest": "^28.1.8",
         "@types/node": "^18.14.0",
         "@types/webpack": "^5.28.0",
-        "@typescript-eslint/eslint-plugin": "^5.52.0",
+        "@typescript-eslint/eslint-plugin": "^5.53.0",
         "@typescript-eslint/parser": "^5.53.0",
         "copy-webpack-plugin": "^11.0.0",
         "date-fns": "2.29.3",
