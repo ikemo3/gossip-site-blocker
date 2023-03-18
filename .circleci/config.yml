@@ -63,7 +63,7 @@ workflows:
                   filters:
                       branches:
                           only:
-                              - master
+                              - main
                       tags:
                           only: /.*/
     daily_workflow:
@@ -73,6 +73,6 @@ workflows:
                   filters:
                       branches:
                           only:
-                              - master
+                              - main
         jobs:
             - build
