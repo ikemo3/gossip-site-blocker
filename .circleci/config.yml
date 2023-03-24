@@ -8,7 +8,7 @@ orbs:
 jobs:
     build:
         docker:
-            - image: cimg/node:16.16-browsers
+            - image: cimg/node:18.15
               environment:
                   - LANG: ja_JP.UTF-8
                   - LANGUAGE: ja_JP.UTF-8
@@ -17,6 +17,11 @@ jobs:
 
         steps:
             - checkout
+            - run:
+                  name: Install pnpm package manager
+                  command: |
+                    sudo corepack enable
+                    corepack prepare pnpm@latest --activate
             - run:
                   command: make ci
             - store_test_results:
@@ -44,7 +49,7 @@ jobs:
                       go install github.com/tcnksm/ghr@v0.15.0
 
                       # deploy
-                      yarn install
+                      pnpm install
                       export PATH=$PATH:~/go/bin
                       make deploy
 

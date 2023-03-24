@@ -12,7 +12,7 @@ https://chrome.google.com/webstore/detail/gossip-site-blocker/mjojhcmecfehllhcjc
 ## Compile
 
 ```sh
-yarn install
+pnpm install
 make ci
 ```
 

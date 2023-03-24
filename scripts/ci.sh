@@ -23,9 +23,9 @@ if [[ "${FIREFOX_MANIFEST_VERSION}" != "${PACKAGE_VERSION}" ]]; then
   exit 1
 fi
 
-yarn install
-yarn lint-for-ci
-yarn test
+pnpm install
+pnpm lint-for-ci
+pnpm test
 
-yarn build
-yarn archive
+pnpm build
+pnpm archive

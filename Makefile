@@ -2,4 +2,4 @@ ci:
 	./scripts/ci.sh
 
 deploy:
-	yarn deploy
+	pnpm deploy
