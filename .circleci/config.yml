@@ -43,6 +43,11 @@ jobs:
             - attach_workspace:
                   at: tmp/workspace
             - run:
+                  name: Install pnpm package manager
+                  command: |
+                    sudo corepack enable
+                    corepack prepare pnpm@latest --activate
+            - run:
                   name: "Publish Release on GitHub"
                   command: |
                       # install ghr
