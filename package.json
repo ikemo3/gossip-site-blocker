@@ -6,7 +6,6 @@
     "type": "module",
     "devDependencies": {
         "@types/chrome": "0.0.224",
-        "@types/copy-webpack-plugin": "^10.1.0",
         "@types/jest": "^28.1.8",
         "@types/node": "^18.15.3",
         "@types/webpack": "^5.28.0",
@@ -37,9 +36,9 @@
         "build": "NODE_OPTIONS='--loader ts-node/esm' webpack",
         "develop": "NODE_OPTIONS='--loader ts-node/esm' webpack --watch",
         "deploy": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/github_release.ts",
-        "fix": "yarn eslint --fix --ext .ts apps scripts test *.ts jest.config.cjs",
-        "lint": "prettier --write .; yarn eslint --ext .ts apps scripts test *.ts jest.config.cjs",
-        "lint-for-ci": "prettier --check .; yarn eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs",
+        "fix": "pnpm eslint --fix --ext .ts apps scripts test *.ts jest.config.cjs",
+        "lint": "prettier --write .; pnpm eslint --ext .ts apps scripts test *.ts jest.config.cjs",
+        "lint-for-ci": "prettier --check .; pnpm eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs",
         "manifest": "ts-node ./scripts/make_manifest.ts",
         "test": "jest"
     },

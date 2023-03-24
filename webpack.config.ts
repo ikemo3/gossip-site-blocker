@@ -69,7 +69,7 @@ const config: Configuration = {
         }),
         new WebpackShellPluginNext({
             onBuildExit: {
-                scripts: ["yarn manifest"],
+                scripts: ["pnpm manifest"],
                 blocking: true,
                 parallel: false,
             },

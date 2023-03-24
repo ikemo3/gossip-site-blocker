@@ -11,7 +11,7 @@ assignees: ikemo3
 
 * [ ] 開発完了
 * [ ] 新機能の動作確認
-* [ ] Seleniumで確認(`yarn integration-test`)
+* [ ] Seleniumで確認(`pnpm integration-test`)
     * [ ] スクリーンショットを一通り確認
 * [ ] Chromeで確認
     * [ ] 戻るボタンを押したときにブロックされること
