@@ -24,7 +24,7 @@ if [[ "${FIREFOX_MANIFEST_VERSION}" != "${PACKAGE_VERSION}" ]]; then
 fi
 
 pnpm install
-pnpm lint-for-ci
+pnpm lint:ci
 pnpm test
 
 pnpm build

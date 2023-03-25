@@ -37,8 +37,9 @@
         "develop": "NODE_OPTIONS='--loader ts-node/esm' webpack --watch",
         "deploy": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/github_release.ts",
         "fix": "pnpm eslint --fix --ext .ts apps scripts test *.ts jest.config.cjs",
-        "lint": "prettier --write .; pnpm eslint --ext .ts apps scripts test *.ts jest.config.cjs",
-        "lint-for-ci": "prettier --check .; pnpm eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs",
+        "format": "prettier --write .",
+        "lint": "pnpm eslint --ext .ts apps scripts test *.ts jest.config.cjs",
+        "lint:ci": "prettier --check . && pnpm eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs",
         "manifest": "ts-node ./scripts/make_manifest.ts",
         "test": "jest"
     },
