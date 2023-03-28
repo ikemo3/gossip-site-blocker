@@ -21,7 +21,7 @@ jobs:
                   name: Install pnpm package manager
                   command: |
                       sudo corepack enable
-                      corepack prepare pnpm@latest --activate
+                      corepack prepare pnpm@7.30.3 --activate
             - run:
                   command: make ci
             - store_test_results:
