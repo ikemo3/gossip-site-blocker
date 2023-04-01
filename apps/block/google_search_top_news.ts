@@ -46,6 +46,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
             return;
         }
 
+        element.setAttribute("data-gsb-element-type", "google-search-top-news");
         this.compactMenuInsertElement = anchor;
         this.valid = true;
         this.url = href;
