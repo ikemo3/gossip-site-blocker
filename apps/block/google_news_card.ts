@@ -16,7 +16,7 @@ class GoogleNewsCard extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches(".BGxR7d > div:first-child") && documentURL.isGoogleSearchNewsTab();
+        return element.matches(".Cq2QEe") && documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
