@@ -51,6 +51,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
         const title = titleDiv.textContent !== null ? titleDiv.textContent : "";
         Logger.debug("movie: valid", anchor, href, title);
 
+        element.setAttribute("data-gsb-element-type", "google-search-movie");
         this.compactMenuInsertElement = anchor;
         this.valid = true;
         this.url = href;
