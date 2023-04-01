@@ -19,7 +19,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
     }
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches("video-voyager") && !documentURL.isGoogleSearchNewsTab();
+        return element.matches("div.mLmaBd") && !documentURL.isGoogleSearchNewsTab();
     }
 
     // noinspection DuplicatedCode
@@ -27,7 +27,7 @@ class GoogleSearchMovie extends SearchResultToBlock {
         super();
         this.element = element;
 
-        const anchor = element.querySelector("a");
+        const anchor = element.querySelector("a:not(.vGvPJe)") as HTMLAnchorElement | null;
         if (anchor === null) {
             Logger.debug("movie: anchor not found", element);
             this.valid = false;
