@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@types/chrome': 0.0.227
+  '@types/chrome': 0.0.228
   '@types/jest': ^29.0.0
   '@types/node': ^18.15.3
   '@types/webpack': ^5.28.0
@@ -32,7 +32,7 @@ dependencies:
   tabbyjs: 12.0.3
 
 devDependencies:
-  '@types/chrome': 0.0.227
+  '@types/chrome': 0.0.228
   '@types/jest': 29.5.0
   '@types/node': 18.15.7
   '@types/webpack': 5.28.0_webpack-cli@5.0.1
@@ -838,8 +838,8 @@ packages:
       '@babel/types': 7.21.3
     dev: true
 
-  /@types/chrome/0.0.227:
-    resolution: {integrity: sha512-l1sVnf/1wZ/oNPw5X7OJMZjQlqVf3tPO50aE/aETHQRbrYhlHZkwv7lcuOWCimRSkFdHvAW4M+RIBAZACblXng==}
+  /@types/chrome/0.0.228:
+    resolution: {integrity: sha512-rDmyVEF+l9H+6FQYqsEGqQOjBw/uaSx6KJ6o47FwbQmPPcskmt8XlPbKjy5KeQXU3ZLiV2x45Fk4kdtRMSghfQ==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.10
