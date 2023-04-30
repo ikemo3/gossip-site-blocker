@@ -4,6 +4,7 @@ import { OptionRepository } from "../repository/options";
 import BlockDialog from "../content_script/dialog";
 import { IBasicBlockMediator } from "../content_script/mediator";
 import localizeHtmlPage from "../option/l10n";
+import DocumentURL from "../values/document_url";
 
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
     return new Promise((resolve, reject) => {
@@ -29,7 +30,12 @@ searchInEnglishButton.addEventListener("click", async () => {
     const currentTab = await getCurrentTab();
     const { url } = currentTab;
 
-    chrome.tabs.update(currentTab.id!, { url: `${url}&gl=us&hl=en` });
+    if (!url) {
+        return;
+    }
+
+    const documentUrl = new DocumentURL(url);
+    chrome.tabs.update(currentTab.id!, { url: documentUrl.buildSearchInEnglishURL() });
 });
 
 exceptIkagadesitakaButton.addEventListener("click", async () => {
