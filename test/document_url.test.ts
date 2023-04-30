@@ -32,3 +32,22 @@ describe("DocumentURL", () => {
         expect(documentUrl.isGoogleSearchImageTab()).toBe(true);
     });
 });
+
+describe("Search In English", () => {
+    it("normal", () => {
+        const documentUrl = new DocumentURL(GOOGLE_SEARCH_URL);
+        const expected = GOOGLE_SEARCH_URL + "&gl=us&hl=en";
+
+        expect(documentUrl.buildSearchInEnglishURL()).toBe(expected);
+    });
+
+    it("has fragment", () => {
+        const documentUrl = new DocumentURL(
+            "https://www.google.com/search?q=test&rlz=xxx&oq=test&aqs=yyy&sourceid=chrome&ie=UTF-8#bsht=zzz"
+        );
+        const expected =
+            "https://www.google.com/search?q=test&rlz=xxx&oq=test&aqs=yyy&sourceid=chrome&ie=UTF-8&gl=us&hl=en#bsht=zzz";
+
+        expect(documentUrl.buildSearchInEnglishURL()).toBe(expected);
+    });
+});

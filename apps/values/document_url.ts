@@ -18,6 +18,14 @@ class DocumentURL {
     isGoogleSearch(): boolean {
         return !this.isGoogleSearchNewsTab() && !this.isGoogleSearchImageTab();
     }
+
+    buildSearchInEnglishURL(): string {
+        const returnURL = new URL(this.url.toString());
+        const params = returnURL.searchParams;
+        params.set("gl", "us");
+        params.set("hl", "en");
+        return returnURL.toString();
+    }
 }
 
 export default DocumentURL;
