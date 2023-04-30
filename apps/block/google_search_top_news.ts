@@ -14,7 +14,7 @@ class GoogleSearchTopNews extends SearchResultToBlock {
 
     static isCandidate(element: Element, documentURL: DocumentURL): boolean {
         return (
-            element.matches("g-section-with-header div.MkXWrd > div") &&
+            element.matches("g-section-with-header div[data-hveid]") &&
             !element.querySelector("g-scrolling-carousel") &&
             !documentURL.isGoogleSearchNewsTab()
         );
