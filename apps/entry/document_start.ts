@@ -102,7 +102,7 @@ const gsbOptions: Options = await loadOption();
 
 // add observer
 const observer = new MutationObserver((mutations) => {
-    const documentURL = new DocumentURL();
+    const documentURL = new DocumentURL(document.location.href);
 
     mutations.forEach((mutation) => {
         for (const node of mutation.addedNodes) {

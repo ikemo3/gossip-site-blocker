@@ -1,8 +1,8 @@
 class DocumentURL {
     private readonly url: URL;
 
-    constructor() {
-        this.url = new URL(document.location.href);
+    constructor(url: string) {
+        this.url = new URL(url);
     }
 
     isGoogleSearchNewsTab(): boolean {
