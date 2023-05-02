@@ -10,8 +10,8 @@ devDependencies:
     specifier: 0.0.235
     version: 0.0.235
   '@types/jest':
-    specifier: ^29.0.0
-    version: 29.5.0
+    specifier: ^29.5.1
+    version: 29.5.1
   '@types/node':
     specifier: ^18.15.3
     version: 18.15.7
@@ -49,7 +49,7 @@ devDependencies:
     specifier: ^5.5.1
     version: 5.5.1(webpack@5.76.3)
   jest:
-    specifier: ^29.0.0
+    specifier: ^29.5.0
     version: 29.5.0(@types/node@18.15.7)(ts-node@10.9.1)
   jest-environment-jsdom:
     specifier: ^29.5.0
@@ -934,8 +934,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest@29.5.0:
-    resolution: {integrity: sha512-3Emr5VOl/aoBwnWcH/EFQvlSAmjV+XtV9GGu5mwdYew5vhQh0IUZx/60x0TzHDu09Bi7HMx10t/namdJw5QIcg==}
+  /@types/jest@29.5.1:
+    resolution: {integrity: sha512-tEuVcHrpaixS36w7hpsfLBLpjtMRJUE09/MHXn923LOVojDwyC14cWcfc0rDs0VEfUyYmt/+iX1kxxp+gZMcaQ==}
     dependencies:
       expect: 29.5.0
       pretty-format: 29.5.0
