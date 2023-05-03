@@ -37,7 +37,7 @@ devDependencies:
     specifier: ^8.39.0
     version: 8.39.0
   eslint-config-prettier:
-    specifier: ^8.7.0
+    specifier: ^8.8.0
     version: 8.8.0(eslint@8.39.0)
   eslint-plugin-jest:
     specifier: ^27.2.1
