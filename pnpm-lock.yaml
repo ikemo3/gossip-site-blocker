@@ -31,8 +31,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^12.10.2
-    version: 12.11.0
+    specifier: ^12.12.0
+    version: 12.12.0
   eslint:
     specifier: ^8.39.0
     version: 8.39.0
@@ -1755,8 +1755,8 @@ packages:
       delayed-stream: 1.0.0
     dev: true
 
-  /commander@10.0.0:
-    resolution: {integrity: sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==}
+  /commander@10.0.1:
+    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
     dev: true
 
@@ -1922,8 +1922,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@12.11.0:
-    resolution: {integrity: sha512-hl68UaC8ctMGebKtF0mR/W6DFIUNpOpV4vCifIXGo8Tqa/43vpgjj2sc11zcE2YtqzjD9DSW761IwcoSPxgWZA==}
+  /dependency-cruiser@12.12.0:
+    resolution: {integrity: sha512-3DB6m6bVVR50o8CZWa4yBklm2SxfDi5gHPlDmS9v4Vdng2uJxPFezM2yH9PlsJ6GlQ7tpOiiYp/gOXUr/R+KGQ==}
     engines: {node: ^14||^16||>=18}
     hasBin: true
     dependencies:
@@ -1934,8 +1934,8 @@ packages:
       acorn-walk: 8.2.0
       ajv: 8.12.0
       chalk: 4.1.2
-      commander: 10.0.0
-      enhanced-resolve: 5.12.0
+      commander: 10.0.1
+      enhanced-resolve: 5.13.0
       figures: 3.2.0
       get-stream: 6.0.1
       glob: 7.2.0
@@ -1950,10 +1950,10 @@ packages:
       rechoir: 0.8.0
       safe-regex: 2.1.1
       semver: 7.3.8
-      semver-try-require: 6.1.0
+      semver-try-require: 6.2.2
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.0.1
-      watskeburt: 0.10.1
+      watskeburt: 0.11.1
       wrap-ansi: 7.0.0
     dev: true
 
@@ -2054,6 +2054,14 @@ packages:
 
   /enhanced-resolve@5.12.0:
     resolution: {integrity: sha512-QHTXI/sZQmko1cbDoNAa3mJ5qhWUUNAq3vR0/YiD379fWQrcfuoX1+HW2S0MTt7XmoPLapdaDKUtelUSPic7hQ==}
+    engines: {node: '>=10.13.0'}
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.2.1
+    dev: true
+
+  /enhanced-resolve@5.13.0:
+    resolution: {integrity: sha512-eyV8f0y1+bzyfh8xAwW/WTSZpLbjhqc4ne9eGSH4Zo2ejdyiNG9pU6mf9DG8a7+Auk6MFTlNOT4Y2y/9k8GKVg==}
     engines: {node: '>=10.13.0'}
     dependencies:
       graceful-fs: 4.2.11
@@ -4032,8 +4040,8 @@ packages:
       ajv-keywords: 5.1.0(ajv@8.12.0)
     dev: true
 
-  /semver-try-require@6.1.0:
-    resolution: {integrity: sha512-nfdWsBkR2n0J2+0I8JfGklh/KRVpAimPc73OlEcOpaElTVEHPx5WpINSaHdsM6vzzbWisSeL4bWyi0uyuricFQ==}
+  /semver-try-require@6.2.2:
+    resolution: {integrity: sha512-Pyr1mG/kyBxL2+hNfU/VPRhBRdm/+EJAyWlusn7t9NDRkZEvsbwPjlocZ4ji0TD4ALPmW9ZkrzMQADjrRCDQ5w==}
     engines: {node: ^14||^16||>=18}
     dependencies:
       semver: 7.3.8
@@ -4401,7 +4409,7 @@ packages:
     engines: {node: '>=10.13.0'}
     dependencies:
       chalk: 4.1.2
-      enhanced-resolve: 5.12.0
+      enhanced-resolve: 5.13.0
       tsconfig-paths: 4.1.2
     dev: true
 
@@ -4546,12 +4554,12 @@ packages:
       graceful-fs: 4.2.11
     dev: true
 
-  /watskeburt@0.10.1:
-    resolution: {integrity: sha512-3ZN+kLvFwrOBV3wAEb+FRBI8BRWGXxDMmwPMxAJaBi4WbWzSrZ1OcYEYwwCFoPmjw3O13LgoND1Pnut1nMXYnw==}
+  /watskeburt@0.11.1:
+    resolution: {integrity: sha512-pRg7lw1R5kazren0jhcWSWNNfv3HE5Mzggj9MaruziQYMpxLJL1BrcwJWFSDwgOVbQrmtUZNgbbkKSv6SIyLew==}
     engines: {node: ^14||^16||>=18}
     hasBin: true
     dependencies:
-      commander: 10.0.0
+      commander: 10.0.1
     dev: true
 
   /webidl-conversions@7.0.0:
