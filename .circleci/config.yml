@@ -8,7 +8,7 @@ orbs:
 jobs:
     build:
         docker:
-            - image: cimg/node:19.9
+            - image: cimg/node:20.1
               environment:
                   - LANG: ja_JP.UTF-8
                   - LANGUAGE: ja_JP.UTF-8
