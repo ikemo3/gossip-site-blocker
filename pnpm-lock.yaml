@@ -31,8 +31,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^12.12.0
-    version: 12.12.0
+    specifier: ^12.12.1
+    version: 12.12.1
   eslint:
     specifier: ^8.40.0
     version: 8.40.0
@@ -1979,8 +1979,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@12.12.0:
-    resolution: {integrity: sha512-3DB6m6bVVR50o8CZWa4yBklm2SxfDi5gHPlDmS9v4Vdng2uJxPFezM2yH9PlsJ6GlQ7tpOiiYp/gOXUr/R+KGQ==}
+  /dependency-cruiser@12.12.1:
+    resolution: {integrity: sha512-tMWkSjaXOmneiwqygV8FbypS+u5KI2cHyeakRb7x2WQDoxaSxRxEEqfdKNughHqO1LNOn8GOmvd2PuWF8EVPAQ==}
     engines: {node: ^14||^16||>=18}
     hasBin: true
     dependencies:
