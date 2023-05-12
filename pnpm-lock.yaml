@@ -31,8 +31,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^12.12.1
-    version: 12.12.1
+    specifier: ^12.12.2
+    version: 12.12.2
   eslint:
     specifier: ^8.40.0
     version: 8.40.0
@@ -1979,8 +1979,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@12.12.1:
-    resolution: {integrity: sha512-tMWkSjaXOmneiwqygV8FbypS+u5KI2cHyeakRb7x2WQDoxaSxRxEEqfdKNughHqO1LNOn8GOmvd2PuWF8EVPAQ==}
+  /dependency-cruiser@12.12.2:
+    resolution: {integrity: sha512-eFKNREkMCRC3EI8b7PsZm/f029aqC58ObmRI5baW6ciBeT46OAhnaV4JueMTr79eW/sqyc4q+/YDk8kDnz/l0w==}
     engines: {node: ^14||^16||>=18}
     hasBin: true
     dependencies:
@@ -1992,7 +1992,7 @@ packages:
       ajv: 8.12.0
       chalk: 4.1.2
       commander: 10.0.1
-      enhanced-resolve: 5.13.0
+      enhanced-resolve: 5.14.0
       figures: 3.2.0
       get-stream: 6.0.1
       glob: 7.2.0
@@ -2111,14 +2111,6 @@ packages:
 
   /enhanced-resolve@5.12.0:
     resolution: {integrity: sha512-QHTXI/sZQmko1cbDoNAa3mJ5qhWUUNAq3vR0/YiD379fWQrcfuoX1+HW2S0MTt7XmoPLapdaDKUtelUSPic7hQ==}
-    engines: {node: '>=10.13.0'}
-    dependencies:
-      graceful-fs: 4.2.11
-      tapable: 2.2.1
-    dev: true
-
-  /enhanced-resolve@5.13.0:
-    resolution: {integrity: sha512-eyV8f0y1+bzyfh8xAwW/WTSZpLbjhqc4ne9eGSH4Zo2ejdyiNG9pU6mf9DG8a7+Auk6MFTlNOT4Y2y/9k8GKVg==}
     engines: {node: '>=10.13.0'}
     dependencies:
       graceful-fs: 4.2.11
