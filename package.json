@@ -7,7 +7,7 @@
     "devDependencies": {
         "@types/chrome": "0.0.236",
         "@types/jest": "^29.5.1",
-        "@types/node": "^18.16.10",
+        "@types/node": "^18.16.12",
         "@types/webpack": "^5.28.1",
         "@typescript-eslint/eslint-plugin": "^5.59.6",
         "@typescript-eslint/parser": "^5.59.6",
