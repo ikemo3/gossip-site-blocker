@@ -18,7 +18,7 @@
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-jest": "^27.2.1",
         "eslint-plugin-node": "^11.1.0",
-        "html-webpack-plugin": "^5.5.1",
+        "html-webpack-plugin": "^5.5.2",
         "jest": "^29.5.0",
         "jest-environment-jsdom": "^29.5.0",
         "prettier": "^2.8.8",
@@ -29,7 +29,7 @@
         "webpack": "^5.85.1",
         "webpack-cli": "^5.1.4",
         "webpack-shell-plugin-next": "^2.3.1",
-        "zip-a-folder": "1.1.6"
+        "zip-a-folder": "1.1.7"
     },
     "scripts": {
         "archive": "NODE_OPTIONS='--loader ts-node/esm' ts-node ./scripts/archive.ts",

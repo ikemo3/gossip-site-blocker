@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^11.1.0
     version: 11.1.0(eslint@8.42.0)
   html-webpack-plugin:
-    specifier: ^5.5.1
-    version: 5.5.1(webpack@5.85.1)
+    specifier: ^5.5.2
+    version: 5.5.2(webpack@5.85.1)
   jest:
     specifier: ^29.5.0
     version: 29.5.0(@types/node@18.16.16)(ts-node@10.9.1)
@@ -83,8 +83,8 @@ devDependencies:
     specifier: ^2.3.1
     version: 2.3.1(webpack@5.85.1)
   zip-a-folder:
-    specifier: 1.1.6
-    version: 1.1.6
+    specifier: 1.1.7
+    version: 1.1.7
 
 packages:
 
@@ -2753,8 +2753,8 @@ packages:
       terser: 5.16.6
     dev: true
 
-  /html-webpack-plugin@5.5.1(webpack@5.85.1):
-    resolution: {integrity: sha512-cTUzZ1+NqjGEKjmVgZKLMdiFg3m9MdRXkZW2OEe69WYVi5ONLMmlnSZdXzGGMOq0C8jGDrL6EWyEDDUioHO/pA==}
+  /html-webpack-plugin@5.5.2(webpack@5.85.1):
+    resolution: {integrity: sha512-2KsxTJQmtqsT1JGaZJmoMW25wpC0HM9gpW3jH/UMH62To0UKlzRUbJ/FtQNhZ0gd4gWMoetEYkyG8FMNqEO66Q==}
     engines: {node: '>=10.13.0'}
     peerDependencies:
       webpack: ^5.20.0
@@ -4973,8 +4973,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zip-a-folder@1.1.6:
-    resolution: {integrity: sha512-dbfNx6CXf0nypW8yu0GU+QPHBZH1fXXONEvAJPmszsGuPxIk5ZbQ542AS33EkOFu7nyUx9jMYClKMq1wHYqhYw==}
+  /zip-a-folder@1.1.7:
+    resolution: {integrity: sha512-JqRZlUYJVogDvR1hl1j+30MNwrOWc886bpPePnfyXgMFQpOqfDcZAqICNp0Zt+Th7C2KcQYMI4fThrkEXa7DSQ==}
     dependencies:
       archiver: 5.3.1
     dev: true
