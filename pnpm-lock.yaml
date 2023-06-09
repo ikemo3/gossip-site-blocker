@@ -83,8 +83,8 @@ devDependencies:
     specifier: ^2.3.1
     version: 2.3.1(webpack@5.85.1)
   zip-a-folder:
-    specifier: 1.1.7
-    version: 1.1.7
+    specifier: 2.0.0
+    version: 2.0.0
 
 packages:
 
@@ -4973,10 +4973,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zip-a-folder@1.1.7:
-    resolution: {integrity: sha512-JqRZlUYJVogDvR1hl1j+30MNwrOWc886bpPePnfyXgMFQpOqfDcZAqICNp0Zt+Th7C2KcQYMI4fThrkEXa7DSQ==}
+  /zip-a-folder@2.0.0:
+    resolution: {integrity: sha512-D/TfWs3pFy96RE9AgXbC1ZzKcmoFHSkcUrQP7wDr+tHqBvGy7jj/BuGEWwOvjHjlC7mssCPZAzSS6Kuv7D881A==}
     dependencies:
       archiver: 5.3.1
+      is-glob: 4.0.3
     dev: true
 
   /zip-stream@4.1.0:
