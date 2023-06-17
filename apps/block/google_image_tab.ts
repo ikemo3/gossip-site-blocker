@@ -4,99 +4,102 @@ import { Options } from "../repository/options";
 import { MenuPosition } from "../repository/enums";
 
 class GoogleImageTab extends SearchResultToBlock {
-    private readonly valid: boolean;
+  private readonly valid: boolean;
 
-    private readonly _canRetry: boolean;
+  private readonly _canRetry: boolean;
 
-    private readonly title: string;
+  private readonly title: string;
 
-    private readonly url: string;
+  private readonly url: string;
 
-    private readonly element: Element;
+  private readonly element: Element;
 
-    private readonly compactMenuInsertElement: Element;
+  private readonly compactMenuInsertElement: Element;
 
-    static isOptionallyEnabled(options: Options): boolean {
-        return options.blockGoogleImagesTab;
+  static isOptionallyEnabled(options: Options): boolean {
+    return options.blockGoogleImagesTab;
+  }
+
+  static isCandidate(element: Element, documentURL: DocumentURL): boolean {
+    return (
+      element.classList.contains("MSM1fd") &&
+      documentURL.isGoogleSearchImageTab()
+    );
+  }
+
+  // noinspection DuplicatedCode
+  constructor(element: Element) {
+    super();
+    this.element = element;
+
+    const anchor = element.querySelector("a.VFACy");
+    if (!anchor) {
+      this.valid = false;
+      this._canRetry = true;
+      return;
     }
 
-    static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.classList.contains("MSM1fd") && documentURL.isGoogleSearchImageTab();
+    const href = anchor.getAttribute("href");
+    if (!href) {
+      this.valid = false;
+      this._canRetry = true;
+      return;
     }
 
-    // noinspection DuplicatedCode
-    constructor(element: Element) {
-        super();
-        this.element = element;
-
-        const anchor = element.querySelector("a.VFACy");
-        if (!anchor) {
-            this.valid = false;
-            this._canRetry = true;
-            return;
-        }
-
-        const href = anchor.getAttribute("href");
-        if (!href) {
-            this.valid = false;
-            this._canRetry = true;
-            return;
-        }
-
-        const image = element.querySelector("img.Q4LuWd");
-        if (!image) {
-            this.valid = false;
-            this._canRetry = true;
-            return;
-        }
-
-        const alt = image.getAttribute("alt");
-        this.title = alt || "";
-        this.url = href;
-        this.valid = true;
-        this._canRetry = true;
-        this.compactMenuInsertElement = anchor;
+    const image = element.querySelector("img.Q4LuWd");
+    if (!image) {
+      this.valid = false;
+      this._canRetry = true;
+      return;
     }
 
-    canBlock(): boolean {
-        return this.valid;
-    }
+    const alt = image.getAttribute("alt");
+    this.title = alt || "";
+    this.url = href;
+    this.valid = true;
+    this._canRetry = true;
+    this.compactMenuInsertElement = anchor;
+  }
 
-    canRetry(): boolean {
-        return this._canRetry;
-    }
+  canBlock(): boolean {
+    return this.valid;
+  }
 
-    getCompactMenuInsertElement(): Element {
-        return this.compactMenuInsertElement;
-    }
+  canRetry(): boolean {
+    return this._canRetry;
+  }
 
-    getCssClass(): string {
-        return "block-google-image-tab";
-    }
+  getCompactMenuInsertElement(): Element {
+    return this.compactMenuInsertElement;
+  }
 
-    getElement(): Element {
-        return this.element;
-    }
+  getCssClass(): string {
+    return "block-google-image-tab";
+  }
 
-    getPosition(): string {
-        return "absolute";
-    }
+  getElement(): Element {
+    return this.element;
+  }
 
-    getUrl(): string {
-        return this.url;
-    }
+  getPosition(): string {
+    return "absolute";
+  }
 
-    getContents(): string {
-        return "";
-    }
+  getUrl(): string {
+    return this.url;
+  }
 
-    getTitle(): string {
-        return this.title;
-    }
+  getContents(): string {
+    return "";
+  }
 
-    getMenuPosition(_: MenuPosition): MenuPosition {
-        return MenuPosition.COMPACT;
-    }
+  getTitle(): string {
+    return this.title;
+  }
+
+  getMenuPosition(_: MenuPosition): MenuPosition {
+    return MenuPosition.COMPACT;
+  }
 }
 
 export default GoogleImageTab;

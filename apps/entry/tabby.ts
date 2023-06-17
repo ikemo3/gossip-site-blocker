@@ -1,7 +1,7 @@
 declare class Tabby {
-    constructor(keyword: string);
+  constructor(keyword: string);
 
-    setup(): void;
+  setup(): void;
 }
 
 export default Tabby;

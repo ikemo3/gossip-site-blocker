@@ -1,63 +1,63 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jest": true,
-        "webextensions": true
-    },
-    "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": ["@typescript-eslint", "jest"],
-    "rules": {
-        "class-methods-use-this": "off",
-        "max-classes-per-file": "off",
-        "no-continue": "off",
-        "no-restricted-syntax": [
-            "warn",
-            {
-                "selector": "ForInStatement",
-                "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
-            },
-            {
-                "selector": "LabeledStatement",
-                "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
-            },
-            {
-                "selector": "WithStatement",
-                "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
-            }
-        ],
-        "no-underscore-dangle": [
-            "error",
-            {
-                "allowAfterThis": true
-            }
-        ],
-        "no-useless-constructor": "off",
-        "@typescript-eslint/no-non-null-assertion": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error",
-            {
-                "argsIgnorePattern": "^_",
-                "varsIgnorePattern": "^_"
-            }
-        ],
-        "@typescript-eslint/no-useless-constructor": "error"
-    },
-    "overrides": [
-        {
-            "files": ["scripts/*"],
-            "rules": {
-                "no-console": "off"
-            }
-        }
-    ]
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "webextensions": true
+  },
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "jest"],
+  "rules": {
+    "class-methods-use-this": "off",
+    "max-classes-per-file": "off",
+    "no-continue": "off",
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "ForInStatement",
+        "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+      },
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
+    ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allowAfterThis": true
+      }
+    ],
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-useless-constructor": "error"
+  },
+  "overrides": [
+    {
+      "files": ["scripts/*"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
 }

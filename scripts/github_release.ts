@@ -8,57 +8,77 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getGitSha() {
-    const sha = execSync("git rev-parse HEAD");
-    return sha.toString().trim();
+  const sha = execSync("git rev-parse HEAD");
+  return sha.toString().trim();
 }
 
 function getManifestVersion(projectDir: string) {
-    const manifestJsonPath = projectDir + "/apps/manifest.json";
-    const manifestJson = JSON.parse(readFileSync(manifestJsonPath).toString());
-    return manifestJson.version;
+  const manifestJsonPath = projectDir + "/apps/manifest.json";
+  const manifestJson = JSON.parse(readFileSync(manifestJsonPath).toString());
+  return manifestJson.version;
 }
 
 function getManifestVersionName(projectDir: string) {
-    const manifestJsonPath = projectDir + "/apps/manifest.json";
-    const manifestJson = JSON.parse(readFileSync(manifestJsonPath).toString());
-    return manifestJson.version_name;
+  const manifestJsonPath = projectDir + "/apps/manifest.json";
+  const manifestJson = JSON.parse(readFileSync(manifestJsonPath).toString());
+  return manifestJson.version_name;
 }
 
 function getPackageVersion(projectDir: string) {
-    const packageJsonPath = projectDir + "/package.json";
-    const packageJson = JSON.parse(readFileSync(packageJsonPath).toString());
-    return packageJson.version;
+  const packageJsonPath = projectDir + "/package.json";
+  const packageJson = JSON.parse(readFileSync(packageJsonPath).toString());
+  return packageJson.version;
 }
 
 function getPackageName(projectDir: string) {
-    const packageJsonPath = projectDir + "/package.json";
-    const packageJson = JSON.parse(readFileSync(packageJsonPath).toString());
-    return packageJson.name;
+  const packageJsonPath = projectDir + "/package.json";
+  const packageJson = JSON.parse(readFileSync(packageJsonPath).toString());
+  return packageJson.name;
 }
 
 function main() {
-    const projectDir = path.dirname(__dirname);
+  const projectDir = path.dirname(__dirname);
 
-    const branch = process.env.CIRCLE_BRANCH;
-    const tag = process.env.CIRCLE_TAG;
-    const packageVersion = getPackageVersion(projectDir);
-    const manifestVersion = getManifestVersion(projectDir);
-    const manifestVersionName = getManifestVersionName(projectDir);
+  const branch = process.env.CIRCLE_BRANCH;
+  const tag = process.env.CIRCLE_TAG;
+  const packageVersion = getPackageVersion(projectDir);
+  const manifestVersion = getManifestVersion(projectDir);
+  const manifestVersionName = getManifestVersionName(projectDir);
 
-    const config = configureGhrOption(branch, tag, manifestVersion, manifestVersionName, packageVersion);
-    if (isError(config)) {
-        console.log(config.message);
-        process.exit(config.exitCode);
-    }
+  const config = configureGhrOption(
+    branch,
+    tag,
+    manifestVersion,
+    manifestVersionName,
+    packageVersion
+  );
+  if (isError(config)) {
+    console.log(config.message);
+    process.exit(config.exitCode);
+  }
 
-    const packageName = getPackageName(projectDir);
+  const packageName = getPackageName(projectDir);
 
-    renameSync(`tmp/workspace/${packageName}-chrome.zip`, `tmp/workspace/${packageName}-${config.name}-chrome.zip`);
-    renameSync(`tmp/workspace/${packageName}-firefox.xpi`, `tmp/workspace/${packageName}-${config.name}-firefox.xpi`);
+  renameSync(
+    `tmp/workspace/${packageName}-chrome.zip`,
+    `tmp/workspace/${packageName}-${config.name}-chrome.zip`
+  );
+  renameSync(
+    `tmp/workspace/${packageName}-firefox.xpi`,
+    `tmp/workspace/${packageName}-${config.name}-firefox.xpi`
+  );
 
-    const args = ["-c", getGitSha(), "-n", config.name, ...config.ghrOptions, config.tag, "tmp/workspace/"];
-    console.log("ghr", args);
-    spawnSync("ghr", args);
+  const args = [
+    "-c",
+    getGitSha(),
+    "-n",
+    config.name,
+    ...config.ghrOptions,
+    config.tag,
+    "tmp/workspace/",
+  ];
+  console.log("ghr", args);
+  spawnSync("ghr", args);
 }
 
 main();

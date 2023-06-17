@@ -1,19 +1,19 @@
 export enum BlockType {
-    SOFT = "soft",
-    HARD = "hard",
+  SOFT = "soft",
+  HARD = "hard",
 }
 
 export enum BannedTarget {
-    TITLE_AND_CONTENTS = "titleAndContents",
-    TITLE_ONLY = "titleOnly",
+  TITLE_AND_CONTENTS = "titleAndContents",
+  TITLE_ONLY = "titleOnly",
 }
 
 export enum MenuPosition {
-    COMPACT = "compact",
-    DEFAULT = "default",
+  COMPACT = "compact",
+  DEFAULT = "default",
 }
 
 export enum KeywordType {
-    STRING = "string",
-    REGEXP = "regexp",
+  STRING = "string",
+  REGEXP = "regexp",
 }
