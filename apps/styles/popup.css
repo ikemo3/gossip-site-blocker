@@ -1,9 +1,9 @@
 body {
-    width: 100%;
-    min-width: 15rem;
-    background-color: white;
+  width: 100%;
+  min-width: 15rem;
+  background-color: white;
 }
 
 input[type="button"] {
-    font-size: 1rem;
+  font-size: 1rem;
 }

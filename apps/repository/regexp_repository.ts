@@ -2,98 +2,106 @@ import { ChromeStorage, Logger } from "../common";
 import { BlockType } from "./enums";
 
 interface RegExpItemList {
-    regexpList: RegExpItem[];
+  regexpList: RegExpItem[];
 }
 
 export interface RegExpItem {
-    pattern: string;
-    blockType: BlockType;
+  pattern: string;
+  blockType: BlockType;
 }
 
 export const RegExpRepository = {
-    async load(): Promise<RegExpItem[]> {
-        const items = (await ChromeStorage.get({ regexpList: [] })) as RegExpItemList;
+  async load(): Promise<RegExpItem[]> {
+    const items = (await ChromeStorage.get({
+      regexpList: [],
+    })) as RegExpItemList;
 
-        const itemsCopy = items.regexpList;
+    const itemsCopy = items.regexpList;
 
-        for (const item of itemsCopy) {
-            if (!item.blockType) {
-                item.blockType = BlockType.SOFT;
-            }
+    for (const item of itemsCopy) {
+      if (!item.blockType) {
+        item.blockType = BlockType.SOFT;
+      }
+    }
+
+    Logger.debug("regexpList: ", itemsCopy);
+
+    return itemsCopy;
+  },
+
+  async save(items: RegExpItem[]): Promise<void> {
+    await ChromeStorage.set({ regexpList: items });
+  },
+
+  async clear(): Promise<void> {
+    await ChromeStorage.set({ regexpList: [] });
+  },
+
+  async addAll(regexpList: RegExpItem[]): Promise<void> {
+    const items: RegExpItem[] = await this.load();
+
+    for (const regexp of regexpList) {
+      let found = false;
+      for (const item of items) {
+        if (regexp.pattern === item.pattern) {
+          // do nothing.
+          found = true;
         }
+      }
 
-        Logger.debug("regexpList: ", itemsCopy);
+      if (!found) {
+        items.push(regexp);
+      }
+    }
 
-        return itemsCopy;
-    },
+    await this.save(items);
+  },
 
-    async save(items: RegExpItem[]): Promise<void> {
-        await ChromeStorage.set({ regexpList: items });
-    },
+  async add(
+    pattern: string,
+    blockType: BlockType = BlockType.SOFT
+  ): Promise<boolean> {
+    const items: RegExpItem[] = await this.load();
 
-    async clear(): Promise<void> {
-        await ChromeStorage.set({ regexpList: [] });
-    },
+    for (const item of items) {
+      if (pattern === item.pattern) {
+        // do nothing.
+        return false;
+      }
+    }
 
-    async addAll(regexpList: RegExpItem[]): Promise<void> {
-        const items: RegExpItem[] = await this.load();
+    items.push({ pattern, blockType });
+    await this.save(items);
+    return true;
+  },
 
-        for (const regexp of regexpList) {
-            let found = false;
-            for (const item of items) {
-                if (regexp.pattern === item.pattern) {
-                    // do nothing.
-                    found = true;
-                }
-            }
+  async changeType(pattern: string, type: BlockType): Promise<void> {
+    const items: RegExpItem[] = await this.load();
 
-            if (!found) {
-                items.push(regexp);
-            }
-        }
+    const filteredItems = items.map((item) => {
+      if (item.pattern !== pattern) {
+        return item;
+      }
 
-        await this.save(items);
-    },
+      // eslint-disable-next-line no-param-reassign
+      item.blockType = type;
+      return item;
+    });
 
-    async add(pattern: string, blockType: BlockType = BlockType.SOFT): Promise<boolean> {
-        const items: RegExpItem[] = await this.load();
+    await this.save(filteredItems);
+  },
 
-        for (const item of items) {
-            if (pattern === item.pattern) {
-                // do nothing.
-                return false;
-            }
-        }
+  async delete(deletePattern: string): Promise<boolean> {
+    const items: RegExpItem[] = await this.load();
 
-        items.push({ pattern, blockType });
-        await this.save(items);
-        return true;
-    },
+    const contains =
+      items.find((item) => item.pattern !== deletePattern) !== undefined;
+    const filteredPatterns = items.filter(
+      (item) => item.pattern !== deletePattern
+    );
 
-    async changeType(pattern: string, type: BlockType): Promise<void> {
-        const items: RegExpItem[] = await this.load();
+    await this.save(filteredPatterns);
 
-        const filteredItems = items.map((item) => {
-            if (item.pattern !== pattern) {
-                return item;
-            }
-
-            // eslint-disable-next-line no-param-reassign
-            item.blockType = type;
-            return item;
-        });
-
-        await this.save(filteredItems);
-    },
-
-    async delete(deletePattern: string): Promise<boolean> {
-        const items: RegExpItem[] = await this.load();
-
-        const contains = items.find((item) => item.pattern !== deletePattern) !== undefined;
-        const filteredPatterns = items.filter((item) => item.pattern !== deletePattern);
-
-        await this.save(filteredPatterns);
-
-        return contains;
-    },
+    return contains;
+  },
 };

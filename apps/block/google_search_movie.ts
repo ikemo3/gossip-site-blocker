@@ -4,95 +4,99 @@ import { Options } from "../repository/options";
 import { Logger } from "../common";
 
 class GoogleSearchMovie extends SearchResultToBlock {
-    private readonly element: Element;
+  private readonly element: Element;
 
-    private readonly valid: boolean;
+  private readonly valid: boolean;
 
-    private readonly url: string;
+  private readonly url: string;
 
-    private readonly title: string;
+  private readonly title: string;
 
-    private readonly compactMenuInsertElement: Element;
+  private readonly compactMenuInsertElement: Element;
 
-    static isOptionallyEnabled(options: Options): boolean {
-        return options.blockGoogleSearchMovie;
+  static isOptionallyEnabled(options: Options): boolean {
+    return options.blockGoogleSearchMovie;
+  }
+
+  static isCandidate(element: Element, documentURL: DocumentURL): boolean {
+    return (
+      element.matches("div.mLmaBd") && !documentURL.isGoogleSearchNewsTab()
+    );
+  }
+
+  // noinspection DuplicatedCode
+  constructor(element: Element) {
+    super();
+    this.element = element;
+
+    const anchor = element.querySelector(
+      "a:not(.vGvPJe)"
+    ) as HTMLAnchorElement | null;
+    if (anchor === null) {
+      Logger.debug("movie: anchor not found", element);
+      this.valid = false;
+      return;
     }
 
-    static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-        return element.matches("div.mLmaBd") && !documentURL.isGoogleSearchNewsTab();
+    const { href } = anchor;
+    if (href === "") {
+      Logger.debug("movie: anchor.href is empty", element);
+      this.valid = false;
+      return;
     }
 
-    // noinspection DuplicatedCode
-    constructor(element: Element) {
-        super();
-        this.element = element;
-
-        const anchor = element.querySelector("a:not(.vGvPJe)") as HTMLAnchorElement | null;
-        if (anchor === null) {
-            Logger.debug("movie: anchor not found", element);
-            this.valid = false;
-            return;
-        }
-
-        const { href } = anchor;
-        if (href === "") {
-            Logger.debug("movie: anchor.href is empty", element);
-            this.valid = false;
-            return;
-        }
-
-        const titleDiv = anchor.querySelector(".cHaqb");
-        if (titleDiv === null) {
-            Logger.debug("movie: title not found", element);
-            this.valid = false;
-            return;
-        }
-
-        const title = titleDiv.textContent !== null ? titleDiv.textContent : "";
-        Logger.debug("movie: valid", anchor, href, title);
-
-        element.setAttribute("data-gsb-element-type", "google-search-movie");
-        this.compactMenuInsertElement = anchor;
-        this.valid = true;
-        this.url = href;
-        this.title = title;
+    const titleDiv = anchor.querySelector(".cHaqb");
+    if (titleDiv === null) {
+      Logger.debug("movie: title not found", element);
+      this.valid = false;
+      return;
     }
 
-    public canRetry(): boolean {
-        return true;
-    }
+    const title = titleDiv.textContent !== null ? titleDiv.textContent : "";
+    Logger.debug("movie: valid", anchor, href, title);
 
-    public canBlock(): boolean {
-        return this.valid;
-    }
+    element.setAttribute("data-gsb-element-type", "google-search-movie");
+    this.compactMenuInsertElement = anchor;
+    this.valid = true;
+    this.url = href;
+    this.title = title;
+  }
 
-    public getElement(): Element {
-        return this.element;
-    }
+  public canRetry(): boolean {
+    return true;
+  }
 
-    public getCompactMenuInsertElement(): Element {
-        return this.compactMenuInsertElement;
-    }
+  public canBlock(): boolean {
+    return this.valid;
+  }
 
-    public getPosition(): string {
-        return "relative";
-    }
+  public getElement(): Element {
+    return this.element;
+  }
 
-    public getUrl(): string {
-        return this.url;
-    }
+  public getCompactMenuInsertElement(): Element {
+    return this.compactMenuInsertElement;
+  }
 
-    public getCssClass(): string {
-        return "block-google-movie";
-    }
+  public getPosition(): string {
+    return "relative";
+  }
 
-    public getTitle(): string {
-        return this.title;
-    }
+  public getUrl(): string {
+    return this.url;
+  }
 
-    public getContents(): string {
-        return "";
-    }
+  public getCssClass(): string {
+    return "block-google-movie";
+  }
+
+  public getTitle(): string {
+    return this.title;
+  }
+
+  public getContents(): string {
+    return "";
+  }
 }
 
 export default GoogleSearchMovie;

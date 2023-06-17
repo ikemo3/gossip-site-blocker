@@ -1,206 +1,247 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8" />
-        <title data-i18n-text="optionTitle">Gossip Site Blocker: Option</title>
-        <link rel="stylesheet" href="../styles/tabby-ui.css" />
-        <style>
-            [data-tabs] a {
-                outline: none;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <title data-i18n-text="optionTitle">Gossip Site Blocker: Option</title>
+    <link rel="stylesheet" href="../styles/tabby-ui.css" />
+    <style>
+      [data-tabs] a {
+        outline: none;
+      }
 
-            a[href="#dangerZoneTab"] {
-                color: red;
-            }
-        </style>
-    </head>
-    <body>
-        <h1 data-i18n-text="optionTitle">Gossip Site Blocker: Option</h1>
+      a[href="#dangerZoneTab"] {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 data-i18n-text="optionTitle">Gossip Site Blocker: Option</h1>
 
-        <ul data-tabs>
-            <li>
-                <a data-tabby-default href="#generalTab">
-                    <span data-i18n-text="general"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#blockedUrlsTab">
-                    <span data-i18n-text="blockedUrls"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#collectivelyBlockTab">
-                    <span data-i18n-text="collectivelyBlock"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#bannedWordTab">
-                    <span data-i18n-text="bannedWord"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#exportSectionTab">
-                    <span data-i18n-text="exportSection"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#importSectionTab">
-                    <span data-i18n-text="importSection"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#forDeveloperTab">
-                    <span data-i18n-text="forDeveloper"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#dangerZoneTab">
-                    <span data-i18n-text="dangerZone"></span>
-                </a>
-            </li>
-        </ul>
+    <ul data-tabs>
+      <li>
+        <a data-tabby-default href="#generalTab">
+          <span data-i18n-text="general"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#blockedUrlsTab">
+          <span data-i18n-text="blockedUrls"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#collectivelyBlockTab">
+          <span data-i18n-text="collectivelyBlock"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#bannedWordTab">
+          <span data-i18n-text="bannedWord"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#exportSectionTab">
+          <span data-i18n-text="exportSection"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#importSectionTab">
+          <span data-i18n-text="importSection"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#forDeveloperTab">
+          <span data-i18n-text="forDeveloper"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#dangerZoneTab">
+          <span data-i18n-text="dangerZone"></span>
+        </a>
+      </li>
+    </ul>
 
-        <section id="generalTab">
-            <h2 data-i18n-text="general">General</h2>
+    <section id="generalTab">
+      <h2 data-i18n-text="general">General</h2>
 
-            <label for="defaultBlockType" data-i18n-text="defaultBlockType"></label>
-            :
-            <select id="defaultBlockType">
-                <option value="soft" data-i18n-text="softBlock">Soft Block</option>
-                <option value="hard" data-i18n-text="hardBlock">Hard Block</option>
-            </select>
+      <label for="defaultBlockType" data-i18n-text="defaultBlockType"></label>
+      :
+      <select id="defaultBlockType">
+        <option value="soft" data-i18n-text="softBlock">Soft Block</option>
+        <option value="hard" data-i18n-text="hardBlock">Hard Block</option>
+      </select>
 
-            <br />
+      <br />
 
-            <label for="menuPosition" data-i18n-text="menuPosition"></label>
-            :
-            <select id="menuPosition">
-                <option value="default" data-i18n-text="menuDefault">Default</option>
-                <option value="compact" data-i18n-text="menuCompact">Compact</option>
-            </select>
+      <label for="menuPosition" data-i18n-text="menuPosition"></label>
+      :
+      <select id="menuPosition">
+        <option value="default" data-i18n-text="menuDefault">Default</option>
+        <option value="compact" data-i18n-text="menuCompact">Compact</option>
+      </select>
 
-            <br />
+      <br />
 
-            <input type="checkbox" id="displayTemporarilyUnblockAll" />
-            <label for="displayTemporarilyUnblockAll" data-i18n-text="displayTemporarilyUnblockAll"></label>
+      <input type="checkbox" id="displayTemporarilyUnblockAll" />
+      <label
+        for="displayTemporarilyUnblockAll"
+        data-i18n-text="displayTemporarilyUnblockAll"
+      ></label>
 
-            <br />
+      <br />
 
-            <input type="checkbox" id="blockGoogleSearchMovie" />
-            <label for="blockGoogleSearchMovie" data-i18n-text="blockGoogleSearchMovie"></label>
+      <input type="checkbox" id="blockGoogleSearchMovie" />
+      <label
+        for="blockGoogleSearchMovie"
+        data-i18n-text="blockGoogleSearchMovie"
+      ></label>
 
-            <br />
+      <br />
 
-            <input type="checkbox" id="blockGoogleNewsTab" />
-            <label for="blockGoogleNewsTab" data-i18n-text="blockGoogleNewsTab"></label>
+      <input type="checkbox" id="blockGoogleNewsTab" />
+      <label
+        for="blockGoogleNewsTab"
+        data-i18n-text="blockGoogleNewsTab"
+      ></label>
 
-            <br />
+      <br />
 
-            <input type="checkbox" id="blockGoogleImagesTab" />
-            <label for="blockGoogleImagesTab" data-i18n-text="blockGoogleImagesTab"></label>
-        </section>
+      <input type="checkbox" id="blockGoogleImagesTab" />
+      <label
+        for="blockGoogleImagesTab"
+        data-i18n-text="blockGoogleImagesTab"
+      ></label>
+    </section>
 
-        <section id="blockedUrlsTab">
-            <h2 data-i18n-text="blockedUrls">Blocked URLs</h2>
+    <section id="blockedUrlsTab">
+      <h2 data-i18n-text="blockedUrls">Blocked URLs</h2>
 
-            <h3 data-i18n-text="softBlock">Soft Block</h3>
+      <h3 data-i18n-text="softBlock">Soft Block</h3>
 
-            <div id="softBlockList"></div>
+      <div id="softBlockList"></div>
 
-            <h3 data-i18n-text="hardBlock">Hard Block</h3>
+      <h3 data-i18n-text="hardBlock">Hard Block</h3>
 
-            <div id="hardBlockList"></div>
-        </section>
+      <div id="hardBlockList"></div>
+    </section>
 
-        <section id="collectivelyBlockTab">
-            <h2 data-i18n-text="autoBlock">Auto Block</h2>
+    <section id="collectivelyBlockTab">
+      <h2 data-i18n-text="autoBlock">Auto Block</h2>
 
-            <input type="checkbox" id="autoBlockIDN" />
-            <label for="autoBlockIDN" data-i18n-text="autoBlockIDN"></label>
+      <input type="checkbox" id="autoBlockIDN" />
+      <label for="autoBlockIDN" data-i18n-text="autoBlockIDN"></label>
 
-            <h2 data-i18n-text="blockByRegexp">Block by Regular Expression</h2>
+      <h2 data-i18n-text="blockByRegexp">Block by Regular Expression</h2>
 
-            <div data-i18n-text="regexpDescription"></div>
+      <div data-i18n-text="regexpDescription"></div>
 
-            <br />
+      <br />
 
-            <div id="regexpList"></div>
+      <div id="regexpList"></div>
 
-            <label for="regexpAddText"></label><input type="text" id="regexpAddText" />
-            <input type="button" id="regexpAddButton" data-i18n-value="regexpAddButton" value="Add" />
-        </section>
+      <label for="regexpAddText"></label
+      ><input type="text" id="regexpAddText" />
+      <input
+        type="button"
+        id="regexpAddButton"
+        data-i18n-value="regexpAddButton"
+        value="Add"
+      />
+    </section>
 
-        <section id="bannedWordTab">
-            <h2 data-i18n-text="bannedWord">Banned Words</h2>
+    <section id="bannedWordTab">
+      <h2 data-i18n-text="bannedWord">Banned Words</h2>
 
-            <div id="bannedWordList"></div>
+      <div id="bannedWordList"></div>
 
-            <label for="bannedWordAddText"></label><input type="text" id="bannedWordAddText" />
-            <input type="button" id="bannedWordAddButton" data-i18n-value="bannedWordAddButton" value="Add" />
+      <label for="bannedWordAddText"></label
+      ><input type="text" id="bannedWordAddText" />
+      <input
+        type="button"
+        id="bannedWordAddButton"
+        data-i18n-value="bannedWordAddButton"
+        value="Add"
+      />
 
-            <br />
+      <br />
 
-            <input type="checkbox" id="showBlockedByWordInfo" />
-            <label for="showBlockedByWordInfo" data-i18n-text="showBlockedByWordInfo"
-                >Show information of blocked by word.</label
-            >
-        </section>
+      <input type="checkbox" id="showBlockedByWordInfo" />
+      <label for="showBlockedByWordInfo" data-i18n-text="showBlockedByWordInfo"
+        >Show information of blocked by word.</label
+      >
+    </section>
 
-        <section id="exportSectionTab">
-            <h2 data-i18n-text="exportSection">Export</h2>
+    <section id="exportSectionTab">
+      <h2 data-i18n-text="exportSection">Export</h2>
 
-            <input type="button" id="exportButton" data-i18n-value="exportButton" value="Export" />
+      <input
+        type="button"
+        id="exportButton"
+        data-i18n-value="exportButton"
+        value="Export"
+      />
 
-            <br />
+      <br />
 
-            <label for="exportTextArea"></label>
+      <label for="exportTextArea"></label>
 
-            <textarea id="exportTextArea" cols="80" rows="10"></textarea>
-        </section>
+      <textarea id="exportTextArea" cols="80" rows="10"></textarea>
+    </section>
 
-        <section id="importSectionTab">
-            <h2 data-i18n-text="importSection">Import</h2>
+    <section id="importSectionTab">
+      <h2 data-i18n-text="importSection">Import</h2>
 
-            <label for="importTextArea" data-i18n-text="importTextAreaLabel"></label>
+      <label for="importTextArea" data-i18n-text="importTextAreaLabel"></label>
 
-            <br />
+      <br />
 
-            <h3 data-i18n-text="importFormat"></h3>
+      <h3 data-i18n-text="importFormat"></h3>
 
-            <ul>
-                <li>
-                    <span data-i18n-text="importFormatDomainOnly"></span>
-                    <ul>
-                        <li data-i18n-text="importFormatPersonalBlocklist"></li>
-                    </ul>
-                </li>
-                <li data-i18n-text="importFormatDomainPlusType"></li>
-                <li data-i18n-text="importFormatBannedWord"></li>
-                <li data-i18n-text="importFormatRegexp"></li>
-            </ul>
+      <ul>
+        <li>
+          <span data-i18n-text="importFormatDomainOnly"></span>
+          <ul>
+            <li data-i18n-text="importFormatPersonalBlocklist"></li>
+          </ul>
+        </li>
+        <li data-i18n-text="importFormatDomainPlusType"></li>
+        <li data-i18n-text="importFormatBannedWord"></li>
+        <li data-i18n-text="importFormatRegexp"></li>
+      </ul>
 
-            <br />
+      <br />
 
-            <textarea id="importTextArea" cols="80" rows="10"></textarea>
+      <textarea id="importTextArea" cols="80" rows="10"></textarea>
 
-            <br />
+      <br />
 
-            <input type="button" id="importButton" data-i18n-value="importButton" value="Import" />
-        </section>
+      <input
+        type="button"
+        id="importButton"
+        data-i18n-value="importButton"
+        value="Import"
+      />
+    </section>
 
-        <section id="forDeveloperTab">
-            <h2 data-i18n-text="forDeveloper">For Developer</h2>
+    <section id="forDeveloperTab">
+      <h2 data-i18n-text="forDeveloper">For Developer</h2>
 
-            <input type="checkbox" id="developerMode" />
-            <label for="developerMode" data-i18n-text="developerMode">Developer Mode</label>
-            <br />
-            <br />
-        </section>
+      <input type="checkbox" id="developerMode" />
+      <label for="developerMode" data-i18n-text="developerMode"
+        >Developer Mode</label
+      >
+      <br />
+      <br />
+    </section>
 
-        <section id="dangerZoneTab">
-            <h2 data-i18n-text="dangerZone">Danger Zone</h2>
+    <section id="dangerZoneTab">
+      <h2 data-i18n-text="dangerZone">Danger Zone</h2>
 
-            <input type="button" id="clearButton" data-i18n-value="clearAll" value="Clear All" />
-        </section>
-    </body>
+      <input
+        type="button"
+        id="clearButton"
+        data-i18n-value="clearAll"
+        value="Clear All"
+      />
+    </section>
+  </body>
 </html>

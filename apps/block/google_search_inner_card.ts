@@ -2,91 +2,91 @@ import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 
 class GoogleSearchInnerCard extends SearchResultToBlock {
-    public valid: boolean;
+  public valid: boolean;
 
-    public url: string;
+  public url: string;
 
-    public element: Element;
+  public element: Element;
 
-    private readonly title: string;
+  private readonly title: string;
 
-    static isCandidate(element: Element, _: DocumentURL): boolean {
-        return element.nodeName.toLowerCase() === "g-inner-card";
+  static isCandidate(element: Element, _: DocumentURL): boolean {
+    return element.nodeName.toLowerCase() === "g-inner-card";
+  }
+
+  // noinspection DuplicatedCode
+  constructor(element: Element) {
+    super();
+    this.element = element;
+
+    const anchorList = element.getElementsByTagName("a");
+
+    const urlList = [];
+    for (const anchor of anchorList) {
+      const href = anchor.getAttribute("href");
+
+      if (href === null) {
+        continue;
+      }
+
+      urlList.push(href);
     }
 
-    // noinspection DuplicatedCode
-    constructor(element: Element) {
-        super();
-        this.element = element;
-
-        const anchorList = element.getElementsByTagName("a");
-
-        const urlList = [];
-        for (const anchor of anchorList) {
-            const href = anchor.getAttribute("href");
-
-            if (href === null) {
-                continue;
-            }
-
-            urlList.push(href);
-        }
-
-        // ignore if no anchor.
-        if (urlList.length === 0) {
-            this.valid = false;
-            return;
-        }
-
-        const heading = element.querySelector("[role=heading]");
-        if (heading) {
-            this.title = heading.textContent ? heading.textContent : "";
-        }
-
-        element.setAttribute("data-gsb-element-type", "google-search-inner-card");
-        this.valid = true;
-        [this.url] = urlList;
+    // ignore if no anchor.
+    if (urlList.length === 0) {
+      this.valid = false;
+      return;
     }
 
-    public canRetry(): boolean {
-        return true;
+    const heading = element.querySelector("[role=heading]");
+    if (heading) {
+      this.title = heading.textContent ? heading.textContent : "";
     }
 
-    public canBlock(): boolean {
-        return this.valid;
-    }
+    element.setAttribute("data-gsb-element-type", "google-search-inner-card");
+    this.valid = true;
+    [this.url] = urlList;
+  }
 
-    public getUrl(): string {
-        return this.url;
-    }
+  public canRetry(): boolean {
+    return true;
+  }
 
-    public getElement(): Element {
-        return this.element;
-    }
+  public canBlock(): boolean {
+    return this.valid;
+  }
 
-    public getCompactMenuInsertElement(): Element {
-        const div = this.element.querySelector(":scope > div");
-        if (div !== null) {
-            return div;
-        }
-        return this.element;
-    }
+  public getUrl(): string {
+    return this.url;
+  }
 
-    public getPosition(): string {
-        return "relative";
-    }
+  public getElement(): Element {
+    return this.element;
+  }
 
-    public getCssClass(): string {
-        return "block-google-inner-card";
+  public getCompactMenuInsertElement(): Element {
+    const div = this.element.querySelector(":scope > div");
+    if (div !== null) {
+      return div;
     }
+    return this.element;
+  }
 
-    public getTitle(): string {
-        return this.title;
-    }
+  public getPosition(): string {
+    return "relative";
+  }
 
-    public getContents(): string {
-        return "";
-    }
+  public getCssClass(): string {
+    return "block-google-inner-card";
+  }
+
+  public getTitle(): string {
+    return this.title;
+  }
+
+  public getContents(): string {
+    return "";
+  }
 }
 
 export default GoogleSearchInnerCard;
