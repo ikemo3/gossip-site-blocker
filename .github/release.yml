@@ -1,0 +1,34 @@
+# .github/release.yml
+# https://docs.github.com/ja/repositories/releasing-projects-on-github/automatically-generated-release-notes
+changelog:
+  categories:
+    - title: Enhancement 🎉
+      labels:
+        - enhancement
+    - title: Improvement 🔧
+      labels:
+        - improvement
+    - title: Bug fixes 🐛
+      labels:
+        - bug
+    - title: Build System 🏗️
+      labels:
+        - build
+    - title: Refactor 🧹
+      labels:
+        - refactoring
+    - title: Test ✅
+      labels:
+        - test
+    - title: IDE 🛠️
+      labels:
+        - ide
+    - title: Package Updates 📦
+      labels:
+        - dependencies
+    - title: Release 🚀
+      labels:
+        - release
+    - title: Other Changes
+      labels:
+        - "*"
