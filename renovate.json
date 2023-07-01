@@ -10,5 +10,6 @@
     }
   ],
   "assignAutomerge": true,
-  "assignees": ["ikemo3"]
+  "assignees": ["ikemo3"],
+  "labels": ["dependencies"]
 }
