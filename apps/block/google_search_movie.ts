@@ -3,7 +3,7 @@ import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
 import { Logger } from "../common";
 
-class GoogleSearchMovie extends SearchResultToBlock {
+export class GoogleSearchMovie extends SearchResultToBlock {
   private readonly element: Element;
 
   private readonly valid: boolean;
@@ -98,5 +98,3 @@ class GoogleSearchMovie extends SearchResultToBlock {
     return "";
   }
 }
-
-export default GoogleSearchMovie;

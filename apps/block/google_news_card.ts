@@ -2,7 +2,7 @@ import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
 
-class GoogleNewsCard extends SearchResultToBlock {
+export class GoogleNewsCard extends SearchResultToBlock {
   public valid: boolean;
 
   public url: string;
@@ -96,5 +96,3 @@ class GoogleNewsCard extends SearchResultToBlock {
     return "";
   }
 }
-
-export default GoogleNewsCard;

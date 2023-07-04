@@ -1,7 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 
-class GoogleSearchTopNews extends SearchResultToBlock {
+export class GoogleSearchTopNews extends SearchResultToBlock {
   private readonly element: Element;
 
   private readonly valid: boolean;
@@ -86,5 +86,3 @@ class GoogleSearchTopNews extends SearchResultToBlock {
     return "";
   }
 }
-
-export default GoogleSearchTopNews;

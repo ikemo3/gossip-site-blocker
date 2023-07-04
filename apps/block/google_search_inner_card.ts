@@ -1,7 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 
-class GoogleSearchInnerCard extends SearchResultToBlock {
+export class GoogleSearchInnerCard extends SearchResultToBlock {
   public valid: boolean;
 
   public url: string;
@@ -88,5 +88,3 @@ class GoogleSearchInnerCard extends SearchResultToBlock {
     return "";
   }
 }
-
-export default GoogleSearchInnerCard;

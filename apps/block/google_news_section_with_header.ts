@@ -3,7 +3,7 @@ import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
 import { Logger } from "../common";
 
-class GoogleNewsSectionWithHeader extends SearchResultToBlock {
+export class GoogleNewsSectionWithHeader extends SearchResultToBlock {
   private readonly valid: boolean;
 
   private readonly _canRetry: boolean;
@@ -131,5 +131,3 @@ class GoogleNewsSectionWithHeader extends SearchResultToBlock {
     return this.contents;
   }
 }
-
-export default GoogleNewsSectionWithHeader;
