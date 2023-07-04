@@ -1,7 +1,6 @@
 import { BlockReason, BlockReasonType } from "../model/block_reason";
 import BlockState from "./block_state";
 import BlockDialog from "./dialog";
-import { SearchResultToBlock } from "../block/block";
 import { $, ApplicationError, DOMUtils } from "../common";
 import BlockedSitesRepository from "../repository/blocked_sites";
 import { RegExpRepository } from "../repository/regexp_repository";
@@ -305,7 +304,15 @@ class CompactMenu {
   }
 }
 
-class BlockMediator implements IBasicBlockMediator, IBlockMediator {
+export type BlockMediatorType = {
+  getElement: () => Element;
+  getUrl: () => string;
+  getPosition: () => string;
+  getCompactMenuInsertElement: () => Element;
+  getCssClass: () => string;
+};
+
+export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
   private readonly url: string;
 
   private blockReason?: BlockReason;
@@ -329,7 +336,7 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
   private changeStateDialog: BlockChangeAnchorDialog;
 
   constructor(
-    g: SearchResultToBlock,
+    g: BlockMediatorType,
     blockState: BlockState,
     defaultBlockType: string,
     menuPosition: MenuPosition
@@ -519,5 +526,3 @@ class BlockMediator implements IBasicBlockMediator, IBlockMediator {
     await this.block(isUrl, pattern, blockType);
   }
 }
-
-export default BlockMediator;

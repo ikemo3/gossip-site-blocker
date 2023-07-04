@@ -5,8 +5,11 @@ import { OptionRepository, Options } from "../repository/options";
 import { Logger } from "../common";
 import { BlockReason } from "../model/block_reason";
 import BlockedSitesRepository from "../repository/blocked_sites";
-import BlockState from "../content_script/block_state";
-import BlockMediator from "../content_script/block_mediator";
+import BlockState, { ContentToBlockType } from "../content_script/block_state";
+import {
+  BlockMediator,
+  BlockMediatorType,
+} from "../content_script/block_mediator";
 import { GoogleSearchResult } from "../block/google_search_result";
 import { GoogleSearchInnerCard } from "../block/google_search_inner_card";
 import { GoogleSearchTopNews } from "../block/google_search_top_news";
@@ -15,7 +18,6 @@ import { GoogleNewsSectionWithHeader } from "../block/google_news_section_with_h
 import { GoogleNewsResult } from "../block/google_news_result";
 import { GoogleImageTab } from "../block/google_image_tab";
 import { GoogleSearchMovie } from "../block/google_search_movie";
-import { SearchResultToBlock } from "../block/block";
 import DocumentURL from "../values/document_url";
 import { MenuPosition } from "../repository/enums";
 
@@ -37,7 +39,15 @@ const pendingGoogleImageTabList: Element[] = [];
 const pendingGoogleNewsCardList: Element[] = [];
 const pendingGoogleSearchMovieList: Element[] = [];
 
-function blockElement(g: SearchResultToBlock, options: Options): boolean {
+type SearchResultToBlockType = ContentToBlockType &
+  BlockMediatorType & {
+    canRetry: () => boolean;
+    canBlock: () => boolean;
+    deleteElement: () => void;
+    getMenuPosition: (defaultPosition: MenuPosition) => MenuPosition;
+  };
+
+function blockElement(g: SearchResultToBlockType, options: Options): boolean {
   if (!g.canRetry()) {
     return true;
   }

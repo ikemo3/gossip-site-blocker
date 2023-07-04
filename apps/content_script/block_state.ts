@@ -4,8 +4,13 @@ import BlockedSites from "../model/blocked_sites";
 import { BannedWord } from "../repository/banned_words";
 import BlockedSite from "../model/blocked_site";
 import { BlockReason, BlockReasonType } from "../model/block_reason";
-import { ContentToBlock } from "../block/block";
-import { BannedTarget, BlockType } from "../repository/enums";
+import { BannedTarget, BlockType, KeywordType } from "../repository/enums";
+
+export type ContentToBlockType = {
+  getUrl(): string;
+  containsInTitle(keyword: string, keywordType: KeywordType): boolean;
+  contains(keyword: string, keywordType: KeywordType): boolean;
+};
 
 function first<T>(array: Array<T>): T | undefined {
   return array.shift();
@@ -28,7 +33,7 @@ function compare(a: HasBlockType, b: HasBlockType): number {
 }
 
 function matchesByWord(
-  content: ContentToBlock,
+  content: ContentToBlockType,
   bannedWord: BannedWord
 ): boolean {
   const { keyword, keywordType } = bannedWord;
@@ -44,7 +49,7 @@ function matchesByWord(
 }
 
 function matchesByRegexp(
-  content: ContentToBlock,
+  content: ContentToBlockType,
   regexpItem: RegExpItem
 ): boolean {
   try {
@@ -63,7 +68,7 @@ class BlockState {
   private readonly blockReason?: BlockReason;
 
   constructor(
-    content: ContentToBlock,
+    content: ContentToBlockType,
     blockedSites: BlockedSites,
     bannedWords: BannedWord[],
     regexpList: RegExpItem[],
