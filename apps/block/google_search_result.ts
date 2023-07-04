@@ -5,7 +5,7 @@ import GoogleSearchURL from "../values/google_search_url";
 // noinspection SpellCheckingInspection
 const CONTENT_SELECTOR = ".IsZvec";
 
-class GoogleSearchResult extends SearchResultToBlock {
+export class GoogleSearchResult extends SearchResultToBlock {
   private readonly valid: boolean;
 
   private readonly _canRetry: boolean;
@@ -179,5 +179,3 @@ class GoogleSearchResult extends SearchResultToBlock {
     return this.contents;
   }
 }
-
-export default GoogleSearchResult;

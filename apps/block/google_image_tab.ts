@@ -3,7 +3,7 @@ import DocumentURL from "../values/document_url";
 import { Options } from "../repository/options";
 import { MenuPosition } from "../repository/enums";
 
-class GoogleImageTab extends SearchResultToBlock {
+export class GoogleImageTab extends SearchResultToBlock {
   private readonly valid: boolean;
 
   private readonly _canRetry: boolean;
@@ -101,5 +101,3 @@ class GoogleImageTab extends SearchResultToBlock {
     return MenuPosition.COMPACT;
   }
 }
-
-export default GoogleImageTab;
