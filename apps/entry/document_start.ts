@@ -20,6 +20,7 @@ import { GoogleImageTab } from "../block/google_image_tab";
 import { GoogleSearchMovie } from "../block/google_search_movie";
 import DocumentURL from "../values/document_url";
 import { MenuPosition } from "../repository/enums";
+import { SearchResultToBlock } from "../block/block";
 
 declare global {
   interface Window {
@@ -29,15 +30,7 @@ declare global {
 
 window.blockReasons = [];
 
-// This is necessary when using the back button.
-const pendingGoogleSearchResultList: Element[] = [];
-const pendingGoogleSearchInnerCardList: Element[] = [];
-const pendingGoogleSearchTopNewsList: Element[] = [];
-const pendingGoogleNewsSectionWithHeaderList: Element[] = [];
-const pendingGoogleNewsResultList: Element[] = [];
-const pendingGoogleImageTabList: Element[] = [];
-const pendingGoogleNewsCardList: Element[] = [];
-const pendingGoogleSearchMovieList: Element[] = [];
+const pendingsList: SearchResultToBlock[] = [];
 
 type SearchResultToBlockType = ContentToBlockType &
   BlockMediatorType & {
@@ -131,50 +124,50 @@ const observer = new MutationObserver((mutations) => {
           if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleNewsSectionWithHeader(node);
             if (!blockElement(g, gsbOptions)) {
-              pendingGoogleNewsSectionWithHeaderList.push(node);
+              pendingsList.push(g);
             }
           }
         } else if (GoogleNewsResult.isCandidate(node, documentURL)) {
           if (GoogleNewsResult.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleNewsResult(node);
             if (!blockElement(g, gsbOptions)) {
-              pendingGoogleNewsResultList.push(node);
+              pendingsList.push(g);
             }
           }
         } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
           const g = new GoogleSearchResult(node);
           if (!blockElement(g, gsbOptions)) {
-            pendingGoogleSearchResultList.push(node);
+            pendingsList.push(g);
           }
         } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
           const g = new GoogleSearchInnerCard(node);
           if (!blockElement(g, gsbOptions)) {
-            pendingGoogleSearchInnerCardList.push(node);
+            pendingsList.push(g);
           }
         } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
           const g = new GoogleSearchTopNews(node);
           if (!blockElement(g, gsbOptions)) {
-            pendingGoogleSearchTopNewsList.push(node);
+            pendingsList.push(g);
           }
         } else if (GoogleImageTab.isCandidate(node, documentURL)) {
           if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleImageTab(node);
             if (!blockElement(g, gsbOptions)) {
-              pendingGoogleImageTabList.push(node);
+              pendingsList.push(g);
             }
           }
         } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
           if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleNewsCard(node);
             if (!blockElement(g, gsbOptions)) {
-              pendingGoogleNewsCardList.push(node);
+              pendingsList.push(g);
             }
           }
         } else if (GoogleSearchMovie.isCandidate(node, documentURL)) {
           if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
             const g = new GoogleSearchMovie(node);
             if (!blockElement(g, gsbOptions)) {
-              pendingGoogleSearchMovieList.push(node);
+              pendingsList.push(g);
             }
           }
         }
@@ -187,43 +180,7 @@ const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 
 (async (): Promise<void> => {
-  for (const node of pendingGoogleSearchResultList) {
-    const g = new GoogleSearchResult(node);
-    blockElement(g, gsbOptions);
-  }
-
-  for (const node of pendingGoogleSearchInnerCardList) {
-    const g = new GoogleSearchInnerCard(node);
-    blockElement(g, gsbOptions);
-  }
-
-  for (const node of pendingGoogleSearchTopNewsList) {
-    const g = new GoogleSearchTopNews(node);
-    blockElement(g, gsbOptions);
-  }
-
-  for (const node of pendingGoogleNewsSectionWithHeaderList) {
-    const g = new GoogleNewsSectionWithHeader(node);
-    blockElement(g, gsbOptions);
-  }
-
-  for (const node of pendingGoogleNewsResultList) {
-    const g = new GoogleNewsResult(node);
-    blockElement(g, gsbOptions);
-  }
-
-  for (const node of pendingGoogleImageTabList) {
-    const g = new GoogleImageTab(node);
-    blockElement(g, gsbOptions);
-  }
-
-  for (const node of pendingGoogleNewsCardList) {
-    const g = new GoogleNewsCard(node);
-    blockElement(g, gsbOptions);
-  }
-
-  for (const node of pendingGoogleSearchMovieList) {
-    const g = new GoogleSearchMovie(node);
+  for (const g of pendingsList) {
     blockElement(g, gsbOptions);
   }
 })();
