@@ -4,8 +4,16 @@ import BlockedSiteOption from "../option/blocked_site_option";
 import { BannedWordRepository } from "../repository/banned_words";
 import { RegExpRepository } from "../repository/regexp_repository";
 import {
+  AutoBlockIDN,
+  BlockGoogleImagesTab,
+  BlockGoogleNewsTab,
+  BlockGoogleSearchMovie,
+  DefaultBlockType,
+  DeveloperMode,
+  DisplayTemporarilyUnblockAll,
+  MenuPosition,
   OptionInterface,
-  OptionRepository as Option,
+  ShowBlockedByWordInfo,
 } from "../repository/options";
 import { Logger } from "../common";
 import RegExpList from "../option/regexp";
@@ -113,26 +121,26 @@ document.addEventListener("DOMContentLoaded", async (_) => {
   bannedWords = new BannedWords();
   await bannedWords.load();
 
-  await initCheckbox("developerMode", Option.DeveloperMode);
+  await initCheckbox("developerMode", DeveloperMode);
 
   await initCheckbox(
     "displayTemporarilyUnblockAll",
-    Option.DisplayTemporarilyUnblockAll
+    DisplayTemporarilyUnblockAll
   );
 
-  await initCheckbox("showBlockedByWordInfo", Option.ShowBlockedByWordInfo);
+  await initCheckbox("showBlockedByWordInfo", ShowBlockedByWordInfo);
 
-  await initCheckbox("autoBlockIDN", Option.AutoBlockIDN);
+  await initCheckbox("autoBlockIDN", AutoBlockIDN);
 
-  await initSelect("defaultBlockType", Option.DefaultBlockType);
+  await initSelect("defaultBlockType", DefaultBlockType);
 
-  await initSelect("menuPosition", Option.MenuPosition);
+  await initSelect("menuPosition", MenuPosition);
 
-  await initCheckbox("blockGoogleNewsTab", Option.BlockGoogleNewsTab);
+  await initCheckbox("blockGoogleNewsTab", BlockGoogleNewsTab);
 
-  await initCheckbox("blockGoogleImagesTab", Option.BlockGoogleImagesTab);
+  await initCheckbox("blockGoogleImagesTab", BlockGoogleImagesTab);
 
-  await initCheckbox("blockGoogleSearchMovie", Option.BlockGoogleSearchMovie);
+  await initCheckbox("blockGoogleSearchMovie", BlockGoogleSearchMovie);
 });
 
 localizeHtmlPage();

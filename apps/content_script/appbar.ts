@@ -1,6 +1,9 @@
 import { $ } from "../common";
 import { BlockReasonType } from "../model/block_reason";
-import { OptionRepository } from "../repository/options";
+import {
+  DisplayTemporarilyUnblockAll,
+  ShowBlockedByWordInfo,
+} from "../repository/options";
 
 function temporarilyUnblockAll(): void {
   const anchorList = document.querySelectorAll(".blocker-temporarily-unblock");
@@ -47,7 +50,7 @@ function showBlockedByBannedWords(): void {
 async function appendTemporarilyUnblockAllAnchor(
   element: Element
 ): Promise<void> {
-  const display = await OptionRepository.DisplayTemporarilyUnblockAll.load();
+  const display = await DisplayTemporarilyUnblockAll.load();
   if (display) {
     const anchor = $.anchor($.message("temporarilyUnblockAll"));
     $.onclick(anchor, temporarilyUnblockAll);
@@ -59,7 +62,7 @@ async function appendTemporarilyUnblockAllAnchor(
 async function appendShowBlockedByWordInfoAnchor(
   element: Element
 ): Promise<void> {
-  const bannedWordOption = await OptionRepository.ShowBlockedByWordInfo.load();
+  const bannedWordOption = await ShowBlockedByWordInfo.load();
   if (bannedWordOption) {
     const showInfo = $.anchor($.message("showBlockedByWordInfo"));
     showInfo.style.marginLeft = "1rem";
