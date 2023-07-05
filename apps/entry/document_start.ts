@@ -19,7 +19,7 @@ import { GoogleNewsResult } from "../block/google_news_result";
 import { GoogleImageTab } from "../block/google_image_tab";
 import { GoogleSearchMovie } from "../block/google_search_movie";
 import DocumentURL from "../values/document_url";
-import { MenuPosition } from "../repository/enums";
+import { MenuPositionType } from "../repository/enums";
 import { SearchResultToBlock } from "../block/block";
 
 declare global {
@@ -37,7 +37,7 @@ type SearchResultToBlockType = ContentToBlockType &
     canRetry: () => boolean;
     canBlock: () => boolean;
     deleteElement: () => void;
-    getMenuPosition: (defaultPosition: MenuPosition) => MenuPosition;
+    getMenuPosition: (defaultPosition: MenuPositionType) => MenuPositionType;
   };
 
 function blockElement(g: SearchResultToBlockType, options: Options): boolean {
@@ -86,7 +86,8 @@ async function loadOption(): Promise<Options> {
   const autoBlockIDN = await OptionRepository.AutoBlockIDN.load();
   const defaultBlockType: string =
     await OptionRepository.DefaultBlockType.load();
-  const menuPosition: MenuPosition = await OptionRepository.MenuPosition.load();
+  const menuPosition: MenuPositionType =
+    await OptionRepository.MenuPosition.load();
   const bannedWordOption: boolean =
     await OptionRepository.ShowBlockedByWordInfo.load();
   const blockGoogleNewsTab: boolean =

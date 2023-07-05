@@ -8,7 +8,7 @@ export enum BannedTarget {
   TITLE_ONLY = "titleOnly",
 }
 
-export enum MenuPosition {
+export enum MenuPositionType {
   COMPACT = "compact",
   DEFAULT = "default",
 }

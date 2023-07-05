@@ -5,7 +5,7 @@ import { $, ApplicationError, DOMUtils } from "../common";
 import BlockedSitesRepository from "../repository/blocked_sites";
 import { RegExpRepository } from "../repository/regexp_repository";
 import { IBasicBlockMediator, IBlockMediator } from "./mediator";
-import { BlockType, MenuPosition } from "../repository/enums";
+import { BlockType, MenuPositionType } from "../repository/enums";
 import { BlockAnchor } from "./block_anchor";
 import { HideAnchor, TemporarilyUnblockAnchor } from "./hide_anchor";
 import { BlockChangeAnchorDialog } from "./block_change_anchor_dialog";
@@ -48,7 +48,7 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
     g: BlockMediatorType,
     blockState: BlockState,
     defaultBlockType: string,
-    menuPosition: MenuPosition
+    menuPosition: MenuPositionType
   ) {
     const blockTarget = new BlockTargetElement(this, g.getElement());
     g.getElement().setAttribute(
@@ -68,7 +68,7 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
 
     let compactMenu;
     switch (menuPosition) {
-      case MenuPosition.COMPACT:
+      case MenuPositionType.COMPACT:
         // insert menu after action menu.
         compactMenu = new CompactMenu(
           this.hideAnchor,
@@ -90,7 +90,7 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
         break;
-      case MenuPosition.DEFAULT:
+      case MenuPositionType.DEFAULT:
         // insert links after block target.
         this.operationDiv.appendChild(
           this.temporarilyUnblockAnchor.getElement()
