@@ -147,12 +147,12 @@ class BlockedSiteStateButton {
     if (state === "soft") {
       this.element.setAttribute(
         "value",
-        chrome.i18n.getMessage("changeToHardBlock")
+        chrome.i18n.getMessage("changeToHardBlock"),
       );
     } else {
       this.element.setAttribute(
         "value",
-        chrome.i18n.getMessage("changeToSoftBlock")
+        chrome.i18n.getMessage("changeToSoftBlock"),
       );
     }
   }
@@ -245,22 +245,22 @@ export default class BlockedSiteOption {
     this.stateButton = new BlockedSiteStateButton(this, blockedSite.getState());
     this.deleteButton = new BlockedSiteDeleteButton(
       this,
-      blockedSite.getState()
+      blockedSite.getState(),
     );
 
     // Create tr element surrounding all input fields.
     const tr = document.createElement("tr");
     tr.appendChild(document.createElement("td")).appendChild(
-      this.urlField.getElement()
+      this.urlField.getElement(),
     );
     tr.appendChild(document.createElement("td")).appendChild(
-      this.editButton.getElement()
+      this.editButton.getElement(),
     );
     tr.appendChild(document.createElement("td")).appendChild(
-      this.stateButton.getElement()
+      this.stateButton.getElement(),
     );
     tr.appendChild(document.createElement("td")).appendChild(
-      this.deleteButton.getElement()
+      this.deleteButton.getElement(),
     );
     this.element = tr;
   }

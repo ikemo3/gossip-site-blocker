@@ -48,7 +48,7 @@ function showBlockedByBannedWords(): void {
 }
 
 async function appendTemporarilyUnblockAllAnchor(
-  element: Element
+  element: Element,
 ): Promise<void> {
   const display = await DisplayTemporarilyUnblockAll.load();
   if (display) {
@@ -60,7 +60,7 @@ async function appendTemporarilyUnblockAllAnchor(
 }
 
 async function appendShowBlockedByWordInfoAnchor(
-  element: Element
+  element: Element,
 ): Promise<void> {
   const bannedWordOption = await ShowBlockedByWordInfo.load();
   if (bannedWordOption) {

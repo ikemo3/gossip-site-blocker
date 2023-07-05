@@ -25,7 +25,7 @@ export class GoogleSearchMovie extends SearchResultToBlock {
     this.element = element;
 
     const anchor = element.querySelector(
-      "a:not(.vGvPJe)"
+      "a:not(.vGvPJe)",
     ) as HTMLAnchorElement | null;
     if (anchor === null) {
       Logger.debug("movie: anchor not found", element);

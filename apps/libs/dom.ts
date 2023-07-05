@@ -17,7 +17,7 @@ export function createSelectOption(dict: SelectOptions): HTMLSelectElement {
   for (const option of options) {
     const optionElement: HTMLOptionElement = $.option(
       option.value,
-      option.message
+      option.message,
     );
     select.appendChild(optionElement);
   }

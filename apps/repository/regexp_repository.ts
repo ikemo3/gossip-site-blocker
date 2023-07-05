@@ -59,7 +59,7 @@ export const RegExpRepository = {
 
   async add(
     pattern: string,
-    blockType: BlockType = BlockType.SOFT
+    blockType: BlockType = BlockType.SOFT,
   ): Promise<boolean> {
     const items: RegExpItem[] = await this.load();
 
@@ -97,7 +97,7 @@ export const RegExpRepository = {
     const contains =
       items.find((item) => item.pattern !== deletePattern) !== undefined;
     const filteredPatterns = items.filter(
-      (item) => item.pattern !== deletePattern
+      (item) => item.pattern !== deletePattern,
     );
 
     await this.save(filteredPatterns);

@@ -120,7 +120,7 @@ export const BannedWordRepository = {
 
   async changeKeywordType(
     changeWord: string,
-    keywordType: KeywordType
+    keywordType: KeywordType,
   ): Promise<void> {
     const words: BannedWord[] = await this.load();
 

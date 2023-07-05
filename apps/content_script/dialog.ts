@@ -20,7 +20,7 @@ class BlockDialog {
   constructor(
     mediator: IBasicBlockMediator,
     url: string,
-    defaultBlockType: string
+    defaultBlockType: string,
   ) {
     this.mediator = mediator;
 
@@ -30,7 +30,7 @@ class BlockDialog {
 
   public createBackground(
     url: string,
-    defaultBlockType: string
+    defaultBlockType: string,
   ): HTMLDivElement {
     const background = $.div("block-dialog-background");
 
@@ -84,12 +84,12 @@ class BlockDialog {
 
     const blockDomainDiv = BlockDialog.createBlockDomainRadio(
       hostName,
-      domainRadioChecked
+      domainRadioChecked,
     );
     const blockUrlDiv = BlockDialog.createBlockUrlRadio(urlWithoutProtocol);
     const blockCustomDiv = this.createBlockCustomRadio(urlWithoutProtocol);
     const blockRegExpDiv = this.createBlockRegexpRadio(
-      $.escapeRegExp(hostName)
+      $.escapeRegExp(hostName),
     );
 
     if (blockRecommendDiv !== null) {
@@ -106,20 +106,20 @@ class BlockDialog {
 
   public static createBlockDomainRadio(
     value: string,
-    checked: boolean
+    checked: boolean,
   ): HTMLDivElement {
     const div = $.div();
 
     const radio = $.radio(
       "block-url-type",
       value,
-      "blocker-dialog-domain-radio"
+      "blocker-dialog-domain-radio",
     );
     radio.checked = checked;
 
     const textLabel = $.label(
       $.message("blockThisDomainWithUrl", value),
-      "blocker-dialog-domain-radio"
+      "blocker-dialog-domain-radio",
     );
 
     div.appendChild(radio);
@@ -129,7 +129,7 @@ class BlockDialog {
   }
 
   public static createBlockRecommendRadio(
-    value: string
+    value: string,
   ): HTMLDivElement | null {
     const recommend = makeRecommendUrl(value);
     if (recommend === null) {
@@ -140,12 +140,12 @@ class BlockDialog {
     const radio = $.radio(
       "block-url-type",
       recommend,
-      "blocker-dialog-recommend-radio"
+      "blocker-dialog-recommend-radio",
     );
     radio.checked = true;
     const textLabel = $.label(
       $.message("blockThisPageWithRecommendedPath", $.decodeURI(recommend)),
-      "blocker-dialog-url-radio"
+      "blocker-dialog-url-radio",
     );
 
     div.appendChild(radio);
@@ -161,7 +161,7 @@ class BlockDialog {
 
     const textLabel = $.label(
       $.message("blockThisPageWithUrl", $.decodeURI(value)),
-      "blocker-dialog-url-radio"
+      "blocker-dialog-url-radio",
     );
 
     div.appendChild(radio);
@@ -176,13 +176,13 @@ class BlockDialog {
     const radio = $.radio(
       "block-url-type",
       "custom",
-      "blocker-dialog-custom-radio"
+      "blocker-dialog-custom-radio",
     );
     this.customRadio = radio;
 
     const textLabel = $.label(
       $.message("customRadioText"),
-      "blocker-dialog-custom-radio"
+      "blocker-dialog-custom-radio",
     );
 
     const br = $.br();
@@ -206,13 +206,13 @@ class BlockDialog {
     const radio = $.radio(
       "block-url-type",
       "regexp",
-      "blocker-dialog-regexp-radio"
+      "blocker-dialog-regexp-radio",
     );
     this.regexpRadio = radio;
 
     const textLabel = $.label(
       $.message("regexpRadioText"),
-      "blocker-dialog-regexp-radio"
+      "blocker-dialog-regexp-radio",
     );
 
     const br = $.br();
@@ -267,7 +267,7 @@ class BlockDialog {
 
   public async block(): Promise<void> {
     const selected = document.querySelector(
-      'input[name="block-url-type"]:checked'
+      'input[name="block-url-type"]:checked',
     ) as HTMLInputElement;
 
     // ignore when not selected.
@@ -304,14 +304,14 @@ class BlockDialog {
   public createButtons(): HTMLInputElement[] {
     const cancelButton = $.button(
       $.message("cancelButtonLabel"),
-      "blocker-secondary-button"
+      "blocker-secondary-button",
     );
     cancelButton.id = "blocker-cancel-button";
     $.onclick(cancelButton, this.cancel.bind(this));
 
     const blockButton = $.button(
       $.message("blockButtonLabel"),
-      "blocker-primary-button"
+      "blocker-primary-button",
     );
     $.onclick(blockButton, this.block.bind(this));
 

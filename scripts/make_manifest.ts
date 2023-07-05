@@ -19,7 +19,7 @@ if (!existsSync(distDir)) {
 // Load manifest.json
 const manifest = JSON.parse(readFileSync(manifestJsonPath).toString());
 const firefoxManifest = JSON.parse(
-  readFileSync(firefoxManifestJsonPath).toString()
+  readFileSync(firefoxManifestJsonPath).toString(),
 );
 
 // set version_name
@@ -39,5 +39,5 @@ writeFileSync(manifestWriteJsonPath, JSON.stringify(manifest, null, 2));
 const firefoxManifestWriteJsonPath = distDir + "/manifest.firefox.json";
 writeFileSync(
   firefoxManifestWriteJsonPath,
-  JSON.stringify(firefoxManifest, null, 2)
+  JSON.stringify(firefoxManifest, null, 2),
 );

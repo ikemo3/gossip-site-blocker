@@ -110,7 +110,7 @@ export const DisplayTemporarilyUnblockAll = {
 
     Logger.debug(
       "set 'displayTemporarilyUnblockAll' to =>",
-      displayTemporarilyUnblockAll
+      displayTemporarilyUnblockAll,
     );
   },
 };

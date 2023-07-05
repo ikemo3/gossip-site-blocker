@@ -50,7 +50,7 @@ export class GoogleNewsResult extends SearchResultToBlock {
     if (titleElement === null) {
       Logger.debug(
         "news top: no title element(ex. Google Translate)",
-        this.getElement()
+        this.getElement(),
       );
       this.valid = false;
       this._canRetry = false;
@@ -63,7 +63,7 @@ export class GoogleNewsResult extends SearchResultToBlock {
 
     this.getElement().setAttribute(
       "data-gsb-element-type",
-      "google-news-tab-top"
+      "google-news-tab-top",
     );
     this.valid = true;
     this._canRetry = true;

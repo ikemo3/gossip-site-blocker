@@ -63,7 +63,7 @@ function blockElement(g: SearchResultToBlockType, options: Options): boolean {
     options.blockedSites,
     options.bannedWords,
     options.regexpList,
-    options.autoBlockIDN
+    options.autoBlockIDN,
   );
 
   if (blockState.getReason()) {
@@ -81,7 +81,7 @@ function blockElement(g: SearchResultToBlockType, options: Options): boolean {
     g,
     blockState,
     options.defaultBlockType,
-    menuPosition
+    menuPosition,
   );
   return true;
 }

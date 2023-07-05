@@ -43,7 +43,7 @@ describe("Search In English", () => {
 
   it("has fragment", () => {
     const documentUrl = new DocumentURL(
-      "https://www.google.com/search?q=test&rlz=xxx&oq=test&aqs=yyy&sourceid=chrome&ie=UTF-8#bsht=zzz"
+      "https://www.google.com/search?q=test&rlz=xxx&oq=test&aqs=yyy&sourceid=chrome&ie=UTF-8#bsht=zzz",
     );
     const expected =
       "https://www.google.com/search?q=test&rlz=xxx&oq=test&aqs=yyy&sourceid=chrome&ie=UTF-8&gl=us&hl=en#bsht=zzz";

@@ -193,7 +193,7 @@ export const $ = {
 
   onclick(
     element: HTMLElement,
-    listener: EventListenerOrEventListenerObject
+    listener: EventListenerOrEventListenerObject,
   ): void {
     element.addEventListener("click", listener);
   },
