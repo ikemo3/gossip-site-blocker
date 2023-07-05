@@ -136,55 +136,57 @@ observer.observe(document.documentElement, config);
 })();
 
 function processAddedNode(node: Element, documentURL: DocumentURL) {
-  if (GoogleNewsSectionWithHeader.isCandidate(node, documentURL)) {
-    if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
-      const g = new GoogleNewsSectionWithHeader(node);
-      if (!blockElement(g, gsbOptions)) {
-        pendingsList.push(g);
-      }
-    }
-  } else if (GoogleNewsResult.isCandidate(node, documentURL)) {
-    if (GoogleNewsResult.isOptionallyEnabled(gsbOptions)) {
-      const g = new GoogleNewsResult(node);
-      if (!blockElement(g, gsbOptions)) {
-        pendingsList.push(g);
-      }
-    }
-  } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
-    const g = new GoogleSearchResult(node);
-    if (!blockElement(g, gsbOptions)) {
-      pendingsList.push(g);
-    }
-  } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
-    const g = new GoogleSearchInnerCard(node);
-    if (!blockElement(g, gsbOptions)) {
-      pendingsList.push(g);
-    }
-  } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
-    const g = new GoogleSearchTopNews(node);
-    if (!blockElement(g, gsbOptions)) {
-      pendingsList.push(g);
-    }
-  } else if (GoogleImageTab.isCandidate(node, documentURL)) {
-    if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
-      const g = new GoogleImageTab(node);
-      if (!blockElement(g, gsbOptions)) {
-        pendingsList.push(g);
-      }
-    }
-  } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
-    if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
-      const g = new GoogleNewsCard(node);
-      if (!blockElement(g, gsbOptions)) {
-        pendingsList.push(g);
-      }
-    }
-  } else if (GoogleSearchMovie.isCandidate(node, documentURL)) {
-    if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
-      const g = new GoogleSearchMovie(node);
-      if (!blockElement(g, gsbOptions)) {
-        pendingsList.push(g);
-      }
-    }
+  const blockTarget = processAddedNodeInternal(node, documentURL);
+  if (blockTarget && !blockElement(blockTarget, gsbOptions)) {
+    pendingsList.push(blockTarget);
+  }
+}
+
+function processAddedNodeInternal(node: Element, documentURL: DocumentURL) {
+  if (
+    GoogleNewsSectionWithHeader.isCandidate(node, documentURL) &&
+    GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)
+  ) {
+    return new GoogleNewsSectionWithHeader(node);
+  }
+
+  if (
+    GoogleNewsResult.isCandidate(node, documentURL) &&
+    GoogleNewsResult.isOptionallyEnabled(gsbOptions)
+  ) {
+    return new GoogleNewsResult(node);
+  }
+
+  if (GoogleSearchResult.isCandidate(node, documentURL)) {
+    return new GoogleSearchResult(node);
+  }
+
+  if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
+    return new GoogleSearchInnerCard(node);
+  }
+
+  if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
+    return new GoogleSearchTopNews(node);
+  }
+
+  if (
+    GoogleImageTab.isCandidate(node, documentURL) &&
+    GoogleImageTab.isOptionallyEnabled(gsbOptions)
+  ) {
+    return new GoogleImageTab(node);
+  }
+
+  if (
+    GoogleNewsCard.isCandidate(node, documentURL) &&
+    GoogleNewsCard.isOptionallyEnabled(gsbOptions)
+  ) {
+    return new GoogleNewsCard(node);
+  }
+
+  if (
+    GoogleSearchMovie.isCandidate(node, documentURL) &&
+    GoogleSearchMovie.isOptionallyEnabled(gsbOptions)
+  ) {
+    return new GoogleSearchMovie(node);
   }
 }
