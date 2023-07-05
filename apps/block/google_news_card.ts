@@ -1,6 +1,5 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
-import { Options } from "../repository/options";
 
 export class GoogleNewsCard extends SearchResultToBlock {
   public valid: boolean;
@@ -10,10 +9,6 @@ export class GoogleNewsCard extends SearchResultToBlock {
   public element: Element;
 
   private readonly title: string;
-
-  static isOptionallyEnabled(options: Options): boolean {
-    return options.blockGoogleNewsTab;
-  }
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
     return element.matches(".Cq2QEe") && documentURL.isGoogleSearchNewsTab();

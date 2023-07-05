@@ -144,15 +144,15 @@ function processAddedNode(node: Element, documentURL: DocumentURL) {
 
 function processAddedNodeInternal(node: Element, documentURL: DocumentURL) {
   if (
-    GoogleNewsSectionWithHeader.isCandidate(node, documentURL) &&
-    GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)
+    gsbOptions.blockGoogleNewsTab &&
+    GoogleNewsSectionWithHeader.isCandidate(node, documentURL)
   ) {
     return new GoogleNewsSectionWithHeader(node);
   }
 
   if (
-    GoogleNewsResult.isCandidate(node, documentURL) &&
-    GoogleNewsResult.isOptionallyEnabled(gsbOptions)
+    gsbOptions.blockGoogleNewsTab &&
+    GoogleNewsResult.isCandidate(node, documentURL)
   ) {
     return new GoogleNewsResult(node);
   }
@@ -170,22 +170,22 @@ function processAddedNodeInternal(node: Element, documentURL: DocumentURL) {
   }
 
   if (
-    GoogleImageTab.isCandidate(node, documentURL) &&
-    GoogleImageTab.isOptionallyEnabled(gsbOptions)
+    gsbOptions.blockGoogleImagesTab &&
+    GoogleImageTab.isCandidate(node, documentURL)
   ) {
     return new GoogleImageTab(node);
   }
 
   if (
-    GoogleNewsCard.isCandidate(node, documentURL) &&
-    GoogleNewsCard.isOptionallyEnabled(gsbOptions)
+    gsbOptions.blockGoogleNewsTab &&
+    GoogleNewsCard.isCandidate(node, documentURL)
   ) {
     return new GoogleNewsCard(node);
   }
 
   if (
-    GoogleSearchMovie.isCandidate(node, documentURL) &&
-    GoogleSearchMovie.isOptionallyEnabled(gsbOptions)
+    gsbOptions.blockGoogleSearchMovie &&
+    GoogleSearchMovie.isCandidate(node, documentURL)
   ) {
     return new GoogleSearchMovie(node);
   }

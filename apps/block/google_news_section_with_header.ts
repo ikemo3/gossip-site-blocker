@@ -1,6 +1,5 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
-import { Options } from "../repository/options";
 import { Logger } from "../common";
 
 export class GoogleNewsSectionWithHeader extends SearchResultToBlock {
@@ -17,10 +16,6 @@ export class GoogleNewsSectionWithHeader extends SearchResultToBlock {
   private readonly contents: string;
 
   private readonly compactMenuInsertElement: Element;
-
-  static isOptionallyEnabled(options: Options): boolean {
-    return options.blockGoogleNewsTab;
-  }
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
     return (
