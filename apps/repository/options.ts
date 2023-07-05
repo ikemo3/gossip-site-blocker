@@ -2,7 +2,7 @@ import { ChromeStorage, Logger } from "../common";
 import BlockedSites from "../model/blocked_sites";
 import { BannedWord } from "./banned_words";
 import { RegExpItem } from "./regexp_repository";
-import { MenuPosition } from "./enums";
+import { MenuPositionType } from "./enums";
 
 export interface OptionInterface<T> {
   load: () => Promise<T>;
@@ -77,16 +77,16 @@ export const OptionRepository = {
   },
 
   MenuPosition: {
-    load: async (): Promise<MenuPosition> => {
+    load: async (): Promise<MenuPositionType> => {
       const items = await ChromeStorage.load({ menuPosition: "default" });
       const { menuPosition } = items;
 
       switch (menuPosition) {
-        case MenuPosition.COMPACT:
-          return MenuPosition.COMPACT;
-        case MenuPosition.DEFAULT:
+        case MenuPositionType.COMPACT:
+          return MenuPositionType.COMPACT;
+        case MenuPositionType.DEFAULT:
         default:
-          return MenuPosition.DEFAULT;
+          return MenuPositionType.DEFAULT;
       }
     },
 
@@ -168,7 +168,7 @@ export interface Options {
   regexpList: RegExpItem[];
   autoBlockIDN: boolean;
   defaultBlockType: string;
-  menuPosition: MenuPosition;
+  menuPosition: MenuPositionType;
   bannedWordOption: boolean;
   blockGoogleNewsTab: boolean;
   blockGoogleImagesTab: boolean;

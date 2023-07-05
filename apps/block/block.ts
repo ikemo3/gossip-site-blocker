@@ -1,4 +1,4 @@
-import { KeywordType, MenuPosition } from "../repository/enums";
+import { KeywordType, MenuPositionType } from "../repository/enums";
 import { Logger } from "../common";
 
 export interface ContentToBlock {
@@ -88,7 +88,7 @@ export abstract class SearchResultToBlock implements ContentToBlock {
 
   abstract getCompactMenuInsertElement(): Element;
 
-  getMenuPosition(option: MenuPosition): MenuPosition {
+  getMenuPosition(option: MenuPositionType): MenuPositionType {
     return option;
   }
 

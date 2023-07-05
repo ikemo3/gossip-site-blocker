@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
-import { MenuPosition } from "../repository/enums";
+import { MenuPositionType } from "../repository/enums";
 
 export class GoogleImageTab extends SearchResultToBlock {
   private readonly valid: boolean;
@@ -92,7 +92,7 @@ export class GoogleImageTab extends SearchResultToBlock {
     return this.title;
   }
 
-  getMenuPosition(_: MenuPosition): MenuPosition {
-    return MenuPosition.COMPACT;
+  getMenuPosition(_: MenuPositionType): MenuPositionType {
+    return MenuPositionType.COMPACT;
   }
 }
