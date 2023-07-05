@@ -1,6 +1,5 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
-import { Options } from "../repository/options";
 import { Logger } from "../common";
 
 export class GoogleSearchMovie extends SearchResultToBlock {
@@ -13,10 +12,6 @@ export class GoogleSearchMovie extends SearchResultToBlock {
   private readonly title: string;
 
   private readonly compactMenuInsertElement: Element;
-
-  static isOptionallyEnabled(options: Options): boolean {
-    return options.blockGoogleSearchMovie;
-  }
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
     return (

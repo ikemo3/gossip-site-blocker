@@ -1,6 +1,5 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
-import { Options } from "../repository/options";
 import { MenuPosition } from "../repository/enums";
 
 export class GoogleImageTab extends SearchResultToBlock {
@@ -15,10 +14,6 @@ export class GoogleImageTab extends SearchResultToBlock {
   private readonly element: Element;
 
   private readonly compactMenuInsertElement: Element;
-
-  static isOptionallyEnabled(options: Options): boolean {
-    return options.blockGoogleImagesTab;
-  }
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
     return (
