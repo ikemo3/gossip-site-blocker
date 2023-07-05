@@ -1,7 +1,16 @@
-import BlockedSites from "../model/blocked_sites";
-import { BannedWord, BannedWordRepository } from "../repository/banned_words";
-import { RegExpItem, RegExpRepository } from "../repository/regexp_repository";
-import { OptionRepository, Options } from "../repository/options";
+import { BannedWordRepository } from "../repository/banned_words";
+import { RegExpRepository } from "../repository/regexp_repository";
+import {
+  AutoBlockIDN,
+  BlockGoogleImagesTab,
+  BlockGoogleNewsTab,
+  BlockGoogleSearchMovie,
+  DefaultBlockType,
+  DeveloperMode,
+  MenuPosition,
+  Options,
+  ShowBlockedByWordInfo,
+} from "../repository/options";
 import { Logger } from "../common";
 import { BlockReason } from "../model/block_reason";
 import BlockedSitesRepository from "../repository/blocked_sites";
@@ -78,24 +87,18 @@ function blockElement(g: SearchResultToBlockType, options: Options): boolean {
 }
 
 async function loadOption(): Promise<Options> {
-  await OptionRepository.DeveloperMode.load();
+  await DeveloperMode.load();
 
-  const blockedSites: BlockedSites = await BlockedSitesRepository.load();
-  const bannedWords: BannedWord[] = await BannedWordRepository.load();
-  const regexpList: RegExpItem[] = await RegExpRepository.load();
-  const autoBlockIDN = await OptionRepository.AutoBlockIDN.load();
-  const defaultBlockType: string =
-    await OptionRepository.DefaultBlockType.load();
-  const menuPosition: MenuPositionType =
-    await OptionRepository.MenuPosition.load();
-  const bannedWordOption: boolean =
-    await OptionRepository.ShowBlockedByWordInfo.load();
-  const blockGoogleNewsTab: boolean =
-    await OptionRepository.BlockGoogleNewsTab.load();
-  const blockGoogleImagesTab: boolean =
-    await OptionRepository.BlockGoogleImagesTab.load();
-  const blockGoogleSearchMovie: boolean =
-    await OptionRepository.BlockGoogleSearchMovie.load();
+  const blockedSites = await BlockedSitesRepository.load();
+  const bannedWords = await BannedWordRepository.load();
+  const regexpList = await RegExpRepository.load();
+  const autoBlockIDN = await AutoBlockIDN.load();
+  const defaultBlockType = await DefaultBlockType.load();
+  const menuPosition = await MenuPosition.load();
+  const bannedWordOption = await ShowBlockedByWordInfo.load();
+  const blockGoogleNewsTab = await BlockGoogleNewsTab.load();
+  const blockGoogleImagesTab = await BlockGoogleImagesTab.load();
+  const blockGoogleSearchMovie = await BlockGoogleSearchMovie.load();
   Logger.debug("autoBlockIDNOption:", autoBlockIDN);
 
   return {

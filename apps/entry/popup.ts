@@ -1,10 +1,10 @@
 import { $ } from "../common";
 import BlockedSitesRepository from "../repository/blocked_sites";
-import { OptionRepository } from "../repository/options";
 import BlockDialog from "../content_script/dialog";
 import { IBasicBlockMediator } from "../content_script/mediator";
 import localizeHtmlPage from "../option/l10n";
 import DocumentURL from "../values/document_url";
+import { DefaultBlockType } from "../repository/options";
 
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
   return new Promise((resolve, reject) => {
@@ -75,8 +75,7 @@ class PopupMediator implements IBasicBlockMediator {
 (async (): Promise<void> => {
   localizeHtmlPage();
 
-  const defaultBlockType: string =
-    await OptionRepository.DefaultBlockType.load();
+  const defaultBlockType: string = await DefaultBlockType.load();
 
   const currentTab = await getCurrentTab();
   const { url } = currentTab;

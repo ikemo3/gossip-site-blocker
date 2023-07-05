@@ -9,156 +9,151 @@ export interface OptionInterface<T> {
   save: (value: T) => Promise<void>;
 }
 
-export const OptionRepository = {
-  DeveloperMode: {
-    load: async (): Promise<boolean> => {
-      const items = await ChromeStorage.load({ developerMode: false });
+export const DeveloperMode = {
+  load: async (): Promise<boolean> => {
+    const items = await ChromeStorage.load({ developerMode: false });
 
-      Logger.developerMode = items.developerMode;
+    Logger.developerMode = items.developerMode;
 
-      Logger.log("set 'developerMode' to =>", items.developerMode);
+    Logger.log("set 'developerMode' to =>", items.developerMode);
 
-      return items.developerMode;
-    },
-
-    save: async (mode: boolean): Promise<void> => {
-      await ChromeStorage.save({ developerMode: mode });
-
-      Logger.developerMode = mode;
-
-      Logger.log("set 'developerMode' to =>", mode);
-    },
+    return items.developerMode;
   },
 
-  ShowBlockedByWordInfo: {
-    load: async (): Promise<boolean> => {
-      const items = await ChromeStorage.load({
-        bannedWord: { showInfo: false },
-      });
+  save: async (mode: boolean): Promise<void> => {
+    await ChromeStorage.save({ developerMode: mode });
 
-      return items.bannedWord.showInfo;
-    },
+    Logger.developerMode = mode;
 
-    save: async (showBlockInfo: boolean): Promise<void> => {
-      await ChromeStorage.save({ bannedWord: { showInfo: showBlockInfo } });
+    Logger.log("set 'developerMode' to =>", mode);
+  },
+};
 
-      Logger.debug("set 'showBlockInfo' to =>", showBlockInfo);
-    },
+export const ShowBlockedByWordInfo = {
+  load: async (): Promise<boolean> => {
+    const items = await ChromeStorage.load({
+      bannedWord: { showInfo: false },
+    });
+
+    return items.bannedWord.showInfo;
   },
 
-  AutoBlockIDN: {
-    load: async (): Promise<boolean> => {
-      const items = await ChromeStorage.load({
-        autoBlockIDN: { enabled: false },
-      });
+  save: async (showBlockInfo: boolean): Promise<void> => {
+    await ChromeStorage.save({ bannedWord: { showInfo: showBlockInfo } });
 
-      return items.autoBlockIDN.enabled;
-    },
+    Logger.debug("set 'showBlockInfo' to =>", showBlockInfo);
+  },
+};
 
-    save: async (autoBlockIDN: boolean): Promise<void> => {
-      await ChromeStorage.save({ autoBlockIDN: { enabled: autoBlockIDN } });
+export const AutoBlockIDN = {
+  load: async (): Promise<boolean> => {
+    const items = await ChromeStorage.load({
+      autoBlockIDN: { enabled: false },
+    });
 
-      Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
-    },
+    return items.autoBlockIDN.enabled;
   },
 
-  DefaultBlockType: {
-    load: async (): Promise<string> => {
-      const items = await ChromeStorage.load({ defaultBlockType: "soft" });
+  save: async (autoBlockIDN: boolean): Promise<void> => {
+    await ChromeStorage.save({ autoBlockIDN: { enabled: autoBlockIDN } });
 
-      return items.defaultBlockType;
-    },
+    Logger.debug("set 'autoBlockIDN' to =>", autoBlockIDN);
+  },
+};
 
-    save: async (defaultBlockType: string): Promise<void> => {
-      await ChromeStorage.save({ defaultBlockType });
+export const DefaultBlockType = {
+  load: async (): Promise<string> => {
+    const items = await ChromeStorage.load({ defaultBlockType: "soft" });
 
-      Logger.log("set 'defaultBlockType' to =>", defaultBlockType);
-    },
+    return items.defaultBlockType;
   },
 
-  MenuPosition: {
-    load: async (): Promise<MenuPositionType> => {
-      const items = await ChromeStorage.load({ menuPosition: "default" });
-      const { menuPosition } = items;
+  save: async (defaultBlockType: string): Promise<void> => {
+    await ChromeStorage.save({ defaultBlockType });
 
-      switch (menuPosition) {
-        case MenuPositionType.COMPACT:
-          return MenuPositionType.COMPACT;
-        case MenuPositionType.DEFAULT:
-        default:
-          return MenuPositionType.DEFAULT;
-      }
-    },
+    Logger.log("set 'defaultBlockType' to =>", defaultBlockType);
+  },
+};
 
-    save: async (menuPosition: string): Promise<void> => {
-      await ChromeStorage.save({ menuPosition });
+export const MenuPosition = {
+  load: async (): Promise<MenuPositionType> => {
+    const items = await ChromeStorage.load({ menuPosition: "default" });
+    const { menuPosition } = items;
 
-      Logger.debug("set 'menuPosition' to =>", menuPosition);
-    },
+    switch (menuPosition) {
+      case MenuPositionType.COMPACT:
+        return MenuPositionType.COMPACT;
+      case MenuPositionType.DEFAULT:
+      default:
+        return MenuPositionType.DEFAULT;
+    }
   },
 
-  DisplayTemporarilyUnblockAll: {
-    load: async (): Promise<boolean> => {
-      const items = await ChromeStorage.load({
-        displayTemporarilyUnblockAll: true,
-      });
+  save: async (menuPosition: string): Promise<void> => {
+    await ChromeStorage.save({ menuPosition });
 
-      return items.displayTemporarilyUnblockAll;
-    },
+    Logger.debug("set 'menuPosition' to =>", menuPosition);
+  },
+};
 
-    save: async (displayTemporarilyUnblockAll: boolean): Promise<void> => {
-      await ChromeStorage.save({ displayTemporarilyUnblockAll });
+export const DisplayTemporarilyUnblockAll = {
+  load: async (): Promise<boolean> => {
+    const items = await ChromeStorage.load({
+      displayTemporarilyUnblockAll: true,
+    });
 
-      Logger.debug(
-        "set 'displayTemporarilyUnblockAll' to =>",
-        displayTemporarilyUnblockAll
-      );
-    },
+    return items.displayTemporarilyUnblockAll;
   },
 
-  BlockGoogleNewsTab: {
-    load: async (): Promise<boolean> => {
-      const items = await ChromeStorage.load({ blockGoogleNewsTab: true });
+  save: async (displayTemporarilyUnblockAll: boolean): Promise<void> => {
+    await ChromeStorage.save({ displayTemporarilyUnblockAll });
 
-      return items.blockGoogleNewsTab;
-    },
+    Logger.debug(
+      "set 'displayTemporarilyUnblockAll' to =>",
+      displayTemporarilyUnblockAll
+    );
+  },
+};
 
-    save: async (blockGoogleNewsTab: boolean): Promise<void> => {
-      await ChromeStorage.save({ blockGoogleNewsTab });
+export const BlockGoogleNewsTab = {
+  load: async (): Promise<boolean> => {
+    const items = await ChromeStorage.load({ blockGoogleNewsTab: true });
 
-      Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
-    },
+    return items.blockGoogleNewsTab;
   },
 
-  BlockGoogleImagesTab: {
-    load: async (): Promise<boolean> => {
-      const items = await ChromeStorage.load({ blockGoogleImagesTab: true });
+  save: async (blockGoogleNewsTab: boolean): Promise<void> => {
+    await ChromeStorage.save({ blockGoogleNewsTab });
 
-      return items.blockGoogleImagesTab;
-    },
+    Logger.debug("set 'blockGoogleNewsTab' to =>", blockGoogleNewsTab);
+  },
+};
 
-    save: async (blockGoogleImagesTab: boolean): Promise<void> => {
-      await ChromeStorage.save({ blockGoogleImagesTab });
+export const BlockGoogleImagesTab = {
+  load: async (): Promise<boolean> => {
+    const items = await ChromeStorage.load({ blockGoogleImagesTab: true });
 
-      Logger.debug("set 'blockGoogleImagesTab' to =>", blockGoogleImagesTab);
-    },
+    return items.blockGoogleImagesTab;
   },
 
-  BlockGoogleSearchMovie: {
-    load: async (): Promise<boolean> => {
-      const items = await ChromeStorage.load({ blockGoogleSearchMovie: true });
+  save: async (blockGoogleImagesTab: boolean): Promise<void> => {
+    await ChromeStorage.save({ blockGoogleImagesTab });
 
-      return items.blockGoogleSearchMovie;
-    },
+    Logger.debug("set 'blockGoogleImagesTab' to =>", blockGoogleImagesTab);
+  },
+};
 
-    save: async (blockGoogleSearchMovie: boolean): Promise<void> => {
-      await ChromeStorage.save({ blockGoogleSearchMovie });
+export const BlockGoogleSearchMovie = {
+  load: async (): Promise<boolean> => {
+    const items = await ChromeStorage.load({ blockGoogleSearchMovie: true });
 
-      Logger.debug(
-        "set 'blockGoogleSearchMovie' to =>",
-        blockGoogleSearchMovie
-      );
-    },
+    return items.blockGoogleSearchMovie;
+  },
+
+  save: async (blockGoogleSearchMovie: boolean): Promise<void> => {
+    await ChromeStorage.save({ blockGoogleSearchMovie });
+
+    Logger.debug("set 'blockGoogleSearchMovie' to =>", blockGoogleSearchMovie);
   },
 };
 
