@@ -39,7 +39,8 @@
     "fix": "pnpm eslint --fix --ext .ts apps scripts test *.ts jest.config.cjs",
     "format": "prettier --write .",
     "lint": "pnpm eslint --ext .ts apps scripts test *.ts jest.config.cjs",
-    "lint:ci": "prettier --check . && pnpm eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs",
+    "lint:ci": "prettier --check . && pnpm eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs && pnpm lint:dep",
+    "lint:dep": "depcruise .",
     "manifest": "ts-node ./scripts/make_manifest.ts",
     "test": "jest"
   },
