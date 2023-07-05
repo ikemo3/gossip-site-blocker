@@ -120,57 +120,7 @@ const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     for (const node of mutation.addedNodes) {
       if (node instanceof Element) {
-        if (GoogleNewsSectionWithHeader.isCandidate(node, documentURL)) {
-          if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleNewsSectionWithHeader(node);
-            if (!blockElement(g, gsbOptions)) {
-              pendingsList.push(g);
-            }
-          }
-        } else if (GoogleNewsResult.isCandidate(node, documentURL)) {
-          if (GoogleNewsResult.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleNewsResult(node);
-            if (!blockElement(g, gsbOptions)) {
-              pendingsList.push(g);
-            }
-          }
-        } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
-          const g = new GoogleSearchResult(node);
-          if (!blockElement(g, gsbOptions)) {
-            pendingsList.push(g);
-          }
-        } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
-          const g = new GoogleSearchInnerCard(node);
-          if (!blockElement(g, gsbOptions)) {
-            pendingsList.push(g);
-          }
-        } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
-          const g = new GoogleSearchTopNews(node);
-          if (!blockElement(g, gsbOptions)) {
-            pendingsList.push(g);
-          }
-        } else if (GoogleImageTab.isCandidate(node, documentURL)) {
-          if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleImageTab(node);
-            if (!blockElement(g, gsbOptions)) {
-              pendingsList.push(g);
-            }
-          }
-        } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
-          if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleNewsCard(node);
-            if (!blockElement(g, gsbOptions)) {
-              pendingsList.push(g);
-            }
-          }
-        } else if (GoogleSearchMovie.isCandidate(node, documentURL)) {
-          if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
-            const g = new GoogleSearchMovie(node);
-            if (!blockElement(g, gsbOptions)) {
-              pendingsList.push(g);
-            }
-          }
-        }
+        processAddedNode(node, documentURL);
       }
     }
   });
@@ -184,3 +134,57 @@ observer.observe(document.documentElement, config);
     blockElement(g, gsbOptions);
   }
 })();
+
+function processAddedNode(node: Element, documentURL: DocumentURL) {
+  if (GoogleNewsSectionWithHeader.isCandidate(node, documentURL)) {
+    if (GoogleNewsSectionWithHeader.isOptionallyEnabled(gsbOptions)) {
+      const g = new GoogleNewsSectionWithHeader(node);
+      if (!blockElement(g, gsbOptions)) {
+        pendingsList.push(g);
+      }
+    }
+  } else if (GoogleNewsResult.isCandidate(node, documentURL)) {
+    if (GoogleNewsResult.isOptionallyEnabled(gsbOptions)) {
+      const g = new GoogleNewsResult(node);
+      if (!blockElement(g, gsbOptions)) {
+        pendingsList.push(g);
+      }
+    }
+  } else if (GoogleSearchResult.isCandidate(node, documentURL)) {
+    const g = new GoogleSearchResult(node);
+    if (!blockElement(g, gsbOptions)) {
+      pendingsList.push(g);
+    }
+  } else if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
+    const g = new GoogleSearchInnerCard(node);
+    if (!blockElement(g, gsbOptions)) {
+      pendingsList.push(g);
+    }
+  } else if (GoogleSearchTopNews.isCandidate(node, documentURL)) {
+    const g = new GoogleSearchTopNews(node);
+    if (!blockElement(g, gsbOptions)) {
+      pendingsList.push(g);
+    }
+  } else if (GoogleImageTab.isCandidate(node, documentURL)) {
+    if (GoogleImageTab.isOptionallyEnabled(gsbOptions)) {
+      const g = new GoogleImageTab(node);
+      if (!blockElement(g, gsbOptions)) {
+        pendingsList.push(g);
+      }
+    }
+  } else if (GoogleNewsCard.isCandidate(node, documentURL)) {
+    if (GoogleNewsCard.isOptionallyEnabled(gsbOptions)) {
+      const g = new GoogleNewsCard(node);
+      if (!blockElement(g, gsbOptions)) {
+        pendingsList.push(g);
+      }
+    }
+  } else if (GoogleSearchMovie.isCandidate(node, documentURL)) {
+    if (GoogleSearchMovie.isOptionallyEnabled(gsbOptions)) {
+      const g = new GoogleSearchMovie(node);
+      if (!blockElement(g, gsbOptions)) {
+        pendingsList.push(g);
+      }
+    }
+  }
+}
