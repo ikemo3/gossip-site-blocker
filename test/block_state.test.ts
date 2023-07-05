@@ -38,7 +38,7 @@ describe("BlockState", () => {
     keyword: string,
     blockType: BlockType,
     target: BannedTarget,
-    keywordType: KeywordType = KeywordType.STRING
+    keywordType: KeywordType = KeywordType.STRING,
   ): BannedWord {
     return {
       blockType,
@@ -98,7 +98,7 @@ describe("BlockState", () => {
       createEmptySites(),
       bannedList,
       [],
-      true
+      true,
     );
 
     expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
@@ -113,7 +113,7 @@ describe("BlockState", () => {
       createBannedWord(
         "evil2",
         BlockType.HARD,
-        BannedTarget.TITLE_AND_CONTENTS
+        BannedTarget.TITLE_AND_CONTENTS,
       ),
     ];
 
@@ -122,7 +122,7 @@ describe("BlockState", () => {
       createEmptySites(),
       bannedList,
       [],
-      true
+      true,
     );
 
     expect(blockState.getReason()!.getType()).toBe(BlockReasonType.WORD);
@@ -139,7 +139,7 @@ describe("BlockState", () => {
       createEmptySites(),
       [],
       regexpList,
-      true
+      true,
     );
 
     expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
@@ -159,7 +159,7 @@ describe("BlockState", () => {
       createEmptySites(),
       [],
       regexpList,
-      true
+      true,
     );
 
     expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
@@ -194,7 +194,7 @@ describe("BlockState", () => {
       sites,
       bannedList,
       regexpList,
-      true
+      true,
     );
 
     expect(blockState.getReason()!.getType()).toBe(BlockReasonType.REGEXP);
@@ -211,7 +211,7 @@ describe("BlockState", () => {
 
     expect(blockState.getReason()!.getType()).toBe(BlockReasonType.IDN);
     expect(blockState.getReason()!.getReason()).toBe(
-      "Internationalized Domain Name"
+      "Internationalized Domain Name",
     );
     expect(blockState.getState()).toBe("soft");
   });

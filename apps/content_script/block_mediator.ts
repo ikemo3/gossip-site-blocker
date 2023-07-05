@@ -48,12 +48,12 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
     g: BlockMediatorType,
     blockState: BlockState,
     defaultBlockType: string,
-    menuPosition: MenuPositionType
+    menuPosition: MenuPositionType,
   ) {
     const blockTarget = new BlockTargetElement(this, g.getElement());
     g.getElement().setAttribute(
       "data-gsb-menu-position",
-      menuPosition.toString()
+      menuPosition.toString(),
     );
 
     this.operationDiv = $.div("block-anchor");
@@ -74,18 +74,18 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
           this.hideAnchor,
           this.blockAnchor,
           this.changeAnchor,
-          g.getPosition()
+          g.getPosition(),
         );
         DOMUtils.insertAfter(
           g.getCompactMenuInsertElement(),
-          compactMenu.getElement()
+          compactMenu.getElement(),
         );
 
         // insert links after block target.
         this.operationDiv.classList.add("block-anchor-tmp-unblock-only");
         this.operationDiv.classList.add(g.getCssClass());
         this.operationDiv.appendChild(
-          this.temporarilyUnblockAnchor.getElement()
+          this.temporarilyUnblockAnchor.getElement(),
         );
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
 
@@ -93,7 +93,7 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
       case MenuPositionType.DEFAULT:
         // insert links after block target.
         this.operationDiv.appendChild(
-          this.temporarilyUnblockAnchor.getElement()
+          this.temporarilyUnblockAnchor.getElement(),
         );
         this.operationDiv.appendChild(this.hideAnchor.getElement());
         this.operationDiv.appendChild(this.blockAnchor.getElement());
@@ -179,14 +179,14 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
   public async block(
     isUrl: boolean,
     pattern: string,
-    blockType: string
+    blockType: string,
   ): Promise<void> {
     if (isUrl) {
       await BlockedSitesRepository.add(pattern, blockType);
     } else {
       await RegExpRepository.add(
         pattern,
-        blockType === "soft" ? BlockType.SOFT : BlockType.HARD
+        blockType === "soft" ? BlockType.SOFT : BlockType.HARD,
       );
     }
 
@@ -200,13 +200,13 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
       this.blockReason = new BlockReason(
         BlockReasonType.URL_EXACTLY,
         this.url,
-        pattern
+        pattern,
       );
     } else {
       this.blockReason = new BlockReason(
         BlockReasonType.URL,
         this.url,
-        pattern
+        pattern,
       );
     }
 
@@ -218,7 +218,7 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
     this.changeStateDialog = new BlockChangeAnchorDialog(
       this,
       this.url,
-      this.blockReason!.getReason()
+      this.blockReason!.getReason(),
     );
   }
 
@@ -230,7 +230,7 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
   public async blockPage(
     isUrl: boolean,
     pattern: string,
-    blockType: string
+    blockType: string,
   ): Promise<void> {
     await this.block(isUrl, pattern, blockType);
   }

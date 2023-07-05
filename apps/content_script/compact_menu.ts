@@ -16,7 +16,7 @@ export class CompactMenu {
     hideAnchor: Anchor,
     blockAnchor: Anchor,
     changeAnchor: Anchor,
-    position: string
+    position: string,
   ) {
     this.operationSpan = $.span("", "block-anchor");
     this.operationSpan.classList.add("gsb-compact-menu-block-anchor");

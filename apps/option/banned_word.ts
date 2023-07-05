@@ -12,10 +12,10 @@ export default class BannedWords {
 
   constructor() {
     this.addButton = document.getElementById(
-      "bannedWordAddButton"
+      "bannedWordAddButton",
     ) as HTMLInputElement;
     this.addText = document.getElementById(
-      "bannedWordAddText"
+      "bannedWordAddText",
     ) as HTMLInputElement;
     this.wordList = document.getElementById("bannedWordList") as HTMLDivElement;
 
@@ -73,11 +73,11 @@ export default class BannedWords {
     wordDiv.appendChild(input);
 
     const deleteButton: HTMLInputElement = $.button(
-      $.message("bannedWordDeleteButton")
+      $.message("bannedWordDeleteButton"),
     );
     $.onclick(
       deleteButton,
-      this.deleteKeyword.bind(this, word.keyword, wordDiv)
+      this.deleteKeyword.bind(this, word.keyword, wordDiv),
     );
     wordDiv.appendChild(deleteButton);
 
@@ -161,13 +161,13 @@ export default class BannedWords {
       case "titleAndContents":
         await BannedWordRepository.changeTarget(
           keyword,
-          BannedTarget.TITLE_AND_CONTENTS
+          BannedTarget.TITLE_AND_CONTENTS,
         );
         break;
       case "titleOnly":
         await BannedWordRepository.changeTarget(
           keyword,
-          BannedTarget.TITLE_ONLY
+          BannedTarget.TITLE_ONLY,
         );
         break;
       default:
@@ -184,13 +184,13 @@ export default class BannedWords {
       case "string":
         await BannedWordRepository.changeKeywordType(
           keyword,
-          KeywordType.STRING
+          KeywordType.STRING,
         );
         break;
       case "regexp":
         await BannedWordRepository.changeKeywordType(
           keyword,
-          KeywordType.REGEXP
+          KeywordType.REGEXP,
         );
         break;
       default:
@@ -200,7 +200,7 @@ export default class BannedWords {
 
   private async deleteKeyword(
     keyword: string,
-    wordDiv: HTMLDivElement
+    wordDiv: HTMLDivElement,
   ): Promise<void> {
     await BannedWordRepository.delete(keyword);
     this.wordList.removeChild(wordDiv);

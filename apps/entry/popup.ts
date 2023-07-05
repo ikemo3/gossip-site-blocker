@@ -21,16 +21,16 @@ function getCurrentTab(): Promise<chrome.tabs.Tab> {
 }
 
 const exceptIkagadesitakaDiv = document.getElementById(
-  "exceptIkagadesitakaDiv"
+  "exceptIkagadesitakaDiv",
 ) as HTMLDivElement;
 const exceptIkagadesitakaButton = document.getElementById(
-  "exceptIkagadesitakaButton"
+  "exceptIkagadesitakaButton",
 ) as HTMLButtonElement;
 const searchInEnglishDiv = document.getElementById(
-  "searchInEnglishDiv"
+  "searchInEnglishDiv",
 ) as HTMLDivElement;
 const searchInEnglishButton = document.getElementById(
-  "searchInEnglishButton"
+  "searchInEnglishButton",
 ) as HTMLButtonElement;
 const optionLink = document.getElementById("optionLink") as HTMLAnchorElement;
 
@@ -66,7 +66,7 @@ class PopupMediator implements IBasicBlockMediator {
   async blockPage(
     isUrl: boolean,
     url: string,
-    blockType: string
+    blockType: string,
   ): Promise<void> {
     await BlockedSitesRepository.add(url, blockType);
   }

@@ -13,7 +13,7 @@ class RegExpList {
     this.regexpList = document.getElementById("regexpList") as HTMLDivElement;
     this.addText = document.getElementById("regexpAddText") as HTMLInputElement;
     this.addButton = document.getElementById(
-      "regexpAddButton"
+      "regexpAddButton",
     ) as HTMLInputElement;
     $.onclick(this.addButton, this.addItem.bind(this));
   }
@@ -45,7 +45,7 @@ class RegExpList {
     typeSelect.appendChild(hardOption);
     typeSelect.addEventListener(
       "change",
-      this.changeType.bind(this, item.pattern)
+      this.changeType.bind(this, item.pattern),
     );
     typeSelect.value = item.blockType.toString();
 
@@ -102,7 +102,7 @@ class RegExpList {
 
   private async deleteItem(
     pattern: string,
-    div: HTMLDivElement
+    div: HTMLDivElement,
   ): Promise<void> {
     await RegExpRepository.delete(pattern);
 

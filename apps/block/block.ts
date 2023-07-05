@@ -23,7 +23,7 @@ export function containsInTitleOrContents(
   keywordType: KeywordType,
   keyword: string,
   title: string,
-  contents: string
+  contents: string,
 ) {
   if (keywordType === KeywordType.REGEXP) {
     if (matchesByRegExp(title, keyword)) {
@@ -43,7 +43,7 @@ export function containsInTitleOrContents(
 export function containsInTitle(
   keywordType: KeywordType,
   keyword: string,
-  title: string
+  title: string,
 ) {
   if (keywordType === KeywordType.REGEXP) {
     return matchesByRegExp(title, keyword);

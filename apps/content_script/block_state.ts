@@ -34,7 +34,7 @@ function compare(a: HasBlockType, b: HasBlockType): number {
 
 function matchesByWord(
   content: ContentToBlockType,
-  bannedWord: BannedWord
+  bannedWord: BannedWord,
 ): boolean {
   const { keyword, keywordType } = bannedWord;
 
@@ -50,7 +50,7 @@ function matchesByWord(
 
 function matchesByRegexp(
   content: ContentToBlockType,
-  regexpItem: RegExpItem
+  regexpItem: RegExpItem,
 ): boolean {
   try {
     const pattern = new RegExp(regexpItem.pattern);
@@ -72,25 +72,25 @@ class BlockState {
     blockedSites: BlockedSites,
     bannedWords: BannedWord[],
     regexpList: RegExpItem[],
-    autoBlockIDN: boolean
+    autoBlockIDN: boolean,
   ) {
     // The longest matched site
     const blockedSite: BlockedSite | undefined = blockedSites.matches(
-      content.getUrl()
+      content.getUrl(),
     );
 
     // The strongest banned word
     const banned: BannedWord | undefined = first(
       bannedWords
         .filter((bannedWord) => matchesByWord(content, bannedWord))
-        .sort(compare)
+        .sort(compare),
     );
 
     // The strongest regexp
     const regexp: RegExpItem | undefined = first(
       regexpList
         .filter((regexpItem) => matchesByRegexp(content, regexpItem))
-        .sort(compare)
+        .sort(compare),
     );
 
     if (
@@ -104,13 +104,13 @@ class BlockState {
         this.blockReason = new BlockReason(
           BlockReasonType.URL_EXACTLY,
           content.getUrl(),
-          blockedSite.url
+          blockedSite.url,
         );
       } else {
         this.blockReason = new BlockReason(
           BlockReasonType.URL,
           content.getUrl(),
-          blockedSite.url
+          blockedSite.url,
         );
       }
 
@@ -122,7 +122,7 @@ class BlockState {
       this.blockReason = new BlockReason(
         BlockReasonType.WORD,
         content.getUrl(),
-        banned.keyword
+        banned.keyword,
       );
       return;
     }
@@ -132,7 +132,7 @@ class BlockState {
       this.blockReason = new BlockReason(
         BlockReasonType.REGEXP,
         content.getUrl(),
-        regexp.pattern
+        regexp.pattern,
       );
       return;
     }
@@ -147,7 +147,7 @@ class BlockState {
         this.blockReason = new BlockReason(
           BlockReasonType.IDN,
           url,
-          $.message("IDN")
+          $.message("IDN"),
         );
         return;
       }

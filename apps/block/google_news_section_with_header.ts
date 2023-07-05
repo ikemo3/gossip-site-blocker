@@ -63,7 +63,7 @@ export class GoogleNewsSectionWithHeader extends SearchResultToBlock {
 
     element.setAttribute(
       "data-gsb-element-type",
-      "google-news-section-with-header"
+      "google-news-section-with-header",
     );
     this.valid = true;
     this._canRetry = true;

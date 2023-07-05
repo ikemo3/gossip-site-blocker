@@ -39,7 +39,7 @@ async function exportClicked(): Promise<void> {
 
   const allLines = lines.concat(bannedLines).concat(regexpLines);
   const exportTextArea: HTMLTextAreaElement = document.getElementById(
-    "exportTextArea"
+    "exportTextArea",
   ) as HTMLTextAreaElement;
 
   exportTextArea.value = `${allLines.join("\n")}\n`;

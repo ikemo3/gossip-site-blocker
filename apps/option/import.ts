@@ -51,7 +51,7 @@ async function importClicked(): Promise<void> {
    * @type {HTMLTextAreaElement}
    */
   const textArea = document.getElementById(
-    "importTextArea"
+    "importTextArea",
   ) as HTMLTextAreaElement;
   const text = textArea.value;
   const lines = text.split("\n").filter((line) => line !== "");

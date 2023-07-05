@@ -22,16 +22,16 @@ import exportClicked from "../option/export";
 import importClicked from "../option/import";
 
 const softBlockList = document.getElementById(
-  "softBlockList"
+  "softBlockList",
 ) as HTMLDivElement;
 const hardBlockList = document.getElementById(
-  "hardBlockList"
+  "hardBlockList",
 ) as HTMLDivElement;
 const clearButton = document.getElementById("clearButton") as HTMLInputElement;
 
 async function initCheckbox(
   id: string,
-  option: OptionInterface<boolean>
+  option: OptionInterface<boolean>,
 ): Promise<void> {
   const checkbox = document.getElementById(id);
   if (!(checkbox instanceof HTMLInputElement)) {
@@ -49,7 +49,7 @@ async function initCheckbox(
 
 async function initSelect(
   id: string,
-  option: OptionInterface<string>
+  option: OptionInterface<string>,
 ): Promise<void> {
   const select = document.getElementById(id);
   if (!(select instanceof HTMLSelectElement)) {
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", async (_) => {
 
   await initCheckbox(
     "displayTemporarilyUnblockAll",
-    DisplayTemporarilyUnblockAll
+    DisplayTemporarilyUnblockAll,
   );
 
   await initCheckbox("showBlockedByWordInfo", ShowBlockedByWordInfo);

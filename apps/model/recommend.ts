@@ -27,7 +27,7 @@ function search(urlWithoutProtocol: string, pattern: RegExp): string | null {
 }
 
 export default function makeRecommendUrl(
-  urlWithoutProtocol: string
+  urlWithoutProtocol: string,
 ): string | null {
   for (const pattern of PATTERN_LIST) {
     const recommended = search(urlWithoutProtocol, pattern);

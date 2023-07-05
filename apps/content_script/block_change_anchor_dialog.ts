@@ -32,19 +32,19 @@ export class BlockChangeAnchorDialog {
 
     const cancelButton = $.button(
       $.message("cancelButtonLabel"),
-      "blocker-secondary-button"
+      "blocker-secondary-button",
     );
     $.onclick(cancelButton, this.cancel.bind(this));
 
     const unblockButton = $.button(
       $.message("unblock"),
-      "blocker-secondary-button"
+      "blocker-secondary-button",
     );
     $.onclick(unblockButton, this.unblock.bind(this));
 
     const hardBlockButton = $.button(
       $.message("hardBlock"),
-      "blocker-secondary-button"
+      "blocker-secondary-button",
     );
     $.onclick(hardBlockButton, this.toHard.bind(this));
 

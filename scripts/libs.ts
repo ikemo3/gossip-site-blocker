@@ -12,7 +12,7 @@ export type ErrorOption = {
 };
 
 export function isError(
-  option: NormalOption | ErrorOption
+  option: NormalOption | ErrorOption,
 ): option is ErrorOption {
   return "message" in option;
 }
@@ -22,7 +22,7 @@ export function configureGhrOption(
   tag: string | undefined,
   manifestVersion: string,
   manifestVersionName: string,
-  packageVersion: string
+  packageVersion: string,
 ): NormalOption | ErrorOption {
   if (branch) {
     const ghrOptions = ["-prerelease", "-recreate"];
