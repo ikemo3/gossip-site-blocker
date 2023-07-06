@@ -2,7 +2,7 @@ import {
   containsInTitle,
   containsInTitleOrContents,
 } from "../apps/block/block";
-import { KeywordType } from "../apps/repository/enums";
+import { KeywordType } from "../apps/storage/enums";
 
 describe("containsInTitle", () => {
   it("keyword in title", () => {

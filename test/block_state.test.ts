@@ -1,12 +1,12 @@
 import BlockedSites from "../apps/model/blocked_sites";
 import BlockedSite from "../apps/model/blocked_site";
 import { $ } from "../apps/common";
-import { BannedWord } from "../apps/repository/banned_words";
+import { BannedWord } from "../apps/storage/banned_words";
 import BlockState from "../apps/content_script/block_state";
-import { RegExpItem } from "../apps/repository/regexp_repository";
+import { RegExpItem } from "../apps/storage/regexp_repository";
 import { BlockReasonType } from "../apps/model/block_reason";
 import { ContentToBlock } from "../apps/block/block";
-import { BannedTarget, BlockType, KeywordType } from "../apps/repository/enums";
+import { BannedTarget, BlockType, KeywordType } from "../apps/storage/enums";
 
 describe("BlockState", () => {
   function createContents(url: string, contains: boolean): ContentToBlock {

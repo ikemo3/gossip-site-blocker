@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
-import { MenuPositionType } from "../repository/enums";
+import { MenuPositionType } from "../storage/enums";
 
 export class GoogleImageTab extends SearchResultToBlock {
   private readonly valid: boolean;

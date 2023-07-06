@@ -1,6 +1,6 @@
-import { ApplicationError, Logger } from "../common";
-import BlockedSite from "../model/blocked_site";
-import BlockedSitesRepository from "../repository/blocked_sites";
+import { ApplicationError, Logger } from "../../common";
+import BlockedSite from "../../model/blocked_site";
+import BlockedSitesRepository from "../../storage/blocked_sites";
 
 /**
  * URL field

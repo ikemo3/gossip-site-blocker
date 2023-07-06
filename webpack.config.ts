@@ -58,13 +58,13 @@ const config: Configuration = {
       ],
     }),
     new HtmlWebpackPlugin({
-      template: join(__dirname, "apps/popup/popup.html"),
-      filename: "popup/popup.html",
+      template: join(__dirname, "apps/page/popup/popup.html"),
+      filename: "page/popup/popup.html",
       chunks: ["popup"],
     }),
     new HtmlWebpackPlugin({
-      template: join(__dirname, "apps/option/options.html"),
-      filename: "option/options.html",
+      template: join(__dirname, "apps/page/option/options.html"),
+      filename: "page/option/options.html",
       chunks: ["options", "tabby"],
     }),
     new WebpackShellPluginNext({

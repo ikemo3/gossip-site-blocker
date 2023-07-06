@@ -13,7 +13,7 @@
     "default_icon": {
       "16": "icons/icon-16.png"
     },
-    "default_popup": "popup/popup.html"
+    "default_popup": "page/popup/popup.html"
   },
   "content_scripts": [
     {
@@ -416,7 +416,7 @@
     }
   ],
   "options_ui": {
-    "page": "option/options.html",
+    "page": "page/option/options.html",
     "open_in_tab": true
   },
   "permissions": ["storage", "activeTab"],

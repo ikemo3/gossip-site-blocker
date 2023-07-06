@@ -1,8 +1,8 @@
-import BannedWords from "../option/banned_word";
-import BlockedSitesRepository from "../repository/blocked_sites";
-import BlockedSiteOption from "../option/blocked_site_option";
-import { BannedWordRepository } from "../repository/banned_words";
-import { RegExpRepository } from "../repository/regexp_repository";
+import BannedWords from "../page/option/banned_word";
+import BlockedSitesRepository from "../storage/blocked_sites";
+import BlockedSiteOption from "../page/option/blocked_site_option";
+import { BannedWordRepository } from "../storage/banned_words";
+import { RegExpRepository } from "../storage/regexp_repository";
 import {
   AutoBlockIDN,
   BlockGoogleImagesTab,
@@ -14,12 +14,12 @@ import {
   MenuPosition,
   OptionInterface,
   ShowBlockedByWordInfo,
-} from "../repository/options";
+} from "../storage/options";
 import { Logger } from "../common";
-import RegExpList from "../option/regexp";
-import localizeHtmlPage from "../option/l10n";
-import exportClicked from "../option/export";
-import importClicked from "../option/import";
+import RegExpList from "../page/option/regexp";
+import localizeHtmlPage from "../page/option/l10n";
+import exportClicked from "../page/option/export";
+import importClicked from "../page/option/import";
 
 const softBlockList = document.getElementById(
   "softBlockList",
