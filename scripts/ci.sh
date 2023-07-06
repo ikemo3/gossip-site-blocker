@@ -3,7 +3,7 @@
 PACKAGE_VERSION=$(jq -r .version package.json)
 echo "PACKAGE_VERSION: ${PACKAGE_VERSION}"
 
-MANIFEST_VERSION=$(jq -r .version apps/manifest.json)
+MANIFEST_VERSION=$(jq -r .version public/manifest.json)
 echo "MANIFEST_VERSION: ${MANIFEST_VERSION}"
 
 if [[ "${MANIFEST_VERSION}" != "${PACKAGE_VERSION}" ]]; then
@@ -13,7 +13,7 @@ if [[ "${MANIFEST_VERSION}" != "${PACKAGE_VERSION}" ]]; then
   exit 1
 fi
 
-FIREFOX_MANIFEST_VERSION=$(jq -r .version apps/manifest.firefox.json)
+FIREFOX_MANIFEST_VERSION=$(jq -r .version public/manifest.firefox.json)
 echo "FIREFOX_MANIFEST_VERSION: ${FIREFOX_MANIFEST_VERSION}"
 
 if [[ "${FIREFOX_MANIFEST_VERSION}" != "${PACKAGE_VERSION}" ]]; then

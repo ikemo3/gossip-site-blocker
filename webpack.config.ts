@@ -2,7 +2,6 @@ import { Configuration } from "webpack";
 import { join } from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
-import WebpackShellPluginNext from "webpack-shell-plugin-next";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -54,13 +53,6 @@ const config: Configuration = {
       template: join(__dirname, "apps/page/option/options.html"),
       filename: "page/option/options.html",
       chunks: ["options", "tabby"],
-    }),
-    new WebpackShellPluginNext({
-      onBuildExit: {
-        scripts: ["pnpm manifest"],
-        blocking: true,
-        parallel: false,
-      },
     }),
   ],
   devtool: "source-map",

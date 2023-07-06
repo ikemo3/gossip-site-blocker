@@ -28,12 +28,13 @@
     "typescript": "^5.1.6",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
-    "webpack-shell-plugin-next": "^2.3.1",
     "zip-a-folder": "2.0.0"
   },
   "scripts": {
     "archive": "NODE_OPTIONS='--loader ts-node/esm' ts-node ./scripts/archive.ts",
-    "build": "NODE_OPTIONS='--loader ts-node/esm' webpack",
+    "build": "pnpm build:webpack && pnpm build:manifest",
+    "build:manifest": "NODE_OPTIONS='--loader ts-node/esm' ts-node ./scripts/make_manifest.ts",
+    "build:webpack": "NODE_OPTIONS='--loader ts-node/esm' webpack",
     "develop": "NODE_OPTIONS='--loader ts-node/esm' webpack --watch",
     "deploy": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/github_release.ts",
     "fix": "eslint --fix --ext .ts apps scripts test *.ts jest.config.cjs",
@@ -43,7 +44,6 @@
     "lint:eslint:ci": "eslint --format junit --output-file ./reports/eslint/eslint.xml --ext .ts apps scripts test *.ts jest.config.cjs",
     "lint:ci": "pnpm format:check && pnpm lint:eslint:ci && pnpm lint:dep",
     "lint:dep": "depcruise .",
-    "manifest": "ts-node ./scripts/make_manifest.ts",
     "test": "jest"
   },
   "dependencies": {

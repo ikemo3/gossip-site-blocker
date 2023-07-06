@@ -13,13 +13,13 @@ function getGitSha() {
 }
 
 function getManifestVersion(projectDir: string) {
-  const manifestJsonPath = projectDir + "/apps/manifest.json";
+  const manifestJsonPath = projectDir + "/public/manifest.json";
   const manifestJson = JSON.parse(readFileSync(manifestJsonPath).toString());
   return manifestJson.version;
 }
 
 function getManifestVersionName(projectDir: string) {
-  const manifestJsonPath = projectDir + "/apps/manifest.json";
+  const manifestJsonPath = projectDir + "/public/manifest.json";
   const manifestJson = JSON.parse(readFileSync(manifestJsonPath).toString());
   return manifestJson.version_name;
 }
