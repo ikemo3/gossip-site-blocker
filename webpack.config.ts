@@ -36,24 +36,12 @@ const config: Configuration = {
     new CopyPlugin({
       patterns: [
         {
-          from: "apps/_locales",
-          to: "_locales",
-        },
-        {
-          from: "apps/icons",
-          to: "icons",
-        },
-        {
-          from: "public/css",
-          to: "css",
+          from: "public",
+          to: "",
         },
         {
           from: "node_modules/tabbyjs/dist/css/tabby-ui.css",
           to: "css",
-        },
-        {
-          from: "apps/.web-extension-id",
-          to: "",
         },
       ],
     }),

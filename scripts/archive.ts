@@ -61,7 +61,7 @@ async function main() {
     recursive: true,
   });
   copyFileSync(
-    projectDir + "/apps/.web-extension-id",
+    projectDir + "/public/.web-extension-id",
     projectDir + "/dist-firefox/.web-extension-id",
   );
   rmSync(projectDir + "/dist-chrome/manifest.firefox.json");
