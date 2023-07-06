@@ -44,12 +44,12 @@ const config: Configuration = {
           to: "icons",
         },
         {
-          from: "apps/styles",
-          to: "styles",
+          from: "public/css",
+          to: "css",
         },
         {
           from: "node_modules/tabbyjs/dist/css/tabby-ui.css",
-          to: "styles",
+          to: "css",
         },
         {
           from: "apps/.web-extension-id",
