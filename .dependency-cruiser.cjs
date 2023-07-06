@@ -197,7 +197,7 @@ module.exports = {
        for a complete list
     */
     doNotFollow: {
-      path: "node_modules",
+      path: ["node_modules", "dist/", "dist-firefox", "dist-chrome"],
     },
 
     /* conditions specifying which dependencies to exclude
