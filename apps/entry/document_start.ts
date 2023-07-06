@@ -1,5 +1,5 @@
-import { BannedWordRepository } from "../repository/banned_words";
-import { RegExpRepository } from "../repository/regexp_repository";
+import { BannedWordRepository } from "../storage/banned_words";
+import { RegExpRepository } from "../storage/regexp_repository";
 import {
   AutoBlockIDN,
   BlockGoogleImagesTab,
@@ -10,10 +10,10 @@ import {
   MenuPosition,
   Options,
   ShowBlockedByWordInfo,
-} from "../repository/options";
+} from "../storage/options";
 import { Logger } from "../common";
 import { BlockReason } from "../model/block_reason";
-import BlockedSitesRepository from "../repository/blocked_sites";
+import BlockedSitesRepository from "../storage/blocked_sites";
 import BlockState, { ContentToBlockType } from "../content_script/block_state";
 import {
   BlockMediator,
@@ -28,7 +28,7 @@ import { GoogleNewsResult } from "../block/google_news_result";
 import { GoogleImageTab } from "../block/google_image_tab";
 import { GoogleSearchMovie } from "../block/google_search_movie";
 import DocumentURL from "../values/document_url";
-import { MenuPositionType } from "../repository/enums";
+import { MenuPositionType } from "../storage/enums";
 import { SearchResultToBlock } from "../block/block";
 
 declare global {

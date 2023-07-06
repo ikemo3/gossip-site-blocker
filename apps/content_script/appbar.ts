@@ -3,7 +3,7 @@ import { BlockReasonType } from "../model/block_reason";
 import {
   DisplayTemporarilyUnblockAll,
   ShowBlockedByWordInfo,
-} from "../repository/options";
+} from "../storage/options";
 
 function temporarilyUnblockAll(): void {
   const anchorList = document.querySelectorAll(".blocker-temporarily-unblock");

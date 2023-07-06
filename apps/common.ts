@@ -1,4 +1,4 @@
-import { BannedTarget, BlockType } from "./repository/enums";
+import { BannedTarget, BlockType } from "./storage/enums";
 
 export const ChromeStorage = {
   async load<T>(keys: T): Promise<T> {

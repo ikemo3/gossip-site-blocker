@@ -1,4 +1,4 @@
-import { KeywordType, MenuPositionType } from "../repository/enums";
+import { KeywordType, MenuPositionType } from "../storage/enums";
 import { Logger } from "../common";
 
 export interface ContentToBlock {

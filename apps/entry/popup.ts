@@ -1,10 +1,10 @@
 import { $ } from "../common";
-import BlockedSitesRepository from "../repository/blocked_sites";
+import BlockedSitesRepository from "../storage/blocked_sites";
 import BlockDialog from "../content_script/dialog";
 import { IBasicBlockMediator } from "../content_script/mediator";
-import localizeHtmlPage from "../option/l10n";
+import localizeHtmlPage from "../page/option/l10n";
 import DocumentURL from "../values/document_url";
-import { DefaultBlockType } from "../repository/options";
+import { DefaultBlockType } from "../storage/options";
 
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
   return new Promise((resolve, reject) => {

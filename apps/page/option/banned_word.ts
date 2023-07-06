@@ -1,7 +1,7 @@
-import { $, ApplicationError, Logger } from "../common";
-import { BannedWordRepository, BannedWord } from "../repository/banned_words";
-import { createSelectOption } from "../libs/dom";
-import { BannedTarget, BlockType, KeywordType } from "../repository/enums";
+import { $, ApplicationError, Logger } from "../../common";
+import { BannedWordRepository, BannedWord } from "../../storage/banned_words";
+import { createSelectOption } from "../../libs/dom";
+import { BannedTarget, BlockType, KeywordType } from "../../storage/enums";
 
 export default class BannedWords {
   private addButton: HTMLInputElement;
