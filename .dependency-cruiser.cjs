@@ -189,6 +189,46 @@ module.exports = {
         dependencyTypes: ["npm-peer"],
       },
     },
+    {
+      name: "not-to-entry",
+      severity: "error",
+      from: {
+        pathNot: "^apps/entry",
+      },
+      to: {
+        path: "^apps/entry",
+      },
+    },
+    {
+      name: "not-to-content-script",
+      severity: "error",
+      from: {
+        pathNot: ["^apps/entry", "^apps/content_script", "^test/"],
+      },
+      to: {
+        path: "^apps/content_script",
+      },
+    },
+    {
+      name: "not-to-block",
+      severity: "error",
+      from: {
+        pathNot: ["^apps/entry", "^apps/block", "^test/"],
+      },
+      to: {
+        path: "^apps/block",
+      },
+    },
+    {
+      name: "not-to-page",
+      severity: "error",
+      from: {
+        pathNot: ["^apps/entry", "^apps/page", "^test/"],
+      },
+      to: {
+        path: "^apps/page",
+      },
+    },
   ],
   options: {
     /* conditions specifying which files not to follow further when encountered:
