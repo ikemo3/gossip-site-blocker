@@ -214,7 +214,7 @@
       ],
       "run_at": "document_start",
       "js": ["document_start.js"],
-      "css": ["styles/start.css", "styles/google.css"]
+      "css": ["css/start.css", "css/google.css"]
     },
     {
       "matches": [
