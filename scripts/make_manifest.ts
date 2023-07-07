@@ -9,8 +9,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Create if there is no dist directory
 const projectDir = path.dirname(__dirname);
 const distDir = projectDir + "/dist";
-const manifestJsonPath = projectDir + "/apps/manifest.json";
-const firefoxManifestJsonPath = projectDir + "/apps/manifest.firefox.json";
+const manifestJsonPath = projectDir + "/public/manifest.json";
+const firefoxManifestJsonPath = projectDir + "/public/manifest.firefox.json";
 
 if (!existsSync(distDir)) {
   mkdirSync(distDir);

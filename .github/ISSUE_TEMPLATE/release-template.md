@@ -33,7 +33,7 @@ assignees: ikemo3
     * [ ] 更新履歴を追加(英語)
     * [ ] 更新履歴を追加(日本語)
 * [ ] バージョンを変更
-    * [ ] `apps/manifest.json`: version, version_nameを更新
+    * [ ] `public/manifest.json`: version, version_nameを更新
     * [ ] `package.json`: versionを更新
 * [ ] リリーステンプレートに反映させる
 * [ ] 次の次のバージョンのマイルストーンを作成
