@@ -1,4 +1,4 @@
-import { $ } from "../common";
+import { $ } from "../libs/dom";
 import { Anchor } from "./block_change_anchor";
 
 export class CompactMenu {

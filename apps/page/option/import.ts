@@ -1,9 +1,9 @@
 import BlockedSitesRepository from "../../storage/blocked_sites";
 import { BannedWordRepository, BannedWord } from "../../storage/banned_words";
 import { RegExpItem, RegExpRepository } from "../../storage/regexp_repository";
-import { $ } from "../../common";
+import { $ } from "../../libs/dom";
 import BlockedSite from "../../model/blocked_site";
-import BannedWords from "./banned_word";
+import BannedWords, { toBannedTarget, toBlockType } from "./banned_word";
 import { KeywordType } from "../../storage/enums";
 
 function lineToBannedWord(line: string): BannedWord | undefined {
@@ -15,8 +15,8 @@ function lineToBannedWord(line: string): BannedWord | undefined {
   const type = cols[1];
   if (type === "banned") {
     const word = cols[0].replace(/\+/g, " ");
-    const blockType = $.toBlockType(cols[2]);
-    const target = $.toBannedTarget(cols[3]);
+    const blockType = toBlockType(cols[2]);
+    const target = toBannedTarget(cols[3]);
     let keywordType;
     if (cols.length >= 5) {
       keywordType = BannedWords.strToKeywordType(cols[4]);
@@ -39,7 +39,7 @@ function lineToRegexp(line: string): RegExpItem | null {
   const type = cols[1];
   if (type === "regexp") {
     const pattern = $.unescape(cols[0]);
-    const blockType = $.toBlockType(cols[2]);
+    const blockType = toBlockType(cols[2]);
     return { pattern, blockType };
   }
   return null;

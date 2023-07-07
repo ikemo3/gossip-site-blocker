@@ -1,4 +1,4 @@
-import { Logger } from "../../common";
+import { Logger } from "../../libs/logger";
 
 // localize HTML
 export default function localizeHtmlPage(): void {

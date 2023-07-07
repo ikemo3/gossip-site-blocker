@@ -1,4 +1,5 @@
-import { ChromeStorage, Logger } from "../common";
+import { Logger } from "../libs/logger";
+import { ChromeStorage } from "./chrome_storage";
 import BlockedSites from "../model/blocked_sites";
 import { BannedWord } from "./banned_words";
 import { RegExpItem } from "./regexp_repository";

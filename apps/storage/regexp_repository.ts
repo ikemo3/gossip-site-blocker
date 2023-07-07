@@ -1,4 +1,5 @@
-import { ChromeStorage, Logger } from "../common";
+import { Logger } from "../libs/logger";
+import { ChromeStorage } from "./chrome_storage";
 import { BlockType } from "./enums";
 
 interface RegExpItemList {

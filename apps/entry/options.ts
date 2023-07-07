@@ -15,7 +15,7 @@ import {
   OptionInterface,
   ShowBlockedByWordInfo,
 } from "../storage/options";
-import { Logger } from "../common";
+import { Logger } from "../libs/logger";
 import RegExpList from "../page/option/regexp";
 import localizeHtmlPage from "../page/option/l10n";
 import exportClicked from "../page/option/export";

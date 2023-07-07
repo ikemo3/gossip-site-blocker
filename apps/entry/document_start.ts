@@ -11,7 +11,7 @@ import {
   Options,
   ShowBlockedByWordInfo,
 } from "../storage/options";
-import { Logger } from "../common";
+import { Logger } from "../libs/logger";
 import { BlockReason } from "../model/block_reason";
 import BlockedSitesRepository from "../storage/blocked_sites";
 import BlockState, { ContentToBlockType } from "../content_script/block_state";
