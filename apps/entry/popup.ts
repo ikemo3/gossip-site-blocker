@@ -1,4 +1,4 @@
-import { $ } from "../common";
+import { $ } from "../libs/dom";
 import BlockedSitesRepository from "../storage/blocked_sites";
 import BlockDialog from "../content_script/dialog";
 import { IBasicBlockMediator } from "../content_script/mediator";

@@ -1,4 +1,5 @@
-import { $, DOMUtils, Logger } from "../common";
+import { $, DOMUtils } from "../libs/dom";
+import { Logger } from "../libs/logger";
 import { RegExpItem } from "../storage/regexp_repository";
 import BlockedSites from "../model/blocked_sites";
 import { BannedWord } from "../storage/banned_words";

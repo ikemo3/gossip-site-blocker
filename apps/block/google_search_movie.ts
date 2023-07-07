@@ -1,6 +1,6 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
-import { Logger } from "../common";
+import { Logger } from "../libs/logger";
 
 export class GoogleSearchMovie extends SearchResultToBlock {
   private readonly element: Element;

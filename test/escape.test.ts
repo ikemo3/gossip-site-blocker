@@ -1,4 +1,4 @@
-import { $ } from "../apps/common";
+import { $ } from "../apps/libs/dom";
 
 describe("escape", () => {
   it("space", () => {

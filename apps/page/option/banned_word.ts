@@ -1,7 +1,29 @@
-import { $, ApplicationError, Logger } from "../../common";
+import { $ } from "../../libs/dom";
+import { ApplicationError } from "../../libs/error";
+import { Logger } from "../../libs/logger";
 import { BannedWordRepository, BannedWord } from "../../storage/banned_words";
-import { createSelectOption } from "../../libs/dom";
+import { createSelectOption } from "../../libs/select";
 import { BannedTarget, BlockType, KeywordType } from "../../storage/enums";
+
+export function toBlockType(value: string): BlockType {
+  switch (value) {
+    case "hard":
+      return BlockType.HARD;
+    case "soft":
+    default:
+      return BlockType.SOFT;
+  }
+}
+
+export function toBannedTarget(value: string): BannedTarget {
+  switch (value) {
+    case "titleOnly":
+      return BannedTarget.TITLE_ONLY;
+    case "titleAndContents":
+    default:
+      return BannedTarget.TITLE_AND_CONTENTS;
+  }
+}
 
 export default class BannedWords {
   private addButton: HTMLInputElement;

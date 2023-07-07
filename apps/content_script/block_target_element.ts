@@ -1,4 +1,4 @@
-import { $ } from "../common";
+import { $ } from "../libs/dom";
 import { BlockMediator } from "./block_mediator";
 
 /**

@@ -1,4 +1,5 @@
-import { ChromeStorage, Logger } from "../common";
+import { Logger } from "../libs/logger";
+import { ChromeStorage } from "./chrome_storage";
 import { BannedTarget, BlockType, KeywordType } from "./enums";
 
 interface BannedWordItems {

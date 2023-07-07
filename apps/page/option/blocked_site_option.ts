@@ -1,4 +1,5 @@
-import { ApplicationError, Logger } from "../../common";
+import { ApplicationError } from "../../libs/error";
+import { Logger } from "../../libs/logger";
 import BlockedSite from "../../model/blocked_site";
 import BlockedSitesRepository from "../../storage/blocked_sites";
 

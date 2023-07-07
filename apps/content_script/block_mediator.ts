@@ -1,7 +1,8 @@
 import { BlockReason, BlockReasonType } from "../model/block_reason";
 import BlockState from "./block_state";
 import BlockDialog from "./dialog";
-import { $, ApplicationError, DOMUtils } from "../common";
+import { $, DOMUtils } from "../libs/dom";
+import { ApplicationError } from "../libs/error";
 import BlockedSitesRepository from "../storage/blocked_sites";
 import { RegExpRepository } from "../storage/regexp_repository";
 import { IBasicBlockMediator, IBlockMediator } from "./mediator";

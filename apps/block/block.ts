@@ -1,5 +1,5 @@
 import { KeywordType, MenuPositionType } from "../storage/enums";
-import { Logger } from "../common";
+import { Logger } from "../libs/logger";
 
 export interface ContentToBlock {
   getUrl(): string;

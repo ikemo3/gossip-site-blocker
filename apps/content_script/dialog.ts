@@ -1,4 +1,4 @@
-import { $, DOMUtils } from "../common";
+import { $, DOMUtils } from "../libs/dom";
 import makeRecommendUrl from "../model/recommend";
 import { IBasicBlockMediator } from "./mediator";
 

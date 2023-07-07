@@ -1,6 +1,6 @@
 import BlockedSites from "../apps/model/blocked_sites";
 import BlockedSite from "../apps/model/blocked_site";
-import { $ } from "../apps/common";
+import { $ } from "../apps/libs/dom";
 import { BannedWord } from "../apps/storage/banned_words";
 import BlockState from "../apps/content_script/block_state";
 import { RegExpItem } from "../apps/storage/regexp_repository";

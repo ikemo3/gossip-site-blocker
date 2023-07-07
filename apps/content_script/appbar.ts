@@ -1,4 +1,4 @@
-import { $ } from "../common";
+import { $ } from "../libs/dom";
 import { BlockReasonType } from "../model/block_reason";
 import {
   DisplayTemporarilyUnblockAll,

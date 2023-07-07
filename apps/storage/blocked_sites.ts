@@ -1,4 +1,4 @@
-import { ChromeStorage } from "../common";
+import { ChromeStorage } from "./chrome_storage";
 import BlockedSites from "../model/blocked_sites";
 import BlockedSite from "../model/blocked_site";
 

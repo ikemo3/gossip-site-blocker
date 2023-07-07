@@ -1,5 +1,6 @@
 import { RegExpItem, RegExpRepository } from "../../storage/regexp_repository";
-import { $, ApplicationError } from "../../common";
+import { $ } from "../../libs/dom";
+import { ApplicationError } from "../../libs/error";
 import { BlockType } from "../../storage/enums";
 
 class RegExpList {
