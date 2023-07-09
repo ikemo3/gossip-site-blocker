@@ -35,8 +35,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^13.0.5
-    version: 13.0.5
+    specifier: ^13.1.0
+    version: 13.1.0
   eslint:
     specifier: ^8.44.0
     version: 8.44.0
@@ -1424,6 +1424,14 @@ packages:
     resolution: {integrity: sha512-uuo6iJj4D4ygkdzd6jPtcxs8vZgDX9YFIkqczGImoypX2fQ4dVImmu3UzA4ynixCIMTrEOWW+95M2HuBaCEOVA==}
     dev: true
 
+  /acorn-jsx@5.3.2(acorn@8.10.0):
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      acorn: 8.10.0
+    dev: true
+
   /acorn-jsx@5.3.2(acorn@8.9.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1436,12 +1444,18 @@ packages:
     resolution: {integrity: sha512-75lAs9H19ldmW+fAbyqHdjgdCrz0pWGXKmnqFoh8PyVd1L2RIb4RzYrSjmopeqv3E1G3/Pimu6GgLlrGbrkF7w==}
     engines: {node: '>=0.4.0'}
     dependencies:
-      acorn: 8.9.0
+      acorn: 8.10.0
     dev: true
 
   /acorn-walk@8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
+    dev: true
+
+  /acorn@8.10.0:
+    resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
     dev: true
 
   /acorn@8.8.2:
@@ -2067,13 +2081,13 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@13.0.5:
-    resolution: {integrity: sha512-SWP7zQ6K7hKkHAAbhWnsnv+vqpJviYBlNbiqyN1WpRIcBha3kduLn6utOdJjkSoZU+Wme6SyQ5rrDVaeHAylWw==}
+  /dependency-cruiser@13.1.0:
+    resolution: {integrity: sha512-ps8o8+3FW0kV7JWUq+h5VjaaH/Y4ztp0oArye9PcdPIZc2+a6otFwCA4GZRND/Ho/EiftkuVNEWYAsIvxqJF2w==}
     engines: {node: ^16.14||>=18}
     hasBin: true
     dependencies:
-      acorn: 8.9.0
-      acorn-jsx: 5.3.2(acorn@8.9.0)
+      acorn: 8.10.0
+      acorn-jsx: 5.3.2(acorn@8.10.0)
       acorn-jsx-walk: 2.0.0
       acorn-loose: 8.3.0
       acorn-walk: 8.2.0
@@ -2082,7 +2096,7 @@ packages:
       commander: 11.0.0
       enhanced-resolve: 5.15.0
       figures: 5.0.0
-      glob: 10.3.1
+      glob: 10.3.3
       handlebars: 4.7.7
       ignore: 5.2.4
       indent-string: 5.0.0
@@ -2093,7 +2107,7 @@ packages:
       prompts: 2.4.2
       rechoir: 0.8.0
       safe-regex: 2.1.1
-      semver: 7.5.3
+      semver: 7.5.4
       semver-try-require: 6.2.3
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.0.1
@@ -2670,8 +2684,8 @@ packages:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
     dev: true
 
-  /glob@10.3.1:
-    resolution: {integrity: sha512-9BKYcEeIs7QwlCYs+Y3GBvqAMISufUS0i2ELd11zpZjxI5V9iyRj0HgzB5/cLf2NY4vcYBTYzJ7GIui7j/4DOw==}
+  /glob@10.3.3:
+    resolution: {integrity: sha512-92vPiMb/iqpmEgsOoIDvTjc50wf9CCCvMzsi6W0JLPeUKE8TWP1a73PgqSrqy7iAZxaSD1YdzU7QZR5LF51MJw==}
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
     dependencies:
@@ -2679,7 +2693,7 @@ packages:
       jackspeak: 2.2.0
       minimatch: 9.0.1
       minipass: 6.0.2
-      path-scurry: 1.10.0
+      path-scurry: 1.10.1
     dev: true
 
   /glob@7.2.3:
@@ -4006,8 +4020,8 @@ packages:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
     dev: true
 
-  /path-scurry@1.10.0:
-    resolution: {integrity: sha512-tZFEaRQbMLjwrsmidsGJ6wDMv0iazJWk6SfIKnY4Xru8auXgmJkOBa5DUbYFcFD2Rzk2+KDlIiF0GVXNCbgC7g==}
+  /path-scurry@1.10.1:
+    resolution: {integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       lru-cache: 9.1.1
@@ -4298,7 +4312,7 @@ packages:
     resolution: {integrity: sha512-6q1N/Vr/4/G0EcQ1k4svN5kwfh3MJs4Gfl+zBAVcKn+AeIjKLwTXQ143Y6YHu6xEeN5gSCbCD1/5+NwCipLY5A==}
     engines: {node: ^14||^16||>=18}
     dependencies:
-      semver: 7.5.3
+      semver: 7.5.4
     dev: true
 
   /semver@6.3.0:
@@ -4316,6 +4330,14 @@ packages:
 
   /semver@7.5.3:
     resolution: {integrity: sha512-QBlUtyVk/5EeHbi7X0fw6liDZc7BBmEaSYn01fMU1OUYbf6GPsbTtd8WmnqbI20SeycoHSeiybkE/q1Q+qlThQ==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+
+  /semver@7.5.4:
+    resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
