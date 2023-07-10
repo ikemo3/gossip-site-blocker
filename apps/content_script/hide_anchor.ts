@@ -1,6 +1,5 @@
 import { $ } from "../libs/dom";
 import { IBlockMediator } from "./mediator";
-import { BlockMediator } from "./block_mediator";
 import { Anchor } from "./block_change_anchor";
 
 export class HideAnchor implements Anchor {
@@ -32,9 +31,9 @@ export class HideAnchor implements Anchor {
 export class TemporarilyUnblockAnchor {
   private readonly anchor: HTMLAnchorElement;
 
-  private readonly mediator: BlockMediator;
+  private readonly mediator: IBlockMediator;
 
-  constructor(mediator: BlockMediator) {
+  constructor(mediator: IBlockMediator) {
     this.mediator = mediator;
 
     const anchor = $.anchor();
