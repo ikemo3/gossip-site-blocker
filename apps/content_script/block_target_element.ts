@@ -1,15 +1,15 @@
 import { $ } from "../libs/dom";
-import { BlockMediator } from "./block_mediator";
+import { IBlockMediator } from "./mediator";
 
 /**
  * Block target element.
  */
 export class BlockTargetElement {
-  private readonly mediator: BlockMediator;
+  private readonly mediator: IBlockMediator;
 
   private readonly element: Element;
 
-  constructor(mediator: BlockMediator, element: Element) {
+  constructor(mediator: IBlockMediator, element: Element) {
     this.mediator = mediator;
     this.element = element;
   }

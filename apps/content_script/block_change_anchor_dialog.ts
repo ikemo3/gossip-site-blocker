@@ -1,8 +1,8 @@
 import { $ } from "../libs/dom";
-import { BlockMediator } from "./block_mediator";
+import { IBlockMediator } from "./mediator";
 
 export class BlockChangeAnchorDialog {
-  private readonly mediator: BlockMediator;
+  private readonly mediator: IBlockMediator;
 
   private readonly background: HTMLDivElement;
 
@@ -10,7 +10,7 @@ export class BlockChangeAnchorDialog {
 
   private readonly url: string;
 
-  constructor(mediator: BlockMediator, url: string, reason: string | null) {
+  constructor(mediator: IBlockMediator, url: string, reason: string | null) {
     this.mediator = mediator;
     this.url = url;
 
