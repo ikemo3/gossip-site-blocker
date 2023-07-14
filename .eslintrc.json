@@ -2,7 +2,6 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jest": true,
     "webextensions": true
   },
   "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
@@ -15,7 +14,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "jest"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "class-methods-use-this": "off",
     "max-classes-per-file": "off",

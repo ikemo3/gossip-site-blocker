@@ -1,4 +1,5 @@
 import makeRecommendUrl from "../apps/model/recommend";
+import { describe, it, expect } from "vitest";
 
 describe("makeRecommendUrl", () => {
   it("d.hatena.ne.jp", () => {

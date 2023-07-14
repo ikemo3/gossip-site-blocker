@@ -3,6 +3,7 @@ import {
   containsInTitleOrContents,
 } from "../apps/block/block";
 import { KeywordType } from "../apps/storage/enums";
+import { describe, it, expect } from "vitest";
 
 describe("containsInTitle", () => {
   it("keyword in title", () => {
