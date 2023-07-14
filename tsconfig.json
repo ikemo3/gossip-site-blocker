@@ -10,5 +10,5 @@
     "strictPropertyInitialization": false,
     "target": "es2022"
   },
-  "exclude": ["dist", "node_modules", "webpack.config.ts"]
+  "exclude": ["dist", "node_modules", "webpack.config.cjs"]
 }
