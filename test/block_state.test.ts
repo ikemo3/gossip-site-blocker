@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import BlockedSites from "../apps/model/blocked_sites";
 import BlockedSite from "../apps/model/blocked_site";
 import { $ } from "../apps/libs/dom";
@@ -7,6 +9,7 @@ import { RegExpItem } from "../apps/storage/regexp_repository";
 import { BlockReasonType } from "../apps/model/block_reason";
 import { ContentToBlock } from "../apps/block/block";
 import { BannedTarget, BlockType, KeywordType } from "../apps/storage/enums";
+import { describe, it, expect } from "vitest";
 
 describe("BlockState", () => {
   function createContents(url: string, contains: boolean): ContentToBlock {
@@ -203,7 +206,7 @@ describe("BlockState", () => {
   });
 
   it("block by IDN", () => {
-    jest.spyOn($, "message").mockReturnValue("Internationalized Domain Name");
+    vi.spyOn($, "message").mockReturnValue("Internationalized Domain Name");
 
     const target = createContents("http://xn--eckwd4c7cu47r2wf.jp", false);
 
