@@ -32,8 +32,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^13.1.0
-    version: 13.1.0
+    specifier: ^13.1.1
+    version: 13.1.1
   eslint:
     specifier: ^8.45.0
     version: 8.45.0
@@ -1556,8 +1556,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@13.1.0:
-    resolution: {integrity: sha512-ps8o8+3FW0kV7JWUq+h5VjaaH/Y4ztp0oArye9PcdPIZc2+a6otFwCA4GZRND/Ho/EiftkuVNEWYAsIvxqJF2w==}
+  /dependency-cruiser@13.1.1:
+    resolution: {integrity: sha512-uN98xBELy3kYHXNEgk+TqAECkHdwrmKZTqPklpzTc4x4cQTh75+hPH8Y8kNepQDxk7NOqlCM8ubOJgJsG1VfKg==}
     engines: {node: ^16.14||>=18}
     hasBin: true
     dependencies:
@@ -1585,8 +1585,8 @@ packages:
       semver: 7.5.4
       semver-try-require: 6.2.3
       teamcity-service-messages: 0.1.14
-      tsconfig-paths-webpack-plugin: 4.0.1
-      watskeburt: 0.11.5
+      tsconfig-paths-webpack-plugin: 4.1.0
+      watskeburt: 0.11.6
       wrap-ansi: 8.1.0
     dev: true
 
@@ -3449,8 +3449,8 @@ packages:
       webpack: 5.88.1(webpack-cli@5.1.4)
     dev: true
 
-  /tsconfig-paths-webpack-plugin@4.0.1:
-    resolution: {integrity: sha512-m5//KzLoKmqu2MVix+dgLKq70MnFi8YL8sdzQZ6DblmCdfuq/y3OqvJd5vMndg2KEVCOeNz8Es4WVZhYInteLw==}
+  /tsconfig-paths-webpack-plugin@4.1.0:
+    resolution: {integrity: sha512-xWFISjviPydmtmgeUAuXp4N1fky+VCtfhOkDUFIv5ea7p4wuTomI4QTrXvFBX2S4jZsmyTSrStQl+E+4w+RzxA==}
     engines: {node: '>=10.13.0'}
     dependencies:
       chalk: 4.1.2
@@ -3693,8 +3693,8 @@ packages:
       graceful-fs: 4.2.11
     dev: true
 
-  /watskeburt@0.11.5:
-    resolution: {integrity: sha512-C8VoO0ic62k5X8l/KlH79LpKBqpdbqp+zvArRKHR8HmFSH6GYR5e5WjJgk451NybxJUG5axDdgn4LWQltpyEgA==}
+  /watskeburt@0.11.6:
+    resolution: {integrity: sha512-LrtRC7U9jzZUJafNhjvQDMaHFBdT/bQGbzkf26xX8JHHyB2TvxjWdwpxa9J0F7RgJ4eI/v1jnXILCkdlcANeiw==}
     engines: {node: ^16.14||>=18}
     hasBin: true
     dev: true
