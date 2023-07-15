@@ -214,7 +214,7 @@
         "https://www.google.cat/search*"
       ],
       "run_at": "document_start",
-      "js": ["document_start.js"],
+      "js": ["assets/document_start.js"],
       "css": ["css/start.css", "css/google.css"]
     },
     {
@@ -413,7 +413,7 @@
         "https://www.google.co.zw/search*",
         "https://www.google.cat/search*"
       ],
-      "js": ["document_idle.js"]
+      "js": ["assets/document_idle.js"]
     }
   ],
   "options_ui": {
