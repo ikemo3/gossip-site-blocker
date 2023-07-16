@@ -53,7 +53,7 @@ async function main() {
   mkdirSync(projectDir + "/tmp/workspace");
 
   // copy resources
-  execSync("webpack", { stdio: "inherit" });
+  execSync("pnpm build", { stdio: "inherit" });
   cpSync(projectDir + "/dist", projectDir + "/dist-chrome", {
     recursive: true,
   });

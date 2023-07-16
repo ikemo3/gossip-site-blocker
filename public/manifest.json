@@ -214,7 +214,7 @@
         "https://www.google.cat/search*"
       ],
       "run_at": "document_start",
-      "js": ["assets/document_start.js"],
+      "js": ["loader_start.js"],
       "css": ["css/start.css", "css/google.css"]
     },
     {
@@ -413,7 +413,7 @@
         "https://www.google.co.zw/search*",
         "https://www.google.cat/search*"
       ],
-      "js": ["assets/document_idle.js"]
+      "js": ["loader_idle.js"]
     }
   ],
   "options_ui": {
@@ -423,7 +423,7 @@
   "permissions": ["storage", "activeTab"],
   "web_accessible_resources": [
     {
-      "resources": ["icons/*", "manifest.json"],
+      "resources": ["icons/*", "assets/*", "manifest.json"],
       "matches": [
         "https://www.google.com/*",
         "https://www.google.ad/*",
