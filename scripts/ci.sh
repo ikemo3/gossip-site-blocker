@@ -25,7 +25,7 @@ fi
 
 pnpm install
 pnpm lint:ci
-pnpm test
+pnpm test:ci
 
 pnpm build
 pnpm archive

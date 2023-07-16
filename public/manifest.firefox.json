@@ -212,7 +212,7 @@
         "https://www.google.cat/search*"
       ],
       "run_at": "document_start",
-      "js": ["assets/document_start.js"],
+      "js": ["loader_start.js"],
       "css": ["css/start.css", "css/google.css"]
     },
     {
@@ -411,7 +411,7 @@
         "https://www.google.co.zw/search*",
         "https://www.google.cat/search*"
       ],
-      "js": ["assets/document_idle.js"]
+      "js": ["loader_idle.js"]
     }
   ],
   "options_ui": {
@@ -419,7 +419,7 @@
     "open_in_tab": true
   },
   "permissions": ["storage", "activeTab"],
-  "web_accessible_resources": ["icons/*", "manifest.json"],
+  "web_accessible_resources": ["icons/*", "assets", "manifest.json"],
   "browser_specific_settings": {
     "gecko": {
       "id": "{bca1fb4d-2219-4543-868c-ae6ca7e13595}"
