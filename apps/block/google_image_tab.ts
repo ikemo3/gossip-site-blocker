@@ -1,6 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import { MenuPositionType } from "../storage/enums";
+import { Logger } from "../libs/logger";
 
 export class GoogleImageTab extends SearchResultToBlock {
   private readonly valid: boolean;
@@ -27,8 +28,9 @@ export class GoogleImageTab extends SearchResultToBlock {
     super();
     this.element = element;
 
-    const anchor = element.querySelector("a.VFACy");
+    const anchor = element.querySelector("a.iGVLpd");
     if (!anchor) {
+      Logger.debug("image tab: anchor not found", element);
       this.valid = false;
       this._canRetry = true;
       return;
@@ -36,6 +38,7 @@ export class GoogleImageTab extends SearchResultToBlock {
 
     const href = anchor.getAttribute("href");
     if (!href) {
+      Logger.debug("image tab: href not found", element);
       this.valid = false;
       this._canRetry = true;
       return;
@@ -43,6 +46,7 @@ export class GoogleImageTab extends SearchResultToBlock {
 
     const image = element.querySelector("img.Q4LuWd");
     if (!image) {
+      Logger.debug("image tab: image not found", element);
       this.valid = false;
       this._canRetry = true;
       return;
