@@ -36,7 +36,7 @@
     "@typescript-eslint/parser": "^6.2.0",
     "date-fns": "2.30.0",
     "dependency-cruiser": "^13.1.1",
-    "eslint": "^8.45.0",
+    "eslint": "^8.46.0",
     "eslint-config-prettier": "^8.9.0",
     "eslint-plugin-node": "^11.1.0",
     "jsdom": "^22.1.0",
