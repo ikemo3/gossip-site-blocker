@@ -11,8 +11,8 @@ dependencies:
 
 devDependencies:
   '@types/chrome':
-    specifier: 0.0.242
-    version: 0.0.242
+    specifier: 0.0.243
+    version: 0.0.243
   '@types/node':
     specifier: ^18.17.1
     version: 18.17.1
@@ -620,8 +620,8 @@ packages:
     resolution: {integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng==}
     dev: true
 
-  /@types/chrome@0.0.242:
-    resolution: {integrity: sha512-SeMXBSfcAGX9ezTz7Pro7n/AiNdIH3cetkdbM+Kfg3zD24jmbnm0IAEIxzx8ccqrnJenLCfD7fR+4WIYAbeQHw==}
+  /@types/chrome@0.0.243:
+    resolution: {integrity: sha512-4PHv0kxxxpZFHWPBiJJ9TWH8kbx0567j1b2djnhpJjpiSGNI7UKkz7dSEECBtQ0B3N5nQTMwSB/5IopkWGAbEA==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.10
