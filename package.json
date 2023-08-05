@@ -31,11 +31,11 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.243",
-    "@types/node": "^18.17.2",
+    "@types/node": "^18.17.3",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "date-fns": "2.30.0",
-    "dependency-cruiser": "^13.1.1",
+    "dependency-cruiser": "^13.1.2",
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^8.9.0",
     "eslint-plugin-node": "^11.1.0",
