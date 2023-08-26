@@ -26,8 +26,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^13.1.4
-    version: 13.1.4
+    specifier: ^13.1.5
+    version: 13.1.5
   eslint:
     specifier: ^8.47.0
     version: 8.47.0
@@ -1170,8 +1170,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@13.1.4:
-    resolution: {integrity: sha512-cMrtPuPxp+uqQMt196IJ8lgKQglu+dbTsWgGHV+Y0AkWYJISjByluA1YcmPjglzXB9innj0s+oEcGE/N6Jm4aA==}
+  /dependency-cruiser@13.1.5:
+    resolution: {integrity: sha512-+ADEHbORwoH4HGF/RIg2sCb5hjL6JU5sPsmnzxwY0508wpj+ZdWomzkaYsctsdf+OD+iVCijbxmcR3VMW2v16w==}
     engines: {node: ^16.14||>=18}
     hasBin: true
     dependencies:
@@ -1199,7 +1199,7 @@ packages:
       semver-try-require: 6.2.3
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.1.0
-      watskeburt: 0.12.1
+      watskeburt: 1.0.1
       wrap-ansi: 8.1.0
     dev: true
 
@@ -2851,8 +2851,8 @@ packages:
       xml-name-validator: 4.0.0
     dev: true
 
-  /watskeburt@0.12.1:
-    resolution: {integrity: sha512-DHfW+OGKYFTei2jtylJg6ZLCO9P9BHMsf9v4Z4QBvocfdJ0gY+Re7K4rPmpkSpfNLdhzsvovPIQ4z836yViTNA==}
+  /watskeburt@1.0.1:
+    resolution: {integrity: sha512-MOvC8vf3hAVo1HPF/pkba7065mt6A/P9unLlFvYhZ7Yyuht16tmfCYi/LqHABG4hIRMZCbvY8eDWHPy81eSADA==}
     engines: {node: ^16.14||>=18}
     hasBin: true
     dev: true
