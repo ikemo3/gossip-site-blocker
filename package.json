@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.244",
-    "@types/node": "^18.17.13",
+    "@types/node": "^18.17.14",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
     "date-fns": "2.30.0",
