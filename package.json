@@ -30,7 +30,7 @@
     "tabbyjs": "^12.0.3"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.244",
+    "@types/chrome": "0.0.245",
     "@types/node": "^18.17.14",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
@@ -48,5 +48,5 @@
     "vitest": "^0.34.3",
     "zip-a-folder": "2.0.0"
   },
-  "packageManager": "pnpm@8.7.1"
+  "packageManager": "pnpm@8.7.3"
 }
