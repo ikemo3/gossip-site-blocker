@@ -42,9 +42,10 @@ function showBlockedByBannedWords(): void {
     rows: 10,
   });
 
-  const topStuff = document.getElementById("topstuff") as HTMLDivElement;
-  topStuff.appendChild(textarea);
-  $.insertBefore(textarea, topStuff);
+  const bannedWordsDiv = document.getElementById(
+    "banned-words-div",
+  ) as HTMLDivElement;
+  bannedWordsDiv.appendChild(textarea);
 }
 
 async function appendTemporarilyUnblockAllAnchor(
@@ -72,25 +73,19 @@ async function appendShowBlockedByWordInfoAnchor(
 }
 
 async function createAppbarLinks(): Promise<void> {
-  const resultStats = document.getElementById("result-stats");
-  if (resultStats !== null) {
-    const resultStatsIsHidden =
-      getComputedStyle(resultStats.parentElement!).opacity === "0";
-    if (!resultStatsIsHidden) {
-      await appendTemporarilyUnblockAllAnchor(resultStats);
-      await appendShowBlockedByWordInfoAnchor(resultStats);
+  const topStuff = document.getElementById("topstuff");
+  if (topStuff !== null) {
+    const gsbToolbar = $.div();
+    gsbToolbar.setAttribute("id", "gsb-toolbar");
 
-      return;
-    }
-  }
+    await appendTemporarilyUnblockAllAnchor(topStuff);
+    await appendShowBlockedByWordInfoAnchor(topStuff);
+    const bannedWordsDiv = $.div();
+    bannedWordsDiv.setAttribute("id", "banned-words-div");
+    gsbToolbar.appendChild(bannedWordsDiv);
 
-  const menu = document.getElementById("hdtbMenus");
-  if (menu !== null && menu.style.display !== "none") {
-    const toolDiv = menu.querySelector("#tn_1");
-    if (toolDiv !== null) {
-      await appendTemporarilyUnblockAllAnchor(toolDiv);
-      await appendShowBlockedByWordInfoAnchor(toolDiv);
-    }
+    // insert gsbToolbar after topStuff
+    topStuff.parentElement!.insertBefore(gsbToolbar, topStuff.nextSibling);
   }
 }
 

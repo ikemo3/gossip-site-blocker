@@ -196,6 +196,7 @@ div[role="listitem"] {
 
 .gsb-anchor {
   cursor: pointer;
+  font-size: 14px;
 }
 
 .gsb-compact-menu-block-anchor {
