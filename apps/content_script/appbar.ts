@@ -78,8 +78,10 @@ async function createAppbarLinks(): Promise<void> {
     const gsbToolbar = $.div();
     gsbToolbar.setAttribute("id", "gsb-toolbar");
 
-    await appendTemporarilyUnblockAllAnchor(topStuff);
-    await appendShowBlockedByWordInfoAnchor(topStuff);
+    // create div for links
+    await appendTemporarilyUnblockAllAnchor(gsbToolbar);
+    await appendShowBlockedByWordInfoAnchor(gsbToolbar);
+
     const bannedWordsDiv = $.div();
     bannedWordsDiv.setAttribute("id", "banned-words-div");
     gsbToolbar.appendChild(bannedWordsDiv);
