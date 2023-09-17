@@ -78,6 +78,13 @@ async function createAppbarLinks(): Promise<void> {
     const gsbToolbar = $.div();
     gsbToolbar.setAttribute("id", "gsb-toolbar");
 
+    // add icon
+    const iconUrl = chrome.runtime.getURL("icons/icon-12.png");
+    const iconImg: HTMLImageElement = document.createElement("img");
+    iconImg.src = iconUrl;
+    iconImg.style.marginRight = "0.5rem";
+    gsbToolbar.appendChild(iconImg);
+
     // create div for links
     await appendTemporarilyUnblockAllAnchor(gsbToolbar);
     await appendShowBlockedByWordInfoAnchor(gsbToolbar);
