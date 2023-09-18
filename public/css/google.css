@@ -21,8 +21,8 @@ g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
 /**
  * Anchor immediately after not blocked element
  */
-div[role="listitem"] {
-  padding-bottom: 66px;
+.JJZKK.Wui1sd {
+  padding-bottom: 20px !important;
 }
 
 :not(g-inner-card):not([data-blocker-display="none"])
