@@ -18,7 +18,7 @@ export class GoogleImageTab extends SearchResultToBlock {
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
     return (
-      element.classList.contains("MSM1fd") &&
+      element.classList.contains("PNCib") &&
       documentURL.isGoogleSearchImageTab()
     );
   }

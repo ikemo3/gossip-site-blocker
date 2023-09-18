@@ -77,26 +77,43 @@ async function createAppbarLinks(): Promise<void> {
   if (topStuff !== null) {
     const gsbToolbar = $.div();
     gsbToolbar.setAttribute("id", "gsb-toolbar");
-
-    // add icon
-    const iconUrl = chrome.runtime.getURL("icons/icon-12.png");
-    const iconImg: HTMLImageElement = document.createElement("img");
-    iconImg.src = iconUrl;
-    iconImg.style.marginRight = "0.5rem";
-    gsbToolbar.appendChild(iconImg);
-
-    // create div for links
-    await appendTemporarilyUnblockAllAnchor(gsbToolbar);
-    await appendShowBlockedByWordInfoAnchor(gsbToolbar);
-
-    // create div for banned words
-    const bannedWordsDiv = $.div();
-    bannedWordsDiv.setAttribute("id", "banned-words-div");
-    gsbToolbar.appendChild(bannedWordsDiv);
+    await createAppbarContents(gsbToolbar);
 
     // insert gsbToolbar after topStuff
     topStuff.parentElement!.insertBefore(gsbToolbar, topStuff.nextSibling);
+    return;
   }
+
+  // for image search
+  const imageSearchDiv = document.querySelector("div.mJxzWe") as HTMLDivElement;
+  if (imageSearchDiv !== null) {
+    const gsbToolbar = $.div();
+    gsbToolbar.setAttribute("id", "gsb-toolbar");
+    gsbToolbar.style.paddingLeft = "20px";
+    await createAppbarContents(gsbToolbar);
+
+    // insert gsbToolbar before mJxzWe
+    imageSearchDiv.parentElement!.insertBefore(gsbToolbar, imageSearchDiv);
+    return;
+  }
+}
+
+async function createAppbarContents(gsbToolbar: HTMLDivElement): Promise<void> {
+  // add icon
+  const iconUrl = chrome.runtime.getURL("icons/icon-12.png");
+  const iconImg: HTMLImageElement = document.createElement("img");
+  iconImg.src = iconUrl;
+  iconImg.style.marginRight = "0.5rem";
+  gsbToolbar.appendChild(iconImg);
+
+  // create div for links
+  await appendTemporarilyUnblockAllAnchor(gsbToolbar);
+  await appendShowBlockedByWordInfoAnchor(gsbToolbar);
+
+  // create div for banned words
+  const bannedWordsDiv = $.div();
+  bannedWordsDiv.setAttribute("id", "banned-words-div");
+  gsbToolbar.appendChild(bannedWordsDiv);
 }
 
 export default createAppbarLinks;
