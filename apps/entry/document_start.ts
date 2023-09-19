@@ -49,13 +49,16 @@ type SearchResultToBlockType = ContentToBlockType &
     getMenuPosition: (defaultPosition: MenuPositionType) => MenuPositionType;
   };
 
-function blockElement(g: SearchResultToBlockType, options: Options): boolean {
+function blockElement(
+  g: SearchResultToBlockType,
+  options: Options,
+): { ended: boolean; reason?: BlockReason } {
   if (!g.canRetry()) {
-    return true;
+    return { ended: true };
   }
 
   if (!g.canBlock()) {
-    return false;
+    return { ended: false };
   }
 
   const blockState: BlockState = new BlockState(
@@ -66,13 +69,11 @@ function blockElement(g: SearchResultToBlockType, options: Options): boolean {
     options.autoBlockIDN,
   );
 
-  if (blockState.getReason()) {
-    window.blockReasons.push(blockState.getReason()!);
-  }
+  const reason = blockState.getReason();
 
   if (blockState.getState() === "hard") {
     g.deleteElement();
-    return true;
+    return { ended: true, reason };
   }
 
   const menuPosition = g.getMenuPosition(options.menuPosition);
@@ -83,7 +84,8 @@ function blockElement(g: SearchResultToBlockType, options: Options): boolean {
     options.defaultBlockType,
     menuPosition,
   );
-  return true;
+
+  return { ended: true, reason };
 }
 
 async function loadOption(): Promise<Options> {
@@ -141,8 +143,16 @@ observer.observe(document.documentElement, config);
 
 function processAddedNode(node: Element, documentURL: DocumentURL) {
   const blockTarget = processAddedNodeInternal(node, documentURL);
-  if (blockTarget && !blockElement(blockTarget, gsbOptions)) {
-    pendingsList.push(blockTarget);
+  if (blockTarget) {
+    const { ended, reason } = blockElement(blockTarget, gsbOptions);
+
+    if (reason) {
+      window.blockReasons.push(reason);
+    }
+
+    if (!ended) {
+      pendingsList.push(blockTarget);
+    }
   }
 }
 
