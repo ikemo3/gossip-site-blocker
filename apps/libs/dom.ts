@@ -240,4 +240,16 @@ export const $ = {
       return matched;
     });
   },
+
+  hasParentWithClass(baseElement: Element, className: string): boolean {
+    let element: Element | null = baseElement;
+    while (element) {
+      if (element.classList && element.classList.contains(className)) {
+        return true;
+      }
+      element = element.parentElement;
+    }
+
+    return false;
+  },
 };
