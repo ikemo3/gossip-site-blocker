@@ -1,6 +1,7 @@
 import { SearchResultToBlock } from "./block";
 import DocumentURL from "../values/document_url";
 import GoogleSearchURL from "../values/google_search_url";
+import { $ } from "../libs/dom";
 
 // noinspection SpellCheckingInspection
 const CONTENT_SELECTOR = ".IsZvec";
@@ -21,7 +22,15 @@ export class GoogleSearchResult extends SearchResultToBlock {
   private readonly compactMenuInsertElement: Element;
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-    return element.classList.contains("g") && documentURL.isGoogleSearch();
+    if (element.classList.contains("g") && documentURL.isGoogleSearch()) {
+      if ($.hasParentWithClass(element, "related-question-pair")) {
+        return false;
+      }
+
+      return true;
+    }
+
+    return false;
   }
 
   // noinspection DuplicatedCode
