@@ -1,9 +1,10 @@
 import { Logger } from "../libs/logger";
 import { ChromeStorage } from "./chrome_storage";
 import BlockedSites from "../model/blocked_sites";
-import { BannedWord } from "./banned_words";
-import { RegExpItem } from "./regexp_repository";
+import { BannedWord, BannedWordRepository } from "./banned_words";
+import { RegExpItem, RegExpRepository } from "./regexp_repository";
 import { MenuPositionType } from "./enums";
+import BlockedSitesRepository from "./blocked_sites";
 
 export interface OptionInterface<T> {
   load: () => Promise<T>;
@@ -169,4 +170,33 @@ export interface Options {
   blockGoogleNewsTab: boolean;
   blockGoogleImagesTab: boolean;
   blockGoogleSearchMovie: boolean;
+}
+
+export async function loadOption(): Promise<Options> {
+  await DeveloperMode.load();
+
+  const blockedSites = await BlockedSitesRepository.load();
+  const bannedWords = await BannedWordRepository.load();
+  const regexpList = await RegExpRepository.load();
+  const autoBlockIDN = await AutoBlockIDN.load();
+  const defaultBlockType = await DefaultBlockType.load();
+  const menuPosition = await MenuPosition.load();
+  const bannedWordOption = await ShowBlockedByWordInfo.load();
+  const blockGoogleNewsTab = await BlockGoogleNewsTab.load();
+  const blockGoogleImagesTab = await BlockGoogleImagesTab.load();
+  const blockGoogleSearchMovie = await BlockGoogleSearchMovie.load();
+  Logger.debug("autoBlockIDNOption:", autoBlockIDN);
+
+  return {
+    blockedSites,
+    bannedWords,
+    regexpList,
+    autoBlockIDN,
+    defaultBlockType,
+    menuPosition,
+    bannedWordOption,
+    blockGoogleNewsTab,
+    blockGoogleImagesTab,
+    blockGoogleSearchMovie,
+  };
 }

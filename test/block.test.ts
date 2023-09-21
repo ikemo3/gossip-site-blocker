@@ -1,7 +1,5 @@
-import {
-  containsInTitle,
-  containsInTitleOrContents,
-} from "../apps/block/block";
+import { containsInTitleOrContents } from "../apps/block/libs";
+import { containsInTitle } from "../apps/block/libs";
 import { KeywordType } from "../apps/storage/enums";
 import { describe, it, expect } from "vitest";
 
