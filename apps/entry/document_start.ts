@@ -14,11 +14,6 @@ import {
 import { Logger } from "../libs/logger";
 import { BlockReason } from "../model/block_reason";
 import BlockedSitesRepository from "../storage/blocked_sites";
-import BlockState, { ContentToBlockType } from "../content_script/block_state";
-import {
-  BlockMediator,
-  BlockMediatorType,
-} from "../content_script/block_mediator";
 import { GoogleSearchResult } from "../block/google_search_result";
 import { GoogleSearchInnerCard } from "../block/google_search_inner_card";
 import { GoogleSearchTopNews } from "../block/google_search_top_news";
@@ -28,8 +23,8 @@ import { GoogleNewsResult } from "../block/google_news_result";
 import { GoogleImageTab } from "../block/google_image_tab";
 import { GoogleSearchMovie } from "../block/google_search_movie";
 import DocumentURL from "../values/document_url";
-import { MenuPositionType } from "../storage/enums";
 import { SearchResultToBlock } from "../block/block";
+import { blockElement } from "../content_script/block_element";
 
 declare global {
   interface Window {
@@ -40,53 +35,6 @@ declare global {
 window.blockReasons = [];
 
 const pendingsList: SearchResultToBlock[] = [];
-
-type SearchResultToBlockType = ContentToBlockType &
-  BlockMediatorType & {
-    canRetry: () => boolean;
-    canBlock: () => boolean;
-    deleteElement: () => void;
-    getMenuPosition: (defaultPosition: MenuPositionType) => MenuPositionType;
-  };
-
-function blockElement(
-  g: SearchResultToBlockType,
-  options: Options,
-): { ended: boolean; reason?: BlockReason } {
-  if (!g.canRetry()) {
-    return { ended: true };
-  }
-
-  if (!g.canBlock()) {
-    return { ended: false };
-  }
-
-  const blockState: BlockState = new BlockState(
-    g,
-    options.blockedSites,
-    options.bannedWords,
-    options.regexpList,
-    options.autoBlockIDN,
-  );
-
-  const reason = blockState.getReason();
-
-  if (blockState.getState() === "hard") {
-    g.deleteElement();
-    return { ended: true, reason };
-  }
-
-  const menuPosition = g.getMenuPosition(options.menuPosition);
-
-  const _ = new BlockMediator(
-    g,
-    blockState,
-    options.defaultBlockType,
-    menuPosition,
-  );
-
-  return { ended: true, reason };
-}
 
 async function loadOption(): Promise<Options> {
   await DeveloperMode.load();
