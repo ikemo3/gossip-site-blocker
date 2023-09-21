@@ -7,7 +7,7 @@ import { BannedWord } from "../apps/storage/banned_words";
 import BlockState from "../apps/content_script/block_state";
 import { RegExpItem } from "../apps/storage/regexp_repository";
 import { BlockReasonType } from "../apps/model/block_reason";
-import { ContentToBlock } from "../apps/block/block";
+import { ContentToBlock } from "../apps/block/contents";
 import { BannedTarget, BlockType, KeywordType } from "../apps/storage/enums";
 import { describe, it, expect } from "vitest";
 

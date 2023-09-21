@@ -1,5 +1,6 @@
 import { KeywordType, MenuPositionType } from "../storage/enums";
-import { Logger } from "../libs/logger";
+import { containsInTitle } from "./libs";
+import { containsInTitleOrContents } from "./libs";
 
 export interface ContentToBlock {
   getUrl(): string;
@@ -7,49 +8,6 @@ export interface ContentToBlock {
   contains(keyword: string, keywordType: KeywordType): boolean;
 
   containsInTitle(keyword: string, keywordType: KeywordType): boolean;
-}
-
-function matchesByRegExp(contents: string, keyword: string): boolean {
-  try {
-    const regexp = new RegExp(keyword);
-    return regexp.test(contents);
-  } catch (e) {
-    Logger.log(`Invalid regexp: ${keyword}`);
-    return false;
-  }
-}
-
-export function containsInTitleOrContents(
-  keywordType: KeywordType,
-  keyword: string,
-  title: string,
-  contents: string,
-) {
-  if (keywordType === KeywordType.REGEXP) {
-    if (matchesByRegExp(title, keyword)) {
-      return true;
-    }
-
-    return matchesByRegExp(contents, keyword);
-  }
-
-  if (title.includes(keyword)) {
-    return true;
-  }
-
-  return contents.includes(keyword);
-}
-
-export function containsInTitle(
-  keywordType: KeywordType,
-  keyword: string,
-  title: string,
-) {
-  if (keywordType === KeywordType.REGEXP) {
-    return matchesByRegExp(title, keyword);
-  }
-
-  return title.includes(keyword);
 }
 
 export abstract class SearchResultToBlock implements ContentToBlock {

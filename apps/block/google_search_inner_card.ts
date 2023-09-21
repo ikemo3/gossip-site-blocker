@@ -1,4 +1,4 @@
-import { SearchResultToBlock } from "./block";
+import { SearchResultToBlock } from "./contents";
 import DocumentURL from "../values/document_url";
 
 export class GoogleSearchInnerCard extends SearchResultToBlock {

@@ -1,4 +1,4 @@
-import { SearchResultToBlock } from "./block";
+import { SearchResultToBlock } from "./contents";
 import DocumentURL from "../values/document_url";
 import { MenuPositionType } from "../storage/enums";
 import { Logger } from "../libs/logger";

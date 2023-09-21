@@ -1,4 +1,4 @@
-import { SearchResultToBlock } from "./block";
+import { SearchResultToBlock } from "./contents";
 import DocumentURL from "../values/document_url";
 import GoogleSearchURL from "../values/google_search_url";
 import { $ } from "../libs/dom";
