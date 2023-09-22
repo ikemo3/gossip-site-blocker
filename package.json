@@ -27,7 +27,8 @@
     "test:ci": "vitest run"
   },
   "dependencies": {
-    "tabbyjs": "^12.0.3"
+    "tabbyjs": "^12.0.3",
+    "vanjs-core": "^1.2.1"
   },
   "devDependencies": {
     "@types/chrome": "0.0.246",
