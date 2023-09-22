@@ -3,7 +3,7 @@
     "esModuleInterop": true,
     "alwaysStrict": false,
     "module": "es2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "sourceMap": true,
     "skipLibCheck": true,
     "strict": true,
