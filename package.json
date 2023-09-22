@@ -32,9 +32,9 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.246",
-    "@types/node": "^18.17.15",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
+    "@types/node": "^18.17.18",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
     "date-fns": "2.30.0",
     "dependency-cruiser": "^13.1.5",
     "eslint": "^8.49.0",
@@ -46,8 +46,8 @@
     "tsx": "^3.12.10",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vitest": "^0.34.4",
+    "vitest": "^0.34.5",
     "zip-a-folder": "3.1.3"
   },
-  "packageManager": "pnpm@8.7.5"
+  "packageManager": "pnpm@8.7.6"
 }
