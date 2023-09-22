@@ -22,7 +22,7 @@ g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
  * Anchor immediately after not blocked element
  */
 .JJZKK.Wui1sd {
-  padding-bottom: 20px !important;
+  padding-bottom: 64px !important;
 }
 
 :not(g-inner-card):not([data-blocker-display="none"])
