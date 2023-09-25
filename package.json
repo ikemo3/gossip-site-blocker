@@ -33,8 +33,8 @@
   "devDependencies": {
     "@types/chrome": "0.0.246",
     "@types/node": "^18.17.19",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
     "date-fns": "2.30.0",
     "dependency-cruiser": "^13.1.5",
     "eslint": "^8.49.0",
