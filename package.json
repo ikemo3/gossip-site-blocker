@@ -42,7 +42,7 @@
     "eslint-plugin-node": "^11.1.0",
     "jsdom": "^22.1.0",
     "prettier": "^3.0.3",
-    "sort-package-json": "^2.5.1",
+    "sort-package-json": "^2.6.0",
     "tsx": "^3.13.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
