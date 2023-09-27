@@ -4,6 +4,8 @@ import { Logger } from "../../libs/logger";
 import { BannedWordRepository, BannedWord } from "../../storage/banned_words";
 import { createSelectOption } from "../../libs/select";
 import { BannedTarget, BlockType, KeywordType } from "../../storage/enums";
+import van from "vanjs-core";
+const { div, input } = van.tags;
 
 export function toBlockType(value: string): BlockType {
   switch (value) {
@@ -86,13 +88,13 @@ export default class BannedWords {
   }
 
   private createWidget(word: BannedWord): void {
-    const wordDiv: HTMLDivElement = document.createElement("div");
-
-    const input: HTMLInputElement = document.createElement("input");
-    input.type = "text";
-    input.value = word.keyword;
-    input.readOnly = true;
-    wordDiv.appendChild(input);
+    const wordDiv = div(
+      input({
+        type: "text",
+        value: word.keyword,
+        readOnly: true,
+      }),
+    );
 
     const deleteButton: HTMLInputElement = $.button(
       $.message("bannedWordDeleteButton"),
