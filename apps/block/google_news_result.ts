@@ -34,10 +34,10 @@ export class GoogleNewsResult extends SearchResultToBlock {
       return;
     }
 
-    let href = anchor.getAttribute("href") as string;
+    let href = anchor.getAttribute("href");
 
     // firefox, coccoc, ...
-    if (href.startsWith("/url?")) {
+    if (href?.startsWith("/url?")) {
       const matchData = href.match("&url=(.*)&");
       if (matchData !== null) {
         [href] = matchData;
@@ -67,7 +67,7 @@ export class GoogleNewsResult extends SearchResultToBlock {
     );
     this.valid = true;
     this._canRetry = true;
-    this.url = href;
+    this.url = href !== null ? href : "";
     this.title = title;
     this.contents = contents;
 
