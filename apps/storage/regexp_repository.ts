@@ -2,10 +2,6 @@ import { Logger } from "../libs/logger";
 import { ChromeStorage } from "./chrome_storage";
 import { BlockType } from "./enums";
 
-interface RegExpItemList {
-  regexpList: RegExpItem[];
-}
-
 export interface RegExpItem {
   pattern: string;
   blockType: BlockType;
@@ -13,9 +9,9 @@ export interface RegExpItem {
 
 export const RegExpRepository = {
   async load(): Promise<RegExpItem[]> {
-    const items = (await ChromeStorage.get({
+    const items = await ChromeStorage.get({
       regexpList: [],
-    })) as RegExpItemList;
+    });
 
     const itemsCopy = items.regexpList;
 
