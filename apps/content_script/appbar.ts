@@ -42,10 +42,8 @@ function showBlockedByBannedWords(): void {
     rows: 10,
   });
 
-  const bannedWordsDiv = document.getElementById(
-    "banned-words-div",
-  ) as HTMLDivElement;
-  bannedWordsDiv.appendChild(textarea);
+  const bannedWordsDiv = document.getElementById("banned-words-div");
+  bannedWordsDiv?.appendChild(textarea);
 }
 
 async function appendTemporarilyUnblockAllAnchor(
@@ -85,7 +83,7 @@ async function createAppbarLinks(): Promise<void> {
   }
 
   // for image search
-  const imageSearchDiv = document.querySelector("div.mJxzWe") as HTMLDivElement;
+  const imageSearchDiv = document.querySelector("div.mJxzWe");
   if (imageSearchDiv !== null) {
     const gsbToolbar = $.div();
     gsbToolbar.setAttribute("id", "gsb-toolbar");
