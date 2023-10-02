@@ -67,7 +67,7 @@ export class GoogleNewsResult extends SearchResultToBlock {
     );
     this.valid = true;
     this._canRetry = true;
-    this.url = href !== null ? href : "";
+    this.url = href ? href : "";
     this.title = title;
     this.contents = contents;
 
