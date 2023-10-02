@@ -22,19 +22,15 @@ function getCurrentTab(): Promise<chrome.tabs.Tab> {
 
 const exceptIkagadesitakaDiv = document.getElementById(
   "exceptIkagadesitakaDiv",
-) as HTMLDivElement;
+);
 const exceptIkagadesitakaButton = document.getElementById(
   "exceptIkagadesitakaButton",
-) as HTMLButtonElement;
-const searchInEnglishDiv = document.getElementById(
-  "searchInEnglishDiv",
-) as HTMLDivElement;
-const searchInEnglishButton = document.getElementById(
-  "searchInEnglishButton",
-) as HTMLButtonElement;
-const optionLink = document.getElementById("optionLink") as HTMLAnchorElement;
+);
+const searchInEnglishDiv = document.getElementById("searchInEnglishDiv");
+const searchInEnglishButton = document.getElementById("searchInEnglishButton");
+const optionLink = document.getElementById("optionLink");
 
-searchInEnglishButton.addEventListener("click", async () => {
+searchInEnglishButton?.addEventListener("click", async () => {
   const currentTab = await getCurrentTab();
   const { url } = currentTab;
 
@@ -48,7 +44,7 @@ searchInEnglishButton.addEventListener("click", async () => {
   });
 });
 
-exceptIkagadesitakaButton.addEventListener("click", async () => {
+exceptIkagadesitakaButton?.addEventListener("click", async () => {
   const currentTab = await getCurrentTab();
   const url = new URL(currentTab.url!);
   const q = url.searchParams.get("q");
@@ -58,7 +54,7 @@ exceptIkagadesitakaButton.addEventListener("click", async () => {
   chrome.tabs.update(currentTab.id!, { url: url.toString() });
 });
 
-optionLink.addEventListener("click", () => {
+optionLink?.addEventListener("click", () => {
   chrome.runtime.openOptionsPage();
 });
 
@@ -89,15 +85,27 @@ class PopupMediator implements IBasicBlockMediator {
 
   if (isGoogleSearch) {
     if (lang.startsWith("ja")) {
-      exceptIkagadesitakaDiv.style.display = "block";
-      searchInEnglishDiv.style.display = "block";
+      if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
+        exceptIkagadesitakaDiv.style.display = "block";
+      }
+      if (searchInEnglishDiv instanceof HTMLDivElement) {
+        searchInEnglishDiv.style.display = "block";
+      }
     } else {
-      exceptIkagadesitakaDiv.style.display = "none";
-      searchInEnglishDiv.style.display = "block";
+      if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
+        exceptIkagadesitakaDiv.style.display = "none";
+      }
+      if (searchInEnglishDiv instanceof HTMLDivElement) {
+        searchInEnglishDiv.style.display = "block";
+      }
     }
   } else {
-    exceptIkagadesitakaDiv.style.display = "none";
-    searchInEnglishDiv.style.display = "none";
+    if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
+      exceptIkagadesitakaDiv.style.display = "none";
+    }
+    if (searchInEnglishDiv instanceof HTMLDivElement) {
+      searchInEnglishDiv.style.display = "none";
+    }
 
     const mediator = new PopupMediator();
     const _ = new BlockDialog(mediator, url, defaultBlockType);
