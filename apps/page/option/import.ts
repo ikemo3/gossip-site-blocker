@@ -50,14 +50,12 @@ async function importClicked(): Promise<void> {
   /**
    * @type {HTMLTextAreaElement}
    */
-  const textArea = document.getElementById(
-    "importTextArea",
-  ) as HTMLTextAreaElement;
-  const text = textArea.value;
-  const lines = text.split("\n").filter((line) => line !== "");
+  const textArea = document.getElementById("importTextArea");
+  if (textArea instanceof HTMLTextAreaElement) {
+    const text = textArea.value;
+    const lines = text.split("\n").filter((line) => line !== "");
 
-  const blockList = lines
-    .map((line) => {
+    const blockList = lines.map((line) => {
       const cols = line.split(" ");
       switch (cols.length) {
         case 1:
@@ -74,26 +72,30 @@ async function importClicked(): Promise<void> {
           return new BlockedSite(cols[0], type);
         }
       }
-    })
-    .filter((block) => block !== undefined) as BlockedSite[];
+    });
 
-  await BlockedSitesRepository.addAll(blockList);
+    const filteredBlockList = blockList.filter(
+      (block): block is BlockedSite => block !== undefined,
+    );
 
-  const bannedWordList = lines
-    .map((line) => lineToBannedWord(line))
-    .filter((banned) => banned !== undefined) as BannedWord[];
+    await BlockedSitesRepository.addAll(filteredBlockList);
 
-  await BannedWordRepository.addAll(bannedWordList);
+    const bannedWordList = lines
+      .map((line) => lineToBannedWord(line))
+      .filter((banned) => banned !== undefined) as BannedWord[];
 
-  // regexp
-  const regexpList = lines
-    .map((line) => lineToRegexp(line))
-    .filter((regexp) => regexp !== null) as RegExpItem[];
+    await BannedWordRepository.addAll(bannedWordList);
 
-  await RegExpRepository.addAll(regexpList);
+    // regexp
+    const regexpList = lines
+      .map((line) => lineToRegexp(line))
+      .filter((regexp) => regexp !== null) as RegExpItem[];
 
-  // eslint-disable-next-line no-alert
-  alert(chrome.i18n.getMessage("importCompleted"));
+    await RegExpRepository.addAll(regexpList);
+
+    // eslint-disable-next-line no-alert
+    alert(chrome.i18n.getMessage("importCompleted"));
+  }
 }
 
 export default importClicked;
