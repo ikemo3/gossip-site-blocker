@@ -21,13 +21,9 @@ import localizeHtmlPage from "../page/option/l10n";
 import exportClicked from "../page/option/export";
 import importClicked from "../page/option/import";
 
-const softBlockList = document.getElementById(
-  "softBlockList",
-) as HTMLDivElement;
-const hardBlockList = document.getElementById(
-  "hardBlockList",
-) as HTMLDivElement;
-const clearButton = document.getElementById("clearButton") as HTMLInputElement;
+const softBlockList = document.getElementById("softBlockList");
+const hardBlockList = document.getElementById("hardBlockList");
+const clearButton = document.getElementById("clearButton");
 
 async function initCheckbox(
   id: string,
@@ -72,8 +68,13 @@ async function showLists(): Promise<void> {
   const sites = await BlockedSitesRepository.load();
 
   // Add after clear.
-  softBlockList.innerHTML = "";
-  hardBlockList.innerHTML = "";
+  if (softBlockList instanceof HTMLDivElement) {
+    softBlockList.innerHTML = "";
+  }
+
+  if (hardBlockList instanceof HTMLDivElement) {
+    hardBlockList.innerHTML = "";
+  }
 
   const softTable = document.createElement("table");
   const hardTable = document.createElement("table");
@@ -87,8 +88,8 @@ async function showLists(): Promise<void> {
     }
   }
 
-  softBlockList.appendChild(softTable);
-  hardBlockList.appendChild(hardTable);
+  softBlockList?.appendChild(softTable);
+  hardBlockList?.appendChild(hardTable);
 }
 
 async function clear(): Promise<void> {
@@ -102,15 +103,19 @@ async function clear(): Promise<void> {
     alert(chrome.i18n.getMessage("clearDone"));
 
     // clear all.
-    softBlockList.innerHTML = "";
-    hardBlockList.innerHTML = "";
+    if (softBlockList instanceof HTMLDivElement) {
+      softBlockList.innerHTML = "";
+    }
+    if (hardBlockList instanceof HTMLDivElement) {
+      hardBlockList.innerHTML = "";
+    }
     bannedWords.clear();
     regexpList.clear();
   }
 }
 
 // bind event.
-clearButton.addEventListener("click", clear);
+clearButton?.addEventListener("click", clear);
 
 document.addEventListener("DOMContentLoaded", async (_) => {
   await showLists();
