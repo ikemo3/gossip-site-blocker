@@ -2,15 +2,6 @@ import { ChromeStorage } from "./chrome_storage";
 import BlockedSites from "../model/blocked_sites";
 import BlockedSite from "../model/blocked_site";
 
-interface BlockedSiteData {
-  url: string;
-  block_type: string;
-}
-
-interface BlockedSitesListData {
-  blocked: BlockedSiteData[];
-}
-
 const BlockedSitesRepository = {
   /**
    * load values as Array.
@@ -18,9 +9,9 @@ const BlockedSitesRepository = {
    * @returns {Promise<Array<BlockedSite>>}
    */
   async loadData(): Promise<Array<BlockedSite>> {
-    const items = (await ChromeStorage.get({
+    const items = await ChromeStorage.get({
       blocked: [],
-    })) as BlockedSitesListData;
+    });
 
     const sites = [];
 
