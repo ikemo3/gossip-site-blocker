@@ -2,10 +2,6 @@ import { Logger } from "../libs/logger";
 import { ChromeStorage } from "./chrome_storage";
 import { BannedTarget, BlockType, KeywordType } from "./enums";
 
-interface BannedWordItems {
-  bannedWords: BannedWord[];
-}
-
 export interface BannedWord {
   keyword: string;
   blockType: BlockType;
@@ -15,9 +11,9 @@ export interface BannedWord {
 
 export const BannedWordRepository = {
   async load(): Promise<BannedWord[]> {
-    const items = (await ChromeStorage.get({
+    const items = await ChromeStorage.get({
       bannedWords: [],
-    })) as BannedWordItems;
+    });
 
     const itemsCopy = items.bannedWords;
     for (const item of itemsCopy) {
