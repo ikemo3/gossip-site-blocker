@@ -65,9 +65,17 @@ export class GoogleNewsSectionWithHeader extends SearchResultToBlock {
       "data-gsb-element-type",
       "google-news-section-with-header",
     );
-    this.valid = true;
-    this._canRetry = true;
-    this.url = href ? href : "";
+
+    if (href === null) {
+      Logger.debug("news top: href not found", this.getElement());
+      this.valid = false;
+      this._canRetry = false;
+      return;
+    } else {
+      this.valid = true;
+      this._canRetry = true;
+      this.url = href;
+    }
     this.title = title;
     this.contents = contents;
 
