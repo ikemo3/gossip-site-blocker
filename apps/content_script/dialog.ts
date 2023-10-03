@@ -268,10 +268,10 @@ class BlockDialog {
   public async block(): Promise<void> {
     const selected = document.querySelector(
       'input[name="block-url-type"]:checked',
-    ) as HTMLInputElement;
+    );
 
     // ignore when not selected.
-    if (!selected) {
+    if (!(selected instanceof HTMLInputElement)) {
       return;
     }
 
