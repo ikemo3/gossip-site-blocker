@@ -70,10 +70,14 @@ async function showLists(): Promise<void> {
   // Add after clear.
   if (softBlockList instanceof HTMLDivElement) {
     softBlockList.innerHTML = "";
+  } else {
+    throw new Error("softBlockList is not HTMLDivElement");
   }
 
   if (hardBlockList instanceof HTMLDivElement) {
     hardBlockList.innerHTML = "";
+  } else {
+    throw new Error("hardBlockList is not HTMLDivElement");
   }
 
   const softTable = document.createElement("table");
@@ -105,9 +109,13 @@ async function clear(): Promise<void> {
     // clear all.
     if (softBlockList instanceof HTMLDivElement) {
       softBlockList.innerHTML = "";
+    } else {
+      throw new Error("softBlockList is not HTMLDivElement");
     }
     if (hardBlockList instanceof HTMLDivElement) {
       hardBlockList.innerHTML = "";
+    } else {
+      throw new Error("hardBlockList is not HTMLDivElement");
     }
     bannedWords.clear();
     regexpList.clear();
