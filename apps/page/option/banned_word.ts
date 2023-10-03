@@ -44,7 +44,7 @@ export default class BannedWords {
       if (this.addText instanceof HTMLInputElement) {
         const word = this.addText.value;
         if (word === "") {
-          return;
+          throw new Error("bannedWordAddText is not HTMLInputElement");
         }
 
         const added: boolean = await BannedWordRepository.add(word);
@@ -59,6 +59,8 @@ export default class BannedWords {
         }
 
         this.addText.value = "";
+      } else {
+        throw new Error("bannedWordAddText is not HTMLInputElement");
       }
     });
   }
@@ -76,6 +78,8 @@ export default class BannedWords {
   public clear(): void {
     if (this.wordList instanceof HTMLDivElement) {
       this.wordList.innerHTML = "";
+    } else {
+      Logger.debug("bannedWordList is not HTMLDivElement");
     }
   }
 
@@ -87,6 +91,8 @@ export default class BannedWords {
       for (const word of words) {
         this.createWidget(word);
       }
+    } else {
+      Logger.debug("bannedWordList is not HTMLDivElement");
     }
   }
 
@@ -160,11 +166,13 @@ export default class BannedWords {
     wordDiv.appendChild(br);
     if (this.wordList instanceof HTMLDivElement) {
       this.wordList.appendChild(wordDiv);
+    } else {
+      Logger.debug("bannedWordList is not HTMLDivElement");
     }
   }
 
   private async changeType(keyword: string, ev: Event): Promise<void> {
-    const typeSelect = ev.target as HTMLSelectElement;
+    const typeSelect = ev.target;
     if (typeSelect instanceof HTMLSelectElement) {
       const index = typeSelect.selectedIndex;
       const { value } = typeSelect.options[index];
@@ -178,6 +186,8 @@ export default class BannedWords {
         default:
           throw new ApplicationError(`unknown value:${value}`);
       }
+    } else {
+      throw new Error("typeSelect is not HTMLSelectElement");
     }
   }
 
@@ -203,6 +213,8 @@ export default class BannedWords {
         default:
           throw new ApplicationError(`unknown value:${value}`);
       }
+    } else {
+      throw new Error("targetSelect is not HTMLSelectElement");
     }
   }
 
