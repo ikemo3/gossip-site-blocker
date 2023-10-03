@@ -37,10 +37,10 @@ export class GoogleNewsSectionWithHeader extends SearchResultToBlock {
       return;
     }
 
-    let href = anchor.getAttribute("href") as string;
+    let href = anchor.getAttribute("href");
 
     // firefox, coccoc, ...
-    if (href.startsWith("/url?")) {
+    if (href?.startsWith("/url?")) {
       const matchData = href.match("&url=(.*)&");
       if (matchData !== null) {
         [href] = matchData;
@@ -65,9 +65,17 @@ export class GoogleNewsSectionWithHeader extends SearchResultToBlock {
       "data-gsb-element-type",
       "google-news-section-with-header",
     );
-    this.valid = true;
-    this._canRetry = true;
-    this.url = href;
+
+    if (href === null) {
+      Logger.debug("news top: href not found", this.getElement());
+      this.valid = false;
+      this._canRetry = false;
+      return;
+    } else {
+      this.valid = true;
+      this._canRetry = true;
+      this.url = href;
+    }
     this.title = title;
     this.contents = contents;
 
