@@ -69,11 +69,11 @@ export class GoogleNewsResult extends SearchResultToBlock {
     if (href === null) {
       Logger.debug("news top: href not found", this.getElement());
       this.valid = false;
-      this._canRetry = true;
+      this._canRetry = false;
       return;
     } else {
       this.valid = true;
-      this._canRetry = false;
+      this._canRetry = true;
       this.url = href;
     }
 
