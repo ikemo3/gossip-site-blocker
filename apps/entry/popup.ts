@@ -5,6 +5,7 @@ import { IBasicBlockMediator } from "../content_script/mediator";
 import localizeHtmlPage from "../page/option/l10n";
 import DocumentURL from "../values/document_url";
 import { DefaultBlockType } from "../storage/options";
+import { Logger } from "../libs/logger";
 
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
   return new Promise((resolve, reject) => {
@@ -87,24 +88,36 @@ class PopupMediator implements IBasicBlockMediator {
     if (lang.startsWith("ja")) {
       if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
         exceptIkagadesitakaDiv.style.display = "block";
+      } else {
+        Logger.debug("exceptIkagadesitakaDiv is not HTMLDivElement");
       }
       if (searchInEnglishDiv instanceof HTMLDivElement) {
         searchInEnglishDiv.style.display = "block";
+      } else {
+        Logger.debug("searchInEnglishDiv is not HTMLDivElement");
       }
     } else {
       if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
         exceptIkagadesitakaDiv.style.display = "none";
+      } else {
+        Logger.debug("exceptIkagadesitakaDiv is not HTMLDivElement");
       }
       if (searchInEnglishDiv instanceof HTMLDivElement) {
         searchInEnglishDiv.style.display = "block";
+      } else {
+        Logger.debug("searchInEnglishDiv is not HTMLDivElement");
       }
     }
   } else {
     if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
       exceptIkagadesitakaDiv.style.display = "none";
+    } else {
+      Logger.debug("exceptIkagadesitakaDiv is not HTMLDivElement");
     }
     if (searchInEnglishDiv instanceof HTMLDivElement) {
       searchInEnglishDiv.style.display = "none";
+    } else {
+      Logger.debug("searchInEnglishDiv is not HTMLDivElement");
     }
 
     const mediator = new PopupMediator();
