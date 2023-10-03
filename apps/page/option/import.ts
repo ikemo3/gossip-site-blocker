@@ -95,6 +95,8 @@ async function importClicked(): Promise<void> {
 
     // eslint-disable-next-line no-alert
     alert(chrome.i18n.getMessage("importCompleted"));
+  } else {
+    throw new Error("importTextArea is not HTMLTextAreaElement");
   }
 }
 
