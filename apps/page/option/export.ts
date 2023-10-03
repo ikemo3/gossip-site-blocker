@@ -42,6 +42,8 @@ async function exportClicked(): Promise<void> {
 
   if (exportTextArea instanceof HTMLTextAreaElement) {
     exportTextArea.value = `${allLines.join("\n")}\n`;
+  } else {
+    throw new Error("exportTextArea is not HTMLTextAreaElement");
   }
 }
 
