@@ -44,12 +44,12 @@ function showBlockedByBannedWords(): void {
   });
 
   const bannedWordsDiv = document.getElementById("banned-words-div");
+
   if (bannedWordsDiv === null) {
-    Logger.debug("topstuff: no banned words div found");
-    return;
-  } else {
-    bannedWordsDiv.appendChild(textarea);
+    throw new Error("topstuff: no banned words div found");
   }
+
+  bannedWordsDiv.appendChild(textarea);
 }
 
 async function appendTemporarilyUnblockAllAnchor(
