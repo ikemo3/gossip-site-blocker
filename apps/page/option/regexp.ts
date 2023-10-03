@@ -2,6 +2,7 @@ import { RegExpItem, RegExpRepository } from "../../storage/regexp_repository";
 import { $ } from "../../libs/dom";
 import { ApplicationError } from "../../libs/error";
 import { BlockType } from "../../storage/enums";
+import { Logger } from "../../libs/logger";
 
 class RegExpList {
   private readonly regexpList;
@@ -30,6 +31,8 @@ class RegExpList {
   public clear(): void {
     if (this.regexpList instanceof HTMLDivElement) {
       this.regexpList.innerHTML = "";
+    } else {
+      Logger.debug("regexpList is not HTMLDivElement!");
     }
   }
 
@@ -85,6 +88,8 @@ class RegExpList {
 
       // clear text
       this.addText.value = "";
+    } else {
+      throw new Error("addText is not HTMLInputElement");
     }
   }
 
@@ -104,6 +109,8 @@ class RegExpList {
         default:
           throw new ApplicationError(`unknown value:${value}`);
       }
+    } else {
+      throw new Error("typeSelect is not HTMLSelectElement");
     }
   }
 
