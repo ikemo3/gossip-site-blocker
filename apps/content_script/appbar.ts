@@ -1,4 +1,5 @@
 import { $ } from "../libs/dom";
+import { Logger } from "../libs/logger";
 import { BlockReasonType } from "../model/block_reason";
 import {
   DisplayTemporarilyUnblockAll,
@@ -42,9 +43,12 @@ function showBlockedByBannedWords(): void {
     rows: 10,
   });
 
-  const bannedWordsDiv = document.getElementById(
-    "banned-words-div",
-  ) as HTMLDivElement;
+  const bannedWordsDiv = document.getElementById("banned-words-div");
+
+  if (bannedWordsDiv === null) {
+    throw new Error("topstuff: no banned words div found");
+  }
+
   bannedWordsDiv.appendChild(textarea);
 }
 
@@ -85,7 +89,7 @@ async function createAppbarLinks(): Promise<void> {
   }
 
   // for image search
-  const imageSearchDiv = document.querySelector("div.mJxzWe") as HTMLDivElement;
+  const imageSearchDiv = document.querySelector("div.mJxzWe");
   if (imageSearchDiv !== null) {
     const gsbToolbar = $.div();
     gsbToolbar.setAttribute("id", "gsb-toolbar");
@@ -94,6 +98,9 @@ async function createAppbarLinks(): Promise<void> {
 
     // insert gsbToolbar before mJxzWe
     imageSearchDiv.parentElement!.insertBefore(gsbToolbar, imageSearchDiv);
+    return;
+  } else {
+    Logger.debug("topstuff: no image search div found");
     return;
   }
 }
