@@ -65,9 +65,18 @@ export class GoogleNewsResult extends SearchResultToBlock {
       "data-gsb-element-type",
       "google-news-tab-top",
     );
-    this.valid = true;
-    this._canRetry = true;
-    this.url = href ? href : "";
+
+    if (href === null) {
+      Logger.debug("news top: href not found", this.getElement());
+      this.valid = false;
+      this._canRetry = true;
+      return;
+    } else {
+      this.valid = true;
+      this._canRetry = false;
+      this.url = href;
+    }
+
     this.title = title;
     this.contents = contents;
 
