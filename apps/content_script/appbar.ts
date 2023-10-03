@@ -1,4 +1,5 @@
 import { $ } from "../libs/dom";
+import { Logger } from "../libs/logger";
 import { BlockReasonType } from "../model/block_reason";
 import {
   DisplayTemporarilyUnblockAll,
@@ -43,7 +44,12 @@ function showBlockedByBannedWords(): void {
   });
 
   const bannedWordsDiv = document.getElementById("banned-words-div");
-  bannedWordsDiv?.appendChild(textarea);
+  if (bannedWordsDiv === null) {
+    Logger.debug("topstuff: no banned words div found");
+    return;
+  } else {
+    bannedWordsDiv.appendChild(textarea);
+  }
 }
 
 async function appendTemporarilyUnblockAllAnchor(
@@ -92,6 +98,9 @@ async function createAppbarLinks(): Promise<void> {
 
     // insert gsbToolbar before mJxzWe
     imageSearchDiv.parentElement!.insertBefore(gsbToolbar, imageSearchDiv);
+    return;
+  } else {
+    Logger.debug("topstuff: no image search div found");
     return;
   }
 }
