@@ -68,17 +68,16 @@ async function showLists(): Promise<void> {
   const sites = await BlockedSitesRepository.load();
 
   // Add after clear.
-  if (softBlockList instanceof HTMLDivElement) {
-    softBlockList.innerHTML = "";
-  } else {
+  if (!(softBlockList instanceof HTMLDivElement)) {
     throw new Error("softBlockList is not HTMLDivElement");
   }
 
-  if (hardBlockList instanceof HTMLDivElement) {
-    hardBlockList.innerHTML = "";
-  } else {
+  if (!(hardBlockList instanceof HTMLDivElement)) {
     throw new Error("hardBlockList is not HTMLDivElement");
   }
+
+  softBlockList.innerHTML = "";
+  hardBlockList.innerHTML = "";
 
   const softTable = document.createElement("table");
   const hardTable = document.createElement("table");
@@ -92,8 +91,8 @@ async function showLists(): Promise<void> {
     }
   }
 
-  softBlockList?.appendChild(softTable);
-  hardBlockList?.appendChild(hardTable);
+  softBlockList.appendChild(softTable);
+  hardBlockList.appendChild(hardTable);
 }
 
 async function clear(): Promise<void> {
@@ -107,16 +106,17 @@ async function clear(): Promise<void> {
     alert(chrome.i18n.getMessage("clearDone"));
 
     // clear all.
-    if (softBlockList instanceof HTMLDivElement) {
-      softBlockList.innerHTML = "";
-    } else {
+    if (!(softBlockList instanceof HTMLDivElement)) {
       throw new Error("softBlockList is not HTMLDivElement");
     }
-    if (hardBlockList instanceof HTMLDivElement) {
-      hardBlockList.innerHTML = "";
-    } else {
+
+    if (!(hardBlockList instanceof HTMLDivElement)) {
       throw new Error("hardBlockList is not HTMLDivElement");
     }
+
+    softBlockList.innerHTML = "";
+    hardBlockList.innerHTML = "";
+
     bannedWords.clear();
     regexpList.clear();
   }
