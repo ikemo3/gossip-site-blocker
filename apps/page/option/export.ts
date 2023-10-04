@@ -38,11 +38,13 @@ async function exportClicked(): Promise<void> {
   }
 
   const allLines = lines.concat(bannedLines).concat(regexpLines);
-  const exportTextArea: HTMLTextAreaElement = document.getElementById(
-    "exportTextArea",
-  ) as HTMLTextAreaElement;
+  const exportTextArea = document.getElementById("exportTextArea");
 
-  exportTextArea.value = `${allLines.join("\n")}\n`;
+  if (exportTextArea instanceof HTMLTextAreaElement) {
+    exportTextArea.value = `${allLines.join("\n")}\n`;
+  } else {
+    throw new Error("exportTextArea is not HTMLTextAreaElement");
+  }
 }
 
 export default exportClicked;
