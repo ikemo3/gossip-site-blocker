@@ -21,9 +21,25 @@ import localizeHtmlPage from "../page/option/l10n";
 import exportClicked from "../page/option/export";
 import importClicked from "../page/option/import";
 
-const softBlockList = document.getElementById("softBlockList");
-const hardBlockList = document.getElementById("hardBlockList");
+const softBlockList = document.getElementById(
+  "softBlockList",
+) as HTMLDivElement; // Here type casting is important to convert HTMLElement to HTMLDivElement
+const hardBlockList = document.getElementById(
+  "hardBlockList",
+) as HTMLDivElement; // Here type casting is important to convert HTMLElement to HTMLDivElement
 const clearButton = document.getElementById("clearButton");
+
+if (!(softBlockList instanceof HTMLDivElement)) {
+  throw new Error("softBlockList is not HTMLDivElement");
+}
+
+if (!(hardBlockList instanceof HTMLDivElement)) {
+  throw new Error("hardBlockList is not HTMLDivElement");
+}
+
+if (!(clearButton instanceof HTMLButtonElement)) {
+  throw new Error("clearButton is not HTMLButtonElement");
+}
 
 async function initCheckbox(
   id: string,
@@ -68,14 +84,6 @@ async function showLists(): Promise<void> {
   const sites = await BlockedSitesRepository.load();
 
   // Add after clear.
-  if (!(softBlockList instanceof HTMLDivElement)) {
-    throw new Error("softBlockList is not HTMLDivElement");
-  }
-
-  if (!(hardBlockList instanceof HTMLDivElement)) {
-    throw new Error("hardBlockList is not HTMLDivElement");
-  }
-
   softBlockList.innerHTML = "";
   hardBlockList.innerHTML = "";
 
@@ -106,14 +114,6 @@ async function clear(): Promise<void> {
     alert(chrome.i18n.getMessage("clearDone"));
 
     // clear all.
-    if (!(softBlockList instanceof HTMLDivElement)) {
-      throw new Error("softBlockList is not HTMLDivElement");
-    }
-
-    if (!(hardBlockList instanceof HTMLDivElement)) {
-      throw new Error("hardBlockList is not HTMLDivElement");
-    }
-
     softBlockList.innerHTML = "";
     hardBlockList.innerHTML = "";
 
