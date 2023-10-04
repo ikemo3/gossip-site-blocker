@@ -29,10 +29,10 @@ class RegExpList {
   }
 
   public clear(): void {
-    if (this.regexpList instanceof HTMLDivElement) {
-      this.regexpList.innerHTML = "";
-    } else {
+    if (!(this.regexpList instanceof HTMLDivElement)) {
       Logger.debug("regexpList is not HTMLDivElement!");
+    } else {
+      this.regexpList.innerHTML = "";
     }
   }
 
@@ -63,54 +63,52 @@ class RegExpList {
   }
 
   private async addItem(): Promise<void> {
-    if (this.addText instanceof HTMLInputElement) {
-      const pattern = this.addText.value;
-      if (pattern === "") {
-        return;
-      }
-
-      const regexp = $.regexp(pattern);
-      if (regexp === null) {
-        // eslint-disable-next-line no-alert
-        alert($.message("invalidPattern"));
-        return;
-      }
-
-      const added = await RegExpRepository.add(pattern);
-      if (added) {
-        // add item
-        const item = await this.createItem({
-          pattern,
-          blockType: BlockType.SOFT,
-        });
-        this.regexpList?.appendChild(item);
-      }
-
-      // clear text
-      this.addText.value = "";
-    } else {
-      throw new Error("addText is not HTMLInputElement");
+    if (!(this.addText instanceof HTMLInputElement)) {
+      throw new Error("typeSelect is not HTMLSelectElement");
     }
+    const pattern = this.addText.value;
+    if (pattern === "") {
+      return;
+    }
+
+    const regexp = $.regexp(pattern);
+    if (regexp === null) {
+      // eslint-disable-next-line no-alert
+      alert($.message("invalidPattern"));
+      return;
+    }
+
+    const added = await RegExpRepository.add(pattern);
+    if (added) {
+      // add item
+      const item = await this.createItem({
+        pattern,
+        blockType: BlockType.SOFT,
+      });
+      this.regexpList?.appendChild(item);
+    }
+
+    // clear text
+    this.addText.value = "";
   }
 
   private async changeType(pattern: string, ev: Event): Promise<void> {
     const typeSelect = ev.target;
-    if (typeSelect instanceof HTMLSelectElement) {
-      const index = typeSelect.selectedIndex;
-      const { value } = typeSelect.options[index];
-
-      switch (value) {
-        case "soft":
-          await RegExpRepository.changeType(pattern, BlockType.SOFT);
-          break;
-        case "hard":
-          await RegExpRepository.changeType(pattern, BlockType.HARD);
-          break;
-        default:
-          throw new ApplicationError(`unknown value:${value}`);
-      }
-    } else {
+    if (!(typeSelect instanceof HTMLSelectElement)) {
       throw new Error("typeSelect is not HTMLSelectElement");
+    }
+    const index = typeSelect.selectedIndex;
+    const { value } = typeSelect.options[index];
+
+    switch (value) {
+      case "soft":
+        await RegExpRepository.changeType(pattern, BlockType.SOFT);
+        break;
+      case "hard":
+        await RegExpRepository.changeType(pattern, BlockType.HARD);
+        break;
+      default:
+        throw new ApplicationError(`unknown value:${value}`);
     }
   }
 
