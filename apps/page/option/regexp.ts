@@ -2,7 +2,6 @@ import { RegExpItem, RegExpRepository } from "../../storage/regexp_repository";
 import { $ } from "../../libs/dom";
 import { ApplicationError } from "../../libs/error";
 import { BlockType } from "../../storage/enums";
-import { Logger } from "../../libs/logger";
 
 class RegExpList {
   private readonly regexpList;
@@ -12,28 +11,28 @@ class RegExpList {
   private readonly addButton;
 
   constructor() {
-    this.regexpList = document.getElementById("regexpList");
-    this.addText = document.getElementById("regexpAddText");
-    this.addButton = document.getElementById("regexpAddButton");
-    if (this.addButton instanceof HTMLInputElement) {
-      $.onclick(this.addButton, this.addItem.bind(this));
-    }
+    this.regexpList = this.assertDivElement(
+      document.getElementById("regexpList"),
+    );
+    this.addText = this.assertInputElement(
+      document.getElementById("regexpAddText"),
+    );
+    this.addButton = this.assertButtonElement(
+      document.getElementById("regexpAddButton"),
+    );
+    $.onclick(this.addButton, this.addItem.bind(this));
   }
 
   public async load(): Promise<void> {
     const patternList = await RegExpRepository.load();
     for (const pattern of patternList) {
       const itemDiv = this.createItem(pattern);
-      this.regexpList?.appendChild(itemDiv);
+      this.regexpList.appendChild(itemDiv);
     }
   }
 
   public clear(): void {
-    if (!(this.regexpList instanceof HTMLDivElement)) {
-      Logger.debug("regexpList is not HTMLDivElement!");
-    } else {
-      this.regexpList.innerHTML = "";
-    }
+    this.regexpList.innerHTML = "";
   }
 
   private createItem(item: RegExpItem): HTMLDivElement {
@@ -63,9 +62,6 @@ class RegExpList {
   }
 
   private async addItem(): Promise<void> {
-    if (!(this.addText instanceof HTMLInputElement)) {
-      throw new Error("typeSelect is not HTMLSelectElement");
-    }
     const pattern = this.addText.value;
     if (pattern === "") {
       return;
@@ -85,7 +81,7 @@ class RegExpList {
         pattern,
         blockType: BlockType.SOFT,
       });
-      this.regexpList?.appendChild(item);
+      this.regexpList.appendChild(item);
     }
 
     // clear text
@@ -119,6 +115,36 @@ class RegExpList {
     await RegExpRepository.delete(pattern);
 
     $.removeSelf(div);
+  }
+
+  private assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
+    if (!element) {
+      throw new Error("bannedWordAddButton is null");
+    }
+    if (element instanceof HTMLButtonElement) {
+      return element as HTMLButtonElement;
+    }
+    throw new Error("bannedWordAddButton is not HTMLButtonElement");
+  }
+
+  private assertDivElement(element: HTMLElement | null): HTMLDivElement {
+    if (!element) {
+      throw new Error("bannedWord text is null");
+    }
+    if (element instanceof HTMLDivElement) {
+      return element as HTMLDivElement;
+    }
+    throw new Error("bannedWord text is not HTMLDivElement");
+  }
+
+  private assertInputElement(element: HTMLElement | null): HTMLInputElement {
+    if (!element) {
+      throw new Error("bannedWord Input is null");
+    }
+    if (element instanceof HTMLInputElement) {
+      return element as HTMLInputElement;
+    }
+    throw new Error("bannedWord Input is not HTMLInputElement");
   }
 }
 
