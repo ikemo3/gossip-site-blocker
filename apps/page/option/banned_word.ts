@@ -28,7 +28,6 @@ export function toBannedTarget(value: string): BannedTarget {
 }
 
 export default class BannedWords {
-  // private addButton: HTMLInputElement;
   private addButton;
 
   private addText;
@@ -47,9 +46,6 @@ export default class BannedWords {
     );
 
     this.addButton.addEventListener("click", async () => {
-      if (!(this.addText instanceof HTMLInputElement)) {
-        throw new Error("bannedWordAddText is not HTMLInputElement");
-      }
       const word = this.addText.value;
       if (word === "") {
         return;
