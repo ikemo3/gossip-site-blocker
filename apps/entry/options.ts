@@ -116,14 +116,13 @@ async function clear(): Promise<void> {
     // clear all.
     softBlockList.innerHTML = "";
     hardBlockList.innerHTML = "";
-
     bannedWords.clear();
     regexpList.clear();
   }
 }
 
 // bind event.
-clearButton?.addEventListener("click", clear);
+clearButton.addEventListener("click", clear);
 
 document.addEventListener("DOMContentLoaded", async (_) => {
   await showLists();
