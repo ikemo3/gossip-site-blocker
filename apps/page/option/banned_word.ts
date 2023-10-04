@@ -36,17 +36,23 @@ export default class BannedWords {
   private wordList;
 
   constructor() {
-    this.addButton = document.getElementById("bannedWordAddButton");
-    this.addText = document.getElementById("bannedWordAddText");
-    this.wordList = document.getElementById("bannedWordList");
+    this.addButton = this.assertButtonElement(
+      document.getElementById("bannedWordAddButton"),
+    );
+    this.addText = this.assertInputElement(
+      document.getElementById("bannedWordAddText"),
+    );
+    this.wordList = this.assertDivElement(
+      document.getElementById("bannedWordList"),
+    );
 
-    this.addButton?.addEventListener("click", async () => {
+    this.addButton.addEventListener("click", async () => {
       if (!(this.addText instanceof HTMLInputElement)) {
         throw new Error("bannedWordAddText is not HTMLInputElement");
       }
       const word = this.addText.value;
       if (word === "") {
-        throw new Error("bannedWordAddText is not HTMLInputElement");
+        return;
       }
 
       const added: boolean = await BannedWordRepository.add(word);
@@ -64,6 +70,36 @@ export default class BannedWords {
     });
   }
 
+  private assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
+    if (!element) {
+      throw new Error("bannedWordAddButton is null");
+    }
+    if (element instanceof HTMLButtonElement) {
+      return element as HTMLButtonElement;
+    }
+    throw new Error("bannedWordAddButton is not HTMLButtonElement");
+  }
+
+  private assertDivElement(element: HTMLElement | null): HTMLDivElement {
+    if (!element) {
+      throw new Error("bannedWord text is null");
+    }
+    if (element instanceof HTMLDivElement) {
+      return element as HTMLDivElement;
+    }
+    throw new Error("bannedWord text is not HTMLDivElement");
+  }
+
+  private assertInputElement(element: HTMLElement | null): HTMLInputElement {
+    if (!element) {
+      throw new Error("bannedWord Input is null");
+    }
+    if (element instanceof HTMLInputElement) {
+      return element as HTMLInputElement;
+    }
+    throw new Error("bannedWord Input is not HTMLInputElement");
+  }
+
   static strToKeywordType(value: string): KeywordType {
     switch (value) {
       case "regexp":
@@ -75,23 +111,15 @@ export default class BannedWords {
   }
 
   public clear(): void {
-    if (this.wordList instanceof HTMLDivElement) {
-      this.wordList.innerHTML = "";
-    } else {
-      Logger.debug("bannedWordList is not HTMLDivElement");
-    }
+    this.wordList.innerHTML = "";
   }
 
   public async load(): Promise<void> {
-    if (this.wordList instanceof HTMLDivElement) {
-      const words: BannedWord[] = await BannedWordRepository.load();
-      this.wordList.innerHTML = "";
+    const words: BannedWord[] = await BannedWordRepository.load();
+    this.wordList.innerHTML = "";
 
-      for (const word of words) {
-        this.createWidget(word);
-      }
-    } else {
-      Logger.debug("bannedWordList is not HTMLDivElement");
+    for (const word of words) {
+      this.createWidget(word);
     }
   }
 
@@ -163,11 +191,7 @@ export default class BannedWords {
 
     const br = $.br();
     wordDiv.appendChild(br);
-    if (this.wordList instanceof HTMLDivElement) {
-      this.wordList.appendChild(wordDiv);
-    } else {
-      Logger.debug("bannedWordList is not HTMLDivElement");
-    }
+    this.wordList.appendChild(wordDiv);
   }
 
   private async changeType(keyword: string, ev: Event): Promise<void> {
@@ -246,8 +270,6 @@ export default class BannedWords {
     wordDiv: HTMLDivElement,
   ): Promise<void> {
     await BannedWordRepository.delete(keyword);
-    if (this.wordList instanceof HTMLDivElement) {
-      this.wordList.removeChild(wordDiv);
-    }
+    this.wordList.removeChild(wordDiv);
   }
 }
