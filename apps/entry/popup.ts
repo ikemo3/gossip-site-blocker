@@ -30,6 +30,10 @@ const searchInEnglishDiv = document.getElementById("searchInEnglishDiv");
 const searchInEnglishButton = document.getElementById("searchInEnglishButton");
 const optionLink = document.getElementById("optionLink");
 
+if (!(exceptIkagadesitakaButton instanceof HTMLButtonElement)) {
+  throw new Error("exceptIkagadesitakaButton is not HTMLDivElement");
+}
+
 if (!(exceptIkagadesitakaDiv instanceof HTMLDivElement)) {
   throw new Error("exceptIkagadesitakaDiv is not HTMLDivElement");
 }
@@ -60,7 +64,7 @@ searchInEnglishButton.addEventListener("click", async () => {
   });
 });
 
-exceptIkagadesitakaButton?.addEventListener("click", async () => {
+exceptIkagadesitakaButton.addEventListener("click", async () => {
   const currentTab = await getCurrentTab();
   const url = new URL(currentTab.url!);
   const q = url.searchParams.get("q");
@@ -70,7 +74,7 @@ exceptIkagadesitakaButton?.addEventListener("click", async () => {
   chrome.tabs.update(currentTab.id!, { url: url.toString() });
 });
 
-optionLink?.addEventListener("click", () => {
+optionLink.addEventListener("click", () => {
   chrome.runtime.openOptionsPage();
 });
 
