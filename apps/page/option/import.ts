@@ -50,34 +50,39 @@ async function importClicked(): Promise<void> {
   /**
    * @type {HTMLTextAreaElement}
    */
-  const textArea = document.getElementById(
-    "importTextArea",
-  ) as HTMLTextAreaElement;
+  const textArea = document.getElementById("importTextArea");
+
+  if (!(textArea instanceof HTMLTextAreaElement)) {
+    throw new Error("importTextArea is not HTMLTextAreaElement");
+  }
+
   const text = textArea.value;
   const lines = text.split("\n").filter((line) => line !== "");
 
-  const blockList = lines
-    .map((line) => {
-      const cols = line.split(" ");
-      switch (cols.length) {
-        case 1:
-          // url only
-          return new BlockedSite(cols[0], "soft");
-        case 2:
-        default: {
-          const type = cols[1];
-          if (type !== "hard" && type !== "soft") {
-            return undefined;
-          }
-
-          // url + soft/hard
-          return new BlockedSite(cols[0], type);
+  const blockList = lines.map((line) => {
+    const cols = line.split(" ");
+    switch (cols.length) {
+      case 1:
+        // url only
+        return new BlockedSite(cols[0], "soft");
+      case 2:
+      default: {
+        const type = cols[1];
+        if (type !== "hard" && type !== "soft") {
+          return undefined;
         }
-      }
-    })
-    .filter((block) => block !== undefined) as BlockedSite[];
 
-  await BlockedSitesRepository.addAll(blockList);
+        // url + soft/hard
+        return new BlockedSite(cols[0], type);
+      }
+    }
+  });
+
+  const filteredBlockList = blockList.filter(
+    (block): block is BlockedSite => block !== undefined,
+  );
+
+  await BlockedSitesRepository.addAll(filteredBlockList);
 
   const bannedWordList = lines
     .map((line) => lineToBannedWord(line))
