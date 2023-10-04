@@ -51,6 +51,7 @@ async function importClicked(): Promise<void> {
    * @type {HTMLTextAreaElement}
    */
   const textArea = document.getElementById("importTextArea");
+
   if (!(textArea instanceof HTMLTextAreaElement)) {
     throw new Error("importTextArea is not HTMLTextAreaElement");
   }
@@ -59,48 +60,45 @@ async function importClicked(): Promise<void> {
   const lines = text.split("\n").filter((line) => line !== "");
 
   const blockList = lines.map((line) => {
-      const cols = line.split(" ");
-      switch (cols.length) {
-        case 1:
-          // url only
-          return new BlockedSite(cols[0], "soft");
-        case 2:
-        default: {
-          const type = cols[1];
-          if (type !== "hard" && type !== "soft") {
-            return undefined;
-          }
-
-          // url + soft/hard
-          return new BlockedSite(cols[0], type);
+    const cols = line.split(" ");
+    switch (cols.length) {
+      case 1:
+        // url only
+        return new BlockedSite(cols[0], "soft");
+      case 2:
+      default: {
+        const type = cols[1];
+        if (type !== "hard" && type !== "soft") {
+          return undefined;
         }
+
+        // url + soft/hard
+        return new BlockedSite(cols[0], type);
       }
-    });
+    }
+  });
 
-    const filteredBlockList = blockList.filter(
-      (block): block is BlockedSite => block !== undefined,
-    );
+  const filteredBlockList = blockList.filter(
+    (block): block is BlockedSite => block !== undefined,
+  );
 
-    await BlockedSitesRepository.addAll(filteredBlockList);
+  await BlockedSitesRepository.addAll(filteredBlockList);
 
-    const bannedWordList = lines
-      .map((line) => lineToBannedWord(line))
-      .filter((banned) => banned !== undefined) as BannedWord[];
+  const bannedWordList = lines
+    .map((line) => lineToBannedWord(line))
+    .filter((banned) => banned !== undefined) as BannedWord[];
 
-    await BannedWordRepository.addAll(bannedWordList);
+  await BannedWordRepository.addAll(bannedWordList);
 
-    // regexp
-    const regexpList = lines
-      .map((line) => lineToRegexp(line))
-      .filter((regexp) => regexp !== null) as RegExpItem[];
+  // regexp
+  const regexpList = lines
+    .map((line) => lineToRegexp(line))
+    .filter((regexp) => regexp !== null) as RegExpItem[];
 
-    await RegExpRepository.addAll(regexpList);
+  await RegExpRepository.addAll(regexpList);
 
-    // eslint-disable-next-line no-alert
-    alert(chrome.i18n.getMessage("importCompleted"));
-  } else {
-    throw new Error("importTextArea is not HTMLTextAreaElement");
-  }
+  // eslint-disable-next-line no-alert
+  alert(chrome.i18n.getMessage("importCompleted"));
 }
 
 export default importClicked;
