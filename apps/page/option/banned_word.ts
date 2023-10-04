@@ -41,27 +41,26 @@ export default class BannedWords {
     this.wordList = document.getElementById("bannedWordList");
 
     this.addButton?.addEventListener("click", async () => {
-      if (this.addText instanceof HTMLInputElement) {
-        const word = this.addText.value;
-        if (word === "") {
-          throw new Error("bannedWordAddText is not HTMLInputElement");
-        }
-
-        const added: boolean = await BannedWordRepository.add(word);
-        if (added) {
-          Logger.debug("add to Banned Words", word);
-          this.createWidget({
-            keyword: word,
-            blockType: BlockType.SOFT,
-            target: BannedTarget.TITLE_AND_CONTENTS,
-            keywordType: KeywordType.STRING,
-          });
-        }
-
-        this.addText.value = "";
-      } else {
+      if (!(this.addText instanceof HTMLInputElement)) {
         throw new Error("bannedWordAddText is not HTMLInputElement");
       }
+      const word = this.addText.value;
+      if (word === "") {
+        throw new Error("bannedWordAddText is not HTMLInputElement");
+      }
+
+      const added: boolean = await BannedWordRepository.add(word);
+      if (added) {
+        Logger.debug("add to Banned Words", word);
+        this.createWidget({
+          keyword: word,
+          blockType: BlockType.SOFT,
+          target: BannedTarget.TITLE_AND_CONTENTS,
+          keywordType: KeywordType.STRING,
+        });
+      }
+
+      this.addText.value = "";
     });
   }
 
@@ -173,73 +172,72 @@ export default class BannedWords {
 
   private async changeType(keyword: string, ev: Event): Promise<void> {
     const typeSelect = ev.target;
-    if (typeSelect instanceof HTMLSelectElement) {
-      const index = typeSelect.selectedIndex;
-      const { value } = typeSelect.options[index];
-      switch (value) {
-        case "soft":
-          await BannedWordRepository.changeType(keyword, BlockType.SOFT);
-          break;
-        case "hard":
-          await BannedWordRepository.changeType(keyword, BlockType.HARD);
-          break;
-        default:
-          throw new ApplicationError(`unknown value:${value}`);
-      }
-    } else {
+    if (!(typeSelect instanceof HTMLSelectElement)) {
       throw new Error("typeSelect is not HTMLSelectElement");
+    }
+    const index = typeSelect.selectedIndex;
+    const { value } = typeSelect.options[index];
+    switch (value) {
+      case "soft":
+        await BannedWordRepository.changeType(keyword, BlockType.SOFT);
+        break;
+      case "hard":
+        await BannedWordRepository.changeType(keyword, BlockType.HARD);
+        break;
+      default:
+        throw new ApplicationError(`unknown value:${value}`);
     }
   }
 
   private async changeTarget(keyword: string, ev: Event): Promise<void> {
     const targetSelect = ev.target;
-    if (targetSelect instanceof HTMLSelectElement) {
-      const index = targetSelect.selectedIndex;
-      const { value } = targetSelect.options[index];
-
-      switch (value) {
-        case "titleAndContents":
-          await BannedWordRepository.changeTarget(
-            keyword,
-            BannedTarget.TITLE_AND_CONTENTS,
-          );
-          break;
-        case "titleOnly":
-          await BannedWordRepository.changeTarget(
-            keyword,
-            BannedTarget.TITLE_ONLY,
-          );
-          break;
-        default:
-          throw new ApplicationError(`unknown value:${value}`);
-      }
-    } else {
+    if (!(targetSelect instanceof HTMLSelectElement)) {
       throw new Error("targetSelect is not HTMLSelectElement");
+    }
+    const index = targetSelect.selectedIndex;
+    const { value } = targetSelect.options[index];
+
+    switch (value) {
+      case "titleAndContents":
+        await BannedWordRepository.changeTarget(
+          keyword,
+          BannedTarget.TITLE_AND_CONTENTS,
+        );
+        break;
+      case "titleOnly":
+        await BannedWordRepository.changeTarget(
+          keyword,
+          BannedTarget.TITLE_ONLY,
+        );
+        break;
+      default:
+        throw new ApplicationError(`unknown value:${value}`);
     }
   }
 
   private async changeKeywordType(keyword: string, ev: Event): Promise<void> {
     const targetSelect = ev.target;
-    if (targetSelect instanceof HTMLSelectElement) {
-      const index = targetSelect.selectedIndex;
-      const { value } = targetSelect.options[index];
+    if (!(targetSelect instanceof HTMLSelectElement)) {
+      throw new Error("targetSelect is not HTMLSelectElement");
+    }
+    const index = targetSelect.selectedIndex;
+    const { value } = targetSelect.options[index];
 
-      switch (value) {
-        case "string":
-          await BannedWordRepository.changeKeywordType(
-            keyword,
-            KeywordType.STRING,
-          );
-          break;
-        case "regexp":
-          await BannedWordRepository.changeKeywordType(
-            keyword,
-            KeywordType.REGEXP,
-          );
-          break;
-        default:
-          throw new ApplicationError(`unknown value:${value}`);
-      }
+    switch (value) {
+      case "string":
+        await BannedWordRepository.changeKeywordType(
+          keyword,
+          KeywordType.STRING,
+        );
+        break;
+      case "regexp":
+        await BannedWordRepository.changeKeywordType(
+          keyword,
+          KeywordType.REGEXP,
+        );
+        break;
+      default:
+        throw new ApplicationError(`unknown value:${value}`);
     }
   }
 
