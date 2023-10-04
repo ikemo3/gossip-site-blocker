@@ -5,7 +5,6 @@ import { IBasicBlockMediator } from "../content_script/mediator";
 import localizeHtmlPage from "../page/option/l10n";
 import DocumentURL from "../values/document_url";
 import { DefaultBlockType } from "../storage/options";
-import { Logger } from "../libs/logger";
 
 function getCurrentTab(): Promise<chrome.tabs.Tab> {
   return new Promise((resolve, reject) => {
@@ -31,7 +30,23 @@ const searchInEnglishDiv = document.getElementById("searchInEnglishDiv");
 const searchInEnglishButton = document.getElementById("searchInEnglishButton");
 const optionLink = document.getElementById("optionLink");
 
-searchInEnglishButton?.addEventListener("click", async () => {
+if (!(exceptIkagadesitakaDiv instanceof HTMLDivElement)) {
+  throw new Error("exceptIkagadesitakaDiv is not HTMLDivElement");
+}
+
+if (!(searchInEnglishButton instanceof HTMLButtonElement)) {
+  throw new Error("searchInEnglishButton is not HTMLButtonElement");
+}
+
+if (!(searchInEnglishDiv instanceof HTMLDivElement)) {
+  throw new Error("searchInEnglishDiv is not HTMLDivElement");
+}
+
+if (!(optionLink instanceof HTMLAnchorElement)) {
+  throw new Error("optionLink is not HTMLAnchorElement");
+}
+
+searchInEnglishButton.addEventListener("click", async () => {
   const currentTab = await getCurrentTab();
   const { url } = currentTab;
 
@@ -86,39 +101,15 @@ class PopupMediator implements IBasicBlockMediator {
 
   if (isGoogleSearch) {
     if (lang.startsWith("ja")) {
-      if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
-        exceptIkagadesitakaDiv.style.display = "block";
-      } else {
-        Logger.debug("exceptIkagadesitakaDiv is not HTMLDivElement");
-      }
-      if (searchInEnglishDiv instanceof HTMLDivElement) {
-        searchInEnglishDiv.style.display = "block";
-      } else {
-        Logger.debug("searchInEnglishDiv is not HTMLDivElement");
-      }
+      exceptIkagadesitakaDiv.style.display = "block";
+      searchInEnglishDiv.style.display = "block";
     } else {
-      if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
-        exceptIkagadesitakaDiv.style.display = "none";
-      } else {
-        Logger.debug("exceptIkagadesitakaDiv is not HTMLDivElement");
-      }
-      if (searchInEnglishDiv instanceof HTMLDivElement) {
-        searchInEnglishDiv.style.display = "block";
-      } else {
-        Logger.debug("searchInEnglishDiv is not HTMLDivElement");
-      }
+      exceptIkagadesitakaDiv.style.display = "none";
+      searchInEnglishDiv.style.display = "block";
     }
   } else {
-    if (exceptIkagadesitakaDiv instanceof HTMLDivElement) {
-      exceptIkagadesitakaDiv.style.display = "none";
-    } else {
-      Logger.debug("exceptIkagadesitakaDiv is not HTMLDivElement");
-    }
-    if (searchInEnglishDiv instanceof HTMLDivElement) {
-      searchInEnglishDiv.style.display = "none";
-    } else {
-      Logger.debug("searchInEnglishDiv is not HTMLDivElement");
-    }
+    exceptIkagadesitakaDiv.style.display = "none";
+    searchInEnglishDiv.style.display = "none";
 
     const mediator = new PopupMediator();
     const _ = new BlockDialog(mediator, url, defaultBlockType);
