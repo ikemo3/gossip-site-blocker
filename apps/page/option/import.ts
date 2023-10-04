@@ -51,11 +51,14 @@ async function importClicked(): Promise<void> {
    * @type {HTMLTextAreaElement}
    */
   const textArea = document.getElementById("importTextArea");
-  if (textArea instanceof HTMLTextAreaElement) {
-    const text = textArea.value;
-    const lines = text.split("\n").filter((line) => line !== "");
+  if (!(textArea instanceof HTMLTextAreaElement)) {
+    throw new Error("importTextArea is not HTMLTextAreaElement");
+  }
 
-    const blockList = lines.map((line) => {
+  const text = textArea.value;
+  const lines = text.split("\n").filter((line) => line !== "");
+
+  const blockList = lines.map((line) => {
       const cols = line.split(" ");
       switch (cols.length) {
         case 1:
