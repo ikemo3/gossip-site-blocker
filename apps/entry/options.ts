@@ -21,24 +21,32 @@ import localizeHtmlPage from "../page/option/l10n";
 import exportClicked from "../page/option/export";
 import importClicked from "../page/option/import";
 
-const softBlockList = document.getElementById(
-  "softBlockList",
-) as HTMLDivElement; // Here type casting is important to convert HTMLElement to HTMLDivElement
-const hardBlockList = document.getElementById(
-  "hardBlockList",
-) as HTMLDivElement; // Here type casting is important to convert HTMLElement to HTMLDivElement
-const clearButton = document.getElementById("clearButton");
+const softBlockList = assertDivElement(
+  document.getElementById("softBlockList"),
+);
+const hardBlockList = assertDivElement(
+  document.getElementById("hardBlockList"),
+);
+const clearButton = assertButtonElement(document.getElementById("clearButton"));
 
-if (!(softBlockList instanceof HTMLDivElement)) {
-  throw new Error("softBlockList is not HTMLDivElement");
+function assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
+  if (!element) {
+    throw new Error("bannedWordAddButton is null");
+  }
+  if (element instanceof HTMLButtonElement) {
+    return element as HTMLButtonElement;
+  }
+  throw new Error("bannedWordAddButton is not HTMLButtonElement");
 }
 
-if (!(hardBlockList instanceof HTMLDivElement)) {
-  throw new Error("hardBlockList is not HTMLDivElement");
-}
-
-if (!(clearButton instanceof HTMLButtonElement)) {
-  throw new Error("clearButton is not HTMLButtonElement");
+function assertDivElement(element: HTMLElement | null): HTMLDivElement {
+  if (!element) {
+    throw new Error("bannedWord text is null");
+  }
+  if (element instanceof HTMLDivElement) {
+    return element as HTMLDivElement;
+  }
+  throw new Error("bannedWord text is not HTMLDivElement");
 }
 
 async function initCheckbox(
