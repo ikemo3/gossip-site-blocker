@@ -70,30 +70,30 @@ export default class BannedWords {
     if (!element) {
       throw new Error("bannedWordAddButton is null");
     }
-    if (element instanceof HTMLButtonElement) {
-      return element as HTMLButtonElement;
+    if (!(element instanceof HTMLButtonElement)) {
+      throw new Error("bannedWordAddButton is not HTMLButtonElement");
     }
-    throw new Error("bannedWordAddButton is not HTMLButtonElement");
+    return element;
   }
 
   private assertDivElement(element: HTMLElement | null): HTMLDivElement {
     if (!element) {
       throw new Error("bannedWord text is null");
     }
-    if (element instanceof HTMLDivElement) {
-      return element as HTMLDivElement;
+    if (!(element instanceof HTMLDivElement)) {
+      throw new Error("bannedWord text is not HTMLDivElement");
     }
-    throw new Error("bannedWord text is not HTMLDivElement");
+    return element;
   }
 
   private assertInputElement(element: HTMLElement | null): HTMLInputElement {
     if (!element) {
-      throw new Error("bannedWord Input is null");
+      throw new Error("Input element is null");
     }
-    if (element instanceof HTMLInputElement) {
-      return element as HTMLInputElement;
+    if (!(element instanceof HTMLInputElement)) {
+      throw new Error("Input element is not of type HTMLInputElement");
     }
-    throw new Error("bannedWord Input is not HTMLInputElement");
+    return element;
   }
 
   static strToKeywordType(value: string): KeywordType {
