@@ -33,20 +33,20 @@ function assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
   if (!element) {
     throw new Error("bannedWordAddButton is null");
   }
-  if (element instanceof HTMLButtonElement) {
-    return element as HTMLButtonElement;
+  if (!(element instanceof HTMLButtonElement)) {
+    throw new Error("bannedWordAddButton is not HTMLButtonElement");
   }
-  throw new Error("bannedWordAddButton is not HTMLButtonElement");
+  return element;
 }
 
 function assertDivElement(element: HTMLElement | null): HTMLDivElement {
   if (!element) {
     throw new Error("bannedWord text is null");
   }
-  if (element instanceof HTMLDivElement) {
-    return element as HTMLDivElement;
+  if (!(element instanceof HTMLDivElement)) {
+    throw new Error("bannedWord text is not HTMLDivElement");
   }
-  throw new Error("bannedWord text is not HTMLDivElement");
+  return element;
 }
 
 async function initCheckbox(
