@@ -4,18 +4,22 @@ import { ApplicationError } from "../../libs/error";
 import { BlockType } from "../../storage/enums";
 
 class RegExpList {
-  private readonly regexpList: HTMLDivElement;
+  private readonly regexpList;
 
-  private readonly addText: HTMLInputElement;
+  private readonly addText;
 
-  private readonly addButton: HTMLInputElement;
+  private readonly addButton;
 
   constructor() {
-    this.regexpList = document.getElementById("regexpList") as HTMLDivElement;
-    this.addText = document.getElementById("regexpAddText") as HTMLInputElement;
-    this.addButton = document.getElementById(
-      "regexpAddButton",
-    ) as HTMLInputElement;
+    this.regexpList = this.assertDivElement(
+      document.getElementById("regexpList"),
+    );
+    this.addText = this.assertInputElement(
+      document.getElementById("regexpAddText"),
+    );
+    this.addButton = this.assertButtonElement(
+      document.getElementById("regexpAddButton"),
+    );
     $.onclick(this.addButton, this.addItem.bind(this));
   }
 
@@ -85,7 +89,10 @@ class RegExpList {
   }
 
   private async changeType(pattern: string, ev: Event): Promise<void> {
-    const typeSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
+    const typeSelect = ev.target;
+    if (!(typeSelect instanceof HTMLSelectElement)) {
+      throw new Error("typeSelect is not HTMLSelectElement");
+    }
     const index = typeSelect.selectedIndex;
     const { value } = typeSelect.options[index];
 
@@ -108,6 +115,36 @@ class RegExpList {
     await RegExpRepository.delete(pattern);
 
     $.removeSelf(div);
+  }
+
+  private assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
+    if (!element) {
+      throw new Error("bannedWordAddButton is null");
+    }
+    if (!(element instanceof HTMLButtonElement)) {
+      throw new Error("bannedWordAddButton is not HTMLButtonElement");
+    }
+    return element;
+  }
+
+  private assertDivElement(element: HTMLElement | null): HTMLDivElement {
+    if (!element) {
+      throw new Error("bannedWord text is null");
+    }
+    if (!(element instanceof HTMLDivElement)) {
+      throw new Error("bannedWord text is not HTMLDivElement");
+    }
+    return element;
+  }
+
+  private assertInputElement(element: HTMLElement | null): HTMLInputElement {
+    if (!element) {
+      throw new Error("bannedWord Input is null");
+    }
+    if (!(element instanceof HTMLInputElement)) {
+      throw new Error("bannedWord Input is not HTMLInputElement");
+    }
+    return element;
   }
 }
 
