@@ -21,13 +21,33 @@ import localizeHtmlPage from "../page/option/l10n";
 import exportClicked from "../page/option/export";
 import importClicked from "../page/option/import";
 
-const softBlockList = document.getElementById(
-  "softBlockList",
-) as HTMLDivElement;
-const hardBlockList = document.getElementById(
-  "hardBlockList",
-) as HTMLDivElement;
-const clearButton = document.getElementById("clearButton") as HTMLInputElement;
+const softBlockList = assertDivElement(
+  document.getElementById("softBlockList"),
+);
+const hardBlockList = assertDivElement(
+  document.getElementById("hardBlockList"),
+);
+const clearButton = assertButtonElement(document.getElementById("clearButton"));
+
+function assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
+  if (!element) {
+    throw new Error("bannedWordAddButton is null");
+  }
+  if (!(element instanceof HTMLButtonElement)) {
+    throw new Error("bannedWordAddButton is not HTMLButtonElement");
+  }
+  return element;
+}
+
+function assertDivElement(element: HTMLElement | null): HTMLDivElement {
+  if (!element) {
+    throw new Error("bannedWord text is null");
+  }
+  if (!(element instanceof HTMLDivElement)) {
+    throw new Error("bannedWord text is not HTMLDivElement");
+  }
+  return element;
+}
 
 async function initCheckbox(
   id: string,
