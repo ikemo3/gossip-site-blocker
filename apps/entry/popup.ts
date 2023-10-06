@@ -22,17 +22,33 @@ function getCurrentTab(): Promise<chrome.tabs.Tab> {
 
 const exceptIkagadesitakaDiv = document.getElementById(
   "exceptIkagadesitakaDiv",
-) as HTMLDivElement;
+);
 const exceptIkagadesitakaButton = document.getElementById(
   "exceptIkagadesitakaButton",
-) as HTMLButtonElement;
-const searchInEnglishDiv = document.getElementById(
-  "searchInEnglishDiv",
-) as HTMLDivElement;
-const searchInEnglishButton = document.getElementById(
-  "searchInEnglishButton",
-) as HTMLButtonElement;
-const optionLink = document.getElementById("optionLink") as HTMLAnchorElement;
+);
+const searchInEnglishDiv = document.getElementById("searchInEnglishDiv");
+const searchInEnglishButton = document.getElementById("searchInEnglishButton");
+const optionLink = document.getElementById("optionLink");
+
+if (!(exceptIkagadesitakaButton instanceof HTMLButtonElement)) {
+  throw new Error("exceptIkagadesitakaButton is not HTMLDivElement");
+}
+
+if (!(exceptIkagadesitakaDiv instanceof HTMLDivElement)) {
+  throw new Error("exceptIkagadesitakaDiv is not HTMLDivElement");
+}
+
+if (!(searchInEnglishButton instanceof HTMLButtonElement)) {
+  throw new Error("searchInEnglishButton is not HTMLButtonElement");
+}
+
+if (!(searchInEnglishDiv instanceof HTMLDivElement)) {
+  throw new Error("searchInEnglishDiv is not HTMLDivElement");
+}
+
+if (!(optionLink instanceof HTMLAnchorElement)) {
+  throw new Error("optionLink is not HTMLAnchorElement");
+}
 
 searchInEnglishButton.addEventListener("click", async () => {
   const currentTab = await getCurrentTab();
