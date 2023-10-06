@@ -28,20 +28,22 @@ export function toBannedTarget(value: string): BannedTarget {
 }
 
 export default class BannedWords {
-  private addButton: HTMLInputElement;
+  private addButton;
 
-  private addText: HTMLInputElement;
+  private addText;
 
-  private wordList: HTMLDivElement;
+  private wordList;
 
   constructor() {
-    this.addButton = document.getElementById(
-      "bannedWordAddButton",
-    ) as HTMLInputElement;
-    this.addText = document.getElementById(
-      "bannedWordAddText",
-    ) as HTMLInputElement;
-    this.wordList = document.getElementById("bannedWordList") as HTMLDivElement;
+    this.addButton = this.assertButtonElement(
+      document.getElementById("bannedWordAddButton"),
+    );
+    this.addText = this.assertInputElement(
+      document.getElementById("bannedWordAddText"),
+    );
+    this.wordList = this.assertDivElement(
+      document.getElementById("bannedWordList"),
+    );
 
     this.addButton.addEventListener("click", async () => {
       const word = this.addText.value;
@@ -62,6 +64,36 @@ export default class BannedWords {
 
       this.addText.value = "";
     });
+  }
+
+  private assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
+    if (!element) {
+      throw new Error("bannedWordAddButton is null");
+    }
+    if (!(element instanceof HTMLButtonElement)) {
+      throw new Error("bannedWordAddButton is not HTMLButtonElement");
+    }
+    return element;
+  }
+
+  private assertDivElement(element: HTMLElement | null): HTMLDivElement {
+    if (!element) {
+      throw new Error("bannedWord text is null");
+    }
+    if (!(element instanceof HTMLDivElement)) {
+      throw new Error("bannedWord text is not HTMLDivElement");
+    }
+    return element;
+  }
+
+  private assertInputElement(element: HTMLElement | null): HTMLInputElement {
+    if (!element) {
+      throw new Error("Input element is null");
+    }
+    if (!(element instanceof HTMLInputElement)) {
+      throw new Error("Input element is not of type HTMLInputElement");
+    }
+    return element;
   }
 
   static strToKeywordType(value: string): KeywordType {
@@ -155,15 +187,16 @@ export default class BannedWords {
 
     const br = $.br();
     wordDiv.appendChild(br);
-
     this.wordList.appendChild(wordDiv);
   }
 
   private async changeType(keyword: string, ev: Event): Promise<void> {
-    const typeSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
+    const typeSelect = ev.target;
+    if (!(typeSelect instanceof HTMLSelectElement)) {
+      throw new Error("typeSelect is not HTMLSelectElement");
+    }
     const index = typeSelect.selectedIndex;
     const { value } = typeSelect.options[index];
-
     switch (value) {
       case "soft":
         await BannedWordRepository.changeType(keyword, BlockType.SOFT);
@@ -177,7 +210,10 @@ export default class BannedWords {
   }
 
   private async changeTarget(keyword: string, ev: Event): Promise<void> {
-    const targetSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
+    const targetSelect = ev.target;
+    if (!(targetSelect instanceof HTMLSelectElement)) {
+      throw new Error("targetSelect is not HTMLSelectElement");
+    }
     const index = targetSelect.selectedIndex;
     const { value } = targetSelect.options[index];
 
@@ -200,7 +236,10 @@ export default class BannedWords {
   }
 
   private async changeKeywordType(keyword: string, ev: Event): Promise<void> {
-    const targetSelect: HTMLSelectElement = ev.target as HTMLSelectElement;
+    const targetSelect = ev.target;
+    if (!(targetSelect instanceof HTMLSelectElement)) {
+      throw new Error("targetSelect is not HTMLSelectElement");
+    }
     const index = targetSelect.selectedIndex;
     const { value } = targetSelect.options[index];
 
