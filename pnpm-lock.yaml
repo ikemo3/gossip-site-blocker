@@ -14,8 +14,8 @@ dependencies:
 
 devDependencies:
   '@types/chrome':
-    specifier: 0.0.247
-    version: 0.0.247
+    specifier: 0.0.248
+    version: 0.0.248
   '@types/node':
     specifier: ^18.18.5
     version: 18.18.5
@@ -29,8 +29,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^14.1.1
-    version: 14.1.1
+    specifier: ^14.1.2
+    version: 14.1.2
   eslint:
     specifier: ^8.51.0
     version: 8.51.0
@@ -404,8 +404,8 @@ packages:
     resolution: {integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng==}
     dev: true
 
-  /@types/chrome@0.0.247:
-    resolution: {integrity: sha512-EkdN6gcGPsFtx7Hu8dfJeMYTg+N9k6aPt5H9RJNYrTvJaJE64tP9ptQbxJDuxaBnf+RWh0Q9ug8JZgNv4Jg+Hg==}
+  /@types/chrome@0.0.248:
+    resolution: {integrity: sha512-qtBzxZD1v3eWZn8XxH1i07pAhzJDHnxJBBVy7bmntXxXKxjzNXYxD41teqa5yOcX/Yy8brRFGZESEzGoINvBDg==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.10
@@ -836,8 +836,8 @@ packages:
       delayed-stream: 1.0.0
     dev: true
 
-  /commander@11.0.0:
-    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
+  /commander@11.1.0:
+    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
     dev: true
 
@@ -937,8 +937,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@14.1.1:
-    resolution: {integrity: sha512-npNLWv11pMH9BW4GBLuA5p6KYOXA9UjVDKQ4DzorEhAac5BS1J23K5I2WpEfkJMpwl9PKMsF4T/GDLSq3pogTw==}
+  /dependency-cruiser@14.1.2:
+    resolution: {integrity: sha512-DlHeyF7LxK+pQdEBS+5AykHhUNOyzhek7QCElcmkWfj/dGxuXudT4SrIn6jVtzOnIhU9GAJ8whqm1MHdLDDCHg==}
     engines: {node: ^18.17||>=20}
     hasBin: true
     dependencies:
@@ -949,7 +949,7 @@ packages:
       acorn-walk: 8.2.0
       ajv: 8.12.0
       chalk: 5.3.0
-      commander: 11.0.0
+      commander: 11.1.0
       enhanced-resolve: 5.15.0
       figures: 5.0.0
       ignore: 5.2.4
