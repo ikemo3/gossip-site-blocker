@@ -17,7 +17,7 @@ class RegExpList {
     this.addText = this.assertInputElement(
       document.getElementById("regexpAddText"),
     );
-    this.addButton = this.assertButtonElement(
+    this.addButton = this.assertInputElement(
       document.getElementById("regexpAddButton"),
     );
     $.onclick(this.addButton, this.addItem.bind(this));
@@ -117,16 +117,6 @@ class RegExpList {
     $.removeSelf(div);
   }
 
-  private assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
-    if (!element) {
-      throw new Error("bannedWordAddButton is null");
-    }
-    if (!(element instanceof HTMLButtonElement)) {
-      throw new Error("bannedWordAddButton is not HTMLButtonElement");
-    }
-    return element;
-  }
-
   private assertDivElement(element: HTMLElement | null): HTMLDivElement {
     if (!element) {
       throw new Error("bannedWord text is null");
@@ -139,10 +129,10 @@ class RegExpList {
 
   private assertInputElement(element: HTMLElement | null): HTMLInputElement {
     if (!element) {
-      throw new Error("bannedWord Input is null");
+      throw new Error("Input is null");
     }
     if (!(element instanceof HTMLInputElement)) {
-      throw new Error("bannedWord Input is not HTMLInputElement");
+      throw new Error("Input is not HTMLInputElement");
     }
     return element;
   }
