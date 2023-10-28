@@ -35,7 +35,7 @@ export default class BannedWords {
   private wordList;
 
   constructor() {
-    this.addButton = this.assertButtonElement(
+    this.addButton = this.assertInputElement(
       document.getElementById("bannedWordAddButton"),
     );
     this.addText = this.assertInputElement(
@@ -64,16 +64,6 @@ export default class BannedWords {
 
       this.addText.value = "";
     });
-  }
-
-  private assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
-    if (!element) {
-      throw new Error("bannedWordAddButton is null");
-    }
-    if (!(element instanceof HTMLButtonElement)) {
-      throw new Error("bannedWordAddButton is not HTMLButtonElement");
-    }
-    return element;
   }
 
   private assertDivElement(element: HTMLElement | null): HTMLDivElement {

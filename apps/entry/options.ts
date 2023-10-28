@@ -27,14 +27,14 @@ const softBlockList = assertDivElement(
 const hardBlockList = assertDivElement(
   document.getElementById("hardBlockList"),
 );
-const clearButton = assertButtonElement(document.getElementById("clearButton"));
+const clearButton = assertInputElement(document.getElementById("clearButton"));
 
-function assertButtonElement(element: HTMLElement | null): HTMLButtonElement {
+function assertInputElement(element: HTMLElement | null): HTMLInputElement {
   if (!element) {
-    throw new Error("bannedWordAddButton is null");
+    throw new Error("Input is null");
   }
-  if (!(element instanceof HTMLButtonElement)) {
-    throw new Error("bannedWordAddButton is not HTMLButtonElement");
+  if (!(element instanceof HTMLInputElement)) {
+    throw new Error("Input is not HTMLInputElement");
   }
   return element;
 }
