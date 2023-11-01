@@ -29,8 +29,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^15.0.0
-    version: 15.0.0
+    specifier: ^15.1.1
+    version: 15.1.1
   eslint:
     specifier: ^8.52.0
     version: 8.52.0
@@ -628,11 +628,19 @@ packages:
       acorn: 8.10.0
     dev: true
 
-  /acorn-loose@8.3.0:
-    resolution: {integrity: sha512-75lAs9H19ldmW+fAbyqHdjgdCrz0pWGXKmnqFoh8PyVd1L2RIb4RzYrSjmopeqv3E1G3/Pimu6GgLlrGbrkF7w==}
+  /acorn-jsx@5.3.2(acorn@8.11.2):
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      acorn: 8.11.2
+    dev: true
+
+  /acorn-loose@8.4.0:
+    resolution: {integrity: sha512-M0EUka6rb+QC4l9Z3T0nJEzNOO7JcoJlYMrBlyBCiFSXRyxjLKayd4TbQs2FDRWQU1h9FR7QVNHt+PEaoNL5rQ==}
     engines: {node: '>=0.4.0'}
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.11.2
     dev: true
 
   /acorn-walk@8.2.0:
@@ -640,8 +648,19 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
+  /acorn-walk@8.3.0:
+    resolution: {integrity: sha512-FS7hV565M5l1R08MXqo8odwMTB02C2UqzB17RVgu9EyuYFBqJZ3/ZY97sQD5FewVu1UyDFc1yztUDrAwT0EypA==}
+    engines: {node: '>=0.4.0'}
+    dev: true
+
   /acorn@8.10.0:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+    dev: true
+
+  /acorn@8.11.2:
+    resolution: {integrity: sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -943,16 +962,16 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@15.0.0:
-    resolution: {integrity: sha512-79AKV+HTIrN7cQY+jPINlljJ3jHJFZ017o/4CdNd5JbEL0q++6KOLpJw9vlisYxoTYy9SEHu8z9KTVSvB4P6Rw==}
+  /dependency-cruiser@15.1.1:
+    resolution: {integrity: sha512-/rgkKZo3msLE5nW0u1kfWmFFxeDBmiaPPuAvXWWc32IALsanIzgNI2qU2zUF/ItjM+SGPcpQp40FYie/PgxquQ==}
     engines: {node: ^18.17||>=20}
     hasBin: true
     dependencies:
-      acorn: 8.10.0
-      acorn-jsx: 5.3.2(acorn@8.10.0)
+      acorn: 8.11.2
+      acorn-jsx: 5.3.2(acorn@8.11.2)
       acorn-jsx-walk: 2.0.0
-      acorn-loose: 8.3.0
-      acorn-walk: 8.2.0
+      acorn-loose: 8.4.0
+      acorn-walk: 8.3.0
       ajv: 8.12.0
       chalk: 5.3.0
       commander: 11.1.0
@@ -964,7 +983,7 @@ packages:
       is-installed-globally: 0.4.0
       json5: 2.2.3
       lodash: 4.17.21
-      picomatch: 2.3.1
+      picomatch: 3.0.1
       prompts: 2.4.2
       rechoir: 0.8.0
       safe-regex: 2.1.1
@@ -972,8 +991,8 @@ packages:
       semver-try-require: 6.2.3
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.1.0
-      watskeburt: 2.0.0
-      wrap-ansi: 8.1.0
+      watskeburt: 2.0.1
+      wrap-ansi: 9.0.0
     dev: true
 
   /detect-indent@7.0.1:
@@ -1014,6 +1033,10 @@ packages:
 
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
+    dev: true
+
+  /emoji-regex@10.3.0:
+    resolution: {integrity: sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -1323,6 +1346,11 @@ packages:
 
   /function-bind@1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
+    dev: true
+
+  /get-east-asian-width@1.2.0:
+    resolution: {integrity: sha512-2nk+7SIVb14QrgXFHcm84tD4bKQz0RxPuMT8Ag5KPOq7J5fEmAg0UbXdTOSHqNuHSU28k55qnceesxXRZGzKWA==}
+    engines: {node: '>=18'}
     dev: true
 
   /get-func-name@2.0.2:
@@ -1919,6 +1947,11 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
+  /picomatch@3.0.1:
+    resolution: {integrity: sha512-I3EurrIQMlRc9IaAZnqRR044Phh2DXY+55o7uJ0V+hYZAcQYSuFWsc9q5PvyDHUSCe1Qxn/iBz+78s86zWnGag==}
+    engines: {node: '>=10'}
+    dev: true
+
   /pkg-types@1.0.3:
     resolution: {integrity: sha512-nN7pYi0AQqJnoLPC9eHFQ8AcyaixBUOwvqc5TDnIKCMEE6I0y8P7OKA7fPexsXGCGxQDl/cmrLAp26LhcwxZ4A==}
     dependencies:
@@ -2245,6 +2278,15 @@ packages:
       strip-ansi: 7.0.1
     dev: true
 
+  /string-width@7.0.0:
+    resolution: {integrity: sha512-GPQHj7row82Hjo9hKZieKcHIhaAIKOJvFSIZXuCU9OASVZrMNUaZuz++SPVrBjnLsnk4k+z9f2EIypgxf2vNFw==}
+    engines: {node: '>=18'}
+    dependencies:
+      emoji-regex: 10.3.0
+      get-east-asian-width: 1.2.0
+      strip-ansi: 7.1.0
+    dev: true
+
   /string_decoder@1.1.1:
     resolution: {integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==}
     dependencies:
@@ -2266,6 +2308,13 @@ packages:
 
   /strip-ansi@7.0.1:
     resolution: {integrity: sha512-cXNxvT8dFNRVfhVME3JAe98mkXDYN2O1l7jmcwMnOslDeESg1rF/OZMtK0nRAhiari1unG5cD4jG3rapUAkLbw==}
+    engines: {node: '>=12'}
+    dependencies:
+      ansi-regex: 6.0.1
+    dev: true
+
+  /strip-ansi@7.1.0:
+    resolution: {integrity: sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==}
     engines: {node: '>=12'}
     dependencies:
       ansi-regex: 6.0.1
@@ -2592,8 +2641,8 @@ packages:
       xml-name-validator: 4.0.0
     dev: true
 
-  /watskeburt@2.0.0:
-    resolution: {integrity: sha512-RJ961Bcw9sfHr1NqZwvcFBYWo6bN9xE1CeBy6LigLqpzzrdnvsMT5HFg2JhOe4ioDOrCndjNa3tsErIVZtCc3g==}
+  /watskeburt@2.0.1:
+    resolution: {integrity: sha512-i03hF1sdNMNG14o52ltw/SBiFsf9gMLP2XwlAzjccapwAFg9mYKi0ZRQnr0KDkAJCq5jfpLQdJdlr01N088W6A==}
     engines: {node: ^18||>=20}
     hasBin: true
     dev: true
@@ -2656,6 +2705,15 @@ packages:
       ansi-styles: 6.2.1
       string-width: 5.1.2
       strip-ansi: 7.0.1
+    dev: true
+
+  /wrap-ansi@9.0.0:
+    resolution: {integrity: sha512-G8ura3S+3Z2G+mkgNRq8dqaFZAuxfsxpBB8OCTGRTCtp+l/v9nbFNmCUP1BZMts3G1142MsZfn6eeUKrr4PD1Q==}
+    engines: {node: '>=18'}
+    dependencies:
+      ansi-styles: 6.2.1
+      string-width: 7.0.0
+      strip-ansi: 7.1.0
     dev: true
 
   /wrappy@1.0.2:
