@@ -14,8 +14,8 @@ dependencies:
 
 devDependencies:
   '@types/chrome':
-    specifier: 0.0.248
-    version: 0.0.248
+    specifier: 0.0.249
+    version: 0.0.249
   '@types/node':
     specifier: ^20.8.10
     version: 20.8.10
@@ -404,8 +404,8 @@ packages:
     resolution: {integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng==}
     dev: true
 
-  /@types/chrome@0.0.248:
-    resolution: {integrity: sha512-qtBzxZD1v3eWZn8XxH1i07pAhzJDHnxJBBVy7bmntXxXKxjzNXYxD41teqa5yOcX/Yy8brRFGZESEzGoINvBDg==}
+  /@types/chrome@0.0.249:
+    resolution: {integrity: sha512-cCtSwbf7NcfbJWvVnm5RBl/G0hsbiqQz+6ENHDMvbg+UvC8naYOQrzzGWt6IczWrtxKlbdnKYi93eiS1C5lbVw==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.10
