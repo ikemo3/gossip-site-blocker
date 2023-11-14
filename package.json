@@ -41,7 +41,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
     "jsdom": "^22.1.0",
-    "prettier": "^3.0.3",
+    "prettier": "^3.1.0",
     "sort-package-json": "^2.6.0",
     "tsx": "^4.1.1",
     "typescript": "^5.2.2",
