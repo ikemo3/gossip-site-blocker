@@ -1,5 +1,6 @@
+import { describe, expect, it } from "vitest";
+
 import GoogleSearchURL from "../apps/values/google_search_url";
-import { describe, it, expect } from "vitest";
 
 describe("GoogleSearchURL", () => {
   it("getURLParameter", () => {

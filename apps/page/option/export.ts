@@ -1,7 +1,7 @@
-import BlockedSitesRepository from "../../storage/blocked_sites";
-import { BannedWordRepository, BannedWord } from "../../storage/banned_words";
-import { RegExpRepository } from "../../storage/regexp_repository";
 import { $ } from "../../libs/dom";
+import { BannedWord, BannedWordRepository } from "../../storage/banned_words";
+import BlockedSitesRepository from "../../storage/blocked_sites";
+import { RegExpRepository } from "../../storage/regexp_repository";
 
 async function exportClicked(): Promise<void> {
   const sites = await BlockedSitesRepository.load();

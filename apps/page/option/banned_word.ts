@@ -1,10 +1,11 @@
+import van from "vanjs-core";
+
 import { $ } from "../../libs/dom";
 import { ApplicationError } from "../../libs/error";
 import { Logger } from "../../libs/logger";
-import { BannedWordRepository, BannedWord } from "../../storage/banned_words";
 import { createSelectOption } from "../../libs/select";
+import { BannedWord, BannedWordRepository } from "../../storage/banned_words";
 import { BannedTarget, BlockType, KeywordType } from "../../storage/enums";
-import van from "vanjs-core";
 const { div, input } = van.tags;
 
 export function toBlockType(value: string): BlockType {

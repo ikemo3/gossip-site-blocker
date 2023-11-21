@@ -1,18 +1,18 @@
-import { BlockReason, BlockReasonType } from "../model/block_reason";
-import BlockState from "./block_state";
-import BlockDialog from "./dialog";
 import { $, DOMUtils } from "../libs/dom";
 import { ApplicationError } from "../libs/error";
+import { BlockReason, BlockReasonType } from "../model/block_reason";
 import BlockedSitesRepository from "../storage/blocked_sites";
-import { RegExpRepository } from "../storage/regexp_repository";
-import { IBasicBlockMediator, IBlockMediator } from "./mediator";
 import { BlockType, MenuPositionType } from "../storage/enums";
+import { RegExpRepository } from "../storage/regexp_repository";
 import { BlockAnchor } from "./block_anchor";
-import { HideAnchor, TemporarilyUnblockAnchor } from "./hide_anchor";
-import { BlockChangeAnchorDialog } from "./block_change_anchor_dialog";
-import { CompactMenu } from "./compact_menu";
-import { BlockTargetElement } from "./block_target_element";
 import { BlockChangeAnchor } from "./block_change_anchor";
+import { BlockChangeAnchorDialog } from "./block_change_anchor_dialog";
+import BlockState from "./block_state";
+import { BlockTargetElement } from "./block_target_element";
+import { CompactMenu } from "./compact_menu";
+import BlockDialog from "./dialog";
+import { HideAnchor, TemporarilyUnblockAnchor } from "./hide_anchor";
+import { IBasicBlockMediator, IBlockMediator } from "./mediator";
 
 export type BlockMediatorType = {
   getElement: () => Element;

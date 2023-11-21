@@ -1,7 +1,7 @@
-import { SearchResultToBlock } from "./contents";
+import { $ } from "../libs/dom";
 import DocumentURL from "../values/document_url";
 import GoogleSearchURL from "../values/google_search_url";
-import { $ } from "../libs/dom";
+import { SearchResultToBlock } from "./contents";
 
 // noinspection SpellCheckingInspection
 const CONTENT_SELECTOR = ".IsZvec";

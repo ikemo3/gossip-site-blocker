@@ -1,15 +1,15 @@
 import { vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
-import BlockedSites from "../apps/model/blocked_sites";
-import BlockedSite from "../apps/model/blocked_site";
-import { $ } from "../apps/libs/dom";
-import { BannedWord } from "../apps/storage/banned_words";
-import BlockState from "../apps/content_script/block_state";
-import { RegExpItem } from "../apps/storage/regexp_repository";
-import { BlockReasonType } from "../apps/model/block_reason";
 import { ContentToBlock } from "../apps/block/contents";
+import BlockState from "../apps/content_script/block_state";
+import { $ } from "../apps/libs/dom";
+import { BlockReasonType } from "../apps/model/block_reason";
+import BlockedSite from "../apps/model/blocked_site";
+import BlockedSites from "../apps/model/blocked_sites";
+import { BannedWord } from "../apps/storage/banned_words";
 import { BannedTarget, BlockType, KeywordType } from "../apps/storage/enums";
-import { describe, it, expect } from "vitest";
+import { RegExpItem } from "../apps/storage/regexp_repository";
 
 describe("BlockState", () => {
   function createContents(url: string, contains: boolean): ContentToBlock {

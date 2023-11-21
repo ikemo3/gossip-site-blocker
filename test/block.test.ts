@@ -1,7 +1,8 @@
+import { describe, expect, it } from "vitest";
+
 import { containsInTitleOrContents } from "../apps/block/libs";
 import { containsInTitle } from "../apps/block/libs";
 import { KeywordType } from "../apps/storage/enums";
-import { describe, it, expect } from "vitest";
 
 describe("containsInTitle", () => {
   it("keyword in title", () => {
