@@ -1,4 +1,5 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+
 import DocumentURL from "../apps/values/document_url";
 
 const GOOGLE_SEARCH_URL =

@@ -1,10 +1,10 @@
-import BlockedSitesRepository from "../../storage/blocked_sites";
-import { BannedWordRepository, BannedWord } from "../../storage/banned_words";
-import { RegExpItem, RegExpRepository } from "../../storage/regexp_repository";
 import { $ } from "../../libs/dom";
 import BlockedSite from "../../model/blocked_site";
-import BannedWords, { toBannedTarget, toBlockType } from "./banned_word";
+import { BannedWord, BannedWordRepository } from "../../storage/banned_words";
+import BlockedSitesRepository from "../../storage/blocked_sites";
 import { KeywordType } from "../../storage/enums";
+import { RegExpItem, RegExpRepository } from "../../storage/regexp_repository";
+import BannedWords, { toBannedTarget, toBlockType } from "./banned_word";
 
 function lineToBannedWord(line: string): BannedWord | undefined {
   const cols = line.split(" ");

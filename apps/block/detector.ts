@@ -1,3 +1,5 @@
+import { Options } from "../storage/options";
+import DocumentURL from "../values/document_url";
 import { GoogleImageTab } from "./google_image_tab";
 import { GoogleNewsCard } from "./google_news_card";
 import { GoogleNewsResult } from "./google_news_result";
@@ -6,8 +8,6 @@ import { GoogleSearchInnerCard } from "./google_search_inner_card";
 import { GoogleSearchMovie } from "./google_search_movie";
 import { GoogleSearchResult } from "./google_search_result";
 import { GoogleSearchTopNews } from "./google_search_top_news";
-import { Options } from "../storage/options";
-import DocumentURL from "../values/document_url";
 
 export function detectContents(
   node: Element,

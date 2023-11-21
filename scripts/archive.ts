@@ -1,16 +1,16 @@
+import { execSync } from "child_process";
 import {
   copyFileSync,
   cpSync,
   existsSync,
   mkdirSync,
-  renameSync,
   readFileSync,
+  renameSync,
   rmSync,
 } from "fs";
 import path from "path";
-import { execSync } from "child_process";
-import { zip } from "zip-a-folder";
 import { fileURLToPath } from "url";
+import { zip } from "zip-a-folder";
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

@@ -1,10 +1,10 @@
 import { Logger } from "../libs/logger";
-import { ChromeStorage } from "./chrome_storage";
 import BlockedSites from "../model/blocked_sites";
 import { BannedWord, BannedWordRepository } from "./banned_words";
-import { RegExpItem, RegExpRepository } from "./regexp_repository";
-import { MenuPositionType } from "./enums";
 import BlockedSitesRepository from "./blocked_sites";
+import { ChromeStorage } from "./chrome_storage";
+import { MenuPositionType } from "./enums";
+import { RegExpItem, RegExpRepository } from "./regexp_repository";
 
 export interface OptionInterface<T> {
   load: () => Promise<T>;

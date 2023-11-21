@@ -1,5 +1,6 @@
+import { describe, expect, it } from "vitest";
+
 import { $ } from "../apps/libs/dom";
-import { describe, it, expect } from "vitest";
 
 describe("escape", () => {
   it("space", () => {

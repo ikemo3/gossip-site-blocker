@@ -1,6 +1,6 @@
-import { SearchResultToBlock } from "./contents";
-import DocumentURL from "../values/document_url";
 import { Logger } from "../libs/logger";
+import DocumentURL from "../values/document_url";
+import { SearchResultToBlock } from "./contents";
 
 export class GoogleNewsResult extends SearchResultToBlock {
   private readonly valid: boolean;

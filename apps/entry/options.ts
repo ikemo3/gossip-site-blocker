@@ -1,8 +1,12 @@
+import { Logger } from "../libs/logger";
 import BannedWords from "../page/option/banned_word";
-import BlockedSitesRepository from "../storage/blocked_sites";
 import BlockedSiteOption from "../page/option/blocked_site_option";
+import exportClicked from "../page/option/export";
+import importClicked from "../page/option/import";
+import localizeHtmlPage from "../page/option/l10n";
+import RegExpList from "../page/option/regexp";
 import { BannedWordRepository } from "../storage/banned_words";
-import { RegExpRepository } from "../storage/regexp_repository";
+import BlockedSitesRepository from "../storage/blocked_sites";
 import {
   AutoBlockIDN,
   BlockGoogleImagesTab,
@@ -15,11 +19,7 @@ import {
   OptionInterface,
   ShowBlockedByWordInfo,
 } from "../storage/options";
-import { Logger } from "../libs/logger";
-import RegExpList from "../page/option/regexp";
-import localizeHtmlPage from "../page/option/l10n";
-import exportClicked from "../page/option/export";
-import importClicked from "../page/option/import";
+import { RegExpRepository } from "../storage/regexp_repository";
 
 const softBlockList = assertDivElement(
   document.getElementById("softBlockList"),

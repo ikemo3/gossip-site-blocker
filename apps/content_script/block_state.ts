@@ -1,11 +1,11 @@
 import { $, DOMUtils } from "../libs/dom";
 import { Logger } from "../libs/logger";
-import { RegExpItem } from "../storage/regexp_repository";
+import { BlockReason, BlockReasonType } from "../model/block_reason";
+import BlockedSite from "../model/blocked_site";
 import BlockedSites from "../model/blocked_sites";
 import { BannedWord } from "../storage/banned_words";
-import BlockedSite from "../model/blocked_site";
-import { BlockReason, BlockReasonType } from "../model/block_reason";
 import { BannedTarget, BlockType, KeywordType } from "../storage/enums";
+import { RegExpItem } from "../storage/regexp_repository";
 
 export type ContentToBlockType = {
   getUrl(): string;

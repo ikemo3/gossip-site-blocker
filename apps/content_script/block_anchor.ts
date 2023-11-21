@@ -1,6 +1,6 @@
 import { $ } from "../libs/dom";
-import { IBlockMediator } from "./mediator";
 import { Anchor } from "./block_change_anchor";
+import { IBlockMediator } from "./mediator";
 
 export class BlockAnchor implements Anchor {
   private readonly anchor: HTMLAnchorElement;

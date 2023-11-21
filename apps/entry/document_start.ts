@@ -1,10 +1,10 @@
-import { Options } from "../storage/options";
-import { BlockReason } from "../model/block_reason";
-import DocumentURL from "../values/document_url";
 import { SearchResultToBlock } from "../block/contents";
-import { blockElement } from "../content_script/block_element";
 import { detectContents } from "../block/detector";
+import { blockElement } from "../content_script/block_element";
+import { BlockReason } from "../model/block_reason";
+import { Options } from "../storage/options";
 import { loadOption } from "../storage/options";
+import DocumentURL from "../values/document_url";
 
 declare global {
   interface Window {

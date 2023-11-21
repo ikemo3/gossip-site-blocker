@@ -1,8 +1,8 @@
-import { Options } from "../storage/options";
 import { BlockReason } from "../model/block_reason";
-import BlockState, { ContentToBlockType } from "./block_state";
-import { BlockMediator, BlockMediatorType } from "./block_mediator";
 import { MenuPositionType } from "../storage/enums";
+import { Options } from "../storage/options";
+import { BlockMediator, BlockMediatorType } from "./block_mediator";
+import BlockState, { ContentToBlockType } from "./block_state";
 
 type SearchResultToBlockType = ContentToBlockType &
   BlockMediatorType & {
