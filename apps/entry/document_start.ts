@@ -25,7 +25,16 @@ const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     for (const node of mutation.addedNodes) {
       if (node instanceof Element) {
-        processAddedNode(node, documentURL);
+        if (
+          node.hasAttribute("data-async-context") &&
+          node.getAttribute("data-async-context")?.startsWith("query:")
+        ) {
+          node.querySelectorAll(".g").forEach((g) => {
+            processAddedNode(g, documentURL);
+          });
+        } else {
+          processAddedNode(node, documentURL);
+        }
       }
     }
   });
