@@ -34,11 +34,14 @@ const observer = new MutationObserver((mutations) => {
 const config = { childList: true, subtree: true };
 observer.observe(document.documentElement, config);
 
-(async (): Promise<void> => {
-  for (const g of pendingsList) {
+function processPendings() {
+  const tmpList = [...pendingsList];
+  pendingsList.length = 0;
+
+  for (const g of tmpList) {
     blockElement(g, gsbOptions);
   }
-})();
+}
 
 function processAddedNode(node: Element, documentURL: DocumentURL) {
   const contents = detectContents(node, documentURL, gsbOptions);
@@ -54,3 +57,5 @@ function processAddedNode(node: Element, documentURL: DocumentURL) {
     }
   }
 }
+
+processPendings();
