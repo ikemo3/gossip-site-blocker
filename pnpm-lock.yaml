@@ -29,8 +29,8 @@ devDependencies:
     specifier: 2.30.0
     version: 2.30.0
   dependency-cruiser:
-    specifier: ^15.3.0
-    version: 15.3.0
+    specifier: ^15.4.0
+    version: 15.4.0
   eslint:
     specifier: ^8.54.0
     version: 8.54.0
@@ -1247,8 +1247,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@15.3.0:
-    resolution: {integrity: sha512-cLNiQgbPhHEiiPW38z0jJObmMzChgdocFWfn8TZKGIR9rTRZvFPGySpPVKidk9k6DpdfSCnhiccZ9yTv6Bmf4w==}
+  /dependency-cruiser@15.4.0:
+    resolution: {integrity: sha512-NmfExJHok6xtBVzmK2PnQX7dI+D9rfsXnjDvzRbn+540IWhDFEBOJrp1FGPBKK2BQsC2FkD3pLjeXGH7SRamEw==}
     engines: {node: ^18.17||>=20}
     hasBin: true
     dependencies:
@@ -1262,7 +1262,7 @@ packages:
       commander: 11.1.0
       enhanced-resolve: 5.15.0
       figures: 6.0.1
-      ignore: 5.2.4
+      ignore: 5.3.0
       indent-string: 5.0.0
       interpret: 3.1.1
       is-installed-globally: 1.0.0
@@ -1276,7 +1276,7 @@ packages:
       semver-try-require: 6.2.3
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.1.0
-      watskeburt: 2.0.1
+      watskeburt: 2.0.2
       wrap-ansi: 9.0.0
     dev: true
 
@@ -1831,6 +1831,11 @@ packages:
 
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
+    engines: {node: '>= 4'}
+    dev: true
+
+  /ignore@5.3.0:
+    resolution: {integrity: sha512-g7dmpshy+gD7mh88OC9NwSGTKoc3kyLAZQRU1mt53Aw/vnvfXnbC+F/7F7QoYVKbV+KNvJx8wArewKy1vXMtlg==}
     engines: {node: '>= 4'}
     dev: true
 
@@ -2956,8 +2961,8 @@ packages:
       xml-name-validator: 4.0.0
     dev: true
 
-  /watskeburt@2.0.1:
-    resolution: {integrity: sha512-i03hF1sdNMNG14o52ltw/SBiFsf9gMLP2XwlAzjccapwAFg9mYKi0ZRQnr0KDkAJCq5jfpLQdJdlr01N088W6A==}
+  /watskeburt@2.0.2:
+    resolution: {integrity: sha512-+WhC6hh3ThX7fx78VI4X1mL8ifMTow4j95tLuiUqDP96jnV4Fa4xGIilpeeBAy5hZtbh0n+irgcySkq7iPwZ4w==}
     engines: {node: ^18||>=20}
     hasBin: true
     dev: true
