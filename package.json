@@ -46,7 +46,7 @@
     "sort-package-json": "^2.6.0",
     "tsx": "^4.6.2",
     "typescript": "^5.3.2",
-    "vite": "^5.0.4",
+    "vite": "^5.0.5",
     "vitest": "^0.34.6",
     "zip-a-folder": "3.1.3"
   },
