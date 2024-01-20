@@ -31,8 +31,8 @@
     "vanjs-core": "^1.2.7"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.257",
-    "@types/node": "^20.11.4",
+    "@types/chrome": "0.0.258",
+    "@types/node": "^20.11.5",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "date-fns": "3.3.0",
@@ -47,7 +47,7 @@
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.12",
-    "vitest": "^1.2.0",
+    "vitest": "^1.2.1",
     "zip-a-folder": "3.1.6"
   },
   "packageManager": "pnpm@8.14.1"
