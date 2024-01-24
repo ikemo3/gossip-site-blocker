@@ -9,8 +9,8 @@ dependencies:
     specifier: ^12.0.3
     version: 12.0.3
   vanjs-core:
-    specifier: ^1.2.7
-    version: 1.2.7
+    specifier: ^1.2.8
+    version: 1.2.8
 
 devDependencies:
   '@types/chrome':
@@ -2658,8 +2658,8 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
 
-  /vanjs-core@1.2.7:
-    resolution: {integrity: sha512-NXZg+kf4OmhTTuTnBiCT6uRqeJiKmKSZLWxvGFmBl8Ho648J+GJZJAHB4cu40rcwJDJEH3Xwe8JjquMpa9zxEQ==}
+  /vanjs-core@1.2.8:
+    resolution: {integrity: sha512-YCyFLL8xwBs442qDHqJ8E0OU58fgag4+bVx16KUYJmDK9mopIlI0fFqizqjArauFPqPZ7iGXfjhQOddCnj0b9Q==}
     dev: false
 
   /vite-node@1.2.1(@types/node@20.11.5):
