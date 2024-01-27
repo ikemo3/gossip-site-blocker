@@ -29,8 +29,8 @@ devDependencies:
     specifier: 3.3.1
     version: 3.3.1
   dependency-cruiser:
-    specifier: ^16.0.0
-    version: 16.0.0
+    specifier: ^16.1.0
+    version: 16.1.0
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -724,16 +724,19 @@ packages:
       acorn: 8.11.2
     dev: true
 
+  /acorn-jsx@5.3.2(acorn@8.11.3):
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      acorn: 8.11.3
+    dev: true
+
   /acorn-loose@8.4.0:
     resolution: {integrity: sha512-M0EUka6rb+QC4l9Z3T0nJEzNOO7JcoJlYMrBlyBCiFSXRyxjLKayd4TbQs2FDRWQU1h9FR7QVNHt+PEaoNL5rQ==}
     engines: {node: '>=0.4.0'}
     dependencies:
-      acorn: 8.11.2
-    dev: true
-
-  /acorn-walk@8.3.1:
-    resolution: {integrity: sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw==}
-    engines: {node: '>=0.4.0'}
+      acorn: 8.11.3
     dev: true
 
   /acorn-walk@8.3.2:
@@ -743,6 +746,12 @@ packages:
 
   /acorn@8.11.2:
     resolution: {integrity: sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+    dev: true
+
+  /acorn@8.11.3:
+    resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -1050,16 +1059,16 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /dependency-cruiser@16.0.0:
-    resolution: {integrity: sha512-piS5nFmjz/SOOBjpTHGJAJ2sWFKs7y56wfpPSi47Y44TwVhmRntnXd3aIHb8iPB7tWLk+xf2EjmVUbkCh910bw==}
+  /dependency-cruiser@16.1.0:
+    resolution: {integrity: sha512-gmuLNIi4ygkf9KLKZzCWc+og7uwFTkTPauT2ma764NtHQt3r4GoWqCR/lZK/kCfOpNOPU9mB0EM/7RmRL6BFXA==}
     engines: {node: ^18.17||>=20}
     hasBin: true
     dependencies:
-      acorn: 8.11.2
-      acorn-jsx: 5.3.2(acorn@8.11.2)
+      acorn: 8.11.3
+      acorn-jsx: 5.3.2(acorn@8.11.3)
       acorn-jsx-walk: 2.0.0
       acorn-loose: 8.4.0
-      acorn-walk: 8.3.1
+      acorn-walk: 8.3.2
       ajv: 8.12.0
       chalk: 5.3.0
       commander: 11.1.0
@@ -1079,7 +1088,7 @@ packages:
       semver-try-require: 6.2.3
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.1.0
-      watskeburt: 2.0.4
+      watskeburt: 2.0.5
       wrap-ansi: 9.0.0
     dev: true
 
@@ -2784,8 +2793,8 @@ packages:
       xml-name-validator: 5.0.0
     dev: true
 
-  /watskeburt@2.0.4:
-    resolution: {integrity: sha512-9xAL/S6WQocWEa/Ud5hoPWGp3nknBsXgtGansjEmyu3ZBjZwPKGRn/151qiE9Jvp1VHniDlnivQCesTfUnwekw==}
+  /watskeburt@2.0.5:
+    resolution: {integrity: sha512-mCxVT4o/U+nNxmYJ+Oei3qre4F28IBWR9c7RGS8aeAR7a7UY1y4ikTWcv+kaaybf1QXUANmB7XBHawHBcmg+kw==}
     engines: {node: ^18||>=20}
     hasBin: true
     dev: true
