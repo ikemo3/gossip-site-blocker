@@ -34,7 +34,7 @@ jobs:
             - gossip-site-blocker-*
   deploy:
     docker:
-      - image: cimg/go:1.21-node
+      - image: cimg/go:1.22-node
 
     working_directory: ~/repo
 
