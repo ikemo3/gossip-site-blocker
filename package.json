@@ -31,7 +31,7 @@
     "vanjs-core": "^1.2.8"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.260",
+    "@types/chrome": "0.0.261",
     "@types/node": "^20.11.20",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
