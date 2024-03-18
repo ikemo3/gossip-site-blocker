@@ -1,5 +1,5 @@
 import { resolve } from "path";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 // https://vitejs.dev/config/
 // https://ja.vitejs.dev/guide/backend-integration.html
@@ -24,4 +24,7 @@ export default defineConfig({
     },
   },
   plugins: [],
+  test: {
+    environment: "jsdom",
+  },
 });
