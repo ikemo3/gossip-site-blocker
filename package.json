@@ -39,7 +39,7 @@
     "dependency-cruiser": "^16.2.4",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-n": "^14.0.0",
+    "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "jsdom": "^24.0.0",
     "prettier": "^3.2.2",
