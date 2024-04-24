@@ -47,8 +47,8 @@
     "tsx": "^4.7.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.10",
-    "vitest": "^1.5.0",
+    "vitest": "^1.5.1",
     "zip-a-folder": "3.1.6"
   },
-  "packageManager": "pnpm@9.0.5"
+  "packageManager": "pnpm@9.0.6"
 }
