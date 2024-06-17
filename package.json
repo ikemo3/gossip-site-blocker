@@ -44,12 +44,12 @@
     "jsdom": "^24.1.0",
     "prettier": "^3.3.2",
     "sort-package-json": "^2.10.0",
-    "tsx": "^4.15.5",
+    "tsx": "^4.15.6",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.13.0",
     "vite": "^5.3.1",
     "vitest": "^1.6.0",
-    "zip-a-folder": "3.1.6"
+    "zip-a-folder": "3.1.7"
   },
   "packageManager": "pnpm@9.3.0"
 }
