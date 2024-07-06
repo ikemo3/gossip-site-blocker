@@ -25,8 +25,8 @@ importers:
         specifier: 3.6.0
         version: 3.6.0
       dependency-cruiser:
-        specifier: ^16.3.5
-        version: 16.3.5
+        specifier: ^16.3.6
+        version: 16.3.6
       eslint:
         specifier: ^9.6.0
         version: 9.6.0
@@ -466,6 +466,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.12.1:
+    resolution: {integrity: sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   agent-base@7.1.0:
     resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
     engines: {node: '>= 14'}
@@ -562,10 +567,6 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  chalk@5.3.0:
-    resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-
   check-error@1.0.3:
     resolution: {integrity: sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==}
 
@@ -641,8 +642,8 @@ packages:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
 
-  dependency-cruiser@16.3.5:
-    resolution: {integrity: sha512-fUZlIzay3WLwEmzGEfleEdKTLVxehiWf77PhHUxokv9FE9BmUVGVJpQpKSsOli0SslWhIKD1hS3hh+xDmhhGWQ==}
+  dependency-cruiser@16.3.6:
+    resolution: {integrity: sha512-OTkMkN1tMD7d5hEPO8KytzxXryyE25FrwPn/2ltzuon3G/NLC66MmUwPHJTidUC0levq9e1zkon0UTUXPZXZIQ==}
     engines: {node: ^18.17||>=20}
     hasBin: true
 
@@ -1617,8 +1618,8 @@ packages:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}
     engines: {node: '>=18'}
 
-  watskeburt@4.0.2:
-    resolution: {integrity: sha512-w7X8AGrBZExP5/3e3c1X/CUY8Yod/aiAazQCvrg7n8Un6piD+NFFK926G15zRq4+wu0XAEWpSsZ4C+fEfVOCYw==}
+  watskeburt@4.1.0:
+    resolution: {integrity: sha512-KkY5H51ajqy9HYYI+u9SIURcWnqeVVhdH0I+ab6aXPGHfZYxgRCwnR6Lm3+TYB6jJVt5jFqw4GAKmwf1zHmGQw==}
     engines: {node: ^18||>=20}
     hasBin: true
 
@@ -2017,17 +2018,23 @@ snapshots:
     dependencies:
       acorn: 8.12.0
 
+  acorn-jsx@5.3.2(acorn@8.12.1):
+    dependencies:
+      acorn: 8.12.1
+
   acorn-loose@8.4.0:
     dependencies:
-      acorn: 8.12.0
+      acorn: 8.12.1
 
   acorn-walk@8.3.2: {}
 
   acorn-walk@8.3.3:
     dependencies:
-      acorn: 8.12.0
+      acorn: 8.12.1
 
   acorn@8.12.0: {}
+
+  acorn@8.12.1: {}
 
   agent-base@7.1.0:
     dependencies:
@@ -2136,8 +2143,6 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  chalk@5.3.0: {}
-
   check-error@1.0.3:
     dependencies:
       get-func-name: 2.0.2
@@ -2204,15 +2209,14 @@ snapshots:
 
   delayed-stream@1.0.0: {}
 
-  dependency-cruiser@16.3.5:
+  dependency-cruiser@16.3.6:
     dependencies:
-      acorn: 8.12.0
-      acorn-jsx: 5.3.2(acorn@8.12.0)
+      acorn: 8.12.1
+      acorn-jsx: 5.3.2(acorn@8.12.1)
       acorn-jsx-walk: 2.0.0
       acorn-loose: 8.4.0
       acorn-walk: 8.3.3
       ajv: 8.16.0
-      chalk: 5.3.0
       commander: 12.1.0
       enhanced-resolve: 5.17.0
       ignore: 5.3.1
@@ -2221,6 +2225,7 @@ snapshots:
       json5: 2.2.3
       lodash: 4.17.21
       memoize: 10.0.0
+      picocolors: 1.0.1
       picomatch: 4.0.2
       prompts: 2.4.2
       rechoir: 0.8.0
@@ -2228,7 +2233,7 @@ snapshots:
       semver: 7.6.2
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.1.0
-      watskeburt: 4.0.2
+      watskeburt: 4.1.0
       wrap-ansi: 9.0.0
 
   detect-indent@7.0.1: {}
@@ -3141,7 +3146,7 @@ snapshots:
       cac: 6.7.14
       debug: 4.3.4
       pathe: 1.1.1
-      picocolors: 1.0.0
+      picocolors: 1.0.1
       vite: 5.3.3(@types/node@20.14.10)
     transitivePeerDependencies:
       - '@types/node'
@@ -3200,7 +3205,7 @@ snapshots:
     dependencies:
       xml-name-validator: 5.0.0
 
-  watskeburt@4.0.2: {}
+  watskeburt@4.1.0: {}
 
   webidl-conversions@7.0.0: {}
 
