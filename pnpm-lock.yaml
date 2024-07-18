@@ -12,8 +12,8 @@ importers:
         specifier: ^12.0.3
         version: 12.0.3
       vanjs-core:
-        specifier: ^1.5.0
-        version: 1.5.0
+        specifier: ^1.5.1
+        version: 1.5.1
     devDependencies:
       '@types/chrome':
         specifier: 0.0.268
@@ -1544,8 +1544,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  vanjs-core@1.5.0:
-    resolution: {integrity: sha512-kOM9XVOciL9Q3Ihn3ruycTL5NCvuR5Ub7wwQIU9sZJdMBWSxesbeyN3+PWceLz57ImgHTF0eOVvhkoKJLlE3hw==}
+  vanjs-core@1.5.1:
+    resolution: {integrity: sha512-KT2XPqlwRdkyr7+pHc9BWOwmA6l7UqWrtt80xM1QkaUujc7Fq4Tgr6RhFo5wFO1u2sV1q7sR2PBKpVEGx4fEdA==}
 
   vite-node@1.6.0:
     resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
@@ -3113,7 +3113,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vanjs-core@1.5.0: {}
+  vanjs-core@1.5.1: {}
 
   vite-node@1.6.0(@types/node@20.14.11):
     dependencies:
