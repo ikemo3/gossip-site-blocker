@@ -57,7 +57,7 @@ function matchesByRegexp(
     const pattern = new RegExp(regexpItem.pattern);
 
     return pattern.test(DOMUtils.removeProtocol(content.getUrl()));
-  } catch (e) {
+  } catch (_e) {
     Logger.log(`Invalid regexp: ${regexpItem.pattern}`);
     return false;
   }

@@ -38,7 +38,7 @@ export function matchesByRegExp(contents: string, keyword: string): boolean {
   try {
     const regexp = new RegExp(keyword);
     return regexp.test(contents);
-  } catch (e) {
+  } catch (_e) {
     Logger.log(`Invalid regexp: ${keyword}`);
     return false;
   }
