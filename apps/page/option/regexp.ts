@@ -69,7 +69,6 @@ class RegExpList {
 
     const regexp = $.regexp(pattern);
     if (regexp === null) {
-      // eslint-disable-next-line no-alert
       alert($.message("invalidPattern"));
       return;
     }

@@ -42,7 +42,6 @@ export interface TextAreaParams {
 export const $ = {
   anchor(text?: string): HTMLAnchorElement {
     const anchor = document.createElement("a");
-    // eslint-disable-next-line no-script-url
     anchor.removeAttribute("href");
     anchor.classList.add("gsb-anchor");
 
@@ -72,7 +71,7 @@ export const $ = {
   decodeURI(encodedURI: string): string {
     try {
       return decodeURI(encodedURI);
-    } catch (e) {
+    } catch (_e) {
       return encodedURI;
     }
   },
@@ -96,7 +95,6 @@ export const $ = {
   },
 
   hide(element: HTMLElement): void {
-    // eslint-disable-next-line no-param-reassign
     element.style.display = "none";
   },
 
@@ -160,7 +158,7 @@ export const $ = {
   regexp(pattern: string): RegExp | null {
     try {
       return new RegExp(pattern);
-    } catch (e) {
+    } catch (_e) {
       return null;
     }
   },
@@ -170,12 +168,10 @@ export const $ = {
   },
 
   show(element: HTMLElement): void {
-    // eslint-disable-next-line no-param-reassign
     element.style.display = "inline";
   },
 
   showBlock(element: HTMLElement): void {
-    // eslint-disable-next-line no-param-reassign
     element.style.display = "block";
   },
 
@@ -191,7 +187,6 @@ export const $ = {
   },
 
   text(element: HTMLElement, text: string): void {
-    // eslint-disable-next-line no-param-reassign
     element.textContent = text;
   },
 

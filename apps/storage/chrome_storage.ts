@@ -7,7 +7,6 @@ export const ChromeStorage = {
     });
   },
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
   async save(items: object): Promise<void> {
     return new Promise((resolve) => {
       chrome.storage.local.set(items, resolve);

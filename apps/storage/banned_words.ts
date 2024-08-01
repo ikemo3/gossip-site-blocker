@@ -91,7 +91,6 @@ export const BannedWordRepository = {
         return word;
       }
 
-      // eslint-disable-next-line no-param-reassign
       word.blockType = type;
       return word;
     });
@@ -107,7 +106,6 @@ export const BannedWordRepository = {
         return word;
       }
 
-      // eslint-disable-next-line no-param-reassign
       word.target = target;
       return word;
     });
@@ -126,7 +124,6 @@ export const BannedWordRepository = {
         return word;
       }
 
-      // eslint-disable-next-line no-param-reassign
       word.keywordType = keywordType;
       return word;
     });

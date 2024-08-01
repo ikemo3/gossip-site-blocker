@@ -5,7 +5,6 @@ import { fileURLToPath } from "url";
 
 import { configureGhrOption, isError } from "./libs.js";
 
-// eslint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getGitSha() {
