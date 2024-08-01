@@ -12,7 +12,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { zip } from "zip-a-folder";
 
-// eslint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function clearDirectory(path: string) {

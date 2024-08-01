@@ -112,13 +112,11 @@ async function showLists(): Promise<void> {
 }
 
 async function clear(): Promise<void> {
-  // eslint-disable-next-line no-alert, no-restricted-globals
   if (confirm(chrome.i18n.getMessage("clearConfirm"))) {
     await BlockedSitesRepository.clear();
     await BannedWordRepository.clear();
     await RegExpRepository.clear();
 
-    // eslint-disable-next-line no-alert
     alert(chrome.i18n.getMessage("clearDone"));
 
     // clear all.

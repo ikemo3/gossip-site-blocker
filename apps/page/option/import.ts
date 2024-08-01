@@ -97,7 +97,6 @@ async function importClicked(): Promise<void> {
 
   await RegExpRepository.addAll(regexpList);
 
-  // eslint-disable-next-line no-alert
   alert(chrome.i18n.getMessage("importCompleted"));
 }
 
