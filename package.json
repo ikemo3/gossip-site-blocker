@@ -45,7 +45,7 @@
     "tsx": "^4.16.5",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.3.5",
+    "vite": "^5.4.0",
     "vitest": "^2.0.5",
     "zip-a-folder": "3.1.7"
   },
