@@ -25,8 +25,8 @@ importers:
         specifier: 3.6.0
         version: 3.6.0
       dependency-cruiser:
-        specifier: ^16.3.10
-        version: 16.3.10
+        specifier: ^16.4.0
+        version: 16.4.0
       eslint:
         specifier: ^9.9.0
         version: 9.9.0
@@ -792,8 +792,8 @@ packages:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
 
-  dependency-cruiser@16.3.10:
-    resolution: {integrity: sha512-WkCnibHBfvaiaQ+S46LZ6h4AR6oj42Vsf5/0Vgtrwdwn7ZekMJdZ/ALoTwNp/RaGlKW+MbV/fhSZOvmhAWVWzQ==}
+  dependency-cruiser@16.4.0:
+    resolution: {integrity: sha512-la/NnD23m6esCox8KMiZ/pcmtec6G/r7LgnJvkBepcErdzlGaxWnyaxtpoYB3fgODrU/7E2u81/nX5FNu5zfyw==}
     engines: {node: ^18.17||>=20}
     hasBin: true
 
@@ -1076,6 +1076,10 @@ packages:
 
   ignore@5.3.1:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
+    engines: {node: '>= 4'}
+
+  ignore@5.3.2:
+    resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
 
   import-fresh@3.3.0:
@@ -2418,7 +2422,7 @@ snapshots:
 
   delayed-stream@1.0.0: {}
 
-  dependency-cruiser@16.3.10:
+  dependency-cruiser@16.4.0:
     dependencies:
       acorn: 8.12.1
       acorn-jsx: 5.3.2(acorn@8.12.1)
@@ -2428,7 +2432,7 @@ snapshots:
       ajv: 8.17.1
       commander: 12.1.0
       enhanced-resolve: 5.17.1
-      ignore: 5.3.1
+      ignore: 5.3.2
       interpret: 3.1.1
       is-installed-globally: 1.0.0
       json5: 2.2.3
@@ -2786,6 +2790,8 @@ snapshots:
   ieee754@1.2.1: {}
 
   ignore@5.3.1: {}
+
+  ignore@5.3.2: {}
 
   import-fresh@3.3.0:
     dependencies:
