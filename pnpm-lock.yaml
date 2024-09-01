@@ -25,8 +25,8 @@ importers:
         specifier: 3.6.0
         version: 3.6.0
       dependency-cruiser:
-        specifier: ^16.4.0
-        version: 16.4.0
+        specifier: ^16.4.1
+        version: 16.4.1
       eslint:
         specifier: ^9.9.1
         version: 9.9.1
@@ -803,8 +803,8 @@ packages:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
 
-  dependency-cruiser@16.4.0:
-    resolution: {integrity: sha512-la/NnD23m6esCox8KMiZ/pcmtec6G/r7LgnJvkBepcErdzlGaxWnyaxtpoYB3fgODrU/7E2u81/nX5FNu5zfyw==}
+  dependency-cruiser@16.4.1:
+    resolution: {integrity: sha512-tmByrPhRMdjg/FsE3eT24QSXKhrZpo9APpDCg5Wgg0ReAhZughE3iKseD++UtSYsLQIjD1aYNSeNiAvqbcup9Q==}
     engines: {node: ^18.17||>=20}
     hasBin: true
 
@@ -2424,7 +2424,7 @@ snapshots:
 
   delayed-stream@1.0.0: {}
 
-  dependency-cruiser@16.4.0:
+  dependency-cruiser@16.4.1:
     dependencies:
       acorn: 8.12.1
       acorn-jsx: 5.3.2(acorn@8.12.1)
