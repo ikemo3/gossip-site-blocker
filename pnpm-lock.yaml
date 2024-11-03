@@ -19,8 +19,8 @@ importers:
         specifier: 0.0.280
         version: 0.0.280
       '@types/node':
-        specifier: ^22.8.6
-        version: 22.8.6
+        specifier: ^22.8.7
+        version: 22.8.7
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -68,10 +68,10 @@ importers:
         version: 8.12.2(eslint@9.14.0)(typescript@5.6.3)
       vite:
         specifier: ^5.4.10
-        version: 5.4.10(@types/node@22.8.6)
+        version: 5.4.10(@types/node@22.8.7)
       vitest:
         specifier: ^2.1.4
-        version: 2.1.4(@types/node@22.8.6)(jsdom@25.0.1)
+        version: 2.1.4(@types/node@22.8.7)(jsdom@25.0.1)
       zip-a-folder:
         specifier: 3.1.7
         version: 3.1.7
@@ -543,8 +543,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@22.8.6':
-    resolution: {integrity: sha512-tosuJYKrIqjQIlVCM4PEGxOmyg3FCPa/fViuJChnGeEIhjA46oy8FMVoF9su1/v8PNs2a8Q0iFNyOx0uOF91nw==}
+  '@types/node@22.8.7':
+    resolution: {integrity: sha512-LidcG+2UeYIWcMuMUpBKOnryBWG/rnmOHQR5apjn8myTQcx3rinFRn7DcIFhMnS0PPFSC6OafdIKEad0lj6U0Q==}
 
   '@typescript-eslint/eslint-plugin@8.12.2':
     resolution: {integrity: sha512-gQxbxM8mcxBwaEmWdtLCIGLfixBMHhQjBqR8sVWNTPpcj45WlYL2IObS/DNMLH1DBP0n8qz+aiiLTGfopPEebw==}
@@ -2116,7 +2116,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@22.8.6':
+  '@types/node@22.8.7':
     dependencies:
       undici-types: 6.19.8
 
@@ -2208,13 +2208,13 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.4(vite@5.4.10(@types/node@22.8.6))':
+  '@vitest/mocker@2.1.4(vite@5.4.10(@types/node@22.8.7))':
     dependencies:
       '@vitest/spy': 2.1.4
       estree-walker: 3.0.3
       magic-string: 0.30.12
     optionalDependencies:
-      vite: 5.4.10(@types/node@22.8.6)
+      vite: 5.4.10(@types/node@22.8.7)
 
   '@vitest/pretty-format@2.1.4':
     dependencies:
@@ -3323,12 +3323,12 @@ snapshots:
 
   vanjs-core@1.5.2: {}
 
-  vite-node@2.1.4(@types/node@22.8.6):
+  vite-node@2.1.4(@types/node@22.8.7):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       pathe: 1.1.2
-      vite: 5.4.10(@types/node@22.8.6)
+      vite: 5.4.10(@types/node@22.8.7)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3340,19 +3340,19 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.4.10(@types/node@22.8.6):
+  vite@5.4.10(@types/node@22.8.7):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.44
       rollup: 4.24.0
     optionalDependencies:
-      '@types/node': 22.8.6
+      '@types/node': 22.8.7
       fsevents: 2.3.3
 
-  vitest@2.1.4(@types/node@22.8.6)(jsdom@25.0.1):
+  vitest@2.1.4(@types/node@22.8.7)(jsdom@25.0.1):
     dependencies:
       '@vitest/expect': 2.1.4
-      '@vitest/mocker': 2.1.4(vite@5.4.10(@types/node@22.8.6))
+      '@vitest/mocker': 2.1.4(vite@5.4.10(@types/node@22.8.7))
       '@vitest/pretty-format': 2.1.4
       '@vitest/runner': 2.1.4
       '@vitest/snapshot': 2.1.4
@@ -3368,11 +3368,11 @@ snapshots:
       tinyexec: 0.3.1
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.10(@types/node@22.8.6)
-      vite-node: 2.1.4(@types/node@22.8.6)
+      vite: 5.4.10(@types/node@22.8.7)
+      vite-node: 2.1.4(@types/node@22.8.7)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.8.6
+      '@types/node': 22.8.7
       jsdom: 25.0.1
     transitivePeerDependencies:
       - less
