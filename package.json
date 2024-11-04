@@ -31,7 +31,7 @@
     "@types/chrome": "0.0.280",
     "@types/node": "^22.8.7",
     "date-fns": "4.1.0",
-    "dependency-cruiser": "^16.5.0",
+    "dependency-cruiser": "^16.6.0",
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-formatter-junit": "^8.40.0",
