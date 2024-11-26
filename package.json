@@ -40,7 +40,7 @@
     "globals": "^15.12.0",
     "jsdom": "^25.0.1",
     "npm-run-all2": "^7.0.1",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.0",
     "sort-package-json": "^2.12.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
