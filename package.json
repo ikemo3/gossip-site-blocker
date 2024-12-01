@@ -37,7 +37,7 @@
     "eslint-formatter-junit": "^8.40.0",
     "eslint-plugin-n": "^17.14.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "globals": "^15.12.0",
+    "globals": "^15.13.0",
     "jsdom": "^25.0.1",
     "npm-run-all2": "^7.0.1",
     "prettier": "^3.4.1",
