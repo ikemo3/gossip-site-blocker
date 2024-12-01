@@ -25,8 +25,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       dependency-cruiser:
-        specifier: ^16.6.0
-        version: 16.6.0
+        specifier: ^16.7.0
+        version: 16.7.0
       eslint:
         specifier: ^9.16.0
         version: 9.16.0
@@ -829,8 +829,8 @@ packages:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
 
-  dependency-cruiser@16.6.0:
-    resolution: {integrity: sha512-lIk58+MCU/RksPm9rh5sA3kpWaA2kmsfz8wnrlW5bFeZ5olU+PLH9vVuT2grJdFDDd44JGYfvNRyKkDLqt4uvg==}
+  dependency-cruiser@16.7.0:
+    resolution: {integrity: sha512-522LLjHINl9r0RIZ8/6s6TqIHTuEJG3XDU2WPSm9dG0rvLUYVyQwE9ID31tDFs4OOyEhdOPaqAaAG1jRv/Zwbg==}
     engines: {node: ^18.17||>=20}
     hasBin: true
 
@@ -1653,8 +1653,8 @@ packages:
     peerDependencies:
       typescript: '>=4.2.0'
 
-  tsconfig-paths-webpack-plugin@4.1.0:
-    resolution: {integrity: sha512-xWFISjviPydmtmgeUAuXp4N1fky+VCtfhOkDUFIv5ea7p4wuTomI4QTrXvFBX2S4jZsmyTSrStQl+E+4w+RzxA==}
+  tsconfig-paths-webpack-plugin@4.2.0:
+    resolution: {integrity: sha512-zbem3rfRS8BgeNK50Zz5SIQgXzLafiHjOwUAvk/38/o1jHn/V5QAgVUcz884or7WYcPaH3N2CIfUc2u0ul7UcA==}
     engines: {node: '>=10.13.0'}
 
   tsconfig-paths@4.1.2:
@@ -1771,8 +1771,8 @@ packages:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}
     engines: {node: '>=18'}
 
-  watskeburt@4.1.0:
-    resolution: {integrity: sha512-KkY5H51ajqy9HYYI+u9SIURcWnqeVVhdH0I+ab6aXPGHfZYxgRCwnR6Lm3+TYB6jJVt5jFqw4GAKmwf1zHmGQw==}
+  watskeburt@4.1.1:
+    resolution: {integrity: sha512-6eghVVn6VlfYnlg23I2wABhXQFNdVdDzbXRTj0PKnDAgYJMuBcDt4fiHNAFMoBzLqM/fjFYj9QxTDfFskB3+Xg==}
     engines: {node: ^18||>=20}
     hasBin: true
 
@@ -2445,7 +2445,7 @@ snapshots:
 
   delayed-stream@1.0.0: {}
 
-  dependency-cruiser@16.6.0:
+  dependency-cruiser@16.7.0:
     dependencies:
       acorn: 8.14.0
       acorn-jsx: 5.3.2(acorn@8.14.0)
@@ -2467,8 +2467,8 @@ snapshots:
       safe-regex: 2.1.1
       semver: 7.6.3
       teamcity-service-messages: 0.1.14
-      tsconfig-paths-webpack-plugin: 4.1.0
-      watskeburt: 4.1.0
+      tsconfig-paths-webpack-plugin: 4.2.0
+      watskeburt: 4.1.1
 
   detect-indent@7.0.1: {}
 
@@ -3295,10 +3295,11 @@ snapshots:
     dependencies:
       typescript: 5.7.2
 
-  tsconfig-paths-webpack-plugin@4.1.0:
+  tsconfig-paths-webpack-plugin@4.2.0:
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 5.17.1
+      tapable: 2.2.1
       tsconfig-paths: 4.1.2
 
   tsconfig-paths@4.1.2:
@@ -3415,7 +3416,7 @@ snapshots:
     dependencies:
       xml-name-validator: 5.0.0
 
-  watskeburt@4.1.0: {}
+  watskeburt@4.1.1: {}
 
   webidl-conversions@7.0.0: {}
 
