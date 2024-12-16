@@ -39,7 +39,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.13.0",
     "jsdom": "^25.0.1",
-    "npm-run-all2": "^7.0.1",
+    "npm-run-all2": "^7.0.2",
     "prettier": "^3.4.2",
     "sort-package-json": "^2.12.0",
     "tsx": "^4.19.2",
