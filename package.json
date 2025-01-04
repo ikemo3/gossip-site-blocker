@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.289",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.5",
     "date-fns": "4.1.0",
     "dependency-cruiser": "^16.8.0",
     "eslint": "^9.17.0",
