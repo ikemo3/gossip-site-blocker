@@ -38,7 +38,7 @@
     "eslint-plugin-n": "^17.15.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.14.0",
-    "jsdom": "^25.0.1",
+    "jsdom": "^26.0.0",
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.4.2",
     "sort-package-json": "^2.14.0",
