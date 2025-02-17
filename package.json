@@ -44,7 +44,7 @@
     "sort-package-json": "^2.14.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.0",
+    "typescript-eslint": "^8.24.1",
     "vite": "^6.1.0",
     "vitest": "^3.0.5",
     "zip-a-folder": "3.1.8"
