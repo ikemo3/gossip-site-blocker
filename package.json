@@ -32,7 +32,7 @@
     "@types/node": "^22.13.11",
     "date-fns": "4.1.0",
     "dependency-cruiser": "^16.10.0",
-    "eslint": "^9.22.0",
+    "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-formatter-junit": "^8.40.0",
     "eslint-plugin-n": "^17.16.2",
