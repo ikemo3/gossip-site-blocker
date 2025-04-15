@@ -26,19 +26,31 @@ function getPackageName(projectDir: string) {
   return packageJson.name;
 }
 
-async function createChromeExtension(packageName: string, projectDir: string) {
-  console.log(`Create ${packageName}.zip`);
+async function createChromeExtension(
+  packageName: string,
+  projectDir: string,
+  suffix: string,
+) {
+  // Output file name is determined by suffix (e.g. -v1.16.0 or -snapshot)
+  const fileName = `${packageName}-${suffix}-chrome.zip`;
+  console.log(`Create ${fileName}`);
   await zip(
     projectDir + "/dist-chrome",
-    projectDir + `/tmp/workspace/${packageName}-chrome.zip`,
+    projectDir + `/tmp/workspace/${fileName}`,
   );
 }
 
-async function createFirefoxExtension(packageName: string, projectDir: string) {
-  console.log(`Create ${packageName}.xpi`);
+async function createFirefoxExtension(
+  packageName: string,
+  projectDir: string,
+  suffix: string,
+) {
+  // Output file name is determined by suffix (e.g. -v1.16.0 or -snapshot)
+  const fileName = `${packageName}-${suffix}-firefox.xpi`;
+  console.log(`Create ${fileName}`);
   await zip(
     projectDir + "/dist-firefox",
-    projectDir + `/tmp/workspace/${packageName}-firefox.xpi`,
+    projectDir + `/tmp/workspace/${fileName}`,
   );
 }
 
@@ -72,11 +84,16 @@ async function main() {
   // load package.json
   const packageName = getPackageName(projectDir);
 
-  // create Chrome extension
-  await createChromeExtension(packageName, projectDir);
+  // Determine suffix for file name
+  // Use environment variable RELEASE_TAG if set, otherwise use 'snapshot'
+  const tag = process.env.RELEASE_TAG;
+  const suffix = tag ? tag : "snapshot";
 
-  // create Firefox extension
-  await createFirefoxExtension(packageName, projectDir);
+  // Create Chrome extension
+  await createChromeExtension(packageName, projectDir, suffix);
+
+  // Create Firefox extension
+  await createFirefoxExtension(packageName, projectDir, suffix);
 }
 
 main().catch((err) => {

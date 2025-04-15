@@ -22,8 +22,8 @@ const firefoxManifest = JSON.parse(
 );
 
 // set version_name
-const branch = process.env.CIRCLE_BRANCH;
-if (branch) {
+const ref = process.env.GITHUB_REF;
+if (ref && ref.startsWith("refs/heads/main")) {
   const version = manifest.version;
   const now = format(new Date(), "yyyyMMdd-HHmm");
   manifest.version_name = `${version}-snapshot(${now})`;
