@@ -1,0 +1,92 @@
+name: "Deploy"
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v.*"
+
+permissions:
+  contents: write
+
+env:
+  node-version: "22.14.0"
+  pnpm-version: "10.8.1"
+  PACKAGE_NAME: gossip-site-blocker
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.pnpm-version }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.node-version }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build & Archive extension (main branch)
+        if: github.ref == 'refs/heads/main'
+        run: RELEASE_TAG=snapshot pnpm archive
+
+      - name: Build & Archive extension (tag release)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          RELEASE_TAG=$TAG_NAME pnpm archive
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-artifacts
+          path: |
+            tmp/workspace/${{ env.PACKAGE_NAME }}-*-chrome.zip
+            tmp/workspace/${{ env.PACKAGE_NAME }}-*-firefox.xpi
+
+      # === snapshot release
+      - name: Delete existing snapshot release and tag
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set +e
+          gh release delete snapshot -y || true
+          git push origin :refs/tags/snapshot || true
+          set -e
+
+      - name: Create/Push snapshot tag
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git tag -f snapshot
+          git push -f origin snapshot
+
+      - name: Create snapshot GitHub Release
+        if: github.ref == 'refs/heads/main'
+        run: |
+          gh release create snapshot \
+            --title "snapshot" \
+            --notes "Latest snapshot build from main" \
+            tmp/workspace/${{ env.PACKAGE_NAME }}-snapshot-chrome.zip \
+            tmp/workspace/${{ env.PACKAGE_NAME }}-snapshot-firefox.xpi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # === tag release
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            tmp/workspace/${{ env.PACKAGE_NAME }}-${{ github.ref_name }}-chrome.zip
+            tmp/workspace/${{ env.PACKAGE_NAME }}-${{ github.ref_name }}-firefox.xpi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

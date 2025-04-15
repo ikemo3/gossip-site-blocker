@@ -9,7 +9,6 @@
     "build": "run-s build:*",
     "build:vite": "vite build",
     "build:manifest": "tsx ./scripts/make_manifest.ts",
-    "deploy": "tsx ./scripts/github_release.ts",
     "dev": "vite",
     "fix": "ESLINT_USE_FLAT_CONFIG=true eslint --fix .",
     "format": "run-s format:*",
