@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "tabbyjs": "^12.0.3",
-    "vanjs-core": "^1.5.3"
+    "vanjs-core": "^1.5.5"
   },
   "devDependencies": {
     "@types/chrome": "0.0.317",
