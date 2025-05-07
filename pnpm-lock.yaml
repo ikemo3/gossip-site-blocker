@@ -25,8 +25,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       dependency-cruiser:
-        specifier: ^16.10.1
-        version: 16.10.1
+        specifier: ^16.10.2
+        version: 16.10.2
       eslint:
         specifier: ^9.26.0
         version: 9.26.0
@@ -567,8 +567,8 @@ packages:
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  acorn-loose@8.4.0:
-    resolution: {integrity: sha512-M0EUka6rb+QC4l9Z3T0nJEzNOO7JcoJlYMrBlyBCiFSXRyxjLKayd4TbQs2FDRWQU1h9FR7QVNHt+PEaoNL5rQ==}
+  acorn-loose@8.5.0:
+    resolution: {integrity: sha512-ppga7pybjwX2HSJv5ayHe6QG4wmNS1RQ2wjBMFTVnOj0h8Rxsmtc6fnVzINqHSSRz23sTe9IL3UAt/PU9gc4FA==}
     engines: {node: '>=0.4.0'}
 
   acorn-walk@8.3.4:
@@ -774,8 +774,8 @@ packages:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
 
-  dependency-cruiser@16.10.1:
-    resolution: {integrity: sha512-Uw8/emAfzD+Zcua6Hfg1wCnskJd2QSRGKw5tUWrCtA8PBSz+n/zfUYCTjFi9MwdiTA5oecN93FBvh9jJhTLs4A==}
+  dependency-cruiser@16.10.2:
+    resolution: {integrity: sha512-3tvyt9g3QV6iD6SLC+71bYZnKGTxHo/8dJeguhTgB2T0ui9k/6BbFlibrFYSlb7WeNHS1OlKUFY+BEQ1+w8gvg==}
     engines: {node: ^18.17||>=20}
     hasBin: true
 
@@ -1136,8 +1136,8 @@ packages:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
 
-  ignore@7.0.3:
-    resolution: {integrity: sha512-bAH5jbK/F3T3Jls4I0SO1hmPR0dKU0a7+SY6n1yzRtG54FLO8d6w/nxLFX2Nb7dBu6cCWXPaAME6cYqFUMmuCA==}
+  ignore@7.0.4:
+    resolution: {integrity: sha512-gJzzk+PQNznz8ysRrC0aOkBNVRBDtE1n53IqyqEf3PXrYwomFs5q4pGMizBMJF+ykh03insJ27hB8gSrD2Hn8A==}
     engines: {node: '>= 4'}
 
   import-fresh@3.3.0:
@@ -2424,7 +2424,7 @@ snapshots:
     dependencies:
       acorn: 8.14.1
 
-  acorn-loose@8.4.0:
+  acorn-loose@8.5.0:
     dependencies:
       acorn: 8.14.1
 
@@ -2629,17 +2629,17 @@ snapshots:
 
   depd@2.0.0: {}
 
-  dependency-cruiser@16.10.1:
+  dependency-cruiser@16.10.2:
     dependencies:
       acorn: 8.14.1
       acorn-jsx: 5.3.2(acorn@8.14.1)
       acorn-jsx-walk: 2.0.0
-      acorn-loose: 8.4.0
+      acorn-loose: 8.5.0
       acorn-walk: 8.3.4
       ajv: 8.17.1
       commander: 13.1.0
       enhanced-resolve: 5.18.1
-      ignore: 7.0.3
+      ignore: 7.0.4
       interpret: 3.1.1
       is-installed-globally: 1.0.0
       json5: 2.2.3
@@ -3064,7 +3064,7 @@ snapshots:
 
   ignore@5.3.2: {}
 
-  ignore@7.0.3: {}
+  ignore@7.0.4: {}
 
   import-fresh@3.3.0:
     dependencies:
