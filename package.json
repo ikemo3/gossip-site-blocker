@@ -27,7 +27,7 @@
     "vanjs-core": "^1.5.5"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.320",
+    "@types/chrome": "0.0.321",
     "@types/node": "^22.15.17",
     "date-fns": "4.1.0",
     "dependency-cruiser": "^16.10.2",
