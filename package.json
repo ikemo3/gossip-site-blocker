@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.323",
-    "@types/node": "^22.15.18",
+    "@types/node": "^22.15.19",
     "date-fns": "4.1.0",
     "dependency-cruiser": "^16.10.2",
     "eslint": "^9.27.0",
