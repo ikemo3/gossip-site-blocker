@@ -1,0 +1,126 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+Gossip Site Blocker is a Chrome extension that blocks harmful sites from Google search results. Built with TypeScript + Vite, it's developed as a WebExtension supporting both Chrome and Firefox.
+
+**IMPORTANT: This is an English-only codebase. All code, comments, and documentation should be written in English.**
+
+## Development Commands
+
+### Basic Commands
+
+```bash
+pnpm install        # Install dependencies
+pnpm dev           # Start development server
+pnpm build         # Build for production
+pnpm test          # Run tests
+pnpm lint          # Run linting
+pnpm format        # Format code
+pnpm fix           # Auto-fix ESLint issues
+pnpm archive       # Create release archive
+make ci            # Run full CI pipeline
+```
+
+### Testing
+
+```bash
+pnpm test                    # Run all tests
+pnpm test -- --watch        # Watch mode
+pnpm test -- test/block/     # Test specific directory
+```
+
+## Architecture
+
+### Directory Structure
+
+- `apps/block/` - Block functionality detection and processing logic
+- `apps/content_script/` - In-page UI element manipulation
+- `apps/entry/` - Various entry points
+- `apps/libs/` - Shared libraries and utilities
+- `apps/model/` - Data model definitions
+- `apps/page/` - Settings page UI
+- `apps/storage/` - Chrome extension storage management
+- `apps/values/` - Value objects and constants
+
+### Manifest Management
+
+- Chrome: `public/manifest.json` (Manifest V3)
+- Firefox: `public/manifest.firefox.json` (Manifest V2)
+- Dynamic generation: `scripts/make_manifest.ts` handles version management
+
+### Build Output
+
+- Chrome: `dist-chrome/`
+- Firefox: `dist-firefox/`
+- Packages: Archives generated in `tmp/workspace/`
+
+## Code Quality
+
+### Formatting & Linting
+
+Always run before development:
+
+```bash
+pnpm format  # Prettier + sort-package-json
+pnpm lint    # ESLint + TypeScript + dependency checks
+```
+
+### CI/CD
+
+`make ci` executes:
+
+1. Version consistency check
+2. Install dependencies
+3. lint, test, build, archive
+
+## Technical Specifications
+
+- **Package Manager**: pnpm
+- **Build Tool**: Vite
+- **Testing**: Vitest + jsdom
+- **Quality Control**: ESLint + Prettier + dependency-cruiser + Renovate
+
+## Development Notes
+
+- Manifest file versions are automatically synced with package.json
+- Support both Chrome/Firefox - be mindful of WebExtensions API compatibility
+- Block functionality should be self-contained within `apps/block/`
+
+## Commit Message Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/). Use the following format:
+
+```text
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Common Types
+
+- `feat`: New features
+- `fix`: Bug fixes
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting, etc.)
+- `refactor`: Code refactoring
+- `test`: Adding or updating tests
+- `chore`: Maintenance tasks, dependency updates
+- `ci`: CI/CD configuration changes
+- `perf`: Performance improvements
+- `build`: Build system changes
+
+### Branch Naming
+
+Branch names should follow the pattern: `<type>/<description>`
+
+Examples:
+
+- `feat/add-new-blocker`
+- `fix/search-result-detection`
+- `docs/update-readme`
+- `chore/update-dependencies`
