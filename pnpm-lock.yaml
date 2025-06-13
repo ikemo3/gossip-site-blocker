@@ -25,8 +25,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       dependency-cruiser:
-        specifier: ^16.10.2
-        version: 16.10.2
+        specifier: ^16.10.3
+        version: 16.10.3
       eslint:
         specifier: ^9.28.0
         version: 9.28.0
@@ -571,8 +571,8 @@ packages:
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  acorn-loose@8.5.0:
-    resolution: {integrity: sha512-ppga7pybjwX2HSJv5ayHe6QG4wmNS1RQ2wjBMFTVnOj0h8Rxsmtc6fnVzINqHSSRz23sTe9IL3UAt/PU9gc4FA==}
+  acorn-loose@8.5.1:
+    resolution: {integrity: sha512-H68u/wiI8PAsSBclEIWwUg3dqEaDZXQHCovulbedgp78zJstjn7gDjfGgwUtW0BHi+KasryFLreHAGX/iXU85A==}
     engines: {node: '>=0.4.0'}
 
   acorn-walk@8.3.4:
@@ -581,6 +581,11 @@ packages:
 
   acorn@8.14.1:
     resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.15.0:
+    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -747,8 +752,8 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  dependency-cruiser@16.10.2:
-    resolution: {integrity: sha512-3tvyt9g3QV6iD6SLC+71bYZnKGTxHo/8dJeguhTgB2T0ui9k/6BbFlibrFYSlb7WeNHS1OlKUFY+BEQ1+w8gvg==}
+  dependency-cruiser@16.10.3:
+    resolution: {integrity: sha512-5fUuitVV6yFe6xSbFTMF1DH8vBvjxbYVUaOa4lowQyC5SwiR3oGQwlMryMbADtfVHscgFnOj2WtF3j+xQMTkSg==}
     engines: {node: ^18.17||>=20}
     hasBin: true
 
@@ -1019,6 +1024,10 @@ packages:
 
   ignore@7.0.4:
     resolution: {integrity: sha512-gJzzk+PQNznz8ysRrC0aOkBNVRBDtE1n53IqyqEf3PXrYwomFs5q4pGMizBMJF+ykh03insJ27hB8gSrD2Hn8A==}
+    engines: {node: '>= 4'}
+
+  ignore@7.0.5:
+    resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
     engines: {node: '>= 4'}
 
   import-fresh@3.3.0:
@@ -1408,6 +1417,11 @@ packages:
 
   semver@7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.2:
+    resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -2178,15 +2192,21 @@ snapshots:
     dependencies:
       acorn: 8.14.1
 
-  acorn-loose@8.5.0:
+  acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
-      acorn: 8.14.1
+      acorn: 8.15.0
+
+  acorn-loose@8.5.1:
+    dependencies:
+      acorn: 8.15.0
 
   acorn-walk@8.3.4:
     dependencies:
-      acorn: 8.14.1
+      acorn: 8.15.0
 
   acorn@8.14.1: {}
+
+  acorn@8.15.0: {}
 
   agent-base@7.1.3: {}
 
@@ -2344,17 +2364,17 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  dependency-cruiser@16.10.2:
+  dependency-cruiser@16.10.3:
     dependencies:
-      acorn: 8.14.1
-      acorn-jsx: 5.3.2(acorn@8.14.1)
+      acorn: 8.15.0
+      acorn-jsx: 5.3.2(acorn@8.15.0)
       acorn-jsx-walk: 2.0.0
-      acorn-loose: 8.5.0
+      acorn-loose: 8.5.1
       acorn-walk: 8.3.4
       ajv: 8.17.1
       commander: 13.1.0
       enhanced-resolve: 5.18.1
-      ignore: 7.0.4
+      ignore: 7.0.5
       interpret: 3.1.1
       is-installed-globally: 1.0.0
       json5: 2.2.3
@@ -2364,7 +2384,7 @@ snapshots:
       prompts: 2.4.2
       rechoir: 0.8.0
       safe-regex: 2.1.1
-      semver: 7.7.1
+      semver: 7.7.2
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.2.0
       watskeburt: 4.2.3
@@ -2668,6 +2688,8 @@ snapshots:
   ignore@5.3.2: {}
 
   ignore@7.0.4: {}
+
+  ignore@7.0.5: {}
 
   import-fresh@3.3.0:
     dependencies:
@@ -3035,6 +3057,8 @@ snapshots:
       xmlchars: 2.2.0
 
   semver@7.7.1: {}
+
+  semver@7.7.2: {}
 
   shebang-command@2.0.0:
     dependencies:
