@@ -32,6 +32,24 @@ pnpm test -- --watch        # Watch mode
 pnpm test -- test/block/     # Test specific directory
 ```
 
+**Development Approach**: This project uses Test-Driven Development (TDD). Follow the Red-Green-Refactor cycle:
+
+1. **Red**: Write a failing test first
+2. **Green**: Write minimal code to make the test pass
+3. **Refactor**: Improve code while keeping tests green
+
+### Development Testing
+
+For browser testing of the extension:
+
+1. Build the extension: `pnpm build` (creates `dist/` directory)
+2. Load the extension in Chrome:
+   - Open Chrome Extensions (chrome://extensions/)
+   - Enable "Developer mode"
+   - Click "Load unpacked" and select `dist/` directory
+
+**Note**: Always rebuild after code changes to test in browser. Firefox testing requires `pnpm archive` to create `dist-firefox/` directory.
+
 ## Architecture
 
 ### Directory Structure
