@@ -17,10 +17,28 @@ export class GoogleImageTab extends SearchResultToBlock {
   private readonly compactMenuInsertElement: Element;
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-    return (
-      element.classList.contains("PNCib") &&
-      documentURL.isGoogleSearchImageTab()
-    );
+    const hasClass = element.classList.contains("eA0Zlc");
+    const isImageTab = documentURL.isGoogleSearchImageTab();
+
+    if (hasClass && isImageTab) {
+      Logger.debug(
+        "[GSB] GoogleImageTab.isCandidate: TRUE - class:",
+        hasClass,
+        "imageTab:",
+        isImageTab,
+      );
+    } else if (hasClass || isImageTab) {
+      Logger.debug(
+        "[GSB] GoogleImageTab.isCandidate: FALSE - class:",
+        hasClass,
+        "imageTab:",
+        isImageTab,
+        "URL:",
+        documentURL.toString(),
+      );
+    }
+
+    return hasClass && isImageTab;
   }
 
   // noinspection DuplicatedCode
@@ -28,7 +46,7 @@ export class GoogleImageTab extends SearchResultToBlock {
     super();
     this.element = element;
 
-    const anchor = element.querySelector("a.iGVLpd");
+    const anchor = element.querySelector("a.EZAeBe");
     if (!anchor) {
       Logger.debug("image tab: anchor not found", element);
       this.valid = false;
@@ -44,7 +62,7 @@ export class GoogleImageTab extends SearchResultToBlock {
       return;
     }
 
-    const image = element.querySelector("img.Q4LuWd");
+    const image = element.querySelector("img.YQ4gaf");
     if (!image) {
       Logger.debug("image tab: image not found", element);
       this.valid = false;

@@ -1,3 +1,4 @@
+import { Logger } from "../libs/logger";
 import { Options } from "../storage/options";
 import DocumentURL from "../values/document_url";
 import { GoogleImageTab } from "./google_image_tab";
@@ -44,7 +45,13 @@ export function detectContents(
     options.blockGoogleImagesTab &&
     GoogleImageTab.isCandidate(node, documentURL)
   ) {
-    return new GoogleImageTab(node);
+    Logger.debug("[GSB] GoogleImageTab candidate found:", node.className);
+    const imageTab = new GoogleImageTab(node);
+    Logger.debug(
+      "[GSB] GoogleImageTab created - canBlock:",
+      imageTab.canBlock(),
+    );
+    return imageTab;
   }
 
   if (

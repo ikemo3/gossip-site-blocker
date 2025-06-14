@@ -1,6 +1,7 @@
 import { SearchResultToBlock } from "../block/contents";
 import { detectContents } from "../block/detector";
 import { blockElement } from "../content_script/block_element";
+import { Logger } from "../libs/logger";
 import { BlockReason } from "../model/block_reason";
 import { Options } from "../storage/options";
 import { loadOption } from "../storage/options";
@@ -55,7 +56,21 @@ function processPendings() {
 function processAddedNode(node: Element, documentURL: DocumentURL) {
   const contents = detectContents(node, documentURL, gsbOptions);
   if (contents) {
+    Logger.debug(
+      "[GSB] Blocking element:",
+      contents.constructor.name,
+      "URL:",
+      contents.getUrl(),
+      "Title:",
+      contents.getTitle(),
+    );
     const { ended, reason } = blockElement(contents, gsbOptions);
+    Logger.debug(
+      "[GSB] Block result - ended:",
+      ended,
+      "reason:",
+      reason?.getReason(),
+    );
 
     if (reason) {
       window.blockReasons.push(reason);

@@ -12,7 +12,7 @@ class DocumentURL {
 
   isGoogleSearchImageTab(): boolean {
     const params = this.url.searchParams;
-    return params.get("tbm") === "isch";
+    return params.get("tbm") === "isch" || params.get("udm") === "2";
   }
 
   isGoogleSearch(): boolean {
@@ -25,6 +25,10 @@ class DocumentURL {
     params.set("gl", "us");
     params.set("hl", "en");
     return returnURL.toString();
+  }
+
+  toString(): string {
+    return this.url.toString();
   }
 }
 
