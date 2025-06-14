@@ -4,3 +4,5 @@ dist-chrome
 dist-firefox
 *.md
 pnpm-lock.yaml
+.claude/settings.local.json
+test/fixtures/

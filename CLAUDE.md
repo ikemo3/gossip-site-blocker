@@ -88,6 +88,23 @@ pnpm lint    # ESLint + TypeScript + dependency checks
 - Manifest file versions are automatically synced with package.json
 - Support both Chrome/Firefox - be mindful of WebExtensions API compatibility
 - Block functionality should be self-contained within `apps/block/`
+- **IMPORTANT**: Do not directly access files in `test/fixtures/` directory due to large file sizes. Only access when explicitly requested by the user.
+
+## Image Blocking Functionality
+
+### Key Components
+
+- `apps/block/google_image_tab.ts` - Main image blocking logic for Google image search
+- `apps/block/detector.ts` - Controls image blocking based on user settings
+- `apps/storage/options.ts` - Manages `blockGoogleImagesTab` setting (default: enabled)
+- `apps/values/document_url.ts` - Detects Google image search pages
+
+### Test Structure
+
+- Tests located in `/test/` directory using Vitest framework
+- Test files follow `*.test.ts` naming pattern
+- Currently focused on unit tests for library functions
+- No existing tests for HTML fixture-based blocking functionality
 
 ## Commit Message Convention
 
