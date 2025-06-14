@@ -69,7 +69,7 @@ function processAddedNode(node: Element, documentURL: DocumentURL) {
       "[GSB] Block result - ended:",
       ended,
       "reason:",
-      reason?.getReason(),
+      reason?.getReason() ?? (ended ? "not blocked" : "no reason"),
     );
 
     if (reason) {

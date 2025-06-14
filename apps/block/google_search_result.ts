@@ -22,7 +22,7 @@ export class GoogleSearchResult extends SearchResultToBlock {
   private readonly compactMenuInsertElement: Element;
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
-    if (element.classList.contains("MjjYud") && documentURL.isGoogleSearch()) {
+    if (element.hasAttribute("data-rpos") && documentURL.isGoogleSearch()) {
       if ($.hasParentWithClass(element, "related-question-pair")) {
         return false;
       }

@@ -30,7 +30,10 @@ export function detectContents(
   }
 
   if (GoogleSearchResult.isCandidate(node, documentURL)) {
-    return new GoogleSearchResult(node);
+    const searchResult = new GoogleSearchResult(node);
+    if (searchResult.canBlock()) {
+      return searchResult;
+    }
   }
 
   if (GoogleSearchInnerCard.isCandidate(node, documentURL)) {
