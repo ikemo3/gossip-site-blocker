@@ -159,3 +159,45 @@ Examples:
 - `fix/search-result-detection`
 - `docs/update-readme`
 - `chore/update-dependencies`
+
+## Release Process
+
+### Manual Release Testing
+
+Before creating a release, manual testing is required to ensure functionality across browsers:
+
+1. **Download Release Assets from Snapshot**:
+   - Download latest Chrome extension (.zip file)
+   - Download latest Firefox extension (.xpi file)
+
+2. **Chrome Testing**:
+   - Extract the .zip file
+   - Open Chrome Extensions (chrome://extensions/)
+   - Enable "Developer mode"
+   - Click "Load unpacked" and select extracted directory
+   - Perform basic functionality testing
+
+3. **Firefox Testing**:
+   - Open Firefox Developer Edition
+   - Set `xpinstall.signatures.required` to `false` in about:config
+   - Install the .xpi file
+   - Perform basic functionality testing
+
+4. **Basic Functionality Tests**:
+   - Test Google search result blocking
+   - Test Google image search blocking
+   - Verify settings page functionality
+   - Check console for errors
+
+### Beta Release Process
+
+For beta releases after manual testing (e.g., 1.16.1 → 1.16.1.1 for Chrome extension):
+
+1. **Version Update**:
+   - Update `package.json` version by appending `.1` to current release (e.g., 1.16.1.1)
+   - This follows Chrome extension versioning convention, not semver
+   - Manifest versions will be automatically synced
+
+2. **Beta Release Creation**:
+   - No tag creation required - release from snapshot
+   - Download updated assets from snapshot after CI build completes
