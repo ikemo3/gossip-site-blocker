@@ -86,6 +86,8 @@ pnpm format  # Prettier + sort-package-json
 pnpm lint    # ESLint + TypeScript + dependency checks
 ```
 
+**IMPORTANT**: Always run `pnpm format`, `pnpm lint`, and `pnpm test` before creating PRs to ensure code quality and functionality.
+
 ### CI/CD
 
 `make ci` executes:
