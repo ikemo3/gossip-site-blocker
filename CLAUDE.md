@@ -195,8 +195,8 @@ For beta releases after manual testing (e.g., 1.16.1 → 1.16.1.1 for Chrome ext
 
 1. **Version Update**:
    - Update `package.json` version by appending `.1` to current release (e.g., 1.16.1.1)
+   - Update `public/manifest.json` and `public/manifest.firefox.json` versions manually
    - This follows Chrome extension versioning convention, not semver
-   - Manifest versions will be automatically synced
 
 2. **Beta Release Creation**:
    - No tag creation required - release from snapshot
