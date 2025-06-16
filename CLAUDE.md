@@ -203,3 +203,17 @@ For beta releases after manual testing (e.g., 1.16.1 → 1.16.1.1 for Chrome ext
 2. **Beta Release Creation**:
    - No tag creation required - release from snapshot
    - Download updated assets from snapshot after CI build completes
+
+### Production Release Process
+
+For production releases from beta (e.g., 1.16.1.2 → 1.16.2):
+
+1. **Version Update**:
+   - Update `package.json` version to the production version (e.g., 1.16.2)
+   - Update `public/manifest.json` and `public/manifest.firefox.json` versions manually
+   - Run formatting and linting: `pnpm format && pnpm lint`
+
+2. **Release Creation**:
+   - Create PR with version updates and merge to main branch
+   - Create release using GitHub CLI: `gh release create v1.16.2 --generate-notes`
+   - Version follows semantic versioning for minor updates
