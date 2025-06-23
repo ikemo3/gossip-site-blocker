@@ -12,7 +12,7 @@ permissions:
 
 env:
   node-version: "22.16.0"
-  pnpm-version: "10.12.1"
+  pnpm-version: "10.12.2"
   PACKAGE_NAME: gossip-site-blocker
 
 jobs:
