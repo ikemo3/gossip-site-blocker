@@ -33,7 +33,7 @@
     "date-fns": "4.1.0",
     "dependency-cruiser": "^16.10.4",
     "eslint": "^9.31.0",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-formatter-junit": "^8.40.0",
     "eslint-plugin-n": "^17.21.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
