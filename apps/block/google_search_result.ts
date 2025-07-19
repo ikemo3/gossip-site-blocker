@@ -23,6 +23,11 @@ export class GoogleSearchResult extends SearchResultToBlock {
 
   static isCandidate(element: Element, documentURL: DocumentURL): boolean {
     if (documentURL.isGoogleSearch()) {
+      // Skip if already processed
+      if (element.hasAttribute("data-gsb-element-type")) {
+        return false;
+      }
+
       // Check for data-rpos attribute
       if (element.hasAttribute("data-rpos")) {
         if ($.hasParentWithClass(element, "related-question-pair")) {
@@ -33,6 +38,10 @@ export class GoogleSearchResult extends SearchResultToBlock {
 
       // Check for MjjYud class
       if (element.classList.contains("MjjYud")) {
+        // Skip if this MjjYud contains any child with data-rpos (prefer child processing)
+        if (element.querySelector("[data-rpos]")) {
+          return false;
+        }
         return true;
       }
     }
