@@ -201,7 +201,10 @@ g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
 }
 
 .gsb-compact-menu-block-anchor {
-  margin-left: 5px;
+  position: absolute;
+  left: -20px;
+  top: 10px;
+  z-index: 10;
 }
 
 /* HACK for compact menu */
