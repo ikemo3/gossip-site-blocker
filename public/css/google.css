@@ -9,7 +9,8 @@
 /**
  * color when unhide
  */
-[data-blocker-display="unhide"] {
+[data-blocker-display="unhide"],
+[data-blocker-display="unhide"] > .Ww4FFb {
   background-color: #ffd2d2 !important;
 }
 
