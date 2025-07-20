@@ -164,7 +164,20 @@ export class GoogleSearchResult extends SearchResultToBlock {
     if (actionMenu !== null) {
       this.compactMenuInsertElement = actionMenu;
     } else {
-      this.compactMenuInsertElement = element.querySelector("a")!;
+      // Place compact menu outside of <a> tag - after the V9tjod span container
+      const linkSpan = element.querySelector(".V9tjod");
+
+      if (linkSpan) {
+        this.compactMenuInsertElement = linkSpan;
+      } else {
+        // Fallback to .b8lM7 container (wraps the main link)
+        const linkWrapper = element.querySelector(".b8lM7");
+        if (linkWrapper) {
+          this.compactMenuInsertElement = linkWrapper;
+        } else {
+          this.compactMenuInsertElement = element.querySelector("a")!;
+        }
+      }
     }
   }
 
