@@ -14,6 +14,16 @@
   background-color: #ffd2d2 !important;
 }
 
+/**
+ * color when unhide (dark mode)
+ */
+@media (prefers-color-scheme: dark) {
+  [data-blocker-display="unhide"],
+  [data-blocker-display="unhide"] > .Ww4FFb {
+    background-color: #4a2c2c !important;
+  }
+}
+
 g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
   margin-top: 0;
   margin-bottom: 0;
@@ -113,6 +123,44 @@ g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
   background-color: #fefefe;
 }
 
+/**
+ * Dark mode support for block dialog
+ */
+@media (prefers-color-scheme: dark) {
+  .block-dialog-background {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .block-dialog {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border: 1px solid #555555;
+  }
+
+  .block-dialog input {
+    background-color: #404040;
+    color: #ffffff;
+    border: 1px solid #666666;
+  }
+
+  .block-dialog-type-select {
+    background-color: #404040;
+    color: #ffffff;
+    border: 1px solid #666666;
+  }
+
+  .block-dialog-buttons input.blocker-primary-button {
+    color: white;
+    background-color: #1a4480;
+  }
+
+  .block-dialog-buttons input.blocker-secondary-button {
+    color: #ffffff;
+    background-color: #404040;
+    border: 1px solid #666666;
+  }
+}
+
 .block-operations-div {
   left: 0;
   right: auto;
@@ -205,6 +253,20 @@ g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
   left: -20px;
   top: 10px;
   z-index: 10;
+}
+
+.gsb-compact-menu-icon {
+  display: block;
+}
+
+/**
+ * Dark mode support for icons
+ */
+@media (prefers-color-scheme: dark) {
+  .gsb-compact-menu-icon,
+  .gsb-appbar-icon {
+    filter: invert(1) brightness(0.8);
+  }
 }
 
 /* HACK for compact menu */
