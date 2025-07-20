@@ -27,6 +27,7 @@ export class CompactMenu {
     const iconUrl = chrome.runtime.getURL("icons/icon-12.png");
     const iconImg: HTMLImageElement = document.createElement("img");
     iconImg.src = iconUrl;
+    iconImg.classList.add("gsb-compact-menu-icon");
     this.operationSpan.appendChild(this.iconAnchor);
     this.iconAnchor.appendChild(iconImg);
     $.onclick(this.iconAnchor, this.showOperations.bind(this));

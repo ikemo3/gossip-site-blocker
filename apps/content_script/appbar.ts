@@ -111,6 +111,7 @@ async function createAppbarContents(gsbToolbar: HTMLDivElement): Promise<void> {
   const iconImg: HTMLImageElement = document.createElement("img");
   iconImg.src = iconUrl;
   iconImg.style.marginRight = "0.5rem";
+  iconImg.classList.add("gsb-appbar-icon");
   gsbToolbar.appendChild(iconImg);
 
   // create div for links
