@@ -40,8 +40,8 @@ importers:
         specifier: ^8.40.0
         version: 8.40.0
       eslint-plugin-n:
-        specifier: ^17.21.0
-        version: 17.21.0(eslint@9.32.0)(typescript@5.8.3)
+        specifier: ^17.21.1
+        version: 17.21.1(eslint@9.32.0)(typescript@5.8.3)
       eslint-plugin-simple-import-sort:
         specifier: ^12.1.1
         version: 12.1.1(eslint@9.32.0)
@@ -811,8 +811,8 @@ packages:
     peerDependencies:
       eslint: '>=8'
 
-  eslint-plugin-n@17.21.0:
-    resolution: {integrity: sha512-1+iZ8We4ZlwVMtb/DcHG3y5/bZOdazIpa/4TySo22MLKdwrLcfrX0hbadnCvykSQCCmkAnWmIP8jZVb2AAq29A==}
+  eslint-plugin-n@17.21.1:
+    resolution: {integrity: sha512-Q4UBK4U3cXTUga/HjL0Ua4VFmUOI0XHF4K6gaRQ6Ly7Mwp/HcTR9cad2l93blemJbWK7JqqvF62BqzrCQ8BqmQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.23.0'
@@ -979,6 +979,9 @@ packages:
   globals@16.3.0:
     resolution: {integrity: sha512-bqWEnJ1Nt3neqx2q5SFfGS8r/ahumIakg3HcwtNlrVlwXIeNumWn/c7Pn/wKzGhf6SaW6H6uWXLqC30STCMchQ==}
     engines: {node: '>=18'}
+
+  globrex@0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
@@ -2445,7 +2448,7 @@ snapshots:
       eslint: 9.32.0
       eslint-compat-utils: 0.5.1(eslint@9.32.0)
 
-  eslint-plugin-n@17.21.0(eslint@9.32.0)(typescript@5.8.3):
+  eslint-plugin-n@17.21.1(eslint@9.32.0)(typescript@5.8.3):
     dependencies:
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.32.0)
       enhanced-resolve: 5.18.2
@@ -2453,6 +2456,7 @@ snapshots:
       eslint-plugin-es-x: 7.8.0(eslint@9.32.0)
       get-tsconfig: 4.8.1
       globals: 15.15.0
+      globrex: 0.1.2
       ignore: 5.3.2
       minimatch: 9.0.5
       semver: 7.7.2
@@ -2641,6 +2645,8 @@ snapshots:
   globals@15.15.0: {}
 
   globals@16.3.0: {}
+
+  globrex@0.1.2: {}
 
   graceful-fs@4.2.11: {}
 
@@ -3183,7 +3189,7 @@ snapshots:
 
   ts-declaration-location@1.0.7(typescript@5.8.3):
     dependencies:
-      picomatch: 4.0.2
+      picomatch: 4.0.3
       typescript: 5.8.3
 
   tsconfig-paths-webpack-plugin@4.2.0:
