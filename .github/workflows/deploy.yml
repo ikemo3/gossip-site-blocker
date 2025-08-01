@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 env:
-  node-version: "22.17.1"
+  node-version: "22.18.0"
   pnpm-version: "10.14.0"
   PACKAGE_NAME: gossip-site-blocker
 
