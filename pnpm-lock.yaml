@@ -28,8 +28,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       dependency-cruiser:
-        specifier: ^17.0.1
-        version: 17.0.1
+        specifier: ^17.0.2
+        version: 17.0.2
       eslint:
         specifier: ^9.36.0
         version: 9.36.0
@@ -690,8 +690,8 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
-  commander@14.0.0:
-    resolution: {integrity: sha512-2uM9rYjPvyq39NwLRqaiLtWHyDC1FvryJDa2ATTVims5YAS4PupsEQsDvP14FqhFr0P49CYDugi59xaxJlTXRA==}
+  commander@14.0.1:
+    resolution: {integrity: sha512-2JkV3gUZUVrbNA+1sjBOYLsMZ5cEEl8GTFP2a4AVz5hvasAMCQ1D2l2le/cX+pV4N6ZU17zjUahLpIXRrnWL8A==}
     engines: {node: '>=20'}
 
   compress-commons@6.0.2:
@@ -747,8 +747,8 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  dependency-cruiser@17.0.1:
-    resolution: {integrity: sha512-4clZ8EPsOVoxGA8NMjaE95aJEO118Cd9D7gT5rysx5azij9cPiCSrnjYlZtV+90PFazlD2lZvjzBHkD1ZqGqlw==}
+  dependency-cruiser@17.0.2:
+    resolution: {integrity: sha512-Aryg/E8ostay8B7OBPqrxcxeGSgtPRKosP6do3L3TiPg4dAvIJFl2EFuG/mO8JAZv70pBTveKvKxhABPyNduvg==}
     engines: {node: ^20.12||^22||>=24}
     hasBin: true
 
@@ -771,6 +771,10 @@ packages:
 
   enhanced-resolve@5.18.2:
     resolution: {integrity: sha512-6Jw4sE1maoRJo3q8MsSIn2onJFbLTOjY9hlx4DZXmOKvLRd1Ok2kXmAGXaafL2+ijsJZ1ClYbl/pmqr9+k4iUQ==}
+    engines: {node: '>=10.13.0'}
+
+  enhanced-resolve@5.18.3:
+    resolution: {integrity: sha512-d4lC8xfavMeBjzGr2vECC3fsGXziXZQyJxD868h2M/mBI3PwAuODxAkLkq5HYuvrPYcUtiLzsTo8U3PgX3Ocww==}
     engines: {node: '>=10.13.0'}
 
   entities@4.5.0:
@@ -2317,7 +2321,7 @@ snapshots:
 
   color-name@1.1.4: {}
 
-  commander@14.0.0: {}
+  commander@14.0.1: {}
 
   compress-commons@6.0.2:
     dependencies:
@@ -2366,7 +2370,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  dependency-cruiser@17.0.1:
+  dependency-cruiser@17.0.2:
     dependencies:
       acorn: 8.15.0
       acorn-jsx: 5.3.2(acorn@8.15.0)
@@ -2374,8 +2378,8 @@ snapshots:
       acorn-loose: 8.5.2
       acorn-walk: 8.3.4
       ajv: 8.17.1
-      commander: 14.0.0
-      enhanced-resolve: 5.18.2
+      commander: 14.0.1
+      enhanced-resolve: 5.18.3
       ignore: 7.0.5
       interpret: 3.1.1
       is-installed-globally: 1.0.0
@@ -2400,6 +2404,11 @@ snapshots:
   emoji-regex@9.2.2: {}
 
   enhanced-resolve@5.18.2:
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.2.1
+
+  enhanced-resolve@5.18.3:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.2.1
@@ -3205,7 +3214,7 @@ snapshots:
   tsconfig-paths-webpack-plugin@4.2.0:
     dependencies:
       chalk: 4.1.2
-      enhanced-resolve: 5.18.2
+      enhanced-resolve: 5.18.3
       tapable: 2.2.1
       tsconfig-paths: 4.1.2
 
