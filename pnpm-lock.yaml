@@ -37,8 +37,8 @@ importers:
         specifier: ^10.1.8
         version: 10.1.8(eslint@9.38.0)
       eslint-formatter-junit:
-        specifier: ^8.40.0
-        version: 8.40.0
+        specifier: ^9.0.1
+        version: 9.0.1
       eslint-plugin-n:
         specifier: ^17.23.1
         version: 17.23.1(eslint@9.38.0)(typescript@5.9.3)
@@ -828,9 +828,9 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-formatter-junit@8.40.0:
-    resolution: {integrity: sha512-brB5r40UlMbd/BcmPIxUy/UA4GSGkuA1YRTDX4I5mEjra1asxmjUTWetf65JqVMo2kg96ZIZjRutktcHCIy+Gw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  eslint-formatter-junit@9.0.1:
+    resolution: {integrity: sha512-0MrNGXg2C46M/ImjWuClHSGKHBR0eSBPfYHqPgYmB0utq7Jog3YyLBmbshNvo/Ba/Al3zClPWdd6/jnxk2F+9Q==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   eslint-plugin-es-x@7.8.0:
     resolution: {integrity: sha512-7Ds8+wAAoV3T+LAKeu39Y5BzXCrGKrcISfgKEqTS4BDN8SFEDQd0S43jiQ8vIa3wUKD07qitZdfzlenSi8/0qQ==}
@@ -2512,7 +2512,7 @@ snapshots:
     dependencies:
       eslint: 9.38.0
 
-  eslint-formatter-junit@8.40.0: {}
+  eslint-formatter-junit@9.0.1: {}
 
   eslint-plugin-es-x@7.8.0(eslint@9.38.0):
     dependencies:
