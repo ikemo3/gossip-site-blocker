@@ -28,8 +28,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       dependency-cruiser:
-        specifier: ^17.1.0
-        version: 17.1.0
+        specifier: ^17.2.0
+        version: 17.2.0
       eslint:
         specifier: ^9.38.0
         version: 9.38.0
@@ -696,8 +696,8 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
-  commander@14.0.1:
-    resolution: {integrity: sha512-2JkV3gUZUVrbNA+1sjBOYLsMZ5cEEl8GTFP2a4AVz5hvasAMCQ1D2l2le/cX+pV4N6ZU17zjUahLpIXRrnWL8A==}
+  commander@14.0.2:
+    resolution: {integrity: sha512-TywoWNNRbhoD0BXs1P3ZEScW8W5iKrnbithIl0YH+uCmBd0QpPOA8yc82DS3BIE5Ma6FnBVUsJ7wVUDz4dvOWQ==}
     engines: {node: '>=20'}
 
   compress-commons@6.0.2:
@@ -762,8 +762,8 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  dependency-cruiser@17.1.0:
-    resolution: {integrity: sha512-8ZtJmSEqG5xAFAMYBclJbvp3R8j4wBw2QTzT0ZhC2cou6c/3u0G6j7coNc/fz0qyo0haQ5ihLt7u0iEnRMui/A==}
+  dependency-cruiser@17.2.0:
+    resolution: {integrity: sha512-EiOkB41fdAOCef3ycMX4pAXqkWrCOQ+G4IKOjcs9uPILShAuki2fHlTQPnv4aIHka/3lGJJdpRVrrwTMD7v1dg==}
     engines: {node: ^20.12||^22||>=24}
     hasBin: true
 
@@ -1203,8 +1203,8 @@ packages:
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
 
-  memoize@10.1.0:
-    resolution: {integrity: sha512-MMbFhJzh4Jlg/poq1si90XRlTZRDHVqdlz2mPyGJ6kqMpyHUyVpDd5gpFAvVehW64+RA1eKE9Yt8aSLY7w2Kgg==}
+  memoize@10.2.0:
+    resolution: {integrity: sha512-DeC6b7QBrZsRs3Y02A6A7lQyzFbsQbqgjI6UW0GigGWV+u1s25TycMr0XHZE4cJce7rY/vyw2ctMQqfDkIhUEA==}
     engines: {node: '>=18'}
 
   memorystream@0.3.1:
@@ -1440,6 +1440,11 @@ packages:
 
   semver@7.7.2:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.3:
+    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -2327,7 +2332,7 @@ snapshots:
 
   color-name@1.1.4: {}
 
-  commander@14.0.1: {}
+  commander@14.0.2: {}
 
   compress-commons@6.0.2:
     dependencies:
@@ -2386,7 +2391,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  dependency-cruiser@17.1.0:
+  dependency-cruiser@17.2.0:
     dependencies:
       acorn: 8.15.0
       acorn-jsx: 5.3.2(acorn@8.15.0)
@@ -2394,18 +2399,18 @@ snapshots:
       acorn-loose: 8.5.2
       acorn-walk: 8.3.4
       ajv: 8.17.1
-      commander: 14.0.1
+      commander: 14.0.2
       enhanced-resolve: 5.18.3
       ignore: 7.0.5
       interpret: 3.1.1
       is-installed-globally: 1.0.0
       json5: 2.2.3
-      memoize: 10.1.0
+      memoize: 10.2.0
       picomatch: 4.0.3
       prompts: 2.4.2
       rechoir: 0.8.0
       safe-regex: 2.1.1
-      semver: 7.7.2
+      semver: 7.7.3
       tsconfig-paths-webpack-plugin: 4.2.0
       watskeburt: 4.2.3
 
@@ -2852,7 +2857,7 @@ snapshots:
 
   mdn-data@2.12.2: {}
 
-  memoize@10.1.0:
+  memoize@10.2.0:
     dependencies:
       mimic-function: 5.0.1
 
@@ -3086,6 +3091,8 @@ snapshots:
       xmlchars: 2.2.0
 
   semver@7.7.2: {}
+
+  semver@7.7.3: {}
 
   shebang-command@2.0.0:
     dependencies:
