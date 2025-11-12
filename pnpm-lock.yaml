@@ -22,8 +22,8 @@ importers:
         specifier: ^27.0.0
         version: 27.0.0
       '@types/node':
-        specifier: ^24.10.0
-        version: 24.10.0
+        specifier: ^24.10.1
+        version: 24.10.1
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -71,10 +71,10 @@ importers:
         version: 8.46.4(eslint@9.39.1)(typescript@5.9.3)
       vite:
         specifier: ^7.2.2
-        version: 7.2.2(@types/node@24.10.0)(tsx@4.20.6)
+        version: 7.2.2(@types/node@24.10.1)(tsx@4.20.6)
       vitest:
         specifier: ^4.0.8
-        version: 4.0.8(@types/node@24.10.0)(jsdom@27.1.0(postcss@8.5.6))(tsx@4.20.6)
+        version: 4.0.8(@types/node@24.10.1)(jsdom@27.1.0(postcss@8.5.6))(tsx@4.20.6)
       zip-a-folder:
         specifier: 3.1.9
         version: 3.1.9
@@ -492,8 +492,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@24.10.0':
-    resolution: {integrity: sha512-qzQZRBqkFsYyaSWXuEHc2WR9c0a0CXwiE5FWUvn7ZM+vdy1uZLfCunD38UzhuB7YN/J11ndbDBcTmOdxJo9Q7A==}
+  '@types/node@24.10.1':
+    resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
 
   '@types/tough-cookie@4.0.5':
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
@@ -2066,13 +2066,13 @@ snapshots:
 
   '@types/jsdom@27.0.0':
     dependencies:
-      '@types/node': 24.10.0
+      '@types/node': 24.10.1
       '@types/tough-cookie': 4.0.5
       parse5: 7.2.1
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@24.10.0':
+  '@types/node@24.10.1':
     dependencies:
       undici-types: 7.16.0
 
@@ -2180,13 +2180,13 @@ snapshots:
       chai: 6.2.0
       tinyrainbow: 3.0.3
 
-  '@vitest/mocker@4.0.8(vite@7.2.2(@types/node@24.10.0)(tsx@4.20.6))':
+  '@vitest/mocker@4.0.8(vite@7.2.2(@types/node@24.10.1)(tsx@4.20.6))':
     dependencies:
       '@vitest/spy': 4.0.8
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 7.2.2(@types/node@24.10.0)(tsx@4.20.6)
+      vite: 7.2.2(@types/node@24.10.1)(tsx@4.20.6)
 
   '@vitest/pretty-format@4.0.8':
     dependencies:
@@ -3258,7 +3258,7 @@ snapshots:
 
   vanjs-core@1.6.0: {}
 
-  vite@7.2.2(@types/node@24.10.0)(tsx@4.20.6):
+  vite@7.2.2(@types/node@24.10.1)(tsx@4.20.6):
     dependencies:
       esbuild: 0.25.0
       fdir: 6.5.0(picomatch@4.0.3)
@@ -3267,14 +3267,14 @@ snapshots:
       rollup: 4.46.2
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 24.10.0
+      '@types/node': 24.10.1
       fsevents: 2.3.3
       tsx: 4.20.6
 
-  vitest@4.0.8(@types/node@24.10.0)(jsdom@27.1.0(postcss@8.5.6))(tsx@4.20.6):
+  vitest@4.0.8(@types/node@24.10.1)(jsdom@27.1.0(postcss@8.5.6))(tsx@4.20.6):
     dependencies:
       '@vitest/expect': 4.0.8
-      '@vitest/mocker': 4.0.8(vite@7.2.2(@types/node@24.10.0)(tsx@4.20.6))
+      '@vitest/mocker': 4.0.8(vite@7.2.2(@types/node@24.10.1)(tsx@4.20.6))
       '@vitest/pretty-format': 4.0.8
       '@vitest/runner': 4.0.8
       '@vitest/snapshot': 4.0.8
@@ -3291,10 +3291,10 @@ snapshots:
       tinyexec: 0.3.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: 7.2.2(@types/node@24.10.0)(tsx@4.20.6)
+      vite: 7.2.2(@types/node@24.10.1)(tsx@4.20.6)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 24.10.0
+      '@types/node': 24.10.1
       jsdom: 27.1.0(postcss@8.5.6)
     transitivePeerDependencies:
       - jiti
