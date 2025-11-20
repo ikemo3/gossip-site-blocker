@@ -47,7 +47,7 @@
     "typescript-eslint": "^8.47.0",
     "vite": "^7.2.4",
     "vitest": "^4.0.12",
-    "zip-a-folder": "3.1.9"
+    "zip-a-folder": "4.0.4"
   },
   "packageManager": "pnpm@10.22.0"
 }
