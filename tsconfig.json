@@ -7,7 +7,8 @@
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "target": "es2022"
+    "target": "es2022",
+    "types": ["chrome"]
   },
   "exclude": ["dist", "node_modules"]
 }
