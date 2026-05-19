@@ -30,7 +30,7 @@
     "@types/chrome": "0.1.42",
     "@types/jsdom": "^28.0.3",
     "@types/node": "^24.12.4",
-    "date-fns": "4.1.0",
+    "date-fns": "4.2.1",
     "dependency-cruiser": "^17.4.0",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
