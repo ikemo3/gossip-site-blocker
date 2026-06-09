@@ -210,8 +210,8 @@ g-inner-card:not([data-blocker-display="none"]) > span.block-anchor {
 }
 
 [data-gsb-element-type="google-search-result"] + .block-anchor {
-  margin-top: -22px;
-  margin-bottom: 22px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 [data-gsb-element-type="google-search-result"]
