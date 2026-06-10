@@ -4,6 +4,7 @@ import { BlockReason, BlockReasonType } from "../model/block_reason";
 import BlockedSitesRepository from "../storage/blocked_sites";
 import { BlockType, MenuPositionType } from "../storage/enums";
 import { RegExpRepository } from "../storage/regexp_repository";
+import { adjustAnchorMargin } from "./anchor_margin";
 import { BlockAnchor } from "./block_anchor";
 import { BlockChangeAnchor } from "./block_change_anchor";
 import { BlockChangeAnchorDialog } from "./block_change_anchor_dialog";
@@ -101,6 +102,7 @@ export class BlockMediator implements IBasicBlockMediator, IBlockMediator {
         this.operationDiv.appendChild(this.changeAnchor.getElement());
         this.operationDiv.classList.add(g.getCssClass());
         DOMUtils.insertAfter(blockTarget.getDOMElement(), this.operationDiv);
+        adjustAnchorMargin(blockTarget.getDOMElement(), this.operationDiv);
 
         break;
       default:
