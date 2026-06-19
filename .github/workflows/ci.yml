@@ -16,7 +16,7 @@ permissions:
   actions: read
 
 env:
-  node-version: "24.16.0"
+  node-version: "24.17.0"
   pnpm-version: "11.7.0"
 
 jobs:
