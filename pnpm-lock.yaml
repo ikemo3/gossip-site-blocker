@@ -76,8 +76,8 @@ importers:
         specifier: ^4.1.9
         version: 4.1.9(@types/node@24.13.2)(jsdom@29.1.1)(vite@8.1.2(@types/node@24.13.2)(esbuild@0.28.1)(tsx@4.22.4))
       zip-a-folder:
-        specifier: 6.1.1
-        version: 6.1.1
+        specifier: 6.1.2
+        version: 6.1.2
 
 packages:
 
@@ -1302,10 +1302,6 @@ packages:
     resolution: {integrity: sha512-W/KYk+NFhkmsYpuHq5JykngiOCnxeVL8v8dFnqxSD8qEEdRfXk1SDM6JzNqcERbcGYj9tMrDQBYV9cjgnunFIg==}
     engines: {node: '>=18'}
 
-  tinyglobby@0.2.16:
-    resolution: {integrity: sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==}
-    engines: {node: '>=12.0.0'}
-
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
     engines: {node: '>=12.0.0'}
@@ -1518,8 +1514,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zip-a-folder@6.1.1:
-    resolution: {integrity: sha512-8hjtUn4YQpj8HZvDwtGHhol27oDf+D1x70ldKwA3Bwru6gup62fDVrBTd+BC90/8REgjdCa5ep7EsBiGHudSdA==}
+  zip-a-folder@6.1.2:
+    resolution: {integrity: sha512-M2MC7HTJTFux2UrSmjBamaoLr71g9rkr3n6TaAvArvkgaxuuaZCMrWhYyA2SNYp+NISUave9xuQw3kWS7c25fw==}
     hasBin: true
 
 snapshots:
@@ -2608,11 +2604,6 @@ snapshots:
 
   tinyexec@1.0.2: {}
 
-  tinyglobby@0.2.16:
-    dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
-
   tinyglobby@0.2.17:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.4)
@@ -2769,7 +2760,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zip-a-folder@6.1.1:
+  zip-a-folder@6.1.2:
     dependencies:
       lzma: 2.3.2
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
