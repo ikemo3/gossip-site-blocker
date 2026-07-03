@@ -42,7 +42,7 @@
     "npm-run-all2": "^9.0.2",
     "prettier": "^3.9.4",
     "sort-package-json": "^4.0.0",
-    "tsx": "^4.22.4",
+    "tsx": "^4.22.5",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.62.1",
     "vite": "^8.1.3",
