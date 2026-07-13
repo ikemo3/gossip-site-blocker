@@ -31,7 +31,7 @@
     "@types/jsdom": "^28.0.3",
     "@types/node": "^24.13.3",
     "date-fns": "4.4.0",
-    "dependency-cruiser": "^18.0.0",
+    "dependency-cruiser": "^18.1.0",
     "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-formatter-junit": "^9.0.1",
