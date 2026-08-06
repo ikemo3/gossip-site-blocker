@@ -76,8 +76,8 @@ importers:
         specifier: ^4.1.10
         version: 4.1.10(@types/node@24.13.3)(jsdom@30.0.1)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(tsx@4.23.7))
       zip-a-folder:
-        specifier: 6.1.3
-        version: 6.1.3
+        specifier: 6.1.4
+        version: 6.1.4
 
 packages:
 
@@ -1523,8 +1523,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zip-a-folder@6.1.3:
-    resolution: {integrity: sha512-6A4bKRyxLv9oVZwcBuF8zkV9YOdGD0XCVUgCKWiuK9lBXTQ3WSDYzGsA0ROSFfX2alGfvpf+zYtrfof2DFOGzg==}
+  zip-a-folder@6.1.4:
+    resolution: {integrity: sha512-6zRF/xi0zRxKOCTBVWLwWyyp+zuAKyBhM3Q2ddgEg8uvjDFSTsKulc476jUAaNXnw3lI8pGRuffRNPbxNUld+g==}
     hasBin: true
 
 snapshots:
@@ -2789,7 +2789,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zip-a-folder@6.1.3:
+  zip-a-folder@6.1.4:
     dependencies:
       lzma: 2.3.2
       tinyglobby: 0.2.17
