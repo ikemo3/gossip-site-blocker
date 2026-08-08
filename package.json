@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.2.5",
-    "@types/jsdom": "^28.0.3",
+    "@types/jsdom": "^30.0.0",
     "@types/node": "^24.13.3",
     "date-fns": "4.4.0",
     "dependency-cruiser": "^18.1.1",
