@@ -46,7 +46,7 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.67.0",
     "vite": "^8.2.1",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "zip-a-folder": "6.1.4"
   },
   "packageManager": "pnpm@11.22.0"
