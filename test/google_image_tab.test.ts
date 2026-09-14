@@ -23,7 +23,6 @@ describe("GoogleImageTab", () => {
     documentURL = new DocumentURL(
       "https://www.google.com/search?q=hatsune+miku&tbm=isch",
     );
-    global.document = document;
   });
 
   describe("isCandidate", () => {
