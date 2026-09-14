@@ -21,7 +21,6 @@ describe("GoogleSearchResult", () => {
     });
     document = dom.window.document;
     documentURL = new DocumentURL("https://www.google.com/search?q=test");
-    global.document = document;
   });
 
   describe("isCandidate", () => {
