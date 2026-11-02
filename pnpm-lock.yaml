@@ -170,8 +170,8 @@ importers:
         specifier: ^12.0.3
         version: 12.0.3
       vanjs-core:
-        specifier: ^1.6.1
-        version: 1.6.1
+        specifier: ^1.6.2
+        version: 1.6.2
     devDependencies:
       '@types/chrome':
         specifier: 0.3.7
@@ -1639,8 +1639,8 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  vanjs-core@1.6.1:
-    resolution: {integrity: sha512-CPUteb4/iW3hB7TLTKI9A9YMRTAQFpPz5n1/+vfnPxNs2wOI9HvSg6K3B/9x+uycX8eefqopBcakr2vJeHgIgw==}
+  vanjs-core@1.6.2:
+    resolution: {integrity: sha512-Scc6y3l8/5b4zq67rslr4PA6RHqgJt84S8FLzHm1efPJkPMl22szOFXZWPAkGswm2GE+sMTkXKcR5UbTRg4BZQ==}
 
   vite@8.3.5:
     resolution: {integrity: sha512-z1YpjieJ9g0ebTmQpLBv/oq9E3F9EIlOe+7LahW8SrE3LTiG3udBRUXQOlYXP9b+IC2q2phHeVxj9xGlw34OEQ==}
@@ -3015,7 +3015,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vanjs-core@1.6.1: {}
+  vanjs-core@1.6.2: {}
 
   vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.1)(tsx@4.23.15):
     dependencies:
