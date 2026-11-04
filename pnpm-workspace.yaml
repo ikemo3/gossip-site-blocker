@@ -1,2 +1,6 @@
 allowBuilds:
   esbuild: true
+overrides:
+  "@eslint/config-array>minimatch": ">=11.0.1 <12"
+  "eslint>minimatch": ">=11.0.1 <12"
+  "@typescript-eslint/typescript-estree>minimatch": ">=11.0.1 <12"
