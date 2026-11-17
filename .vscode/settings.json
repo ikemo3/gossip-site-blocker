@@ -1,8 +1,7 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.sortPackageJson": "explicit"
+    "source.fixAll": "explicit"
   }
 }

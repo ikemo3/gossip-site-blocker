@@ -19,7 +19,7 @@ pnpm build         # Build for production
 pnpm test          # Run tests
 pnpm lint          # Run linting
 pnpm format        # Format code
-pnpm fix           # Auto-fix ESLint issues
+pnpm fix           # Auto-fix oxlint issues
 pnpm archive       # Create release archive
 make ci            # Run full CI pipeline
 ```
@@ -82,8 +82,8 @@ For browser testing of the extension:
 Always run before development:
 
 ```bash
-pnpm format  # Prettier + sort-package-json
-pnpm lint    # ESLint + TypeScript + dependency checks
+pnpm format  # oxfmt (including import and package.json sorting)
+pnpm lint    # oxlint + oxfmt check + TypeScript + dependency checks
 ```
 
 **IMPORTANT**: Always run `pnpm format`, `pnpm lint`, and `pnpm test` before creating PRs to ensure code quality and functionality.
@@ -101,7 +101,7 @@ pnpm lint    # ESLint + TypeScript + dependency checks
 - **Package Manager**: pnpm
 - **Build Tool**: Vite
 - **Testing**: Vitest + jsdom
-- **Quality Control**: ESLint + Prettier + dependency-cruiser + Renovate
+- **Quality Control**: oxlint + oxfmt + dependency-cruiser + Renovate
 
 ## Development Notes
 
