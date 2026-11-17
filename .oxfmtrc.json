@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "sortImports": true,
+  "sortPackageJson": true,
+  "ignorePatterns": [
+    ".claude/settings.local.json",
+    "*.md",
+    "coverage",
+    "dist",
+    "dist-chrome",
+    "dist-firefox",
+    "pnpm-lock.yaml",
+    "test/fixtures/"
+  ]
+}

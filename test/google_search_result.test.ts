@@ -1,6 +1,7 @@
 import fs from "fs";
-import { JSDOM } from "jsdom";
 import path from "path";
+
+import { JSDOM } from "jsdom";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { GoogleSearchResult } from "../apps/block/google_search_result";

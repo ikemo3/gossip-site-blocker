@@ -1,7 +1,8 @@
-import { format } from "date-fns";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import { format } from "date-fns";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
