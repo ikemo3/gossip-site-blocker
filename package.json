@@ -33,7 +33,7 @@
     "dependency-cruiser": "^18.7.2",
     "jsdom": "^31.0.1",
     "npm-run-all2": "^9.0.4",
-    "oxfmt": "^0.78.0",
+    "oxfmt": "^0.79.0",
     "oxlint": "^1.93.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
