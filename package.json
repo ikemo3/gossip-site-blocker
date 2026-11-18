@@ -30,7 +30,7 @@
     "@types/jsdom": "^30.0.0",
     "@types/node": "^26.6.6",
     "date-fns": "4.4.0",
-    "dependency-cruiser": "^18.7.2",
+    "dependency-cruiser": "^18.8.0",
     "jsdom": "^31.0.1",
     "npm-run-all2": "^9.0.4",
     "oxfmt": "^0.79.0",
