@@ -41,5 +41,5 @@
     "vitest": "^5.1.1",
     "zip-a-folder": "7.1.1"
   },
-  "packageManager": "pnpm@12.21.0"
+  "packageManager": "pnpm@12.23.0"
 }
